@@ -1,0 +1,179 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #333333 30%, #606060 100%);
+    background-image:-webkit-linear-gradient(top, #333333 30%, #606060 100%);
+    background-image:-ms-linear-gradient(top, #333333 30%, #606060 100%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0.3, #333333),
+        color-stop(1.0, #606060)
+    );
+    background-attachment:fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size:18px;
+    height:100%;
+    margin:15px;
+    padding:0px;
+    
+    color: #EEE;
+
+}
+
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    
+}
+
+h1 {
+    font-size:32px;
+    font-weight:normal;
+    margin-top:30px;
+    margin-bottom:  10px;
+    overflow:visible;
+    padding-bottom:5px;
+    text-align:left;
+    border-bottom: 2px solid #2F9BFF;
+    width: 80%;
+}
+
+h2 {
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0px;
+    margin-left: 0px;
+}
+
+li{
+    margin-left:0px;
+    margin-bottom:18px;
+}
+button{
+    float: right;
+    width:140px;
+    height: 44px;
+    padding: 10px;
+}
+
+.dates_footer{
+    margin-top: 40px;
+    text-align: right;
+}
+
+.button {
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 10px 15px 10px 15px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+
+   }
+
+.button:active{
+    background: #333;
+    color: #EEE
+}
+
+.date-container{
+    float: left;
+    padding-right: 8px;
+    border-right: 1px solid #CCC;
+    margin-right: 10px;
+    height: 50px;
+}
+
+.date{
+    float: left;
+    
+    font-size: 28px;
+}
+
+.time{
+    margin-top: 31px;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.description{
+    margin-left: 90px;
+    padding-top: 2px;
+}
+
+.clear{
+    clear: both;
+}
+
+
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
