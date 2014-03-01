@@ -16,10 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var MyCollection = new AppointmentCollection();
+
+
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+
+
+
+        var appView = new AppView();
+
+
+
+
+        appView.render();
+
+        var a = new Appointment();
+
+        MyCollection.add(a);
+        MyCollection.add(new Appointment({title:'New Appointment'}));
+
+        a.set('title', 'New Title');
+
+        
     },
     // Bind Event Listeners
     //
