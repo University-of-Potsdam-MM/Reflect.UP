@@ -110,6 +110,19 @@
             
             
         </div>
+
+        <script type="text/template" id="template-appointment-list-item">
+            <div class="date-container" >
+                <div class="date" >0<%- begin.getDate() %>.0<%- begin.getMonth()+1 %></div>
+                <div class="time" ><%- begin.getHours() %>:<%- begin.getMinutes() %>- 
+                <%- end.getHours() %>: <%- end.getMinutes() %></div>
+            </div>
+            
+            <div class="description" ><%- title %></div>
+            <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
+            <div class="clear"></div>
+        </script>
+
         <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
         <script type="text/javascript" src="js/lib/underscore.js"></script>
         <script type="text/javascript" src="js/lib/backbone.js"></script>

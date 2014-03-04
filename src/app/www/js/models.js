@@ -1,6 +1,8 @@
 var Appointment = Backbone.Model.extend({
 	defaults:{
 		title : 'Appointment Title',
+        begin : new Date(),
+        end : new Date(),
 
 	}
 });

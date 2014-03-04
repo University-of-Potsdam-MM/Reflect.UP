@@ -37,9 +37,10 @@ var app = {
         var a = new Appointment();
 
         MyCollection.add(a);
-        MyCollection.add(new Appointment({title:'New Appointment'}));
+        //MyCollection.add(new Appointment({title:'New Appointment'}));
 
         a.set('title', 'New Title');
+        
 
         
     },

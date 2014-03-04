@@ -5,8 +5,10 @@ var AppointmentListItemView = Backbone.View.extend({
         this.listenTo(this.model, 'change', this.render);
     },
 
+    template : _.template($('#template-appointment-list-item').html()),
+
     render : function() {
-        this.$el.html(this.model.get('title'));
+        this.$el.html(this.template(this.model.toJSON()));
         return this;
     }
 });
@@ -26,7 +28,7 @@ var AppointmentListView = Backbone.View.extend({
             }, this)
         }
         else {
-            this.$el.append('Empty List')
+            this.$el.html('Empty List')
         }
         return this;
     },
