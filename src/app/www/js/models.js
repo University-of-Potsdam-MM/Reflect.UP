@@ -11,3 +11,10 @@ var AppointmentCollection = Backbone.Collection.extend({
 	model : Appointment
 
 });
+
+var Screen = Backbone.Model.extend({
+    defaults : {
+        title : "Screen title",
+        content : "",
+    },
+})

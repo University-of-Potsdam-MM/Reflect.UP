@@ -25,19 +25,13 @@ var app = {
     initialize: function() {
         this.bindEvents();
 
-
-
-        var appView = new AppView();
-
-
-
-
-        appView.render();
-
-        var a = new Appointment();
-
+        var a = new Appointment({title : 'My title'});
+        
+        MyCollection.add(new Appointment({title:'New Appointment'}));
+        var router = new Router();
+        Backbone.history.start();
+        
         MyCollection.add(a);
-        //MyCollection.add(new Appointment({title:'New Appointment'}));
 
         a.set('title', 'New Title');
         
