@@ -21,6 +21,11 @@ var Appointments = new AppointmentCollection();
 var Questions = new QuestionList();
 
 
+$(document).on('ready', function() {
+
+});
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -29,6 +34,7 @@ var app = {
         var a = new Appointment({title : 'My title'});
         Appointments.add(new Appointment({title:'New Appointment'}));
 
+        //var v = new HomeView();
         
         
         var router = new Router();
@@ -39,6 +45,10 @@ var app = {
 
         var qc = new QuestionCollection();
         Questions.add(qc);
+
+        
+
+
         
 
         

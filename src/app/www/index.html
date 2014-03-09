@@ -29,86 +29,6 @@
     </head>
     <body>
         <div id="app">
-            <!-- <h1>UP Reflection</h1>
-            <div>
-                
-                <ul class="dates" >
-                    <li>
-                        <div class="date-container" >
-                            <div class="date" >15.02.</div>
-                            <div class="time" >12:00 - 14:00</div>
-                        </div>
-                        
-                        <div class="description" >Prüfung Stochastik</div>
-                        <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
-                        <div class="clear"></div>
-                    </li>
-                    <div class="line"></div>
-                    <li>
-                        <div class="date-container" >
-                            <div class="date" >28.02.</div>
-                            <div class="time" >17:00 - 21:00</div>
-                        </div>
-                        
-                        <div class="description" >Semesterball</div>
-                        <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
-                        <div class="clear"></div>
-                    </li>
-                    <div class="line"></div>
-                    <li>
-                        <div class="date-container" >
-                            <div class="date" >31.03.</div>
-                            <div class="time" ></div>
-                        </div>
-                        
-                        <div class="description" >Ende: Wintersemester</div>
-                        <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
-                        <div class="clear"></div>
-                    </li>
-                    <div class="line"></div>
-                    <li>
-                        <div class="date-container" >
-                            <div class="date" >10.04.</div>
-                            <div class="time" ></div>
-                        </div>
-                        
-                        <div class="description" >Beginn: Einschreibezeitraum</div>
-                        <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
-                        <div class="clear"></div>
-                    </li>
-
-                </ul>
-                <div class="content-footer" >
-                    <a href="dates.html" class="button" >Weitere Termine</a>
-                </div>
-            </div>
-
-            <div>
-                <h2>Offene Fragen</h2>
-
-                <ul class="dates" >
-                    <li>
-                        
-                        <div class="description" >Studiensituation</div>
-                        <div class="more" > <a href="question.html"><i class="fa fa-angle-right fa-2x"></i></a> </div>
-                        <div class="clear"></div>
-                    </li>
-                    <div class="line"></div>
-                    <li>
-                        <div class="description" >Reflection</div>
-                        <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
-                        <div class="clear"></div>
-                    </li>
-
-                </ul>
-            
-                
-               
-            </div> -->
-
-
-            
-            
         </div>
 
 
@@ -118,8 +38,16 @@
             <div id="questions"></div>
         </script>
 
+        <script type="text/template" id="template-appointments-screen">
+            <h1> <%- title %></h1>
+            <div id="dates"></div>
+        </script>
+
         <script type="text/template" id="template-appointment-list">
             <ul id="appointments"></ul>
+            <div class="content-footer" >
+                <a id="more-appointments-button" class="button" >Weitere Termine</a>
+            </div>
         </script>
 
         <script type="text/template" id="template-question-collection-list">

@@ -18,10 +18,15 @@ var AppointmentListItemView = Backbone.View.extend({
 var AppointmentListView = Backbone.View.extend({
     template : _.template($('#template-appointment-list').html()),
     
+    events: {
+        'click #more-appointments-button': 'showAppointments',
+    },
+
     initialize : function(){
         this.listenTo(this.model, 'add', this.addOne);
 
         this.render();
+        this.delegateEvents();
     },
 
     render : function() {
@@ -33,7 +38,7 @@ var AppointmentListView = Backbone.View.extend({
                     new AppointmentListItemView({model : appointment}).el);
             }, this)
         }
-        
+
         return this;
     },
 
@@ -43,6 +48,10 @@ var AppointmentListView = Backbone.View.extend({
 
         var view = new AppointmentListItemView({model : appointment});
         this.$("#appointments").append(view.el);
+    },
+
+    showAppointments: function(){
+        Backbone.history.navigate("appointments/", {trigger: true});
     }
 });
 
@@ -93,7 +102,9 @@ var QuestionCollectionListItemView = Backbone.View.extend({
 });
 
 var HomeView = Backbone.View.extend({
-    el : $("#app"),
+    el : "#app",
+    
+
     initialize : function() {
         this.render();
 
@@ -106,8 +117,6 @@ var HomeView = Backbone.View.extend({
             el: '#questions',
             model: Questions
         });
-
-
     },
     template : _.template($('#template-home-screen').html()),
     render : function(){
@@ -116,12 +125,30 @@ var HomeView = Backbone.View.extend({
         }))
         
         return this;
-    }
+    },
+    
 })
+
+var AppointmentsView = Backbone.View.extend({
+    el: '#app',
+    initialize: function(){
+        this.render();
+        this.AppointmentListView = new AppointmentListView({
+            el: '#dates',
+            model: Appointments
+        });
+    },
+    template: _.template($('#template-appointments-screen').html()),
+    render: function(){
+        this.$el.html(this.template({title: 'Termine'}));
+        return this;
+    },
+});
 
 var Router = Backbone.Router.extend({
     routes : {
         '' : 'home',
+        'appointments/' : 'appointments'
     },
 
     switchView : function(view){
@@ -131,13 +158,16 @@ var Router = Backbone.Router.extend({
 
             this.view = null;
         }
-        this.view = view;
-        $("body").html(view.el);            
+        this.view = view;   
     },
 
 
     home : function(){
         this.switchView(new HomeView());
+    },
+
+    appointments: function(){
+        this.switchView(new AppointmentsView())
     },
 
 });
