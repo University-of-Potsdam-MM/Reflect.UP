@@ -114,20 +114,17 @@
 
         <script type="text/template" id="template-home-screen">
             <h1> <%- title %></h1>
-            <div id="dates">
-                
-            </div>
-            <div id="questions">
-                <h2>Offene Fragen</h2>
-                <ul class="dates" >
-                    
-                </ul>
-            </div>
+            <div id="dates"></div>
+            <div id="questions"></div>
         </script>
 
         <script type="text/template" id="template-appointment-list">
-            <ul id="appointments">
-            </ul>
+            <ul id="appointments"></ul>
+        </script>
+
+        <script type="text/template" id="template-question-collection-list">
+            <h2>Offene Fragen</h2>
+            <ul id="question-collection"></ul>
         </script>
 
         <script type="text/template" id="template-appointment-list-item">
@@ -140,6 +137,16 @@
             <div class="description" ><%- title %></div>
             <div class="more" ><i class="fa fa-angle-right fa-2x"></i></div>
             <div class="clear"></div>
+        </script>
+
+        <script type="text/template" id="template-question-collection-list-item">
+        <div class="description"><%- title %></div>
+        <div class="more" > 
+            <a href="question.html">
+                <i class="fa fa-angle-right fa-2x"></i>
+            </a>
+        </div>
+        <div class="clear"></div>
         </script>
 
         <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>

@@ -17,7 +17,8 @@
  * under the License.
  */
 
-var MyCollection = new AppointmentCollection();
+var Appointments = new AppointmentCollection();
+var Questions = new QuestionList();
 
 
 var app = {
@@ -26,14 +27,18 @@ var app = {
         this.bindEvents();
 
         var a = new Appointment({title : 'My title'});
+        Appointments.add(new Appointment({title:'New Appointment'}));
+
         
-        MyCollection.add(new Appointment({title:'New Appointment'}));
+        
         var router = new Router();
         Backbone.history.start();
         
-        MyCollection.add(a);
-
+        Appointments.add(a);
         a.set('title', 'New Title');
+
+        var qc = new QuestionCollection();
+        Questions.add(qc);
         
 
         
