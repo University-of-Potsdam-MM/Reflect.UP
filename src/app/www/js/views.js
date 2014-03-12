@@ -17,13 +17,16 @@ var AppointmentListItemView = Backbone.View.extend({
 
 var AppointmentListView = Backbone.View.extend({
     template : _.template($('#template-appointment-list').html()),
-    
+    showButton : true,
     events: {
         'click #more-appointments-button': 'showAppointments',
     },
 
-    initialize : function(){
+    initialize : function(options){
         this.listenTo(this.model, 'add', this.addOne);
+
+        if("showButton" in options)
+            this.showButton = options.showButton;
 
         this.render();
         this.delegateEvents();
@@ -31,6 +34,9 @@ var AppointmentListView = Backbone.View.extend({
 
     render : function() {
         this.$el.html(this.template());
+
+        if(!this.showButton)
+            this.$("#more-appointments-button").hide();
 
         if (this.model.length){
             this.model.each( function(appointment){
@@ -110,7 +116,7 @@ var HomeView = Backbone.View.extend({
 
         this.AppointmentListView = new AppointmentListView({
             el : '#dates',
-            model : Appointments
+            model : Appointments,
         });
 
         this.QuestionCollectionListView = new QuestionCollectionListView({
@@ -135,7 +141,8 @@ var AppointmentsView = Backbone.View.extend({
         this.render();
         this.AppointmentListView = new AppointmentListView({
             el: '#dates',
-            model: Appointments
+            model: Appointments,
+            showButton : false,
         });
     },
     template: _.template($('#template-appointments-screen').html()),

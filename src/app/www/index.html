@@ -57,7 +57,7 @@
 
         <script type="text/template" id="template-appointment-list-item">
             <div class="date-container" >
-                <div class="date" >0<%- begin.getDate() %>.0<%- begin.getMonth()+1 %></div>
+                <div class="date" ><%- begin.getDate() %>.0<%- begin.getMonth()+1 %></div>
                 <div class="time" ><%- begin.getHours() %>:<%- begin.getMinutes() %>-
                 <%- end.getHours() %>:<%- end.getMinutes() %></div>
             </div>
