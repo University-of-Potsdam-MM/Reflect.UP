@@ -24,7 +24,60 @@ var QuestionList = Backbone.Collection.extend({
 });
 
 var AppointmentCollection = Backbone.Collection.extend({
-	model : Appointment
+	model : Appointment,
+   
+
+    sync: function(method, model, options){
+
+        var d = Math.floor(new Date().getTime() / 1000);
+        $.post("http://localhost:8080/Moodle/webservice/rest/server.php", {
+            wstoken: "be1350cfba80fc9abc195a0cf5ac6bb5",
+            wsfunction: "core_calendar_get_calendar_events",
+            moodlewsrestformat: "json",
+            events : {
+                eventids: [],
+                courseids: [2],
+                groupids: [],
+            },
+            options: {
+                userevents: 1,
+                siteevents: 1,
+                //timestart : 0,//Math.floor(new Date().getTime() / 1000)-10000,
+                //timeend: 1395343798,
+                ignorehidden: 0,
+            }
+        })
+
+        .done(function(data) {
+
+            if (data.message) {
+                if (options && options.error)
+                    options.error(data.message);
+
+                return;
+            }
+
+            if (options && options.success)
+                if (!data.events || data.events.length == 0){
+                        options.success([]);
+                        return;
+                }
+
+                var result = new Array();
+
+                _.each(data.events, function(item){
+                    result.push(new Appointment({
+                        title: item.name,
+                        begin : new Date(item.timestart * 1000),
+                        end: new Date((item.timestart + item.timeduration)*1000),
+                    }))                   
+                });
+
+                options.success(result);
+        });
+
+    },
+
 
 });
 

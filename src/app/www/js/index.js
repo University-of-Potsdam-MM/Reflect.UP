@@ -21,18 +21,16 @@ var Appointments = new AppointmentCollection();
 var Questions = new QuestionList();
 
 
-$(document).on('ready', function() {
-
+$( document ).ready(function() {
+    
 });
-
 
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
 
-        var a = new Appointment({title : 'My title'});
-        Appointments.add(new Appointment({title:'New Appointment'}));
+        
 
         //var v = new HomeView();
         
@@ -40,8 +38,7 @@ var app = {
         var router = new Router();
         Backbone.history.start();
         
-        Appointments.add(a);
-        a.set('title', 'New Title');
+        
 
         var qc = new QuestionCollection();
         Questions.add(qc);

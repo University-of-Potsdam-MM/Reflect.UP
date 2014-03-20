@@ -20,9 +20,11 @@ var AppointmentListView = Backbone.View.extend({
     showButton : true,
     events: {
         'click #more-appointments-button': 'showAppointments',
+        'error': 'onError',
     },
 
     initialize : function(options){
+        this.model.fetch({error:this.onError});
         this.listenTo(this.model, 'add', this.addOne);
 
         if("showButton" in options)
@@ -58,7 +60,11 @@ var AppointmentListView = Backbone.View.extend({
 
     showAppointments: function(){
         Backbone.history.navigate("appointments/", {trigger: true});
-    }
+    },
+
+    onError: function(collection, resp, options){
+        alert("Error: " + resp);
+    },
 });
 
 var QuestionCollectionListView = Backbone.View.extend({
