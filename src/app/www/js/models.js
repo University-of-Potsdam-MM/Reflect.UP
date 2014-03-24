@@ -29,21 +29,24 @@ var AppointmentCollection = Backbone.Collection.extend({
 
     sync: function(method, model, options){
 
-        var d = Math.floor(new Date().getTime() / 1000);
+        var today = new Date();
+        var oneYearLater = new Date();
+        oneYearLater.setFullYear(today.getFullYear()+1);
+
         $.post("http://localhost:8080/Moodle/webservice/rest/server.php", {
             wstoken: "be1350cfba80fc9abc195a0cf5ac6bb5",
             wsfunction: "core_calendar_get_calendar_events",
             moodlewsrestformat: "json",
             events : {
                 eventids: [],
-                courseids: [2],
+                courseids: [],
                 groupids: [],
             },
             options: {
                 userevents: 1,
                 siteevents: 1,
-                //timestart : 0,//Math.floor(new Date().getTime() / 1000)-10000,
-                //timeend: 1395343798,
+                timestart : Math.floor(today.getTime() / 1000),
+                timeend: Math.floor(oneYearLater.getTime() / 1000),
                 ignorehidden: 0,
             }
         })
