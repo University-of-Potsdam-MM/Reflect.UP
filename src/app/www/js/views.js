@@ -18,6 +18,7 @@ var AppointmentListItemView = Backbone.View.extend({
 var AppointmentListView = Backbone.View.extend({
     template : _.template($('#template-appointment-list').html()),
     showButton : true,
+    limit : -1,
     events: {
         'click #more-appointments-button': 'showAppointments',
         'error': 'onError',
@@ -30,6 +31,9 @@ var AppointmentListView = Backbone.View.extend({
         if("showButton" in options)
             this.showButton = options.showButton;
 
+        if("limit" in options)
+            this.limit = options.limit;
+
         this.render();
         this.delegateEvents();
     },
@@ -41,10 +45,13 @@ var AppointmentListView = Backbone.View.extend({
             this.$("#more-appointments-button").hide();
 
         if (this.model.length){
-            this.model.each( function(appointment){
+            var count = 0;
+            this.model.every( function(appointment){
                 this.$("#appointments").append(
                     new AppointmentListItemView({model : appointment}).el);
-            }, this)
+                count++;
+                
+            })
         }
 
         return this;
@@ -54,8 +61,13 @@ var AppointmentListView = Backbone.View.extend({
         if(this.model.length == 1)
             this.$("#appointments").empty();
 
-        var view = new AppointmentListItemView({model : appointment});
-        this.$("#appointments").append(view.el);
+        if (this.$("#appointments").children().length < this.limit 
+            || this.limit == -1){
+            var view = new AppointmentListItemView({model : appointment});
+            this.$("#appointments").append(view.el);
+        }
+
+        
     },
 
     showAppointments: function(){
@@ -123,6 +135,7 @@ var HomeView = Backbone.View.extend({
         this.AppointmentListView = new AppointmentListView({
             el : '#dates',
             model : Appointments,
+            limit : 3,
         });
 
         this.QuestionCollectionListView = new QuestionCollectionListView({
