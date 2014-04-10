@@ -19,6 +19,7 @@
 
 var Appointments = new AppointmentCollection();
 var Questions = new QuestionList();
+var Config = new Configuration({id: 1});
 
 
 $( document ).ready(function() {
@@ -30,7 +31,11 @@ var app = {
     initialize: function() {
         this.bindEvents();
 
-        
+        Config.fetch();
+
+        var token = Config.get("accessToken");
+        if (token == "")
+            Config.getToken();
 
         //var v = new HomeView();
         

@@ -1,3 +1,26 @@
+var Configuration = Backbone.Model.extend({
+    localStorage: new Backbone.LocalStorage("UPReflection"),
+
+    defaults:{
+        accessToken: '',
+    },
+
+    getToken: function()
+    {
+        var that = this;
+        $.get("http://localhost:8080/Moodle/login/token.php", {
+            username: 'test2',
+            password: 'Test2123.',
+            service: 'upreflection'
+        }).done(function(data){
+            that.set("accessToken", data.token)
+            that.save();
+        })
+    }
+
+});
+
+
 var Appointment = Backbone.Model.extend({
 	defaults:{
 		title : 'Appointment Title',
@@ -32,10 +55,11 @@ var AppointmentCollection = Backbone.Collection.extend({
         var today = new Date();
         var oneYearLater = new Date();
         oneYearLater.setFullYear(today.getFullYear()+1);
+        var token = Config.get("accessToken");
 
-        $.post("http://localhost:8080/Moodle/webservice/rest/server.php", {
-            wstoken: "be1350cfba80fc9abc195a0cf5ac6bb5",
-            wsfunction: "core_calendar_get_calendar_events",
+        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+            wstoken: token,
+            wsfunction: "local_upreflection_get_calendar_entries",
             moodlewsrestformat: "json",
             events : {
                 eventids: [],
@@ -43,8 +67,8 @@ var AppointmentCollection = Backbone.Collection.extend({
                 groupids: [],
             },
             options: {
-                userevents: 1,
-                siteevents: 1,
+                userevents: 0,
+                siteevents: 0,
                 timestart : Math.floor(today.getTime() / 1000),
                 timeend: Math.floor(oneYearLater.getTime() / 1000),
                 ignorehidden: 0,
