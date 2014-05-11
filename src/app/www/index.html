@@ -70,11 +70,39 @@
         <script type="text/template" id="template-question-collection-list-item">
         <div class="description"><%- title %></div>
         <div class="more" > 
-            <a href="question.html">
+            <a href="questions/<%- containerId %>/<%- questionId %>">
                 <i class="fa fa-angle-right fa-2x"></i>
             </a>
         </div>
         <div class="clear"></div>
+        </script>
+
+        <script type="text/template" id="template-question">
+            <h1>Frage</h1>
+            <div class="content-container">
+                <p><%- questionText %></p>
+
+                <textarea></textarea>
+            </div>
+
+            <div class="page-footer" >
+                <div class="floater">
+                    <a href="questions/<%- containerId %>/<%- previousId %>"
+                    class="button dark nav"
+                    id="previousButton">
+                        <i class="fa fa-angle-left fa-2x"></i>
+                    </a>
+                </div>
+                
+                <div class="floater">
+                    <a href="questions/<%- containerId %>/<%- nextId %>"
+                    class="button dark nav"
+                    id="nextButton">
+                        <i class="fa fa-angle-right fa-2x"></i>
+                    </a>
+                </div>
+                <div class="clear" ></div>
+            </div>
         </script>
 
         <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>

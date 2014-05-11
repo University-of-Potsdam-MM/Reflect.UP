@@ -34,16 +34,102 @@ var Question = Backbone.Model.extend({
     defaults: {
         questionText: 'Question Text',
         answerText : 'Answer Text',
-    }
+        previous : null,
+        next : null,
+        container: null,
+    },
+
+    hasPrevious: function(){
+         if (this.get('container').get('currentIndex') == 0)
+            return false;
+
+        return true;
+    },
+
+    hasNext: function(){
+        var container = this.get('container');
+        if (container.get('currentIndex') == container.get('questionList').length - 1)
+            return false;
+
+        return true;
+    },
+
+    nextId: function(){
+        if (!this.hasNext())
+            return;
+
+        var container = this.get('container');
+        return container.get('questionList').at(container.get('currentIndex')+1).id;
+    },
+
+    previousId: function(){
+        if (!this.hasPrevious())
+            return;
+
+        var container = this.get('container');
+        return container.get('questionList').at(container.get('currentIndex')-1).id;
+    },
 });
 
-var QuestionCollection = Backbone.Collection.extend({
-    model : Question,
-    title : 'Question Collection'
+var QuestionContainer = Backbone.Model.extend({
+
+    defaults: {
+        title : 'Questions',
+        currentIndex: 0,
+        firstQuestion: null,
+        questionList: null,
+    },
+
+    initialize: function()
+    {
+        this.set('questionList', new QuestionList());
+    },
+
+    next: function()
+    {
+        if (this.get('currentIndex') == this.length - 1)
+            return null;
+
+        this.set('currentIndex', this.get('currentIndex') + 1);
+        return this.get('questionList').at(this.get('currentIndex'));
+        return this.current();
+    },
+
+    
+
+    previous: function()
+    {
+        if (this.get('currentIndex') <= 0)
+            return null;
+
+        this.set('currentIndex', this.get('currentIndex') - 1);
+        return this.current();
+    },
+
+    current: function()
+    {
+        return this.get('questionList').at(this.get('currentIndex'));
+    },
+
+    add: function(element)
+    {
+        element.set('container', this);
+        return this.get('questionList').add(element);
+    },
+
+    getQuestion: function(id)
+    {
+        return this.get('questionList').get(id);
+    }
+
 });
 
 var QuestionList = Backbone.Collection.extend({
-    model : QuestionCollection,
+    model: Question,
+})
+
+var QuestionContainerList = Backbone.Collection.extend({
+    model : QuestionContainer,
 });
 
 var AppointmentCollection = Backbone.Collection.extend({

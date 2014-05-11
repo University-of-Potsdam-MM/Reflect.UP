@@ -92,38 +92,126 @@ var QuestionCollectionListView = Backbone.View.extend({
         this.$el.html(this.template());
 
         if (this.model.length){
-            this.model.each( function(questionCollection){
+            this.model.each( function(questionContainer){
                 this.$("#question-collection").append(
-                    new QuestionCollectionListItemView({model : questionCollection}).el);
+                    new QuestionContainerView({model : questionContainer}).el);
             }, this)
         }
         
         return this;
     },
 
-    addOne : function(questionCollection){
+    addOne : function(questionContainer){
         
-        var view = new QuestionCollectionListItemView({model : questionCollection});
+        var view = new QuestionContainerView({model : questionContainer});
         this.$("#question-collection").append(view.el);
-    }
+    },
+
+    // navigate: function(el)
+    // {
+    //     return false;
+    // }
 });
 
-var QuestionCollectionListItemView = Backbone.View.extend({
+var QuestionContainerView = Backbone.View.extend({
     tagName : 'li',
 
     initialize : function(){
         this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model.get('questionList'), 'change', this.render);
+        this.listenTo(this.model.get('questionList'), 'add', this.render);
 
         this.render();
+    },
+
+    events:{
+        'click a': 'navigate'
     },
 
     template : _.template($('#template-question-collection-list-item').html()),
 
     render : function() {
-        this.$el.html(this.template({title : this.model.title}));
+
+        if (!this.model.current())
+            return this;
+
+        this.$el.html(this.template({
+            title : this.model.get('title'),
+            containerId : this.model.id,
+            questionId: this.model.current().id,
+        }));
         return this;
-    }
+    },
+
+
+    navigate: function(el)
+    {
+        el.preventDefault();
+        var destination = $(el.target.parentNode).attr('href');
+        Backbone.history.navigate(destination, {trigger: true});
+        return false;
+    },
+    
 });
+
+var QuestionView = Backbone.View.extend({
+    el: "#app",
+    template: _.template($('#template-question').html()),
+
+    initialize: function(){
+        this.render();
+    },
+
+    events:{
+        'click #nextButton':        'nextQuestion',
+        'click #previousButton':    'previousQuestion',
+    },
+
+    render: function(){
+        if (this.model.hasPrevious())
+            var previousId = this.model.previousId();
+
+        if (this.model.hasNext())
+            var nextId = this.model.nextId();
+
+        this.$el.html(
+            
+            this.template({
+                questionText: this.model.get('questionText'),
+                answerText: this.model.get('answerText'),
+                previousId: previousId,
+                nextId: nextId,
+                containerId: this.model.get('container').get('id'),
+            })
+        );
+    },
+
+    nextQuestion: function(el)
+    {
+        el.preventDefault();
+        var q = this.model.get('container').next();
+
+        var destination = 'questions/' 
+            + this.model.get('container').id 
+            + '/' 
+            + q.id; //$(el.target).attr('href');
+        Backbone.history.navigate(destination, {trigger: true});
+        return false;
+    },
+
+    previousQuestion: function(el)
+    {
+        el.preventDefault();
+        var q = this.model.get('container').previous();
+
+        var destination = 'questions/' 
+            + this.model.get('container').id 
+            + '/' 
+            + q.id;
+        Backbone.history.navigate(destination, {trigger: true});
+        return false;
+    },
+})
 
 var HomeView = Backbone.View.extend({
     el : "#app",
@@ -174,7 +262,8 @@ var AppointmentsView = Backbone.View.extend({
 var Router = Backbone.Router.extend({
     routes : {
         '' : 'home',
-        'appointments/' : 'appointments'
+        'appointments/' : 'appointments',
+        'questions/:containerId/:questionId' : 'questions'
     },
 
     switchView : function(view){
@@ -194,6 +283,12 @@ var Router = Backbone.Router.extend({
 
     appointments: function(){
         this.switchView(new AppointmentsView())
+    },
+
+    questions: function(containerId, questionId)
+    {
+        var question = Questions.get(containerId).getQuestion(questionId);
+        this.switchView(new QuestionView({model: question}));
     },
 
 });

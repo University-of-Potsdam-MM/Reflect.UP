@@ -18,7 +18,7 @@
  */
 
 var Appointments = new AppointmentCollection();
-var Questions = new QuestionList();
+var Questions = new QuestionContainerList();
 var Config = new Configuration({id: 1});
 
 
@@ -45,8 +45,29 @@ var app = {
         
         
 
-        var qc = new QuestionCollection();
+        var qc = new QuestionContainer({id: 1});
         Questions.add(qc);
+
+        var q1 = new Question({
+            id: 1,
+            questionText: 'q1',
+        });
+
+        var q2 = new Question({
+            id: 2,
+            questionText: 'q2',
+        });
+
+        //var l = qc.get('questionList');
+        qc.add(q1);
+        qc.add(q2);
+
+        //q1.set('next', q2);
+        //q2.set('previous', q1);
+
+        //qc.set('firstQuestion', q1);
+        //Questions.add(q);
+        //qc.add(q);
 
         
 
