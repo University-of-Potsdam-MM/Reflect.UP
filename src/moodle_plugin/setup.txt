@@ -1,0 +1,5 @@
+- Plugin installieren (in ordner local kopieren), Moodle admin: notification
+- "create Token" capability für die entspr. User aktivieren
+- "Web Service Rest" cap. für entspr. User aktivieren
+- Kurs mit ID UPR1 anlegen (Kurs muss sichtbar sein)
+- Termine anlegen
