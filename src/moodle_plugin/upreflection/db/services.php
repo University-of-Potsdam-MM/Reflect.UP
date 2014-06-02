@@ -29,13 +29,20 @@ $functions = array(
                 'classpath'   => 'local/upreflection/externallib.php',
                 'description' => 'Returns the calendar entries of the Reflection course',
                 'type'        => 'read',
+        ),
+        'local_upreflection_get_feedbacks' => array(
+                'classname'   => 'local_reflection_external',
+                'methodname'  => 'get_feedbacks',
+                'classpath'   => 'local/upreflection/externallib.php',
+                'description' => 'Returns the feedback entries of the Reflection course',
+                'type'        => 'read',
         )
 );
 
 // We define the services to install as pre-build services. A pre-build service is not editable by administrator.
 $services = array(
         'UPReflection Service' => array(
-                'functions' => array ('local_upreflection_get_calendar_entries'),
+                'functions' => array ('local_upreflection_get_calendar_entries', 'local_upreflection_get_feedbacks'),
                 'restrictedusers' => 0,
                 'enabled'=>1,
                 'shortname'=>'upreflection',

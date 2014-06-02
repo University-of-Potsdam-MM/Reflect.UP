@@ -120,6 +120,11 @@ var QuestionContainer = Backbone.Model.extend({
     getQuestion: function(id)
     {
         return this.get('questionList').get(id);
+    },
+
+    setCurrent: function(id)
+    {
+        
     }
 
 });
@@ -130,6 +135,54 @@ var QuestionList = Backbone.Collection.extend({
 
 var QuestionContainerList = Backbone.Collection.extend({
     model : QuestionContainer,
+
+    sync: function(method, model, options){
+
+        var token = Config.get("accessToken");
+
+        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+            wstoken: token,
+            wsfunction: "local_upreflection_get_feedbacks",
+            moodlewsrestformat: "json",
+        })
+
+        .done(function(data) {
+
+            if (data.message) {
+                if (options && options.error)
+                    options.error(data.message);
+
+                return;
+            }
+
+            if (options && options.success)
+                if (!data.feedbacks || data.feedbacks.length == 0){
+                        options.success([]);
+                        return;
+                }
+
+                var result = new Array();
+
+                _.each(data.feedbacks, function(item){
+                    var questionContainer = new QuestionContainer({
+                        id: item.id, 
+                        title: item.name});
+
+                    _.each(item.questions, function(question_item){
+                        questionContainer.add(new Question({
+                            id: question_item.id,
+                            questionText: question_item.questionText,
+                            //TODO: type and choices
+                        }));
+                    });
+
+                    result.push(questionContainer);
+                });
+
+                options.success(result);
+        });
+
+    },
 });
 
 var AppointmentCollection = Backbone.Collection.extend({

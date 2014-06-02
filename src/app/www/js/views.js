@@ -84,7 +84,7 @@ var QuestionCollectionListView = Backbone.View.extend({
     
     initialize : function(){
         this.listenTo(this.model, 'add', this.addOne);
-
+        this.model.fetch({error:this.onError});
         this.render();
     },
 
@@ -107,10 +107,9 @@ var QuestionCollectionListView = Backbone.View.extend({
         this.$("#question-collection").append(view.el);
     },
 
-    // navigate: function(el)
-    // {
-    //     return false;
-    // }
+    onError: function(collection, resp, options){
+        alert("Error: " + resp);
+    },
 });
 
 var QuestionContainerView = Backbone.View.extend({
