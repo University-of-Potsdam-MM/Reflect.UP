@@ -83,15 +83,12 @@ class local_reflection_external extends external_api {
      */
     public static function get_calendar_reflection_events($events = array(), $options = array()) {
         
+        
         global $SITE, $DB, $USER, $CFG;
         require_once($CFG->dirroot."/calendar/lib.php");
 
         // Parameter validation.
         $params = self::validate_parameters(self::get_calendar_reflection_events_parameters(), array('events' => $events, 'options' => $options));
-        
-        
-        
-
         $course = $DB->get_record('course', array('idnumber'=>'UPR1'));
 
         if (!$course)
@@ -99,9 +96,6 @@ class local_reflection_external extends external_api {
 
         $params['events']['courseids'] = array(0 => $course->id );
         $params['events']['groupids'] = array();
-
-
-        
 
         $funcparam = array('courses' => array(), 'groups' => array());
         $hassystemcap = true;//has_capability('moodle/calendar:manageentries', context_system::instance());
@@ -213,6 +207,127 @@ class local_reflection_external extends external_api {
         );
     }
 
+    /**
+     * Returns description of method parameters
+     *
+     * @return external_function_parameters
+     * @since Moodle 2.5
+     */
+
+    public static function get_feedbacks_parameters() {
+        return new external_function_parameters(
+                array(
+                    'options' => new external_single_structure(
+                            array(
+                                    'timestart' => new external_value(PARAM_INT,
+                                             "Time from which feedbacks should be returned",
+                                             VALUE_DEFAULT, 0, NULL_ALLOWED),
+                                    'timeend' => new external_value(PARAM_INT,
+                                             "Time to which feedbacks should be returned",
+                                             VALUE_DEFAULT, time(), NULL_ALLOWED)
+                            ), 'Options', VALUE_DEFAULT, array())
+                )
+        );
+    }
 
 
+    /**
+     * Get Fedback events
+     * @package array $options various options
+     * @return array Array of feedback details
+     * @since Moodle 2.5
+     */
+    public static function get_feedbacks($options = array()) {
+
+        global $SITE, $DB, $USER, $CFG;
+        require_once($CFG->dirroot."/mod/feedback/lib.php");
+
+        $fedbacks = array();
+
+
+        if (!$course = $DB->get_record('course', array('idnumber'=>'UPR1'))) {
+            //TODO: error
+        }
+
+
+        $feedback_list = get_all_instances_in_course("feedback", $course, NULL, true);
+           
+        //file_put_contents("D:\output.txt", "Feedbacks: \n", FILE_APPEND);
+        //file_put_contents("D:\output.txt", print_r($feedback_list, true)."\n", FILE_APPEND);
+
+        foreach ($feedback_list as $id => $feedback_object) {
+     
+            if (feedback_is_already_submitted($feedback_object->id))
+                continue;
+            //TODO: Time und Caps beachten
+
+
+            $feedbackitems = $DB->get_records('feedback_item',array('feedback'=>$feedback_object->id));
+            $questions = array();
+
+            foreach ($feedbackitems as $item_id => $item_object) {
+
+                if ($item_object->typ != 'textfield' AND
+                    $item_object->typ != 'textarea' AND
+                    $item_object->typ != 'multichoice')
+                    continue;
+
+
+                $question = array(
+                    'id' => $item_object->id,
+                    'questionText' => $item_object->name,
+                    'type' => $item_object->typ
+                    );
+
+                if ($item_object->typ == 'multichoice')
+                    $question['choices'] = $item_object->presentation;
+
+                $questions[$item_id] = (array)$question;
+            }
+
+
+            $feedback = array(
+                'name' => $feedback_object->name,
+                'id' => $feedback_object->id,
+                'questions' => $questions
+                );
+
+            $feedbacks[$id] = (array)$feedback;
+
+        }
+
+        return array('feedbacks' => $feedbacks);
+    }
+
+
+    /**
+     * Returns description of method result value
+     *
+     * @return external_description
+     * @since Moodle 2.5
+     */
+    public static function  get_feedbacks_returns() {
+        return new external_single_structure(
+            array(
+                'feedbacks' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            'name' => new external_value(PARAM_TEXT, 'feedback name'),
+                            'id' => new external_value(PARAM_INT, 'event id'),
+                            'questions' => new external_multiple_structure( 
+                                new external_single_structure(
+                                    array(
+                                        'id' => new external_value(PARAM_INT, 'Question Id'),
+                                        'questionText' => new external_value(PARAM_TEXT, 'Question Text'),
+                                        'type' => new external_value(PARAM_TEXT, 'Question Text'),
+                                        'choices' => new external_value(PARAM_TEXT, 'Choices', VALUE_OPTIONAL)
+                                    ),'Question', VALUE_DEFAULT, array()
+                                ), VALUE_DEFAULT, array()
+                            )
+                        ),'Feedback'
+                    )
+                )
+            )
+        );
+    }
 }
