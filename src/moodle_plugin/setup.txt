@@ -1,3 +1,6 @@
+﻿Advanced Feautes -> Enable Web Services
+Plugins -> Web Services -> Manage Protocols -> Enable REST
+
 - Plugin installieren (in ordner local kopieren), Moodle admin: notification
 - "create Token" capability für die entspr. User aktivieren
 - "Web Service Rest" cap. für entspr. User aktivieren
