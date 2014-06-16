@@ -221,6 +221,13 @@ var QuestionView = Backbone.View.extend({
         el.preventDefault();
         var q = this.model.get('container').next();
 
+        if (!q){
+            this.model.get('container').sendData();
+            this.undelegateEvents();
+            Backbone.history.navigate('', {trigger: true});
+            return false;
+        }
+
         var destination = 'questions/' 
             + this.model.get('container').id 
             + '/' 
@@ -239,6 +246,7 @@ var QuestionView = Backbone.View.extend({
         if (!q){
             this.undelegateEvents();
             Backbone.history.navigate('', {trigger: true});
+            return false;
         }
 
         var destination = 'questions/' 

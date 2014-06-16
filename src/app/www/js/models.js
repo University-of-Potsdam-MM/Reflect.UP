@@ -92,7 +92,6 @@ var QuestionContainer = Backbone.Model.extend({
             return null;
 
         this.set('currentIndex', this.get('currentIndex') + 1);
-        return this.get('questionList').at(this.get('currentIndex'));
         return this.current();
     },
 
@@ -123,9 +122,15 @@ var QuestionContainer = Backbone.Model.extend({
         return this.get('questionList').get(id);
     },
 
-    setCurrent: function(id)
-    {
-        
+    sendData: function(){
+        var result = {id: this.id};
+        result.answers = new Array();
+        _.each(this.get('questionList').models, function(question){
+            result.answers.push({
+                id: question.id,
+                answer: question.get("answerText")
+            })
+        });
     }
 
 });
