@@ -183,10 +183,41 @@ var QuestionView = Backbone.View.extend({
                 containerId: this.model.get('container').get('id'),
             })
         );
+        if (this.model.get('type') === "multichoice" &&
+            this.model.get('choices')){
+            var count = 1;
+            var that = this;
+            var form = $('<form action="">');
+            this.$("#answer").append(form);
+            _.each(this.model.get('choices'), function(choice){
+                var radioInput = $('<input/>');
+                radioInput.attr('type', 'radio');
+                radioInput.attr('name', 'choice');
+                radioInput.attr('value', count);
+                
+
+                if (that.model.get("answerText") == count)
+                    radioInput.attr('checked', true);
+                
+                form.append(radioInput);
+                form.append($('<span>').text(choice));
+                form.append($('<br>'));
+
+                count++;
+            })
+        } 
+        else{
+            var textarea = $('<textarea>')
+            if (this.model.get("answerText"))
+                    textarea.append(this.model.get("answerText"));
+            this.$("#answer").append(textarea);
+        }
+
     },
 
     nextQuestion: function(el)
     {
+        this.saveValues();
         el.preventDefault();
         var q = this.model.get('container').next();
 
@@ -194,22 +225,38 @@ var QuestionView = Backbone.View.extend({
             + this.model.get('container').id 
             + '/' 
             + q.id; //$(el.target).attr('href');
+        this.undelegateEvents();
         Backbone.history.navigate(destination, {trigger: true});
         return false;
     },
 
     previousQuestion: function(el)
     {
+        this.saveValues();
         el.preventDefault();
         var q = this.model.get('container').previous();
+
+        if (!q){
+            this.undelegateEvents();
+            Backbone.history.navigate('', {trigger: true});
+        }
 
         var destination = 'questions/' 
             + this.model.get('container').id 
             + '/' 
             + q.id;
+        this.undelegateEvents();
         Backbone.history.navigate(destination, {trigger: true});
         return false;
     },
+    saveValues: function(){
+        if (this.model.get('type') === "multichoice")
+            this.model.set("answerText", 
+                this.$('#answer input[name=choice]:checked').val());
+        else
+            this.model.set("answerText", 
+                this.$('#answer textarea').val());
+    }
 })
 
 var HomeView = Backbone.View.extend({

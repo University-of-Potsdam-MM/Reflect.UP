@@ -33,7 +33,8 @@ var Appointment = Backbone.Model.extend({
 var Question = Backbone.Model.extend({
     defaults: {
         questionText: 'Question Text',
-        answerText : 'Answer Text',
+        answerText : null,
+        choices: null,
         previous : null,
         next : null,
         container: null,
@@ -169,11 +170,16 @@ var QuestionContainerList = Backbone.Collection.extend({
                         title: item.name});
 
                     _.each(item.questions, function(question_item){
-                        questionContainer.add(new Question({
+                        var q = new Question({
                             id: question_item.id,
                             questionText: question_item.questionText,
-                            //TODO: type and choices
-                        }));
+                            type: question_item.type,
+                        })
+                        if (question_item.choices)
+                            q.set("choices", 
+                                question_item.choices.substring(6).split('|'));
+
+                        questionContainer.add(q);
                     });
 
                     result.push(questionContainer);
