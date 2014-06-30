@@ -131,6 +131,21 @@ var QuestionContainer = Backbone.Model.extend({
                 answer: question.get("answerText")
             })
         });
+
+        var token = Config.get("accessToken");
+
+        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+            wstoken: token,
+            wsfunction: "local_upreflection_submit_feedbacks",
+            moodlewsrestformat: "json",
+            id: result.id,
+            answers: result.answers
+        }).done(function(data) {
+            console.log(data);
+        });
+
+        
+
     }
 
 });

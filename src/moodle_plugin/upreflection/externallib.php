@@ -101,7 +101,7 @@ class local_reflection_external extends external_api {
         $hassystemcap = true;//has_capability('moodle/calendar:manageentries', context_system::instance());
         $warnings = array();
 
-        //file_put_contents("D:\output.txt", "Success", FILE_APPEND);
+        ////file_put_contents("D:\output.txt", "Success", FILE_APPEND);
 
         $courses = enrol_get_my_courses();
 
@@ -242,7 +242,7 @@ class local_reflection_external extends external_api {
         global $SITE, $DB, $USER, $CFG;
         require_once($CFG->dirroot."/mod/feedback/lib.php");
 
-        $fedbacks = array();
+        $feedbacks = array();
 
 
         if (!$course = $DB->get_record('course', array('idnumber'=>'UPR1'))) {
@@ -296,6 +296,9 @@ class local_reflection_external extends external_api {
 
         }
 
+        //file_put_contents("D:\output.txt", "Feedbacks: \n", FILE_APPEND);
+        //file_put_contents("D:\output.txt", print_r($feedbacks, true)."\n", FILE_APPEND);
+
         return array('feedbacks' => $feedbacks);
     }
 
@@ -330,4 +333,97 @@ class local_reflection_external extends external_api {
             )
         );
     }
+
+    /**
+     * Returns description of method parameters
+     *
+     * @return external_function_parameters
+     * @since Moodle 2.5
+     */
+
+    public static function submit_feedbacks_parameters() {
+        return new external_function_parameters(
+                array(
+                    'id' => new external_value(PARAM_INT, 'event id'),
+                    'answers' =>( new external_multiple_structure(
+                        new external_single_structure(
+                            array(
+                                    'id' => new external_value(PARAM_INT, 'Question Id'),
+                                    'answer' => new external_value(PARAM_TEXT, 'Answer Text'),
+                            ), 'Answers', VALUE_DEFAULT, array()
+                        )
+                    ))
+                )
+        );
+    }
+
+
+    /**
+     * Get Fedback events
+     * @package array $options various options
+     * @return array Array of feedback details
+     * @since Moodle 2.5
+     */
+    public static function submit_feedbacks($id = -1, $answers = array()) {
+
+        global $SITE, $DB, $USER, $CFG;
+        require_once($CFG->dirroot."/mod/feedback/lib.php");
+
+        $result = array();
+
+
+        if (!$course = $DB->get_record('course', array('idnumber'=>'UPR1'))) {
+            //TODO: error
+        }
+
+        $completed = new stdClass();
+        $completed->feedback           = $id;
+        $completed->userid             = $USER->id;
+        $completed->guestid            = false;
+        $completed->timemodified       = time();
+        $completed->anonymous_response = 1;
+
+        $completedid = $DB->insert_record('feedback_completed', $completed);
+        $completed = $DB->get_record('feedback_completed', array('id'=>$completedid));
+
+        //tracking the submit
+        $tracking = new stdClass();
+        $tracking->userid = $USER->id;
+        $tracking->feedback = $id;
+        $tracking->completed = $completed->id;
+        $DB->insert_record('feedback_tracking', $tracking);
+
+        foreach ($answers as $item) {
+
+            $value = new stdClass();
+            $value->item = $item['id'];
+            $value->completed = $completed->id;
+            $value->course_id = $course->id;
+            $value->value = $item['answer'];
+
+            $DB->insert_record('feedback_value', $value);
+
+        }
+
+        $result['resultText'] = "Success";
+        return $result;
+
+    }
+
+
+    /**
+     * Returns description of method result value
+     *
+     * @return external_description
+     * @since Moodle 2.5
+     */
+    public static function  submit_feedbacks_returns() {
+        return new external_single_structure(
+            array(
+                'resultText' => new external_value(PARAM_TEXT, 'Result Text'),
+            )
+        );
+    }
+
+    
 }
