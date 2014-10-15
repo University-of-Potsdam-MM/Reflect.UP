@@ -37,6 +37,16 @@
             <div id="questions"></div>
         </script>
 
+        <script type="text/template" id="template-config-screen">
+            <h1> <%- title %></h1>
+            <div id="dates"></div>
+                <form id="loginform" type="POST">
+                    <input type="text" id="username" placeholder="Benutzername" /><br />
+                    <input type="password" id="password" placeholder="Passwort" /><br />
+                    <input type="submit" value="Anmelden" />
+                </form
+        </script>
+
         <script type="text/template" id="template-appointments-screen">
             <h1> <%- title %></h1>
             <div id="dates"></div>
@@ -67,13 +77,13 @@
         </script>
 
         <script type="text/template" id="template-question-collection-list-item">
-        <div class="description"><%- title %></div>
-        <div class="more">
-            <a href="questions/<%- containerId %>/<%- questionId %>">
-                <i class="fa fa-angle-right fa-2x"></i>
-            </a>
-        </div>
-        <div class="clear"></div>
+            <div class="description"><%- title %></div>
+            <div class="more">
+                <a href="questions/<%- containerId %>/<%- questionId %>">
+                    <i class="fa fa-angle-right fa-2x"></i>
+                </a>
+            </div>
+            <div class="clear"></div>
         </script>
 
         <script type="text/template" id="template-question">

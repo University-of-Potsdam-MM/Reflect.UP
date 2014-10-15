@@ -1,23 +1,16 @@
+app = (app || {} );
+
 var Configuration = Backbone.Model.extend({
+
     localStorage: new Backbone.LocalStorage("UPReflection"),
 
     defaults:{
         accessToken: '',
     },
 
-    getToken: function()
-    {
-        var that = this;
-        $.get("http://localhost:8080/Moodle/login/token.php", {
-            username: 'test2',
-            password: 'Test2123.',
-            service: 'upreflection'
-        }).done(function(data){
-            that.set("accessToken", data.token)
-            that.save();
-        })
+    initialize: function(){
+        console.log(this);
     }
-
 });
 
 
@@ -26,7 +19,6 @@ var Appointment = Backbone.Model.extend({
 		title : 'Appointment Title',
         begin : new Date(),
         end : new Date(),
-
 	}
 });
 
@@ -95,7 +87,6 @@ var QuestionContainer = Backbone.Model.extend({
         return this.current();
     },
 
-    
 
     previous: function()
     {
@@ -134,7 +125,7 @@ var QuestionContainer = Backbone.Model.extend({
 
         var token = Config.get("accessToken");
 
-        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
             wstoken: token,
             wsfunction: "local_upreflection_submit_feedbacks",
             moodlewsrestformat: "json",
@@ -144,7 +135,7 @@ var QuestionContainer = Backbone.Model.extend({
             console.log(data);
         });
 
-        
+
 
     }
 
@@ -160,15 +151,15 @@ var QuestionContainerList = Backbone.Collection.extend({
     sync: function(method, model, options){
 
         var token = Config.get("accessToken");
-
-        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+        console.log(token);
+        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
             wstoken: token,
             wsfunction: "local_upreflection_get_feedbacks",
             moodlewsrestformat: "json",
         })
 
         .done(function(data) {
-
+            console.log(data);
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
@@ -186,7 +177,7 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                 _.each(data.feedbacks, function(item){
                     var questionContainer = new QuestionContainer({
-                        id: item.id, 
+                        id: item.id,
                         title: item.name});
 
                     _.each(item.questions, function(question_item){
@@ -196,7 +187,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                             type: question_item.type,
                         })
                         if (question_item.choices)
-                            q.set("choices", 
+                            q.set("choices",
                                 question_item.choices.substring(6).split('|'));
 
                         questionContainer.add(q);
@@ -204,7 +195,7 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                     result.push(questionContainer);
                 });
-
+                console.log(result);
                 options.success(result);
         });
 
@@ -213,7 +204,7 @@ var QuestionContainerList = Backbone.Collection.extend({
 
 var AppointmentCollection = Backbone.Collection.extend({
 	model : Appointment,
-   
+
 
     sync: function(method, model, options){
 
@@ -222,7 +213,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         oneYearLater.setFullYear(today.getFullYear()+1);
         var token = Config.get("accessToken");
 
-        $.get("http://localhost:8080/Moodle/webservice/rest/server.php", {
+        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
             wstoken: token,
             wsfunction: "local_upreflection_get_calendar_entries",
             moodlewsrestformat: "json",
@@ -241,7 +232,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         })
 
         .done(function(data) {
-
+            console.log(data);
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
@@ -262,7 +253,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                         title: item.name,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
-                    }))                   
+                    }))
                 });
 
                 options.success(result);
