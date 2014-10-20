@@ -23,7 +23,7 @@ var Config = new Configuration({id: 1});
 
 
 $( document ).ready(function() {
-    
+
 });
 
 var app = {
@@ -31,14 +31,8 @@ var app = {
     initialize: function() {
         this.bindEvents();
 
-        Config.fetch();
-
-        var token = Config.get("accessToken");
-        if (token == "")
-            Config.getToken();
-        
         var router = new Router();
-        Backbone.history.start(); 
+        Backbone.history.start();
 
     },
     // Bind Event Listeners

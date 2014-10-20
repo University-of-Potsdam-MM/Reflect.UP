@@ -24,7 +24,8 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
+    /*background-color:#E4E4E4;*/
+    background-color:#333333;
     background-image:linear-gradient(top, #333333 30%, #606060 100%);
     background-image:-webkit-linear-gradient(top, #333333 30%, #606060 100%);
     background-image:-ms-linear-gradient(top, #333333 30%, #606060 100%);
@@ -135,7 +136,7 @@ textarea{
     border-right: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
     border-left: 1px solid #CCC;
-    min-width: 170px;
+   /* min-width: 170px; */
 
    }
 
@@ -164,7 +165,7 @@ textarea{
     padding-right: 60px;
     padding-top: 16px;
     margin-right: 10px;
-    right: 10px;
+   /* right: 10px; */
 
 }
 

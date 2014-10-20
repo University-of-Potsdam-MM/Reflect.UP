@@ -50,7 +50,7 @@ var AppointmentListView = Backbone.View.extend({
                 this.$("#appointments").append(
                     new AppointmentListItemView({model : appointment}).el);
                 count++;
-                
+
             })
         }
 
@@ -61,13 +61,13 @@ var AppointmentListView = Backbone.View.extend({
         if(this.model.length == 1)
             this.$("#appointments").empty();
 
-        if (this.$("#appointments").children().length < this.limit 
+        if (this.$("#appointments").children().length < this.limit
             || this.limit == -1){
             var view = new AppointmentListItemView({model : appointment});
             this.$("#appointments").append(view.el);
         }
 
-        
+
     },
 
     showAppointments: function(){
@@ -81,7 +81,7 @@ var AppointmentListView = Backbone.View.extend({
 
 var QuestionCollectionListView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list').html()),
-    
+
     initialize : function(){
         this.listenTo(this.model, 'add', this.addOne);
         this.model.fetch({error:this.onError});
@@ -97,13 +97,14 @@ var QuestionCollectionListView = Backbone.View.extend({
                     new QuestionContainerView({model : questionContainer}).el);
             }, this)
         }
-        
+
         return this;
     },
 
     addOne : function(questionContainer){
-        
+
         var view = new QuestionContainerView({model : questionContainer});
+        console.log('adding question container view:', view);
         this.$("#question-collection").append(view.el);
     },
 
@@ -129,8 +130,9 @@ var QuestionContainerView = Backbone.View.extend({
 
     template : _.template($('#template-question-collection-list-item').html()),
 
-    render : function() {
-
+    render: function(){
+        console.log('render', this.model);
+        // check for existing questions in Container
         if (!this.model.current())
             return this;
 
@@ -139,18 +141,16 @@ var QuestionContainerView = Backbone.View.extend({
             containerId : this.model.id,
             questionId: this.model.current().id,
         }));
+
         return this;
     },
 
-
-    navigate: function(el)
-    {
+    navigate: function(el){
         el.preventDefault();
         var destination = $(el.target.parentNode).attr('href');
         Backbone.history.navigate(destination, {trigger: true});
         return false;
-    },
-    
+    }
 });
 
 var QuestionView = Backbone.View.extend({
@@ -174,7 +174,7 @@ var QuestionView = Backbone.View.extend({
             var nextId = this.model.nextId();
 
         this.$el.html(
-            
+
             this.template({
                 questionText: this.model.get('questionText'),
                 answerText: this.model.get('answerText'),
@@ -194,18 +194,18 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('value', count);
-                
+
 
                 if (that.model.get("answerText") == count)
                     radioInput.attr('checked', true);
-                
+
                 form.append(radioInput);
                 form.append($('<span>').text(choice));
                 form.append($('<br>'));
 
                 count++;
             })
-        } 
+        }
         else{
             var textarea = $('<textarea>')
             if (this.model.get("answerText"))
@@ -228,9 +228,9 @@ var QuestionView = Backbone.View.extend({
             return false;
         }
 
-        var destination = 'questions/' 
-            + this.model.get('container').id 
-            + '/' 
+        var destination = 'questions/'
+            + this.model.get('container').id
+            + '/'
             + q.id; //$(el.target).attr('href');
         this.undelegateEvents();
         Backbone.history.navigate(destination, {trigger: true});
@@ -249,9 +249,9 @@ var QuestionView = Backbone.View.extend({
             return false;
         }
 
-        var destination = 'questions/' 
-            + this.model.get('container').id 
-            + '/' 
+        var destination = 'questions/'
+            + this.model.get('container').id
+            + '/'
             + q.id;
         this.undelegateEvents();
         Backbone.history.navigate(destination, {trigger: true});
@@ -259,41 +259,132 @@ var QuestionView = Backbone.View.extend({
     },
     saveValues: function(){
         if (this.model.get('type') === "multichoice")
-            this.model.set("answerText", 
+            this.model.set("answerText",
                 this.$('#answer input[name=choice]:checked').val());
         else
-            this.model.set("answerText", 
+            this.model.set("answerText",
                 this.$('#answer textarea').val());
     }
 })
 
+/**
+ *  HomeView
+ *
+ */
 var HomeView = Backbone.View.extend({
     el : "#app",
-    
+    template : _.template($('#template-home-screen').html()),
+
+    model: Configuration,
 
     initialize : function() {
-        this.render();
-
-        this.AppointmentListView = new AppointmentListView({
-            el : '#dates',
-            model : Appointments,
-            limit : 3,
-        });
-
-        this.QuestionCollectionListView = new QuestionCollectionListView({
-            el: '#questions',
-            model: Questions
-        });
+        this.model = Config;
+        this.authorize();
     },
-    template : _.template($('#template-home-screen').html()),
+
+    authorize: function(){
+        this.model.fetch();
+        var token = this.model.get("accessToken");
+        if (token == ""){
+            Backbone.history.navigate('config', { trigger : true });
+        }else{
+            this.render();
+            this.AppointmentListView = new AppointmentListView({
+                el : '#dates',
+                model : Appointments,
+                limit : 3,
+            });
+
+            this.QuestionCollectionListView = new QuestionCollectionListView({
+                el: '#questions',
+                model: Questions
+            });
+        }
+    },
+
     render : function(){
-        this.$el.html(this.template({
-            title : 'UPReflection'
-        }))
-        
+        this.$el.html(this.template({title : 'Reflect.UP'}));
         return this;
+    }
+})
+
+var ConfigView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-config-screen').html()),
+    events: {
+        'submit #loginform': 'submit'
     },
-    
+
+    model: Configuration,
+
+    initialize: function(){
+        this.listenTo(this, 'errorHandler', this.errorHandler);
+        this.listenTo(this, 'enrolUser', this.enrolUser);
+        this.model = Config;
+        this.render();
+    },
+
+    /**
+     *  TODO: Error Handling
+     */
+    submit: function(ev){
+        ev.preventDefault();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var that = this;
+        $.get("https://eportfolio.uni-potsdam.de/moodle/login/token.php", {
+            username: username,
+            password: password,
+            service: 'upreflection'
+        }).done(function(data){
+            console.log(data);
+            if (data.error){
+                that.trigger('errorHandler');
+            }else{
+                that.model.set("accessToken", data.token)
+                that.model.save();
+                that.trigger('enrolUser');
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+            that.trigger('errorHandler');
+        });
+
+    },
+
+    enrolUser: function(){
+        var that = this;
+        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+            wstoken: that.model.get("accessToken"),
+            wsfunction: "local_upreflection_enrol_self",
+            moodlewsrestformat: "json"
+        }).done(function(data){
+            if (data.error){
+                that.trigger('errorHandler');
+            }else{
+                Backbone.history.navigate('', { trigger : true });
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+            that.trigger('errorHandler');
+        });
+    },
+
+    errorHandler: function(){
+        // retry authentication
+        console.log('errorHandler');
+        // display error message
+
+    },
+
+    render: function(){
+        this.$el.html(this.template({title: 'Anmeldung'}));
+        return this;
+    }
 })
 
 var AppointmentsView = Backbone.View.extend({
@@ -316,6 +407,7 @@ var AppointmentsView = Backbone.View.extend({
 var Router = Backbone.Router.extend({
     routes : {
         '' : 'home',
+        'config': 'config',
         'appointments/' : 'appointments',
         'questions/:containerId/:questionId' : 'questions'
     },
@@ -327,22 +419,27 @@ var Router = Backbone.Router.extend({
 
             this.view = null;
         }
-        this.view = view;   
+        this.view = view;
     },
 
 
     home : function(){
-        this.switchView(new HomeView());
+        console.log('home');
+        this.switchView(new HomeView({}));
+    },
+
+    config: function(){
+        console.log('config');
+        this.switchView(new ConfigView({}));
     },
 
     appointments: function(){
         this.switchView(new AppointmentsView())
     },
 
-    questions: function(containerId, questionId)
-    {
+    questions: function(containerId, questionId){
         var question = Questions.get(containerId).getQuestion(questionId);
         this.switchView(new QuestionView({model: question}));
-    },
+    }
 
 });
