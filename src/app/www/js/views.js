@@ -319,6 +319,7 @@ var ConfigView = Backbone.View.extend({
 
     initialize: function(){
         this.listenTo(this, 'errorHandler', this.errorHandler);
+        this.listenTo(this, 'enrolUser', this.enrolUser);
         this.model = Config;
         this.render();
     },
@@ -342,7 +343,7 @@ var ConfigView = Backbone.View.extend({
             }else{
                 that.model.set("accessToken", data.token)
                 that.model.save();
-                Backbone.history.navigate('', { trigger : true });
+                that.trigger('enrolUser');
             }
         }).error(function(xhr, status, error){
             console.log(xhr.responseText);
@@ -351,6 +352,26 @@ var ConfigView = Backbone.View.extend({
             that.trigger('errorHandler');
         });
 
+    },
+
+    enrolUser: function(){
+        var that = this;
+        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+            wstoken: that.model.get("accessToken"),
+            wsfunction: "local_upreflection_enrol_self",
+            moodlewsrestformat: "json"
+        }).done(function(data){
+            if (data.error){
+                that.trigger('errorHandler');
+            }else{
+                Backbone.history.navigate('', { trigger : true });
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+            that.trigger('errorHandler');
+        });
     },
 
     errorHandler: function(){
