@@ -24,6 +24,115 @@ require_once($CFG->libdir . "/externallib.php");
 
 class local_reflection_external extends external_api {
 
+
+    /**
+     * Returns boolean if self enrolment succeded
+     * @return boolean
+     * @since Moodle 2.5
+     */
+    public static function enrol_self_parameters(){
+        return new external_function_parameters(
+                array()
+            );
+    }
+
+    /**
+     * enrol_self in course
+     *
+     * @package array $options various options
+     * @return array Array of self enrolment details
+     * @since Moodle 2.5
+     */
+    public static function enrol_self() {
+        global $DB, $USER, $CFG;
+
+        require_once($CFG->libdir . '/enrollib.php');
+
+        $enrolment = false;
+        $warnings = array();
+
+
+        // get instance
+        $course = $DB->get_record('course', array('idnumber'=>'UPR1'));
+        $param = array('shortname' =>'student');
+        $studentRole = $DB->get_record('role', $param);
+
+        // Exception Handling
+        if (empty($course)){
+            $errorparams = new stdClass();
+            throw new moodle_exception('wsnocourse', 'enrol_self', $errorparams);
+        }
+
+        if (empty($studentRole)){
+            $errorparams = new stdClass();
+            $errorparams->courseid = $course->id;
+            throw new moodle_exception('wsnostudentrole', 'enrol_self', $errorparams);
+        }
+
+        $instance = null;
+        $enrolinstances = enrol_get_instances($course->id, true);
+        foreach ($enrolinstances as $courseenrolinstance) {
+          if ($courseenrolinstance->enrol == "manual") {
+              $instance = $courseenrolinstance;
+              break;
+          }
+        }
+        if (empty($instance)) {
+          $errorparams = new stdClass();
+          $errorparams->courseid = $course->id;
+          throw new moodle_exception('wsnoinstance', 'enrol_self', $errorparams);
+        }
+
+
+        // prepare enrolment
+        $timestart = time();
+        if ($instance->enrolperiod) {
+            $timeend = $timestart + $instance->enrolperiod;
+        } else {
+            $timeend = 0;
+        }
+
+        // retrieve the manual enrolment plugin
+        $transaction = $DB->start_delegated_transaction();
+        $enrol = enrol_get_plugin('manual');
+
+        if (empty($enrol)) {
+            throw new moodle_exception('manualpluginnotinstalled', 'enrol_self');
+        }
+
+        if (!$enrol->allow_enrol($instance)) {
+                $errorparams = new stdClass();
+                $errorparams->roleid = $studentid;
+                $errorparams->courseid = $course->id;
+                $errorparams->userid = $USER->id;
+                throw new moodle_exception('wscannotenrol', 'enrol_self', '', $errorparams);
+        }
+
+        $enrol->enrol_user($instance, $USER->id, $studentRole->id);
+
+        $transaction->allow_commit();
+
+        $result['enrolment'] = true;
+        $result['userid'] = $USER->id;;
+
+        return $result;
+    }
+
+    /**
+     * Returns description of method result value
+     *
+     * @return external_description
+     * @since Moodle 2.5
+     */
+    public static function  enrol_self_returns() {
+        return new external_single_structure(
+            array(
+                'enrolment' => new external_value(PARAM_BOOL, 'result'),
+                'userid' => new external_value(PARAM_INT, 'uderid')
+            )
+        );
+    }
+
     /**
      * Returns description of method parameters
      *
@@ -82,8 +191,8 @@ class local_reflection_external extends external_api {
      * @since Moodle 2.5
      */
     public static function get_calendar_reflection_events($events = array(), $options = array()) {
-        
-        
+
+
         global $SITE, $DB, $USER, $CFG;
         require_once($CFG->dirroot."/calendar/lib.php");
 
@@ -113,21 +222,21 @@ class local_reflection_external extends external_api {
                 $warnings[] = array('item' => $id, 'warningcode' => 'nopermissions', 'message' => 'you do not have permissions to access this course');
             }
         }
-        
-        $funcparam['groups'] = array();    
+
+        $funcparam['groups'] = array();
         $funcparam['users'] = false;
-        
-        $eventlist = calendar_get_events($params['options']['timestart'], 
-            $params['options']['timeend'], 
-            $funcparam['users'], 
+
+        $eventlist = calendar_get_events($params['options']['timestart'],
+            $params['options']['timeend'],
+            $funcparam['users'],
             $funcparam['groups'],
-            $funcparam['courses'], 
-            true, 
+            $funcparam['courses'],
+            true,
             $params['options']['ignorehidden']
         );
 
         //////////////////////////////////////////////////////////
-        
+
         // WS expects arrays.
         $events = array();
         foreach ($eventlist as $id => $event) {
@@ -177,7 +286,7 @@ class local_reflection_external extends external_api {
     public static function  get_calendar_reflection_events_returns() {
         return new external_single_structure(
             array(
-                'events' => new external_multiple_structure( 
+                'events' => new external_multiple_structure(
                     new external_single_structure(
                         array(
                             'id' => new external_value(PARAM_INT, 'event id'),
@@ -198,7 +307,7 @@ class local_reflection_external extends external_api {
                             'sequence' => new external_value(PARAM_INT, 'sequence'),
                             'timemodified' => new external_value(PARAM_INT, 'time modified'),
                             'subscriptionid' => new external_value(PARAM_INT, 'Subscription id', VALUE_OPTIONAL, null, NULL_ALLOWED),
-                        ), 
+                        ),
                     'event')
                  ),
                  'warnings' => new external_warnings(),
@@ -251,12 +360,12 @@ class local_reflection_external extends external_api {
 
 
         $feedback_list = get_all_instances_in_course("feedback", $course, NULL, true);
-           
+
         //file_put_contents("D:\output.txt", "Feedbacks: \n", FILE_APPEND);
         //file_put_contents("D:\output.txt", print_r($feedback_list, true)."\n", FILE_APPEND);
 
         foreach ($feedback_list as $id => $feedback_object) {
-     
+
             if (feedback_is_already_submitted($feedback_object->id))
                 continue;
             //TODO: Time und Caps beachten
@@ -317,7 +426,7 @@ class local_reflection_external extends external_api {
                         array(
                             'name' => new external_value(PARAM_TEXT, 'feedback name'),
                             'id' => new external_value(PARAM_INT, 'event id'),
-                            'questions' => new external_multiple_structure( 
+                            'questions' => new external_multiple_structure(
                                 new external_single_structure(
                                     array(
                                         'id' => new external_value(PARAM_INT, 'Question Id'),
@@ -425,5 +534,5 @@ class local_reflection_external extends external_api {
         );
     }
 
-    
+
 }

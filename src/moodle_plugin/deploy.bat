@@ -1,1 +1,1 @@
-copy /Y upreflection D:\Development\moodle\local\upreflection
+copy -recurse /Y  upreflection C:\xampp\htdocs\moodle_up2X\local\upreflection
