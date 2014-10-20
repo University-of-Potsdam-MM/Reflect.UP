@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
          <link rel="stylesheet" type="text/css" href="css/up-style.css" />
-        <title>UP Reflection</title>
+        <title>Reflect.UP</title>
     </head>
     <body>
         <div id="app">
@@ -70,8 +70,13 @@
         <script type="text/template" id="template-appointment-list-item">
             <div class="date-container" >
                 <div class="date" ><%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %></div>
-                <div class="time" ><%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
-                <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %></div>
+                <div class="time" >
+                    <% if (begin.getTime() === end.getTime()){  %>
+                        ganztägig
+                    <% }else{ %>
+                    <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %> - <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
+                    <% } %>
+                </div>
             </div>
 
             <div class="description" ><%- title %></div>

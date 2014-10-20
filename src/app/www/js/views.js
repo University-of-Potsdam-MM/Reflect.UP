@@ -303,7 +303,7 @@ var HomeView = Backbone.View.extend({
     },
 
     render : function(){
-        this.$el.html(this.template({title : 'UPReflection'}));
+        this.$el.html(this.template({title : 'Reflect.UP'}));
         return this;
     }
 })
