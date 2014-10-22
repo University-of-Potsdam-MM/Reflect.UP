@@ -50,7 +50,7 @@ body {
 
 
 
-/* Landscape layout (with min-width) */
+/* Landscape layout (with min-width) */ 
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     
 }
@@ -149,6 +149,11 @@ textarea{
 
 }
 
+#appointments li {
+	padding-bottom:1em;
+	border-bottom:1px solid #b3afaf;
+}
+
 .button:active{
     background: #333;
     color: #EEE
@@ -156,9 +161,11 @@ textarea{
 
 .date-container{
     float: left;
-    padding-right: 8px;
     margin-right: 10px;
     height: 50px;
+    background-color:#b3afaf;
+    padding:.3em;
+    min-width: 20%; /*?geht das*/
 }
 .nav{
     padding-left: 60px;
@@ -185,9 +192,15 @@ textarea{
     padding-top: 2px;
     margin-top: 2px;
     margin-right: 20px;
-    float: left
+    max-width:80%;
+    max-height:60px;
+    	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+   
 }
 
+/*
 div .more{
     margin-right: 20px;
     text-align: right;
@@ -196,6 +209,21 @@ div .more{
 
 div .more a{
     color: #EEE
+}*/
+
+#appointments li:after {
+	content:"\f105";
+	display:block;
+	font-size:2em;
+	font-family:FontAwesome;
+	font-weight:normal;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-os-font-smoothing:grayscale;
+	position: absolute;
+	right: 20px;
+	margin-top: -60px;
+	
 }
 
 .clear{
