@@ -40,19 +40,16 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size:16px;
     height:100%;
-    margin:15px;
+    margin:5px;
     padding:0px;
-    
     color: #EEE;
-
-
 }
 
 
 
-/* Landscape layout (with min-width) */ 
+/* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    
+
 }
 
 h1 {
@@ -84,7 +81,7 @@ li{
     margin-left:0px;
     margin-bottom:5px;
     margin-top:10px;
-    
+
 }
 
 p{
@@ -93,7 +90,7 @@ p{
 
 textarea{
     width: 80%;
-    
+
     height: 150px;
 }
 
@@ -102,6 +99,7 @@ textarea{
     margin-bottom: 10px;
 }
 
+/*Terminbutton*/
 .content-footer{
     margin-top: 40px;
     text-align: right;
@@ -117,7 +115,6 @@ textarea{
     float: left;
     width: 49%;
     text-align: center;
-
 }
 
 .line{
@@ -163,23 +160,23 @@ textarea{
     float: left;
     margin-right: 10px;
     height: 50px;
-    background-color:#b3afaf;
+    border-right:#b3afaf 1px solid;
+    border-bottom:#b3afaf 1px solid;
     padding:.3em;
-    min-width: 20%; /*?geht das*/
+    min-width: 130px;
 }
+
 .nav{
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 16px;
     margin-right: 10px;
    /* right: 10px; */
-
 }
 
 .date{
     float: left;
-    
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .time{
@@ -191,26 +188,34 @@ textarea{
 .description{
     padding-top: 2px;
     margin-top: 2px;
-    margin-right: 20px;
+    margin-right: 5px;
     max-width:80%;
     max-height:60px;
-    	text-overflow: ellipsis;
+    text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-   
 }
 
+.subdescription{
+    font-size: 14px;
+    margin-right: 5px;
+    font-style: italic;
+    margin-top: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 50px;
+}
 /*
 div .more{
     margin-right: 20px;
     text-align: right;
-    
+
 }
 
 div .more a{
     color: #EEE
 }*/
-
+/*
 #appointments li:after {
 	content:"\f105";
 	display:block;
@@ -223,9 +228,9 @@ div .more a{
 	position: absolute;
 	right: 20px;
 	margin-top: -60px;
-	
-}
 
+}
+*/
 .clear{
     clear: both;
 }
@@ -262,13 +267,13 @@ div .more a{
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
- 
+
 @-webkit-keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
 }
- 
+
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
