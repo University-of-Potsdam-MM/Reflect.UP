@@ -66,7 +66,7 @@ h1 {
 
 h2 {
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 10px;
     font-size: 18px;
 }
@@ -81,7 +81,6 @@ li{
     margin-left:0px;
     margin-bottom:5px;
     margin-top:10px;
-
 }
 
 p{
@@ -90,7 +89,6 @@ p{
 
 textarea{
     width: 80%;
-
     height: 150px;
 }
 
@@ -134,8 +132,7 @@ textarea{
     border-bottom: 1px solid #CCC;
     border-left: 1px solid #CCC;
    /* min-width: 170px; */
-
-   }
+}
 
 .dark{
     background-color: #555;
@@ -234,8 +231,6 @@ div .more a{
 .clear{
     clear: both;
 }
-
-
 
 .event {
     border-radius:4px;

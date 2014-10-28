@@ -3,7 +3,6 @@ var AppointmentListItemView = Backbone.View.extend({
 
     initialize : function(){
         this.listenTo(this.model, 'change', this.render);
-
         this.render();
     },
 
@@ -44,29 +43,15 @@ var AppointmentListView = Backbone.View.extend({
         if(!this.showButton)
             this.$("#more-appointments-button").hide();
 
-        if (this.model.length){
-            var count = 0;
-            this.model.every( function(appointment){
-                this.$("#appointments").append(
-                    new AppointmentListItemView({model : appointment}).el);
-                count++;
-
-            })
-        }
-
         return this;
     },
 
     addOne : function(appointment){
-        if(this.model.length == 1)
-            this.$("#appointments").empty();
-
         if (this.$("#appointments").children().length < this.limit
             || this.limit == -1){
             var view = new AppointmentListItemView({model : appointment});
             this.$("#appointments").append(view.el);
         }
-
 
     },
 
@@ -104,7 +89,7 @@ var QuestionCollectionListView = Backbone.View.extend({
     addOne : function(questionContainer){
 
         var view = new QuestionContainerView({model : questionContainer});
-        console.log('adding question container view:', view);
+        //console.log('adding question container view:', view);
         this.$("#question-collection").append(view.el);
     },
 
@@ -131,7 +116,7 @@ var QuestionContainerView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list-item').html()),
 
     render: function(){
-        console.log('render', this.model);
+        //console.log('render', this.model);
         // check for existing questions in Container
         if (!this.model.current())
             return this;
@@ -180,6 +165,8 @@ var QuestionView = Backbone.View.extend({
                 answerText: this.model.get('answerText'),
                 previousId: previousId,
                 nextId: nextId,
+                number: this.model.get('number'),
+                total: this.model.get('total'),
                 containerId: this.model.get('container').get('id'),
             })
         );
@@ -195,8 +182,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('name', 'choice');
                 radioInput.attr('value', count);
 
-
-                if (that.model.get("answerText") == count)
+                if (1 == count)
                     radioInput.attr('checked', true);
 
                 form.append(radioInput);

@@ -25,6 +25,8 @@ var Appointment = Backbone.Model.extend({
 var Question = Backbone.Model.extend({
     defaults: {
         questionText: 'Question Text',
+        number: null,
+        total: null,
         answerText : null,
         choices: null,
         previous : null,
@@ -33,18 +35,20 @@ var Question = Backbone.Model.extend({
     },
 
     hasPrevious: function(){
-         if (this.get('container').get('currentIndex') == 0)
+         if (this.get('container').get('currentIndex') == 0){
             return false;
-
-        return true;
+        }else{
+            return true;
+        }
     },
 
     hasNext: function(){
         var container = this.get('container');
-        if (container.get('currentIndex') == container.get('questionList').length - 1)
+        if (container.get('currentIndex') == container.get('questionList').length - 1){
             return false;
-
-        return true;
+        }else{
+            return true;
+        }
     },
 
     nextId: function(){
@@ -151,7 +155,7 @@ var QuestionContainerList = Backbone.Collection.extend({
     sync: function(method, model, options){
 
         var token = Config.get("accessToken");
-        console.log(token);
+
         $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
             wstoken: token,
             wsfunction: "local_upreflection_get_feedbacks",
@@ -180,9 +184,12 @@ var QuestionContainerList = Backbone.Collection.extend({
                         id: item.id,
                         title: item.name});
 
-                    _.each(item.questions, function(question_item){
+                    for (var i=0; i < item.questions.length; i++){
+                        var question_item = item.questions[i];
                         var q = new Question({
                             id: question_item.id,
+                            number: i+1,
+                            total: item.questions.length+1,
                             questionText: question_item.questionText,
                             type: question_item.type,
                         })
@@ -191,11 +198,11 @@ var QuestionContainerList = Backbone.Collection.extend({
                                 question_item.choices.substring(6).split('|'));
 
                         questionContainer.add(q);
-                    });
+                    };
 
                     result.push(questionContainer);
                 });
-                console.log(result);
+
                 options.success(result);
         });
 
@@ -212,7 +219,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         var oneYearLater = new Date();
         oneYearLater.setFullYear(today.getFullYear()+1);
         var token = Config.get("accessToken");
-
+        console.log(token);
         $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
             wstoken: token,
             wsfunction: "local_upreflection_get_calendar_entries",

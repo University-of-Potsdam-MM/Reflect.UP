@@ -95,8 +95,7 @@
         </script>
 
         <script type="text/template" id="template-question-collection-list-item">
-            <div class="description"><%- title %></div>
-            <div class="more">
+            <div class="description"><%- title %>
                 <a href="questions/<%- containerId %>/<%- questionId %>">
                     <i class="fa fa-angle-right fa-2x"></i>
                 </a>
@@ -105,7 +104,7 @@
         </script>
 
         <script type="text/template" id="template-question">
-            <h1>Frage</h1>
+            <h1>Frage <%- number %> / <%- total %></h1>
             <div class="content-container">
                 <p><%- questionText %></p>
                 <div id="answer"></div>
