@@ -41,7 +41,7 @@ body {
     font-size:16px;
     height:100%;
     margin:5px;
-    padding:0px;
+    padding:0px 0px 0px 0em;
     color: #EEE;
 }
 
@@ -61,7 +61,7 @@ h1 {
     padding-bottom:5px;
     text-align:left;
     border-bottom: 2px solid #2F9BFF;
-    width: 80%;
+    width: 100%;
 }
 
 h2 {
@@ -106,11 +106,16 @@ textarea{
 .page-footer{
     position: fixed;
     bottom: 30px;
-    width: 100%
 }
 
-.floater{
+.floater-l{
     float: left;
+    width: 49%;
+    text-align: center;
+}
+
+.floater-r{
+    float: right;
     width: 49%;
     text-align: center;
 }
@@ -145,7 +150,7 @@ textarea{
 
 #appointments li {
 	padding-bottom:1em;
-	border-bottom:1px solid #b3afaf;
+	border-bottom:1px solid #444;
 }
 
 .button:active{
@@ -154,53 +159,85 @@ textarea{
 }
 
 .date-container{
-    float: left;
-    margin-right: 10px;
-    height: 50px;
-    border-right:#b3afaf 1px solid;
-    border-bottom:#b3afaf 1px solid;
-    padding:.3em;
-    min-width: 130px;
+   float: left;
+margin-right: 15px;
+height: 50px;
+
+padding-left: 0;
+
+text-align: center;
+
+border: 1px solid #CCC;
 }
 
 .nav{
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 16px;
-    margin-right: 10px;
+   
    /* right: 10px; */
 }
 
 .date{
     float: left;
-    font-size: 22px;
+font-size: 1em;
+font-family: georgia, serif;
+width: 50px;
+padding: .3em;
 }
 
 .time{
-    margin-top: 31px;
+   
     font-size: 10px;
     margin-left: 0px;
 }
 
 .description{
-    padding-top: 2px;
-    margin-top: 2px;
     margin-right: 5px;
-    max-width:80%;
-    max-height:60px;
-    text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+
+max-height: 60px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+
+font-weight: bold;
 }
 
 .subdescription{
     font-size: 14px;
-    margin-right: 5px;
-    font-style: italic;
-    margin-top: 5px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-height: 50px;
+margin-right: 5px;
+
+text-overflow: ellipsis;
+overflow: hidden;
+max-height: 50px;
+
+}
+
+li.collabsable a {
+	display:inline-block;
+	color:#fff;
+	text-decoration:none;
+	font-size:1em;
+	line-height:2;
+}
+
+li.collabsable a:after {
+	content:"\f105";
+	display:block;
+	font-size:2em;
+	font-family:FontAwesome;
+	font-weight:normal;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-os-font-smoothing:grayscale;
+	position: absolute;
+	right:1em;
+	margin-top: -33px;
+	
+}
+
+#questions {
+	margin-top:3em;
 }
 /*
 div .more{

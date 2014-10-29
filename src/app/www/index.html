@@ -95,12 +95,12 @@
         </script>
 
         <script type="text/template" id="template-question-collection-list-item">
-            <div class="description"><%- title %>
-                <a href="questions/<%- containerId %>/<%- questionId %>">
-                    <i class="fa fa-angle-right fa-2x"></i>
+           
+                <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %>
+                    
                 </a>
-            </div>
-            <div class="clear"></div>
+           
+          
         </script>
 
         <script type="text/template" id="template-question">
@@ -111,7 +111,7 @@
             </div>
 
             <div class="page-footer" >
-                <div class="floater">
+                <div class="floater-l">
                     <a href="questions/<%- containerId %>/<%- previousId %>"
                     class="button dark nav"
                     id="previousButton">
@@ -119,7 +119,7 @@
                     </a>
                 </div>
 
-                <div class="floater">
+                <div class="floater-r">
                     <a href="questions/<%- containerId %>/<%- nextId %>"
                     class="button dark nav"
                     id="nextButton">
