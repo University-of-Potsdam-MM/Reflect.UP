@@ -26,16 +26,6 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     /*background-color:#E4E4E4;*/
     background-color:#333333;
-    background-image:linear-gradient(top, #333333 30%, #606060 100%);
-    background-image:-webkit-linear-gradient(top, #333333 30%, #606060 100%);
-    background-image:-ms-linear-gradient(top, #333333 30%, #606060 100%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0.3, #333333),
-        color-stop(1.0, #606060)
-    );
     background-attachment:fixed;
     font-family: Helvetica, Arial, sans-serif;
     font-size:1em;
