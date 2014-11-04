@@ -264,8 +264,11 @@ var QuestionView = Backbone.View.extend({
 var HomeView = Backbone.View.extend({
     el : "#app",
     template : _.template($('#template-home-screen').html()),
-
     model: Configuration,
+
+    events: {
+        'click .footerlink': 'impressum'
+    },
 
     initialize : function() {
         this.model = Config;
@@ -290,6 +293,10 @@ var HomeView = Backbone.View.extend({
                 model: Questions
             });
         }
+    },
+
+    impressum: function(){
+        Backbone.history.navigate('impressum', { trigger : true });
     },
 
     render : function(){
@@ -377,6 +384,21 @@ var ConfigView = Backbone.View.extend({
     }
 })
 
+var ImpressumView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-impressum').html()),
+
+    initialize: function(){
+        this.render();
+    },
+
+    render: function(){
+        console.log('render');
+        this.$el.html(this.template());
+        return this;
+    }
+});
+
 var AppointmentsView = Backbone.View.extend({
     el: '#app',
     initialize: function(){
@@ -399,7 +421,8 @@ var Router = Backbone.Router.extend({
         '' : 'home',
         'config': 'config',
         'appointments/' : 'appointments',
-        'questions/:containerId/:questionId' : 'questions'
+        'questions/:containerId/:questionId' : 'questions',
+        'impressum': 'impressum'
     },
 
     switchView : function(view){
@@ -430,6 +453,10 @@ var Router = Backbone.Router.extend({
     questions: function(containerId, questionId){
         var question = Questions.get(containerId).getQuestion(questionId);
         this.switchView(new QuestionView({model: question}));
+    },
+
+    impressum: function(){
+        this.switchView(new ImpressumView())
     }
 
 });

@@ -36,7 +36,6 @@ body {
 	height: 100%;
 	margin: 5px;
 	margin-left:0px;
-	padding: 0px 0px 0px .2em;
 	color: #EEE;
 }
 
@@ -109,8 +108,8 @@ textarea {
 
 .back {
 	float:right; padding-right:.5em;font-size:.8em; line-height: 1.8;
-	
-	
+
+
 }
 
 .footerlink {
@@ -119,17 +118,17 @@ textarea {
 }
 
 .back:before {
-	
+
 	content: "\f112";
 	display: block;
 	font-size: 1em;
 	font-family: FontAwesome;
 	font-weight: normal;
-	
+
 	-webkit-font-smoothing: antialiased;
 	-moz-os-font-smoothing: grayscale;
-	
-	
+
+
 }
 
 .content-container {
@@ -142,8 +141,15 @@ textarea {
 	text-align: right;
 }
 
-.page-footer {
+.page-footer{
 	position: fixed;
+	bottom: 0px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	width: 100%;
+}
+
+.impressum-footer {
 	position: fixed;
 	bottom: 0px;
 	padding-bottom: 10px;
@@ -189,7 +195,7 @@ textarea {
 }
 
 .dark:active {
-	
+
 }
 
 #appointments li {
@@ -331,18 +337,18 @@ div .more a{
 
 @
 keyframes fade {from { opacity:1.0;
-	
+
 }
 
 50%
 {
 opacity
 :
- 
+
 0
 .4
 ;
- 
+
 }
 to {
 	opacity: 1.0;
@@ -351,18 +357,18 @@ to {
 }
 @
 -webkit-keyframes fade {from { opacity:1.0;
-	
+
 }
 
 50%
 {
 opacity
 :
- 
+
 0
 .4
 ;
- 
+
 }
 to {
 	opacity: 1.0;
