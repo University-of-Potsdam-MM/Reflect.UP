@@ -51,7 +51,8 @@
         </script>
 
         <script type="text/template" id="template-appointments-screen">
-            <h1> <%- title %></h1>
+            <h1> <%- title %><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+			
             <div id="dates"></div>
         </script>
 
@@ -146,7 +147,7 @@
             app.initialize();
         </script>
          <div class="page-footer" >
-        <a href ="impressum.html">Impressum</a>
+        <a class="footerlink" href ="impressum.html">Impressum</a>
         </div>
     </body>
 </html>
