@@ -74,9 +74,28 @@ li{
 }
 
 p{
-    line-height: 150%
+    line-height: 150%;
+    margin-top:0;
 }
 
+a {text-decoration:none;
+color:#fff;
+	
+}
+
+a:active {
+	color:#2F9BFF;
+}
+
+a:visited {
+	text-decoration:none;
+color:#fff;
+	
+}
+
+em {
+	color:#2F9BFF
+}
 textarea{
     width: 80%;
     height: 150px;
