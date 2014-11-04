@@ -114,7 +114,11 @@ textarea{
 
 .page-footer{
     position: fixed;
-    bottom: 30px;
+    position: fixed;
+bottom: 0px;
+padding-bottom: 30px;
+width: 100%;
+background: #333;
 }
 
 .floater-l{
