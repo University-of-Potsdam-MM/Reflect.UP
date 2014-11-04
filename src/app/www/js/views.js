@@ -99,10 +99,10 @@ var QuestionCollectionListView = Backbone.View.extend({
 });
 
 var QuestionContainerView = Backbone.View.extend({
-    tagName : 'li', 
+    tagName : 'li',
     attributes:{ 'class':'collabsable',
-    			
-    	
+
+
     },
 
     initialize : function(){
@@ -136,7 +136,7 @@ var QuestionContainerView = Backbone.View.extend({
 
     navigate: function(el){
         el.preventDefault();
-        var destination = $(el.target.parentNode).attr('href');
+        var destination = $(el.target).attr('href');
         Backbone.history.navigate(destination, {trigger: true});
         return false;
     }
