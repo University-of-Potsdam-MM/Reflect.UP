@@ -22,7 +22,7 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
          <link rel="stylesheet" type="text/css" href="css/up-style.css" />
@@ -43,14 +43,16 @@
 
         <script type="text/template" id="template-config-screen">
             <h1> <%- title %></h1>
-            <div id="dates"></div>
-                <form id="loginform" type="POST">
-					<label for"username">Benutzername</label>
-                    <input type="text" id="username" placeholder="Benutzername" />
-					<label for"password">Passwort</label>
-                    <input type="password" id="password" placeholder="Passwort" />
-                    <input type="submit" value="Anmelden" />
-                </form
+            <em>Willkommen</em>
+            <p>Die Eingabe deiner Daten dient ausschließlich der Validierung. Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.
+            </p>
+            <form id="loginform" type="POST">
+				<label for"username">Benutzername</label>
+                <input type="text" id="username" placeholder="Benutzername" />
+				<label for"password">Passwort</label>
+                <input type="password" id="password" placeholder="Passwort" />
+                <input type="submit" value="Anmelden" />
+            </form
         </script>
 
         <script type="text/template" id="template-appointments-screen">
@@ -168,16 +170,15 @@
 
                     <em>Haftung</em>
                     <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a
-                href="(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Mobile.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Bei dem Abruf von Daten zu Stundenplänen und Notenübersichten wird der mobile Zugriff auf die Sudierendendatenverwaltung PULS der Universität Potsdam verwendet. Dazu notwendig ist der personenbezogene Login der Universität Potsdam. Damit werden Leistungsdaten des Studierenden übertragen. Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig. Es gelten die Nutzungsbedingungen des PULS Service.</p>
+                href="(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>
 
                 </p>
 
             <h1>Ansprechpartner</h1>
         <p>
-            <b>Ulrike Lucke</b><br /> Universität Potsdam<br /> Institut für
-            Informatik<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />
-            Haus 4 | 1.17<br />
-            <br /> <b>Telefon:</b> +49-331-977-3023 <br style="clear: left;">
+            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />
+            Haus 1 | 1.54<br />
+            <br /> <b>Telefon:</b> +49-331-977-3564 <br style="clear: left;">
 
         </p>
         </div>
@@ -190,11 +191,8 @@
                 Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open
                 Source Projekt veröffentlicht.<br />
                 <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,
-                können Sie gern das Entwicklerteam unter <a
-                    href="mailto:mobileup-service@uni-potsdam.de">mobileup-service@uni-potsdam.de</a>
-                kontaktieren oder sich über <a
-                    href="https://github.com/University-of-Potsdam-MM/UP.App">GitHub</a>
-                beteiligen.
+                können Sie gern das Entwicklerteam unter <a href="mailto:elis-dev@lists.cs.uni-potsdam.de">elis-dev@lists.cs.uni-potsdam.de</a>
+                kontaktieren.
             </p>
         </div>
         </script>
