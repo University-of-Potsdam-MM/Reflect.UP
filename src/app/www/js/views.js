@@ -379,7 +379,7 @@ var ConfigView = Backbone.View.extend({
     },
 
     render: function(){
-        this.$el.html(this.template({title: 'Anmeldung'}));
+        this.$el.html(this.template({title: 'Reflect.UP - Anmeldung'}));
         return this;
     }
 })
