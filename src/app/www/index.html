@@ -110,7 +110,11 @@
         </script>
 
         <script type="text/template" id="template-question">
-            <h1>Frage <%- number %> / <%- total %></h1>
+            <%  if(total == 1){ %>
+                <h1>Frage</h1>
+            <% }else{ %>
+                <h1>Frage <%- number %> / <%- total %></h1>
+            <% } %>
             <div class="content-container">
                 <p><%- questionText %></p>
                 <div id="answer"></div>

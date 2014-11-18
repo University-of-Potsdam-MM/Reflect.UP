@@ -189,7 +189,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                         var q = new Question({
                             id: question_item.id,
                             number: i+1,
-                            total: item.questions.length+1,
+                            total: item.questions.length,
                             questionText: question_item.questionText,
                             type: question_item.type,
                         })
