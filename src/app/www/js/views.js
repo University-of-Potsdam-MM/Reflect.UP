@@ -100,9 +100,8 @@ var QuestionCollectionListView = Backbone.View.extend({
 
 var QuestionContainerView = Backbone.View.extend({
     tagName : 'li',
-    attributes:{ 'class':'collabsable',
-
-
+    attributes: {
+        'class':'collabsable'
     },
 
     initialize : function(){
