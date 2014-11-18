@@ -212,29 +212,26 @@ textarea {
 	float: left;
 	margin-right: 15px;
 	height: 50px;
-	padding-left: 0;
+	padding: 5px;
 	text-align: center;
 	border: 1px solid #CCC;
+	font-family: georgia, serif;
 }
 
 .nav {
 	padding-left: 60px;
 	padding-right: 60px;
 	padding-top: 16px;
-
-	/* right: 10px; */
 }
 
 .date {
-	float: left;
 	font-size: 1em;
-	font-family: georgia, serif;
 	width: 50px;
 	padding: .3em;
 }
 
 .time {
-	font-size: 1em;
+	font-size: 0.8em;
 	margin-left: 0px;
 }
 
