@@ -213,7 +213,7 @@ var QuestionView = Backbone.View.extend({
         if (!q){
             this.model.get('container').sendData();
             this.undelegateEvents();
-            Backbone.history.navigate('', {trigger: true});
+            Backbone.history.navigate('questionsfinish', {trigger: true});
             return false;
         }
 
@@ -255,6 +255,25 @@ var QuestionView = Backbone.View.extend({
                 this.$('#answer textarea').val());
     }
 })
+
+/**
+ *  QuestionsFinishView
+ *  View displayed after finishing all questions of a container
+ */
+
+ var QuestionsFinishView = Backbone.View.extend({
+    el : "#app",
+    template : _.template($('#template-question-finish').html()),
+
+    initialize: function(){
+        this.render();
+    },
+
+    render: function(){
+        this.$el.html(this.template());
+        return this;
+    }
+ })
 
 /**
  *  HomeView
@@ -421,6 +440,7 @@ var Router = Backbone.Router.extend({
         'config': 'config',
         'appointments/' : 'appointments',
         'questions/:containerId/:questionId' : 'questions',
+        'questionsfinish': 'questionsfinish',
         'impressum': 'impressum'
     },
 
@@ -452,6 +472,10 @@ var Router = Backbone.Router.extend({
     questions: function(containerId, questionId){
         var question = Questions.get(containerId).getQuestion(questionId);
         this.switchView(new QuestionView({model: question}));
+    },
+
+    questionsfinish: function(){
+        this.switchView(new QuestionsFinishView())
     },
 
     impressum: function(){

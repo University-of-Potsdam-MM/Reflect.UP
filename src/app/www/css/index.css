@@ -170,6 +170,10 @@ textarea {
 	text-align: center;
 }
 
+.floater {
+	text-align: center;
+}
+
 .line {
 	height: 2px;
 	width: 100%;
