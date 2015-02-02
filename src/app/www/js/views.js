@@ -1,3 +1,5 @@
+//var moodleServiceEndpoint = "https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php";
+
 var AppointmentListItemView = Backbone.View.extend({
     tagName : 'li',
 
@@ -347,7 +349,7 @@ var ConfigView = Backbone.View.extend({
         var username = $('#username').val();
         var password = $('#password').val();
         var that = this;
-        $.get("https://eportfolio.uni-potsdam.de/moodle/login/token.php", {
+        $.get(moodleLoginEndpoint, {
             username: username,
             password: password,
             service: 'upreflection'
@@ -371,7 +373,7 @@ var ConfigView = Backbone.View.extend({
 
     enrolUser: function(){
         var that = this;
-        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+        $.get(moodleServiceEndpoint, {
             wstoken: that.model.get("accessToken"),
             wsfunction: "local_upreflection_enrol_self",
             moodlewsrestformat: "json"

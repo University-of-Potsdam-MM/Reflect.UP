@@ -47,3 +47,6 @@ IOS/www/
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+src/app/nbproject/private/private.properties
+src/app/nbproject/project.properties
+src/app/nbproject/project.xml
