@@ -429,6 +429,7 @@ var FeedbackView = Backbone.View.extend({
        
     initialize: function() {
         this.render();
+        this.model = Config;
         this.listenTo(this, 'errorHandler', this.errorHandler);
         this.listenTo(this, 'successHandler', this.enrolUser);
     },
@@ -449,10 +450,25 @@ var FeedbackView = Backbone.View.extend({
     
     submit: function(ev) {
         ev.preventDefault();        
-        var feedbacktext = $('#feedbacktext').val();
-        console.log("here I am ");
-        console.log(feedbacktext);
-        Backbone.history.navigate("feedbackresult", {trigger: true});
+        var feedbacktext = $('#feedbacktext').val();                
+        var that = this;
+        $.get(moodleServiceEndpoint, {
+            wstoken: that.model.get("accessToken"),
+            wsfunction: "local_upreflection_post_feedback",
+            moodlewsrestformat: "json",
+            feedback: feedbacktext
+        }).done(function(data){
+            if (data.error){
+                that.trigger('errorHandler');
+            }else{
+                Backbone.history.navigate("feedbackresult", {trigger: true});
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+            that.trigger('errorHandler');
+        });        
     }
 });
 
