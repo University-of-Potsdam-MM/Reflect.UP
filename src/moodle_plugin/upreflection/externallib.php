@@ -253,7 +253,6 @@ class local_reflection_external extends external_api {
         }
 
         // testing addFeedback
-
 //        $forumName = "Feedback Forum";
 //        self::addFeedbackForumToCourse($course->id, $forumName);
 //        self::addFeedbackPostToForum($course->id, $forumName, "find ich gut");
@@ -278,9 +277,9 @@ class local_reflection_external extends external_api {
         $discussion->messageformat = 1;
         $discussion->messagetrust = 0;
         $discussion->mailnow = false;
-        $discussion->course=$courseid;
+        $discussion->course = $courseid;
 
-        
+
         $discussionPersisted = forum_add_discussion($discussion);
 
 
@@ -335,6 +334,26 @@ class local_reflection_external extends external_api {
             }
             $DB->set_field("course_modules", "section", $sectionid, array("id" => $mod->coursemodule));
         }
+    }
+
+    public static function post_feedback($feedback) {
+        $forumName = "Feedback Forum";
+        self::addFeedbackForumToCourse('UPR1', $forumName);
+        self::addFeedbackPostToForum('UPR1', $forumName, $feedback);
+        return true;
+    }
+
+    public static function post_feedback_parameters() {
+        return new external_function_parameters(
+                array('feedback' => new external_value(PARAM_TEXT, 'feedback')));
+    }
+
+    public static function post_feedback_returns() {
+        return new external_single_structure(
+                array(
+            'result' => new external_value(PARAM_BOOL, 'Result flag'),
+                )
+        );
     }
 
     /**
