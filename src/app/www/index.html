@@ -42,7 +42,7 @@
             </div>
             <br>
             <br>
-            <a href="#feedback">Klick mich</a>
+            <a href="#feedback" class="button">Feedback</a>
         </script>
 
         <script type="text/template" id="template-config-screen">
@@ -220,12 +220,16 @@
 
 
         <script type="text/template" id="template-feedback">
-             <h1>Sie können hier Feedback abgeben, was auf Moodle veröffentlicht wird.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>  ´            
-             <form id="submitform" name="feedback" action="post_feedback">                                                
+             <h1>Sie können hier Feedback abgeben, was auf Moodle veröffentlicht wird.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+             <form id="feedbackform" name="feedback" type="POST">                                                
                    <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">
                     </textarea>  
-                <input class="btn btn-primary" type="submit" value="veröffentlichen" />
+                  <input type="submit" value="veröffentlichen" />
             </form>
+        </script>        
+        
+        <script type="text/template" id="template-feedbackresult">             
+             <h1>Feedback erfolgreich registriert.<a class="back" title="zurück" alt="zurück button" onclick="Backbone.history.navigate('', { trigger : true });"></a></h1>
         </script>
 
 

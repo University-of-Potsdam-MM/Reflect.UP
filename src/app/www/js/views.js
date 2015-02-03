@@ -422,7 +422,45 @@ var ImpressumView = Backbone.View.extend({
 var FeedbackView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedback').html()),
+       
+    events: {
+        'submit': 'submit'
+    },   
+       
+    initialize: function() {
+        this.render();
+        this.listenTo(this, 'errorHandler', this.errorHandler);
+        this.listenTo(this, 'successHandler', this.enrolUser);
+    },
     
+    render: function() {
+        console.log('render');
+        this.$el.html(this.template());
+        return this;
+    },
+    
+    errorHandler: function(error) {
+        console.log("had error");
+    },
+    
+    successHandler: function() {
+        console.log("success");        
+    },
+    
+    submit: function(ev) {
+        ev.preventDefault();        
+        var feedbacktext = $('#feedbacktext').val();
+        console.log("here I am ");
+        console.log(feedbacktext);
+        Backbone.history.navigate("feedbackresult", {trigger: true});
+    }
+});
+
+
+var FeedbackResultView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-feedbackresult').html()),
+     
     initialize: function() {
         this.render();
     },
@@ -431,7 +469,7 @@ var FeedbackView = Backbone.View.extend({
         console.log('render');
         this.$el.html(this.template());
         return this;
-    }
+    }, 
 });
 
 var AppointmentsView = Backbone.View.extend({
@@ -459,7 +497,8 @@ var Router = Backbone.Router.extend({
         'questions/:containerId/:questionId' : 'questions',
         'questionsfinish': 'questionsfinish',
         'impressum': 'impressum',
-        'feedback': 'feedback'
+        'feedback': 'feedback',
+        'feedbackresult' : 'feedbackresult'
     },
 
     switchView : function(view){
@@ -502,5 +541,9 @@ var Router = Backbone.Router.extend({
     
     feedback: function() {
         this.switchView(new FeedbackView())
+    },
+    
+    feedbackresult : function() {              
+        this.switchView(new FeedbackResultView())
     }
 });
