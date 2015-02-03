@@ -337,10 +337,17 @@ class local_reflection_external extends external_api {
     }
 
     public static function post_feedback($feedback) {
+        
+        global $DB, $CFG;        
+        include_once($CFG->dirroot . "/course/lib.php");
+        
+        $course = $DB->get_record('course', array('idnumber' => 'UPR1'));
+        $courseid = $course->id;
+        
         $forumName = "Feedback Forum";
-        self::addFeedbackForumToCourse('UPR1', $forumName);
-        self::addFeedbackPostToForum('UPR1', $forumName, $feedback);
-        return true;
+        self::addFeedbackForumToCourse($courseid, $forumName);
+        self::addFeedbackPostToForum($courseid, $forumName, $feedback);
+        return array('result'=>true);
     }
 
     public static function post_feedback_parameters() {
