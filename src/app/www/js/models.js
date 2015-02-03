@@ -23,6 +23,13 @@ var Appointment = Backbone.Model.extend({
 	}
 });
 
+var Feedback = Backbone.Model.extend({
+	defaults:{		                
+                feedbackText : null,
+	}
+});
+
+
 var Question = Backbone.Model.extend({
     defaults: {
         questionText: 'Question Text',

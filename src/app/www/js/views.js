@@ -419,6 +419,21 @@ var ImpressumView = Backbone.View.extend({
     }
 });
 
+var FeedbackView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-feedback').html()),
+    
+    initialize: function() {
+        this.render();
+    },
+    
+    render: function() {
+        console.log('render');
+        this.$el.html(this.template());
+        return this;
+    }
+});
+
 var AppointmentsView = Backbone.View.extend({
     el: '#app',
     initialize: function(){
@@ -443,7 +458,8 @@ var Router = Backbone.Router.extend({
         'appointments/' : 'appointments',
         'questions/:containerId/:questionId' : 'questions',
         'questionsfinish': 'questionsfinish',
-        'impressum': 'impressum'
+        'impressum': 'impressum',
+        'feedback': 'feedback'
     },
 
     switchView : function(view){
@@ -482,6 +498,9 @@ var Router = Backbone.Router.extend({
 
     impressum: function(){
         this.switchView(new ImpressumView())
+    },
+    
+    feedback: function() {
+        this.switchView(new FeedbackView())
     }
-
 });

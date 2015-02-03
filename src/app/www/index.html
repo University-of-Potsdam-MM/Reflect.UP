@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-         <link rel="stylesheet" type="text/css" href="css/up-style.css" />
+        <link rel="stylesheet" type="text/css" href="css/up-style.css" />
         <title>Reflect.UP</title>
     </head>
     <body>
@@ -33,12 +33,16 @@
         </div>
 
         <script type="text/template" id="template-home-screen">
-            <h1> <%- title %></h1>
-            <div id="dates"></div>
+            <h1> <%- title %>            
+            </h1>            
+            <div id="dates"></div>            
             <div id="questions"></div>
             <div class="impressum-footer" >
                 <a class="footerlink">Impressum</a>
             </div>
+            <br>
+            <br>
+            <a href="#feedback">Klick mich</a>
         </script>
 
         <script type="text/template" id="template-config-screen">
@@ -47,11 +51,11 @@
             <p>Die Eingabe deiner Daten dient ausschließlich der Validierung. Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.
             </p>
             <form id="loginform" type="POST">
-				<label for"username">Benutzername</label>
-                <input type="text" id="username" placeholder="Benutzername" />
-				<label for"password">Passwort</label>
-                <input type="password" id="password" placeholder="Passwort" />
-                <input type="submit" value="Anmelden" />
+            <label for"username">Benutzername</label>
+            <input type="text" id="username" placeholder="Benutzername" />
+            <label for"password">Passwort</label>
+            <input type="password" id="password" placeholder="Passwort" />
+            <input type="submit" value="Anmelden" />
             </form
         </script>
 
@@ -60,11 +64,11 @@
             <p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>
 
             <div class="page-footer" >
-                <div class="floater">
-                    <a href="#" class="button dark nav">
-                        <i class="fa fa-check-square-o"></i>
-                    </a>
-                </div>
+            <div class="floater">
+            <a href="#" class="button dark nav">
+            <i class="fa fa-check-square-o"></i>
+            </a>
+            </div>
             </div>
         </script>
 
@@ -77,7 +81,7 @@
         <script type="text/template" id="template-appointment-list">
             <ul id="appointments"></ul>
             <div class="content-footer" >
-                <a id="more-appointments-button" class="button" >Weitere Termine</a>
+            <a id="more-appointments-button" class="button" >Weitere Termine</a>
             </div>
         </script>
 
@@ -88,24 +92,24 @@
 
         <script type="text/template" id="template-appointment-list-item">
             <div class="date-container" >
-                <div class="date" >
-                    <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
-                    <% if (begin.getDate() != end.getDate()){ %>
-                    -
-                    <%- ('0'+(end.getDate())).slice(-2) %>.<%- ('0'+(end.getMonth()+1)).slice(-2) %>
-                    <% } %>
-                </div>
-                <div class="time" >
-                    <% if (begin.getTime() === end.getTime()){  %>
-                        ganztägig
-                    <% }else{ %>
-                    <% if (begin.getHours() != 0 && begin.getMinutes() != 0){ %>
-                        <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
-                        -
-                        <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
-                    <% } %>
-                    <% } %>
-                </div>
+            <div class="date" >
+            <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
+            <% if (begin.getDate() != end.getDate()){ %>
+            -
+            <%- ('0'+(end.getDate())).slice(-2) %>.<%- ('0'+(end.getMonth()+1)).slice(-2) %>
+            <% } %>
+            </div>
+            <div class="time" >
+            <% if (begin.getTime() === end.getTime()){  %>
+            ganztägig
+            <% }else{ %>
+            <% if (begin.getHours() != 0 && begin.getMinutes() != 0){ %>
+            <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
+            -
+            <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
+            <% } %>
+            <% } %>
+            </div>
             </div>
 
             <div class="description" ><%- title %></div>
@@ -115,41 +119,41 @@
 
         <script type="text/template" id="template-question-collection-list-item">
 
-                <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %>
+            <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %>
 
-                </a>
+            </a>
 
 
         </script>
 
         <script type="text/template" id="template-question">
             <%  if(total == 1){ %>
-                <h1>Frage</h1>
+            <h1>Frage</h1>
             <% }else{ %>
-                <h1>Frage <%- number %> / <%- total %></h1>
+            <h1>Frage <%- number %> / <%- total %></h1>
             <% } %>
             <div class="content-container">
-                <p><%- questionText %></p>
-                <div id="answer"></div>
+            <p><%- questionText %></p>
+            <div id="answer"></div>
             </div>
 
             <div class="page-footer" >
-                <div class="floater-l">
-                    <a href="questions/<%- containerId %>/<%- previousId %>"
-                    class="button dark nav"
-                    id="previousButton">
-                        <i class="fa fa-angle-left fa-2x"></i>
-                    </a>
-                </div>
+            <div class="floater-l">
+            <a href="questions/<%- containerId %>/<%- previousId %>"
+            class="button dark nav"
+            id="previousButton">
+            <i class="fa fa-angle-left fa-2x"></i>
+            </a>
+            </div>
 
-                <div class="floater-r">
-                    <a href="questions/<%- containerId %>/<%- nextId %>"
-                    class="button dark nav"
-                    id="nextButton">
-                        <i class="fa fa-angle-right fa-2x"></i>
-                    </a>
-                </div>
-                <div class="clear" ></div>
+            <div class="floater-r">
+            <a href="questions/<%- containerId %>/<%- nextId %>"
+            class="button dark nav"
+            id="nextButton">
+            <i class="fa fa-angle-right fa-2x"></i>
+            </a>
+            </div>
+            <div class="clear" ></div>
             </div>
         </script>
 
@@ -159,73 +163,86 @@
             <em>Herausgeber</em>
             <p>
             Universität Potsdam<br />
-                        Am Neuen Palais 10<br />
-                        14469 Potsdam<br /><br />
-                        <b>Tel.:</b> 0331 977-0<br />
-                        <b>Fax:</b> 0331 97 21 63<br />
-                        <b>Web:</b> www.uni-potsdam.de<br />
-                    </p>
+            Am Neuen Palais 10<br />
+            14469 Potsdam<br /><br />
+            <b>Tel.:</b> 0331 977-0<br />
+            <b>Fax:</b> 0331 97 21 63<br />
+            <b>Web:</b> www.uni-potsdam.de<br />
+            </p>
 
-                    <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>
-                    <p>
-                        Ulrike Lucke, CIO der Universität Potsdam<br />
-                        14469 Potsdam<br />
-                        <b>E-Mail:</b> <a href="mailto:mobileup-service@uni-potsdam.de">mobileup-service@uni-potsdam.de</a>
-                    </p>
+            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>
+            <p>
+            Ulrike Lucke, CIO der Universität Potsdam<br />
+            14469 Potsdam<br />
+            <b>E-Mail:</b> <a href="mailto:mobileup-service@uni-potsdam.de">mobileup-service@uni-potsdam.de</a>
+            </p>
 
-                    <em>Rechtsform und gesetzliche Vertretung</em>
-                    <p>
-                    Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.
-    </p>
+            <em>Rechtsform und gesetzliche Vertretung</em>
+            <p>
+            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.
+            </p>
 
-                    <em>Zuständige Aufsichtsbehörde</em>
-                    <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>
+            <em>Zuständige Aufsichtsbehörde</em>
+            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>
 
-                    <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>
-                    <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>
-                    <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>
+            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>
+            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>
 
-                    <em>Haftung</em>
-                    <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a
-                href="(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>
+            <em>Haftung</em>
+            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a
+            href="(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>
 
                 </p>
 
             <h1>Ansprechpartner</h1>
-        <p>
+            <p>
             <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />
             Haus 1 | 1.54<br />
             <br /> <b>Telefon:</b> +49-331-977-3564 <br style="clear: left;">
 
-        </p>
-        </div>
+            </p>
+            </div>
 
-        <div>
+            <div>
             <h1>Mitmachen</h1>
             <p>
-                Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von
-                Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im
-                Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open
-                Source Projekt veröffentlicht.<br />
-                <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,
-                können Sie gern das Entwicklerteam unter <a href="mailto:elis-dev@lists.cs.uni-potsdam.de">elis-dev@lists.cs.uni-potsdam.de</a>
-                kontaktieren.
+            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von
+            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im
+            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open
+            Source Projekt veröffentlicht.<br />
+            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,
+            können Sie gern das Entwicklerteam unter <a href="mailto:elis-dev@lists.cs.uni-potsdam.de">elis-dev@lists.cs.uni-potsdam.de</a>
+            kontaktieren.
             </p>
-        </div>
+            </div>
         </script>
+
+
+        <script type="text/template" id="template-feedback">
+             <h1>Sie können hier Feedback abgeben, was auf Moodle veröffentlicht wird.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>  ´            
+             <form id="submitform" name="feedback" action="post_feedback">                                                
+                   <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">
+                    </textarea>  
+                <input class="btn btn-primary" type="submit" value="veröffentlichen" />
+            </form>
+        </script>
+
+
+
 
         <script type="text/javascript" src="js/config.js"></script>
         <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
         <script type="text/javascript" src="js/lib/underscore.js"></script>
         <script type="text/javascript" src="js/lib/backbone.js"></script>
         <script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
-                
+
         <script type="text/javascript" src="js/models.js"></script>
         <script type="text/javascript" src="js/views.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
         <script type="text/javascript">
-            app.initialize();
+app.initialize();
         </script>
     </body>
 </html>
