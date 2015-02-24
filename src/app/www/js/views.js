@@ -1,5 +1,3 @@
-//var moodleServiceEndpoint = "https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php";
-
 var AppointmentListItemView = Backbone.View.extend({
     tagName : 'li',
 
@@ -422,35 +420,34 @@ var ImpressumView = Backbone.View.extend({
 var FeedbackView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedback').html()),
-       
+
     events: {
         'submit': 'submit'
-    },   
-       
+    },
+
     initialize: function() {
         this.render();
         this.model = Config;
         this.listenTo(this, 'errorHandler', this.errorHandler);
         this.listenTo(this, 'successHandler', this.enrolUser);
     },
-    
+
     render: function() {
-        console.log('render');
         this.$el.html(this.template());
         return this;
     },
-    
+
     errorHandler: function(error) {
         console.log("had error");
     },
-    
+
     successHandler: function() {
-        console.log("success");        
+        console.log("success");
     },
-    
+
     submit: function(ev) {
-        ev.preventDefault();        
-        var feedbacktext = $('#feedbacktext').val();                
+        ev.preventDefault();
+        var feedbacktext = $('#feedbacktext').val();
         var that = this;
         $.get(moodleServiceEndpoint, {
             wstoken: that.model.get("accessToken"),
@@ -461,6 +458,7 @@ var FeedbackView = Backbone.View.extend({
             if (data.error){
                 that.trigger('errorHandler');
             }else{
+                that.undelegateEvents();
                 Backbone.history.navigate("feedbackresult", {trigger: true});
             }
         }).error(function(xhr, status, error){
@@ -468,7 +466,7 @@ var FeedbackView = Backbone.View.extend({
             console.log(status);
             console.log(error);
             that.trigger('errorHandler');
-        });        
+        });
     }
 });
 
@@ -476,16 +474,16 @@ var FeedbackView = Backbone.View.extend({
 var FeedbackResultView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedbackresult').html()),
-     
+
     initialize: function() {
         this.render();
     },
-    
+
     render: function() {
         console.log('render');
         this.$el.html(this.template());
         return this;
-    }, 
+    },
 });
 
 var AppointmentsView = Backbone.View.extend({
@@ -554,12 +552,12 @@ var Router = Backbone.Router.extend({
     impressum: function(){
         this.switchView(new ImpressumView())
     },
-    
+
     feedback: function() {
         this.switchView(new FeedbackView())
     },
-    
-    feedbackresult : function() {              
+
+    feedbackresult : function() {
         this.switchView(new FeedbackResultView())
     }
 });

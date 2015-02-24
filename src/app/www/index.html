@@ -33,16 +33,15 @@
         </div>
 
         <script type="text/template" id="template-home-screen">
-            <h1> <%- title %>            
-            </h1>            
-            <div id="dates"></div>            
+            <h1> <%- title %><a class="button" title="Feedback" href="#feedback">Feedback</a>
+            </h1>
+            <div id="dates"></div>
             <div id="questions"></div>
             <div class="impressum-footer" >
                 <a class="footerlink">Impressum</a>
             </div>
             <br>
             <br>
-            <a href="#feedback" class="button">Feedback</a>
         </script>
 
         <script type="text/template" id="template-config-screen">
@@ -56,7 +55,7 @@
             <label for"password">Passwort</label>
             <input type="password" id="password" placeholder="Passwort" />
             <input type="submit" value="Anmelden" />
-            </form
+            </form>
         </script>
 
         <script type="text/template" id="template-question-finish">
@@ -80,7 +79,7 @@
 
         <script type="text/template" id="template-appointment-list">
             <ul id="appointments"></ul>
-            <div class="content-footer" >
+            <div class="content-footer">
             <a id="more-appointments-button" class="button" >Weitere Termine</a>
             </div>
         </script>
@@ -220,16 +219,26 @@
 
 
         <script type="text/template" id="template-feedback">
-             <h1>Sie können hier Feedback abgeben, was auf Moodle veröffentlicht wird.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
-             <form id="feedbackform" name="feedback" type="POST">                                                
-                   <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>  
+             <h1>Sie können hier Feedback abgeben.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+             <form id="feedbackform" name="feedback" type="POST">
+                   <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>
                    <br>
-                   <input class="button" type="submit" value="veröffentlichen" />
+                   <input class="button" type="submit" value="Abschicken" />
             </form>
-        </script>        
-        
-        <script type="text/template" id="template-feedbackresult">             
-             <h1>Feedback erfolgreich registriert.<a class="back" title="zurück" alt="zurück button" onclick="Backbone.history.navigate('', { trigger : true });"></a></h1>
+        </script>
+
+
+        <script type="text/template" id="template-feedbackresult">
+            <h1>Fertig</h1>
+            <p><i class="fa fa-check"></i> Feedback erfolgreich abgeschickt.</p>
+
+            <div class="page-footer" >
+            <div class="floater">
+            <a href="#" class="button dark nav">
+            <i class="fa fa-check-square-o"></i>
+            </a>
+            </div>
+            </div>
         </script>
 
         <script type="text/javascript" src="js/config.js"></script>
