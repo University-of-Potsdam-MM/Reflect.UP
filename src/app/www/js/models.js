@@ -1,5 +1,6 @@
 app = (app || {} );
 
+
 var Configuration = Backbone.Model.extend({
 
     localStorage: new Backbone.LocalStorage("UPReflection"),
@@ -21,6 +22,13 @@ var Appointment = Backbone.Model.extend({
         end : new Date(),
 	}
 });
+
+var Feedback = Backbone.Model.extend({
+	defaults:{		                
+                feedbackText : null,
+	}
+});
+
 
 var Question = Backbone.Model.extend({
     defaults: {
@@ -129,7 +137,7 @@ var QuestionContainer = Backbone.Model.extend({
 
         var token = Config.get("accessToken");
 
-        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+        $.get(moodleServiceEndpoint, {
             wstoken: token,
             wsfunction: "local_upreflection_submit_feedbacks",
             moodlewsrestformat: "json",
@@ -138,6 +146,10 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
+        
+        
+        
+        
 
 
 
@@ -156,7 +168,7 @@ var QuestionContainerList = Backbone.Collection.extend({
 
         var token = Config.get("accessToken");
 
-        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+        $.get(moodleServiceEndpoint, {
             wstoken: token,
             wsfunction: "local_upreflection_get_feedbacks",
             moodlewsrestformat: "json",
@@ -220,7 +232,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         oneYearLater.setFullYear(today.getFullYear()+1);
         var token = Config.get("accessToken");
         console.log(token);
-        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+        $.get(moodleServiceEndpoint, {
             wstoken: token,
             wsfunction: "local_upreflection_get_calendar_entries",
             moodlewsrestformat: "json",

@@ -347,7 +347,7 @@ var ConfigView = Backbone.View.extend({
         var username = $('#username').val();
         var password = $('#password').val();
         var that = this;
-        $.get("https://eportfolio.uni-potsdam.de/moodle/login/token.php", {
+        $.get(moodleLoginEndpoint, {
             username: username,
             password: password,
             service: 'upreflection'
@@ -371,7 +371,7 @@ var ConfigView = Backbone.View.extend({
 
     enrolUser: function(){
         var that = this;
-        $.get("https://eportfolio.uni-potsdam.de/moodle/webservice/rest/server.php", {
+        $.get(moodleServiceEndpoint, {
             wstoken: that.model.get("accessToken"),
             wsfunction: "local_upreflection_enrol_self",
             moodlewsrestformat: "json"
@@ -417,6 +417,75 @@ var ImpressumView = Backbone.View.extend({
     }
 });
 
+var FeedbackView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-feedback').html()),
+
+    events: {
+        'submit': 'submit'
+    },
+
+    initialize: function() {
+        this.render();
+        this.model = Config;
+        this.listenTo(this, 'errorHandler', this.errorHandler);
+        this.listenTo(this, 'successHandler', this.enrolUser);
+    },
+
+    render: function() {
+        this.$el.html(this.template());
+        return this;
+    },
+
+    errorHandler: function(error) {
+        console.log("had error");
+    },
+
+    successHandler: function() {
+        console.log("success");
+    },
+
+    submit: function(ev) {
+        ev.preventDefault();
+        var feedbacktext = $('#feedbacktext').val();
+        var that = this;
+        $.get(moodleServiceEndpoint, {
+            wstoken: that.model.get("accessToken"),
+            wsfunction: "local_upreflection_post_feedback",
+            moodlewsrestformat: "json",
+            feedback: feedbacktext
+        }).done(function(data){
+            if (data.error){
+                that.trigger('errorHandler');
+            }else{
+                that.undelegateEvents();
+                Backbone.history.navigate("feedbackresult", {trigger: true});
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+            that.trigger('errorHandler');
+        });
+    }
+});
+
+
+var FeedbackResultView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-feedbackresult').html()),
+
+    initialize: function() {
+        this.render();
+    },
+
+    render: function() {
+        console.log('render');
+        this.$el.html(this.template());
+        return this;
+    },
+});
+
 var AppointmentsView = Backbone.View.extend({
     el: '#app',
     initialize: function(){
@@ -441,7 +510,9 @@ var Router = Backbone.Router.extend({
         'appointments/' : 'appointments',
         'questions/:containerId/:questionId' : 'questions',
         'questionsfinish': 'questionsfinish',
-        'impressum': 'impressum'
+        'impressum': 'impressum',
+        'feedback': 'feedback',
+        'feedbackresult' : 'feedbackresult'
     },
 
     switchView : function(view){
@@ -480,6 +551,13 @@ var Router = Backbone.Router.extend({
 
     impressum: function(){
         this.switchView(new ImpressumView())
-    }
+    },
 
+    feedback: function() {
+        this.switchView(new FeedbackView())
+    },
+
+    feedbackresult : function() {
+        this.switchView(new FeedbackResultView())
+    }
 });

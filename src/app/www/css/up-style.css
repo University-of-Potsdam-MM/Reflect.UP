@@ -18,6 +18,29 @@
 	width: 43%;
 }
 
+/*Loginform*/
+#submitform textarea {
+	display: block;
+	border: 1px solid #fff;
+	font-size: 1.3em;
+	background-color: #fff !important;
+	width: 80%;
+	padding: 10px;
+}
+
+#submitform input[type="submit"] {
+	border: 1px solid #ccc;
+	background-color: #ccc !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 1em;
+	width: 43%;
+}
+
+
+
+
 #loginform label {
 	font-family: georgia, serif;
 	font-style: italic;

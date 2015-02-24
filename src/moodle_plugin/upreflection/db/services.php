@@ -20,51 +20,59 @@
  * @copyright  2014 Bjoern Groneberg
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 // We defined the web service functions to install.
 $functions = array(
-        'local_upreflection_get_calendar_entries' => array(
-                'classname'   => 'local_reflection_external',
-                'methodname'  => 'get_calendar_reflection_events',
-                'classpath'   => 'local/upreflection/externallib.php',
-                'description' => 'Returns the calendar entries of the Reflection course',
-                'type'        => 'read',
-        ),
-        'local_upreflection_get_feedbacks' => array(
-                'classname'   => 'local_reflection_external',
-                'methodname'  => 'get_feedbacks',
-                'classpath'   => 'local/upreflection/externallib.php',
-                'description' => 'Returns the feedback entries of the Reflection course',
-                'type'        => 'read',
-        ),
-        'local_upreflection_submit_feedbacks' => array(
-                'classname'   => 'local_reflection_external',
-                'methodname'  => 'submit_feedbacks',
-                'classpath'   => 'local/upreflection/externallib.php',
-                'description' => 'Submits the feedback values for the Reflection course',
-                'type'        => 'write',
-        )
-        ,
-        'local_upreflection_enrol_self' => array(
-                'classname'   => 'local_reflection_external',
-                'methodname'  => 'enrol_self',
-                'classpath'   => 'local/upreflection/externallib.php',
-                'description' => 'Enrols user in reflection course',
-                'type'        => 'write',
-        )
+    'local_upreflection_get_calendar_entries' => array(
+        'classname' => 'local_reflection_external',
+        'methodname' => 'get_calendar_reflection_events',
+        'classpath' => 'local/upreflection/externallib.php',
+        'description' => 'Returns the calendar entries of the Reflection course',
+        'type' => 'read',
+    ),
+    'local_upreflection_get_feedbacks' => array(
+        'classname' => 'local_reflection_external',
+        'methodname' => 'get_feedbacks',
+        'classpath' => 'local/upreflection/externallib.php',
+        'description' => 'Returns the feedback entries of the Reflection course',
+        'type' => 'read',
+    ),
+    'local_upreflection_submit_feedbacks' => array(
+        'classname' => 'local_reflection_external',
+        'methodname' => 'submit_feedbacks',
+        'classpath' => 'local/upreflection/externallib.php',
+        'description' => 'Submits the feedback values for the Reflection course',
+        'type' => 'write',
+    )
+    ,
+    'local_upreflection_enrol_self' => array(
+        'classname' => 'local_reflection_external',
+        'methodname' => 'enrol_self',
+        'classpath' => 'local/upreflection/externallib.php',
+        'description' => 'Enrols user in reflection course',
+        'type' => 'write',
+    )
+    ,
+    'local_upreflection_post_feedback' => array(
+        'classname' => 'local_reflection_external',
+        'methodname' => 'post_feedback',
+        'classpath' => 'local/upreflection/externallib.php',
+        'description' => 'post general feedback',
+        'type' => 'write',
+    )
 );
 
 // We define the services to install as pre-build services. A pre-build service is not editable by administrator.
 $services = array(
-        'UPReflection Service' => array(
-                'functions' => array (
-                        'local_upreflection_get_calendar_entries',
-                        'local_upreflection_get_feedbacks',
-                        'local_upreflection_submit_feedbacks',
-                        'local_upreflection_enrol_self'
-                        ),
-                'restrictedusers' => 0,
-                'enabled'=>1,
-                'shortname'=>'upreflection',
-        )
+    'UPReflection Service' => array(
+        'functions' => array(
+            'local_upreflection_get_calendar_entries',
+            'local_upreflection_get_feedbacks',
+            'local_upreflection_submit_feedbacks',
+            'local_upreflection_enrol_self',
+            'local_upreflection_post_feedback'
+        ),
+        'restrictedusers' => 0,
+        'enabled' => 1,
+        'shortname' => 'upreflection',
+    )
 );
