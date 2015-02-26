@@ -18,22 +18,21 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="css/up-style.css" />
-        <title>Reflect.UP</title>
-    </head>
-    <body>
-        <div id="app">
-        </div>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="css/up-style.css" />
+<title>Reflect.UP</title>
+</head>
+<body>
+	<div id="app"></div>
 
-        <script type="text/template" id="template-home-screen">
-            <h1> <%- title %><a class="button" title="Feedback" href="#feedback">Feedback</a>
+	<script type="text/template" id="template-home-screen">
+            <h1> <%- title %><a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
             </h1>
             <div id="dates"></div>
             <div id="questions"></div>
@@ -44,10 +43,10 @@
             <br>
         </script>
 
-        <script type="text/template" id="template-config-screen">
+	<script type="text/template" id="template-config-screen">
             <h1> <%- title %></h1>
             <em>Willkommen</em>
-            <p>Die Eingabe deiner Daten dient ausschließlich der Validierung. Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.
+            <p class="welcome">Die Eingabe deiner Daten dient ausschließlich der Validierung. Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.
             </p>
             <form id="loginform" type="POST">
             <label for"username">Benutzername</label>
@@ -58,7 +57,7 @@
             </form>
         </script>
 
-        <script type="text/template" id="template-question-finish">
+	<script type="text/template" id="template-question-finish">
             <h1>Fertig</h1>
             <p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>
 
@@ -71,26 +70,27 @@
             </div>
         </script>
 
-        <script type="text/template" id="template-appointments-screen">
+	<script type="text/template" id="template-appointments-screen">
             <h1> <%- title %><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
 
             <div id="dates"></div>
         </script>
 
-        <script type="text/template" id="template-appointment-list">
+	<script type="text/template" id="template-appointment-list">
             <ul id="appointments"></ul>
             <div class="content-footer">
             <a id="more-appointments-button" class="button" >Weitere Termine</a>
             </div>
         </script>
 
-        <script type="text/template" id="template-question-collection-list">
+	<script type="text/template" id="template-question-collection-list">
             <h2>Offene Fragen</h2>
             <ul id="question-collection"></ul>
         </script>
 
-        <script type="text/template" id="template-appointment-list-item">
+	<script type="text/template" id="template-appointment-list-item">
             <div class="date-container" >
+			<div class="data">
             <div class="date" >
             <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
             <% if (begin.getDate() != end.getDate()){ %>
@@ -109,6 +109,7 @@
             <% } %>
             <% } %>
             </div>
+			</div>
             </div>
 
             <div class="description" ><%- title %></div>
@@ -116,7 +117,8 @@
             <div class="clear"></div>
         </script>
 
-        <script type="text/template" id="template-question-collection-list-item">
+	<script type="text/template"
+		id="template-question-collection-list-item">
 
             <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %>
 
@@ -125,7 +127,7 @@
 
         </script>
 
-        <script type="text/template" id="template-question">
+	<script type="text/template" id="template-question">
             <%  if(total == 1){ %>
             <h1>Frage</h1>
             <% }else{ %>
@@ -156,10 +158,10 @@
             </div>
         </script>
 
-        <script type="text/template" id="template-impressum">
+	<script type="text/template" id="template-impressum">
             <h1>Impressum<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
 
-            <em>Herausgeber</em>
+            <em style="font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;">Herausgeber</em>
             <p>
             Universität Potsdam<br />
             Am Neuen Palais 10<br />
@@ -218,17 +220,17 @@
         </script>
 
 
-        <script type="text/template" id="template-feedback">
+	<script type="text/template" id="template-feedback">
              <h1>Sie können hier Feedback abgeben.<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
              <form id="feedbackform" name="feedback" type="POST">
                    <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>
                    <br>
-                   <input class="button" type="submit" value="Abschicken" />
+                   <input class="button type="submit" value="Abschicken" />
             </form>
         </script>
 
 
-        <script type="text/template" id="template-feedbackresult">
+	<script type="text/template" id="template-feedbackresult">
             <h1>Fertig</h1>
             <p><i class="fa fa-check"></i> Feedback erfolgreich abgeschickt.</p>
 
@@ -241,18 +243,18 @@
             </div>
         </script>
 
-        <script type="text/javascript" src="js/config.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
-        <script type="text/javascript" src="js/lib/underscore.js"></script>
-        <script type="text/javascript" src="js/lib/backbone.js"></script>
-        <script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="js/lib/underscore.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
 
-        <script type="text/javascript" src="js/models.js"></script>
-        <script type="text/javascript" src="js/views.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/models.js"></script>
+	<script type="text/javascript" src="js/views.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 
-        <script type="text/javascript">
-app.initialize();
-        </script>
-    </body>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+</body>
 </html>

@@ -1,21 +1,27 @@
 /*Loginform*/
+#loginform {
+	padding-top: 10px;
+}
+
 #loginform input {
 	display: block;
 	border: 1px solid #fff;
 	font-size: 1.3em;
 	background-color: #fff !important;
-	width: 80%;
+	width: 95%;
 	padding: 10px;
 }
 
 #loginform input[type="submit"] {
-	border: 1px solid #ccc;
-	background-color: #ccc !important;
+	border: 0px solid #CCC;
+	background-color: #2F9BFF !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1.3em;
 	margin: auto;
 	margin-top: 1em;
 	width: 43%;
+	border-radius: 80px;
+	color: #FFF;
 }
 
 /*Loginform*/
@@ -38,15 +44,13 @@
 	width: 43%;
 }
 
-
-
-
 #loginform label {
 	font-family: georgia, serif;
 	font-style: italic;
 	display: block;
-	margin-top: 1em;
+	margin-top: .3em;
 	color: #999;
+	font-size: 2em
 }
 
 #loginform label:first-child {
