@@ -193,6 +193,14 @@ textarea {
 	/* min-width: 170px; */
 }
 
+h1 a.button {
+	float:right;
+	padding: 10px;
+	font-size:.5em;
+	line-height: 1;
+	color: #333333;
+}
+
 .dark {
 	background-color: #555;
 	color: #EEE
@@ -249,7 +257,7 @@ textarea {
 }
 
 .subdescription {
-	font-size: 1em;
+	font-size: 0.8em;
 	margin-right: 5px;
 	text-overflow: ellipsis;
 	overflow: hidden;
