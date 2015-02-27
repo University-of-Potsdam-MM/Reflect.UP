@@ -1,8 +1,9 @@
 var pushDetails = {
 	senderID: "38438927043",
-	uniqushUrl: "http://musang.soft.cs.uni-potsdam.de:9898/subscribe",
+	uniqushUrl: "http://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
 	serviceName: "reflectup",
-	subscriberName: "android"
+	subscriberName: "android",
+	authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
 document.addEventListener("deviceready", function(){
@@ -17,6 +18,7 @@ var SubscribeToUniqush = function(options) {
 
 	$.ajax({
 		url: uri.href(),
+		headers: pushDetails.authHeader,
 		success: function() { console.log("Successfully contacted uniqush server"); },
 		error: function() { console.log("Some error happened while contacting the uniqush server"); }
 	});
