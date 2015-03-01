@@ -50,3 +50,4 @@ IOS/www/
 src/app/nbproject/private/private.properties
 src/app/nbproject/project.properties
 src/app/nbproject/project.xml
+src/app/plugins/**
