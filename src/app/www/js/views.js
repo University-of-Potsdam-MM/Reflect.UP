@@ -69,6 +69,7 @@ var QuestionCollectionListView = Backbone.View.extend({
 
     initialize : function(){
         this.listenTo(this.model, 'add', this.addOne);
+        this.listenTo(this.model, 'sync', this.render);
         this.model.fetch({error:this.onError});
         this.render();
     },
@@ -411,7 +412,6 @@ var ImpressumView = Backbone.View.extend({
     },
 
     render: function(){
-        console.log('render');
         this.$el.html(this.template());
         return this;
     }
