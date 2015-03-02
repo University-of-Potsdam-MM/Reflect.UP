@@ -2,7 +2,7 @@ var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "http://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
 	serviceName: "reflectup",
-	subscriberName: "android",
+	subscriberName: "android-",
 	authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
@@ -57,7 +57,7 @@ var onNotification = function(e) {
 			} else {
 				var options = {
 					service: pushDetails.serviceName,
-					subscriber: pushDetails.subscriberName,
+					subscriber: pushDetails.subscriberName + regId,
 					pushservicetype: "gcm",
 					regid: regId
 				};
