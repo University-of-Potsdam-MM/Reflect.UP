@@ -68,15 +68,6 @@ var onNotification = function(e) {
 		case "message":
 			// push notification received, inform app
 			console.log("Push notification received: " + JSON.stringify(e));
-
-			// create local notification to inform the user
-			var message = e.payload.msg;
-			window.plugin.notification.local.add({
-				title: message,
-				message: "Reflect.UP anzeigen",
-				autoCancel: true
-			});
-
 			break;
 		case "error":
 			// error happened
