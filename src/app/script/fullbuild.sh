@@ -1,0 +1,17 @@
+if [ -z $1 ]; then
+  echo "Need platform, e.g. android or ios";
+  exit 1;
+fi
+
+cd platforms
+rm -rf $1
+cd ..
+
+cd plugins
+rm -rf */
+rm -rf $1.json
+cd ..
+
+phonegap build $1
+sh script/add-plugins.sh
+phonegap run $1
