@@ -14,6 +14,22 @@ var AppointmentListItemView = Backbone.View.extend({
     }
 });
 
+var AppointmentListItemFullView = Backbone.View.extend({
+    tagName : 'li',
+
+    initialize : function(){
+        this.listenTo(this.model, 'change', this.render);
+        this.render();
+    },
+
+    template : _.template($('#template-appointment-list-item-full').html()),
+
+    render : function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
+    }
+});
+
 var AppointmentListView = Backbone.View.extend({
     template : _.template($('#template-appointment-list').html()),
     showButton : true,
@@ -49,7 +65,11 @@ var AppointmentListView = Backbone.View.extend({
     addOne : function(appointment){
         if (this.$("#appointments").children().length < this.limit
             || this.limit == -1){
-            var view = new AppointmentListItemView({model : appointment});
+        	if (this.limit == -1) {
+        		var view = new AppointmentListItemFullView({model : appointment});
+        	}else{
+        		var view = new AppointmentListItemView({model : appointment});
+        	}
             this.$("#appointments").append(view.el);
         }
 

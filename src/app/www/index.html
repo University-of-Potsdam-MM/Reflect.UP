@@ -116,6 +116,35 @@
             <div class="subdescription"><%- description %></div>
             <div class="clear"></div>
         </script>
+        
+		<script type="text/template" id="template-appointment-list-item-full">
+            <div class="date-container" >
+			<div class="data">
+            <div class="date" >
+            <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
+            <% if (begin.getDate() != end.getDate()){ %>
+            -
+            <%- ('0'+(end.getDate())).slice(-2) %>.<%- ('0'+(end.getMonth()+1)).slice(-2) %>
+            <% } %>
+            </div>
+            <div class="time" >
+            <% if (begin.getTime() === end.getTime()){  %>
+            ganztägig
+            <% }else{ %>
+            <% if (begin.getHours() != 0 && begin.getMinutes() != 0){ %>
+            <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
+            -
+            <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
+            <% } %>
+            <% } %>
+            </div>
+			</div>
+            </div>
+
+            <div class="description-full" ><%- title %></div>
+            <div class="subdescription"><%- description %></div>
+            <div class="clear"></div>
+        </script>
 
 	<script type="text/template"
 		id="template-question-collection-list-item">
