@@ -32,11 +32,20 @@
 	<div id="app"></div>
 
 	<script type="text/template" id="template-home-screen">
-            <h1> <%- title %><a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+            <h1> <%- title %>
+			<!-- <a class="button feedback" title="Feedback" href="#feedback">Feedback</a> -->
             </h1>
             <div id="dates"></div>
-            <div id="questions"></div>
-            <div class="impressum-footer" >
+         <!--   <div id="questions"></div> -->
+			<div class="navigation-footer">
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
+      		<div class="impressum-footer" >
                 <a class="footerlink">Impressum</a>
             </div>
             <br>
@@ -79,12 +88,12 @@
 	<script type="text/template" id="template-appointment-list">
             <ul id="appointments"></ul>
             <div class="content-footer">
-            <a id="more-appointments-button" class="button" >Weitere Termine</a>
+           <!-- <a id="more-appointments-button" class="button" >Weitere Termine</a> -->
             </div>
         </script>
 
 	<script type="text/template" id="template-question-collection-list">
-            <h2>Offene Fragen</h2>
+           <!-- <h2>Offene Fragen</h2> -->
             <ul id="question-collection"></ul>
         </script>
 
@@ -142,7 +151,7 @@
             </div>
 
             <div class="description-full" ><%- title %></div>
-            <div class="subdescription"><%- description %></div>
+            <div class="subdescription-full"><%- description %></div>
             <div class="clear"></div>
         </script>
 
