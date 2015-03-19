@@ -81,7 +81,7 @@ p {
 
 .welcome {
 	text-align: center;
-	]
+	
 }
 
 a {
@@ -95,7 +95,6 @@ a:active {
 
 a:visited {
 	text-decoration: none;
-	color: #fff;
 }
 
 em {
@@ -104,7 +103,6 @@ em {
 
 h1+em {
 	font-size: 2em;
-	
 	font-family: georgia, serif;
 	display: block;
 	margin-bottom: 5px;
@@ -127,9 +125,9 @@ textarea {
 }
 
 .back {
-	float: right;
+	float: left;
 	padding-right: .5em;
-	font-size: .8em;
+	font-size: 1.6em;
 	line-height: 1.8;
 }
 
@@ -167,21 +165,59 @@ textarea {
 	text-align: right;
 }
 
-.page-footer {
-	position: fixed;
+.prev-next-nav {
 	bottom: 0px;
 	padding-bottom: 10px;
 	padding-top: 10px;
 	width: 100%;
 }
 
+.np-wrapper {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	
+}
+
+.prev-next-nav a {
+	display: inline-block !important;
+	width: 30%;
+	border: 0px solid #CCC;
+	background-color: #2F9BFF !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	margin: auto;
+	margin-top: 1em;
+	border-radius: 80px;
+	color: #FFF;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/*#nextButton:after {
+	font-size:1.3em;
+	line-height:2em;
+	color: #fff;
+	content: "\f054";
+	font-family: FontAwesome;
+	
+	
+} 
+*/
 .navigation-footer {
 	position: fixed;
-  bottom: 0px;
-  margin-bottom: 38px;
-  width: 100%;
+	bottom: 0px;
+	width: 100%;
 }
- a.button{
+
+.navigation-footer.footermargin {
+	margin-bottom: 38px;
+}
+
+a.button {
 	text-decoration: none;
 	background-color: #DDD;
 	padding: 10px 15px 10px 15px;
@@ -194,31 +230,26 @@ textarea {
 }
 
 .navigation-footer a.button:after {
-	position:absolute;
-	right:3px;
+	position: absolute;
+	right: 3px;
 	color: #2F9BFF;
 	content: "\f054";
 	font-family: FontAwesome;
 }
 
 .navigation-footer .button {
-  border: none;
-
-  white-space: nowrap;
-  border-bottom:1px solid #999;
-  display: block;
-  width: 100%;
+	border: none;
+	white-space: nowrap;
+	border-bottom: 1px solid #999;
+	display: block;
+	width: 100%;
 }
 
-
-
 .navigation-footer .button.home:before {
-	
 	color: #2F9BFF;
 	content: "\f015";
 	font-family: FontAwesome;
 	margin-right: 5px;
-	
 }
 
 .navigation-footer .button.feedback:before {
@@ -240,23 +271,9 @@ textarea {
 	padding-top: 10px;
 	width: 100%;
 	background: #252525;
+	padding-left: 10px;
 }
 
-.floater-l {
-	float: left;
-	width: 49%;
-	text-align: center;
-}
-
-.floater-r {
-	float: right;
-	width: 49%;
-	text-align: center;
-}
-
-.floater {
-	text-align: center;
-}
 
 .line {
 	height: 2px;
@@ -265,23 +282,6 @@ textarea {
 	box-shadow: inset 0px 1px 1px 0px #111;
 }
 
-
-
-
-
-/* h1 a.button {
-	float:right;
-	color: #2F9BFF;
-	font-size: .5em;
-	font-weight:normal;
-	padding: 10px;
-	font-size:.5em;
-	line-height: 1;
-	color: #333333;
-	width: 32%;
-text-align: center;
-line-height: 1em;
-} */
 #feedbackform .button {
 	border: 0px solid #CCC;
 	background-color: #2F9BFF !important;
@@ -297,14 +297,6 @@ line-height: 1em;
 	text-align: center;
 }
 
-.dark {
-	background-color: #555;
-	color: #EEE
-}
-
-.dark:active {
-	
-}
 
 #appointments li {
 	padding-bottom: 1em;
@@ -326,6 +318,53 @@ line-height: 1em;
 	color: #EEE
 }
 
+#teaser {
+	font-size: 0.8em;
+	border: 1px solid #444;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+#teaser a {
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	border: 0px solid #CCC;
+	background-color: #2F9BFF !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin-top: -1em;
+	border-radius: 80px;
+	color: #FFF;
+	min-width: 60%;
+	float: right;
+	padding: 10px;
+	float: right;
+}
+
+#teaser p {
+	margin-bottom: 5px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+}
+
+#teaser:before {
+	display: block;
+	width: 10%;
+	height: 100px;
+	font-size: 3em;
+	float: left;
+	font-family: FontAwesome;
+	margin-right: 5px;
+	content: "\f086";
+	margin-left: 3px;
+	color: #2F9BFF;
+}
+
+#dates {
+	margin-left: 3px;
+}
+
 .date-container {
 	float: left;
 	margin-right: 15px;
@@ -343,7 +382,7 @@ line-height: 1em;
 	margin-right: -0.25em; /* Adjusts for spacing */
 	padding-top: .1em;
 	padding-bottom: .1em;
-	height: 80px;
+	height: 50px;
 }
 
 .nav {
@@ -467,12 +506,30 @@ keyframes fade {from { opacity:1.0;
 opacity
 
 
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
 0
 .4
+
+
+
+
+
+
 
 
 ;
@@ -492,12 +549,30 @@ to {
 opacity
 
 
+
+
+
+
+
+
 :
+
+
+
+
+
+
 
 
 
 0
 .4
+
+
+
+
+
+
 
 
 ;

@@ -36,8 +36,14 @@
 			<!-- <a class="button feedback" title="Feedback" href="#feedback">Feedback</a> -->
             </h1>
             <div id="dates"></div>
+			<div id="teaser">
+				<p> Du hast noch nicht alle Reflektionsfragen beantwortet! Nimm Dir ein wenig Zeit und gehe die fehlenden Fragen durch.
+</p><a href=""> Zu den Reflektionsfragen</a>
+			</div>
          <!--   <div id="questions"></div> -->
-			<div class="navigation-footer">
+			<div class="navigation-footer footermargin">
+			
+			
 			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
 			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
 			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
@@ -56,7 +62,9 @@
             <h1> <%- title %></h1>
             <em>Willkommen</em>
             <p class="welcome">Die Eingabe deiner Daten dient ausschließlich der Validierung. Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.
-            </p>
+           	<br>	<em style="font-style:normal;">Melde Dich mit Deinen gewohnten Uni-Login-Daten an.</em>
+			 </p>
+			
             <form id="loginform" type="POST">
             <label for"username">Benutzername</label>
             <input type="text" id="username" placeholder="Benutzername" />
@@ -70,19 +78,40 @@
             <h1>Fertig</h1>
             <p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>
 
-            <div class="page-footer" >
+            <div class="prev-next-nav">
             <div class="floater">
             <a href="#" class="button dark nav">
             <i class="fa fa-check-square-o"></i>
             </a>
             </div>
             </div>
+			<div class="navigation-footer">
+			
+			
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
         </script>
 
 	<script type="text/template" id="template-appointments-screen">
-            <h1> <%- title %><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+			<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>           
+ 			<h1> <%- title %></h1>
 
             <div id="dates"></div>
+			<div class="navigation-footer">
+			
+			
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
         </script>
 
 	<script type="text/template" id="template-appointment-list">
@@ -93,8 +122,15 @@
         </script>
 
 	<script type="text/template" id="template-question-collection-list">
-           <!-- <h2>Offene Fragen</h2> -->
+          	<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>   
+			<h2>Offene Fragen</h2>
             <ul id="question-collection"></ul>
+			<div class="navigation-footer">
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			</div>
         </script>
 
 	<script type="text/template" id="template-appointment-list-item">
@@ -126,7 +162,7 @@
             <div class="clear"></div>
         </script>
 
-		<script type="text/template" id="template-appointment-list-item-full">
+	<script type="text/template" id="template-appointment-list-item-full">
             <div class="date-container" >
 			<div class="data">
             <div class="date" >
@@ -157,10 +193,8 @@
 
 	<script type="text/template"
 		id="template-question-collection-list-item">
-
-            <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %>
-
-            </a>
+		
+		<a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %></a>
 
 
         </script>
@@ -176,28 +210,29 @@
             <div id="answer"></div>
             </div>
 
-            <div class="page-footer" >
-            <div class="floater-l">
-            <a href="questions/<%- containerId %>/<%- previousId %>"
-            class="button dark nav"
-            id="previousButton">
-            <i class="fa fa-angle-left fa-2x"></i>
-            </a>
-            </div>
+           
 
-            <div class="floater-r">
-            <a href="questions/<%- containerId %>/<%- nextId %>"
-            class="button dark nav"
-            id="nextButton">
-            <i class="fa fa-angle-right fa-2x"></i>
-            </a>
+  			<div class="prev-next-nav" >
+           		<div class="np-wrapper">
+           			 <a href="questions/<%- containerId %>/<%- previousId %>"id="previousButton">Zurück</a>
+            			
+           			<a href="questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
+            	</div>		
             </div>
-            <div class="clear" ></div>
-            </div>
+			
+			<div class="navigation-footer">
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
         </script>
 
 	<script type="text/template" id="template-impressum">
-            <h1>Impressum<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+			<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>           
+			 <h1>Impressum</h1>
 
             <em style="font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;">Herausgeber</em>
             <p>
@@ -255,16 +290,37 @@
             kontaktieren.
             </p>
             </div>
+<div class="navigation-footer">
+			
+			
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
         </script>
 
 
 	<script type="text/template" id="template-feedback">
-             <h1>Feedback abgeben<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a></h1>
+<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>            
+ <h1>Feedback abgeben</h1>
              <form id="feedbackform" name="feedback" type="POST">
                    <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>
                    <br>
                    <input class="button" type="submit" value="Abschicken" />
             </form>
+<div class="navigation-footer">
+			
+			
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			
+			
+			</div>
         </script>
 
 
@@ -272,27 +328,36 @@
             <h1>Fertig</h1>
             <p><i class="fa fa-check"></i> Feedback erfolgreich abgeschickt.</p>
 
-            <div class="page-footer">
+            <div class="prev-next-nav">
             <div class="floater">
             <a href="#" class="button dark nav">
             <i class="fa fa-check-square-o"></i>
             </a>
             </div>
             </div>
+
+			
+			
+			<div class="navigation-footer">	
+			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
+			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
+			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
+			<a class="button home" title="Home" href="#index">Home</a>
+			</div>
         </script>
 
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/config.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
-        <script type="text/javascript" src="js/lib/underscore.js"></script>
-        <script type="text/javascript" src="js/lib/backbone.js"></script>
-        <script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
-        <script type="text/javascript" src="js/lib/URI.js"></script>
+	<script type="text/javascript" src="phonegap.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="js/lib/underscore.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
+	<script type="text/javascript" src="js/lib/URI.js"></script>
 
-        <script type="text/javascript" src="js/models.js"></script>
-        <script type="text/javascript" src="js/views.js"></script>
-        <script type="text/javascript" src="js/push.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/models.js"></script>
+	<script type="text/javascript" src="js/views.js"></script>
+	<script type="text/javascript" src="js/push.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 
 	<script type="text/javascript">
 		app.initialize();
