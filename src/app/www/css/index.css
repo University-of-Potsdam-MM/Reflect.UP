@@ -207,6 +207,22 @@ textarea {
 	
 } 
 */
+
+.prev-next-nav .button.finish {
+	text-align:center;
+  color: #FFF;
+  margin: 0 auto;
+  margin-right:5px;
+}
+
+
+.finish:before {
+	
+	content: "\f00c";
+	font-family: FontAwesome;
+	margin-right:5px;
+	
+}
 .navigation-footer {
 	position: fixed;
 	bottom: 0px;
