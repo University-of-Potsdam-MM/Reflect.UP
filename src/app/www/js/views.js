@@ -35,7 +35,6 @@ var AppointmentListView = Backbone.View.extend({
     showButton : true,
     limit : -1,
     events: {
-        'click #more-appointments-button': 'showAppointments',
         'error': 'onError',
     },
 
@@ -75,13 +74,9 @@ var AppointmentListView = Backbone.View.extend({
 
     },
 
-    showAppointments: function(){
-        Backbone.history.navigate("appointments/", {trigger: true});
-    },
-
     onError: function(collection, resp, options){
         alert("Error: " + resp);
-    },
+    }
 });
 
 var QuestionCollectionListView = Backbone.View.extend({
@@ -110,13 +105,12 @@ var QuestionCollectionListView = Backbone.View.extend({
     addOne : function(questionContainer){
 
         var view = new QuestionContainerView({model : questionContainer});
-        //console.log('adding question container view:', view);
         this.$("#question-collection").append(view.el);
     },
 
     onError: function(collection, resp, options){
         alert("Error: " + resp);
-    },
+    }
 });
 
 var QuestionContainerView = Backbone.View.extend({
@@ -247,15 +241,14 @@ var QuestionView = Backbone.View.extend({
         return false;
     },
 
-    previousQuestion: function(el)
-    {
+    previousQuestion: function(el){
         this.saveValues();
         el.preventDefault();
         var q = this.model.get('container').previous();
 
         if (!q){
             this.undelegateEvents();
-            Backbone.history.navigate('', {trigger: true});
+            Backbone.history.navigate('#questions', {trigger: true});
             return false;
         }
 
@@ -267,6 +260,7 @@ var QuestionView = Backbone.View.extend({
         Backbone.history.navigate(destination, {trigger: true});
         return false;
     },
+
     saveValues: function(){
         if (this.model.get('type') === "multichoice")
             this.model.set("answerText",
@@ -278,10 +272,9 @@ var QuestionView = Backbone.View.extend({
 })
 
 /**
- *  QuestionsFinishView
- *  View displayed after finishing all questions of a container
+ *  Backbone Page View - QuestionsFinishView
+ *  view displayed after finishing all questions of a container
  */
-
  var QuestionsFinishView = Backbone.View.extend({
     el : "#app",
     template : _.template($('#template-question-finish').html()),
@@ -297,8 +290,7 @@ var QuestionView = Backbone.View.extend({
  })
 
 /**
- *  HomeView
- *
+ *  Backbone Page View - HomeView
  */
 var HomeView = Backbone.View.extend({
     el : "#app",
@@ -344,6 +336,9 @@ var HomeView = Backbone.View.extend({
     }
 })
 
+/**
+ *  Backbone Page View - ConfigView
+ */
 var ConfigView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-config-screen').html()),
@@ -423,6 +418,9 @@ var ConfigView = Backbone.View.extend({
     }
 })
 
+/**
+ *  Backbone Page View - ImpressumView
+ */
 var ImpressumView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-impressum').html()),
@@ -437,6 +435,9 @@ var ImpressumView = Backbone.View.extend({
     }
 });
 
+/**
+ *  Backbone Page View - FeedbackView
+ */
 var FeedbackView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedback').html()),
@@ -490,7 +491,9 @@ var FeedbackView = Backbone.View.extend({
     }
 });
 
-
+/**
+ *  Backbone Page View - FeedbackResultView
+ */
 var FeedbackResultView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedbackresult').html()),
@@ -503,11 +506,16 @@ var FeedbackResultView = Backbone.View.extend({
         console.log('render');
         this.$el.html(this.template());
         return this;
-    },
+    }
 });
 
+/**
+ *  Backbone Page View - AppointmentsView
+ */
 var AppointmentsView = Backbone.View.extend({
     el: '#app',
+    template: _.template($('#template-appointments-screen').html()),
+
     initialize: function(){
         this.render();
         this.AppointmentListView = new AppointmentListView({
@@ -516,19 +524,59 @@ var AppointmentsView = Backbone.View.extend({
             showButton : false,
         });
     },
-    template: _.template($('#template-appointments-screen').html()),
+
     render: function(){
         this.$el.html(this.template({title: 'Termine'}));
         return this;
-    },
+    }
 });
 
+
+/**
+ *  Backbone Page View - QuestionsView
+ *  view for all questions
+ */
+var QuestionsView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-questions-screen').html()),
+    model: Configuration,
+
+    initialize: function(){
+        this.model = Config;
+        this.authorize();
+    },
+
+    authorize: function(){
+        this.model.fetch();
+        var token = this.model.get("accessToken");
+        if (token == ""){
+            Backbone.history.navigate('config', { trigger : true });
+        }else{
+            this.render();
+            this.QuestionCollectionListView = new QuestionCollectionListView({
+                el: '#questions',
+                model: Questions
+            });
+        }
+    },
+
+    render: function(){
+        this.$el.html(this.template({title: 'Reflektionsfragen'}));
+        return this;
+    }
+});
+
+
+/**
+ *  Routes
+ */
 var Router = Backbone.Router.extend({
     routes : {
         '' : 'home',
         'config': 'config',
-        'appointments/' : 'appointments',
-        'questions/:containerId/:questionId' : 'questions',
+        'appointments' : 'appointments',
+        'questions': 'questions',
+        'questions/:containerId/:questionId' : 'question',
         'questionsfinish': 'questionsfinish',
         'impressum': 'impressum',
         'feedback': 'feedback',
@@ -545,7 +593,6 @@ var Router = Backbone.Router.extend({
         this.view = view;
     },
 
-
     home : function(){
         console.log('home');
         this.switchView(new HomeView({}));
@@ -560,7 +607,11 @@ var Router = Backbone.Router.extend({
         this.switchView(new AppointmentsView())
     },
 
-    questions: function(containerId, questionId){
+    questions: function(){
+        this.switchView(new QuestionsView())
+    },
+
+    question: function(containerId, questionId){
         var question = Questions.get(containerId).getQuestion(questionId);
         this.switchView(new QuestionView({model: question}));
     },
