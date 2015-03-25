@@ -26,29 +26,59 @@
 <link rel="stylesheet" type="text/css" href="css/index.css" />
 <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="css/up-style.css" />
+<link rel="stylesheet" type="text/css" href="css/mbExtruder.css" />
+	<!--  jquery extruder plugin for navigation panel -->
+  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
+  <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
+  
+  <script type="text/javascript">
+
+
+
+        $(function(){
+
+            
+
+            $("#panel").buildMbExtruder({
+            	 position:"left",
+                 width:300,
+                 extruderOpacity:.8,
+                 onExtOpen:function(){},
+                 onExtContentLoad:function(){},
+                // onExtClose:function(){}
+            });
+
+
+           
+        });
+  </script>
+
 <title>Reflect.UP</title>
 </head>
 <body>
 	<div id="app"></div>
 
 	<script type="text/template" id="template-home-screen">
-        <h1><%- title %></h1>
+       	<div id="header">
+		 <h1><%- title %></h1>
+</div>
         <div id="dates"></div>
 		<div id="teaser">
 			<p> Du hast noch nicht alle Reflektionsfragen beantwortet! Nimm Dir ein wenig Zeit und gehe die fehlenden Fragen durch.
 </p><a href=""> Zu den Reflektionsfragen</a>
 		</div>
-		<div class="navigation-footer footermargin">
-			<a id="more-appointments-button" class="button" href="#appointments">Weitere Termine</a>
-			<a id="more-questions-button" class="button" href="#questions">Reflektionsfragen</a>
-			<a class="button feedback" title="Feedback" href="#feedback">Feedback</a>
-			<a class="button home" title="Home" href="#">Home</a>
-		</div>
+		
   		<div class="impressum-footer" >
             <a class="footerlink">Impressum</a>
         </div>
         <br>
         <br>
+ <div id="panel" class="{url:'panel.html'}"></div>
+
+
     </script>
 
 	<script type="text/template" id="template-config-screen">
@@ -315,9 +345,10 @@
 		</div>
     </script>
 
-	<script type="text/javascript" src="phonegap.js"></script>
+ 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
+	<!--  <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script> -->
+	
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
@@ -327,6 +358,7 @@
 	<script type="text/javascript" src="js/views.js"></script>
 	<script type="text/javascript" src="js/push.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+
 
 	<script type="text/javascript">
 		app.initialize();
