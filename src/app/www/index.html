@@ -33,33 +33,33 @@
   <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
   <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
   <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
-  
   <script type="text/javascript">
 
 
+  $(function(){
 
-        $(function(){
+      
 
-            
-
-            $("#panel").buildMbExtruder({
-            	 position:"left",
-                 width:300,
-                 extruderOpacity:.8,
-                 onExtOpen:function(){},
-                 onExtContentLoad:function(){},
-                // onExtClose:function(){}
-            });
+      $("#panel").buildMbExtruder({
+      	 position:"left",
+           width:300,
+           extruderOpacity:.8,
+           onExtOpen:function(){},
+           onExtContentLoad:function(){},
+           onExtClose:function(){}
+      });
 
 
-           
-        });
+     
+  });
   </script>
 
 <title>Reflect.UP</title>
 </head>
 <body>
 	<div id="app"></div>
+	
+	 <div id="panel" class="{url:'panel.html'}"></div>
 
 	<script type="text/template" id="template-home-screen">
        	<div id="header">
@@ -76,7 +76,7 @@
         </div>
         <br>
         <br>
- <div id="panel" class="{url:'panel.html'}"></div>
+
 
 
     </script>
@@ -98,11 +98,11 @@
     </script>
 
     <script type="text/template" id="template-questions-screen">
-        <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
-            <h1> <%- title %></h1>
+     <div id="header">   <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+            <h1> <%- title %></h1></div>
 
         <div id="questions"></div>
-       
+      
     </script>
 
 
@@ -112,19 +112,19 @@
 
 
 	<script type="text/template" id="template-question-finish">
-        <h1>Fertig</h1>
+       <div id="header"> <h1>Fertig</h1></div>
         <p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>
 
         <div class="prev-next-nav">
 
         <a href="#" class="button finish">Fertig</a>
         </div>
-
+	
     </script>
 
 	<script type="text/template" id="template-appointments-screen">
-		<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
-			<h1> <%- title %></h1>
+		<div id="header"><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+			<h1> <%- title %></h1></div>
 
         <div id="dates"></div>
 		
@@ -133,6 +133,7 @@
 	<script type="text/template" id="template-appointment-list">
         <ul id="appointments"></ul>
         <div class="content-footer"></div>
+		
     </script>
 
     <script type="text/template" id="template-appointment-list-item">
@@ -198,11 +199,13 @@
     </script>
 
 	<script type="text/template" id="template-question">
-        <%  if(total == 1){ %>
-        <h1>Frage</h1>
+       	<div id="header">
+		 <%  if(total == 1){ %>
+        <h1>Frage</h1></div>
         <% }else{ %>
         <h1>Frage <%- number %> / <%- total %></h1>
         <% } %>
+		</div>
         <div class="content-container">
         <p><%- questionText %></p>
         <div id="answer"></div>
@@ -222,8 +225,8 @@
     </script>
 
 	<script type="text/template" id="template-impressum">
-			<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
-			 <h1>Impressum</h1>
+		<div id="header">	<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+			 <h1>Impressum</h1></div>
 
             <em style="font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;">Herausgeber</em>
             <p>
@@ -281,13 +284,13 @@
             kontaktieren.
             </p>
             </div>
-   
+  
     </script>
 
 
 	<script type="text/template" id="template-feedback">
-        <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
-        <h1>Feedback abgeben</h1>
+       <div id="header"> <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+        <h1>Feedback abgeben</h1></div>
              <form id="feedbackform" name="feedback" type="POST">
                    <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>
                    <br>
@@ -299,7 +302,7 @@
 
 
 	<script type="text/template" id="template-feedbackresult">
-        <h1>Fertig</h1>
+      <div id="header">  <h1>Fertig</h1></div>
         <p><i class="fa fa-check"></i> Feedback erfolgreich abgeschickt.</p>
 
         <div class="prev-next-nav">
