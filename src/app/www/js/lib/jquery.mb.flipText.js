@@ -87,10 +87,10 @@ if (!jQuery.browser) {
 
           label=$("<object class='flip_label' style='height:37px; width:"+w+"px;' type='image/svg+xml' data='data:image/svg+xml; charset=utf-8 ," +
                   "<svg xmlns=\"http://www.w3.org/2000/svg\">" +
-                  "<rect x=\"0\" y=\"0\" width=\"40px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"10\" width=\"40px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"20\" width=\"40px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"30\" width=\"40px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
+                  "<rect x=\"0\" y=\"0\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
+                  "<rect x=\"0\" y=\"10\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
+                  "<rect x=\"0\" y=\"20\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
+                  "<rect x=\"0\" y=\"30\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
                   "<text  x=\"-"+xFix+"\" y=\""+yFix+"\" font-family=\""+fontfamily+"\"  fill=\""+fontcolor+"\" font-size=\""+fontsize+"\"  style=\"text-anchor: "+ta+"; " +
                   "dominant-baseline: hanging\" transform=\"rotate("+rot+")\" text-rendering=\"optimizeSpeed\">"+txt+"</text></svg>'></object>" +
                   clickScript +

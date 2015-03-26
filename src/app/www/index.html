@@ -29,7 +29,7 @@
 <link rel="stylesheet" type="text/css" href="css/mbExtruder.css" />
 	<!--  jquery extruder plugin for navigation panel -->
   
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script> 
   <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
   <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
   <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
@@ -38,20 +38,19 @@
 
   $(function(){
 
-      
-
       $("#panel").buildMbExtruder({
-      	 position:"left",
+      	 position:"right",
            width:300,
            extruderOpacity:.8,
            onExtOpen:function(){},
            onExtContentLoad:function(){},
            onExtClose:function(){}
-      });
-
-
-     
+      }); 
+      
+   
   });
+  
+
   </script>
 
 <title>Reflect.UP</title>
@@ -98,7 +97,7 @@
     </script>
 
     <script type="text/template" id="template-questions-screen">
-     <div id="header">   <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+     <div id="header" class="hasBackButton">   <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
             <h1> <%- title %></h1></div>
 
         <div id="questions"></div>
@@ -123,7 +122,7 @@
     </script>
 
 	<script type="text/template" id="template-appointments-screen">
-		<div id="header"><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+		<div id="header" class="hasBackButton"><a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
 			<h1> <%- title %></h1></div>
 
         <div id="dates"></div>
@@ -225,7 +224,7 @@
     </script>
 
 	<script type="text/template" id="template-impressum">
-		<div id="header">	<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+		<div id="header" class="hasBackButton">	<a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
 			 <h1>Impressum</h1></div>
 
             <em style="font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;">Herausgeber</em>
@@ -289,7 +288,7 @@
 
 
 	<script type="text/template" id="template-feedback">
-       <div id="header"> <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+       <div id="header" class="hasBackButton"> <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
         <h1>Feedback abgeben</h1></div>
              <form id="feedbackform" name="feedback" type="POST">
                    <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30">  </textarea>
@@ -314,7 +313,7 @@
 
  	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
-	<!--  <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script> -->
+	<!-- <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script> -->
 	
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.js"></script>

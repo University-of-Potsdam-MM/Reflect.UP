@@ -36,34 +36,38 @@ body {
 	height: 100%;
 	margin: 5px;
 	margin-left: 0px;
+	margin-top: 0px;
 	color: #EEE;
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 }
+
 #header {
 	background-color: #000;
-  height: 62px;
-  border-bottom: 2px solid #2F9BFF;
+	height: 62px;
+	border-bottom: 2px solid #2F9BFF;
 }
 
-
 #header h1 {
-	
 	  padding-top: 10px;
-	font-size: 1.8em;
+  font-size: 1.8em;
   font-weight: normal;
   margin-top: 0;
   margin-bottom: 0;
-
-
-  text-align: left; text-overflow: ellipsis;
+  text-align: left;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-left: 5px;
+  line-height: 1.8em;
+  font-family: georgia, serif;
+  font-style: italic;
+}
 
- 
-  margin-left: 60px;
+#header.hasBackButton h1 {
+	margin-left:60px;
 }
 
 h2 {
@@ -92,7 +96,6 @@ p {
 
 .welcome {
 	text-align: center;
-	
 }
 
 a {
@@ -140,6 +143,7 @@ textarea {
 	padding-right: .5em;
 	font-size: 1.6em;
 	line-height: 1.8;
+	margin-top: 10px;
 }
 
 .footerlink {
@@ -187,7 +191,6 @@ textarea {
 	width: 60%;
 	margin: 0 auto;
 	text-align: center;
-	
 }
 
 .prev-next-nav a {
@@ -218,21 +221,17 @@ textarea {
 	
 } 
 */
-
 .prev-next-nav .button.finish {
-	text-align:center;
-  color: #FFF;
-  margin: 0 auto;
-  margin-right:5px;
+	text-align: center;
+	color: #FFF;
+	margin: 0 auto;
+	margin-right: 5px;
 }
 
-
 .finish:before {
-	
 	content: "\f00c";
 	font-family: FontAwesome;
-	margin-right:5px;
-	
+	margin-right: 5px;
 }
 
 a.button {
@@ -247,7 +246,6 @@ a.button {
 	color: #2F9BFF;
 }
 
-
 .impressum-footer {
 	position: fixed;
 	bottom: 0px;
@@ -257,7 +255,6 @@ a.button {
 	background: #252525;
 	padding-left: 10px;
 }
-
 
 .line {
 	height: 2px;
@@ -281,16 +278,12 @@ a.button {
 	text-align: center;
 }
 
-
 #appointments li {
 	padding-bottom: 1em;
 	border-bottom: 1px solid #444;
 }
 
-
-
 #teaser {
-	
 	border: 1px solid #444;
 	border-radius: 10px;
 	padding: 5px;
@@ -303,7 +296,7 @@ a.button {
 	border: 0px solid #CCC;
 	background-color: #2F9BFF !important;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 1.3em;
+	font-size: 1em;
 	margin-top: -1em;
 	border-radius: 80px;
 	color: #FFF;
@@ -469,56 +462,82 @@ li.collabsable a:after {
 }
 
 /* panel */
+#panel.extruder.right .extruder-content {
+	border-left: 1px solid #999;
+	background-color: #000;
+	padding-top: 40px;
+}
 
-#panel.extruder.left .extruder-content {
-	border-right: 1px solid #999;
-  background-color: #000;
-  padding-top: 60px;
- }
- 
- .navigation-footer {
-	
+#navigation-footer {
 	width: 100%;
 }
- 
- 
- .navigation-footer a.button:after {
+
+/*
+ #navigation-footer a.button:after {
 	position: absolute;
 	right: 3px;
 	color: #2F9BFF;
 	content: "\f054";
 	font-family: FontAwesome;
 }
+*/
+#panel.extruder .voice {
+	font-size: inherit;
+	padding: 0;
+	padding-left: 0;
+}
 
-.navigation-footer a.button {
+#panel.extruder .voice a.label {
+	display: inline-block;
+	height: auto;
+	color: #2F9BFF;
+	padding-top: 10px;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#navigation-footer h1 {
+	font-size: 1.3em;
+	color: #2F9BFF;
+	color: #FFF;
+	font-family: georgia, serif;
+	font-style: italic;
+	font-weight: normal;
+	padding-left: 25px;
+	margin-bottom: 0px;
+	line-height: 2;
+	margin-top: 25px;
+}
+
+#navigation-footer a.button {
 	border: none;
-	background-color:#333;
+	background-color: #333;
 	white-space: nowrap;
 	border-bottom: 1px solid #999;
 	display: block;
 	width: 100%;
 }
 
-.navigation-footer .button.home:before {
+#navigation-footer .button.home:before {
 	color: #2F9BFF;
 	content: "\f015";
 	font-family: FontAwesome;
 	margin-right: 5px;
 }
 
-.navigation-footer .button.feedback:before {
+#navigation-footer .button.feedback:before {
 	content: "\f086";
 	font-family: FontAwesome;
 	margin-right: 5px;
 }
 
-.navigation-footer #more-questions-button:before {
+#navigation-footer #more-questions-button:before {
 	content: "\f086";
 	font-family: FontAwesome;
 	margin-right: 5px;
 }
- 
- #more-appointments-button {
+
+#more-appointments-button {
 	cursor: pointer;
 }
 
@@ -533,39 +552,38 @@ li.collabsable a:after {
 	color: #EEE
 }
 
-#panel.extruder.left .flap {
+#panel.extruder.right .flap {
 	font-size: 18px;
-  color: #FFF;
-  top: 0;
-  padding: 10px 0 10px 10px;
-  margin-right: -60px;
-  margin-top: 5px;
-  background-color: #000;
-  width: 50px;
-  height: 42px;
-  position: absolute;
-  right: 0;
-  -moz-border-radius: 0 0px 0 0px;
-  -webkit-border-top-left-radius: 0;
-  -webkit-border-top-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 0; 
-  -webkit-border-bottom-right-radius: 0px; 
-  border-top-left-radius: 0; 
-  border-top-right-radius: 0px; 
-  border-bottom-left-radius: 0; 
-  border-bottom-right-radius: 0px; 
-  -moz-box-shadow: 0px 0 0px transparent;
-  -webkit-box-shadow: 0px 0 0px transparent; 
-  box-shadow: 0px 0 0px transparent; 
+	color: #FFF;
+	top: 0;
+	padding: 10px 0 10px 10px;
+	background-color: #000;
+	width: 50px;
+	height: 42px;
+	position: absolute;
+	right: 0;
+	-moz-border-radius: 0 0px 0 0px;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0px;
+	-moz-box-shadow: 0px 0 0px transparent;
+	-webkit-box-shadow: 0px 0 0px transparent;
+	box-shadow: 0px 0 0px transparent;
 }
 
-#panel.extruder.left.isOpened .flap {
-	border-right:1px solid #999;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
-	margin-right:-60px;
+#panel.extruder.right.isOpened .flap {
+	border-left: 1px solid #999;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	margin-left: 0px;
+	width: 27px;
 }
 
-#panel.extruder.left .flap .flapLabel {
-	background-color:transparent;
+#panel.extruder.right .flap .flapLabel {
+	background-color: transparent;
 }

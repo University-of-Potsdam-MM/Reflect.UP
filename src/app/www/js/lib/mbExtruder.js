@@ -155,6 +155,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 
 				var flapFooter=$("<div class='footer'/>");
 				var flap=$("<div class='flap'><span class='flapLabel'/></div>");
+				
 				if (document.extruder.bottom){
 					wrapper.prepend(flapFooter);
 					wrapper.prepend(flap);
@@ -188,6 +189,10 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 					c.wrapInner(container);
 					extruder.setExtruderVoicesAction();
 				}
+				
+		
+				
+				
 
 				flap.on("click",function(){
 					if (!extruder.attr("isOpened")){
@@ -242,8 +247,13 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				$(window).on("resize",function(){
 					extruder.adjustSize();
 				})
-			});
+				
+							});
+			
+			
 		},
+		
+	
 
 		adjustSize:function(){
 
@@ -346,6 +356,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			}
 
 		},
+		
 
 		closeMbExtruder:function(){
 			var extruder= $(this);
@@ -368,6 +379,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			}
 		}
 	};
+	
 
 	jQuery.fn.mb_bringToFront= function(){
 		var zi=10;
@@ -384,7 +396,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 	/*
 	 * EXTRUDER CONTENT
 	 */
-
+	
 	$.fn.setExtruderVoicesAction=function(){
 		var extruder=$(this);
 		var opt=extruder.get(0).options;
@@ -464,7 +476,10 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			}
 		});
 	};
-
+	
+	
+	
+	
 	$.fn.disableExtruderVoice=function(){
 		var voice=$(this);
 		var label = voice.find(".label");
