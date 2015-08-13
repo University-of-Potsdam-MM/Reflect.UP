@@ -198,10 +198,15 @@ var QuestionView = Backbone.View.extend({
                 var radioInput = $('<input/>');
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
+                radioInput.attr('id', 'radio' + count);
                 radioInput.attr('value', count);
 
+                var radioLabel = $('<label/>');
+                radioLabel.attr('for', 'radio' + count);
+                radioLabel.text(choice);
+
                 form.append(radioInput);
-                form.append($('<span>').text(choice));
+                form.append(radioLabel);
                 form.append($('<br>'));
 
                 count++;
