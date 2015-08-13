@@ -371,10 +371,14 @@ var ConfigView = Backbone.View.extend({
         var username = $('#username').val();
         var password = $('#password').val();
         var that = this;
-        $.get(moodleLoginEndpoint, {
-            username: username,
-            password: password,
-            service: 'upreflection'
+        $.ajax({
+            url: moodleLoginEndpoint,
+            data: {
+                username: username,
+                password: password,
+                service: 'upreflection'
+            },
+            headers: accessToken
         }).done(function(data){
             console.log(data);
             if (data.error){
@@ -395,10 +399,14 @@ var ConfigView = Backbone.View.extend({
 
     enrolUser: function(){
         var that = this;
-        $.get(moodleServiceEndpoint, {
-            wstoken: that.model.get("accessToken"),
-            wsfunction: "local_upreflection_enrol_self",
-            moodlewsrestformat: "json"
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: that.model.get("accessToken"),
+                wsfunction: "local_upreflection_enrol_self",
+                moodlewsrestformat: "json"
+            },
+            headers: accessToken
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');
@@ -478,11 +486,15 @@ var FeedbackView = Backbone.View.extend({
         ev.preventDefault();
         var feedbacktext = $('#feedbacktext').val();
         var that = this;
-        $.get(moodleServiceEndpoint, {
-            wstoken: that.model.get("accessToken"),
-            wsfunction: "local_upreflection_post_feedback",
-            moodlewsrestformat: "json",
-            feedback: feedbacktext
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: that.model.get("accessToken"),
+                wsfunction: "local_upreflection_post_feedback",
+                moodlewsrestformat: "json",
+                feedback: feedbacktext
+            },
+            headers: accessToken
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');

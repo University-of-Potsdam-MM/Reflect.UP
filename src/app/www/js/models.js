@@ -137,12 +137,16 @@ var QuestionContainer = Backbone.Model.extend({
 
         var token = Config.get("accessToken");
 
-        $.get(moodleServiceEndpoint, {
-            wstoken: token,
-            wsfunction: "local_upreflection_submit_feedbacks",
-            moodlewsrestformat: "json",
-            id: result.id,
-            answers: result.answers
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: token,
+                wsfunction: "local_upreflection_submit_feedbacks",
+                moodlewsrestformat: "json",
+                id: result.id,
+                answers: result.answers
+            },
+            headers: accessToken
         }).done(function(data) {
             console.log(data);
         });
@@ -168,10 +172,14 @@ var QuestionContainerList = Backbone.Collection.extend({
 
         var token = Config.get("accessToken");
 
-        $.get(moodleServiceEndpoint, {
-            wstoken: token,
-            wsfunction: "local_upreflection_get_feedbacks",
-            moodlewsrestformat: "json",
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: token,
+                wsfunction: "local_upreflection_get_feedbacks",
+                moodlewsrestformat: "json",
+            },
+            headers: accessToken
         })
 
         .done(function(data) {
@@ -232,22 +240,26 @@ var AppointmentCollection = Backbone.Collection.extend({
         oneYearLater.setFullYear(today.getFullYear()+1);
         var token = Config.get("accessToken");
         console.log(token);
-        $.get(moodleServiceEndpoint, {
-            wstoken: token,
-            wsfunction: "local_upreflection_get_calendar_entries",
-            moodlewsrestformat: "json",
-            events : {
-                eventids: [],
-                courseids: [],
-                groupids: [],
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: token,
+                wsfunction: "local_upreflection_get_calendar_entries",
+                moodlewsrestformat: "json",
+                events : {
+                    eventids: [],
+                    courseids: [],
+                    groupids: [],
+                },
+                options: {
+                    userevents: 0,
+                    siteevents: 0,
+                    timestart : Math.floor(today.getTime() / 1000),
+                    timeend: Math.floor(oneYearLater.getTime() / 1000),
+                    ignorehidden: 0,
+                }
             },
-            options: {
-                userevents: 0,
-                siteevents: 0,
-                timestart : Math.floor(today.getTime() / 1000),
-                timeend: Math.floor(oneYearLater.getTime() / 1000),
-                ignorehidden: 0,
-            }
+            headers: accessToken
         })
 
         .done(function(data) {
