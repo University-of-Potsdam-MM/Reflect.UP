@@ -200,9 +200,6 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('name', 'choice');
                 radioInput.attr('value', count);
 
-                if (1 == count)
-                    radioInput.attr('checked', true);
-
                 form.append(radioInput);
                 form.append($('<span>').text(choice));
                 form.append($('<br>'));
@@ -221,8 +218,13 @@ var QuestionView = Backbone.View.extend({
 
     nextQuestion: function(el)
     {
-        this.saveValues();
         el.preventDefault();
+        if (!this.saveValues()) {
+            // notify user that he has to choose an answer
+            this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
+            return false;
+        }
+
         var q = this.model.get('container').next();
 
         if (!q){
@@ -262,12 +264,13 @@ var QuestionView = Backbone.View.extend({
     },
 
     saveValues: function(){
-        if (this.model.get('type') === "multichoice")
-            this.model.set("answerText",
-                this.$('#answer input[name=choice]:checked').val());
-        else
-            this.model.set("answerText",
-                this.$('#answer textarea').val());
+        if (this.model.get('type') === "multichoice") {
+            this.model.set("answerText", this.$('#answer input[name=choice]:checked').val());
+            return this.model.get("answerText");
+        } else {
+            this.model.set("answerText", this.$('#answer textarea').val());
+            return true;
+        }
     }
 })
 
