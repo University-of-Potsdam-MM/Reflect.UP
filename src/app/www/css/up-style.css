@@ -1,6 +1,6 @@
 /*Loginform*/
 #loginform {
-	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 #loginform input {
@@ -19,6 +19,7 @@
 	font-size: 1.3em;
 	margin: auto;
 	margin-top: 1em;
+	margin-bottom: 1em;
 	width: 43%;
 	border-radius: 80px;
 	color: #FFF;
