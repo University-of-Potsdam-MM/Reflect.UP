@@ -588,6 +588,29 @@ var QuestionsView = Backbone.View.extend({
 
 
 /**
+ * Backbone Page View - ContactPersonsView
+ * view for all contact persons
+ */
+var ContactPersonsView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-contact-persons').html()),
+
+    initialize: function() {
+        this.collection = new ContactPersonCollection();
+        this.listenTo(this.collection, "sync error", this.render);
+
+        this.render();
+        this.collection.fetch();
+    },
+
+    render: function() {
+        this.$el.html(this.template({title: 'Ansprechpartner', contacts: this.collection.toJSON()}));
+        return this;
+    }
+});
+
+
+/**
  *  Routes
  */
 var Router = Backbone.Router.extend({
@@ -600,7 +623,8 @@ var Router = Backbone.Router.extend({
         'questionsfinish': 'questionsfinish',
         'impressum': 'impressum',
         'feedback': 'feedback',
-        'feedbackresult' : 'feedbackresult'
+        'feedbackresult' : 'feedbackresult',
+        'contactpersons': 'contactpersons'
     },
 
     switchView : function(view){
@@ -650,5 +674,9 @@ var Router = Backbone.Router.extend({
 
     feedbackresult : function() {
         this.switchView(new FeedbackResultView())
+    },
+
+    contactpersons: function() {
+        this.switchView(new ContactPersonsView())
     }
 });

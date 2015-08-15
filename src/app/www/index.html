@@ -314,6 +314,34 @@
 		
     </script>
 
+    <script type="text/template" id="template-contact-persons">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
+            <h1>Ansprechpartner</h1>
+        </div>
+
+        <div>
+            <% console.log(contacts); %>
+            <% _.each(contacts, function(levelOne) { %>
+                <h2><%- levelOne.category %></h2>
+
+                <% _.each(levelOne.content, function(levelTwo) { %>
+                    <h3><%- levelTwo.category %></h3>
+
+                    <% _.each(levelTwo.content, function(contact, index) { %>
+                        <p>
+                            <div class="contact-name"><%- contact.name %></div>
+                            <div><%- contact.location %></div>
+                            <div>Tel.: <%- contact.tel %></div>
+                            <div>E-Mail: <a href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
+                            <div>Sprechzeiten: <%- contact.consultation %></div>
+                        </p>
+                    <% }); %>
+                <% }); %>
+            <% }); %>
+        </div>
+    </script>
+
  	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
 	<!-- <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>  -->

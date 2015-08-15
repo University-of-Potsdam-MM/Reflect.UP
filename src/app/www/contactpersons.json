@@ -1,0 +1,109 @@
+[{
+	"category": "Studienfachberatung WiSo-Fakultät",
+	"content": [{
+		"category": "Betriebswirtschaftslehre",
+		"content": [{
+			"name": "Univ.-Prof. Dr. Ulfert Gronewold",
+			"location": "Griebnitzsee, Haus 3, Raum 1.03",
+			"tel": "+49 331 977-3804",
+			"mail": "ulfert.gronewold@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}, {
+			"name": "Prof. Dr. rer. oec. habil. Katharina Hölzle",
+			"location": "Griebnitzsee, Haus 1, Raum 3.04",
+			"tel": "+49 331 977-4500",
+			"mail": "katharina.hoelzle@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}, {
+		"category": "Volkswirtschaftslehre",
+		"content": [{
+			"name": "Prof. Dr. Malcolm H. Dunn",
+			"location": "Babelsberg, Karl-Marx-Str. 67, Raum 1.06",
+			"tel": "+49 331 977-4614",
+			"mail": "malcolm.dunn@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}, {
+		"category": "Politikwissenschaft/Verwaltungswissenschaft",
+		"content": [{
+			"name": "Prof. Dr. Heinz Kleger",
+			"location": "Griebnitzsee, Haus 1, Raum 1.36",
+			"tel": "+49 331 977-3561",
+			"secretary": "+49 331 977-3340",
+			"mail": "kleger@uni-potsdam.de",
+			"consultation": "Di, Mi 13:00 - 14:00 Uhr, keine tel. Sprechzeit"
+		}, {
+			"name": "apl. Prof. Dr. Jochen Franzke",
+			"location": "Griebnitzsee, Haus 2, Raum 2.05",
+			"tel": "+49 331 977-3414",
+			"mail": "franzke@uni-potsdam.de",
+			"consultation": "Di 13:30 - 14:30 Uhr (ab 21.10.2014 im Vorlesungszeitraum) (vorherige Anmeldung per E-Mail)"
+		}, {
+			"name": "Dr. Markus Seyfried",
+			"location": "Griebnitzsee, Karl-Marx-Str. 67, Raum 3.01",
+			"tel": "+49 331 977-3462",
+			"secretary": "+49 331 977-3240",
+			"mail": "seyfried@uni-potsdam.de",
+			"consultation": "Di 10:00 - 11:30 Uhr (vorherige Anmeldung per E-Mail)"
+		}]
+	}, {
+		"category": "Politik und Wirtschaft",
+		"content": [{
+			"name": "Prof. Dr. Rainald Borck",
+			"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 1.32a",
+			"tel": "+49 331 977-3394",
+			"mail": "rainald.borck@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}, {
+			"name": "Prof. Dr. Marco Caliendo",
+			"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 3.07",
+			"tel": "+49 331 977-3225",
+			"mail": "caliendo@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}, {
+		"category": "Soziologie",
+		"content": [{
+			"name": "Prof. Dr. Jürgen Mackert",
+			"location": "Griebnitzsee, Haus 2, Raum 1.07",
+			"tel": "+49 331 977-3336",
+			"alt_tel": "+49 331 977-3383",
+			"mail": "mackert@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}, {
+			"name": "Dr. Christian Schmidt-Wellenburg",
+			"location": "Griebnitzsee, Haus 2, Raum 1.09",
+			"mail": "cschmidtw@uni-potsdam.de",
+			"consultation": "Mo 16:00 – 17:00 Uhr"
+		}, {
+			"name": "Prof. Dr. Maja Apelt",
+			"comment": "nur Master",
+			"location": "Griebnitzsee, Haus 7, Raum 3.29",
+			"tel": "+49 331 977-3336",
+			"mail": "maja.apelt@uni-potsdam.de",
+			"consultation": "nach Vereinbarung per doodle unter ",
+			"consultation_url": "http://www.uni-potsdam.de/ls-apelt/team/prof-dr-maja-apelt.html"
+		}]
+	}, {
+		"category": "Wirtschaftsinformatik",
+		"content": [{
+			"name": "Dipl.-Ing. Hanna Theuer",
+			"location": "Campus Griebnitzsee Haus 1, Raum 2.67",
+			"tel": "+49 331 977-335",
+			"mail": "studienfachberatung@wirtschaftsinformatik-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
+}, {
+	"category": "Studieneingangsphase/Akademische Grundkompetenzen - Selbstreflexion und Planung",
+	"content": [{
+		"content": [{
+			"name": "Dipl.-Pol. Mathias Klein",
+			"location": "Campus Griebnitzsee Haus 7, Raum 1.34",
+			"tel": "+49 331 977-3613",
+			"mail": "matklein@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
+}]

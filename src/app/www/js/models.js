@@ -302,3 +302,7 @@ var Screen = Backbone.Model.extend({
         content : "",
     },
 })
+
+var ContactPersonCollection = Backbone.Collection.extend({
+    url: 'contactpersons.json'
+});
