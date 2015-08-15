@@ -326,16 +326,37 @@
                 <h2><%- levelOne.category %></h2>
 
                 <% _.each(levelOne.content, function(levelTwo) { %>
-                    <h3><%- levelTwo.category %></h3>
+                    <% if (levelTwo.category) { %>
+                        <h3><%- levelTwo.category %></h3>
+                    <% } %>
 
                     <% _.each(levelTwo.content, function(contact, index) { %>
-                        <p>
-                            <div class="contact-name"><%- contact.name %></div>
+                        <div class="contact">
+                            <div>
+                                <span class="contact-name"><%- contact.name %></span>
+                                <% if (contact.comment) { %>
+                                    <span> (<%- contact.comment %>)</span>
+                                <% } %>
+                            </div>
                             <div><%- contact.location %></div>
-                            <div>Tel.: <%- contact.tel %></div>
+                            <% if (contact.tel) { %>
+                                <div>Tel.: <%- contact.tel %></div>
+                            <% } %>
+                            <% if (contact.alt_tel) { %>
+                                <div>Tel.: <%- contact.alt_tel %></div>
+                            <% } %>
+                            <% if (contact.secretary) { %>
+                                <div>Sekr.: <%- contact.secretary %></div>
+                            <% } %>
                             <div>E-Mail: <a href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
-                            <div>Sprechzeiten: <%- contact.consultation %></div>
-                        </p>
+                            <div>
+                                <span>Sprechzeiten: </span>
+                                <span><%- contact.consultation %></span>
+                                <% if (contact.consultation_url) { %>
+                                    <span> <%- contact.consultation_url %></span>
+                                <% } %>
+                            </div>
+                        </div>
                     <% }); %>
                 <% }); %>
             <% }); %>
