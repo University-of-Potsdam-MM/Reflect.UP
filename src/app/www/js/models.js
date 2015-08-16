@@ -301,8 +301,67 @@ var Screen = Backbone.Model.extend({
         title : "Screen title",
         content : "",
     },
-})
+});
 
+
+/**
+  * NestedModel - Parses defined properties as Backbone classes
+  * Code taken from http://stackoverflow.com/questions/6535948/nested-models-in-backbone-js-how-to-approach
+  */
+var NestedModel = Backbone.Model.extend({
+    model: {},
+
+    parse: function(response) {
+        for (var key in this.model) {
+            var EmbeddedClass = this.model[key];
+            var embeddedData = response[key];
+            response[key] = new EmbeddedClass(embeddedData, {parse: true});
+        }
+        return response;
+    }
+});
+
+
+/**
+ * ContactPersonCollection - Contact list with two category levels.
+ * See https://eportfolio.uni-potsdam.de/moodle/pluginfile.php/568/mod_folder/content/0/Ansprechpartner%20Studienstart_WiSo_F%C3%A4cher.pdf?forcedownload=1 for data visualisation.
+ * 
+ * JSON structure:
+ * [{
+ *   category: ...,
+ *   content: [{
+ *     category: <optional>,
+ *     content: [{
+ *       name: ...,
+ *       comment: <optional>,
+ *       location: ...,
+ *       tel: <optional>,
+ *       alt_tel: <optional>,
+ *       secretary: <optional>,
+ *       mail: ...,
+ *       consultation: ...,
+ *       consultation_url: <optional>
+ *     }]
+ *   }]
+ * }]
+ */
 var ContactPersonCollection = Backbone.Collection.extend({
-    url: 'contactpersons.json'
+    url: 'contactpersons.json',
+    model: NestedModel.extend({
+        model: {
+            content: Backbone.Collection.extend({
+                model: NestedModel.extend({
+                    model: {
+                        content: Backbone.Collection.extend({
+                            model: Backbone.Model.extend({
+                                parse: function(response) {
+                                    return response;
+                                }
+                            })
+                        })
+                    }
+                })
+            })
+        }
+    })
 });
