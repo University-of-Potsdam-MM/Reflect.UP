@@ -340,10 +340,10 @@
                             </div>
                             <div><%- contact.attributes.location %></div>
                             <% if (contact.attributes.tel) { %>
-                                <div>Tel.: <%- contact.attributes.tel %></div>
+                                <div>Tel.: <a href="tel:<%= contact.attributes.telLink %>"><%- contact.attributes.tel %></a></div>
                             <% } %>
                             <% if (contact.attributes.alt_tel) { %>
-                                <div>Tel.: <%- contact.attributes.alt_tel %></div>
+                                <div>Tel.: <a href="tel:<%= contact.attributes.alt_telLink %>"><%- contact.attributes.alt_tel %></a></div>
                             <% } %>
                             <% if (contact.attributes.secretary) { %>
                                 <div>Sekr.: <%- contact.attributes.secretary %></div>

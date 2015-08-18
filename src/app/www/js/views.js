@@ -594,6 +594,9 @@ var QuestionsView = Backbone.View.extend({
 var ContactPersonsView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-contact-persons').html()),
+    events: {
+        "click a": "openExternal"
+    },
 
     initialize: function() {
         this.collection = new ContactPersonCollection();
@@ -603,8 +606,20 @@ var ContactPersonsView = Backbone.View.extend({
         this.collection.fetch();
     },
 
+    openExternal: function(event) {
+        var url = $(event.currentTarget).attr("href");
+        
+        if (window.cordova) {
+            console.log("Opening " + url + " in system");
+            window.open(url, "_system");
+            return false;
+        }
+    },
+
     render: function() {
+        this.undelegateEvents();
         this.$el.html(this.template({title: 'Ansprechpartner', contacts: this.collection}));
+        this.delegateEvents();
         return this;
     }
 });

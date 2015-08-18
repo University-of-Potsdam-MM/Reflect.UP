@@ -355,7 +355,19 @@ var ContactPersonCollection = Backbone.Collection.extend({
                         content: Backbone.Collection.extend({
                             model: Backbone.Model.extend({
                                 parse: function(response) {
-                                    return response;
+                                    var formatTel = function(tel) {
+                                        return tel.replace(/\+/g, "00")
+                                                .replace(/\s/g, "")
+                                                .replace(/\-/g, "");
+                                    };
+
+                                    var telLink = response.tel ? formatTel(response.tel) : undefined;
+                                    var alt_telLink = response.alt_tel ? formatTel(response.alt_tel) : undefined;
+
+                                    return _.extend(response, {
+                                        telLink: telLink,
+                                        alt_telLink: alt_telLink
+                                    });
                                 }
                             })
                         })
