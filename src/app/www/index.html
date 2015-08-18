@@ -340,20 +340,20 @@
                             </div>
                             <div><%- contact.attributes.location %></div>
                             <% if (contact.attributes.tel) { %>
-                                <div>Tel.: <a href="tel:<%= contact.attributes.telLink %>"><%- contact.attributes.tel %></a></div>
+                                <div>Tel.: <a class="external" href="tel:<%= contact.attributes.telLink %>"><%- contact.attributes.tel %></a></div>
                             <% } %>
                             <% if (contact.attributes.alt_tel) { %>
-                                <div>Tel.: <a href="tel:<%= contact.attributes.alt_telLink %>"><%- contact.attributes.alt_tel %></a></div>
+                                <div>Tel.: <a class="external" href="tel:<%= contact.attributes.alt_telLink %>"><%- contact.attributes.alt_tel %></a></div>
                             <% } %>
                             <% if (contact.attributes.secretary) { %>
                                 <div>Sekr.: <%- contact.attributes.secretary %></div>
                             <% } %>
-                            <div>E-Mail: <a href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>
+                            <div>E-Mail: <a class="external" href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>
                             <div>
                                 <span>Sprechzeiten: </span>
                                 <span><%- contact.attributes.consultation %></span>
                                 <% if (contact.attributes.consultation_url) { %>
-                                    <span><a href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
+                                    <span><a class="external" href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
                                 <% } %>
                             </div>
                         </div>

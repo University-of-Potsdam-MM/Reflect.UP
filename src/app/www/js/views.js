@@ -595,7 +595,7 @@ var ContactPersonsView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-contact-persons').html()),
     events: {
-        "click a": "openExternal"
+        "click a.external": "openExternal"
     },
 
     initialize: function() {
@@ -608,7 +608,7 @@ var ContactPersonsView = Backbone.View.extend({
 
     openExternal: function(event) {
         var url = $(event.currentTarget).attr("href");
-        
+
         if (window.cordova) {
             console.log("Opening " + url + " in system");
             window.open(url, "_system");
