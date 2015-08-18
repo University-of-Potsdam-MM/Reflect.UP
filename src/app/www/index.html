@@ -353,7 +353,7 @@
                                 <span>Sprechzeiten: </span>
                                 <span><%- contact.attributes.consultation %></span>
                                 <% if (contact.attributes.consultation_url) { %>
-                                    <span> <%- contact.attributes.consultation_url %></span>
+                                    <span><a href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
                                 <% } %>
                             </div>
                         </div>
