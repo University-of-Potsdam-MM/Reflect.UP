@@ -106,4 +106,57 @@
 			"consultation": "nach Vereinbarung"
 		}]
 	}]
+}, {
+	"category": "Zentrale Studienberatung",
+	"content": [{
+		"content": [{
+			"location": "Am Neuen Palais 10, Haus 8",
+			"tel": "+49 331 977-1715",
+			"mail": "studienberatung@uni-potsdam.de"
+		}]
+	}, {
+		"category": "Ansprechpartner:",
+		"content": [{
+			"name": "Lucas Mielke",
+			"comment": "beurlaubt bis 13.11.2015, Onlinestudienberatung",
+			"location": "Am Neuen Palais, Haus 08, Raum 0.12",
+			"mail": "lumielke@uni-potsdam.de"
+		}, {
+			"name": "Dr. Irma Bürger",
+			"comment": "Studienberaterin, Behindertenbeauftragte für Studierende",
+			"location": "Am Neuen Palais, Haus 08, Raum 0.14",
+			"mail": "behinderung-studium@uni-potsdam.de"
+		}, {
+			"name": "Robert Meile",
+			"comment": "Studienberater",
+			"location": "Am Neuen Palais, Haus 08, Raum 0.16"
+		}, {
+			"name": "Dr. Marlies Reschke",
+			"comment": "Studienberaterin",
+			"location": "Am Neuen Palais, Haus 08, Raum 0.15"
+		}]
+	}]
+}, {
+	"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Sozialwissenschaften",
+	"content": [{
+		"content": [{
+			"name": "Dr. Birgit Kletzin",
+			"location": "Griebnitzsee, Haus 1, Raum 1.27",
+			"tel": "+49 331 977-3408",
+			"mail": "kletzin@uni-potsdam.de",
+			"consultation": "Di 13:00 - 15:00 Uhr, Do 09:00 - 12:00 Uhr"
+		}]
+	}]
+}, {
+	"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Wirtschaftswissenschaften",
+	"content": [{
+		"content": [{
+			"name": "Dr. Ingeborg Garz",
+			"comment": "Master",
+			"location": "Griebnitzsee, Haus 1, Raum 1.29",
+			"tel": "+49 331 977-3262",
+			"mail": "ingeborg.garz@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
 }]

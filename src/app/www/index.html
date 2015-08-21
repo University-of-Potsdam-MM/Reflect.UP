@@ -331,13 +331,17 @@
 
                     <% levelTwo.attributes.content.each(function(contact, index) { %>
                         <div class="contact">
-                            <div>
-                                <span class="contact-name"><%- contact.attributes.name %></span>
-                                <% if (contact.attributes.comment) { %>
-                                    <span> (<%- contact.attributes.comment %>)</span>
-                                <% } %>
-                            </div>
-                            <div><%- contact.attributes.location %></div>
+                            <% if (contact.attributes.name) { %>
+                                <div>
+                                    <span class="contact-name"><%- contact.attributes.name %></span>
+                                    <% if (contact.attributes.comment) { %>
+                                        <span> (<%- contact.attributes.comment %>)</span>
+                                    <% } %>
+                                </div>
+                            <% } %>
+                            <% if (contact.attributes.location) { %>
+                                <div><%- contact.attributes.location %></div>
+                            <% } %>
                             <% if (contact.attributes.tel) { %>
                                 <div>Tel.: <a class="external" href="tel:<%= contact.attributes.telLink %>"><%- contact.attributes.tel %></a></div>
                             <% } %>
@@ -347,14 +351,18 @@
                             <% if (contact.attributes.secretary) { %>
                                 <div>Sekr.: <%- contact.attributes.secretary %></div>
                             <% } %>
-                            <div>E-Mail: <a class="external" href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>
-                            <div>
-                                <span>Sprechzeiten: </span>
-                                <span><%- contact.attributes.consultation %></span>
-                                <% if (contact.attributes.consultation_url) { %>
-                                    <span><a class="external" href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
-                                <% } %>
-                            </div>
+                            <% if (contact.attributes.mail) { %>
+                                <div>E-Mail: <a class="external" href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>
+                            <% } %>
+                            <% if (contact.attributes.consultation) { %>
+                                <div>
+                                    <span>Sprechzeiten: </span>
+                                    <span><%- contact.attributes.consultation %></span>
+                                    <% if (contact.attributes.consultation_url) { %>
+                                        <span><a class="external" href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
+                                    <% } %>
+                                </div>
+                            <% } %>
                         </div>
                     <% }); %>
                 <% }); %>

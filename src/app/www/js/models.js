@@ -332,14 +332,14 @@ var NestedModel = Backbone.Model.extend({
  *   content: [{
  *     category: <optional>,
  *     content: [{
- *       name: ...,
+ *       name: <optional>,
  *       comment: <optional>,
- *       location: ...,
+ *       location: <optional>,
  *       tel: <optional>,
  *       alt_tel: <optional>,
  *       secretary: <optional>,
- *       mail: ...,
- *       consultation: ...,
+ *       mail: <optional>,
+ *       consultation: <optional>,
  *       consultation_url: <optional>
  *     }]
  *   }]
