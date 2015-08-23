@@ -287,7 +287,7 @@ class local_reflection_external extends external_api {
     }
 
     /**
-     * 
+     *
      * @global type $DB
      * @global type $CFG
      * @param type $courseid
@@ -337,13 +337,13 @@ class local_reflection_external extends external_api {
     }
 
     public static function post_feedback($feedback) {
-        
-        global $DB, $CFG;        
+
+        global $DB, $CFG;
         include_once($CFG->dirroot . "/course/lib.php");
-        
+
         $course = $DB->get_record('course', array('idnumber' => 'UPR1'));
         $courseid = $course->id;
-        
+
         $forumName = "Feedback Forum";
         self::addFeedbackForumToCourse($courseid, $forumName);
         self::addFeedbackPostToForum($courseid, $forumName, $feedback);
@@ -438,7 +438,7 @@ class local_reflection_external extends external_api {
         }
 
 
-        $feedback_list = get_all_instances_in_course("feedback", $course, NULL, true);
+        $feedback_list = get_all_instances_in_course("feedback", $course, NULL, false);
 
         //file_put_contents("D:\output.txt", "Feedbacks: \n", FILE_APPEND);
         //file_put_contents("D:\output.txt", print_r($feedback_list, true)."\n", FILE_APPEND);
