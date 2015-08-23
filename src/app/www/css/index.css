@@ -391,8 +391,8 @@ textarea {
 	line-height:2em;
 	color: #fff;
 	content: "\f054";
-	font-family: FontAwesome;	
-} 
+	font-family: FontAwesome;
+}
 */
 .prev-next-nav .button.finish {
 	text-align: center;
@@ -501,6 +501,12 @@ a.button {
 #navigation-footer .button.home:before {
 	color: #2F9BFF;
 	content: "\f015";
+	font-family: FontAwesome;
+	margin-right: 5px;
+}
+
+#navigation-footer .button.contactpersons:before {
+	content: "\f0c0";
 	font-family: FontAwesome;
 	margin-right: 5px;
 }
