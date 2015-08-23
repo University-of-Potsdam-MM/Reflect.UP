@@ -24,7 +24,7 @@ var Appointment = Backbone.Model.extend({
 });
 
 var Feedback = Backbone.Model.extend({
-	defaults:{		                
+	defaults:{
                 feedbackText : null,
 	}
 });
@@ -150,10 +150,10 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
-        
-        
-        
-        
+
+
+
+
 
 
 
@@ -256,7 +256,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                     siteevents: 0,
                     timestart : Math.floor(today.getTime() / 1000),
                     timeend: Math.floor(oneYearLater.getTime() / 1000),
-                    ignorehidden: 0,
+                    ignorehidden: 1,
                 }
             },
             headers: accessToken
@@ -325,7 +325,7 @@ var NestedModel = Backbone.Model.extend({
 /**
  * ContactPersonCollection - Contact list with two category levels.
  * See https://eportfolio.uni-potsdam.de/moodle/pluginfile.php/568/mod_folder/content/0/Ansprechpartner%20Studienstart_WiSo_F%C3%A4cher.pdf?forcedownload=1 for data visualisation.
- * 
+ *
  * JSON structure:
  * [{
  *   category: ...,
