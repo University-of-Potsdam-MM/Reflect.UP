@@ -30,11 +30,11 @@
 	<!--  jquery extruder plugin for navigation panel -->
 
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script> -->
-<script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script> 
+<script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>
   <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
   <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
   <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
- 
+
   <script type="text/javascript">
 
 
@@ -47,11 +47,11 @@
            onExtOpen:function(){},
            onExtContentLoad:function(){},
            onExtClose:function(){}
-      }); 
-      
-   
+      });
+
+
   });
-  
+
 
   </script>
 
@@ -59,31 +59,32 @@
 </head>
 <body>
 	<div id="app"></div>
-	
+
 	 <div id="panel" class="{url:'panel.html'}"></div>
 
+
+    <!--
+        Template:       Home Screen
+    -->
 	<script type="text/template" id="template-home-screen">
        	<div id="header">
-		 <h1><%- title %></h1>
-</div>
+            <h1><%- title %></h1>
+        </div>
         <div id="dates"></div>
-		<div id="teaser">
-			<p> Du hast noch nicht alle Reflektionsfragen beantwortet! Nimm Dir ein wenig Zeit und gehe die fehlenden Fragen durch.
-</p><a href="#questions"> Zu den Reflektionsfragen</a>
-		</div>
-		
+        <div id="questions"></div>
+
   		<div class="impressum-footer" >
             <a class="footerlink">Impressum</a>
         </div>
-        <br>
-        <br>
-
-
-
+        <br />
+        <br />
     </script>
 
+    <!--
+        Template:       Config Screen
+    -->
 	<script type="text/template" id="template-config-screen">
-        <h1> <%- title %></h1>
+        <h1><%- title %></h1>
 
         <form id="loginform" type="POST">
             <label for"username">Benutzername</label>
@@ -98,17 +99,32 @@
         </p>
     </script>
 
+    <!--
+        Template:       Question Screen
+    -->
     <script type="text/template" id="template-questions-screen">
      <div id="header" class="hasBackButton">   <a class="back" title="zurück" alt="zurück button" href="javascript:history.back()"></a>
             <h1> <%- title %></h1></div>
 
         <div id="questions"></div>
-      
     </script>
 
-
+    <!--
+        Template:       Question Collection List
+    -->
     <script type="text/template" id="template-question-collection-list">
-        <ul id="question-collection"></ul>
+        <% if (model.length > 0 && notice){ %>
+            <div id="teaser">
+                <p>Du hast noch nicht alle Reflexionsfragen beantwortet! Nimm Dir ein wenig Zeit und gehe die fehlenden Fragen durch.</p>
+                <a href="#questions"> Zu den Reflexionsfragen</a>
+            </div>
+        <% }else if (model.length == 0){ %>
+            <div id="teaser">
+                <p>Weitere Reflexionsfragen folgen in Kürze!</p>
+            </div>
+        <% }else{ %>
+            <ul id="question-collection"></ul>
+        <% } %>
     </script>
 
 
@@ -120,7 +136,7 @@
 
         <a href="#" class="button finish">Fertig</a>
         </div>
-	
+
     </script>
 
 	<script type="text/template" id="template-appointments-screen">
@@ -128,13 +144,11 @@
 			<h1> <%- title %></h1></div>
 
         <div id="dates"></div>
-		
     </script>
 
 	<script type="text/template" id="template-appointment-list">
         <ul id="appointments"></ul>
         <div class="content-footer"></div>
-		
     </script>
 
     <script type="text/template" id="template-appointment-list-item">
@@ -223,7 +237,7 @@
         	</div>
         </div>
 
-		
+
     </script>
 
 	<script type="text/template" id="template-impressum">
@@ -286,7 +300,7 @@
             kontaktieren.
             </p>
             </div>
-  
+
     </script>
 
 
@@ -299,7 +313,7 @@
                    <input class="button" type="submit" value="Abschicken" />
             </form>
 
-       
+
     </script>
 
 
@@ -311,7 +325,7 @@
         <a href="#" class="button finish">Fertig</a>
         </div>
 
-		
+
     </script>
 
     <script type="text/template" id="template-contact-persons">
@@ -373,8 +387,8 @@
  	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
 	<!-- <script type="text/javascript" src="js/lib/jquery-2.1.0.js"></script>  -->
-	
-	
+
+
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>

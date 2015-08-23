@@ -62,8 +62,7 @@ var AppointmentListView = Backbone.View.extend({
     },
 
     addOne : function(appointment){
-        if (this.$("#appointments").children().length < this.limit
-            || this.limit == -1){
+        if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemFullView({model : appointment});
         	}else{
@@ -71,7 +70,6 @@ var AppointmentListView = Backbone.View.extend({
         	}
             this.$("#appointments").append(view.el);
         }
-
     },
 
     onError: function(collection, resp, options){
@@ -81,8 +79,12 @@ var AppointmentListView = Backbone.View.extend({
 
 var QuestionCollectionListView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list').html()),
+    showNotice: false,
 
-    initialize : function(){
+    initialize : function(options){
+        if("showNotice" in options)
+            this.showNotice = options.showNotice;
+
         this.listenTo(this.model, 'add', this.addOne);
         this.listenTo(this.model, 'sync', this.render);
         this.model.fetch({error:this.onError});
@@ -90,7 +92,7 @@ var QuestionCollectionListView = Backbone.View.extend({
     },
 
     render : function() {
-        this.$el.html(this.template());
+        this.$el.html(this.template({model: this.model, notice: this.showNotice}));
 
         if (this.model.length){
             this.model.each( function(questionContainer){
@@ -103,7 +105,6 @@ var QuestionCollectionListView = Backbone.View.extend({
     },
 
     addOne : function(questionContainer){
-
         var view = new QuestionContainerView({model : questionContainer});
         this.$("#question-collection").append(view.el);
     },
@@ -123,7 +124,6 @@ var QuestionContainerView = Backbone.View.extend({
         this.listenTo(this.model, 'change', this.render);
         this.listenTo(this.model.get('questionList'), 'change', this.render);
         this.listenTo(this.model.get('questionList'), 'add', this.render);
-
         this.render();
     },
 
@@ -177,7 +177,6 @@ var QuestionView = Backbone.View.extend({
             var nextId = this.model.nextId();
 
         this.$el.html(
-
             this.template({
                 questionText: this.model.get('questionText'),
                 answerText: this.model.get('answerText'),
@@ -221,8 +220,7 @@ var QuestionView = Backbone.View.extend({
 
     },
 
-    nextQuestion: function(el)
-    {
+    nextQuestion: function(el){
         el.preventDefault();
         if (!this.saveValues()) {
             // notify user that he has to choose an answer
@@ -324,12 +322,13 @@ var HomeView = Backbone.View.extend({
             this.AppointmentListView = new AppointmentListView({
                 el : '#dates',
                 model : Appointments,
-                limit : 3,
+                limit : 3
             });
 
             this.QuestionCollectionListView = new QuestionCollectionListView({
                 el: '#questions',
-                model: Questions
+                model: Questions,
+                showNotice: true
             });
         }
     },
