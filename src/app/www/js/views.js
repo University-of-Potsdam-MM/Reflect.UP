@@ -206,7 +206,7 @@ var QuestionView = Backbone.View.extend({
 
                 form.append(radioInput);
                 form.append(radioLabel);
-                form.append($('<br>'));
+                form.append($('<div style="clear: both"></div>'));
 
                 count++;
             })
