@@ -213,7 +213,7 @@ p {
 	margin-top: 0;
 }
 
-.welcome {
+p.welcome, p.feedback {
 	text-align: center;
 }
 
@@ -567,4 +567,20 @@ a.button {
 
 #panel.extruder.right .flap .flapLabel {
 	background-color: transparent;
+}
+
+#infopanel {
+	display:none;
+}
+
+#infopanel .flapLabel:before {
+	font-family: FontAwesome;
+	margin-right: 5px;
+	content: "\f05a";
+}
+
+#infopanel-content {
+	padding: 10px;
+    text-align: center;
+    font-size: .8em;
 }

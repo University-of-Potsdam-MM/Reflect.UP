@@ -628,6 +628,7 @@ var ContactPersonsView = Backbone.View.extend({
  *  Routes
  */
 var Router = Backbone.Router.extend({
+    model : Configuration,
     routes : {
         '' : 'home',
         'config': 'config',
@@ -642,6 +643,7 @@ var Router = Backbone.Router.extend({
     },
 
     switchView : function(view){
+        document.getElementById("infopanel").style.display = "none";
         if (this.view){
             if (this.view.destroy)
                 this.view.destroy();
@@ -649,15 +651,23 @@ var Router = Backbone.Router.extend({
             this.view = null;
         }
         this.view = view;
+
+        // check authorization if not valid dont show sidepanel
+        this.model = Config;
+        this.model.fetch();
+        var token = this.model.get("accessToken");
+        if (token == ""){
+            document.getElementById("panel").style.display = "none";
+        }else{
+            document.getElementById("panel").style.display = "block";
+        }
     },
 
     home : function(){
-        console.log('home');
         this.switchView(new HomeView({}));
     },
 
     config: function(){
-        console.log('config');
         this.switchView(new ConfigView({}));
     },
 
@@ -666,7 +676,8 @@ var Router = Backbone.Router.extend({
     },
 
     questions: function(){
-        this.switchView(new QuestionsView())
+        this.switchView(new QuestionsView());
+        document.getElementById("infopanel").style.display = "block";
     },
 
     question: function(containerId, questionId){
