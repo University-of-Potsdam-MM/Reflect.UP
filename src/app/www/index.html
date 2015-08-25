@@ -89,6 +89,10 @@
 	<script type="text/template" id="template-config-screen">
         <h1><%- title %></h1>
 
+        <p style="display: none;" class="loginerror">Login fehlgeschlagen!</p>
+        <p style="display: none;" class="loginrunning">Login läuft...</p>
+
+        <div class="loginform">
         <form id="loginform" type="POST">
             <label for"username">Benutzername</label>
             <input type="text" id="username" placeholder="Benutzername ohne @uni-..." />
@@ -102,6 +106,7 @@
             <br />
             Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.
         </p>
+        </div>
     </script>
 
     <!--

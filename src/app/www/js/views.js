@@ -369,6 +369,10 @@ var ConfigView = Backbone.View.extend({
         ev.preventDefault();
         var username = $('#username').val();
         var password = $('#password').val();
+        
+        this.$(".loginform").hide();
+        this.$(".loginrunning").show();
+
         var that = this;
         $.ajax({
             url: moodleLoginEndpoint,
@@ -424,7 +428,10 @@ var ConfigView = Backbone.View.extend({
         // retry authentication
         console.log('errorHandler');
         // display error message
+        this.$(".loginerror").show();
 
+        this.$(".loginform").show();
+        this.$(".loginrunning").hide();
     },
 
     render: function(){

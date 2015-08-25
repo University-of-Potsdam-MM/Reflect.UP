@@ -58,6 +58,12 @@
 	margin-top: 0;
 }
 
+.loginerror {
+	padding: .5em;
+	background: #ff9999;
+	border: 1px solid red;
+}
+
 /*Terminbutton*/
 
 /*Inhalt*/
