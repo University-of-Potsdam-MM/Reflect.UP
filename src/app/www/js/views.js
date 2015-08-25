@@ -630,6 +630,22 @@ var ContactPersonsView = Backbone.View.extend({
     }
 });
 
+var LogoutView = Backbone.View.extend({
+    el: '#app',
+
+    initialize: function() {
+        Config.destroy({
+            success: this.reroute,
+            error: this.reroute
+        });
+    },
+
+    reroute: function() {
+        Config.set("accessToken", "");
+        Backbone.history.navigate('', {trigger: true});
+    }
+});
+
 
 /**
  *  Routes
@@ -646,7 +662,8 @@ var Router = Backbone.Router.extend({
         'impressum': 'impressum',
         'feedback': 'feedback',
         'feedbackresult' : 'feedbackresult',
-        'contactpersons': 'contactpersons'
+        'contactpersons': 'contactpersons',
+        'logout': 'logout'
     },
 
     switchView : function(view){
@@ -710,5 +727,9 @@ var Router = Backbone.Router.extend({
 
     contactpersons: function() {
         this.switchView(new ContactPersonsView())
+    },
+
+    logout: function() {
+        this.switchView(new LogoutView())
     }
 });

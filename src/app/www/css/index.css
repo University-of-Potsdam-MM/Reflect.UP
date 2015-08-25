@@ -517,6 +517,17 @@ a.button {
 	margin-right: 5px;
 }
 
+#navigation-footer .button.logout:before {
+	content: "\f011";
+	font-family: FontAwesome;
+	margin-right: 5px;
+}
+
+#navigation-footer .button.logout {
+	border-top: 1px solid #999;
+	margin-top: 5em;
+}
+
 #navigation-footer #more-questions-button:before {
 	content: "\f086";
 	font-family: FontAwesome;
