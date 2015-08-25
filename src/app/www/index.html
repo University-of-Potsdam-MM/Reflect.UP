@@ -360,7 +360,7 @@
                                 <div>Tel.: <a class="external" href="tel:<%= contact.attributes.alt_telLink %>"><%- contact.attributes.alt_tel %></a></div>
                             <% } %>
                             <% if (contact.attributes.secretary) { %>
-                                <div>Sekr.: <%- contact.attributes.secretary %></div>
+                                <div>Sekr.: <a class="external" href="tel:<%= contact.attributes.secretary_telLink %>"><%- contact.attributes.secretary %></a></div>
                             <% } %>
                             <% if (contact.attributes.mail) { %>
                                 <div>E-Mail: <a class="external" href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>

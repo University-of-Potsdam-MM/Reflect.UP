@@ -363,10 +363,12 @@ var ContactPersonCollection = Backbone.Collection.extend({
 
                                     var telLink = response.tel ? formatTel(response.tel) : undefined;
                                     var alt_telLink = response.alt_tel ? formatTel(response.alt_tel) : undefined;
+                                    var secretary_telLink = response.secretary ? formatTel(response.secretary) : undefined;
 
                                     return _.extend(response, {
                                         telLink: telLink,
-                                        alt_telLink: alt_telLink
+                                        alt_telLink: alt_telLink,
+                                        secretary_telLink: secretary_telLink
                                     });
                                 }
                             })
