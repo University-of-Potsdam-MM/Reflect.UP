@@ -370,6 +370,7 @@ var ConfigView = Backbone.View.extend({
         var username = $('#username').val();
         var password = $('#password').val();
         
+        this.$(".loginerror").hide();
         this.$(".loginform").hide();
         this.$(".loginrunning").show();
 
@@ -429,7 +430,6 @@ var ConfigView = Backbone.View.extend({
         console.log('errorHandler');
         // display error message
         this.$(".loginerror").show();
-
         this.$(".loginform").show();
         this.$(".loginrunning").hide();
     },
