@@ -1,6 +1,6 @@
 var pushDetails = {
 	senderID: "38438927043",
-	uniqushUrl: "http://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
+	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
 	serviceName: "reflectup",
 	subscriberName: "android-",
 	authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
@@ -25,7 +25,7 @@ var SubscribeToUniqush = function(options) {
 };
 
 var PushServiceRegister = function() {
-	
+
 	var successHandler = function(result) {
 		console.log("result = " + result);
 	};

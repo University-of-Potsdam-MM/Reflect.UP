@@ -1,6 +1,9 @@
 app = (app || {} );
 
 
+/**
+ *      Model - Configuration
+ */
 var Configuration = Backbone.Model.extend({
 
     localStorage: new Backbone.LocalStorage("UPReflection"),
@@ -15,6 +18,9 @@ var Configuration = Backbone.Model.extend({
 });
 
 
+/**
+ *      Model - Appointment
+ */
 var Appointment = Backbone.Model.extend({
 	defaults:{
 		title : 'Appointment Title',
@@ -23,6 +29,10 @@ var Appointment = Backbone.Model.extend({
 	}
 });
 
+
+/**
+ *      Model - Feedback
+ */
 var Feedback = Backbone.Model.extend({
 	defaults:{
                 feedbackText : null,
@@ -30,6 +40,9 @@ var Feedback = Backbone.Model.extend({
 });
 
 
+/**
+ *      Model - Question
+ */
 var Question = Backbone.Model.extend({
     defaults: {
         questionText: 'Question Text',
@@ -76,6 +89,10 @@ var Question = Backbone.Model.extend({
     },
 });
 
+
+/**
+ *      Model - QuestionContainer
+ */
 var QuestionContainer = Backbone.Model.extend({
 
     defaults: {
@@ -85,13 +102,11 @@ var QuestionContainer = Backbone.Model.extend({
         questionList: null,
     },
 
-    initialize: function()
-    {
+    initialize: function(){
         this.set('questionList', new QuestionList());
     },
 
-    next: function()
-    {
+    next: function(){
         if (this.get('currentIndex') == this.length - 1)
             return null;
 
@@ -99,9 +114,7 @@ var QuestionContainer = Backbone.Model.extend({
         return this.current();
     },
 
-
-    previous: function()
-    {
+    previous: function(){
         if (this.get('currentIndex') <= 0)
             return null;
 
@@ -109,19 +122,16 @@ var QuestionContainer = Backbone.Model.extend({
         return this.current();
     },
 
-    current: function()
-    {
+    current: function(){
         return this.get('questionList').at(this.get('currentIndex'));
     },
 
-    add: function(element)
-    {
+    add: function(element){
         element.set('container', this);
         return this.get('questionList').add(element);
     },
 
-    getQuestion: function(id)
-    {
+    getQuestion: function(id){
         return this.get('questionList').get(id);
     },
 
@@ -150,21 +160,21 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
-
-
-
-
-
-
-
     }
-
 });
 
+
+/**
+ *      Collection - QuestionList
+ */
 var QuestionList = Backbone.Collection.extend({
     model: Question,
 })
 
+
+/**
+ *      Collection - QuestionContainerList
+ */
 var QuestionContainerList = Backbone.Collection.extend({
     model : QuestionContainer,
 
@@ -188,7 +198,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                 if (options && options.error)
                     options.error(data.message);
 
-                return;
+                //return;
             }
 
             if (options && options.success)
@@ -229,9 +239,13 @@ var QuestionContainerList = Backbone.Collection.extend({
     },
 });
 
-var AppointmentCollection = Backbone.Collection.extend({
-	model : Appointment,
 
+/**
+ *      Collection - AppointmentCollection
+ */
+var AppointmentCollection = Backbone.Collection.extend({
+
+	model : Appointment,
 
     sync: function(method, model, options){
 
@@ -291,11 +305,13 @@ var AppointmentCollection = Backbone.Collection.extend({
                 options.success(result);
         });
 
-    },
-
-
+    }
 });
 
+
+/**
+ *      Model - Screen
+ */
 var Screen = Backbone.Model.extend({
     defaults : {
         title : "Screen title",

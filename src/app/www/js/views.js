@@ -1,3 +1,7 @@
+/**
+ *      Views - Views for Appointments
+ *      View - AppointmentListItemView
+ */
 var AppointmentListItemView = Backbone.View.extend({
     tagName : 'li',
 
@@ -14,6 +18,10 @@ var AppointmentListItemView = Backbone.View.extend({
     }
 });
 
+
+/**
+ *      View - AppointmentListItemFullView
+ */
 var AppointmentListItemFullView = Backbone.View.extend({
     tagName : 'li',
 
@@ -30,6 +38,10 @@ var AppointmentListItemFullView = Backbone.View.extend({
     }
 });
 
+
+/**
+ *      View - AppointmentListView
+ */
 var AppointmentListView = Backbone.View.extend({
     template : _.template($('#template-appointment-list').html()),
     showButton : true,
@@ -52,7 +64,7 @@ var AppointmentListView = Backbone.View.extend({
         this.delegateEvents();
     },
 
-    render : function() {
+    render : function(){
         this.$el.html(this.template());
 
         if(!this.showButton)
@@ -73,10 +85,15 @@ var AppointmentListView = Backbone.View.extend({
     },
 
     onError: function(collection, resp, options){
-        alert("Error: " + resp);
+        //alert("Error: " + resp);
     }
 });
 
+
+/**
+ *      Views - Views for Questions
+ *      View - QuestionCollectionListView
+ */
 var QuestionCollectionListView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list').html()),
     showNotice: false,
@@ -110,10 +127,14 @@ var QuestionCollectionListView = Backbone.View.extend({
     },
 
     onError: function(collection, resp, options){
-        alert("Error: " + resp);
+        //alert("Error: " + resp);
     }
 });
 
+
+/**
+ *      View - QuestionContainerView
+ */
 var QuestionContainerView = Backbone.View.extend({
     tagName : 'li',
     attributes: {
@@ -156,6 +177,10 @@ var QuestionContainerView = Backbone.View.extend({
     }
 });
 
+
+/**
+ *      View - QuestionView
+ */
 var QuestionView = Backbone.View.extend({
     el: "#app",
     template: _.template($('#template-question').html()),
@@ -277,9 +302,10 @@ var QuestionView = Backbone.View.extend({
     }
 })
 
+
 /**
- *  Backbone Page View - QuestionsFinishView
- *  view displayed after finishing all questions of a container
+ *      View - QuestionsFinishView
+ *      view displayed after finishing all questions of a container
  */
  var QuestionsFinishView = Backbone.View.extend({
     el : "#app",
@@ -293,10 +319,12 @@ var QuestionView = Backbone.View.extend({
         this.$el.html(this.template());
         return this;
     }
- })
+ });
+
 
 /**
- *  Backbone Page View - HomeView
+ *      Views - Main Site Views
+ *      View - HomeView
  */
 var HomeView = Backbone.View.extend({
     el : "#app",
@@ -315,22 +343,41 @@ var HomeView = Backbone.View.extend({
     authorize: function(){
         this.model.fetch();
         var token = this.model.get("accessToken");
-        if (token == ""){
-            Backbone.history.navigate('config', { trigger : true });
-        }else{
-            this.render();
-            this.AppointmentListView = new AppointmentListView({
-                el : '#dates',
-                model : Appointments,
-                limit : 3
-            });
+        var that = this;
+        // submit test call to check whether token is still valid
+        $.ajax({
+            url: moodleServiceEndpoint,
+            data: {
+                wstoken: that.model.get("accessToken"),
+                wsfunction: "core_webservice_get_site_info",
+                moodlewsrestformat: "json"
+            },
+            headers: accessToken
+        }).done(function(data){
+            console.log(data);
+            if (data.errorcode == 'invalidtoken'){
+                Backbone.history.navigate('config', { trigger : true });
+            }else if(token == ""){
+                Backbone.history.navigate('config', { trigger : true });
+            }else{
+                that.render();
+                that.AppointmentListView = new AppointmentListView({
+                    el : '#dates',
+                    model : Appointments,
+                    limit : 3
+                });
 
-            this.QuestionCollectionListView = new QuestionCollectionListView({
-                el: '#questions',
-                model: Questions,
-                showNotice: true
-            });
-        }
+                that.QuestionCollectionListView = new QuestionCollectionListView({
+                    el: '#questions',
+                    model: Questions,
+                    showNotice: true
+                });
+            }
+        }).error(function(xhr, status, error){
+            console.log(xhr.responseText);
+            console.log(status);
+            console.log(error);
+        });
     },
 
     impressum: function(){
@@ -341,10 +388,11 @@ var HomeView = Backbone.View.extend({
         this.$el.html(this.template({title : 'Reflect.UP'}));
         return this;
     }
-})
+});
+
 
 /**
- *  Backbone Page View - ConfigView
+ *      View - ConfigView
  */
 var ConfigView = Backbone.View.extend({
     el: '#app',
@@ -369,7 +417,7 @@ var ConfigView = Backbone.View.extend({
         ev.preventDefault();
         var username = $('#username').val();
         var password = $('#password').val();
-        
+
         this.$(".loginerror").hide();
         this.$(".loginform").hide();
         this.$(".loginrunning").show();
@@ -438,10 +486,11 @@ var ConfigView = Backbone.View.extend({
         this.$el.html(this.template({title: 'Reflect.UP - Anmeldung'}));
         return this;
     }
-})
+});
+
 
 /**
- *  Backbone Page View - ImpressumView
+ *      View - ImpressumView
  */
 var ImpressumView = Backbone.View.extend({
     el: '#app',
@@ -457,8 +506,9 @@ var ImpressumView = Backbone.View.extend({
     }
 });
 
+
 /**
- *  Backbone Page View - FeedbackView
+ *      View - FeedbackView
  */
 var FeedbackView = Backbone.View.extend({
     el: '#app',
@@ -517,8 +567,9 @@ var FeedbackView = Backbone.View.extend({
     }
 });
 
+
 /**
- *  Backbone Page View - FeedbackResultView
+ *      View - FeedbackResultView
  */
 var FeedbackResultView = Backbone.View.extend({
     el: '#app',
@@ -535,8 +586,9 @@ var FeedbackResultView = Backbone.View.extend({
     }
 });
 
+
 /**
- *  Backbone Page View - AppointmentsView
+ *      View - AppointmentsView
  */
 var AppointmentsView = Backbone.View.extend({
     el: '#app',
@@ -559,8 +611,8 @@ var AppointmentsView = Backbone.View.extend({
 
 
 /**
- *  Backbone Page View - QuestionsView
- *  view for all questions
+ *      View - QuestionsView
+ *      view for all questions
  */
 var QuestionsView = Backbone.View.extend({
     el: '#app',
@@ -594,8 +646,8 @@ var QuestionsView = Backbone.View.extend({
 
 
 /**
- * Backbone Page View - ContactPersonsView
- * view for all contact persons
+ *      View - ContactPersonsView
+ *      view for all contact persons
  */
 var ContactPersonsView = Backbone.View.extend({
     el: '#app',
@@ -630,6 +682,10 @@ var ContactPersonsView = Backbone.View.extend({
     }
 });
 
+
+/**
+ *      View - LogoutView
+ */
 var LogoutView = Backbone.View.extend({
     el: '#app',
 
