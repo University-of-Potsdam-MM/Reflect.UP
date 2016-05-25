@@ -22,13 +22,10 @@ var Questions = new QuestionContainerList();
 var Config = new Configuration({id: 1});
 
 
-$( document ).ready(function() {
-
-});
-
 var app = {
     // Application Constructor
     initialize: function() {
+
         this.bindEvents();
 
         var router = new Router();
@@ -47,6 +44,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        // hide splashscreen
+        navigator.splashscreen.hide();
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event

@@ -23,6 +23,19 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="DisallowOverscroll" value="true" />
+    <!-- Splashscreen settings -->
+    <!-- For details see https://github.com/apache/cordova-plugin-splashscreen/blob/master/doc/index.md -->
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <platform name="android">
+        <preference name="AutoHideSplashScreen" value="true" />
+        <preference name="SplashScreenDelay" value="10000" />
+    </platform>
+    <platform name="ios">
+        <preference name="AutoHideSplashScreen" value="false" />
+    </platform>
+
     <!-- Icons -->
     <icon gap:qualifier="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
     <icon gap:qualifier="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
@@ -44,10 +57,12 @@
     <gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
     <gap:splash gap:qualifier="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
     <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
+
     <gap:splash gap:platform="ios" height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
     <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
+
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
 
     <!-- Plugins -->
@@ -56,4 +71,5 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
+    <content src="index.html" />
 </widget>
