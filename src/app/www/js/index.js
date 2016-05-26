@@ -46,6 +46,7 @@ var app = {
     onDeviceReady: function() {
         // hide splashscreen
         navigator.splashscreen.hide();
+        StatusBar.hide();
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event

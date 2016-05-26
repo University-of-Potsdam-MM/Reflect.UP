@@ -24,6 +24,9 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="DisallowOverscroll" value="true" />
+
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarStyle" value="blackopaque" />
     <!-- Splashscreen settings -->
     <!-- For details see https://github.com/apache/cordova-plugin-splashscreen/blob/master/doc/index.md -->
     <preference name="FadeSplashScreen" value="true" />
@@ -45,30 +48,47 @@
     <icon gap:platform="blackberry" gap:state="hover" src="res/icon/blackberry/icon-80.png" />
     <icon gap:platform="ios" height="57" src="res/icon/ios/icon-57.png" width="57" />
     <icon gap:platform="ios" height="72" src="res/icon/ios/icon-72.png" width="72" />
-    <icon gap:platform="ios" height="114" src="res/icon/ios/icon-57-2x.png" width="114" />
-    <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72-2x.png" width="144" />
+    <icon gap:platform="ios" height="114" src="res/icon/ios/icon-57@2x.png" width="114" />
+    <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72@2x.png" width="144" />
     <icon gap:platform="webos" src="res/icon/webos/icon-64.png" />
     <icon gap:platform="winphone" src="res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icon/windows-phone/icon-173.png" />
 
     <!-- Splashscreens -->
-    <gap:splash gap:qualifier="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:qualifier="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash gap:qualifier="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
-    <gap:splash gap:platform="blackberry" src="res/screen/blackberry/screen-225.png" />
+    <platform name="android">
+        <splash src="res/screen/android/screen-hdpi-landscape.png" density="land-hdpi"/>
+        <splash src="res/screen/android/screen-ldpi-landscape.png" density="land-ldpi"/>
+        <splash src="res/screen/android/screen-mdpi-landscape.png" density="land-mdpi"/>
+        <splash src="res/screen/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
 
-    <gap:splash gap:platform="ios" height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
-    <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
-    <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
-    <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
-
-    <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+        <splash src="res/screen/android/screen-hdpi-portrait.png" density="port-hdpi"/>
+        <splash src="res/screen/android/screen-ldpi-portrait.png" density="port-ldpi"/>
+        <splash src="res/screen/android/screen-mdpi-portrait.png" density="port-mdpi"/>
+        <splash src="res/screen/android/screen-xhdpi-portrait.png" density="port-xhdpi"/>
+    </platform>
+    <platform name="ios">
+        <!-- images are determined by width and height. The following are supported -->
+        <splash src="res/screen/ios/screen-iphone-portrait.png" width="320" height="480"/>
+        <splash src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" height="960"/>
+        <splash src="res/screen/ios/screen-ipad-portrait.png" width="768" height="1024"/>
+        <splash src="res/screen/ios/screen-ipad-landscape.png" width="1024" height="768"/>
+        <splash src="res/screen/ios/screen-ipad-landscape-2x.png" width="2048" height="1536"/>
+        <splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" height="1136"/>
+        <!--
+        <splash src="res/screen/ios/screen-ipad-portrait-2x.png" width="1536" height="2048"/>
+        <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
+        <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
+        <splash src="res/screen/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+        -->
+    </platform>
 
     <!-- Plugins -->
     <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
+    <plugin name="cordova-plugin-statusbar" />
+
+
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <content src="index.html" />
