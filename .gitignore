@@ -3,6 +3,7 @@
 # built application files
 *.apk
 *.ap_
+.cordova
 
 # files for the dex VM
 *.dex
@@ -50,4 +51,4 @@ IOS/www/
 src/app/nbproject/private/private.properties
 src/app/nbproject/project.properties
 src/app/nbproject/project.xml
-src/app/plugins/**
+plugins/**
