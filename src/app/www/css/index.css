@@ -34,9 +34,7 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	height: 100%;
-	margin: 5px;
-	margin-left: 0px;
-	margin-top: 0px;
+	margin: 0;
 	color: #EEE;
 }
 
@@ -49,6 +47,7 @@ body {
 	height: 62px;
 	border-bottom: 2px solid #2F9BFF;
 	margin-bottom: 10px;
+	padding-top: 20px;
 }
 
 .content-container {
@@ -542,11 +541,23 @@ a.button {
 	margin-right: 5px;
 }
 
+#panel .flapLabel:before {
+	font-family: FontAwesome;
+    margin-right: 5px;
+    content: "\f0c9";
+    color: #2F9BFF;
+    font-size: 1.7em;
+}
+
+#panel {
+	top: 20px;
+}
+
 #panel.extruder.right .flap {
 	font-size: 18px;
 	color: #FFF;
 	top: 0;
-	padding: 10px 0 10px 10px;
+	padding: 35px 5px 5px 5px;
 	background-color: #000;
 	width: 50px;
 	height: 42px;
@@ -572,10 +583,6 @@ a.button {
 	border-bottom: 1px solid #999;
 	margin-left: 0px;
 	width: 27px;
-}
-
-#panel.extruder.right .flap .flapLabel {
-	background-color: transparent;
 }
 
 #infopanel {

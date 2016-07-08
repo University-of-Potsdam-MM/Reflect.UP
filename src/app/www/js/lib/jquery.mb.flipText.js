@@ -85,15 +85,7 @@ if (!jQuery.browser) {
           var onClick= el.attr("onclick") || el.attr("href");
           var clickScript= onClick?"<div class='pointer' style='position:absolute;top:0;left:0;width:100%;height:100%;background:transparent'/>":"";
 
-          label=$("<object class='flip_label' style='height:37px; width:"+w+"px;' type='image/svg+xml' data='data:image/svg+xml; charset=utf-8 ," +
-                  "<svg xmlns=\"http://www.w3.org/2000/svg\">" +
-                  "<rect x=\"0\" y=\"0\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"10\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"20\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<rect x=\"0\" y=\"30\" width=\"10px\" height=\"7px\" fill=\"rgb(47, 154, 255)\" stroke=\"none\"/>"+
-                  "<text  x=\"-"+xFix+"\" y=\""+yFix+"\" font-family=\""+fontfamily+"\"  fill=\""+fontcolor+"\" font-size=\""+fontsize+"\"  style=\"text-anchor: "+ta+"; " +
-                  "dominant-baseline: hanging\" transform=\"rotate("+rot+")\" text-rendering=\"optimizeSpeed\">"+txt+"</text></svg>'></object>" +
-                  clickScript +
+          label=$(clickScript +
                   "");
         }
         var wrapper= onClick ? $("<div/>").css("position","relative"): $("");

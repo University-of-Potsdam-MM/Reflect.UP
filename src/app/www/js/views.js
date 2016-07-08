@@ -349,7 +349,7 @@ var HomeView = Backbone.View.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: that.model.get("accessToken"),
-                wsfunction: "core_webservice_get_site_info",
+                wsfunction: "local_upreflection_get_calendar_entries",
                 moodlewsrestformat: "json"
             },
             headers: accessToken
