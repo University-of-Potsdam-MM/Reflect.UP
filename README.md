@@ -16,8 +16,6 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
        - config.xml
        - ...
        - index.html (Startpunkt der App)
-   - moodle_plugin
-     - upreflection (Moodle Webservice)
 ```
 
 ## PhoneGap
@@ -38,9 +36,15 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
 ## 1. Moodle-Webservices aktivieren 
 
 siehe https://docs.moodle.org/29/en/Using_web_services
+- Plugins -> Web Services -> Manage Protocols -> Enable REST
+- "create Token" capability für die entspr. User aktivieren
+- "Web Service Rest" cap. für entspr. User aktivieren
 
-## 2. upreflection-Webservice installieren
+## 2. Reflection-Webservice installieren
 
-- upreflection-Ordner unter Moodle-Installation/local verschieben
-- Als Admin in Moodle einloggen und Plugin installieren.
-- Ggf. Funktionen für Nutzende aktivieren (siehe auch https://docs.moodle.org/29/en/Using_web_services)
+- siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-local_reflection
+
+## 3. Kurs anlegen
+- Kurs mit ID UPR1 anlegen (Kurs muss sichtbar sein)
+- Termine anlegen
+
