@@ -151,7 +151,7 @@ var QuestionContainer = Backbone.Model.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: token,
-                wsfunction: "local_upreflection_submit_feedbacks",
+                wsfunction: "local_reflect_submit_feedbacks",
                 moodlewsrestformat: "json",
                 id: result.id,
                 answers: result.answers
@@ -186,7 +186,7 @@ var QuestionContainerList = Backbone.Collection.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: token,
-                wsfunction: "local_upreflection_get_feedbacks",
+                wsfunction: "local_reflect_get_feedbacks",
                 moodlewsrestformat: "json",
             },
             headers: accessToken
@@ -258,7 +258,7 @@ var AppointmentCollection = Backbone.Collection.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: token,
-                wsfunction: "local_upreflection_get_calendar_entries",
+                wsfunction: "local_reflect_get_calendar_entries",
                 moodlewsrestformat: "json",
                 events : {
                     eventids: [],

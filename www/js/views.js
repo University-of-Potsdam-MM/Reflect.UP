@@ -349,7 +349,7 @@ var HomeView = Backbone.View.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: that.model.get("accessToken"),
-                wsfunction: "local_upreflection_get_calendar_entries",
+                wsfunction: "local_reflect_get_calendar_entries",
                 moodlewsrestformat: "json"
             },
             headers: accessToken
@@ -428,7 +428,7 @@ var ConfigView = Backbone.View.extend({
             data: {
                 username: username,
                 password: password,
-                service: 'upreflection'
+                service: 'reflect'
             },
             headers: accessToken
         }).done(function(data){
@@ -455,7 +455,7 @@ var ConfigView = Backbone.View.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: that.model.get("accessToken"),
-                wsfunction: "local_upreflection_enrol_self",
+                wsfunction: "local_reflect_enrol_self",
                 moodlewsrestformat: "json"
             },
             headers: accessToken
@@ -546,7 +546,7 @@ var FeedbackView = Backbone.View.extend({
             url: moodleServiceEndpoint,
             data: {
                 wstoken: that.model.get("accessToken"),
-                wsfunction: "local_upreflection_post_feedback",
+                wsfunction: "local_reflect_post_feedback",
                 moodlewsrestformat: "json",
                 feedback: feedbacktext
             },
