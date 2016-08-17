@@ -404,9 +404,9 @@ var ConfigView = Backbone.View.extend({
     model: Configuration,
 
     initialize: function(){
+        this.model = Config;
         this.listenTo(this, 'errorHandler', this.errorHandler);
         this.listenTo(this, 'enrolUser', this.enrolUser);
-        this.model = Config;
         this.render();
     },
 
@@ -723,7 +723,9 @@ var Router = Backbone.Router.extend({
     },
 
     switchView : function(view){
-        document.getElementById("infopanel").style.display = "none";
+        if(document.getElementById("infopanel")){
+            document.getElementById("infopanel").style.display = "none";
+        }
         if (this.view){
             if (this.view.destroy)
                 this.view.destroy();
@@ -731,24 +733,30 @@ var Router = Backbone.Router.extend({
             this.view = null;
         }
         this.view = view;
+        console.log(this.view);
+        this.view.render();
 
         // check authorization if not valid dont show sidepanel
         this.model = Config;
         this.model.fetch();
         var token = this.model.get("accessToken");
         if (token == ""){
-            document.getElementById("panel").style.display = "none";
+            if(document.getElementById("panel")){
+                document.getElementById("panel").style.display = "none";
+            }
         }else{
-            document.getElementById("panel").style.display = "block";
+            if(document.getElementById("panel")){
+                document.getElementById("panel").style.display = "block";
+            }
         }
     },
 
     home : function(){
-        this.switchView(new HomeView({}));
+        this.switchView(new HomeView());
     },
 
     config: function(){
-        this.switchView(new ConfigView({}));
+        this.switchView(new ConfigView());
     },
 
     appointments: function(){
