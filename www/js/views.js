@@ -386,6 +386,8 @@ var HomeView = Backbone.View.extend({
 
     render : function(){
         this.$el.html(this.template({title : 'Reflect.UP'}));
+        console.log('render');
+
         return this;
     }
 });
@@ -596,15 +598,15 @@ var AppointmentsView = Backbone.View.extend({
 
     initialize: function(){
         this.render();
+    },
+
+    render: function(){
+        this.$el.html(this.template({title: 'Termine'}));
         this.AppointmentListView = new AppointmentListView({
             el: '#dates',
             model: Appointments,
             showButton : false,
         });
-    },
-
-    render: function(){
-        this.$el.html(this.template({title: 'Termine'}));
         return this;
     }
 });
@@ -631,15 +633,15 @@ var QuestionsView = Backbone.View.extend({
             Backbone.history.navigate('config', { trigger : true });
         }else{
             this.render();
-            this.QuestionCollectionListView = new QuestionCollectionListView({
-                el: '#questions',
-                model: Questions
-            });
         }
     },
 
     render: function(){
-        this.$el.html(this.template({title: 'Reflektionsfragen'}));
+        this.$el.html(this.template({title: 'Reflexionsfragen'}));
+        this.QuestionCollectionListView = new QuestionCollectionListView({
+            el: '#questions',
+            model: Questions
+        });
         return this;
     }
 });
