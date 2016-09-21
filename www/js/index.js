@@ -21,7 +21,7 @@ var app = {
 
     onDeviceOnline: function(){
         app.receivedEvent('onDeviceOnline');
-        //PushServiceRegister();
+        PushServiceRegister();
         // hide splashscreen
         if (navigator.splashscreen){
             setTimeout(function() {
