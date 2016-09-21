@@ -386,6 +386,8 @@ var HomeView = Backbone.View.extend({
 
     render : function(){
         this.$el.html(this.template({title : 'Reflect.UP'}));
+        console.log('render');
+
         return this;
     }
 });
@@ -595,16 +597,15 @@ var AppointmentsView = Backbone.View.extend({
     template: _.template($('#template-appointments-screen').html()),
 
     initialize: function(){
-        this.render();
+    },
+
+    render: function(){
+        this.$el.html(this.template({title: 'Termine'}));
         this.AppointmentListView = new AppointmentListView({
             el: '#dates',
             model: Appointments,
             showButton : false,
         });
-    },
-
-    render: function(){
-        this.$el.html(this.template({title: 'Termine'}));
         return this;
     }
 });
@@ -631,15 +632,15 @@ var QuestionsView = Backbone.View.extend({
             Backbone.history.navigate('config', { trigger : true });
         }else{
             this.render();
-            this.QuestionCollectionListView = new QuestionCollectionListView({
-                el: '#questions',
-                model: Questions
-            });
         }
     },
 
     render: function(){
-        this.$el.html(this.template({title: 'Reflektionsfragen'}));
+        this.$el.html(this.template({title: 'Reflexionsfragen'}));
+        this.QuestionCollectionListView = new QuestionCollectionListView({
+            el: '#questions',
+            model: Questions
+        });
         return this;
     }
 });
@@ -723,19 +724,6 @@ var Router = Backbone.Router.extend({
     },
 
     switchView : function(view){
-        if(document.getElementById("infopanel")){
-            document.getElementById("infopanel").style.display = "none";
-        }
-        if (this.view){
-            if (this.view.destroy)
-                this.view.destroy();
-
-            this.view = null;
-        }
-        this.view = view;
-        console.log(this.view);
-        this.view.render();
-
         // check authorization if not valid dont show sidepanel
         this.model = Config;
         this.model.fetch();
@@ -749,6 +737,20 @@ var Router = Backbone.Router.extend({
                 document.getElementById("panel").style.display = "block";
             }
         }
+
+        // prepare infopanel
+        if(document.getElementById("infopanel")){
+            document.getElementById("infopanel").style.display = "none";
+        }
+        if (this.view){
+            if (this.view.destroy)
+                this.view.destroy();
+
+            this.view = null;
+        }
+        this.view = view;
+        console.log(this.view);
+        this.view.render();
     },
 
     home : function(){
