@@ -6,10 +6,6 @@ var pushDetails = {
 	authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
-document.addEventListener("deviceready", function(){
-    PushServiceRegister();
-});
-
 var SubscribeToUniqush = function(options) {
 	var uri = new URI(pushDetails.uniqushUrl);
 	uri.search(options);

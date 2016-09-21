@@ -395,15 +395,9 @@
     <script type="text/javascript" src="js/push.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            app.initialize();
-        });
-    </script>
-
     <title>Reflect.UP</title>
 </head>
-<body>
+<body onload="app.initialize()">
 	<div id="app"></div>
 
 	 <div id="panel" class="{url:'panel.html'}"></div>
