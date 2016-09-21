@@ -12,6 +12,14 @@ var AppointmentListItemView = Backbone.View.extend({
 
     template : _.template($('#template-appointment-list-item').html()),
 
+    events: {
+        'click' : 'toggle'
+    },
+
+    toggle: function(){
+        this.$el.find('.subdescription').toggleClass("expand");
+    },
+
     render : function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this;

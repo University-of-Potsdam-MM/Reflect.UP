@@ -154,9 +154,13 @@ body {
 	overflow: hidden;
 }
 
+.expand{
+	max-height: none !important;
+}
+
 .subdescription-full {
 	font-size: 0.8em;
-	overflow: visible;
+	overflow: hidden;
 	margin-right: 5px;
 }
 
