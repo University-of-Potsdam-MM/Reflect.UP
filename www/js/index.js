@@ -21,7 +21,7 @@ var app = {
 
     onDeviceOnline: function(){
         app.receivedEvent('onDeviceOnline');
-        PushServiceRegister();
+
         // hide splashscreen
         if (navigator.splashscreen){
             setTimeout(function() {
@@ -60,6 +60,9 @@ var app = {
 
         //document.addEventListener("offline", app.onDeviceOffline(), false);
         //document.addEventListener("online", app.onDeviceOnline(), false);
+
+        // PushService
+        PushServiceRegister();
 
         if((navigator.network.connection.type).toUpperCase() != "NONE" && (navigator.network.connection.type).toUpperCase() != "UNKNOWN") {
             app.onDeviceOnline();
