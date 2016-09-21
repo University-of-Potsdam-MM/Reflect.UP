@@ -15,63 +15,53 @@ var SubscribeToUniqush = function(options) {
 	$.ajax({
 		url: uri.href(),
 		headers: pushDetails.authHeader,
-		success: function() { console.log("Successfully contacted uniqush server"); },
+		success: function(response) { console.log("Successfully contacted uniqush server. Server responded with " + response); },
 		error: function() { console.log("Some error happened while contacting the uniqush server"); }
 	});
 };
 
-var PushServiceRegister = function() {
+document.addEventListener("deviceready", function() {
 
-	var successHandler = function(result) {
-		console.log("result = " + result);
-	};
+	var push = PushNotification.init({
+		android: {
+			senderID: pushDetails.senderID
+		},
+		browser: {
+			pushServiceURL: "http://www.google.de"
+		},
+		ios: {
+			alert: "true",
+			badge: "true",
+			sound: "true"
+		},
+		windows: {}
+	});
 
-	var errorHandler = function(result) {
-		console.log("error = " + result);
-	};
+	push.on("registration", function(data) {
+		// RegID received, inform uniqush server
+		var regId = data.registrationId;
+		if (regId.length == 0) {
+			// empty regId, what do we do?
+			console.log("Push regId empty");
+		} else {
+			var options = {
+				service: pushDetails.serviceName,
+				subscriber: pushDetails.subscriberName + regId.replace(/:/g, ""),
+				pushservicetype: "gcm",
+				regid: regId
+			};
+			SubscribeToUniqush(options);
+		}
+	});
 
-	var pushNotification = window.plugins.pushNotification;
-	if (device.platform == "android" || device.platform == "Android" || device.platform == "amazon-fireos") {
-	    pushNotification.register(
-		    successHandler,
-		    errorHandler,
-		    {
-		        "senderID": pushDetails.senderID,
-		        "ecb": "onNotification"
-		    });
-	}
-};
+	push.on("notification", function(data) {
+		// push notification received, inform app
+		console.log("Push notification received: " + JSON.stringify(data));
+	});
 
-var onNotification = function(e) {
-	switch (e.event) {
-		case "registered":
-			// RegID received, inform uniqush server
-			var regId = e.regid;
-			if (regId.length == 0) {
-				// empty regId, what do we do?
-				console.log("Push regId empty");
-			} else {
-				var options = {
-					service: pushDetails.serviceName,
-					subscriber: pushDetails.subscriberName + regId,
-					pushservicetype: "gcm",
-					regid: regId
-				};
-				SubscribeToUniqush(options);
-			}
+	push.on("error", function(data) {
+		// error happened
+		console.log("Push error happened: " + data.message);
+	});
 
-			break;
-		case "message":
-			// push notification received, inform app
-			console.log("Push notification received: " + JSON.stringify(e));
-			break;
-		case "error":
-			// error happened
-			console.log("Push error happened");
-			break;
-		default:
-			// unknown event, what do we do?
-			console.log("Push event unknown");
-			break;
-	}
-};
+}, false);
