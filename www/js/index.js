@@ -6,7 +6,11 @@ var Config = new Configuration({id: 1});
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        if (window.cordova){
+            this.bindEvents();
+        }else{
+            app.onDeviceOnline();
+        }
     },
 
     onDeviceOffline: function(){
@@ -19,9 +23,11 @@ var app = {
         app.receivedEvent('onDeviceOnline');
         //PushServiceRegister();
         // hide splashscreen
-        setTimeout(function() {
-            navigator.splashscreen.hide();
-        }, 2000);
+        if (navigator.splashscreen){
+            setTimeout(function() {
+                navigator.splashscreen.hide();
+            }, 2000);
+        }
 
         var router = new Router();
         Backbone.history.start();
@@ -33,6 +39,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+
     },
     // deviceready Event Handler
     //
@@ -40,6 +47,16 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        // listener for links including target = _blank, will be opened with InAppBrowser
+        $(document).ready(function(){
+            $('body').on('click', 'a[target="_blank"]', function (e) {
+                console.log('link external');
+                e.preventDefault();
+                window.open = cordova.InAppBrowser.open;
+                window.open($(e.currentTarget).attr('href'), '_system', '');
+            });
+        });
 
         //document.addEventListener("offline", app.onDeviceOffline(), false);
         //document.addEventListener("online", app.onDeviceOnline(), false);

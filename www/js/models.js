@@ -296,7 +296,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                 _.each(data.events, function(item){
                     result.push(new Appointment({
                         title: item.name,
-                        description: $(item.description).text(),
+                        description: item.description,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
                     }))
