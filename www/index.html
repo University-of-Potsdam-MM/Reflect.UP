@@ -82,25 +82,29 @@
         Template:       Config Screen
     -->
     <script type="text/template" id="template-config-screen">
-        <h1><%- title %></h1>
-
+        <div id="header">
+            <h1><%- title %></h1>
+        </div>
         <p style="display: none;" class="loginerror">Login fehlgeschlagen!</p>
         <p style="display: none;" class="loginrunning">Login läuft...</p>
 
         <div class="loginform">
-        <form id="loginform" type="POST">
-            <label for"username">Benutzername</label>
-            <input type="text" id="username" placeholder="Benutzername ohne @uni-..." />
-            <label for"password">Passwort</label>
-            <input type="password" id="password" placeholder="Passwort" />
-            <input type="submit" value="Anmelden" />
-        </form>
+            <form id="loginform" type="POST">
+                <label for"username">Benutzername</label>
+                <input type="text" id="username" placeholder="Benutzername ohne @uni-..." />
+                <label for"password">Passwort</label>
+                <input type="password" id="password" placeholder="Passwort" />
+                <input type="submit" value="Anmelden" />
+            </form>
 
-        <p class="welcome">
-            <em style="font-style:normal;">Um den angeforderten Dienst nutzen zu können, musst du dich hier einloggen.</em>
-            <br />
-            Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.
-        </p>
+            <p class="welcome">
+                <em style="font-style:normal;">Um den angeforderten Dienst nutzen zu können, musst du dich hier einloggen.</em>
+                <br />
+                Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.
+            </p>
+        </div>
+        <div class="impressum-footer" >
+            <a class="footerlink">Impressum</a>
         </div>
     </script>
 
