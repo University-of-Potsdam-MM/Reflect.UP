@@ -25,6 +25,10 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="AutoHideSplashScreen" value="false" />
     <platform name="ios">
+        <preference name="StatusBarOverlaysWebView" value="false" />
+        <preference name="StatusBarBackgroundColor" value="#000000" />
+    </platform>
+    <platform name="ios">
         <!-- iOS 8.0+ -->
         <!-- iPhone 6 Plus -->
         <icon src="res/icon/ios/icon-60@3x.png" width="180" height="180" />
@@ -94,5 +98,7 @@
 
     <access origin="*" />
     <content src="index.html" />
+
+    <engine name="ios" spec="~3.9.2" />
     <engine name="android" spec="~5.1.1" />
 </widget>
