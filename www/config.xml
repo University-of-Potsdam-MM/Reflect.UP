@@ -26,7 +26,7 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <platform name="ios">
         <preference name="StatusBarOverlaysWebView" value="false" />
-        <preference name="StatusBarBackgroundColor" value="#000000" />
+        <preference name="StatusBarBackgroundColor" value="#004260" />
     </platform>
     <platform name="ios">
         <!-- iOS 8.0+ -->
