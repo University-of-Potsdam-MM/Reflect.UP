@@ -21,6 +21,11 @@ var SubscribeToUniqush = function(options) {
 };
 
 var PushServiceRegister = function(){
+    if (typeof PushNotification === "undefined") {
+        console.log("PushNotification NOT available");
+        return;
+    }
+
 	var push = PushNotification.init({
         android: {
             senderID: pushDetails.senderID
