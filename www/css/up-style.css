@@ -1,6 +1,7 @@
 /*Loginform*/
 #loginform {
 	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 #loginform input {
@@ -14,7 +15,7 @@
 
 #loginform input[type="submit"] {
 	border: 0px solid #CCC;
-	background-color: #2F9BFF !important;
+	background-color: #003f60 !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1.3em;
 	margin: auto;
@@ -50,7 +51,7 @@
 	font-style: italic;
 	display: block;
 	margin-top: .3em;
-	color: #999;
+	color: #003f60;
 	font-size: 2em
 }
 
@@ -60,7 +61,7 @@
 
 .loginerror {
 	padding: .5em;
-	background: #ff9999;
+	background: #cfdae3999;
 	border: 1px solid red;
 }
 
@@ -106,5 +107,6 @@
 }
 
 .external {
-	color: #2F9BFF;
+	color: #003f60;
+	text-decoration: underline;
 }
