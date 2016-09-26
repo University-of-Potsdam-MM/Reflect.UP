@@ -57,20 +57,20 @@
         <icon src="www/res/icon/ios/icon-50@2x.png" width="100" height="100" />
     </platform>
     <platform name="android">
-        <icon src="www/res/icon/android/icon-36-ldpi.png" density="ldpi" />
-        <icon src="www/res/icon/android/icon-48-mdpi.png" density="mdpi" />
-        <icon src="www/res/icon/android/icon-72-hdpi.png" density="hdpi" />
-        <icon src="www/res/icon/android/icon-96-xhdpi.png" density="xhdpi" />
+        <icon src="res/icon/android/icon-36-ldpi.png" density="ldpi" />
+        <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi" />
+        <icon src="res/icon/android/icon-72-hdpi.png" density="hdpi" />
+        <icon src="res/icon/android/icon-96-xhdpi.png" density="xhdpi" />
      </platform>
     <platform name="android">
-        <splash density="land-hdpi" src="www/res/screen/android/screen-hdpi-landscape.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/screen-ldpi-landscape.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/screen-mdpi-landscape.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/screen-xhdpi-landscape.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/screen-hdpi-portrait.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/screen-mdpi-portrait.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/screen-xhdpi-portrait.png" />
+        <splash density="land-hdpi" src="res/screen/android/screen-hdpi-landscape.png" />
+        <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+        <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+        <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
     </platform>
     <platform name="ios">
         <!-- images are determined by width and height. The following are supported -->
