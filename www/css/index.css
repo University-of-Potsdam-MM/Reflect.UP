@@ -326,6 +326,10 @@ textarea {
 	height: 150px;
 }
 
+#answer {
+	text-align: center;
+}
+
 .footerlink {
 	display: inline-block;
 	padding-left: .1em;
@@ -375,25 +379,24 @@ textarea {
 }
 
 .np-wrapper {
-	width: 60%;
-	margin: 0 auto;
+	width: 100%;
 	text-align: center;
 }
 
 .prev-next-nav a {
-	width: 30%;
+	width: 50%;
 	border: 0px solid #CCC;
 	background-color: #003f60 !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1em;
-	margin: auto;
 	margin-top: 1em;
 	border-radius: 80px;
 	display: block;
-	margin: 0 auto;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	color: #FFF;
+	float: left;
 }
 
 /*#nextButton:after {
@@ -408,6 +411,7 @@ textarea {
 	text-align: center;
 	color: #FFF;
 	margin: 0 auto;
+	float: none !important;
 }
 
 .finish:before {
