@@ -2,8 +2,15 @@ var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
 	serviceName: "reflectup",
-	subscriberName: "android-",
-	authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
+    authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" },
+	subscriberName: function(id) {
+        var platform = "ios-";
+        return platform + id.replace(/:/g, "");
+    },
+    subscriberType: function() {
+        // Always use GCM. But not on iOS. Use APNS on iOS
+        return device.platform === "iOS" ? "apns" : "gcm";
+    }
 };
 
 var SubscribeToUniqush = function(options) {
@@ -50,10 +57,15 @@ var PushServiceRegister = function(){
         } else {
             var options = {
                 service: pushDetails.serviceName,
-                subscriber: pushDetails.subscriberName + regId.replace(/:/g, ""),
-                pushservicetype: "gcm",
-                regid: regId
+                subscriber: pushDetails.subscriberName(regId),
+                pushservicetype: pushDetails.subscriberType()
             };
+
+            if (device.platform === "iOS")
+                options.devtoken = regId;
+            else
+                options.regid = regId;
+
             SubscribeToUniqush(options);
         }
     });
