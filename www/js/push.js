@@ -2,22 +2,32 @@ var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
 	serviceName: "reflectup",
-    authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" },
-	subscriberName: function(id) {
-        var platform = "ios-";
-        return platform + id.replace(/:/g, "");
-    },
-    subscriberType: function() {
-        // Always use GCM. But not on iOS. Use APNS on iOS
-        return device.platform === "iOS" ? "apns" : "gcm";
-    }
+    authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
-var SubscribeToUniqush = function(options) {
-	var uri = new URI(pushDetails.uniqushUrl);
-	uri.search(options);
+var UniqushCreateOptions = function(id) {
+    var result = {
+        service: pushDetails.serviceName
+    };
 
-	console.log("Registering id " + options.regid + " via " + uri.href());
+    if (device.platform === "iOS") {
+        result.devtoken = id;
+        result.subscriber = "ios-" + id;
+        result.pushservicetype = "apns";
+    } else {
+        result.regid = id;
+        result.subscriber = "android-" + id.replace(/:/g, "");
+        result.pushservicetype = "gcm";
+    }
+
+    return result;
+}
+
+var SubscribeToUniqush = function(registrationId) {
+	var uri = new URI(pushDetails.uniqushUrl);
+	uri.search(UniqushCreateOptions(registrationId));
+
+	console.log("Registering push via " + uri.href());
 
 	$.ajax({
 		url: uri.href(),
@@ -49,24 +59,12 @@ var PushServiceRegister = function(){
     });
 
     push.on("registration", function(data) {
-        // RegID received, inform uniqush server
-        var regId = data.registrationId;
-        if (regId.length == 0) {
-            // empty regId, what do we do?
-            console.log("Push regId empty");
+        // Registration ID received, inform uniqush-push server
+        if (data.registrationId.length == 0) {
+            // empty id, what do we do?
+            console.log("ERROR: Push registration id empty");
         } else {
-            var options = {
-                service: pushDetails.serviceName,
-                subscriber: pushDetails.subscriberName(regId),
-                pushservicetype: pushDetails.subscriberType()
-            };
-
-            if (device.platform === "iOS")
-                options.devtoken = regId;
-            else
-                options.regid = regId;
-
-            SubscribeToUniqush(options);
+            SubscribeToUniqush(data.registrationId);
         }
     });
 
