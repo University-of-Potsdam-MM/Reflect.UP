@@ -154,7 +154,7 @@ body {
 	overflow: hidden;
 }
 
-.subdescription a {
+.subdescription a, .subdescription-full a {
 	font-weight: bold;
 }
 
