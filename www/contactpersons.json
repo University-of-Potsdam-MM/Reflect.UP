@@ -159,4 +159,122 @@
 			"consultation": "nach Vereinbarung"
 		}]
 	}]
+}
+, {
+	"category": "Department Linguistik: Computerlinguistik",
+	"content": [{
+		"content": [{
+			"name": "Dr. Thomas Hanneforth",
+			"location": "Golm, Haus 14, Raum 2.19/2.20",
+			"tel": "0331 - 977 2440",
+			"mail": "Thomas.Hanneforth@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
+}
+
+, {
+	"category": "Department Linguistik: Linguistik",
+	"content": [{
+		"content": [{
+			"name": "Dario Paape",
+			"location": "Golm, Haus 14, Raum 2.35",
+			"tel": "0331 - 977 2351",
+			"mail": "paape@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
+
+}, {
+	"category": "Department Linguistik: Patholinguistik",
+	"content": [{
+		"content": [{
+			"name": "Dr. Nicole Stadie",
+			"location": "Golm, Haus 14, Raum 2.06",
+			"tel": "0331 - 977 2935",
+			"mail": "nicole.stadie@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+		}]
+	}]
+}, {
+	"category": "Department Psychologie: Psychologie",
+	"content": [{
+		"content": [{
+			"name": "Dr. Bernd Schellhas",
+			"location": "Golm, Haus 14, Raum 1.14",
+			"tel": "0331 - 977 2213",
+			"mail": "bernd.schellhas@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
 }]
+	}]
+
+},{
+	"category": "Department Sport- und Gesundheitswissenschaften: Sportmanagement und Sporttherapie und Prävention",
+	"content": [{
+		"content": [{
+			"name": "Dr. Janet Kühl",
+			"location": "Golm, Haus 24, Raum 1.03",
+			"tel": "0331 - 977 2544",
+			"mail": "janet.hoehne@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+}]
+	}]
+}, {
+	"category": "Department Erziehungswissenschaften:Erziehungswissenschaften",
+	"content": [{
+		"content": [{
+			"name": "Dr. Jörg-W. Link",
+			"location": "Golm, Haus 24, Raum 1.53",
+			"tel": "0331 - 977 2146",
+			"mail": "link@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+}]
+	}]
+}, {
+	"category": "Department Lehrerbildung: Lehramt Sek. I + II",
+	"content": [{
+		"content": [{
+			"name": "Dr. Andreas Seidel",
+			"location": "Golm, Haus 24, Raum 2.63",
+			"tel": "0331 - 977 2131",
+			"mail": "eseidel@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+			}, {
+				
+			"name": "Dr. Viola Meckelmann",
+			"location": "Golm, Haus 14, Raum 1.13",
+			"tel": "0331 - 977 2859",
+			"mail": "meckelma@uni-potsdam.de"
+}]
+	}]
+}, {
+	"category": "Department Lehrerbildung: Lehramt für Primarstufe und Lehramt Primarstufe Schwerpunkt Inklusionspädagogik",
+	"content": [{
+		"content": [{
+			"name": "PD Dr. Barbara Wegner",
+			"location": "Golm, Haus 24, Raum 2.23",
+			"tel": "0331 - 977 2498",
+			"mail": "wegener@uni-potsdam.de",
+			"consultation": "nach Vereinbarung"
+			}, {
+				
+			"name": "Pawel R. Kulawiak",
+			"location": "Golm, Haus 31, Raum 2.07",
+			"tel": "0331 - 977 6375",
+			"mail": "kulawiak@uni-potsdam.de",
+			"consultation": "nach Vereinbarung, Anmeldung per E-Mail"
+			
+}]
+	}]
+}, {
+	"category": "Studieneingangsphase/Akademische Grundkompetenzen - Selbstreflexion und Planung",
+	"content": [{
+		"content": [{
+			"name": "Judith Tägener",
+			"location": "Karl-Liebknecht-Str. 24/25, Haus 24, Raum 1.63",
+			"tel": "0331 - 977 2905",
+			"mail": "jtaegene@uni-potsdam.de"
+}]
+	}]
+}]			
+			
