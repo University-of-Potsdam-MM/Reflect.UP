@@ -31,21 +31,18 @@
 			"location": "Griebnitzsee, Haus 1, Raum 1.36",
 			"tel": "+49 331 977-3561",
 			"secretary": "+49 331 977-3340",
-			"mail": "kleger@uni-potsdam.de",
-			"consultation": "Di, Mi 13:00 - 14:00 Uhr, keine tel. Sprechzeit"
-		}, {
+			"mail": "kleger@uni-potsdam.de"
+					}, {
 			"name": "apl. Prof. Dr. Jochen Franzke",
 			"location": "Griebnitzsee, Haus 2, Raum 2.05",
 			"tel": "+49 331 977-3414",
-			"mail": "franzke@uni-potsdam.de",
-			"consultation": "Di 13:30 - 14:30 Uhr (vorherige Anmeldung per E-Mail)"
+			"mail": "franzke@uni-potsdam.de"
 		}, {
 			"name": "Dr. Markus Seyfried",
 			"location": "Griebnitzsee, Karl-Marx-Str. 67, Raum 3.01",
 			"tel": "+49 331 977-3462",
 			"secretary": "+49 331 977-3240",
-			"mail": "seyfried@uni-potsdam.de",
-			"consultation": "Di 10:00 - 11:30 Uhr (vorherige Anmeldung per E-Mail)"
+			"mail": "seyfried@uni-potsdam.de"
 		}]
 	}, {
 		"category": "Politik und Wirtschaft",
@@ -74,8 +71,7 @@
 		}, {
 			"name": "Dr. Christian Schmidt-Wellenburg",
 			"location": "Griebnitzsee, Haus 2, Raum 1.09",
-			"mail": "cschmidtw@uni-potsdam.de",
-			"consultation": "Mo 16:00 – 17:00 Uhr"
+			"mail": "cschmidtw@uni-potsdam.de"
 		}, {
 			"name": "Prof. Dr. Maja Apelt",
 			"comment": "nur Master",
@@ -143,8 +139,7 @@
 			"name": "Dr. Birgit Kletzin",
 			"location": "Griebnitzsee, Haus 1, Raum 1.27",
 			"tel": "+49 331 977-3408",
-			"mail": "kletzin@uni-potsdam.de",
-			"consultation": "Di 13:00 - 15:00 Uhr, Do 09:00 - 12:00 Uhr"
+			"mail": "kletzin@uni-potsdam.de"
 		}]
 	}]
 }, {
