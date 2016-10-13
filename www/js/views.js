@@ -193,7 +193,11 @@ var QuestionView = Backbone.View.extend({
     el: "#app",
     template: _.template($('#template-question').html()),
 
-    initialize: function(){
+    initialize: function(options){
+
+        this.model = this.collection.get('questionList').get(options.questionId);
+        console.log(this.collection);
+        console.log(this.model);
         this.render();
     },
 
@@ -217,7 +221,7 @@ var QuestionView = Backbone.View.extend({
                 nextId: nextId,
                 number: this.model.get('number'),
                 total: this.model.get('total'),
-                containerId: this.model.get('container').get('id'),
+                containerId: this.collection.get('id')
             })
         );
         if (this.model.get('type') === "multichoice" &&
@@ -261,17 +265,17 @@ var QuestionView = Backbone.View.extend({
             return false;
         }
 
-        var q = this.model.get('container').next();
+        var q = this.collection.next();
 
         if (!q){
-            this.model.get('container').sendData();
+            this.collection.sendData();
             this.undelegateEvents();
             Backbone.history.navigate('questionsfinish', {trigger: true});
             return false;
         }
 
         var destination = 'questions/'
-            + this.model.get('container').id
+            + this.collection.get('id')
             + '/'
             + q.id; //$(el.target).attr('href');
         this.undelegateEvents();
@@ -282,7 +286,9 @@ var QuestionView = Backbone.View.extend({
     previousQuestion: function(el){
         this.saveValues();
         el.preventDefault();
-        var q = this.model.get('container').previous();
+
+
+        var q = this.collection.previous();
 
         if (!q){
             this.undelegateEvents();
@@ -291,7 +297,7 @@ var QuestionView = Backbone.View.extend({
         }
 
         var destination = 'questions/'
-            + this.model.get('container').id
+            + this.collection.get('id')
             + '/'
             + q.id;
         this.undelegateEvents();
@@ -362,7 +368,7 @@ var HomeView = Backbone.View.extend({
             },
             headers: accessToken
         }).done(function(data){
-            console.log(data);
+            //console.log(data);
             if (data.errorcode == 'invalidtoken'){
                 Backbone.history.navigate('config', { trigger : true });
             }else if(token == ""){
@@ -394,7 +400,6 @@ var HomeView = Backbone.View.extend({
 
     render : function(){
         this.$el.html(this.template({title : 'Reflect.UP'}));
-        console.log('render');
 
         return this;
     }
@@ -757,7 +762,6 @@ var Router = Backbone.Router.extend({
             this.view = null;
         }
         this.view = view;
-        console.log(this.view);
         this.view.render();
     },
 
@@ -779,8 +783,8 @@ var Router = Backbone.Router.extend({
     },
 
     question: function(containerId, questionId){
-        var question = Questions.get(containerId).getQuestion(questionId);
-        this.switchView(new QuestionView({model: question}));
+        var questionContainer = Questions.get(containerId);
+        this.switchView(new QuestionView({collection: questionContainer, questionId: questionId}));
     },
 
     questionsfinish: function(){

@@ -13,7 +13,7 @@ var Configuration = Backbone.Model.extend({
     },
 
     initialize: function(){
-        console.log(this);
+        //console.log(this);
     }
 });
 
@@ -49,14 +49,11 @@ var Question = Backbone.Model.extend({
         number: null,
         total: null,
         answerText : null,
-        choices: null,
-        previous : null,
-        next : null,
-        container: null,
+        choices: null
     },
 
     hasPrevious: function(){
-         if (this.get('container').get('currentIndex') == 0){
+        if (this.collection.indexOf(this) == 0){
             return false;
         }else{
             return true;
@@ -64,8 +61,7 @@ var Question = Backbone.Model.extend({
     },
 
     hasNext: function(){
-        var container = this.get('container');
-        if (container.get('currentIndex') == container.get('questionList').length - 1){
+        if (this.collection.indexOf(this) == this.collection.length - 1){
             return false;
         }else{
             return true;
@@ -75,18 +71,25 @@ var Question = Backbone.Model.extend({
     nextId: function(){
         if (!this.hasNext())
             return;
+                console.log(this.collection.at(this.collection.indexOf(this)+1).id);
 
-        var container = this.get('container');
-        return container.get('questionList').at(container.get('currentIndex')+1).id;
+        return this.collection.at(this.collection.indexOf(this)+1).id;
     },
 
     previousId: function(){
         if (!this.hasPrevious())
             return;
 
-        var container = this.get('container');
-        return container.get('questionList').at(container.get('currentIndex')-1).id;
-    },
+        return this.collection.at(this.collection.indexOf(this)-1).id;
+    }
+});
+
+
+/**
+ *      Collection - QuestionList
+ */
+var QuestionList = Backbone.Collection.extend({
+    model: Question
 });
 
 
@@ -99,7 +102,7 @@ var QuestionContainer = Backbone.Model.extend({
         title : 'Questions',
         currentIndex: 0,
         firstQuestion: null,
-        questionList: null,
+        questionList: QuestionList,
     },
 
     initialize: function(){
@@ -127,7 +130,6 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     add: function(element){
-        element.set('container', this);
         return this.get('questionList').add(element);
     },
 
@@ -165,17 +167,11 @@ var QuestionContainer = Backbone.Model.extend({
 
 
 /**
- *      Collection - QuestionList
- */
-var QuestionList = Backbone.Collection.extend({
-    model: Question,
-})
-
-
-/**
  *      Collection - QuestionContainerList
+ *      ToDo: Triggered twice
  */
 var QuestionContainerList = Backbone.Collection.extend({
+
     model : QuestionContainer,
 
     sync: function(method, model, options){
@@ -210,25 +206,29 @@ var QuestionContainerList = Backbone.Collection.extend({
                 var result = new Array();
 
                 _.each(data.feedbacks, function(item){
+
                     var questionContainer = new QuestionContainer({
                         id: item.id,
-                        title: item.name});
+                        title: item.name
+                    });
 
-                    for (var i=0; i < item.questions.length; i++){
-                        var question_item = item.questions[i];
+                    _.each(item.questions, function(question, i){
+
                         var q = new Question({
-                            id: question_item.id,
+                            id: question.id,
                             number: i+1,
                             total: item.questions.length,
-                            questionText: question_item.questionText,
-                            type: question_item.type,
-                        })
-                        if (question_item.choices)
-                            q.set("choices",
-                                question_item.choices.substring(6).split('|'));
+                            questionText: question.questionText,
+                            type: question.type,
+                        });
 
-                        questionContainer.add(q);
-                    };
+                        if (question.choices) {
+                            q.set("choices", question.choices.substring(6).split('|'));
+                        }
+
+                        questionContainer.get('questionList').add(q);
+
+                    });
 
                     result.push(questionContainer);
                 });
@@ -236,7 +236,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                 options.success(result);
         });
 
-    },
+    }
 });
 
 
@@ -277,7 +277,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         })
 
         .done(function(data) {
-            console.log(data);
+            //console.log(data);
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
