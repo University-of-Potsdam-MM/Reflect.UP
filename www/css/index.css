@@ -41,12 +41,16 @@ body {
 /*layout sections*/
 #app {
 	margin-bottom: 60px;
+	margin-top: 70px;
 }
 #header {
 	background-color: #004260;
 	height: 62px;
 	border-bottom: 2px solid #cfdae3;
 	margin-bottom: 10px;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 .content-container {
