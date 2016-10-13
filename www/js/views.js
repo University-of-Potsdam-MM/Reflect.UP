@@ -5,7 +5,10 @@
 var AppointmentListItemView = Backbone.View.extend({
     tagName : 'li',
 
-    initialize : function(){
+    initialize : function(options){
+        if("fullView" in options)
+            this.fullView = options.fullView;
+
         this.listenTo(this.model, 'change', this.render);
         this.render();
     },
@@ -21,27 +24,7 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     render : function() {
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
-    }
-});
-
-
-/**
- *      View - AppointmentListItemFullView
- */
-var AppointmentListItemFullView = Backbone.View.extend({
-    tagName : 'li',
-
-    initialize : function(){
-        this.listenTo(this.model, 'change', this.render);
-        this.render();
-    },
-
-    template : _.template($('#template-appointment-list-item-full').html()),
-
-    render : function() {
-        this.$el.html(this.template(this.model.toJSON()));
+        this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
     }
 });
@@ -59,17 +42,16 @@ var AppointmentListView = Backbone.View.extend({
     },
 
     initialize : function(options){
-        this.model.fetch({error:this.onError});
-        this.listenTo(this.model, 'add', this.addOne);
-
         if("showButton" in options)
             this.showButton = options.showButton;
 
         if("limit" in options)
             this.limit = options.limit;
 
+        this.listenTo(this.model, 'add', this.addOne);
+        this.listenTo(this.model, 'sync', this.render);
+        this.model.fetch({error:this.onError});
         this.render();
-        this.delegateEvents();
     },
 
     render : function(){
@@ -78,15 +60,21 @@ var AppointmentListView = Backbone.View.extend({
         if(!this.showButton)
             this.$("#more-appointments-button").hide();
 
+        if(this.model.length){
+            this.model.each( function(appointment){
+                this.addOne(appointment);
+            }, this)
+        }
+
         return this;
     },
 
     addOne : function(appointment){
         if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
-        		var view = new AppointmentListItemFullView({model : appointment});
+        		var view = new AppointmentListItemView({model : appointment, fullView: true});
         	}else{
-        		var view = new AppointmentListItemView({model : appointment});
+        		var view = new AppointmentListItemView({model : appointment, fullView: false});
         	}
             this.$("#appointments").append(view.el);
         }
@@ -196,8 +184,6 @@ var QuestionView = Backbone.View.extend({
     initialize: function(options){
 
         this.model = this.collection.get('questionList').get(options.questionId);
-        console.log(this.collection);
-        console.log(this.model);
         this.render();
     },
 
@@ -369,23 +355,8 @@ var HomeView = Backbone.View.extend({
             headers: accessToken
         }).done(function(data){
             //console.log(data);
-            if (data.errorcode == 'invalidtoken'){
+            if ((data.errorcode == 'invalidtoken') || token == ""){
                 Backbone.history.navigate('config', { trigger : true });
-            }else if(token == ""){
-                Backbone.history.navigate('config', { trigger : true });
-            }else{
-                that.render();
-                that.AppointmentListView = new AppointmentListView({
-                    el : '#dates',
-                    model : Appointments,
-                    limit : 3
-                });
-
-                that.QuestionCollectionListView = new QuestionCollectionListView({
-                    el: '#questions',
-                    model: Questions,
-                    showNotice: true
-                });
             }
         }).error(function(xhr, status, error){
             console.log(xhr.responseText);
@@ -400,6 +371,18 @@ var HomeView = Backbone.View.extend({
 
     render : function(){
         this.$el.html(this.template({title : 'Reflect.UP'}));
+
+        this.AppointmentListView = new AppointmentListView({
+            el : '#dates',
+            model : Appointments,
+            limit : 3
+        });
+
+        this.QuestionCollectionListView = new QuestionCollectionListView({
+            el: '#questions',
+            model: Questions,
+            showNotice: true
+        });
 
         return this;
     }

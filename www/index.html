@@ -162,57 +162,29 @@
         <div class="date-container" >
         <div class="data">
         <div class="date" >
-        <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
-        <% if (begin.getDate() != end.getDate()){ %>
+        <%- model.begin.getDate() %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>
+        <% if (model.begin.getDate() != model.end.getDate()){ %>
         -
-        <%- ('0'+(end.getDate())).slice(-2) %>.<%- ('0'+(end.getMonth()+1)).slice(-2) %>
+        <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
         <% } %>
         </div>
         <div class="time" >
-        <% if (begin.getTime() === end.getTime()){  %>
+        <% if (model.begin.getTime() === model.end.getTime()){  %>
         ganztägig
         <% }else{ %>
-        <% if (begin.getHours() != 0 && begin.getMinutes() != 0){ %>
-        <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
+        <% if (model.begin.getHours() != 0 && model.begin.getMinutes() != 0){ %>
+        <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
         -
-        <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
+        <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
         <% } %>
         <% } %>
         </div>
         </div>
         </div>
-
-        <div class="description" ><%= title %></div>
-        <div class="subdescription"><%= description %></div>
-        <div class="clear"></div>
-    </script>
-
-    <script type="text/template" id="template-appointment-list-item-full">
-        <div class="date-container" >
-        <div class="data">
-        <div class="date" >
-        <%- begin.getDate() %>.<%- ('0'+(begin.getMonth()+1)).slice(-2) %>
-        <% if (begin.getDate() != end.getDate()){ %>
-        -
-        <%- ('0'+(end.getDate())).slice(-2) %>.<%- ('0'+(end.getMonth()+1)).slice(-2) %>
-        <% } %>
-        </div>
-        <div class="time" >
-        <% if (begin.getTime() === end.getTime()){  %>
-        ganztägig
-        <% }else{ %>
-        <% if (begin.getHours() != 0 && begin.getMinutes() != 0){ %>
-        <%- ('0'+begin.getHours()).slice(-2) %>:<%- ('0'+begin.getMinutes()).slice(-2) %>
-        -
-        <%- ('0'+end.getHours()).slice(-2) %>:<%- ('0'+end.getMinutes()).slice(-2) %>
-        <% } %>
-        <% } %>
-        </div>
-        </div>
-        </div>
-
-        <div class="description-full" ><%= title %></div>
-        <div class="subdescription-full"><%= description %></div>
+        <% if (fullView == true) { %> <div class="description-full"> <% }else{ %> <div class="description"> <% } %>
+        <%= model.title %></div>
+        <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
+        <%= model.description %></div>
         <div class="clear"></div>
     </script>
 
@@ -235,7 +207,7 @@
         </div>
             <div class="prev-next-nav" >
             <div class="np-wrapper">
-                 <a href="questions/<%- containerId %>/<%- previousId %>"id="previousButton">Zurück</a>
+                 <a href="questions/<%- containerId %>/<%- previousId %>" id="previousButton">Zurück</a>
 
                 <a href="questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
             </div>

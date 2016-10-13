@@ -10,10 +10,6 @@ var Configuration = Backbone.Model.extend({
 
     defaults:{
         accessToken: '',
-    },
-
-    initialize: function(){
-        //console.log(this);
     }
 });
 
@@ -71,7 +67,6 @@ var Question = Backbone.Model.extend({
     nextId: function(){
         if (!this.hasNext())
             return;
-                console.log(this.collection.at(this.collection.indexOf(this)+1).id);
 
         return this.collection.at(this.collection.indexOf(this)+1).id;
     },
@@ -189,7 +184,7 @@ var QuestionContainerList = Backbone.Collection.extend({
         })
 
         .done(function(data) {
-            console.log(data);
+            //console.log(data);
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
@@ -253,7 +248,7 @@ var AppointmentCollection = Backbone.Collection.extend({
         var oneYearLater = new Date();
         oneYearLater.setFullYear(today.getFullYear()+1);
         var token = Config.get("accessToken");
-        console.log(token);
+        //console.log(token);
         $.ajax({
             url: moodleServiceEndpoint,
             data: {
