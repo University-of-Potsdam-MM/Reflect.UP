@@ -91,6 +91,7 @@
     <plugin name="cordova-plugin-statusbar" />
     <plugin name="cordova-plugin-console" />
     <plugin name="cordova-plugin-network-information" />
+    <plugin name="cordova-plugin-dialogs" />
     <plugin name="phonegap-plugin-push@1.5.3">
         <variable name="SENDER_ID" value="38438927043" />
     </plugin>

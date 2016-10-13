@@ -1,7 +1,7 @@
 var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
-	serviceName: "reflectup",
+	serviceName: "reflectuptest",
     authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
@@ -70,6 +70,18 @@ var PushServiceRegister = function(){
 
     push.on("notification", function(data) {
         // push notification received, inform app
+        navigator.notification.beep(2);
+
+        function onConfirm(buttonIndex) {
+            //alert('You selected button ' + buttonIndex);
+        }
+
+        navigator.notification.alert(
+            data.message,           // message
+            onConfirm,         // callback
+            data.title,            // title
+            'OK'                  // buttonName
+        );
         console.log("Push notification received: " + JSON.stringify(data));
     });
 
