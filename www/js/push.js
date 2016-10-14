@@ -1,7 +1,7 @@
 var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
-	serviceName: "reflectuptest",
+	serviceName: "reflectup",
     authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
 
