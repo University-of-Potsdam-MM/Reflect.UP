@@ -517,7 +517,6 @@ var FeedbackView = Backbone.View.extend({
     },
 
     initialize: function() {
-        this.render();
         this.model = Config;
         this.listenTo(this, 'errorHandler', this.errorHandler);
         this.listenTo(this, 'successHandler', this.enrolUser);
