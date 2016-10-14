@@ -573,12 +573,7 @@ var FeedbackResultView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-feedbackresult').html()),
 
-    initialize: function() {
-        this.render();
-    },
-
     render: function() {
-        console.log('render');
         this.$el.html(this.template());
         return this;
     }
@@ -674,6 +669,18 @@ var ContactPersonsView = Backbone.View.extend({
     render: function() {
         this.undelegateEvents();
         this.$el.html(this.template({title: 'Ansprechpartner', contacts: this.collection}));
+
+        // Accordion Logic
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function(){
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+
         this.delegateEvents();
         return this;
     }

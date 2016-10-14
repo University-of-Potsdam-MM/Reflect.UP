@@ -1,4 +1,3 @@
-
 var Appointments = new AppointmentCollection();
 var Questions = new QuestionContainerList();
 var Config = new Configuration({id: 1});
@@ -57,9 +56,6 @@ var app = {
                 window.open($(e.currentTarget).attr('href'), '_system', '');
             });
         });
-
-        //document.addEventListener("offline", app.onDeviceOffline(), false);
-        //document.addEventListener("online", app.onDeviceOnline(), false);
 
         // PushService
         PushServiceRegister();

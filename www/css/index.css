@@ -40,7 +40,7 @@ body {
 
 /*layout sections*/
 #app {
-	margin-bottom: 60px;
+	margin-bottom: 40px;
 	margin-top: 70px;
 }
 #header {
@@ -179,25 +179,6 @@ body {
 .clear {
 	clear: both;
 }
-
-/* .event {
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	color: #FFFFFF;
-	font-size: 1.1em;
-	margin: 0px 30px;
-	padding: 2px 0px;
-}
-
-.event.listening {
-	background-color: #333333;
-	display: block;
-}
-
-.event.received {
-	background-color: #4B946A;
-	display: none;
-} */
 
 /*font only*/
 #header h1 {
@@ -403,14 +384,6 @@ textarea {
 	float: left;
 }
 
-/*#nextButton:after {
-	font-size:1.3em;
-	line-height:2em;
-	color: #fff;
-	content: "\f054";
-	font-family: FontAwesome;
-}
-*/
 .prev-next-nav .button.finish {
 	text-align: center;
 	color: #FFF;
@@ -436,18 +409,18 @@ a.button {
 }
 
 #feedbackform .button {
-	border: 0px solid #CCC;
-	background-color: #cfdae3 !important;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 1.3em;
-	margin: auto;
-	margin-top: 1em;
-	width: 43%;
-	border-radius: 80px;
-	color: #003f60;
-	display: block;
+	width: 50%;
+    border: 0px solid #CCC;
+    background-color: #003f60 !important;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
 	margin: 0 auto;
-	text-align: center;
+    border-radius: 80px;
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
 }
 
 #teaser a {

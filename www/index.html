@@ -316,8 +316,9 @@
 
         <div>
             <% contacts.each(function(levelOne) { %>
-                <h2><%- levelOne.attributes.category %></h2>
-
+                <button class="accordion"><%- levelOne.attributes.category %></button>
+                <div class="panel">
+                <p>
                 <% levelOne.attributes.content.each(function(levelTwo) { %>
                     <% if (levelTwo.attributes.category) { %>
                         <h3><%- levelTwo.attributes.category %></h3>
@@ -360,6 +361,8 @@
                         </div>
                     <% }); %>
                 <% }); %>
+                </p>
+                </div>
             <% }); %>
         </div>
     </script>
