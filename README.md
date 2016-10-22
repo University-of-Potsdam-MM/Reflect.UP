@@ -1,4 +1,4 @@
-Reflect.UP - Reflektions-App der Universität Potsdam
+Reflect.UP - Reflexions-App der Universität Potsdam
 ============
 
 Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situationen-lernen
