@@ -16,7 +16,9 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click' : 'toggle'
+        'click #hideButton':'hideButtonFunction',
+        'click' : 'toggle',
+        'webkitAnimationEnd' : 'hideAnimationEnded',
     },
 
     toggle: function(){
@@ -26,7 +28,35 @@ var AppointmentListItemView = Backbone.View.extend({
     render : function() {
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
+    },
+
+    hideButtonFunction : function(ev) {
+        //add class that triggers an animation on the appointment
+        this.$el.addClass('removed');
+    },
+
+    hideAnimationEnded : function() {
+        // this block of code is executed only on the first phase of the animation of the
+        // appointment-model
+        if (!this.$el.hasClass('reinserted')){
+            var currTitle= this.model.get('title');
+            var Config= new Configuration({id:1});
+            Config.fetch();            
+            var apListSTR = Config.get('appointmentList');
+            var apListOBJ = window.JSON.parse(apListSTR);
+            apListOBJ.removedTitles.push(currTitle);
+            apListSTR = window.JSON.stringify(apListOBJ);
+            // save new appointmentList string to device
+            Config.set('appointmentList',apListSTR);
+            Config.save();
+            this.$el.addClass('darkClass');
+            this.$el.find('.hideAppointmentButton').hide();
+            // gets back to screen with a lighter tone and hide button deactivated
+            this.$el.addClass('reinserted');
+            this.$el.removeClass('removed');
+        }
     }
+
 });
 
 
@@ -38,7 +68,7 @@ var AppointmentListView = Backbone.View.extend({
     showButton : true,
     limit : -1,
     events: {
-        'error': 'onError',
+        'error': 'onError'
     },
 
     initialize : function(options){
@@ -59,10 +89,9 @@ var AppointmentListView = Backbone.View.extend({
 
         if(!this.showButton)
             this.$("#more-appointments-button").hide();
-
         if(this.model.length){
             this.model.each( function(appointment){
-                this.addOne(appointment);
+            this.addOne(appointment);
             }, this)
         }
 
@@ -73,16 +102,36 @@ var AppointmentListView = Backbone.View.extend({
         if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemView({model : appointment, fullView: true});
+                var apListSTR = Config.get('appointmentList');
+                var apListOBJ = window.JSON.parse(apListSTR);
+                var numAppointments = apListOBJ.removedTitles.length;
+                var deleted = 0;
+                for (var k=0; k<numAppointments; k++){
+                    var appointmentModelsTitle = apListOBJ.removedTitles[k];
+                    if(appointmentModelsTitle == appointment.get('title')){
+                        deleted = 1;
+                        break;
+                    }
+                }
+                if(deleted == 1){
+                    view.$el.addClass('darkClass');
+                    view.$el.find('.hideAppointmentButton').hide();
+                }
+                this.$("#appointments").append(view.el);
+
         	}else{
-        		var view = new AppointmentListItemView({model : appointment, fullView: false});
+                if(appointment.get('visible') == true){
+                    var view = new AppointmentListItemView({model : appointment, fullView: false});
+                    this.$("#appointments").append(view.el);
+                }
         	}
-            this.$("#appointments").append(view.el);
         }
     },
 
     onError: function(collection, resp, options){
         //alert("Error: " + resp);
     }
+
 });
 
 
@@ -151,7 +200,6 @@ var QuestionContainerView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list-item').html()),
 
     render: function(){
-        //console.log('render', this.model);
         // check for existing questions in Container
         if (!this.model.current())
             return this;

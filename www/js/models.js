@@ -5,11 +5,12 @@ var app = (app || {} );
  *      Model - Configuration
  */
 var Configuration = Backbone.Model.extend({
-
-    localStorage: new Backbone.LocalStorage("UPReflection"),
-
+    // necessary local storage declaration to save a single model; in this case
+    // the Configuration model that holds the list of removed appointment titles.
+    localStorage : new Store("Configuration"),
     defaults:{
         accessToken: '',
+        appointmentList: '{"removedTitles" : []}',
     }
 });
 
@@ -18,10 +19,13 @@ var Configuration = Backbone.Model.extend({
  *      Model - Appointment
  */
 var Appointment = Backbone.Model.extend({
+    // the visible attribute of this model defines if the appointment is visible from
+    // the start page of the application.
 	defaults:{
 		title : 'Appointment Title',
         begin : new Date(),
         end : new Date(),
+        visible: true,
 	}
 });
 
@@ -289,14 +293,33 @@ var AppointmentCollection = Backbone.Collection.extend({
                 var result = new Array();
 
                 _.each(data.events, function(item){
+                    // at this point, there must be a checking to see wether the model to be added exists
+                    // in the list of removed appointmets; in case it is, the visible attribute is set to
+                    // false, and the appointment is not shown within the start page
+                    var apListSTR = Config.get('appointmentList');
+                    var apListOBJ = window.JSON.parse(apListSTR);
+                    var numAppointments = apListOBJ.removedTitles.length;
+                    var deleted = 0;
+                    for (var k=0; k<numAppointments; k++){
+                        var appointmentModelsTitle = apListOBJ.removedTitles[k];
+                        if(appointmentModelsTitle == item.name){
+                            deleted = 1;
+                            break;
+                        }
+                    }
+                    if(deleted != 1){
+                        visible = true;
+                    }else{
+                        visible = false;
+                    }
                     result.push(new Appointment({
                         title: item.name,
                         description: item.description,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
-                    }))
+                        visible : visible,
+                    }));
                 });
-
                 options.success(result);
         });
 

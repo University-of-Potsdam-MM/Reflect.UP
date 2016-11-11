@@ -156,3 +156,74 @@ button.accordion:after {
 button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+
+/* removed class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.removed {
+	-webkit-animation: disappear 0.6s;
+	-webkit-animation-fill-mode: forwards;
+	animation: disappear 0.6s;
+	animation-fill-mode: forwards;
+}
+
+-webkit-keyframes disappear {
+	100% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+}
+
+@keyframes disappear{
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX(500%);
+	}
+}
+
+/* reinserted class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.reinserted {
+	-webkit-animation: reappear 0.8s;
+	-webkit-animation-fill-mode: forwards;
+	animation: reappear 0.8s;
+	animation-fill-mode: forwards;
+}
+
+-webkit-keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX (0%);
+	}
+}
+
+@keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+	}
+}
+
+/* This class is used to give appointments a greyed-out look when they are marked as not important*/
+/* It basically puts a "white cloth" with low opacity over the html that has it*/
+.darkClass{
+	background-color: white;
+	opacity: 0.5;
+	z-index: 20;
+}
+
+/* This very simple class defines the position of the hide-button for appointments, relative to */
+/*		the outermost div that defines the DOM element fot appointments*/
+.hideAppointmentButton{
+	position: relative;
+	top: 10%;
+	left: 5%;
+}
+
