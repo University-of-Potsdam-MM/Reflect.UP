@@ -186,6 +186,9 @@
         <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
         <%= model.description %></div>
         <div class="clear"></div>
+         <% if (fullView == true) { %>
+             <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
+         <% } %>
     </script>
 
     <script type="text/template" id="template-question-collection-list-item">

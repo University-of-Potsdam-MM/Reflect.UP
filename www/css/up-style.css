@@ -156,3 +156,12 @@ button.accordion:after {
 button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+
+/* Simple class to give the correct format to the notification button (which is an empty bell)*/
+.notifyAppointmentButton{
+	position: relative;
+	top: 15%;
+	left: 5%;
+}
+
+

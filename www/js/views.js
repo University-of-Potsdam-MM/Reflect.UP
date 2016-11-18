@@ -16,7 +16,8 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click' : 'toggle'
+        'click' : 'toggle',
+        'click #notificationButton':'notifyFunction',
     },
 
     toggle: function(){
@@ -26,7 +27,32 @@ var AppointmentListItemView = Backbone.View.extend({
     render : function() {
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
+    },
+
+    notifyFunction : function(){
+        console.log("notification button pressed!");
+
+        cordova.plugins.notification.local.hasPermission(function (granted) {
+            console.log("permissions for notifications are granted");
+        });
+        /*
+        The following code creates a notification with a delay of five seconds and a default text.
+        */
+        //TODO: set the message of the notification to be the title of the appointment
+        /*
+            var now = new Date().getTime(),
+            var _5_sec_from_now = new Date(now + 5*1000);
+            cordova.plugins.notification.local.schedule({
+                text: "Delayed Notification",
+                at: _5_sec_from_now,
+                led: "FF0000",
+                sound: null
+            });
+
+        */
+        console.log("notification block passed!");
     }
+
 });
 
 
