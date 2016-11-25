@@ -16,8 +16,7 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click' : 'toggle',
-        'click #notificationButton':'notifyFunction',
+        'click' : 'toggle'
     },
 
     toggle: function(){
@@ -27,30 +26,6 @@ var AppointmentListItemView = Backbone.View.extend({
     render : function() {
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
-    },
-
-    notifyFunction : function(){
-        console.log("notification button pressed!");
-
-        cordova.plugins.notification.local.hasPermission(function (granted) {
-            console.log("permissions for notifications are granted");
-        });
-        /*
-        The following code creates a notification with a delay of five seconds and a default text.
-        */
-        //TODO: set the message of the notification to be the title of the appointment
-        /*
-            var now = new Date().getTime(),
-            var _5_sec_from_now = new Date(now + 5*1000);
-            cordova.plugins.notification.local.schedule({
-                text: "Delayed Notification",
-                at: _5_sec_from_now,
-                led: "FF0000",
-                sound: null
-            });
-
-        */
-        console.log("notification block passed!");
     }
 
 });
@@ -247,7 +222,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', count);
+                radioInput.attr('value', choice);
 
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
@@ -276,7 +251,9 @@ var QuestionView = Backbone.View.extend({
             this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
             return false;
         }
+        // wert speicher
 
+        // this.collection.next muss die abhängigkeit prüfen, ob frage entsprechend beantwortet
         var q = this.collection.next();
 
         if (!q){
@@ -296,10 +273,8 @@ var QuestionView = Backbone.View.extend({
     },
 
     previousQuestion: function(el){
-        this.saveValues();
+        //this.saveValues();
         el.preventDefault();
-
-
         var q = this.collection.previous();
 
         if (!q){
@@ -319,7 +294,18 @@ var QuestionView = Backbone.View.extend({
 
     saveValues: function(){
         if (this.model.get('type') === "multichoice") {
-            this.model.set("answerText", this.$('#answer input[name=choice]:checked').val());
+            var recordedAnswer= this.$('#answer input[name=choice]:checked').val();
+            if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
+                return false;
+            }
+            this.model.set("answerText", this.$(recordedAnswer));
+            //make sure that values are saved on answersHash without trailing line breaks!
+            recordedAnswer= recordedAnswer.replace(/^\s+|\s+$/g, '');
+            // step by step set the new value for the hash that contains the recorded answers
+            //      for all the multiple choice questions in the feedback
+            var ansHash= this.collection.get("answersHash");
+            ansHash[this.model.get('id')] = recordedAnswer;
+            this.collection.set("answersHash",ansHash);
             return this.model.get("answerText");
         } else {
             this.model.set("answerText", this.$('#answer textarea').val());
