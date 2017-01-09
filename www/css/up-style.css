@@ -216,14 +216,10 @@ button.accordion.active:after {
 .darkClass{
 	background-color: white;
 	opacity: 0.5;
-	z-index: 20;
 }
 
-/* This very simple class defines the position of the hide-button for appointments, relative to */
-/*		the outermost div that defines the DOM element fot appointments*/
 .hideAppointmentButton{
-	position: relative;
-	top: 10%;
-	left: 5%;
+	display: inline-block;
+	vertical-align: middle;
+	width: 50px;
 }
-

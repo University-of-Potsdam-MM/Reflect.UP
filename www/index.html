@@ -161,6 +161,11 @@
     <script type="text/template" id="template-appointment-list-item">
         <div class="date-container" >
         <div class="data">
+        <% if (fullView == true) { %>
+            <div class="hideAppointmentButton">
+                <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+            </div>
+        <% } %>
         <div class="date" >
         <%- model.begin.getDate() %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>
         <% if (model.begin.getDate() != model.end.getDate()){ %>
@@ -186,9 +191,6 @@
         <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
         <%= model.description %></div>
         <div class="clear"></div>
-        <% if (fullView == true) { %>
-            <a id="hideButton" class="hideAppointmentButton"><i class="fa fa-eye-slash icon-large" aria-hidden="true"></i></a>
-        <% } %>
     </script>
 
     <script type="text/template" id="template-question-collection-list-item">

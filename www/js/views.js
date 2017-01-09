@@ -16,9 +16,12 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click #hideButton':'hideButtonFunction',
+        'click .data':'hideButtonFunction',
         'click' : 'toggle',
-        'webkitAnimationEnd' : 'hideAnimationEnded',
+        'webkitAnimationEnd' : 'toggleAppointment',
+        'mozAnimationEnd' : 'toggleAppointment',
+        'MSAnimationEnd' : 'toggleAppointment',
+        'animationend' : 'toggleAppointment',
     },
 
     toggle: function(){
@@ -35,13 +38,14 @@ var AppointmentListItemView = Backbone.View.extend({
         this.$el.addClass('removed');
     },
 
-    hideAnimationEnded : function() {
+    toggleAppointment : function() {
         // this block of code is executed only on the first phase of the animation of the
         // appointment-model
+        // TODO: Fix toggleing of appointments
         if (!this.$el.hasClass('reinserted')){
             var currTitle= this.model.get('title');
             var Config= new Configuration({id:1});
-            Config.fetch();            
+            Config.fetch();
             var apListSTR = Config.get('appointmentList');
             var apListOBJ = window.JSON.parse(apListSTR);
             apListOBJ.removedTitles.push(currTitle);
@@ -50,13 +54,12 @@ var AppointmentListItemView = Backbone.View.extend({
             Config.set('appointmentList',apListSTR);
             Config.save();
             this.$el.addClass('darkClass');
-            this.$el.find('.hideAppointmentButton').hide();
+            //this.$el.find('.hideAppointmentButton').hide();
             // gets back to screen with a lighter tone and hide button deactivated
             this.$el.addClass('reinserted');
             this.$el.removeClass('removed');
         }
     }
-
 });
 
 
@@ -115,7 +118,6 @@ var AppointmentListView = Backbone.View.extend({
                 }
                 if(deleted == 1){
                     view.$el.addClass('darkClass');
-                    view.$el.find('.hideAppointmentButton').hide();
                 }
                 this.$("#appointments").append(view.el);
 
