@@ -16,6 +16,7 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
+        'click #notificationButton':'notifyButtonFunction',
         'click' : 'toggle'
     },
 
@@ -26,6 +27,40 @@ var AppointmentListItemView = Backbone.View.extend({
     render : function() {
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
+    },
+
+    notifyButtonFunction : function(ev) {
+        console.log("Notification button pressed!");
+        document.addEventListener('deviceready',function(){
+            console.log('cordova is fully loaded!');
+            cordova.plugins.notification.local.registerPermission(function(granted){
+                console.log("Permission for notifications has been granted: "+granted);
+            });
+            //schedule a delayed notification
+            var now= new Date().getTime();
+            var ten_secs_after= new Date(now + 10*1000);
+
+            cordova.plugins.notification.local.schedule({
+                id:1,
+                title: "Notification example",
+                text: "Ariseeeeee",
+                sound: null,
+                at: ten_secs_after
+            });
+
+            //this callback function serves for debugging
+            cordova.plugins.notification.local.on("schedule", function(notification) {
+                alert("scheduled notification with for appointment with title: " + notification.id);
+            });
+
+            //this callback function should define the alert mesage to the user
+            cordova.plugins.notification.local.on("trigger", function(notification) {
+                alert("triggered: " + notification.id);
+            });
+
+            console.log("notify block passed!");
+
+        });
     }
 
 });
