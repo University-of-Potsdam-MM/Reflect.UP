@@ -162,8 +162,12 @@
         <div class="date-container" >
         <div class="data">
         <% if (fullView == true) { %>
-            <div class="hideAppointmentButton">
+            <div id="hideAppointmentIcon" class="hideAppointmentButton">
+            <% if (model.visible == true) { %>
                 <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+            <% }else{ %>
+                <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+            <% } %>
             </div>
         <% } %>
         <div class="date" >

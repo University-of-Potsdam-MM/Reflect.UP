@@ -307,6 +307,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                             break;
                         }
                     }
+
                     if(deleted != 1){
                         visible = true;
                     }else{

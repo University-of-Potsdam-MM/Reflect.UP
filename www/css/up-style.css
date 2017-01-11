@@ -159,7 +159,7 @@ button.accordion.active:after {
 
 /* removed class defines a web-kit-animation for appointments, together with the following keyframes */
 /*		definitions */
-.removed {
+.out {
 	-webkit-animation: disappear 0.6s;
 	-webkit-animation-fill-mode: forwards;
 	animation: disappear 0.6s;
@@ -182,7 +182,7 @@ button.accordion.active:after {
 
 /* reinserted class defines a web-kit-animation for appointments, together with the following keyframes */
 /*		definitions */
-.reinserted {
+.in {
 	-webkit-animation: reappear 0.8s;
 	-webkit-animation-fill-mode: forwards;
 	animation: reappear 0.8s;

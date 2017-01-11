@@ -29,36 +29,61 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     render : function() {
+        if(this.model.get('visible') == 0){
+            this.$el.addClass('darkClass');
+        }
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
     },
 
     hideButtonFunction : function(ev) {
+        
+        // get appointment list and current clicked appointment
+        var currTitle= this.model.get('title');
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        var apListSTR = Config.get('appointmentList');
+        var apListOBJ = window.JSON.parse(apListSTR);
+
         //add class that triggers an animation on the appointment
-        this.$el.addClass('removed');
+        this.$el.addClass('out');
+        
+        if (this.$el.hasClass('darkClass')){
+            // remove appointment from appointment list
+            var index = _.indexOf(apListOBJ.removedTitles, currTitle);
+            console.log(apListOBJ.removedTitles, index);
+            apListOBJ.removedTitles.splice(index, 1);
+        }else{
+            // add appointment to appointment list
+            apListOBJ.removedTitles.push(currTitle);
+        }
+
+        apListSTR = window.JSON.stringify(apListOBJ);
+        // save new appointmentList string to device
+        Config.set('appointmentList',apListSTR);
+        Config.save();
+
     },
 
     toggleAppointment : function() {
         // this block of code is executed only on the first phase of the animation of the
         // appointment-model
-        // TODO: Fix toggleing of appointments
-        if (!this.$el.hasClass('reinserted')){
-            var currTitle= this.model.get('title');
-            var Config= new Configuration({id:1});
-            Config.fetch();
-            var apListSTR = Config.get('appointmentList');
-            var apListOBJ = window.JSON.parse(apListSTR);
-            apListOBJ.removedTitles.push(currTitle);
-            apListSTR = window.JSON.stringify(apListOBJ);
-            // save new appointmentList string to device
-            Config.set('appointmentList',apListSTR);
-            Config.save();
-            this.$el.addClass('darkClass');
-            //this.$el.find('.hideAppointmentButton').hide();
-            // gets back to screen with a lighter tone and hide button deactivated
-            this.$el.addClass('reinserted');
-            this.$el.removeClass('removed');
+
+        if(this.$el.hasClass('in')){
+            this.$el.removeClass('in');
         }
+
+        if(this.$el.hasClass('out')){
+            this.$el.removeClass('out');
+            this.$el.addClass('in');
+            this.$el.toggleClass('darkClass');
+            if(this.$el.hasClass('darkClass')){
+                this.model.set('visible', false);
+            }else{
+                this.model.set('visible', true);
+            }
+        }
+
     }
 });
 
@@ -105,20 +130,7 @@ var AppointmentListView = Backbone.View.extend({
         if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemView({model : appointment, fullView: true});
-                var apListSTR = Config.get('appointmentList');
-                var apListOBJ = window.JSON.parse(apListSTR);
-                var numAppointments = apListOBJ.removedTitles.length;
-                var deleted = 0;
-                for (var k=0; k<numAppointments; k++){
-                    var appointmentModelsTitle = apListOBJ.removedTitles[k];
-                    if(appointmentModelsTitle == appointment.get('title')){
-                        deleted = 1;
-                        break;
-                    }
-                }
-                if(deleted == 1){
-                    view.$el.addClass('darkClass');
-                }
+             
                 this.$("#appointments").append(view.el);
 
         	}else{
