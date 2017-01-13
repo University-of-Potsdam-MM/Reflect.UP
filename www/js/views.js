@@ -30,39 +30,142 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     notifyButtonFunction : function(ev) {
-        console.log("Notification button pressed!");
+		var appointmentTitle= this.model.get('title');
+		var beginDate= new Date(this.model.get('begin'));
+		var endDate= new Date(this.model.get('end'));
+		// get the notification counter for this user, stored in the Configuration Model
+		var Config= new Configuration({id:1});
+		Config.fetch();
+		var notiCounter= Config.get('notificationsCounter');
+		var notiListSTR= Config.get('notificationsList');
+		var notiListOBJ= window.JSON.parse(notiListSTR);
+		// determine how much time is left before the start of the appointment
+		//			i.e : beginTime - currentTime = amount of milliseconds to begin
+		var currTime= new Date();
+		var hoursToBegin= (beginDate - currTime)/3600000;
         document.addEventListener('deviceready',function(){
-            console.log('cordova is fully loaded!');
-            cordova.plugins.notification.local.registerPermission(function(granted){
-                console.log("Permission for notifications has been granted: "+granted);
-            });
-            //schedule a delayed notification
-            var now= new Date().getTime();
-            var ten_secs_after= new Date(now + 10*1000);
-
-            cordova.plugins.notification.local.schedule({
-                id:1,
-                title: "Notification example",
-                text: "Ariseeeeee",
-                sound: null,
-                at: ten_secs_after
-            });
-
-            //this callback function serves for debugging
-            cordova.plugins.notification.local.on("schedule", function(notification) {
-                alert("scheduled notification with for appointment with title: " + notification.id);
-            });
-
-            //this callback function should define the alert mesage to the user
-            cordova.plugins.notification.local.on("trigger", function(notification) {
-                alert("triggered: " + notification.id);
-            });
-
-            console.log("notify block passed!");
-
-        });
+			// manage three different cases depending on the amount of time before the beginning of the appointment
+			//		case 1: more than 7 days => the user gets a notification one week before and the day before
+			//		case 2: more than 1 day but less than 7 days => the user gets a notification 24 hours before the appointment
+			//		case 3: less than 24 hours but more than 3 hours => the user gets a notification three hours before the appointment
+			if(hoursToBegin > 168){
+				// form notification message to get a reminder one week before
+				var notificationMessage= "Du hast einen Termin am: "+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}
+				else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+				// calculate the value for the time one week before the appointment
+				var notificationTime= beginDate - 604800000;
+				// only for debugging: a couple of delayed times in 30 and 50 seconds
+				var _15_sec_after= new Date(currTime.getTime() + 15*1000);
+				var _30_sec_after= new Date(currTime.getTime() + 30*1000);
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: _15_sec_after
+				});
+				// form notification message to get a reminder the day before				
+				notificationMessage = "Du hast einen Termin morgen";
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}
+				else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+				// calculate the value for the time one day before the appointment
+				notificationTime = beginDate - 86400000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: _30_sec_after
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter',notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR= window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList',notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+			if(hoursToBegin < 168 && hoursToBegin > 24){
+				// form notification message to get a reminder the day before				
+				var notificationMessage = "Du hast einen Termin morgen";
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}
+				else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+				// calculate the value for the time one day before the appointment
+				var notificationTime = beginDate - 86400000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter',notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR= window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList',notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+			if(hoursToBegin < 24 && hoursToBegin > 3){
+				// form notification message to get a reminder three hours before the appointment
+				var notificationMessage = "Termin"
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage= notificationMessage.concat(" um: "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr nicht vergessen!");
+				}
+				else{
+					notificationMessage= notificationMessage.concat(" nicht vergessen!");
+				}
+				// calculate the value for the time three hours before the appointment
+				var notificationTime = beginDate - 10800000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter',notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR= window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList',notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+			// NOTE: it is up to the user to delete the notifications from the notification center once they have been triggered
+         }); // on device ready
+		 // change parameter toNotify in model to set the Bell icon
+		this.model.set('toNotify',true);
     }
-
 });
 
 

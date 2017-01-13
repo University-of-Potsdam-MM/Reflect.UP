@@ -160,8 +160,8 @@ button.accordion.active:after {
 /* Simple class to give the correct format to the notification button (which is an empty bell)*/
 .notifyAppointmentButton{
 	position: relative;
-	top: 15%;
-	left: 5%;
+	top: 45%;
+	left: 80%;
 }
 
 

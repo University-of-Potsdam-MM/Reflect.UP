@@ -10,6 +10,8 @@ var Configuration = Backbone.Model.extend({
 
     defaults:{
         accessToken: '',
+		notificationsCounter: 0,
+		notificationsList: '{"titlesToNotify" : []}',
     }
 });
 
@@ -22,6 +24,7 @@ var Appointment = Backbone.Model.extend({
 		title : 'Appointment Title',
         begin : new Date(),
         end : new Date(),
+		toNotify: false,
 	}
 });
 
@@ -315,14 +318,33 @@ var AppointmentCollection = Backbone.Collection.extend({
                 var result = new Array();
 
                 _.each(data.events, function(item){
+					//check if the model to be added is listed in the list of appointments to notify,
+					//in that case, the model's attribute toNotify is set to be true
+					var notifyListSTR= Config.get('notificationsList');
+					var notifyListOBJ= window.JSON.parse(notifyListSTR);
+					var numElements= notifyListOBJ.titlesToNotify.length;
+					var notifyable= 0;
+					for(var s=0; s<numElements; s++){
+						var appointmentsTitle= notifyListOBJ.titlesToNotify[s];
+						if(appointmentsTitle == item.name){
+							notifyable= 1;
+							break;
+						}
+					}
+					if(notifyable == 1){
+						toNotify= true;
+					}
+					else{
+						toNotify= false;
+					}
                     result.push(new Appointment({
                         title: item.name,
                         description: item.description,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
+						toNotify: toNotify,
                     }))
                 });
-
                 options.success(result);
         });
 

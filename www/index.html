@@ -187,7 +187,11 @@
         <%= model.description %></div>
         <div class="clear"></div>
          <% if (fullView == true) { %>
-             <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
+			<% if (model.toNotify == false) { %>
+				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
+			<% } else { %>
+				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+			<% } %>
          <% } %>
     </script>
 
