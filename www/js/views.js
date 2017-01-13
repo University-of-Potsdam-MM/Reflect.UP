@@ -16,7 +16,12 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click' : 'toggle'
+        'click .data':'hideButtonFunction',
+        'click' : 'toggle',
+        'webkitAnimationEnd' : 'toggleAppointment',
+        'mozAnimationEnd' : 'toggleAppointment',
+        'MSAnimationEnd' : 'toggleAppointment',
+        'animationend' : 'toggleAppointment',
     },
 
     toggle: function(){
@@ -24,8 +29,60 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     render : function() {
+        if(this.model.get('visible') == 0){
+            this.$el.addClass('darkClass');
+        }
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
+    },
+
+    hideButtonFunction : function(ev) {
+
+        // get appointment list and current clicked appointment
+        var currTitle= this.model.get('title');
+
+        Config.fetch();
+        var apListSTR = Config.get('appointmentList');
+        var apListOBJ = window.JSON.parse(apListSTR);
+
+        //add class that triggers an animation on the appointment
+        this.$el.addClass('out');
+
+        if (this.$el.hasClass('darkClass')){
+            // remove appointment from appointment list
+            var index = _.indexOf(apListOBJ.removedTitles, currTitle);
+            apListOBJ.removedTitles.splice(index, 1);
+        }else{
+            // add appointment to appointment list
+            apListOBJ.removedTitles.push(currTitle);
+        }
+
+        apListSTR = window.JSON.stringify(apListOBJ);
+        // save new appointmentList string to device
+        Config.set('appointmentList',apListSTR);
+        Config.save();
+
+    },
+
+    toggleAppointment : function() {
+        // this block of code is executed only on the first phase of the animation of the
+        // appointment-model
+
+        if(this.$el.hasClass('in')){
+            this.$el.removeClass('in');
+        }
+
+        if(this.$el.hasClass('out')){
+            this.$el.removeClass('out');
+            this.$el.addClass('in');
+            this.$el.toggleClass('darkClass');
+            if(this.$el.hasClass('darkClass')){
+                this.model.set('visible', false);
+            }else{
+                this.model.set('visible', true);
+            }
+        }
+
     }
 });
 
@@ -38,7 +95,7 @@ var AppointmentListView = Backbone.View.extend({
     showButton : true,
     limit : -1,
     events: {
-        'error': 'onError',
+        'error': 'onError'
     },
 
     initialize : function(options){
@@ -59,10 +116,9 @@ var AppointmentListView = Backbone.View.extend({
 
         if(!this.showButton)
             this.$("#more-appointments-button").hide();
-
         if(this.model.length){
             this.model.each( function(appointment){
-                this.addOne(appointment);
+            this.addOne(appointment);
             }, this)
         }
 
@@ -73,16 +129,22 @@ var AppointmentListView = Backbone.View.extend({
         if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemView({model : appointment, fullView: true});
+
+                this.$("#appointments").append(view.el);
+
         	}else{
-        		var view = new AppointmentListItemView({model : appointment, fullView: false});
+                if(appointment.get('visible') == true){
+                    var view = new AppointmentListItemView({model : appointment, fullView: false});
+                    this.$("#appointments").append(view.el);
+                }
         	}
-            this.$("#appointments").append(view.el);
         }
     },
 
     onError: function(collection, resp, options){
         //alert("Error: " + resp);
     }
+
 });
 
 
@@ -151,7 +213,6 @@ var QuestionContainerView = Backbone.View.extend({
     template : _.template($('#template-question-collection-list-item').html()),
 
     render: function(){
-        //console.log('render', this.model);
         // check for existing questions in Container
         if (!this.model.current())
             return this;
