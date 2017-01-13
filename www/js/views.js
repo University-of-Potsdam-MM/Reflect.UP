@@ -37,21 +37,20 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     hideButtonFunction : function(ev) {
-        
+
         // get appointment list and current clicked appointment
         var currTitle= this.model.get('title');
-        var Config= new Configuration({id:1});
+
         Config.fetch();
         var apListSTR = Config.get('appointmentList');
         var apListOBJ = window.JSON.parse(apListSTR);
 
         //add class that triggers an animation on the appointment
         this.$el.addClass('out');
-        
+
         if (this.$el.hasClass('darkClass')){
             // remove appointment from appointment list
             var index = _.indexOf(apListOBJ.removedTitles, currTitle);
-            console.log(apListOBJ.removedTitles, index);
             apListOBJ.removedTitles.splice(index, 1);
         }else{
             // add appointment to appointment list
@@ -130,7 +129,7 @@ var AppointmentListView = Backbone.View.extend({
         if (this.$("#appointments").children().length < this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemView({model : appointment, fullView: true});
-             
+
                 this.$("#appointments").append(view.el);
 
         	}else{
