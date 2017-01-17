@@ -60,14 +60,14 @@ var AppointmentListItemView = Backbone.View.extend({
 				// calculate the value for the time one week before the appointment
 				var notificationTime= beginDate - 604800000;
 				// only for debugging: a couple of delayed times in 30 and 50 seconds
-				var _15_sec_after= new Date(currTime.getTime() + 15*1000);
-				var _30_sec_after= new Date(currTime.getTime() + 30*1000);
+				//var _15_sec_after= new Date(currTime.getTime() + 15*1000);
+				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
 				notiCounter++;
 				cordova.plugins.notification.local.schedule({
 					id: notiCounter,
 					title: appointmentTitle,
 					text: notificationMessage,
-					at: _15_sec_after
+					at: notificationTime
 				});
 				// form notification message to get a reminder the day before				
 				notificationMessage = "Du hast einen Termin morgen";
@@ -84,7 +84,7 @@ var AppointmentListItemView = Backbone.View.extend({
 					id: notiCounter,
 					title: appointmentTitle,
 					text: notificationMessage,
-					at: _30_sec_after
+					at: notificationTime
 				});
 				//store the new value of the notification counter for this user
 				Config.set('notificationsCounter',notiCounter);
