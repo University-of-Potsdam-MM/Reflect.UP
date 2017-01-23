@@ -486,27 +486,29 @@ var HomeView = Backbone.View.extend({
     },
 
     initialize : function() {
-        this.model = Config;
+        this.model = new Configuration({id:1});;
         this.authorize();
     },
 
     authorize: function(){
         this.model.fetch();
-        var token = this.model.get("accessToken");
+        var token = this.model.get("moodleAccessToken");
+		// get the parameters: service-end-point and access token
+		//	from config model
         var that = this;
         // submit test call to check whether token is still valid
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: that.model.get('moodleServiceEndpoint'),
             data: {
-                wstoken: that.model.get("accessToken"),
+                wstoken: that.model.get("moodleAccessToken"),
                 wsfunction: "local_reflect_get_calendar_entries",
                 moodlewsrestformat: "json"
             },
-            headers: accessToken
+            headers: that.model.get("accessToken")
         }).done(function(data){
             //console.log(data);
             if ((data.errorcode == 'invalidtoken') || token == ""){
-                Backbone.history.navigate('config', { trigger : true });
+                Backbone.history.navigate('initialSetup', { trigger : true });
             }
         }).error(function(xhr, status, error){
             console.log(xhr.responseText);
@@ -538,12 +540,61 @@ var HomeView = Backbone.View.extend({
     }
 });
 
+	
+/**
+ *		View - InitialSetupView			
+ */
+var InitialSetupView = Backbone.View.extend({
+	el: '#app',
+	template: _.template($('#template-initial-setup').html()),
+	events: {
+		'click .courseTab' : 'writeConfigAttributes',
+	},
+	model: Configuration,
+	
+    initialize: function(){
+		this.model= new Configuration({id:1});
+		this.collection = new TabCollection();
+		this.collection.fetch();
+		this.listenTo(this.collection, "sync", this.render);
+		
+            this.listenTo(this.collection, "error", this.fetchError);
+    },
+
+    render: function(){
+		//console.log(this.collection);
+        this.$el.html(this.template({tabs: this.collection}));
+        return this;
+    },
+	
+	fetchError: function(err, param) {
+            console.log('Error loading Opening-JSON file', err, param);
+        },
+	
+	writeConfigAttributes: function(ev){
+		this.model.fetch();
+		var element = $(ev.currentTarget);
+		var ID= element.attr('id');
+		//retrieve the parameters to be stored in Config model
+		var paramsOBJ= this.collection.get(ID);
+		this.model.set('accessToken',paramsOBJ.get('accessToken'));
+		this.model.set('moodleServiceEndpoint',paramsOBJ.get('moodleServiceEndpoint'));
+		this.model.set('moodleLoginEndpoint',paramsOBJ.get('moodleLoginEndpoint'));
+		// save model to local storage
+		this.model.save();
+		// navigate to the normal login page
+		Backbone.history.navigate('config', { trigger : true });
+	}
+});
+	
+	
 
 /**
  *      View - ConfigView
  */
 var ConfigView = Backbone.View.extend({
     el: '#app',
+
     template: _.template($('#template-config-screen').html()),
     events: {
         'submit #loginform': 'submit'
@@ -552,7 +603,7 @@ var ConfigView = Backbone.View.extend({
     model: Configuration,
 
     initialize: function(){
-        this.model = Config;
+        this.model = new Configuration({id:1});
         this.listenTo(this, 'errorHandler', this.errorHandler);
         this.listenTo(this, 'enrolUser', this.enrolUser);
         this.render();
@@ -562,6 +613,7 @@ var ConfigView = Backbone.View.extend({
      *  TODO: Error Handling
      */
     submit: function(ev){
+		this.model.fetch();
         ev.preventDefault();
         var username = $('#username').val();
         var password = $('#password').val();
@@ -571,20 +623,21 @@ var ConfigView = Backbone.View.extend({
         this.$(".loginrunning").show();
 
         var that = this;
+		//console.log('Login - token stored in local memory within Config model: '+window.JSON.stringify(this.model.get("accessToken")));
         $.ajax({
-            url: moodleLoginEndpoint,
+            url: that.model.get("moodleLoginEndpoint"),
             data: {
                 username: username,
                 password: password,
                 service: 'reflect'
             },
-            headers: accessToken
+            headers: that.model.get("accessToken")
         }).done(function(data){
             console.log(data);
             if (data.error){
                 that.trigger('errorHandler');
             }else{
-                that.model.set("accessToken", data.token)
+                that.model.set("moodleAccessToken", data.token)
                 that.model.save();
                 that.trigger('enrolUser');
             }
@@ -598,15 +651,16 @@ var ConfigView = Backbone.View.extend({
     },
 
     enrolUser: function(){
+		this.model.fetch();
         var that = this;
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: that.model.get('moodleServiceEndpoint'),
             data: {
                 wstoken: that.model.get("accessToken"),
                 wsfunction: "local_reflect_enrol_self",
                 moodlewsrestformat: "json"
             },
-            headers: accessToken
+            headers: that.model.get("accessToken")
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');
@@ -631,6 +685,7 @@ var ConfigView = Backbone.View.extend({
     },
 
     render: function(){
+		//call tab view
         this.$el.html(this.template({title: 'Reflect.UP - Anmeldung'}));
         return this;
     }
@@ -690,14 +745,14 @@ var FeedbackView = Backbone.View.extend({
         var feedbacktext = $('#feedbacktext').val();
         var that = this;
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: that.model.get('moodleServiceEndpoint'),
             data: {
                 wstoken: that.model.get("accessToken"),
                 wsfunction: "local_reflect_post_feedback",
                 moodlewsrestformat: "json",
                 feedback: feedbacktext
             },
-            headers: accessToken
+            headers: that.model.get("accessToken")
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');
@@ -843,15 +898,15 @@ var LogoutView = Backbone.View.extend({
     el: '#app',
 
     initialize: function() {
-        Config.destroy({
+		this.model= new Configuration({id:1});
+        this.model.destroy({
             success: this.reroute,
             error: this.reroute
         });
     },
 
     reroute: function() {
-        Config.set("accessToken", "");
-        Backbone.history.navigate('', {trigger: true});
+        Backbone.history.navigate('initialSetup', {trigger: true});
     }
 });
 
@@ -863,6 +918,7 @@ var Router = Backbone.Router.extend({
     model : Configuration,
     routes : {
         '' : 'home',
+		'initialSetup' : 'initialSetup',
         'config': 'config',
         'appointments' : 'appointments',
         'questions': 'questions',
@@ -877,9 +933,9 @@ var Router = Backbone.Router.extend({
 
     switchView : function(view){
         // check authorization if not valid dont show sidepanel
-        this.model = Config;
+        this.model = new Configuration({id:1});
         this.model.fetch();
-        var token = this.model.get("accessToken");
+        var token = this.model.get("moodleAccessToken");
         if (token == ""){
             if(document.getElementById("panel")){
                 document.getElementById("panel").style.display = "none";
@@ -907,6 +963,10 @@ var Router = Backbone.Router.extend({
     home : function(){
         this.switchView(new HomeView());
     },
+	
+	initialSetup : function(){
+		this.switchView(new InitialSetupView);
+	},
 
     config: function(){
         this.switchView(new ConfigView());

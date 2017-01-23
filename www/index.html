@@ -107,6 +107,26 @@
             <a class="footerlink">Impressum</a>
         </div>
     </script>
+	
+	<script type= "text/template" id="template-initial-setup">
+            <p class="welcome">
+                <em style="font-style:normal;">Da gibt es vier verschiedene Kurse zum Wahlen:</em>
+				<br />
+            </p>
+			<div class= "flex-grid">
+				<% _.each(tabs.models, function(tab){ %>
+					<div id="<%= tab.get('id')%>" class="grid-item courseTab">
+						<p><%= tab.get('title')%></p>
+						<br>
+						<p><%= tab.get('description')%></p>
+					</div>
+				<% }); %>
+			</div>
+			<div class="impressum-footer">
+				<a class="footerlink">Uni Potsdam</a>
+			</div>
+	</script>
+	
 
     <!--
         Template:       Question Screen
@@ -372,8 +392,6 @@
             <% }); %>
         </div>
     </script>
-
-    <script type="text/javascript" src="js/config.js"></script>
 
     <script type="text/javascript" src="js/lib/underscore.js"></script>
     <script type="text/javascript" src="js/lib/backbone.js"></script>
