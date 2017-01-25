@@ -161,6 +161,15 @@
     <script type="text/template" id="template-appointment-list-item">
         <div class="date-container" >
         <div class="data">
+        <% if (fullView == true) { %>
+            <div id="hideAppointmentIcon" class="hideAppointmentButton">
+            <% if (model.visible == true) { %>
+                <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+            <% }else{ %>
+                <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+            <% } %>
+            </div>
+        <% } %>
         <div class="date" >
         <%- model.begin.getDate() %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>
         <% if (model.begin.getDate() != model.end.getDate()){ %>
@@ -187,9 +196,9 @@
         <%= model.description %></div>
         <div class="clear"></div>
          <% if (fullView == true) { %>
-			<% if (model.toNotify == false) { %>
+			<% if (model.toNotify == false && model.visible == true) { %>
 				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
-			<% } else { %>
+			<% } else if(model.toNotify == true){ %>
 				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
 			<% } %>
          <% } %>
