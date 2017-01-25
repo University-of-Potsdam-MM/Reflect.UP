@@ -17,7 +17,12 @@ var AppointmentListItemView = Backbone.View.extend({
 
     events: {
         'click #notificationButton':'notifyButtonFunction',
-        'click' : 'toggle'
+        'click' : 'toggle',
+        'click .data':'hideButtonFunction',
+        'webkitAnimationEnd' : 'toggleAppointment',
+        'mozAnimationEnd' : 'toggleAppointment',
+        'MSAnimationEnd' : 'toggleAppointment',
+        'animationend' : 'toggleAppointment',
     },
 
     toggle: function(){
@@ -25,9 +30,42 @@ var AppointmentListItemView = Backbone.View.extend({
     },
 
     render : function() {
+        if(this.model.get('visible') == 0){
+            this.$el.addClass('darkClass');
+        }
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
     },
+	
+	scheduleNotification : function(counter,appointmentTitle,notificationMessage,notificationTime,saveCase){
+		cordova.plugins.notification.local.schedule({
+			id: counter,
+			title: appointmentTitle,
+			text: notificationMessage,
+			at: notificationTime
+		});
+		if(saveCase == 1){
+			var Config= new Configuration({id:1});
+			Config.fetch();
+			var notiListSTR= Config.get('notificationsList');
+			var notiListOBJ= window.JSON.parse(notiListSTR);
+			//store the new value of the notification counter for this user
+			Config.set('notificationsCounter', counter);
+			notiListOBJ.titlesToNotify.push(appointmentTitle);
+			notiListSTR = window.JSON.stringify(notiListOBJ);
+			Config.set('notificationsList', notiListSTR);
+			Config.save();
+		}
+	},
+	
+	displayAlert : function(){
+		navigator.notification.alert(
+			'Du wirst eine Benachrichtigung bekommen.',  // message
+			null,         // callback
+			'',            // title
+			'OK'            // buttonName
+		);
+	},
 
     notifyButtonFunction : function(ev) {
 		var appointmentTitle= this.model.get('title');
@@ -37,12 +75,11 @@ var AppointmentListItemView = Backbone.View.extend({
 		var Config= new Configuration({id:1});
 		Config.fetch();
 		var notiCounter= Config.get('notificationsCounter');
-		var notiListSTR= Config.get('notificationsList');
-		var notiListOBJ= window.JSON.parse(notiListSTR);
 		// determine how much time is left before the start of the appointment
 		//			i.e : beginTime - currentTime = amount of milliseconds to begin
 		var currTime= new Date();
-		var hoursToBegin= (beginDate - currTime)/3600000;
+		var hoursToBegin= (beginDate - currTime) / 3600000;
+		var self= this;
         document.addEventListener('deviceready',function(){
 			// manage three different cases depending on the amount of time before the beginning of the appointment
 			//		case 1: more than 7 days => the user gets a notification one week before and the day before
@@ -50,121 +87,113 @@ var AppointmentListItemView = Backbone.View.extend({
 			//		case 3: less than 24 hours but more than 3 hours => the user gets a notification three hours before the appointment
 			if(hoursToBegin > 168){
 				// form notification message to get a reminder one week before
-				var notificationMessage= "Du hast einen Termin am: "+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
+				var notificationMessage = "Du hast einen Termin am: "+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
-				}
-				else{
+				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one week before the appointment
 				var notificationTime= beginDate - 604800000;
 				// only for debugging: a couple of delayed times in 30 and 50 seconds
-				var _15_sec_after= new Date(currTime.getTime() + 15*1000);
-				var _30_sec_after= new Date(currTime.getTime() + 30*1000);
+				//var _15_sec_after= new Date(currTime.getTime() + 15*1000);
+				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
 				notiCounter++;
-				cordova.plugins.notification.local.schedule({
-					id: notiCounter,
-					title: appointmentTitle,
-					text: notificationMessage,
-					at: _15_sec_after
-				});
+				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,0);
 				// form notification message to get a reminder the day before				
-				notificationMessage = "Du hast einen Termin morgen";
+				notificationMessage = "Du hast morgen einen Termin";
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
-				}
-				else{
+				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one day before the appointment
 				notificationTime = beginDate - 86400000;
 				notiCounter++;
-				cordova.plugins.notification.local.schedule({
-					id: notiCounter,
-					title: appointmentTitle,
-					text: notificationMessage,
-					at: _30_sec_after
-				});
-				//store the new value of the notification counter for this user
-				Config.set('notificationsCounter',notiCounter);
-				notiListOBJ.titlesToNotify.push(appointmentTitle);
-				notiListSTR= window.JSON.stringify(notiListOBJ);
-				Config.set('notificationsList',notiListSTR);
-				Config.save();
-				navigator.notification.alert(
-					'Du wirst eine Benachrichtigung bekommen.',  // message
-					null,         // callback
-					'',            // title
-					'OK'                  // buttonName
-				);
+				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
+				self.displayAlert();
 			}
 			if(hoursToBegin < 168 && hoursToBegin > 24){
 				// form notification message to get a reminder the day before				
-				var notificationMessage = "Du hast einen Termin morgen";
+				var notificationMessage = "Du hast morgen einen Termin";
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
-				}
-				else{
+				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one day before the appointment
 				var notificationTime = beginDate - 86400000;
 				notiCounter++;
-				cordova.plugins.notification.local.schedule({
-					id: notiCounter,
-					title: appointmentTitle,
-					text: notificationMessage,
-					at: notificationTime
-				});
-				//store the new value of the notification counter for this user
-				Config.set('notificationsCounter',notiCounter);
-				notiListOBJ.titlesToNotify.push(appointmentTitle);
-				notiListSTR= window.JSON.stringify(notiListOBJ);
-				Config.set('notificationsList',notiListSTR);
-				Config.save();
-				navigator.notification.alert(
-					'Du wirst eine Benachrichtigung bekommen.',  // message
-					null,         // callback
-					'',            // title
-					'OK'                  // buttonName
-				);
+				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
+				displayAlert();
 			}
 			if(hoursToBegin < 24 && hoursToBegin > 3){
 				// form notification message to get a reminder three hours before the appointment
 				var notificationMessage = "Termin"
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage= notificationMessage.concat(" um: "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr nicht vergessen!");
-				}
-				else{
+				}else{
 					notificationMessage= notificationMessage.concat(" nicht vergessen!");
 				}
 				// calculate the value for the time three hours before the appointment
 				var notificationTime = beginDate - 10800000;
 				notiCounter++;
-				cordova.plugins.notification.local.schedule({
-					id: notiCounter,
-					title: appointmentTitle,
-					text: notificationMessage,
-					at: notificationTime
-				});
-				//store the new value of the notification counter for this user
-				Config.set('notificationsCounter',notiCounter);
-				notiListOBJ.titlesToNotify.push(appointmentTitle);
-				notiListSTR= window.JSON.stringify(notiListOBJ);
-				Config.set('notificationsList',notiListSTR);
-				Config.save();
-				navigator.notification.alert(
-					'Du wirst eine Benachrichtigung bekommen.',  // message
-					null,         // callback
-					'',            // title
-					'OK'                  // buttonName
-				);
+				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
+				displayAlert();
 			}
 			// NOTE: it is up to the user to delete the notifications from the notification center once they have been triggered
          }); // on device ready
 		 // change parameter toNotify in model to set the Bell icon
 		this.model.set('toNotify',true);
+    },
+	
+    hideButtonFunction : function(ev) {
+
+        // get appointment list and current clicked appointment
+        var currTitle= this.model.get('title');
+
+        Config.fetch();
+        var apListSTR = Config.get('appointmentList');
+        var apListOBJ = window.JSON.parse(apListSTR);
+
+        //add class that triggers an animation on the appointment
+        this.$el.addClass('out');
+
+        if (this.$el.hasClass('darkClass')){
+            // remove appointment from appointment list
+            var index = _.indexOf(apListOBJ.removedTitles, currTitle);
+            apListOBJ.removedTitles.splice(index, 1);
+        }else{
+            // add appointment to appointment list
+            apListOBJ.removedTitles.push(currTitle);
+        }
+
+        apListSTR = window.JSON.stringify(apListOBJ);
+        // save new appointmentList string to device
+        Config.set('appointmentList',apListSTR);
+        Config.save();
+
+    },
+
+    toggleAppointment : function() {
+        // this block of code is executed only on the first phase of the animation of the
+        // appointment-model
+
+        if(this.$el.hasClass('in')){
+            this.$el.removeClass('in');
+        }
+
+        if(this.$el.hasClass('out')){
+            this.$el.removeClass('out');
+            this.$el.addClass('in');
+            this.$el.toggleClass('darkClass');
+            if(this.$el.hasClass('darkClass')){
+                this.model.set('visible', false);
+            }else{
+                this.model.set('visible', true);
+            }
+        }
+
     }
 });
 
