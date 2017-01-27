@@ -16,7 +16,7 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click' : 'toggle'
+        'click' : 'toggle',
     },
 
     toggle: function(){
@@ -26,7 +26,9 @@ var AppointmentListItemView = Backbone.View.extend({
     render : function() {
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
-    }
+    },
+
+
 });
 
 
@@ -207,7 +209,8 @@ var QuestionView = Backbone.View.extend({
                 nextId: nextId,
                 number: this.model.get('number'),
                 total: this.model.get('total'),
-                containerId: this.collection.get('id')
+                containerId: this.collection.get('id'),
+                lastQuestion: 0,
             })
         );
         if (this.model.get('type') === "multichoice" &&
@@ -221,7 +224,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', count);
+                radioInput.attr('value', choice);
 
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
@@ -250,13 +253,21 @@ var QuestionView = Backbone.View.extend({
             this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
             return false;
         }
+        // wert speicher
 
+        // this.collection.next muss die abhängigkeit prüfen, ob frage entsprechend beantwortet
         var q = this.collection.next();
 
         if (!q){
             this.collection.sendData();
             this.undelegateEvents();
-            Backbone.history.navigate('questionsfinish', {trigger: true});
+            this.$el.html(this.template({lastQuestion:1}));
+            if(this.collection.get("feedbackMessage") != ''){
+                this.$("#end-message").html(this.collection.get("feedbackMessage"));
+            }
+            else{
+                this.$("#end-message").html('<p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>');
+            }
             return false;
         }
 
@@ -270,10 +281,8 @@ var QuestionView = Backbone.View.extend({
     },
 
     previousQuestion: function(el){
-        this.saveValues();
+        //this.saveValues();
         el.preventDefault();
-
-
         var q = this.collection.previous();
 
         if (!q){
@@ -301,25 +310,6 @@ var QuestionView = Backbone.View.extend({
         }
     }
 })
-
-
-/**
- *      View - QuestionsFinishView
- *      view displayed after finishing all questions of a container
- */
- var QuestionsFinishView = Backbone.View.extend({
-    el : "#app",
-    template : _.template($('#template-question-finish').html()),
-
-    initialize: function(){
-        this.render();
-    },
-
-    render: function(){
-        this.$el.html(this.template());
-        return this;
-    }
- });
 
 
 /**
@@ -717,7 +707,6 @@ var Router = Backbone.Router.extend({
         'appointments' : 'appointments',
         'questions': 'questions',
         'questions/:containerId/:questionId' : 'question',
-        'questionsfinish': 'questionsfinish',
         'impressum': 'impressum',
         'feedback': 'feedback',
         'feedbackresult' : 'feedbackresult',
@@ -774,10 +763,6 @@ var Router = Backbone.Router.extend({
     question: function(containerId, questionId){
         var questionContainer = Questions.get(containerId);
         this.switchView(new QuestionView({collection: questionContainer, questionId: questionId}));
-    },
-
-    questionsfinish: function(){
-        this.switchView(new QuestionsFinishView())
     },
 
     impressum: function(){

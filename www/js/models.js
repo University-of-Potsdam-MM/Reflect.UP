@@ -45,7 +45,8 @@ var Question = Backbone.Model.extend({
         number: null,
         total: null,
         answerText : null,
-        choices: null
+        choices: null,
+        //lastQuestion: 0
     },
 
     hasPrevious: function(){
@@ -98,6 +99,7 @@ var QuestionContainer = Backbone.Model.extend({
         currentIndex: 0,
         firstQuestion: null,
         questionList: QuestionList,
+        feedbackMessage: '',
     },
 
     initialize: function(){
@@ -184,7 +186,7 @@ var QuestionContainerList = Backbone.Collection.extend({
         })
 
         .done(function(data) {
-            //console.log(data);
+            //console.log(" obtained feedbacks: \n"+window.JSON.stringify(data));
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
@@ -204,7 +206,8 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                     var questionContainer = new QuestionContainer({
                         id: item.id,
-                        title: item.name
+                        title: item.name,
+                        feedbackMessage: item.feedbackMessage,
                     });
 
                     _.each(item.questions, function(question, i){

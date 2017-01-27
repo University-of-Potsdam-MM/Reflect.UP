@@ -137,17 +137,6 @@
         <% } %>
     </script>
 
-
-    <script type="text/template" id="template-question-finish">
-       <div id="header"> <h1>Fertig</h1></div>
-        <p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>
-
-        <div class="prev-next-nav">
-
-        <a href="#" class="button finish">Fertig</a>
-        </div>
-    </script>
-
     <script type="text/template" id="template-appointments-screen">
         <div id="header" class="hasBackButton"><a class="back" title="zurück" alt="zurück button" href="#"></a>
             <h1> <%- title %></h1></div>
@@ -193,25 +182,31 @@
     </script>
 
     <script type="text/template" id="template-question">
+        <% if(lastQuestion == 0){  %>
         <div id="header">
-         <%  if(total == 1){ %>
+        <%  if(total == 1){ %>
         <h1>Frage</h1></div>
         <% }else{ %>
         <h1>Frage <%- number %> / <%- total %></h1>
         <% } %>
         </div>
         <div class="content-container">
-        <p><%- questionText %></p>
-        <div id="answer-feedback"></div>
-        <div id="answer"></div>
+            <p><%- questionText %></p>
+            <div id="answer-feedback"></div>
+            <div id="answer"></div>
         </div>
-            <div class="prev-next-nav" >
+        <div class="prev-next-nav" >
             <div class="np-wrapper">
                  <a href="questions/<%- containerId %>/<%- previousId %>" id="previousButton">Zurück</a>
-
                 <a href="questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
             </div>
         </div>
+        <% } else{ %>
+            <div id="end-message" ></div>
+            <div class="prev-next-nav">
+                <a href="#" class="button finish">Fertig</a>
+            </div>
+        <% } %>    
     </script>
 
     <script type="text/template" id="template-impressum">
