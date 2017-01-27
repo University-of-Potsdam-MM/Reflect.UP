@@ -157,6 +157,13 @@ button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
+/* Simple class to give the correct format to the notification button (which is an empty bell)*/
+.notifyAppointmentButton{
+	position: relative;
+	top: 45%;
+	left: 80%;
+}
+
 /* removed class defines a web-kit-animation for appointments, together with the following keyframes */
 /*		definitions */
 .out {

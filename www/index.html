@@ -195,6 +195,13 @@
         <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
         <%= model.description %></div>
         <div class="clear"></div>
+         <% if (fullView == true) { %>
+			<% if (model.toNotify == false) { %>
+				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
+			<% } else { %>
+				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+			<% } %>
+         <% } %>
     </script>
 
     <script type="text/template" id="template-question-collection-list-item">
@@ -216,9 +223,8 @@
         </div>
             <div class="prev-next-nav" >
             <div class="np-wrapper">
-                 <a href="questions/<%- containerId %>/<%- previousId %>" id="previousButton">Zurück</a>
-
-                <a href="questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
+                 <a href="#questions/<%- containerId %>/<%- previousId %>" id="previousButton">Zurück</a>
+                <a href="#questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
             </div>
         </div>
     </script>

@@ -16,8 +16,9 @@ var AppointmentListItemView = Backbone.View.extend({
     template : _.template($('#template-appointment-list-item').html()),
 
     events: {
-        'click .data':'hideButtonFunction',
+        'click #notificationButton':'notifyButtonFunction',
         'click' : 'toggle',
+        'click .data':'hideButtonFunction',
         'webkitAnimationEnd' : 'toggleAppointment',
         'mozAnimationEnd' : 'toggleAppointment',
         'MSAnimationEnd' : 'toggleAppointment',
@@ -34,6 +35,148 @@ var AppointmentListItemView = Backbone.View.extend({
         }
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
         return this;
+    },
+
+    notifyButtonFunction : function(ev) {
+		var appointmentTitle= this.model.get('title');
+		var beginDate= new Date(this.model.get('begin'));
+		var endDate= new Date(this.model.get('end'));
+		// get the notification counter for this user, stored in the Configuration Model
+		var Config= new Configuration({id:1});
+		Config.fetch();
+		var notiCounter= Config.get('notificationsCounter');
+		var notiListSTR= Config.get('notificationsList');
+		var notiListOBJ= window.JSON.parse(notiListSTR);
+		// determine how much time is left before the start of the appointment
+		//			i.e : beginTime - currentTime = amount of milliseconds to begin
+
+		var currTime= new Date();
+		var hoursToBegin= (beginDate - currTime) / 3600000;
+        document.addEventListener('deviceready',function(){
+
+			// manage three different cases depending on the amount of time before the beginning of the appointment
+			//		case 1: more than 7 days => the user gets a notification one week before and the day before
+			//		case 2: more than 1 day but less than 7 days => the user gets a notification 24 hours before the appointment
+			//		case 3: less than 24 hours but more than 3 hours => the user gets a notification three hours before the appointment
+			if(hoursToBegin > 168){
+				// form notification message to get a reminder one week before
+				var notificationMessage = "Du hast einen Termin am: "+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
+
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+
+				// calculate the value for the time one week before the appointment
+				var notificationTime= beginDate - 604800000;
+				// only for debugging: a couple of delayed times in 30 and 50 seconds
+				//var _15_sec_after= new Date(currTime.getTime() + 15*1000);
+				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+
+				// form notification message to get a reminder the day before				
+				notificationMessage = "Du hast morgen einen Termin";
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+
+				// calculate the value for the time one day before the appointment
+				notificationTime = beginDate - 86400000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter', notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR = window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList', notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+
+			if(hoursToBegin < 168 && hoursToBegin > 24){
+				// form notification message to get a reminder the day before				
+				var notificationMessage = "Du hast morgen einen Termin";
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+				}else{
+					notificationMessage = notificationMessage.concat("."); 
+				}
+				// calculate the value for the time one day before the appointment
+				var notificationTime = beginDate - 86400000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter',notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR= window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList',notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+
+			if(hoursToBegin < 24 && hoursToBegin > 3){
+				// form notification message to get a reminder three hours before the appointment
+				var notificationMessage = "Termin"
+				if(beginDate.getTime != beginDate.getTime){
+					notificationMessage= notificationMessage.concat(" um: "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr nicht vergessen!");
+				}else{
+					notificationMessage= notificationMessage.concat(" nicht vergessen!");
+				}
+				// calculate the value for the time three hours before the appointment
+				var notificationTime = beginDate - 10800000;
+				notiCounter++;
+				cordova.plugins.notification.local.schedule({
+					id: notiCounter,
+					title: appointmentTitle,
+					text: notificationMessage,
+					at: notificationTime
+				});
+				//store the new value of the notification counter for this user
+				Config.set('notificationsCounter',notiCounter);
+				notiListOBJ.titlesToNotify.push(appointmentTitle);
+				notiListSTR= window.JSON.stringify(notiListOBJ);
+				Config.set('notificationsList',notiListSTR);
+				Config.save();
+				navigator.notification.alert(
+					'Du wirst eine Benachrichtigung bekommen.',  // message
+					null,         // callback
+					'',            // title
+					'OK'                  // buttonName
+				);
+			}
+			// NOTE: it is up to the user to delete the notifications from the notification center once they have been triggered
+         }); // on device ready
+		 // change parameter toNotify in model to set the Bell icon
+		this.model.set('toNotify',true);
     },
 
     hideButtonFunction : function(ev) {
@@ -282,7 +425,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', count);
+                radioInput.attr('value', choice);
 
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
@@ -311,7 +454,9 @@ var QuestionView = Backbone.View.extend({
             this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
             return false;
         }
+        // wert speicher
 
+        // this.collection.next muss die abhängigkeit prüfen, ob frage entsprechend beantwortet
         var q = this.collection.next();
 
         if (!q){
@@ -331,10 +476,8 @@ var QuestionView = Backbone.View.extend({
     },
 
     previousQuestion: function(el){
-        this.saveValues();
+        //this.saveValues();
         el.preventDefault();
-
-
         var q = this.collection.previous();
 
         if (!q){
@@ -354,7 +497,18 @@ var QuestionView = Backbone.View.extend({
 
     saveValues: function(){
         if (this.model.get('type') === "multichoice") {
-            this.model.set("answerText", this.$('#answer input[name=choice]:checked').val());
+            var recordedAnswer= this.$('#answer input[name=choice]:checked').val();
+            if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
+                return false;
+            }
+            this.model.set("answerText", this.$(recordedAnswer));
+            //make sure that values are saved on answersHash without trailing line breaks!
+            recordedAnswer= recordedAnswer.replace(/^\s+|\s+$/g, '');
+            // step by step set the new value for the hash that contains the recorded answers
+            //      for all the multiple choice questions in the feedback
+            var ansHash= this.collection.get("answersHash");
+            ansHash[this.model.get('id')] = recordedAnswer;
+            this.collection.set("answersHash",ansHash);
             return this.model.get("answerText");
         } else {
             this.model.set("answerText", this.$('#answer textarea').val());

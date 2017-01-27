@@ -10,6 +10,8 @@ var Configuration = Backbone.Model.extend({
     localStorage : new Store("Configuration"),
     defaults:{
         accessToken: '',
+		notificationsCounter: 0,
+		notificationsList: '{"titlesToNotify" : []}',
         appointmentList: '{"removedTitles" : []}',
     }
 });
@@ -25,6 +27,7 @@ var Appointment = Backbone.Model.extend({
 		title : 'Appointment Title',
         begin : new Date(),
         end : new Date(),
+		toNotify: false,
         visible: true,
 	}
 });
@@ -49,6 +52,8 @@ var Question = Backbone.Model.extend({
         number: null,
         total: null,
         answerText : null,
+        dependItem : null,      // model needs 'dependItem' and 'dependValue' attributes 
+        dependValue : null,     //      to support conditional questions on feedbacks
         choices: null
     },
 
@@ -81,6 +86,7 @@ var Question = Backbone.Model.extend({
 
         return this.collection.at(this.collection.indexOf(this)-1).id;
     }
+
 });
 
 
@@ -102,6 +108,8 @@ var QuestionContainer = Backbone.Model.extend({
         currentIndex: 0,
         firstQuestion: null,
         questionList: QuestionList,
+        answersHash: {},
+        actualPath: []
     },
 
     initialize: function(){
@@ -109,18 +117,36 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     next: function(){
-        if (this.get('currentIndex') == this.length - 1)
+        var listLength= this.get("questionList").length;
+        if (this.get('currentIndex') == listLength - 1)
             return null;
-
+        // push current index into the actualPath
+        var answeredPath= this.get('actualPath');
+        answeredPath.push(this.get('currentIndex'));
+        var nextOnSequence = this.get('questionList').at(this.get('currentIndex') + 1);
         this.set('currentIndex', this.get('currentIndex') + 1);
+        // if dependItem is different to 0 it means that the question has a dependency
+        if(nextOnSequence.get("dependItem") != 0){
+            // if the dependency of the next question in the row is satisfied, then
+            //      it is selected to be the next question
+            while (nextOnSequence.get("dependValue") != this.get("answersHash")[nextOnSequence.get("dependItem")] && nextOnSequence.get("dependItem") != 0){
+                if (this.get('currentIndex') == listLength - 1)
+                    return null;
+                this.set('currentIndex', this.get('currentIndex') + 1);
+                nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
+            }
+            return this.current();
+        }
         return this.current();
     },
 
     previous: function(){
         if (this.get('currentIndex') <= 0)
             return null;
-
-        this.set('currentIndex', this.get('currentIndex') - 1);
+        // pop previous index from actualPath to know which was the last answered question
+        var answeredPath= this.get('actualPath');
+        var lastIndex= answeredPath.pop();
+        this.set('currentIndex', lastIndex);
         return this.current();
     },
 
@@ -161,7 +187,8 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
-    }
+    },
+
 });
 
 
@@ -219,6 +246,8 @@ var QuestionContainerList = Backbone.Collection.extend({
                             total: item.questions.length,
                             questionText: question.questionText,
                             type: question.type,
+                            dependItem: question.dependitem,
+                            dependValue: question.dependvalue
                         });
 
                         if (question.choices) {
@@ -293,6 +322,26 @@ var AppointmentCollection = Backbone.Collection.extend({
                 var result = new Array();
 
                 _.each(data.events, function(item){
+					//check if the model to be added is listed in the list of appointments to notify,
+					//in that case, the model's attribute toNotify is set to be true
+					var notifyListSTR= Config.get('notificationsList');
+					var notifyListOBJ= window.JSON.parse(notifyListSTR);
+					var numElements= notifyListOBJ.titlesToNotify.length;
+					var notifyable= 0;
+					for(var s=0; s<numElements; s++){
+						var appointmentsTitle= notifyListOBJ.titlesToNotify[s];
+						if(appointmentsTitle == item.name){
+							notifyable= 1;
+							break;
+						}
+					}
+					if(notifyable == 1){
+						toNotify= true;
+					}
+					else{
+						toNotify= false;
+					}
+
                     // at this point, there must be a checking to see wether the model to be added exists
                     // in the list of removed appointmets; in case it is, the visible attribute is set to
                     // false, and the appointment is not shown within the start page
@@ -313,12 +362,14 @@ var AppointmentCollection = Backbone.Collection.extend({
                     }else{
                         visible = false;
                     }
+
                     result.push(new Appointment({
                         title: item.name,
                         description: item.description,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
-                        visible : visible,
+						toNotify: toNotify,
+                        visible : visible
                     }));
                 });
                 options.success(result);
