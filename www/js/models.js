@@ -52,8 +52,6 @@ var Question = Backbone.Model.extend({
         number: null,
         total: null,
         answerText : null,
-        dependItem : null,      // model needs 'dependItem' and 'dependValue' attributes 
-        dependValue : null,     //      to support conditional questions on feedbacks
         choices: null
     },
 
@@ -86,7 +84,6 @@ var Question = Backbone.Model.extend({
 
         return this.collection.at(this.collection.indexOf(this)-1).id;
     }
-
 });
 
 
@@ -108,8 +105,6 @@ var QuestionContainer = Backbone.Model.extend({
         currentIndex: 0,
         firstQuestion: null,
         questionList: QuestionList,
-        answersHash: {},
-        actualPath: []
     },
 
     initialize: function(){
@@ -117,36 +112,18 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     next: function(){
-        var listLength= this.get("questionList").length;
-        if (this.get('currentIndex') == listLength - 1)
+        if (this.get('currentIndex') == this.length - 1)
             return null;
-        // push current index into the actualPath
-        var answeredPath= this.get('actualPath');
-        answeredPath.push(this.get('currentIndex'));
-        var nextOnSequence = this.get('questionList').at(this.get('currentIndex') + 1);
+
         this.set('currentIndex', this.get('currentIndex') + 1);
-        // if dependItem is different to 0 it means that the question has a dependency
-        if(nextOnSequence.get("dependItem") != 0){
-            // if the dependency of the next question in the row is satisfied, then
-            //      it is selected to be the next question
-            while (nextOnSequence.get("dependValue") != this.get("answersHash")[nextOnSequence.get("dependItem")] && nextOnSequence.get("dependItem") != 0){
-                if (this.get('currentIndex') == listLength - 1)
-                    return null;
-                this.set('currentIndex', this.get('currentIndex') + 1);
-                nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
-            }
-            return this.current();
-        }
         return this.current();
     },
 
     previous: function(){
         if (this.get('currentIndex') <= 0)
             return null;
-        // pop previous index from actualPath to know which was the last answered question
-        var answeredPath= this.get('actualPath');
-        var lastIndex= answeredPath.pop();
-        this.set('currentIndex', lastIndex);
+
+        this.set('currentIndex', this.get('currentIndex') - 1);
         return this.current();
     },
 
@@ -187,8 +164,7 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
-    },
-
+    }
 });
 
 
@@ -246,8 +222,6 @@ var QuestionContainerList = Backbone.Collection.extend({
                             total: item.questions.length,
                             questionText: question.questionText,
                             type: question.type,
-                            dependItem: question.dependitem,
-                            dependValue: question.dependvalue
                         });
 
                         if (question.choices) {

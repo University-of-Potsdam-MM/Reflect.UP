@@ -225,7 +225,6 @@ var AppointmentListItemView = Backbone.View.extend({
                 this.model.set('visible', true);
             }
         }
-
     }
 });
 
@@ -425,7 +424,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', choice);
+                radioInput.attr('value', count);
 
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
@@ -454,9 +453,7 @@ var QuestionView = Backbone.View.extend({
             this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
             return false;
         }
-        // wert speicher
 
-        // this.collection.next muss die abhängigkeit prüfen, ob frage entsprechend beantwortet
         var q = this.collection.next();
 
         if (!q){
@@ -476,8 +473,10 @@ var QuestionView = Backbone.View.extend({
     },
 
     previousQuestion: function(el){
-        //this.saveValues();
+        this.saveValues();
         el.preventDefault();
+
+
         var q = this.collection.previous();
 
         if (!q){
@@ -497,18 +496,7 @@ var QuestionView = Backbone.View.extend({
 
     saveValues: function(){
         if (this.model.get('type') === "multichoice") {
-            var recordedAnswer= this.$('#answer input[name=choice]:checked').val();
-            if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
-                return false;
-            }
-            this.model.set("answerText", this.$(recordedAnswer));
-            //make sure that values are saved on answersHash without trailing line breaks!
-            recordedAnswer= recordedAnswer.replace(/^\s+|\s+$/g, '');
-            // step by step set the new value for the hash that contains the recorded answers
-            //      for all the multiple choice questions in the feedback
-            var ansHash= this.collection.get("answersHash");
-            ansHash[this.model.get('id')] = recordedAnswer;
-            this.collection.set("answersHash",ansHash);
+            this.model.set("answerText", this.$('#answer input[name=choice]:checked').val());
             return this.model.get("answerText");
         } else {
             this.model.set("answerText", this.$('#answer textarea').val());
