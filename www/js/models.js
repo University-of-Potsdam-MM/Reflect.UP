@@ -10,10 +10,21 @@ var Configuration = Backbone.Model.extend({
     localStorage : new Store("Configuration"),
     defaults:{
         accessToken: '',
+		moodleAccessToken: '',
 		notificationsCounter: 0,
 		notificationsList: '{"titlesToNotify" : []}',
         appointmentList: '{"removedTitles" : []}',
+		moodleServiceEndpoint : '',
+		moodleLoginEndpoint : '',
     }
+});
+
+var Tab = Backbone.Model.extend({
+});
+
+var TabCollection = Backbone.Collection.extend({
+	model: Tab,
+	url: 'js/config.json',
 });
 
 
@@ -150,11 +161,11 @@ var QuestionContainer = Backbone.Model.extend({
                 answer: question.get("answerText")
             })
         });
-
-        var token = Config.get("accessToken");
-
+		var Config= new Configuration({id:1});
+		Config.fetch();
+        var token = Config.get("moodleAccessToken");
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: Config.get('moodleServiceEndpoint'),
             data: {
                 wstoken: token,
                 wsfunction: "local_reflect_submit_feedbacks",
@@ -162,7 +173,7 @@ var QuestionContainer = Backbone.Model.extend({
                 id: result.id,
                 answers: result.answers
             },
-            headers: accessToken
+            headers: Config.get('accessToken')
         }).done(function(data) {
             console.log(data);
         });
@@ -179,17 +190,18 @@ var QuestionContainerList = Backbone.Collection.extend({
     model : QuestionContainer,
 
     sync: function(method, model, options){
-
-        var token = Config.get("accessToken");
+		var Config= new Configuration({id:1});
+		Config.fetch();
+        var token = Config.get("moodleAccessToken");
 
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: Config.get('moodleServiceEndpoint'),
             data: {
                 wstoken: token,
                 wsfunction: "local_reflect_get_feedbacks",
                 moodlewsrestformat: "json",
             },
-            headers: accessToken
+            headers: Config.get('accessToken')
         })
 
         .done(function(data) {
@@ -257,10 +269,13 @@ var AppointmentCollection = Backbone.Collection.extend({
         var today = new Date();
         var oneYearLater = new Date();
         oneYearLater.setFullYear(today.getFullYear()+1);
-        var token = Config.get("accessToken");
+		var Config= new Configuration({id:1});
+		Config.fetch();
+        var token = Config.get('moodleAccessToken');
+		console.log('On fetching appointments the token: '+token+' is given');
         //console.log(token);
         $.ajax({
-            url: moodleServiceEndpoint,
+            url: Config.get('moodleServiceEndpoint'),
             data: {
                 wstoken: token,
                 wsfunction: "local_reflect_get_calendar_entries",
@@ -278,7 +293,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                     ignorehidden: 1,
                 }
             },
-            headers: accessToken
+            headers: Config.get('accessToken')
         })
 
         .done(function(data) {
