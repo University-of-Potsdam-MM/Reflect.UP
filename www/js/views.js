@@ -580,6 +580,8 @@ var InitialSetupView = Backbone.View.extend({
 		this.model.set('accessToken',paramsOBJ.get('accessToken'));
 		this.model.set('moodleServiceEndpoint',paramsOBJ.get('moodleServiceEndpoint'));
 		this.model.set('moodleLoginEndpoint',paramsOBJ.get('moodleLoginEndpoint'));
+        this.model.set('impressumTemplate',paramsOBJ.get('impressumTemplate'));
+        this.model.set('uniLogoPath',paramsOBJ.get('uniLogoPath'));
 		// save model to local storage
 		this.model.save();
 		// navigate to the normal login page
@@ -705,7 +707,21 @@ var ImpressumView = Backbone.View.extend({
 
     render: function(){
         this.$el.html(this.template());
-        return this;
+        // fill the emptied template with the contents of Configuration´s
+        //      'impressumTemplate' attribute
+        Config= new Configuration({id:1});
+        Config.fetch();
+        var htmlString= Config.get('impressumTemplate');
+        this.$("#impressum-html-content").append(htmlString);
+        // alternatively, load the logo of the University and display it
+        //      at the end of the document
+        //var logoPath= Config.get('uniLogoPath');
+        //if(logoPath != ''){
+        //    var imgTag = $('<img alt="university_logo">');
+        //    imgTag.attr('src',logoPath);
+        //    this.$("#logo-container").append(imgTag);
+        //    return this;
+        //}
     }
 });
 

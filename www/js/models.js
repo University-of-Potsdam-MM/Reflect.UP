@@ -15,6 +15,8 @@ var Configuration = Backbone.Model.extend({
 		notificationsList: '{"titlesToNotify" : []}',
 		moodleServiceEndpoint : '',
 		moodleLoginEndpoint : '',
+        impressumTemplate: '',
+        uniLogoPath: '',
     }
 });
 

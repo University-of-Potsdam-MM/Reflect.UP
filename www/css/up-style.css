@@ -193,3 +193,9 @@ button.accordion.active:after {
 	flex-direction: column;
 }
 
+/*  Simple class to set the relative position of the logos that are to be displayed within the boxes of the initial-setup page   */
+.logo-container-format{
+	position: relative;
+	top: 10%;
+	left: 80%;
+}
