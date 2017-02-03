@@ -17,6 +17,7 @@ var Configuration = Backbone.Model.extend({
 		moodleLoginEndpoint : '',
         impressumTemplate: '',
         uniLogoPath: '',
+        appLanguage: 'de',                              //TODO: make the language of the app a configurable variable
     }
 });
 
@@ -243,29 +244,59 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                 _.each(data.feedbacks, function(item){
 
+                    //'name' of question container is to be checked for multi language tags
+                    var matchPattern= /<span lang=/i;
+                    var itemName= item.name;
+                    var found= itemName.search(matchPattern);
+                    //form the name of the enclosing tags
+                    var language= Config.get('appLanguage');
+                    var openTag= '<span lang="'+language+'" class="multilang">';
+                    var closeTag= '</span>';
+                    if(found != -1){
+                        //extract text in the correct language
+                        var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
+                        itemName= results[1];
+                    }
                     var questionContainer = new QuestionContainer({
                         id: item.id,
-                        title: item.name
+                        title: itemName
                     });
 
                     _.each(item.questions, function(question, i){
 
+                        // 'questionText' text and 'choices' are to be checked for multi language tags
+                        var questText= question.questionText;
+                        found= questText.search(matchPattern);
+                        if(found != -1){
+                            //extract text in the correct language
+                            var results= questText.match(new RegExp(openTag + "(.*)" + closeTag));
+                            questText= results[1];
+                        }
                         var q = new Question({
                             id: question.id,
                             number: i+1,
                             total: item.questions.length,
-                            questionText: question.questionText,
+                            questionText: questText,
                             type: question.type,
                             dependItem: question.dependitem,
                             dependValue: question.dependvalue
                         });
 
                         if (question.choices) {
-                            q.set("choices", question.choices.substring(6).split('|'));
+                            // each choice must be checked in order to ensure that the text that is not enclosed
+                            //      by multi language tags will be still shown by default, same as Moodle filter
+                            var choicesArray= question.choices.substring(6).split('|');
+                            var arrayLength= choicesArray.length;
+                            for(var k=0; k < arrayLength; k++){
+                                found = choicesArray[k].search(matchPattern);
+                                if(found != -1){
+                                    var results= choicesArray[k].match(new RegExp(openTag + "(.*)" + closeTag));
+                                    choicesArray[k]= results[1];
+                                }
+                            }
+                            q.set("choices",choicesArray);
                         }
-
                         questionContainer.get('questionList').add(q);
-
                     });
 
                     result.push(questionContainer);
@@ -294,7 +325,6 @@ var AppointmentCollection = Backbone.Collection.extend({
 		Config.fetch();
         var token = Config.get('moodleAccessToken');
 		console.log('On fetching appointments the token: '+token+' is given');
-        //console.log(token);
         $.ajax({
             url: Config.get('moodleServiceEndpoint'),
             data: {
@@ -354,9 +384,28 @@ var AppointmentCollection = Backbone.Collection.extend({
 					else{
 						toNotify= false;
 					}
+                    // 'name' and 'description' attributes are to be checked for multi language tags
+                    var matchPattern= /<span lang=/i;
+                    var itemName= item.name;
+                    var found= itemName.search(matchPattern);
+                    //form the name of the enclosing tags
+                    var language= Config.get('appLanguage');
+                    var openTag= '<span lang="'+language+'" class="multilang">';
+                    var closeTag= '</span>';
+                    if(found != -1){
+                        //extract text in the correct language
+                        var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
+                        itemName= results[1];
+                    }
+                    var itemDescription= item.description;
+                    found= itemDescription.search(matchPattern);
+                    if(found != -1){
+                        var results= itemDescription.match(new RegExp(openTag + "(.*)" + closeTag));
+                        itemDescription= results[1];
+                    }
                     result.push(new Appointment({
-                        title: item.name,
-                        description: item.description,
+                        title: itemName,
+                        description: itemDescription,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
 						toNotify: toNotify,
