@@ -244,7 +244,7 @@ var QuestionCollectionListView = Backbone.View.extend({
     },
 
     render : function() {
-        this.$el.html(this.template({model: this.model, notice: this.showNotice}));
+        this.$el.html(this.template({model: this.model, notice: this.showNotice, t:_t}));
 
         if (this.model.length){
             this.model.each( function(questionContainer){
@@ -386,7 +386,7 @@ var QuestionView = Backbone.View.extend({
         el.preventDefault();
         if (!this.saveValues()) {
             // notify user that he has to choose an answer
-            this.$("#answer-feedback").append('<p style="color: red;">Du musst eine Antwort auswählen.</p>')
+            this.$("#answer-feedback").append('<p style="color: red;">'+i18next.t("feedbackTeaser")+'</p>')
             return false;
         }
         // wert speicher
@@ -466,7 +466,7 @@ var QuestionView = Backbone.View.extend({
     },
 
     render: function(){
-        this.$el.html(this.template());
+        this.$el.html(this.template({t: _t}));
         return this;
     }
  });
@@ -522,7 +522,7 @@ var HomeView = Backbone.View.extend({
     },
 
     render : function(){
-        this.$el.html(this.template({title : 'Reflect.UP'}));
+        this.$el.html(this.template({t: _t}));
 
         this.AppointmentListView = new AppointmentListView({
             el : '#dates',
@@ -552,7 +552,7 @@ var InitialSetupView = Backbone.View.extend({
 	},
 	model: Configuration,
 	
-    initialize: function(){
+    initialize: function(){    
 		this.model= new Configuration({id:1});
 		this.collection = new TabCollection();
 		this.collection.fetch();
@@ -563,13 +563,13 @@ var InitialSetupView = Backbone.View.extend({
 
     render: function(){
 		//console.log(this.collection);
-        this.$el.html(this.template({tabs: this.collection}));
+        this.$el.html(this.template({tabs: this.collection, t:_t}));
         return this;
     },
 	
 	fetchError: function(err, param) {
             console.log('Error loading Opening-JSON file', err, param);
-        },
+    },
 	
 	writeConfigAttributes: function(ev){
 		this.model.fetch();
@@ -688,7 +688,7 @@ var ConfigView = Backbone.View.extend({
 
     render: function(){
 		//call tab view
-        this.$el.html(this.template({title: 'Reflect.UP - Anmeldung'}));
+        this.$el.html(this.template({t: _t}));
         return this;
     }
 });
@@ -744,7 +744,7 @@ var FeedbackView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template());
+        this.$el.html(this.template({t:_t}));
         return this;
     },
 
@@ -811,7 +811,7 @@ var AppointmentsView = Backbone.View.extend({
     },
 
     render: function(){
-        this.$el.html(this.template({title: 'Termine'}));
+        this.$el.html(this.template({t : _t}));
         this.AppointmentListView = new AppointmentListView({
             el: '#dates',
             model: Appointments,
@@ -847,7 +847,7 @@ var QuestionsView = Backbone.View.extend({
     },
 
     render: function(){
-        this.$el.html(this.template({title: 'Reflexionsfragen'}));
+        this.$el.html(this.template({t: _t}));
         this.QuestionCollectionListView = new QuestionCollectionListView({
             el: '#questions',
             model: Questions
@@ -888,7 +888,7 @@ var ContactPersonsView = Backbone.View.extend({
 
     render: function() {
         this.undelegateEvents();
-        this.$el.html(this.template({title: 'Ansprechpartner', contacts: this.collection}));
+        this.$el.html(this.template({contacts: this.collection, t:_t}));
 
         // Accordion Logic
         var acc = document.getElementsByClassName("accordion");
@@ -927,6 +927,54 @@ var LogoutView = Backbone.View.extend({
 });
 
 
+/*
+ *      View - LanguagesPageView
+ */
+var LanguagesPageView = Backbone.View.extend({
+    el: '#app',
+    template: _.template($('#template-languages-selection').html()),
+    events: {
+        "click #changeButton": "changeLanguage"
+    },
+
+    initialize: function() {
+        this.model= new Configuration({id:1});
+        this.render();
+    },
+
+    changeLanguage: function(){
+        this.model.fetch();
+        //get the new selected language
+        var selected_language= $("#language-select option:selected").val();
+        //if selected language is the current one, no change is necessary
+        if(selected_language == this.model.get('appLanguage')) Backbone.history.navigate('', { trigger : true });
+        //else, apply the changes
+        this.model.set('appLanguage',selected_language);
+        this.model.save();
+        i18next.changeLanguage(selected_language);
+        console.log("i18next language has been set to: "+selected_language);
+        //menu and infopanel have to be newly rendered to the selected language
+        $('#panel-menu').text(i18next.t("panelMenu"));
+        $('#more-appointments-button').text(i18next.t("panelAppointments"));
+        $('#more-questions-button').text(i18next.t("panelQuestions"));
+        $('#panel-contact-persons').text(i18next.t("panelContact"));
+        $('#panel-feedback').text(i18next.t("panelFeedback"));
+        $('#panel-languages').text(i18next.t("panelLanguages"));
+        $('#panel-home').text(i18next.t("panelHome"));
+        $('#panel-logout').text(i18next.t("panelLogout"));
+        $('#infopanel-content').html(i18next.t("infoMessage_1"));
+        //navigate to home
+        Backbone.history.navigate('', { trigger : true });
+    },
+
+    render: function(){
+        this.$el.html(this.template({t: _t}));
+        return this;
+    }
+});
+
+
+
 /**
  *  Routes
  */
@@ -944,6 +992,7 @@ var Router = Backbone.Router.extend({
         'feedback': 'feedback',
         'feedbackresult' : 'feedbackresult',
         'contactpersons': 'contactpersons',
+        'languages' : 'languages',
         'logout': 'logout'
     },
 
@@ -1020,6 +1069,10 @@ var Router = Backbone.Router.extend({
 
     contactpersons: function() {
         this.switchView(new ContactPersonsView())
+    },
+
+    languages: function() {
+        this.switchView(new LanguagesPageView())
     },
 
     logout: function() {

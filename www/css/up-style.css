@@ -199,3 +199,45 @@ button.accordion.active:after {
 	top: 10%;
 	left: 80%;
 }
+
+/* Simple class to format the select box containing the languages in which the app is available*/
+#language-select-container{
+	width: '500px';
+	margin: auto;
+	text-align: center;
+}
+
+
+.language-select {
+  height: 29px;
+  overflow: hidden;
+  width: 40%;
+}
+
+
+.language-select select {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  height: 32px;
+  padding: 5px;
+  /* If you add too much padding here, the options won't show in IE */
+  width: 90%;
+}
+
+.rounded {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.blue {
+  background-color: #7c95bc;
+}
+
+#language-ok-button {
+	width: 40%;
+	float: none;
+	position: relative;
+	left: 30%;
+}
