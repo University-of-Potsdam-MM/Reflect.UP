@@ -386,6 +386,7 @@ var QuestionView = Backbone.View.extend({
         if (this.model.get('type') === "multichoice" &&
             this.model.get('choices')){
             var selectedChoice= this.model.get('answerText');
+            console.log('the selected choice that was saved is: '+selectedChoice);
             var count = 1;
             var that = this;
             var form = $('<form action="">');
@@ -401,6 +402,7 @@ var QuestionView = Backbone.View.extend({
                 if(selectedChoice == count){
                     radioInput.attr('checked','checked');
                 }
+
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
                 radioLabel.text(choice);
@@ -477,7 +479,22 @@ var QuestionView = Backbone.View.extend({
 
     saveValues: function(){
         if (this.model.get('type') === "multichoice") {
-            this.model.set("answerText", this.$('#answer input[name=choice]:checked').val());
+            var $input= this.$('#answer input[name=choice]:checked');
+            var choiceNumber= $input.val();
+            var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
+            console.log("The recorded answer will be: "+recordedAnswer);
+            console.log("And its number: "+choiceNumber);
+            if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
+                return false;
+            }
+            this.model.set("answerText",choiceNumber);
+            //make sure that values are saved on answersHash without trailing line breaks!
+            recordedAnswer= recordedAnswer.replace(/^\s+|\s+$/g, '');
+             // step by step set the new value for the hash that contains the recorded answers
+             //      for all the multiple choice questions in the feedback
+             var ansHash= this.collection.get("answersHash");
+             ansHash[this.model.get('id')] = recordedAnswer;
+             this.collection.set("answersHash",ansHash);
             return this.model.get("answerText");
         } else {
             this.model.set("answerText", this.$('#answer textarea').val());
