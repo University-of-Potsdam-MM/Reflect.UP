@@ -507,6 +507,12 @@ a.button {
 	margin-right: 5px;
 }
 
+#navigation-footer .button.languages:before{
+	content: "\f0ac";
+	font-family: FontAwesome;
+	margin-right: 5px;
+}
+
 #navigation-footer .button.logout:before {
 	content: "\f011";
 	font-family: FontAwesome;
