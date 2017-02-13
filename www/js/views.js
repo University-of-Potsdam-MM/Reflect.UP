@@ -385,6 +385,7 @@ var QuestionView = Backbone.View.extend({
         );
         if (this.model.get('type') === "multichoice" &&
             this.model.get('choices')){
+            var selectedChoice= this.model.get('answerText');
             var count = 1;
             var that = this;
             var form = $('<form action="">');
@@ -396,6 +397,10 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('id', 'radio' + count);
                 radioInput.attr('value', choice);
 
+                //set the radioImput to be selected if selectedChoice == count
+                if(selectedChoice == count){
+                    radioInput.attr('checked','checked');
+                }
                 var radioLabel = $('<label/>');
                 radioLabel.attr('for', 'radio' + count);
                 radioLabel.text(choice);
