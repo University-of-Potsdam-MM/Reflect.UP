@@ -36,6 +36,9 @@
     <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
     <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
 
+    <!-- i18next library for internationalization of the app's languages-->
+    <script type="text/javascript" src="js/lib/i18next.min.js"></script>
+
     <script type="text/javascript">
         $(function(){
 
@@ -57,8 +60,8 @@
                onExtContentLoad:function(){},
                onExtClose:function(){}
           });
-
         });
+
     </script>
 
     <!--
@@ -66,13 +69,13 @@
     -->
     <script type="text/template" id="template-home-screen">
         <div id="header">
-            <h1><%- title %></h1>
+            <h1><%= i18next.t("titleHome")%></h1>
         </div>
         <div id="dates"></div>
         <div id="questions"></div>
 
         <div class="impressum-footer" >
-            <a class="footerlink">Impressum</a>
+            <a class="footerlink"><%= i18next.t("impressum")%></a>
         </div>
         <br />
         <br />
@@ -83,34 +86,34 @@
     -->
     <script type="text/template" id="template-config-screen">
         <div id="header">
-            <h1><%- title %></h1>
+            <h1><%= i18next.t("title_login")%></h1>
         </div>
-        <p style="display: none;" class="loginerror">Login fehlgeschlagen!</p>
-        <p style="display: none;" class="loginrunning">Login läuft...</p>
+        <p style="display: none;" class="loginerror"><%= i18next.t("loginError")%></p>
+        <p style="display: none;" class="loginrunning"><%= i18next.t("loginRunning")%></p>
 
         <div class="loginform">
             <form id="loginform" type="POST">
-                <label for"username">Benutzername</label>
-                <input type="text" id="username" placeholder="Benutzername ohne @uni-..." />
-                <label for"password">Passwort</label>
-                <input type="password" id="password" placeholder="Passwort" />
-                <input type="submit" value="Anmelden" />
+                <label for"username"><%= i18next.t("userName")%></label>
+                <input type="text" id="username" placeholder= <%= i18next.t("userName_placeHolder")%> />
+                <label for"password"><%= i18next.t("password")%></label>
+                <input type="password" id="password" placeholder=<%= i18next.t("password_placeHolder")%> />
+                <input type="submit" value=<%= i18next.t("submit")%> />
             </form>
 
             <p class="welcome">
-                <em style="font-style:normal;">Um den angeforderten Dienst nutzen zu können, musst du dich hier einloggen.</em>
+                <em style="font-style:normal;"><%= i18next.t("welcomeMessage_1")%></em>
                 <br />
-                Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.
+                <%= i18next.t("welcomeMessage_2")%>
             </p>
         </div>
         <div class="impressum-footer" >
-            <a class="footerlink">Impressum</a>
+            <a class="footerlink"><%= i18next.t("impressum")%></a>
         </div>
     </script>
 	
 	<script type= "text/template" id="template-initial-setup">
             <p class="welcome">
-                <em style="font-style:normal;">Da gibt es vier verschiedene Kurse zum Wahlen:</em>
+                <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
 				<br />
             </p>
 			<div class= "flex-grid">
@@ -119,6 +122,11 @@
 						<p><%= tab.get('title')%></p>
 						<br>
 						<p><%= tab.get('description')%></p>
+                        <div id="tab-logo-container" class="logo-container-format">
+                            <% if(tab.get('uniLogoPath') != ''){ %>
+                                <img src= <%= tab.get('uniLogoPath')%> alt="uni_logo" style="width:100px;heigh:100px">
+                            <% } %> 
+                        </div>
 					</div>
 				<% }); %>
 			</div>
@@ -126,7 +134,38 @@
 				<a class="footerlink">Uni Potsdam</a>
 			</div>
 	</script>
-	
+
+    <!--
+        Template:       Languages selection page
+    -->
+    <script type="text/template" id="template-languages-selection">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <h1> <%= i18next.t("panelLanguages")%></h1>
+        </div>
+        <br />
+        <br />
+        <p class="welcome">
+            <em style="font-style:normal;"><%= i18next.t("languageMessage")%></em>
+        </p>
+        <br />
+        <br />
+        <br />
+        <div id= language-select-container class= "language-select blue rounded">
+            <select id= language-select>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id= language-ok-button class="prev-next-nav" >
+            <a id="changeButton" class="button"><i class="fa fa-exchange icon-large" aria-hidden="true"></i>  OK</a>
+        </div>
+    </script>
 
     <!--
         Template:       Question Screen
@@ -134,7 +173,7 @@
     <script type="text/template" id="template-questions-screen">
         <div id="header" class="hasBackButton">
             <a class="back" title="zurück" alt="zurück button" href="#"></a>
-            <h1> <%- title %></h1>
+            <h1> <%= i18next.t("titleQuestions")%></h1>
         </div>
         <div id="questions"></div>
     </script>
@@ -145,21 +184,31 @@
     <script type="text/template" id="template-question-collection-list">
         <% if (model.length > 0 && notice){ %>
             <div id="teaser">
-                <p>Du hast noch nicht alle Reflexionsfragen beantwortet! Nimm Dir ein wenig Zeit und gehe die fehlenden Fragen durch.</p>
-                <a href="#questions"> Zu den Reflexionsfragen</a>
+                <p><%= i18next.t("teaser_1")%></p>
+                <a href="#questions"><%= i18next.t("questions_button")%></a>
             </div>
         <% }else if (model.length == 0){ %>
             <div id="teaser">
-                <p>Weitere Reflexionsfragen folgen in Kürze!</p>
+                <p><%= i18next.t("teaser_2")%></p>
             </div>
         <% }else{ %>
             <ul id="question-collection"></ul>
         <% } %>
     </script>
 
+    <script type="text/template" id="template-question-finish">
+       <div id="header"> <h1><%= i18next.t("headerFinish")%></h1></div>
+        <p><i class="fa fa-check"></i><%= i18next.t("messageFinish")%></p>
+
+        <div class="prev-next-nav">
+
+        <a href="#" class="button finish"><%= i18next.t("buttonFinish")%></a>
+        </div>
+    </script>
+
     <script type="text/template" id="template-appointments-screen">
         <div id="header" class="hasBackButton"><a class="back" title="zurück" alt="zurück button" href="#"></a>
-            <h1> <%- title %></h1></div>
+            <h1><%= i18next.t("appointmentsTitle")%></h1></div>
         <div id="dates"></div>
     </script>
 
@@ -220,10 +269,10 @@
     <script type="text/template" id="template-question">
         <% if(lastQuestion == 0){  %>
         <div id="header">
-        <%  if(total == 1){ %>
-        <h1>Frage</h1></div>
+         <%  if(total == 1){ %>
+        <h1><%= i18next.t("questionCounter")%></h1></div>
         <% }else{ %>
-        <h1>Frage <%- number %> / <%- total %></h1>
+        <h1><%= i18next.t("questionCounter")%><%- number %> / <%- total %></h1>
         <% } %>
         </div>
         <div class="content-container">
@@ -233,10 +282,8 @@
         </div>
         <div class="prev-next-nav" >
             <div class="np-wrapper">
-
-                <a href="questions/<%- containerId %>/<%- previousId %>" id="previousButton">Zurück</a>
-
-                <a href="questions/<%- containerId %>/<%- nextId %>" id="nextButton"> Weiter </a>
+                 <a href="#questions/<%- containerId %>/<%- previousId %>" id="previousButton"><%= i18next.t("backButton")%></a>
+                 <a href="#questions/<%- containerId %>/<%- nextId %>" id="nextButton"><%= i18next.t("nextButton")%></a>
             </div>
         </div>
         <% } else{ %>
@@ -248,95 +295,39 @@
     </script>
 
     <script type="text/template" id="template-impressum">
-        <div id="header" class="hasBackButton"> <a class="back" title="zurück" alt="zurück button" href="#"></a>
-             <h1>Impressum</h1>
+        <div id="impressum-html-content" >
         </div>
-
-            <em style="font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;">Herausgeber</em>
-            <p>
-            Universität Potsdam<br />
-            Am Neuen Palais 10<br />
-            14469 Potsdam<br /><br />
-            <b>Tel.:</b> 0331 977-0<br />
-            <b>Fax:</b> 0331 97 21 63<br />
-            <b>Web:</b> www.uni-potsdam.de<br />
-            </p>
-
-            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>
-            <p>
-            Ulrike Lucke, CIO der Universität Potsdam<br />
-            14469 Potsdam<br />
-            <b>E-Mail:</b> <a href="mailto:mobileup-service@uni-potsdam.de">mobileup-service@uni-potsdam.de</a>
-            </p>
-
-            <em>Rechtsform und gesetzliche Vertretung</em>
-            <p>
-            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.
-            </p>
-
-            <em>Zuständige Aufsichtsbehörde</em>
-            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>
-
-            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>
-            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>
-
-            <em>Haftung</em>
-            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a
-            href="(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>
-
-                </p>
-
-            <h1>Ansprechpartner</h1>
-            <p>
-            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />
-            Haus 1 | 1.54<br />
-            <br /> <b>Telefon:</b> +49-331-977-3564 <br style="clear: left;">
-
-            </p>
-            </div>
-
-            <div>
-            <h1>Mitmachen</h1>
-            <p>
-            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von
-            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im
-            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open
-            Source Projekt veröffentlicht.<br />
-            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,
-            können Sie gern das Entwicklerteam unter <a href="mailto:elis-dev@lists.cs.uni-potsdam.de">elis-dev@lists.cs.uni-potsdam.de</a>
-            kontaktieren.
-            </p>
-            </div>
-
+        <br />
+        <div id="logo-container">
+        </div>
     </script>
 
 
     <script type="text/template" id="template-feedback">
         <div id="header" class="hasBackButton"> <a class="back" title="zurück" alt="zurück button" href="#"></a>
-        <h1>Feedback abgeben</h1></div>
+        <h1><%= i18next.t("feedbackHeader")%></h1></div>
         <p class="feedback">
-            Du bist gefragt! Dir fällt bei Deinem Studieneinstieg etwas auf, das verbessert werden könnte? Du hast Anregungen zu Deinem Studium, Lob oder Kritik? Teil es uns mit! Jederzeit!
+            <%= i18next.t("feedbackMessage_1")%>
             <br/><br/>
-            Natürlich freuen wir uns auch über Rückmeldungen zur App, damit wir sie kontinuierlich an Deine Bedürfnisse anpassen können.
+            <%= i18next.t("feedbackMessage_2")%>
         </p>
         <form id="feedbackform" name="feedback" type="POST">
             <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30"></textarea>
             <br />
-            <input class="button" type="submit" value="Abschicken" />
+            <input class="button" type="submit" value=<%= i18next.t("feedbackButton")%> />
         </form>
     </script>
 
 
     <script type="text/template" id="template-feedbackresult">
         <div id="header">
-            <h1>Fertig</h1>
+            <h1><%= i18next.t("feedbackFinish_header")%></h1>
         </div>
         <div id="feedbackresult">
-            <p><i class="fa fa-check"></i> Feedback erfolgreich abgeschickt.</p>
+            <p><i class="fa fa-check"></i><%= i18next.t("feedbackFinish_message")%></p>
 
             <div class="prev-next-nav">
-                <a href="#" class="button finish">Fertig</a>
+                <a href="#" class="button finish"><%= i18next.t("feedbackFinish_button")%></a>
             </div>
         </div>
     </script>
@@ -344,7 +335,7 @@
     <script type="text/template" id="template-contact-persons">
         <div id="header" class="hasBackButton">
             <a class="back" title="zurück" alt="zurück button" href="#"></a>
-            <h1>Ansprechpartner</h1>
+            <h1><%= i18next.t("contactHeader")%></h1>
         </div>
 
         <div>
