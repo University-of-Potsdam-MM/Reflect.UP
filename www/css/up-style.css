@@ -164,6 +164,73 @@ button.accordion.active:after {
 	left: 80%;
 }
 
+/* removed class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.out {
+	-webkit-animation: disappear 0.6s;
+	-webkit-animation-fill-mode: forwards;
+	animation: disappear 0.6s;
+	animation-fill-mode: forwards;
+}
+
+-webkit-keyframes disappear {
+	100% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+}
+
+@keyframes disappear{
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX(500%);
+	}
+}
+
+/* reinserted class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.in {
+	-webkit-animation: reappear 0.8s;
+	-webkit-animation-fill-mode: forwards;
+	animation: reappear 0.8s;
+	animation-fill-mode: forwards;
+}
+
+-webkit-keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX (0%);
+	}
+}
+
+@keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+	}
+}
+
+/* This class is used to give appointments a greyed-out look when they are marked as not important*/
+/* It basically puts a "white cloth" with low opacity over the html that has it*/
+.darkClass{
+	background-color: white;
+	opacity: 0.5;
+}
+
+.hideAppointmentButton{
+	display: inline-block;
+	vertical-align: middle;
+	width: 50px;
+}
+
 /* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
 .courseTab{
 	margin: 15px;

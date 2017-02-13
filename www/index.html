@@ -196,7 +196,6 @@
         <% } %>
     </script>
 
-
     <script type="text/template" id="template-question-finish">
        <div id="header"> <h1><%= i18next.t("headerFinish")%></h1></div>
         <p><i class="fa fa-check"></i><%= i18next.t("messageFinish")%></p>
@@ -220,6 +219,15 @@
     <script type="text/template" id="template-appointment-list-item">
         <div class="date-container" >
         <div class="data">
+        <% if (fullView == true) { %>
+            <div id="hideAppointmentIcon" class="hideAppointmentButton">
+            <% if (model.visible == true) { %>
+                <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+            <% }else{ %>
+                <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+            <% } %>
+            </div>
+        <% } %>
         <div class="date" >
         <%- model.begin.getDate() %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>
         <% if (model.begin.getDate() != model.end.getDate()){ %>
@@ -246,9 +254,9 @@
         <%= model.description %></div>
         <div class="clear"></div>
          <% if (fullView == true) { %>
-			<% if (model.toNotify == false) { %>
+			<% if (model.toNotify == false && model.visible == true) { %>
 				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
-			<% } else { %>
+			<% } else if(model.toNotify == true){ %>
 				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
 			<% } %>
          <% } %>
@@ -259,6 +267,7 @@
     </script>
 
     <script type="text/template" id="template-question">
+        <% if(lastQuestion == 0){  %>
         <div id="header">
          <%  if(total == 1){ %>
         <h1><%= i18next.t("questionCounter")%></h1></div>
@@ -267,9 +276,9 @@
         <% } %>
         </div>
         <div class="content-container">
-        <p><%- questionText %></p>
-        <div id="answer-feedback"></div>
-        <div id="answer"></div>
+            <p><%- questionText %></p>
+            <div id="answer-feedback"></div>
+            <div id="answer"></div>
         </div>
         <div class="prev-next-nav" >
             <div class="np-wrapper">
@@ -277,6 +286,12 @@
                  <a href="#questions/<%- containerId %>/<%- nextId %>" id="nextButton"><%= i18next.t("nextButton")%></a>
             </div>
         </div>
+        <% } else{ %>
+            <div id="end-message" ></div>
+            <div class="prev-next-nav">
+                <a href="#" class="button finish">Fertig</a>
+            </div>
+        <% } %>    
     </script>
 
     <script type="text/template" id="template-impressum">

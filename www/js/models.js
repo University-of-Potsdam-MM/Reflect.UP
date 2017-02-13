@@ -5,14 +5,15 @@ var app = (app || {} );
  *      Model - Configuration
  */
 var Configuration = Backbone.Model.extend({
-
-    localStorage: new Backbone.LocalStorage("UPReflection"),
-
+    // necessary local storage declaration to save a single model; in this case
+    // the Configuration model that holds the list of removed appointment titles.
+    localStorage : new Store("Configuration"),
     defaults:{
         accessToken: '',
 		moodleAccessToken: '',
 		notificationsCounter: 0,
 		notificationsList: '{"titlesToNotify" : []}',
+        appointmentList: '{"removedTitles" : []}',
 		moodleServiceEndpoint : '',
 		moodleLoginEndpoint : '',
         impressumTemplate: '',
@@ -34,11 +35,14 @@ var TabCollection = Backbone.Collection.extend({
  *      Model - Appointment
  */
 var Appointment = Backbone.Model.extend({
+    // the visible attribute of this model defines if the appointment is visible from
+    // the start page of the application.
 	defaults:{
 		title : 'Appointment Title',
         begin : new Date(),
         end : new Date(),
 		toNotify: false,
+        visible: true,
 	}
 });
 
@@ -62,9 +66,8 @@ var Question = Backbone.Model.extend({
         number: null,
         total: null,
         answerText : null,
-        dependItem : null,      // model needs 'dependItem' and 'dependValue' attributes 
-        dependValue : null,     //      to support conditional questions on feedbacks
-        choices: null
+        choices: null,
+        //lastQuestion: 0
     },
 
     hasPrevious: function(){
@@ -96,7 +99,6 @@ var Question = Backbone.Model.extend({
 
         return this.collection.at(this.collection.indexOf(this)-1).id;
     }
-
 });
 
 
@@ -118,8 +120,7 @@ var QuestionContainer = Backbone.Model.extend({
         currentIndex: 0,
         firstQuestion: null,
         questionList: QuestionList,
-        answersHash: {},
-        actualPath: []
+        feedbackMessage: '',
     },
 
     initialize: function(){
@@ -127,36 +128,18 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     next: function(){
-        var listLength= this.get("questionList").length;
-        if (this.get('currentIndex') == listLength - 1)
+        if (this.get('currentIndex') == this.length - 1)
             return null;
-        // push current index into the actualPath
-        var answeredPath= this.get('actualPath');
-        answeredPath.push(this.get('currentIndex'));
-        var nextOnSequence = this.get('questionList').at(this.get('currentIndex') + 1);
+
         this.set('currentIndex', this.get('currentIndex') + 1);
-        // if dependItem is different to 0 it means that the question has a dependency
-        if(nextOnSequence.get("dependItem") != 0){
-            // if the dependency of the next question in the row is satisfied, then
-            //      it is selected to be the next question
-            while (nextOnSequence.get("dependValue") != this.get("answersHash")[nextOnSequence.get("dependItem")] && nextOnSequence.get("dependItem") != 0){
-                if (this.get('currentIndex') == listLength - 1)
-                    return null;
-                this.set('currentIndex', this.get('currentIndex') + 1);
-                nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
-            }
-            return this.current();
-        }
         return this.current();
     },
 
     previous: function(){
         if (this.get('currentIndex') <= 0)
             return null;
-        // pop previous index from actualPath to know which was the last answered question
-        var answeredPath= this.get('actualPath');
-        var lastIndex= answeredPath.pop();
-        this.set('currentIndex', lastIndex);
+
+        this.set('currentIndex', this.get('currentIndex') - 1);
         return this.current();
     },
 
@@ -197,8 +180,7 @@ var QuestionContainer = Backbone.Model.extend({
         }).done(function(data) {
             console.log(data);
         });
-    },
-
+    }
 });
 
 
@@ -226,7 +208,7 @@ var QuestionContainerList = Backbone.Collection.extend({
         })
 
         .done(function(data) {
-            //console.log(data);
+            //console.log(" obtained feedbacks: \n"+window.JSON.stringify(data));
             if (data.message) {
                 if (options && options.error)
                     options.error(data.message);
@@ -259,7 +241,8 @@ var QuestionContainerList = Backbone.Collection.extend({
                     }
                     var questionContainer = new QuestionContainer({
                         id: item.id,
-                        title: itemName
+                        title: itemName,
+                        feedbackMessage: item.feedbackMessage,
                     });
 
                     _.each(item.questions, function(question, i){
@@ -278,8 +261,6 @@ var QuestionContainerList = Backbone.Collection.extend({
                             total: item.questions.length,
                             questionText: questText,
                             type: question.type,
-                            dependItem: question.dependitem,
-                            dependValue: question.dependvalue
                         });
 
                         if (question.choices) {
@@ -384,6 +365,7 @@ var AppointmentCollection = Backbone.Collection.extend({
 					else{
 						toNotify= false;
 					}
+
                     // 'name' and 'description' attributes are to be checked for multi language tags
                     var matchPattern= /<span lang=/i;
                     var itemName= item.name;
@@ -403,13 +385,36 @@ var AppointmentCollection = Backbone.Collection.extend({
                         var results= itemDescription.match(new RegExp(openTag + "(.*)" + closeTag));
                         itemDescription= results[1];
                     }
+
+                    // at this point, there must be a checking to see wether the model to be added exists
+                    // in the list of removed appointmets; in case it is, the visible attribute is set to
+                    // false, and the appointment is not shown within the start page
+                    var apListSTR = Config.get('appointmentList');
+                    var apListOBJ = window.JSON.parse(apListSTR);
+                    var numAppointments = apListOBJ.removedTitles.length;
+                    var deleted = 0;
+                    for (var k=0; k<numAppointments; k++){
+                        var appointmentModelsTitle = apListOBJ.removedTitles[k];
+                        if(appointmentModelsTitle == item.name){
+                            deleted = 1;
+                            break;
+                        }
+                    }
+
+                    if(deleted != 1){
+                        visible = true;
+                    }else{
+                        visible = false;
+                    }
+
                     result.push(new Appointment({
                         title: itemName,
                         description: itemDescription,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
 						toNotify: toNotify,
-                    }))
+                        visible : visible
+                    }));
                 });
                 options.success(result);
         });

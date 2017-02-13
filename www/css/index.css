@@ -119,7 +119,7 @@ body {
 .data {
 	display: inline-block;
 	vertical-align: middle;
-	width: 50px;
+	width: 60px;
 }
 
 .date {
@@ -246,8 +246,8 @@ ul {
 
 li {
 	margin-left: 0px;
-	margin-bottom: 5px;
-	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 #questions li {
@@ -257,6 +257,7 @@ li {
 }
 
 #appointments li {
+	padding-top: 10px;
 	padding-bottom: 1em;
 	border-bottom: 1px solid #444;
 }
