@@ -33,7 +33,14 @@ var AppointmentListItemView = Backbone.View.extend({
         if(this.model.get('visible') == 0){
             this.$el.addClass('darkClass');
         }
-        this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
+        //determine if there are less than three hours left before the appointment and in that case don't show the
+        //  bell icon that serves as button for notifications
+        var PassedCase= false;
+        var beginDate= new Date(this.model.get('begin'));
+        var currTime= new Date();
+        var hoursToBegin= (beginDate - currTime) / 3600000;
+        if(hoursToBegin < 3)PassedCase=true;
+        this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView, passed: PassedCase}));
         return this;
     },
 	

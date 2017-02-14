@@ -227,7 +227,7 @@
         </div>
         <div class="time" >
         <% if (model.begin.getTime() === model.end.getTime()){  %>
-        ganztägig
+        <%= i18next.t("fullDay")%>
         <% }else{ %>
         <% if (model.begin.getHours() != 0 && model.begin.getMinutes() != 0){ %>
         <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
@@ -243,7 +243,7 @@
         <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
         <%= model.description %></div>
         <div class="clear"></div>
-         <% if (fullView == true) { %>
+         <% if (fullView == true && passed == false) { %>
 			<% if (model.toNotify == false && model.visible == true) { %>
 				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
 			<% } else if(model.toNotify == true){ %>
