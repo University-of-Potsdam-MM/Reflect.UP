@@ -187,6 +187,17 @@ var app = {
             Backbone.history.start();
         });
 
+        //sometimes the menu-options are not inmediately loaded afteer i18next is initialized;
+        //  therefore, the individual elements are filled during launch time of the app
+        $('#panel-menu').text(i18next.t("panelMenu"));
+        $('#more-appointments-button').text(i18next.t("panelAppointments"));
+        $('#more-questions-button').text(i18next.t("panelQuestions"));
+        $('#panel-contact-persons').text(i18next.t("panelContact"));
+        $('#panel-feedback').text(i18next.t("panelFeedback"));
+        $('#panel-languages').text(i18next.t("panelLanguages"));
+        $('#panel-home').text(i18next.t("panelHome"));
+        $('#panel-logout').text(i18next.t("panelLogout"));
+        $('#infopanel-content').html(i18next.t("infoMessage_1"));
     },
 
     // Bind Event Listeners
