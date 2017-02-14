@@ -386,7 +386,6 @@ var QuestionView = Backbone.View.extend({
         if (this.model.get('type') === "multichoice" &&
             this.model.get('choices')){
             var selectedChoice= this.model.get('answerText');
-            console.log('the selected choice that was saved is: '+selectedChoice);
             var count = 1;
             var that = this;
             var form = $('<form action="">');
@@ -396,7 +395,7 @@ var QuestionView = Backbone.View.extend({
                 radioInput.attr('type', 'radio');
                 radioInput.attr('name', 'choice');
                 radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', choice);
+                radioInput.attr('value', count);
 
                 //set the radioImput to be selected if selectedChoice == count
                 if(selectedChoice == count){
@@ -440,10 +439,38 @@ var QuestionView = Backbone.View.extend({
             this.undelegateEvents();
             this.$el.html(this.template({lastQuestion:1}));
             if(this.collection.get("feedbackMessage") != ''){
-                this.$("#end-message").html(this.collection.get("feedbackMessage"));
+                // custom feedback message at the end of quizz might be provided in several different languages
+                //      therefore, the message in the preferred language must be extracted
+                var feedMsg= this.collection.get("feedbackMessage");
+                var matchPattern= /<span lang=/i;
+                var found= feedMsg.search(matchPattern);
+                //form the name of the enclosing tags
+                var Config= new Configuration({id:1});
+                Config.fetch();
+                var language= Config.get('appLanguage');
+                var openTag= '<span lang="'+language+'" class="multilang">';
+                var closeTag= '</span>';
+                if(found != -1){
+                    //extract text in the correct language
+                    var results= feedMsg.match(new RegExp(openTag + "(.*)" + closeTag));
+                    //if the preferred language was not found, rollback to german
+                    if(results == null){
+                        var openTag_2= '<span lang="de" class="multilang">';
+                        results= feedMsg.match(new RegExp(openTag_2 + "(.*)" + closeTag));
+                    }
+                    feedMsg= results[1];
+                    //introduce a correction in case more information than needed was extracted
+                    found= feedMsg.search(matchPattern);
+                    while (found != -1){
+                        results= feedMsg.match(new RegExp("(.*)"+closeTag+".*"));
+                        feedMsg= results[1];
+                        found= feedMsg.search(matchPattern);
+                    }
+                }
+                this.$("#end-message").html(feedMsg);
             }
             else{
-                this.$("#end-message").html('<p><i class="fa fa-check"></i> Vielen Dank, Du hast alle Fragen beantwortet.</p>');
+                this.$("#end-message").html('<p><i class="fa fa-check"></i>'+i18next.t("messageFinish")+'</p>');
             }
             return false;
         }
@@ -482,8 +509,6 @@ var QuestionView = Backbone.View.extend({
             var $input= this.$('#answer input[name=choice]:checked');
             var choiceNumber= $input.val();
             var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
-            console.log("The recorded answer will be: "+recordedAnswer);
-            console.log("And its number: "+choiceNumber);
             if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
                 return false;
             }
@@ -502,25 +527,6 @@ var QuestionView = Backbone.View.extend({
         }
     }
 })
-
-
-/**
- *      View - QuestionsFinishView
- *      view displayed after finishing all questions of a container
- */
- var QuestionsFinishView = Backbone.View.extend({
-    el : "#app",
-    template : _.template($('#template-question-finish').html()),
-
-    initialize: function(){
-        this.render();
-    },
-
-    render: function(){
-        this.$el.html(this.template({t: _t}));
-        return this;
-    }
- });
 
 
 /**

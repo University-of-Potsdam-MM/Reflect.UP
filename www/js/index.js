@@ -30,8 +30,11 @@ var app = {
         }
 
         var router = new Router();
+        //verify if a language was previously selected by the user
+        Config.fetch();
+        var language= Config.get('appLanguage');
         // initialize i18next to get the correct translation of the app's texts
-        var options= {debug: true, lng: 'de', load: 'all', fallbackLng: 'de', 
+        var options= {debug: true, lng: language, load: 'all', fallbackLng: 'de', 
         resources: 
         {
     de : {

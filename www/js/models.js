@@ -132,7 +132,7 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     next: function(){
-        if (this.get('currentIndex') == this.length - 1)
+        if (this.get('currentIndex') == this.get("questionList").length - 1)
             return null;
         var listLength= this.get("questionList").length;
         // push current index into the actualPath
@@ -259,7 +259,19 @@ var QuestionContainerList = Backbone.Collection.extend({
                     if(found != -1){
                         //extract text in the correct language
                         var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
+                        //if the preferred language was not found, rollback to german
+                        if(results == null){
+                            var openTag_2= '<span lang="de" class="multilang">';
+                            results= itemName.match(new RegExp(openTag_2 + "(.*)" + closeTag));
+                        }
                         itemName= results[1];
+                        //introduce a correction in case more information than needed was extracted
+                        found= itemName.search(matchPattern);
+                        while (found != -1){
+                            results= itemName.match(new RegExp("(.*)"+closeTag+".*"));
+                            itemName= results[1];
+                            found= itemName.search(matchPattern);
+                        }
                     }
                     var questionContainer = new QuestionContainer({
                         id: item.id,
@@ -274,8 +286,20 @@ var QuestionContainerList = Backbone.Collection.extend({
                         found= questText.search(matchPattern);
                         if(found != -1){
                             //extract text in the correct language
-                            var results= questText.match(new RegExp(openTag + "(.*)" + closeTag));
+                            var results= questText.match(new RegExp(openTag+"(.*)"+closeTag));
+                            //if the preferred language was not found, rollback to german
+                            if(results == null){
+                                var openTag_2= '<span lang="de" class="multilang">';
+                                results= questText.match(new RegExp(openTag_2+"(.*)"+closeTag));
+                            }                         
                             questText= results[1];
+                            //introduce a correction in case more information than needed was extracted
+                            found= questText.search(matchPattern);
+                            while (found != -1){
+                                results= questText.match(new RegExp("(.*)"+closeTag+".*"));
+                                questText= results[1];
+                                found= questText.search(matchPattern);       
+                            }
                         }
                         var q = new Question({
                             id: question.id,
@@ -296,6 +320,17 @@ var QuestionContainerList = Backbone.Collection.extend({
                                 found = choicesArray[k].search(matchPattern);
                                 if(found != -1){
                                     var results= choicesArray[k].match(new RegExp(openTag + "(.*)" + closeTag));
+                                    //if the preferred language was not found, rollback to german
+                                    if(results == null){
+                                        var openTag_2= '<span lang="de" class="multilang">';
+                                        results= choicesArray[k].match(new RegExp(openTag_2 + "(.*)" + closeTag));
+                                    }
+                                    //introduce a correction in case more information than needed was extracted
+                                    found= results[1].search(matchPattern);
+                                    while (found != -1){
+                                        results= results[1].match(new RegExp("(.*)"+closeTag+".*"));
+                                        found= results[1].search(matchPattern);
+                                    }
                                     choicesArray[k]= results[1];
                                 }
                             }
@@ -401,13 +436,38 @@ var AppointmentCollection = Backbone.Collection.extend({
                     if(found != -1){
                         //extract text in the correct language
                         var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
+                        //if the preferred language was not found, rollback to german
+                        if(results == null){
+                            var openTag_2= '<span lang="de" class="multilang">';
+                            results= itemName.match(new RegExp(openTag_2 + "(.*)" + closeTag));
+                        }                        
                         itemName= results[1];
+                        //introduce a correction in case more information than needed was extracted
+                        found= itemName.search(matchPattern);
+                        while (found != -1){
+                            results= itemName.match(new RegExp("(.*)"+closeTag+".*"));
+                            itemName= results[1];
+                            found= itemName.search(matchPattern);
+
+                        }
                     }
                     var itemDescription= item.description;
                     found= itemDescription.search(matchPattern);
                     if(found != -1){
                         var results= itemDescription.match(new RegExp(openTag + "(.*)" + closeTag));
+                        //if the preferred language was not found, rollback to german
+                        if(results == null){
+                            var openTag_2= '<span lang="de" class="multilang">';
+                            results= itemDescription.match(new RegExp(openTag_2 + "(.*)" + closeTag));
+                        }
                         itemDescription= results[1];
+                        //introduce a correction in case more information than needed was extracted
+                        found= itemDescription.search(matchPattern);
+                        while (found != -1){
+                            results= itemDescription.match(new RegExp("(.*)"+closeTag+".*"));
+                            itemDescription= results[1];
+                            found= itemDescription.search(matchPattern);
+                        }
                     }
 
                     // at this point, there must be a checking to see wether the model to be added exists
