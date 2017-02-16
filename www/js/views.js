@@ -371,6 +371,25 @@ var QuestionView = Backbone.View.extend({
         'click #previousButton':    'previousQuestion',
     },
 
+    processMoodleContents: function(language, stringToAnalize){
+        //checking for multi language tags
+        var matchPattern= /<span lang=/i;
+        var found= stringToAnalize.search(matchPattern);
+        //form the name of the enclosing tags
+        var openTag= '<span lang="'+language+'" class="multilang">';
+        var closeTag= '</span>';
+        if(found != -1){
+            //extract text in the correct language
+            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
+            //if the preferred language was not found, rollback to german
+            if(results == null){
+                var openTag_2= '<span lang="de" class="multilang">';
+                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
+            }
+            return results[1];
+        }
+    },
+
     render: function(){
         if (this.model.hasPrevious())
             var previousId = this.model.previousId();
@@ -449,30 +468,10 @@ var QuestionView = Backbone.View.extend({
                 // custom feedback message at the end of quizz might be provided in several different languages
                 //      therefore, the message in the preferred language must be extracted
                 var feedMsg= this.collection.get("feedbackMessage");
-                var matchPattern= /<span lang=/i;
-                var found= feedMsg.search(matchPattern);
-                //form the name of the enclosing tags
                 var Config= new Configuration({id:1});
                 Config.fetch();
                 var language= Config.get('appLanguage');
-                var openTag= '<span lang="'+language+'" class="multilang">';
-                var closeTag= '</span>';
-                if(found != -1){
-                    //extract text in the correct language
-                    var results= feedMsg.match(new RegExp(openTag + "(.*)" + closeTag));
-                    //if the preferred language was not found, rollback to german
-                    if(results == null){
-                        var openTag_2= '<span lang="de" class="multilang">';
-                        results= feedMsg.match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                    }
-                    feedMsg= results[1];
-                    //introduce a correction in case more information than needed was extracted
-                    found= feedMsg.search(matchPattern);
-                    while (found != -1){
-                        results= feedMsg.match(new RegExp("(.*)"+closeTag+".*"));
-                        feedMsg= results[1];
-                        found= feedMsg.search(matchPattern);
-                    }
+                feedMsg= this.processMoodleContents(language,feedMsg);
                 }
                 this.$("#end-message").html(feedMsg);
             }

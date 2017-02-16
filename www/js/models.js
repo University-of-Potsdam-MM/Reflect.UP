@@ -214,10 +214,30 @@ var QuestionContainerList = Backbone.Collection.extend({
 
     model : QuestionContainer,
 
+    processMoodleContents: function(language, stringToAnalize){
+        //checking for multi language tags
+        var matchPattern= /<span lang=/i;
+        var found= stringToAnalize.search(matchPattern);
+        //form the name of the enclosing tags
+        var openTag= '<span lang="'+language+'" class="multilang">';
+        var closeTag= '</span>';
+        if(found != -1){
+            //extract text in the correct language
+            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
+            //if the preferred language was not found, rollback to german
+            if(results == null){
+                var openTag_2= '<span lang="de" class="multilang">';
+                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
+            }
+            return results[1];
+        }
+    },
+
     sync: function(method, model, options){
 		var Config= new Configuration({id:1});
 		Config.fetch();
         var token = Config.get("moodleAccessToken");
+        var that= this;
 
         $.ajax({
             url: Config.get('moodleServiceEndpoint'),
@@ -248,31 +268,9 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                 _.each(data.feedbacks, function(item){
 
-                    //'name' of question container is to be checked for multi language tags
-                    var matchPattern= /<span lang=/i;
                     var itemName= item.name;
-                    var found= itemName.search(matchPattern);
-                    //form the name of the enclosing tags
                     var language= Config.get('appLanguage');
-                    var openTag= '<span lang="'+language+'" class="multilang">';
-                    var closeTag= '</span>';
-                    if(found != -1){
-                        //extract text in the correct language
-                        var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
-                        //if the preferred language was not found, rollback to german
-                        if(results == null){
-                            var openTag_2= '<span lang="de" class="multilang">';
-                            results= itemName.match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                        }
-                        itemName= results[1];
-                        //introduce a correction in case more information than needed was extracted
-                        found= itemName.search(matchPattern);
-                        while (found != -1){
-                            results= itemName.match(new RegExp("(.*)"+closeTag+".*"));
-                            itemName= results[1];
-                            found= itemName.search(matchPattern);
-                        }
-                    }
+                    itemName= that.processMoodleContents(language,itemName);
                     var questionContainer = new QuestionContainer({
                         id: item.id,
                         title: itemName,
@@ -283,24 +281,7 @@ var QuestionContainerList = Backbone.Collection.extend({
 
                         // 'questionText' text and 'choices' are to be checked for multi language tags
                         var questText= question.questionText;
-                        found= questText.search(matchPattern);
-                        if(found != -1){
-                            //extract text in the correct language
-                            var results= questText.match(new RegExp(openTag+"(.*)"+closeTag));
-                            //if the preferred language was not found, rollback to german
-                            if(results == null){
-                                var openTag_2= '<span lang="de" class="multilang">';
-                                results= questText.match(new RegExp(openTag_2+"(.*)"+closeTag));
-                            }                         
-                            questText= results[1];
-                            //introduce a correction in case more information than needed was extracted
-                            found= questText.search(matchPattern);
-                            while (found != -1){
-                                results= questText.match(new RegExp("(.*)"+closeTag+".*"));
-                                questText= results[1];
-                                found= questText.search(matchPattern);       
-                            }
-                        }
+                        questText= that.processMoodleContents(language,questText);
                         var q = new Question({
                             id: question.id,
                             number: i+1,
@@ -317,23 +298,10 @@ var QuestionContainerList = Backbone.Collection.extend({
                             var choicesArray= question.choices.substring(6).split('|');
                             var arrayLength= choicesArray.length;
                             for(var k=0; k < arrayLength; k++){
-                                found = choicesArray[k].search(matchPattern);
-                                if(found != -1){
-                                    var results= choicesArray[k].match(new RegExp(openTag + "(.*)" + closeTag));
-                                    //if the preferred language was not found, rollback to german
-                                    if(results == null){
-                                        var openTag_2= '<span lang="de" class="multilang">';
-                                        results= choicesArray[k].match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                                    }
-                                    //introduce a correction in case more information than needed was extracted
-                                    found= results[1].search(matchPattern);
-                                    while (found != -1){
-                                        results= results[1].match(new RegExp("(.*)"+closeTag+".*"));
-                                        found= results[1].search(matchPattern);
-                                    }
-                                    choicesArray[k]= results[1];
-                                }
+                                var choiceText= choicesArray[k];
+                                choicesArray[k]= that.processMoodleContents(language,choiceText);;
                             }
+                        }
                             q.set("choices",choicesArray);
                         }
                         questionContainer.get('questionList').add(q);
@@ -356,6 +324,25 @@ var AppointmentCollection = Backbone.Collection.extend({
 
 	model : Appointment,
 
+    processMoodleContents: function(language, stringToAnalize){
+        //checking for multi language tags
+        var matchPattern= /<span lang=/i;
+        var found= stringToAnalize.search(matchPattern);
+        //form the name of the enclosing tags
+        var openTag= '<span lang="'+language+'" class="multilang">';
+        var closeTag= '</span>';
+        if(found != -1){
+            //extract text in the correct language
+            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
+            //if the preferred language was not found, rollback to german
+            if(results == null){
+                var openTag_2= '<span lang="de" class="multilang">';
+                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
+            }
+            return results[1];
+        }
+    },
+
     sync: function(method, model, options){
 
         var today = new Date();
@@ -364,7 +351,7 @@ var AppointmentCollection = Backbone.Collection.extend({
 		var Config= new Configuration({id:1});
 		Config.fetch();
         var token = Config.get('moodleAccessToken');
-		console.log('On fetching appointments the token: '+token+' is given');
+        var that= this;
         $.ajax({
             url: Config.get('moodleServiceEndpoint'),
             data: {
@@ -426,50 +413,11 @@ var AppointmentCollection = Backbone.Collection.extend({
 					}
 
                     // 'name' and 'description' attributes are to be checked for multi language tags
-                    var matchPattern= /<span lang=/i;
-                    var itemName= item.name;
-                    var found= itemName.search(matchPattern);
-                    //form the name of the enclosing tags
                     var language= Config.get('appLanguage');
-                    var openTag= '<span lang="'+language+'" class="multilang">';
-                    var closeTag= '</span>';
-                    if(found != -1){
-                        //extract text in the correct language
-                        var results= itemName.match(new RegExp(openTag + "(.*)" + closeTag));
-                        //if the preferred language was not found, rollback to german
-                        if(results == null){
-                            var openTag_2= '<span lang="de" class="multilang">';
-                            results= itemName.match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                        }                        
-                        itemName= results[1];
-                        //introduce a correction in case more information than needed was extracted
-                        found= itemName.search(matchPattern);
-                        while (found != -1){
-                            results= itemName.match(new RegExp("(.*)"+closeTag+".*"));
-                            itemName= results[1];
-                            found= itemName.search(matchPattern);
-
-                        }
-                    }
+                    var itemName= item.name;
+                    itemName= that.processMoodleContents(language,itemName);
                     var itemDescription= item.description;
-                    found= itemDescription.search(matchPattern);
-                    if(found != -1){
-                        var results= itemDescription.match(new RegExp(openTag + "(.*)" + closeTag));
-                        //if the preferred language was not found, rollback to german
-                        if(results == null){
-                            var openTag_2= '<span lang="de" class="multilang">';
-                            results= itemDescription.match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                        }
-                        itemDescription= results[1];
-                        //introduce a correction in case more information than needed was extracted
-                        found= itemDescription.search(matchPattern);
-                        while (found != -1){
-                            results= itemDescription.match(new RegExp("(.*)"+closeTag+".*"));
-                            itemDescription= results[1];
-                            found= itemDescription.search(matchPattern);
-                        }
-                    }
-
+                    itemDescription= that.processMoodleContents(language,itemName);
                     // at this point, there must be a checking to see wether the model to be added exists
                     // in the list of removed appointmets; in case it is, the visible attribute is set to
                     // false, and the appointment is not shown within the start page
