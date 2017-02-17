@@ -271,10 +271,13 @@ var QuestionContainerList = Backbone.Collection.extend({
                     var itemName= item.name;
                     var language= Config.get('appLanguage');
                     itemName= that.processMoodleContents(language,itemName);
+                    var feedMsg= item.feedbackMessage;
+                    //detect if there is a custom feedback message and process it
+                    if(feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
                     var questionContainer = new QuestionContainer({
                         id: item.id,
                         title: itemName,
-                        feedbackMessage: item.feedbackMessage,
+                        feedbackMessage: feedMsg,
                     });
 
                     _.each(item.questions, function(question, i){
@@ -301,7 +304,6 @@ var QuestionContainerList = Backbone.Collection.extend({
                                 var choiceText= choicesArray[k];
                                 choicesArray[k]= that.processMoodleContents(language,choiceText);;
                             }
-                        }
                             q.set("choices",choicesArray);
                         }
                         questionContainer.get('questionList').add(q);
@@ -417,7 +419,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                     var itemName= item.name;
                     itemName= that.processMoodleContents(language,itemName);
                     var itemDescription= item.description;
-                    itemDescription= that.processMoodleContents(language,itemName);
+                    itemDescription= that.processMoodleContents(language,itemDescription);
                     // at this point, there must be a checking to see wether the model to be added exists
                     // in the list of removed appointmets; in case it is, the visible attribute is set to
                     // false, and the appointment is not shown within the start page

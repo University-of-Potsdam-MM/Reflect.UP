@@ -371,25 +371,6 @@ var QuestionView = Backbone.View.extend({
         'click #previousButton':    'previousQuestion',
     },
 
-    processMoodleContents: function(language, stringToAnalize){
-        //checking for multi language tags
-        var matchPattern= /<span lang=/i;
-        var found= stringToAnalize.search(matchPattern);
-        //form the name of the enclosing tags
-        var openTag= '<span lang="'+language+'" class="multilang">';
-        var closeTag= '</span>';
-        if(found != -1){
-            //extract text in the correct language
-            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
-            //if the preferred language was not found, rollback to german
-            if(results == null){
-                var openTag_2= '<span lang="de" class="multilang">';
-                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
-            }
-            return results[1];
-        }
-    },
-
     render: function(){
         if (this.model.hasPrevious())
             var previousId = this.model.previousId();
@@ -465,14 +446,7 @@ var QuestionView = Backbone.View.extend({
             this.undelegateEvents();
             this.$el.html(this.template({lastQuestion:1}));
             if(this.collection.get("feedbackMessage") != ''){
-                // custom feedback message at the end of quizz might be provided in several different languages
-                //      therefore, the message in the preferred language must be extracted
                 var feedMsg= this.collection.get("feedbackMessage");
-                var Config= new Configuration({id:1});
-                Config.fetch();
-                var language= Config.get('appLanguage');
-                feedMsg= this.processMoodleContents(language,feedMsg);
-                }
                 this.$("#end-message").html(feedMsg);
             }
             else{
