@@ -231,6 +231,7 @@ var QuestionContainerList = Backbone.Collection.extend({
             }
             return results[1];
         }
+        return stringToAnalize;
     },
 
     sync: function(method, model, options){
@@ -343,6 +344,7 @@ var AppointmentCollection = Backbone.Collection.extend({
             }
             return results[1];
         }
+        return stringToAnalize;
     },
 
     sync: function(method, model, options){
@@ -440,7 +442,6 @@ var AppointmentCollection = Backbone.Collection.extend({
                     }else{
                         visible = false;
                     }
-
                     result.push(new Appointment({
                         title: itemName,
                         description: itemDescription,
