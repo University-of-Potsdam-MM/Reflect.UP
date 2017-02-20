@@ -274,7 +274,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                     itemName= that.processMoodleContents(language,itemName);
                     var feedMsg= item.feedbackMessage;
                     //detect if there is a custom feedback message and process it
-                    if(feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
+                    if(feedMsg != undefined && feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
                     var questionContainer = new QuestionContainer({
                         id: item.id,
                         title: itemName,
