@@ -33,7 +33,14 @@ var AppointmentListItemView = Backbone.View.extend({
         if(this.model.get('visible') == 0){
             this.$el.addClass('darkClass');
         }
-        this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView}));
+        //determine if there are less than three hours left before the appointment and in that case don't show the
+        //  bell icon that serves as button for notifications
+        var PassedCase= false;
+        var beginDate= new Date(this.model.get('begin'));
+        var currTime= new Date();
+        var hoursToBegin= (beginDate - currTime) / 3600000;
+        if(hoursToBegin < 3)PassedCase=true;
+        this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView, passed: PassedCase}));
         return this;
     },
 	
@@ -439,34 +446,7 @@ var QuestionView = Backbone.View.extend({
             this.undelegateEvents();
             this.$el.html(this.template({lastQuestion:1}));
             if(this.collection.get("feedbackMessage") != ''){
-                // custom feedback message at the end of quizz might be provided in several different languages
-                //      therefore, the message in the preferred language must be extracted
                 var feedMsg= this.collection.get("feedbackMessage");
-                var matchPattern= /<span lang=/i;
-                var found= feedMsg.search(matchPattern);
-                //form the name of the enclosing tags
-                var Config= new Configuration({id:1});
-                Config.fetch();
-                var language= Config.get('appLanguage');
-                var openTag= '<span lang="'+language+'" class="multilang">';
-                var closeTag= '</span>';
-                if(found != -1){
-                    //extract text in the correct language
-                    var results= feedMsg.match(new RegExp(openTag + "(.*)" + closeTag));
-                    //if the preferred language was not found, rollback to german
-                    if(results == null){
-                        var openTag_2= '<span lang="de" class="multilang">';
-                        results= feedMsg.match(new RegExp(openTag_2 + "(.*)" + closeTag));
-                    }
-                    feedMsg= results[1];
-                    //introduce a correction in case more information than needed was extracted
-                    found= feedMsg.search(matchPattern);
-                    while (found != -1){
-                        results= feedMsg.match(new RegExp("(.*)"+closeTag+".*"));
-                        feedMsg= results[1];
-                        found= feedMsg.search(matchPattern);
-                    }
-                }
                 this.$("#end-message").html(feedMsg);
             }
             else{
