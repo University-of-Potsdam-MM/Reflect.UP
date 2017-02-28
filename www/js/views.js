@@ -698,7 +698,7 @@ var ConfigView = Backbone.View.extend({
         $.ajax({
             url: that.model.get('moodleServiceEndpoint'),
             data: {
-                wstoken: that.model.get("accessToken"),
+                wstoken: that.model.get("moodleAccessToken"),
                 wsfunction: "local_reflect_enrol_self",
                 moodlewsrestformat: "json",
                 courseID : that.model.get('courseID')
