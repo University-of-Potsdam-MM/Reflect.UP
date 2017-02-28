@@ -111,28 +111,28 @@
         </div>
     </script>
 	
+    <!--
+        Template:       Initial Setup Screen for Grid Boxes
+    -->
 	<script type= "text/template" id="template-initial-setup">
-            <p class="welcome">
-                <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
-				<br />
-            </p>
-			<div class= "flex-grid">
-				<% _.each(tabs.models, function(tab){ %>
-					<div id="<%= tab.get('id')%>" class="grid-item courseTab">
-						<p><%= tab.get('title')%></p>
-						<br>
-						<p><%= tab.get('description')%></p>
-                        <div id="tab-logo-container" class="logo-container-format">
-                            <% if(tab.get('uniLogoPath') != ''){ %>
-                                <img src= <%= tab.get('uniLogoPath')%> alt="uni_logo" style="width:100px;heigh:100px">
-                            <% } %> 
-                        </div>
-					</div>
-				<% }); %>
-			</div>
-			<div class="impressum-footer">
-				<a class="footerlink">Uni Potsdam</a>
-			</div>
+        <p class="welcome">
+            <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
+			<br />
+        </p>
+		<div class= "flex-grid">
+			<% _.each(tabs.models, function(tab){ %>
+				<div id="<%= tab.get('id')%>" class="grid-item courseTab">
+					<p><%= tab.get('title')%></p>
+					<br>
+					<p><%= tab.get('description')%></p>
+                    <div id="tab-logo-container" class="logo-container-format">
+                        <% if(tab.get('uniLogoPath') != ''){ %>
+                            <img src= <%= tab.get('uniLogoPath')%> alt="uni_logo" style="width:100px;heigh:100px">
+                        <% } %> 
+                    </div>
+				</div>
+			<% }); %>
+		</div>
 	</script>
 
     <!--
@@ -219,9 +219,9 @@
             </div>
         <% } %>
         <div class="date" >
-        <%- model.begin.getDate() %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>
-        <% if (model.begin.getDate() != model.end.getDate()){ %>
-        -
+        <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
+        <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
+        <br />-<br />
         <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
         <% } %>
         </div>
@@ -229,7 +229,7 @@
         <% if (model.begin.getTime() === model.end.getTime()){  %>
         <%= i18next.t("fullDay")%>
         <% }else{ %>
-        <% if (model.begin.getHours() != 0 && model.begin.getMinutes() != 0){ %>
+        <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
         <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
         -
         <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>

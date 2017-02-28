@@ -973,6 +973,9 @@ var LogoutView = Backbone.View.extend({
 
     reroute: function() {
         Backbone.history.navigate('initialSetup', {trigger: true});
+        if(navigator.app){
+            navigator.app.exitApp();
+        }
     }
 });
 

@@ -550,3 +550,4 @@ var ContactPersonCollection = Backbone.Collection.extend({
             }
         })
 });
+

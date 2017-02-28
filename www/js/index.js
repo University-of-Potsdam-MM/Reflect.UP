@@ -237,6 +237,15 @@ var app = {
             app.onDeviceOffline();
         }
 
+        // ToS Agreement
+        if(!window.localStorage.getItem("ToS") || window.localStorage.getItem("ToS") == "n"){
+            navigator.notification.confirm(
+                "Die Nutzung dieses Services erfolgt freiwillig. Die im Rahmen der Nutzung erhobenen Daten werden ausschließlich zur Bereitstellung des Services verwendet und nicht an Dritte weitergegeben. Die Verwendung der Daten erfolgt nach den Bestimmungen des brandenburgischen Datenschutzgesetzes.\nDiese Smartphone-App ist nur in Verbindung mit einer separaten, abgeschlossenen Kursumgebung der Lehr-/Lernplattform „Moodle“ nutzbar. Die innerhalb dieses Kurses angebotenen Features werden den Nutzerinnen/Nutzern mithilfe eines Web-Services in der App angezeigt und zur Bearbeitung freigegeben bzw. über einen Push-Service mitgeteilt. Sämtliche Datenübertragungen sind SSL (OpenSSL/1.0.1q) verschlüsselt. Jeder Zugriff und jede Bearbeitung von Daten wird ausschließlich innerhalb der Moodle-Kursumgebung ausgeführt. Weder in der App selbst, noch auf dem verwendeten Smartphone werden Daten gespeichert. Eine Anmeldung in der Moodle-Kursumgebung ohne Verwendung der App ist nicht möglich. Die Kursumgebung und die entsprechenden Features werden ausschließlich von den zuständigen Kursbetreuenden und Administratoren gestaltet und bedient.\nMithilfe der auf dem Push-Service-Provider gespeicherten Teilnehmergeräte-IDs können die Kursbetreuer/innen Mitteilungen an den gesamten Kreis der Nutzer/innen senden. Diese Push-Mitteilungen beinhalten i.d.R. wichtige Ereignisse, Anregungen zur Reflexion und Hinweise.\nDer verwendete Webserver, der Uniqush-Push-Server und die Moodle-Umgebung sind Bestandteile der IT-Systemlandschaft des eLiS-Projekts an der Universität Potsdam. Sie werden gemäß den dort geltenden technischen und rechtlichen Standards sowie gemäß den geltenden Nutzungsbedingungen betrieben.\nDie vorab erhaltenen Informationen zum Forschungsprojekt, sowie die hier beschriebenen Informationen zur Nutzung und zum Datenschutz habe ich gelesen und erkläre mich damit einverstanden.", //Message
+                validateChoice, //Callback-function
+                "Nutzungsbestimmungen und Informationen zum Datenschutz ", //Title
+                ["Zustimmen","Ablehnen"]);
+        }
+
     },
 
     // Update DOM on a Received Event
@@ -244,3 +253,15 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function validateChoice(buttonPressed){
+    if(buttonPressed == 1){
+        //User accepted the ToS, save choice
+        window.localStorage.setItem("ToS","y");
+    }
+    else if(buttonPressed == 2){
+        //User denied the ToS, exit App
+        window.localStorage.setItem("ToS","n");
+        navigator.app.exitApp();
+    }
+}
