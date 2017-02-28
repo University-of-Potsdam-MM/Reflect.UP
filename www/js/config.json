@@ -1,34 +1,598 @@
 
 		[{"id": 1,
+					  "courseID" : "UPR1",
 					  "moodleServiceEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
 					  "moodleLoginEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
 					  "accessToken" : {"Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa"},
 					  "title" : "First example of a course on remote server",
 					  "description" : "This course is accessed through the Rest-API provided by the University of Potsdam",
 					  "impressumTemplate": "<div id=\"header\" class=\"hasBackButton\"> <a class=\"back\" title=\"zurück\" alt=\"zurück button\" href=\"#\"></a>\n             <h1>Impressum</h1>\n        </div>\n\n            <em style=\"font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;\">Herausgeber</em>\n            <p>\n            Universität Potsdam<br />\n            Am Neuen Palais 10<br />\n            14469 Potsdam<br /><br />\n            <b>Tel.:</b> 0331 977-0<br />\n            <b>Fax:</b> 0331 97 21 63<br />\n            <b>Web:</b> www.uni-potsdam.de<br />\n            </p>\n\n            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>\n            <p>\n            Ulrike Lucke, CIO der Universität Potsdam<br />\n            14469 Potsdam<br />\n            <b>E-Mail:</b> <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>\n            </p>\n\n            <em>Rechtsform und gesetzliche Vertretung</em>\n            <p>\n            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.\n            </p>\n\n            <em>Zuständige Aufsichtsbehörde</em>\n            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>\n\n            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>\n            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>\n            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>\n\n            <em>Haftung</em>\n            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a\n            href=\"(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf\">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>\n\n                </p>\n\n            <h1>Ansprechpartner</h1>\n            <p>\n            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />\n            Haus 1 | 1.54<br />\n            <br /> <b>Telefon:</b> +49-331-977-3564 <br style=\"clear: left;\">\n\n            </p>\n            </div>\n\n            <div>\n            <h1>Mitmachen</h1>\n            <p>\n            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von\n            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im\n            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open\n            Source Projekt veröffentlicht.<br />\n            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,\n            können Sie gern das Entwicklerteam unter <a href=\"mailto:elis-dev@lists.cs.uni-potsdam.de\">elis-dev@lists.cs.uni-potsdam.de</a>\n            kontaktieren.\n            </p>\n            </div>",
-					  "uniLogoPath": "../www/img/uni_potsdam_logo.png"},
+					  "uniLogoPath": "../www/img/uni_potsdam_logo.png",
+					  "contactPersonsObject" : [{
+									"category": "Studienfachberatung WiSo-Fakultät",
+									"content": [{
+										"category": "Betriebswirtschaftslehre",
+										"content": [{
+											"name": "Univ.-Prof. Dr. Ulfert Gronewold",
+											"location": "Griebnitzsee, Haus 3, Raum 1.03",
+											"tel": "+49 331 977-3804",
+											"mail": "ulfert.gronewold@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Prof. Dr. rer. oec. habil. Katharina Hölzle",
+											"location": "Griebnitzsee, Haus 1, Raum 3.04",
+											"tel": "+49 331 977-4500",
+											"mail": "katharina.hoelzle@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Volkswirtschaftslehre",
+										"content": [{
+											"name": "Prof. Dr. Malcolm H. Dunn",
+											"location": "Babelsberg, Karl-Marx-Str. 67, Raum 1.06",
+											"tel": "+49 331 977-4614",
+											"mail": "malcolm.dunn@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Politikwissenschaft / Verwaltungswissenschaft",
+										"content": [{
+											"name": "Prof. Dr. Heinz Kleger",
+											"location": "Griebnitzsee, Haus 1, Raum 1.36",
+											"tel": "+49 331 977-3561",
+											"secretary": "+49 331 977-3340",
+											"mail": "kleger@uni-potsdam.de"
+													}, {
+											"name": "apl. Prof. Dr. Jochen Franzke",
+											"location": "Griebnitzsee, Haus 2, Raum 2.05",
+											"tel": "+49 331 977-3414",
+											"mail": "franzke@uni-potsdam.de"
+										}, {
+											"name": "Dr. Markus Seyfried",
+											"location": "Griebnitzsee, Karl-Marx-Str. 67, Raum 3.01",
+											"tel": "+49 331 977-3462",
+											"secretary": "+49 331 977-3240",
+											"mail": "seyfried@uni-potsdam.de"
+										}]
+									}, {
+										"category": "Politik und Wirtschaft",
+										"content": [{
+											"name": "Prof. Dr. Rainald Borck",
+											"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 1.32a",
+											"tel": "+49 331 977-3394",
+											"mail": "rainald.borck@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Prof. Dr. Marco Caliendo",
+											"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 3.07",
+											"tel": "+49 331 977-3225",
+											"mail": "caliendo@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Soziologie",
+										"content": [{
+											"name": "Prof. Dr. Jürgen Mackert",
+											"location": "Griebnitzsee, Haus 2, Raum 1.07",
+											"tel": "+49 331 977-3336",
+											"alt_tel": "+49 331 977-3383",
+											"mail": "mackert@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Dr. Christian Schmidt-Wellenburg",
+											"location": "Griebnitzsee, Haus 2, Raum 1.09",
+											"mail": "cschmidtw@uni-potsdam.de"
+										}, {
+											"name": "Prof. Dr. Maja Apelt",
+											"comment": "nur Master",
+											"location": "Griebnitzsee, Haus 7, Raum 3.29",
+											"tel": "+49 331 977-3336",
+											"mail": "maja.apelt@uni-potsdam.de",
+											"consultation": "nach Vereinbarung per doodle unter ",
+											"consultation_url": "http://www.uni-potsdam.de/ls-apelt/team/prof-dr-maja-apelt.html"
+										}]
+									}, {
+										"category": "Wirtschaftsinformatik",
+										"content": [{
+											"name": "Dipl.-Ing. Hanna Theuer",
+											"location": "Campus Griebnitzsee Haus 1, Raum 2.67",
+											"tel": "+49 331 977-335",
+											"mail": "studienfachberatung@wirtschaftsinformatik-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Studieneingangsphase / Akademische Grundkompetenzen - Selbstreflexion und Planung",
+									"content": [{
+										"content": [{
+											"name": "Dipl.-Pol. Mathias Klein",
+											"location": "Campus Griebnitzsee Haus 7, Raum 1.34",
+											"tel": "+49 331 977-3613",
+											"mail": "matklein@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Zentrale Studienberatung",
+									"content": [{
+										"content": [{
+											"location": "Am Neuen Palais 10, Haus 8",
+											"tel": "+49 331 977-1715",
+											"mail": "studienberatung@uni-potsdam.de"
+										}]
+									}, {
+										"category": "Ansprechpartner:",
+										"content": [{
+											"name": "Lucas Mielke",
+											"comment": "beurlaubt bis 13.11.2015, Onlinestudienberatung",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.12",
+											"mail": "lumielke@uni-potsdam.de"
+										}, {
+											"name": "Dr. Irma Bürger",
+											"comment": "Studienberaterin, Behindertenbeauftragte für Studierende",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.14",
+											"mail": "behinderung-studium@uni-potsdam.de"
+										}, {
+											"name": "Robert Meile",
+											"comment": "Studienberater",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.16"
+										}, {
+											"name": "Dr. Marlies Reschke",
+											"comment": "Studienberaterin",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.15"
+										}]
+									}]
+								}, {
+									"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Sozialwissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Birgit Kletzin",
+											"location": "Griebnitzsee, Haus 1, Raum 1.27",
+											"tel": "+49 331 977-3408",
+											"mail": "kletzin@uni-potsdam.de"
+										}]
+									}]
+								}, {
+									"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Wirtschaftswissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Ingeborg Garz",
+											"comment": "Master",
+											"location": "Griebnitzsee, Haus 1, Raum 1.29",
+											"tel": "+49 331 977-3262",
+											"mail": "ingeborg.garz@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}
+								, {
+									"category": "Department Linguistik: Computerlinguistik",
+									"content": [{
+										"content": [{
+											"name": "Dr. Thomas Hanneforth",
+											"location": "Golm, Haus 14, Raum 2.19/2.20",
+											"tel": "0331 - 977 2440",
+											"mail": "Thomas.Hanneforth@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}
+
+								, {
+									"category": "Department Linguistik: Linguistik",
+									"content": [{
+										"content": [{
+											"name": "Dario Paape",
+											"location": "Golm, Haus 14, Raum 2.35",
+											"tel": "0331 - 977 2351",
+											"mail": "paape@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+
+								}, {
+									"category": "Department Linguistik: Patholinguistik",
+									"content": [{
+										"content": [{
+											"name": "Dr. Nicole Stadie",
+											"location": "Golm, Haus 14, Raum 2.06",
+											"tel": "0331 - 977 2935",
+											"mail": "nicole.stadie@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Department Psychologie: Psychologie",
+									"content": [{
+										"content": [{
+											"name": "Dr. Bernd Schellhas",
+											"location": "Golm, Haus 14, Raum 1.14",
+											"tel": "0331 - 977 2213",
+											"mail": "bernd.schellhas@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+
+								},{
+									"category": "Department Sport- und Gesundheitswissenschaften: Sportmanagement und Sporttherapie und Prävention",
+									"content": [{
+										"content": [{
+											"name": "Dr. Janet Kühl",
+											"location": "Golm, Haus 24, Raum 1.03",
+											"tel": "0331 - 977 2544",
+											"mail": "janet.hoehne@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+								}, {
+									"category": "Department Erziehungswissenschaften:Erziehungswissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Jörg-W. Link",
+											"location": "Golm, Haus 24, Raum 1.53",
+											"tel": "0331 - 977 2146",
+											"mail": "link@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+								}, {
+									"category": "Department Lehrerbildung: Lehramt Sek. I + II",
+									"content": [{
+										"content": [{
+											"name": "Dr. Andreas Seidel",
+											"location": "Golm, Haus 24, Raum 2.63",
+											"tel": "0331 - 977 2131",
+											"mail": "eseidel@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+											}, {
+												
+											"name": "Dr. Viola Meckelmann",
+											"location": "Golm, Haus 14, Raum 1.13",
+											"tel": "0331 - 977 2859",
+											"mail": "meckelma@uni-potsdam.de"
+								}]
+									}]
+								}, {
+									"category": "Department Lehrerbildung: Lehramt für Primarstufe und Lehramt Primarstufe Schwerpunkt Inklusionspädagogik",
+									"content": [{
+										"content": [{
+											"name": "PD Dr. Barbara Wegner",
+											"location": "Golm, Haus 24, Raum 2.23",
+											"tel": "0331 - 977 2498",
+											"mail": "wegener@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+											}, {
+												
+											"name": "Pawel R. Kulawiak",
+											"location": "Golm, Haus 31, Raum 2.07",
+											"tel": "0331 - 977 6375",
+											"mail": "kulawiak@uni-potsdam.de",
+											"consultation": "nach Vereinbarung, Anmeldung per E-Mail"
+											
+								}]
+									}]
+								}, {
+									"category": "Studieneingangsphase/Akademische Grundkompetenzen - Selbstreflexion und Planung",
+									"content": [{
+										"content": [{
+											"name": "Judith Tägener",
+											"location": "Karl-Liebknecht-Str. 24/25, Haus 24, Raum 1.63",
+											"tel": "0331 - 977 2905",
+											"mail": "jtaegene@uni-potsdam.de"
+								}]
+									}]
+								}]},
 		{"id": 2,
+					  "courseID" : "UPR2",
 					  "moodleServiceEndpoint" : "http://eliss-mac-mini.local/moodle/webservice/rest/server.php",
 					  "moodleLoginEndpoint" : "http://eliss-mac-mini.local/moodle/login/token.php",
 					  "accessToken" : {"Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa"},
 					  "title" : "First example of a course on local server",
 					  "description" : "The data of this course is hosted and accessed on a local server",
 					  "impressumTemplate": "<div id=\"header\" class=\"hasBackButton\"> <a class=\"back\" title=\"zurück\" alt=\"zurück button\" href=\"#\"></a>\n             <h1>Impressum</h1>\n        </div>\n\n            <em style=\"font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;\">Herausgeber</em>\n            <p>\n            Universität Potsdam<br />\n            Am Neuen Palais 10<br />\n            14469 Potsdam<br /><br />\n            <b>Tel.:</b> 0331 977-0<br />\n            <b>Fax:</b> 0331 97 21 63<br />\n            <b>Web:</b> www.uni-potsdam.de<br />\n            </p>\n\n            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>\n            <p>\n            Ulrike Lucke, CIO der Universität Potsdam<br />\n            14469 Potsdam<br />\n            <b>E-Mail:</b> <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>\n            </p>\n\n            <em>Rechtsform und gesetzliche Vertretung</em>\n            <p>\n            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.\n            </p>\n\n            <em>Zuständige Aufsichtsbehörde</em>\n            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>\n\n            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>\n            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>\n            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>\n\n            <em>Haftung</em>\n            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a\n            href=\"(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf\">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>\n\n                </p>\n\n            <h1>Ansprechpartner</h1>\n            <p>\n            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />\n            Haus 1 | 1.54<br />\n            <br /> <b>Telefon:</b> +49-331-977-3564 <br style=\"clear: left;\">\n\n            </p>\n            </div>\n\n            <div>\n            <h1>Mitmachen</h1>\n            <p>\n            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von\n            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im\n            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open\n            Source Projekt veröffentlicht.<br />\n            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,\n            können Sie gern das Entwicklerteam unter <a href=\"mailto:elis-dev@lists.cs.uni-potsdam.de\">elis-dev@lists.cs.uni-potsdam.de</a>\n            kontaktieren.\n            </p>\n            </div>",
-					  "uniLogoPath": "../www/img/uni_potsdam_logo.png"},
+					  "uniLogoPath": "../www/img/uni_potsdam_logo.png",
+					  "contactPersonsObject" : [{
+									"category": "Studienfachberatung WiSo-Fakultät",
+									"content": [{
+										"category": "Betriebswirtschaftslehre",
+										"content": [{
+											"name": "Univ.-Prof. Dr. Ulfert Gronewold",
+											"location": "Griebnitzsee, Haus 3, Raum 1.03",
+											"tel": "+49 331 977-3804",
+											"mail": "ulfert.gronewold@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Prof. Dr. rer. oec. habil. Katharina Hölzle",
+											"location": "Griebnitzsee, Haus 1, Raum 3.04",
+											"tel": "+49 331 977-4500",
+											"mail": "katharina.hoelzle@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Volkswirtschaftslehre",
+										"content": [{
+											"name": "Prof. Dr. Malcolm H. Dunn",
+											"location": "Babelsberg, Karl-Marx-Str. 67, Raum 1.06",
+											"tel": "+49 331 977-4614",
+											"mail": "malcolm.dunn@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Politikwissenschaft / Verwaltungswissenschaft",
+										"content": [{
+											"name": "Prof. Dr. Heinz Kleger",
+											"location": "Griebnitzsee, Haus 1, Raum 1.36",
+											"tel": "+49 331 977-3561",
+											"secretary": "+49 331 977-3340",
+											"mail": "kleger@uni-potsdam.de"
+													}, {
+											"name": "apl. Prof. Dr. Jochen Franzke",
+											"location": "Griebnitzsee, Haus 2, Raum 2.05",
+											"tel": "+49 331 977-3414",
+											"mail": "franzke@uni-potsdam.de"
+										}, {
+											"name": "Dr. Markus Seyfried",
+											"location": "Griebnitzsee, Karl-Marx-Str. 67, Raum 3.01",
+											"tel": "+49 331 977-3462",
+											"secretary": "+49 331 977-3240",
+											"mail": "seyfried@uni-potsdam.de"
+										}]
+									}, {
+										"category": "Politik und Wirtschaft",
+										"content": [{
+											"name": "Prof. Dr. Rainald Borck",
+											"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 1.32a",
+											"tel": "+49 331 977-3394",
+											"mail": "rainald.borck@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Prof. Dr. Marco Caliendo",
+											"location": "Babelsberg, A.-Bebel-Str. 89, Haus 1, Raum 3.07",
+											"tel": "+49 331 977-3225",
+											"mail": "caliendo@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}, {
+										"category": "Soziologie",
+										"content": [{
+											"name": "Prof. Dr. Jürgen Mackert",
+											"location": "Griebnitzsee, Haus 2, Raum 1.07",
+											"tel": "+49 331 977-3336",
+											"alt_tel": "+49 331 977-3383",
+											"mail": "mackert@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}, {
+											"name": "Dr. Christian Schmidt-Wellenburg",
+											"location": "Griebnitzsee, Haus 2, Raum 1.09",
+											"mail": "cschmidtw@uni-potsdam.de"
+										}, {
+											"name": "Prof. Dr. Maja Apelt",
+											"comment": "nur Master",
+											"location": "Griebnitzsee, Haus 7, Raum 3.29",
+											"tel": "+49 331 977-3336",
+											"mail": "maja.apelt@uni-potsdam.de",
+											"consultation": "nach Vereinbarung per doodle unter ",
+											"consultation_url": "http://www.uni-potsdam.de/ls-apelt/team/prof-dr-maja-apelt.html"
+										}]
+									}, {
+										"category": "Wirtschaftsinformatik",
+										"content": [{
+											"name": "Dipl.-Ing. Hanna Theuer",
+											"location": "Campus Griebnitzsee Haus 1, Raum 2.67",
+											"tel": "+49 331 977-335",
+											"mail": "studienfachberatung@wirtschaftsinformatik-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Studieneingangsphase / Akademische Grundkompetenzen - Selbstreflexion und Planung",
+									"content": [{
+										"content": [{
+											"name": "Dipl.-Pol. Mathias Klein",
+											"location": "Campus Griebnitzsee Haus 7, Raum 1.34",
+											"tel": "+49 331 977-3613",
+											"mail": "matklein@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Zentrale Studienberatung",
+									"content": [{
+										"content": [{
+											"location": "Am Neuen Palais 10, Haus 8",
+											"tel": "+49 331 977-1715",
+											"mail": "studienberatung@uni-potsdam.de"
+										}]
+									}, {
+										"category": "Ansprechpartner:",
+										"content": [{
+											"name": "Lucas Mielke",
+											"comment": "beurlaubt bis 13.11.2015, Onlinestudienberatung",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.12",
+											"mail": "lumielke@uni-potsdam.de"
+										}, {
+											"name": "Dr. Irma Bürger",
+											"comment": "Studienberaterin, Behindertenbeauftragte für Studierende",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.14",
+											"mail": "behinderung-studium@uni-potsdam.de"
+										}, {
+											"name": "Robert Meile",
+											"comment": "Studienberater",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.16"
+										}, {
+											"name": "Dr. Marlies Reschke",
+											"comment": "Studienberaterin",
+											"location": "Am Neuen Palais, Haus 08, Raum 0.15"
+										}]
+									}]
+								}, {
+									"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Sozialwissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Birgit Kletzin",
+											"location": "Griebnitzsee, Haus 1, Raum 1.27",
+											"tel": "+49 331 977-3408",
+											"mail": "kletzin@uni-potsdam.de"
+										}]
+									}]
+								}, {
+									"category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Wirtschaftswissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Ingeborg Garz",
+											"comment": "Master",
+											"location": "Griebnitzsee, Haus 1, Raum 1.29",
+											"tel": "+49 331 977-3262",
+											"mail": "ingeborg.garz@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}
+								, {
+									"category": "Department Linguistik: Computerlinguistik",
+									"content": [{
+										"content": [{
+											"name": "Dr. Thomas Hanneforth",
+											"location": "Golm, Haus 14, Raum 2.19/2.20",
+											"tel": "0331 - 977 2440",
+											"mail": "Thomas.Hanneforth@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}
+
+								, {
+									"category": "Department Linguistik: Linguistik",
+									"content": [{
+										"content": [{
+											"name": "Dario Paape",
+											"location": "Golm, Haus 14, Raum 2.35",
+											"tel": "0331 - 977 2351",
+											"mail": "paape@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+
+								}, {
+									"category": "Department Linguistik: Patholinguistik",
+									"content": [{
+										"content": [{
+											"name": "Dr. Nicole Stadie",
+											"location": "Golm, Haus 14, Raum 2.06",
+											"tel": "0331 - 977 2935",
+											"mail": "nicole.stadie@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+										}]
+									}]
+								}, {
+									"category": "Department Psychologie: Psychologie",
+									"content": [{
+										"content": [{
+											"name": "Dr. Bernd Schellhas",
+											"location": "Golm, Haus 14, Raum 1.14",
+											"tel": "0331 - 977 2213",
+											"mail": "bernd.schellhas@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+
+								},{
+									"category": "Department Sport- und Gesundheitswissenschaften: Sportmanagement und Sporttherapie und Prävention",
+									"content": [{
+										"content": [{
+											"name": "Dr. Janet Kühl",
+											"location": "Golm, Haus 24, Raum 1.03",
+											"tel": "0331 - 977 2544",
+											"mail": "janet.hoehne@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+								}, {
+									"category": "Department Erziehungswissenschaften:Erziehungswissenschaften",
+									"content": [{
+										"content": [{
+											"name": "Dr. Jörg-W. Link",
+											"location": "Golm, Haus 24, Raum 1.53",
+											"tel": "0331 - 977 2146",
+											"mail": "link@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+								}]
+									}]
+								}, {
+									"category": "Department Lehrerbildung: Lehramt Sek. I + II",
+									"content": [{
+										"content": [{
+											"name": "Dr. Andreas Seidel",
+											"location": "Golm, Haus 24, Raum 2.63",
+											"tel": "0331 - 977 2131",
+											"mail": "eseidel@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+											}, {
+												
+											"name": "Dr. Viola Meckelmann",
+											"location": "Golm, Haus 14, Raum 1.13",
+											"tel": "0331 - 977 2859",
+											"mail": "meckelma@uni-potsdam.de"
+								}]
+									}]
+								}, {
+									"category": "Department Lehrerbildung: Lehramt für Primarstufe und Lehramt Primarstufe Schwerpunkt Inklusionspädagogik",
+									"content": [{
+										"content": [{
+											"name": "PD Dr. Barbara Wegner",
+											"location": "Golm, Haus 24, Raum 2.23",
+											"tel": "0331 - 977 2498",
+											"mail": "wegener@uni-potsdam.de",
+											"consultation": "nach Vereinbarung"
+											}, {
+												
+											"name": "Pawel R. Kulawiak",
+											"location": "Golm, Haus 31, Raum 2.07",
+											"tel": "0331 - 977 6375",
+											"mail": "kulawiak@uni-potsdam.de",
+											"consultation": "nach Vereinbarung, Anmeldung per E-Mail"
+											
+								}]
+									}]
+								}, {
+									"category": "Studieneingangsphase/Akademische Grundkompetenzen - Selbstreflexion und Planung",
+									"content": [{
+										"content": [{
+											"name": "Judith Tägener",
+											"location": "Karl-Liebknecht-Str. 24/25, Haus 24, Raum 1.63",
+											"tel": "0331 - 977 2905",
+											"mail": "jtaegene@uni-potsdam.de"
+								}]
+									}]
+								}]},
 		{"id": 3,
+					  "courseID" : "UPR3",
 					  "moodleServiceEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
 					  "moodleLoginEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
 					  "accessToken" : {"Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa"},
 					  "title" : "Second example of a course on remote server",
 					  "description" : "This course is accessed through the Rest-API provided by the University of Potsdam",
 					  "impressumTemplate": "<div id=\"header\" class=\"hasBackButton\"> <a class=\"back\" title=\"zurück\" alt=\"zurück button\" href=\"#\"></a>\n             <h1>Impressum</h1>\n        </div>\n\n            <em style=\"font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;\">Herausgeber</em>\n            <p>\n            Universität Potsdam<br />\n            Am Neuen Palais 10<br />\n            14469 Potsdam<br /><br />\n            <b>Tel.:</b> 0331 977-0<br />\n            <b>Fax:</b> 0331 97 21 63<br />\n            <b>Web:</b> www.uni-potsdam.de<br />\n            </p>\n\n            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>\n            <p>\n            Ulrike Lucke, CIO der Universität Potsdam<br />\n            14469 Potsdam<br />\n            <b>E-Mail:</b> <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>\n            </p>\n\n            <em>Rechtsform und gesetzliche Vertretung</em>\n            <p>\n            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.\n            </p>\n\n            <em>Zuständige Aufsichtsbehörde</em>\n            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>\n\n            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>\n            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>\n            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>\n\n            <em>Haftung</em>\n            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a\n            href=\"(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf\">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>\n\n                </p>\n\n            <h1>Ansprechpartner</h1>\n            <p>\n            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />\n            Haus 1 | 1.54<br />\n            <br /> <b>Telefon:</b> +49-331-977-3564 <br style=\"clear: left;\">\n\n            </p>\n            </div>\n\n            <div>\n            <h1>Mitmachen</h1>\n            <p>\n            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von\n            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im\n            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open\n            Source Projekt veröffentlicht.<br />\n            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,\n            können Sie gern das Entwicklerteam unter <a href=\"mailto:elis-dev@lists.cs.uni-potsdam.de\">elis-dev@lists.cs.uni-potsdam.de</a>\n            kontaktieren.\n            </p>\n            </div>",
-					  "uniLogoPath": "../www/img/uni_potsdam_logo.png"},
+					  "uniLogoPath": "../www/img/uni_potsdam_logo.png",
+					  "contactPersonsObject": [{
+									"category": "Keine kontakte verfügbar",
+									"content": [{
+										"name": "Keine kontakte verfügbar"
+										}]
+									}]},
 		{"id" : 4,
+					  "courseID" : "UPR4",
 					  "moodleServiceEndpoint" : "http://eliss-mac-mini.local/moodle/webservice/rest/server.php",
 					  "moodleLoginEndpoint" : "http://eliss-mac-mini.local/moodle/login/token.php",
 					  "accessToken" : {"Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa"},
 					  "title" : "Second example of a course on remote server",
 					  "description" : "The data of this course is hosted and accessed on a local server",
 					  "impressumTemplate": "<div id=\"header\" class=\"hasBackButton\"> <a class=\"back\" title=\"zurück\" alt=\"zurück button\" href=\"#\"></a>\n             <h1>Impressum</h1>\n        </div>\n\n            <em style=\"font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;\">Herausgeber</em>\n            <p>\n            Universität Potsdam<br />\n            Am Neuen Palais 10<br />\n            14469 Potsdam<br /><br />\n            <b>Tel.:</b> 0331 977-0<br />\n            <b>Fax:</b> 0331 97 21 63<br />\n            <b>Web:</b> www.uni-potsdam.de<br />\n            </p>\n\n            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>\n            <p>\n            Ulrike Lucke, CIO der Universität Potsdam<br />\n            14469 Potsdam<br />\n            <b>E-Mail:</b> <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>\n            </p>\n\n            <em>Rechtsform und gesetzliche Vertretung</em>\n            <p>\n            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.\n            </p>\n\n            <em>Zuständige Aufsichtsbehörde</em>\n            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>\n\n            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>\n            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>\n            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>\n\n            <em>Haftung</em>\n            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a\n            href=\"(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf\">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>\n\n                </p>\n\n            <h1>Ansprechpartner</h1>\n            <p>\n            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />\n            Haus 1 | 1.54<br />\n            <br /> <b>Telefon:</b> +49-331-977-3564 <br style=\"clear: left;\">\n\n            </p>\n            </div>\n\n            <div>\n            <h1>Mitmachen</h1>\n            <p>\n            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von\n            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im\n            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open\n            Source Projekt veröffentlicht.<br />\n            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,\n            können Sie gern das Entwicklerteam unter <a href=\"mailto:elis-dev@lists.cs.uni-potsdam.de\">elis-dev@lists.cs.uni-potsdam.de</a>\n            kontaktieren.\n            </p>\n            </div>",
-					  "uniLogoPath": "../www/img/uni_potsdam_logo.png"}
+					  "uniLogoPath": "../www/img/uni_potsdam_logo.png",
+					  "contactPersonsObject": [{
+									"category": "Keine kontakte verfügbar",
+									"content": [{
+										"name": "Keine kontakte verfügbar"
+										}]
+									}]}
 		]

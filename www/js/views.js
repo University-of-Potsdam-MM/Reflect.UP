@@ -539,7 +539,8 @@ var HomeView = Backbone.View.extend({
             data: {
                 wstoken: that.model.get("moodleAccessToken"),
                 wsfunction: "local_reflect_get_calendar_entries",
-                moodlewsrestformat: "json"
+                moodlewsrestformat: "json",
+                courseID : this.model.get('courseID')
             },
             headers: that.model.get("accessToken")
         }).done(function(data){
@@ -619,6 +620,8 @@ var InitialSetupView = Backbone.View.extend({
 		this.model.set('moodleLoginEndpoint',paramsOBJ.get('moodleLoginEndpoint'));
         this.model.set('impressumTemplate',paramsOBJ.get('impressumTemplate'));
         this.model.set('uniLogoPath',paramsOBJ.get('uniLogoPath'));
+        this.model.set('courseID',paramsOBJ.get('courseID'));
+        console.log('recorded the course ID:'+paramsOBJ.get('courseID'));
 		// save model to local storage
 		this.model.save();
 		// navigate to the normal login page
@@ -697,7 +700,8 @@ var ConfigView = Backbone.View.extend({
             data: {
                 wstoken: that.model.get("accessToken"),
                 wsfunction: "local_reflect_enrol_self",
-                moodlewsrestformat: "json"
+                moodlewsrestformat: "json",
+                courseID : that.model.get('courseID')
             },
             headers: that.model.get("accessToken")
         }).done(function(data){
@@ -803,7 +807,8 @@ var FeedbackView = Backbone.View.extend({
                 wstoken: that.model.get("accessToken"),
                 wsfunction: "local_reflect_post_feedback",
                 moodlewsrestformat: "json",
-                feedback: feedbacktext
+                feedback: feedbacktext,
+                courseID: that.model.get('courseID')
             },
             headers: that.model.get("accessToken")
         }).done(function(data){
@@ -910,7 +915,9 @@ var ContactPersonsView = Backbone.View.extend({
         this.listenTo(this.collection, "sync error", this.render);
 
         this.render();
+
         this.collection.fetch();
+
     },
 
     openExternal: function(event) {
@@ -925,7 +932,13 @@ var ContactPersonsView = Backbone.View.extend({
 
     render: function() {
         this.undelegateEvents();
-        this.$el.html(this.template({contacts: this.collection, t:_t}));
+        // parsing method of the obtained collection of contacts is going to be different if the json object
+        //  is provided from a general config.json file (a third level of parsing is needed + only the
+        //  corresponding contact persons page to the recorded course ID is to be loaded)
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        var cID= Config.get('courseID');
+        this.$el.html(this.template({contacts: this.collection, t:_t, courseID: cID}));
 
         // Accordion Logic
         var acc = document.getElementsByClassName("accordion");

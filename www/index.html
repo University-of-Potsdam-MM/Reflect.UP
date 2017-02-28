@@ -333,53 +333,57 @@
 
         <div>
             <% contacts.each(function(levelOne) { %>
-                <button class="accordion"><%- levelOne.attributes.category %></button>
-                <div class="panel">
-                <p>
-                <% levelOne.attributes.content.each(function(levelTwo) { %>
-                    <% if (levelTwo.attributes.category) { %>
-                        <h3><%- levelTwo.attributes.category %></h3>
-                    <% } %>
+                <% if(levelOne.attributes.courseID == courseID) { %>
+                    <% levelOne.attributes.contactPersonsObject.forEach(function (levelTwo) { %>
+                        <button class="accordion"><%- levelTwo.category %></button>
+                        <div class="panel">
+                        <p>
+                        <% levelTwo.content.forEach(function(levelThree) { %>
+                            <% if (levelThree.category) { %>
+                                <h3><%- levelThree.category %></h3>
+                            <% } %>
 
-                    <% levelTwo.attributes.content.each(function(contact, index) { %>
-                        <div class="contact">
-                            <% if (contact.attributes.name) { %>
-                                <div>
-                                    <span class="contact-name"><%- contact.attributes.name %></span>
-                                    <% if (contact.attributes.comment) { %>
-                                        <span> (<%- contact.attributes.comment %>)</span>
+                            <% levelThree.content.forEach(function(contact, index) { %>
+                                <div class="contact">
+                                    <% if (contact.name) { %>
+                                        <div>
+                                            <span class="contact-name"><%- contact.name %></span>
+                                            <% if (contact.comment) { %>
+                                                <span> (<%- contact.comment %>)</span>
+                                            <% } %>
+                                        </div>
+                                    <% } %>
+                                    <% if (contact.location) { %>
+                                        <div><%- contact.location %></div>
+                                    <% } %>
+                                    <% if (contact.tel) { %>
+                                        <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel %></a></div>
+                                    <% } %>
+                                    <% if (contact.alt_tel) { %>
+                                        <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel %></a></div>
+                                    <% } %>
+                                    <% if (contact.secretary) { %>
+                                        <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary %></a></div>
+                                    <% } %>
+                                    <% if (contact.mail) { %>
+                                        <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
+                                    <% } %>
+                                    <% if (contact.consultation) { %>
+                                        <div>
+                                            <span>Sprechzeiten: </span>
+                                            <span><%- contact.consultation %></span>
+                                            <% if (contact.consultation_url) { %>
+                                                <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
+                                            <% } %>
+                                        </div>
                                     <% } %>
                                 </div>
-                            <% } %>
-                            <% if (contact.attributes.location) { %>
-                                <div><%- contact.attributes.location %></div>
-                            <% } %>
-                            <% if (contact.attributes.tel) { %>
-                                <div>Tel.: <a class="external" href="tel:<%= contact.attributes.telLink %>"><%- contact.attributes.tel %></a></div>
-                            <% } %>
-                            <% if (contact.attributes.alt_tel) { %>
-                                <div>Tel.: <a class="external" href="tel:<%= contact.attributes.alt_telLink %>"><%- contact.attributes.alt_tel %></a></div>
-                            <% } %>
-                            <% if (contact.attributes.secretary) { %>
-                                <div>Sekr.: <a class="external" href="tel:<%= contact.attributes.secretary_telLink %>"><%- contact.attributes.secretary %></a></div>
-                            <% } %>
-                            <% if (contact.attributes.mail) { %>
-                                <div>E-Mail: <a class="external" href="mailto:<%= contact.attributes.mail %>"><%- contact.attributes.mail %></a></div>
-                            <% } %>
-                            <% if (contact.attributes.consultation) { %>
-                                <div>
-                                    <span>Sprechzeiten: </span>
-                                    <span><%- contact.attributes.consultation %></span>
-                                    <% if (contact.attributes.consultation_url) { %>
-                                        <span><a class="external" href="<%= contact.attributes.consultation_url %>"><%- contact.attributes.consultation_url %></a></span>
-                                    <% } %>
-                                </div>
-                            <% } %>
+                            <% }); %>
+                        <% }); %>
+                        </p>
                         </div>
-                    <% }); %>
-                <% }); %>
-                </p>
-                </div>
+                    <% }) %>    
+                <% }%>
             <% }); %>
         </div>
     </script>

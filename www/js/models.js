@@ -18,7 +18,8 @@ var Configuration = Backbone.Model.extend({
 		moodleLoginEndpoint : '',
         impressumTemplate: '',
         uniLogoPath: '',
-        appLanguage: 'de',                              //TODO: make the language of the app a configurable variable
+        appLanguage: 'de',
+        courseID: '',
     }
 });
 
@@ -196,7 +197,8 @@ var QuestionContainer = Backbone.Model.extend({
                 wsfunction: "local_reflect_submit_feedbacks",
                 moodlewsrestformat: "json",
                 id: result.id,
-                answers: result.answers
+                answers: result.answers,
+                courseID : Config.get('courseID')
             },
             headers: Config.get('accessToken')
         }).done(function(data) {
@@ -246,6 +248,7 @@ var QuestionContainerList = Backbone.Collection.extend({
                 wstoken: token,
                 wsfunction: "local_reflect_get_feedbacks",
                 moodlewsrestformat: "json",
+                courseID: Config.get('courseID')
             },
             headers: Config.get('accessToken')
         })
@@ -373,7 +376,8 @@ var AppointmentCollection = Backbone.Collection.extend({
                     timestart : Math.floor(today.getTime() / 1000),
                     timeend: Math.floor(oneYearLater.getTime() / 1000),
                     ignorehidden: 1,
-                }
+                },
+                courseID : Config.get('courseID')
             },
             headers: Config.get('accessToken')
         })
@@ -511,36 +515,39 @@ var NestedModel = Backbone.Model.extend({
  * }]
  */
 var ContactPersonCollection = Backbone.Collection.extend({
-    url: 'contactpersons.json',
-    model: NestedModel.extend({
-        model: {
-            content: Backbone.Collection.extend({
-                model: NestedModel.extend({
-                    model: {
-                        content: Backbone.Collection.extend({
-                            model: Backbone.Model.extend({
-                                parse: function(response) {
-                                    var formatTel = function(tel) {
-                                        return tel.replace(/\+/g, "00")
-                                                .replace(/\s/g, "")
-                                                .replace(/\-/g, "");
-                                    };
 
-                                    var telLink = response.tel ? formatTel(response.tel) : undefined;
-                                    var alt_telLink = response.alt_tel ? formatTel(response.alt_tel) : undefined;
-                                    var secretary_telLink = response.secretary ? formatTel(response.secretary) : undefined;
+    url:'/UPReflection/www/js/config.json',
+    model:
+        NestedModel.extend({
+            model: {
+                content: Backbone.Collection.extend({
+                    model: NestedModel.extend({
+                        model: {
+                            content: Backbone.Collection.extend({
+                                model: Backbone.Model.extend({
+                                    parse: function(response) {
+                                        var formatTel = function(tel) {
+                                            return tel.replace(/\+/g, "00")
+                                                    .replace(/\s/g, "")
+                                                    .replace(/\-/g, "");
+                                        };
 
-                                    return _.extend(response, {
-                                        telLink: telLink,
-                                        alt_telLink: alt_telLink,
-                                        secretary_telLink: secretary_telLink
-                                    });
-                                }
+                                        var telLink = response.tel ? formatTel(response.tel) : undefined;
+                                        var alt_telLink = response.alt_tel ? formatTel(response.alt_tel) : undefined;
+                                        var secretary_telLink = response.secretary ? formatTel(response.secretary) : undefined;
+
+                                        return _.extend(response, {
+                                            telLink: telLink,
+                                            alt_telLink: alt_telLink,
+                                            secretary_telLink: secretary_telLink
+                                        });
+                                    }
+                                })
                             })
-                        })
-                    }
+                        }
+                    })
                 })
-            })
-        }
-    })
+            }
+        })
 });
+
