@@ -20,6 +20,7 @@ var Configuration = Backbone.Model.extend({
         uniLogoPath: '',
         appLanguage: 'de',
         courseID: '',
+        notificationsHash: '{"initialAttribute": ""}',
     }
 });
 

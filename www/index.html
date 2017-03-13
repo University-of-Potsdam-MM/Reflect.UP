@@ -121,8 +121,8 @@
         </p>
 		<div class= "flex-grid">
 			<% _.each(tabs.models, function(tab){ %>
-				<div id="<%= tab.get('id')%>" class="grid-item courseTab">
-					<p><%= tab.get('title')%></p>
+				<div id="<%= tab.get('id')%>" class="courseTab">
+					<p style="font-size:18px;"><%= tab.get('title')%></p>
 					<br>
 					<p><%= tab.get('description')%></p>
                     <div id="tab-logo-container" class="logo-container-format">
@@ -247,7 +247,7 @@
 			<% if (model.toNotify == false && model.visible == true) { %>
 				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
 			<% } else if(model.toNotify == true){ %>
-				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+			<a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
 			<% } %>
          <% } %>
     </script>
