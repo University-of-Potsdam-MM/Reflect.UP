@@ -990,7 +990,6 @@ var ContactPersonsView = Backbone.View.extend({
         Config.fetch();
         var cID= Config.get('courseID');
         this.$el.html(this.template({contacts: this.collection, t:_t, courseID: cID}));
-
         // Accordion Logic
         var acc = document.getElementsByClassName("accordion");
         var i;

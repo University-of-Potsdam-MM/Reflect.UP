@@ -92,7 +92,8 @@ var app = {
             "notiMessage_3_0" : "Termin",
             "notiMessage_3_1" : " Uhr nicht vergessen",
             "notiMessage_3_2" : " nicht vergessen",
-            "notiConfirmDialog" : "Möchtest du die Benachrichtigung für diesen Termin stornieren?"
+            "notiConfirmDialog" : "Möchtest du die Benachrichtigung für diesen Termin stornieren?",
+            "noContacts" : "      Keine Kontakte verfügbar."
         }
     },
     en : {
@@ -150,7 +151,8 @@ var app = {
             "notiMessage_3_0" : "Don't forget your appointment",
             "notiMessage_3_1" : ".",
             "notiMessage_3_2" : " .",
-            "notiConfirmDialog" : "Would you like to cancel the notifiation for this appointment?"
+            "notiConfirmDialog" : "Would you like to cancel the notifiation for this appointment?",
+            "noContacts" : "      No contacts available."
         }
     },
     es : {
@@ -208,7 +210,8 @@ var app = {
             "notiMessage_3_0" : "No olvides tu cita",
             "notiMessage_3_1" : ".",
             "notiMessage_3_2" : ".",
-            "notiConfirmDialog" : "¿Te gustaría cancelar la notificación para esta cita?"
+            "notiConfirmDialog" : "¿Te gustaría cancelar la notificación para esta cita?",
+            "noContacts" : "      No hay contactos disponibles."
         }
     }}
     };

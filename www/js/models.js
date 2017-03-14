@@ -477,7 +477,11 @@ var Screen = Backbone.Model.extend({
 /**
   * NestedModel - Parses defined properties as Backbone classes
   * Code taken from http://stackoverflow.com/questions/6535948/nested-models-in-backbone-js-how-to-approach
+  *
+  *     the example in question is interesting, but does not implement a multi-nested model
   */
+
+/*
 var NestedModel = Backbone.Model.extend({
     model: {},
 
@@ -489,6 +493,10 @@ var NestedModel = Backbone.Model.extend({
         }
         return response;
     }
+});
+*/
+
+var Contact = Backbone.Model.extend({
 });
 
 
@@ -518,37 +526,6 @@ var NestedModel = Backbone.Model.extend({
 var ContactPersonCollection = Backbone.Collection.extend({
 
     url:'/UPReflection/www/js/config.json',
-    model:
-        NestedModel.extend({
-            model: {
-                content: Backbone.Collection.extend({
-                    model: NestedModel.extend({
-                        model: {
-                            content: Backbone.Collection.extend({
-                                model: Backbone.Model.extend({
-                                    parse: function(response) {
-                                        var formatTel = function(tel) {
-                                            return tel.replace(/\+/g, "00")
-                                                    .replace(/\s/g, "")
-                                                    .replace(/\-/g, "");
-                                        };
-
-                                        var telLink = response.tel ? formatTel(response.tel) : undefined;
-                                        var alt_telLink = response.alt_tel ? formatTel(response.alt_tel) : undefined;
-                                        var secretary_telLink = response.secretary ? formatTel(response.secretary) : undefined;
-
-                                        return _.extend(response, {
-                                            telLink: telLink,
-                                            alt_telLink: alt_telLink,
-                                            secretary_telLink: secretary_telLink
-                                        });
-                                    }
-                                })
-                            })
-                        }
-                    })
-                })
-            }
-        })
+    model: Contact,
 });
 
