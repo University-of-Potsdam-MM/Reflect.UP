@@ -297,7 +297,7 @@
 
 
     <script type="text/template" id="template-feedback">
-        <div id="header" class="hasBackButton"> <a class="back" title="zurück" alt="zurück button" href="#"></a>
+        <div id="header" class="hasBackButton"> <a class="back" id="back_button" title="zurück" alt="zurück button" href="#"></a>
         <h1><%= i18next.t("feedbackHeader")%></h1></div>
         <p class="feedback">
             <%= i18next.t("feedbackMessage_1")%>
@@ -307,7 +307,7 @@
         <form id="feedbackform" name="feedback" type="POST">
             <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30"></textarea>
             <br />
-            <input class="button" type="submit" value=<%= i18next.t("feedbackButton")%> />
+            <a id="submitButton" class="button finish"><%= i18next.t("feedbackButton")%> </a>
         </form>
     </script>
 
