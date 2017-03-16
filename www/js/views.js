@@ -76,7 +76,6 @@ var AppointmentListItemView = Backbone.View.extend({
 	},
 
     notifyButtonFunction : function(ev) {
-        console.log("notification function executed!");
 		var appointmentTitle= this.model.get('title');
 		var beginDate= new Date(this.model.get('begin'));
 		var endDate= new Date(this.model.get('end'));
@@ -207,7 +206,6 @@ var AppointmentListItemView = Backbone.View.extend({
 	
     hideButtonFunction : function(ev) {
         // get appointment list and current clicked appointment
-        console.log("hide appointment function executed!");
         var currTitle= this.model.get('title');
 
         Config.fetch();
@@ -851,7 +849,6 @@ var FeedbackView = Backbone.View.extend({
     },
 
     submit: function(ev) {
-        console.log("executing post_feedback function!");
         ev.preventDefault();
         var feedbacktext = $('#feedbacktext').val();
         var that = this;
