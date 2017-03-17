@@ -17,6 +17,7 @@ var AppointmentListItemView = Backbone.View.extend({
 
     events: {
         'click #notificationButton':'notifyButtonFunction',
+        'click #cancelNotificationButton' : 'cancelNotificationFunction',
         'click' : 'toggle',
         'click .data':'hideButtonFunction',
         'webkitAnimationEnd' : 'toggleAppointment',
@@ -67,7 +68,7 @@ var AppointmentListItemView = Backbone.View.extend({
 	
 	displayAlert : function(){
 		navigator.notification.alert(
-			'Du wirst eine Benachrichtigung bekommen.',  // message
+			i18next.t("notificationAlert"),  // message
 			null,         // callback
 			'',            // title
 			'OK'            // buttonName
@@ -85,6 +86,8 @@ var AppointmentListItemView = Backbone.View.extend({
 		// determine how much time is left before the start of the appointment
 		//			i.e : beginTime - currentTime = amount of milliseconds to begin
 		var currTime= new Date();
+        var notiHashSTR= Config.get('notificationsHash');
+        var notiHash= window.JSON.parse(notiHashSTR);
 		var hoursToBegin= (beginDate - currTime) / 3600000;
 		var self= this;
         document.addEventListener('deviceready',function(){
@@ -94,57 +97,73 @@ var AppointmentListItemView = Backbone.View.extend({
 			//		case 3: less than 24 hours but more than 3 hours => the user gets a notification three hours before the appointment
 			if(hoursToBegin > 168){
 				// form notification message to get a reminder one week before
-				var notificationMessage = "Du hast einen Termin am: "+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
+				var notificationMessage = i18next.t("notiMessage_1_0")+beginDate.getDate()+"."+('0'+(beginDate.getMonth()+1)).slice(-2);
 				if(beginDate.getTime != beginDate.getTime){
-					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one week before the appointment
 				var notificationTime= beginDate - 604800000;
-				// only for debugging: a couple of delayed times in 30 and 50 seconds
+				// only for debugging: a couple of delayed times in 15 and 30 seconds
 				//var _15_sec_after= new Date(currTime.getTime() + 15*1000);
 				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
 				notiCounter++;
+                notiHash[appointmentTitle]= [];
+                notiHash[appointmentTitle].push(notiCounter); 
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,0);
 				// form notification message to get a reminder the day before				
-				notificationMessage = "Du hast morgen einen Termin";
+				notificationMessage = i18next.t("notiMessage_2");
 				if(beginDate.getTime != beginDate.getTime){
-					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one day before the appointment
 				notificationTime = beginDate - 86400000;
 				notiCounter++;
+                notiHash[appointmentTitle].push(notiCounter);
+                notiHashSTR= window.JSON.stringify(notiHash);
+                Config.set('notificationsHash',notiHashSTR);
+                Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
 				self.displayAlert();
 			}
 			if(hoursToBegin < 168 && hoursToBegin > 24){
 				// form notification message to get a reminder the day before				
-				var notificationMessage = "Du hast morgen einen Termin";
+				var notificationMessage = i18next.t("notiMessage_2");
 				if(beginDate.getTime != beginDate.getTime){
-					notificationMessage = notificationMessage.concat(" um "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr");
+					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
 					notificationMessage = notificationMessage.concat("."); 
 				}
 				// calculate the value for the time one day before the appointment
 				var notificationTime = beginDate - 86400000;
 				notiCounter++;
+                notiHash[appointmentTitle]= [];
+                notiHash[appointmentTitle].push(notiCounter);
+                notiHashSTR= window.JSON.stringify(notiHash);
+                Config.set('notificationsHash',notiHashSTR);
+                Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
 				displayAlert();
 			}
 			if(hoursToBegin < 24 && hoursToBegin > 3){
 				// form notification message to get a reminder three hours before the appointment
-				var notificationMessage = "Termin"
+				var notificationMessage = i18next.t("notiMessage_3_0");
 				if(beginDate.getTime != beginDate.getTime){
-					notificationMessage= notificationMessage.concat(" um: "+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+" Uhr nicht vergessen!");
+					notificationMessage= notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_3_1"));
 				}else{
-					notificationMessage= notificationMessage.concat(" nicht vergessen!");
+					notificationMessage= notificationMessage.concat(i18next.t("notiMessage_3_2"));
 				}
 				// calculate the value for the time three hours before the appointment
 				var notificationTime = beginDate - 10800000;
 				notiCounter++;
+                notiHash[appointmentTitle]= [];
+                notiHash[appointmentTitle].push(notiCounter);
+                notiHashSTR= window.JSON.stringify(notiHash);
+                Config.set('notificationsHash',notiHashSTR);
+                Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
 				displayAlert();
 			}
@@ -153,9 +172,39 @@ var AppointmentListItemView = Backbone.View.extend({
 		 // change parameter toNotify in model to set the Bell icon
 		this.model.set('toNotify',true);
     },
+
+    cancelNotificationFunction : function(){
+        //create the necessary hash that holds the information {appointment title: [list of notifications id-numbers]},
+        //    and store the new entries whenever a notification is scheduled
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        var notiHashSTR= Config.get('notificationsHash');
+        var notiHash= window.JSON.parse(notiHashSTR);
+        var appointmentTitle= this.model.get('title');
+        var notiArray= notiHash[appointmentTitle];
+        var response = confirm(i18next.t("notiConfirmDialog"));
+        var that= this;
+        if(!response){
+            return;
+        }else{
+            //use this data structure to cancel the notifications with a confirmation dialog before executing:
+            //  cordova.plugins.notification.local.cancel([list_of_numberIDs],function(){callback_function},scope);
+            cordova.plugins.notification.local.cancel(notiArray,function(){
+                that.model.set('toNotify',false);
+                var notiListSTR= Config.get('notificationsList');
+                var notiListOBJ= window.JSON.parse(notiListSTR);
+                var index = notiListOBJ.titlesToNotify.indexOf(appointmentTitle);
+                if (index > -1) {
+                    notiListOBJ.titlesToNotify.splice(index, 1);
+                }
+                notiListSTR= window.JSON.stringify(notiListOBJ);
+                Config.set('notificationsList',notiListSTR);
+                Config.save();
+            });
+        }
+    },
 	
     hideButtonFunction : function(ev) {
-
         // get appointment list and current clicked appointment
         var currTitle= this.model.get('title');
 
@@ -665,7 +714,7 @@ var ConfigView = Backbone.View.extend({
         this.$(".loginrunning").show();
 
         var that = this;
-		//console.log('Login - token stored in local memory within Config model: '+window.JSON.stringify(this.model.get("accessToken")));
+		console.log('Login - token stored in local memory within Config model: '+window.JSON.stringify(this.model.get("accessToken")));
         $.ajax({
             url: that.model.get("moodleLoginEndpoint"),
             data: {
@@ -695,6 +744,7 @@ var ConfigView = Backbone.View.extend({
     enrolUser: function(){
 		this.model.fetch();
         var that = this;
+        console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
         $.ajax({
             url: that.model.get('moodleServiceEndpoint'),
             data: {
@@ -775,7 +825,8 @@ var FeedbackView = Backbone.View.extend({
     template: _.template($('#template-feedback').html()),
 
     events: {
-        'submit': 'submit'
+        'click #submitButton': 'submit',
+        'click #back_button' : 'back'
     },
 
     initialize: function() {
@@ -824,7 +875,12 @@ var FeedbackView = Backbone.View.extend({
             console.log(error);
             that.trigger('errorHandler');
         });
+    },
+
+    back: function(){
+        this.undelegateEvents();
     }
+
 });
 
 
@@ -911,13 +967,25 @@ var ContactPersonsView = Backbone.View.extend({
     },
 
     initialize: function() {
+
         this.collection = new ContactPersonCollection();
-        this.listenTo(this.collection, "sync error", this.render);
+        var that= this;
+        this.collection.fetch({
+            //async: false,   (DEPRECATED)
+            success: function () {
+                that.renderWrap();
+            },
+            error: function() {
+                that.collection.fetch().done(function(){
+                    that.renderWrap();
+                });
+            }
+        });
 
+    },
+
+    renderWrap: function() {
         this.render();
-
-        this.collection.fetch();
-
     },
 
     openExternal: function(event) {
@@ -939,7 +1007,6 @@ var ContactPersonsView = Backbone.View.extend({
         Config.fetch();
         var cID= Config.get('courseID');
         this.$el.html(this.template({contacts: this.collection, t:_t, courseID: cID}));
-
         // Accordion Logic
         var acc = document.getElementsByClassName("accordion");
         var i;

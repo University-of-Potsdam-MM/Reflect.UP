@@ -121,8 +121,8 @@
         </p>
 		<div class= "flex-grid">
 			<% _.each(tabs.models, function(tab){ %>
-				<div id="<%= tab.get('id')%>" class="grid-item courseTab">
-					<p><%= tab.get('title')%></p>
+				<div id="<%= tab.get('id')%>" class="courseTab">
+					<p style="font-size:18px;"><%= tab.get('title')%></p>
 					<br>
 					<p><%= tab.get('description')%></p>
                     <div id="tab-logo-container" class="logo-container-format">
@@ -247,7 +247,7 @@
 			<% if (model.toNotify == false && model.visible == true) { %>
 				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
 			<% } else if(model.toNotify == true){ %>
-				<a  class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+			<a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
 			<% } %>
          <% } %>
     </script>
@@ -297,7 +297,7 @@
 
 
     <script type="text/template" id="template-feedback">
-        <div id="header" class="hasBackButton"> <a class="back" title="zurück" alt="zurück button" href="#"></a>
+        <div id="header" class="hasBackButton"> <a class="back" id="back_button" title="zurück" alt="zurück button" href="#"></a>
         <h1><%= i18next.t("feedbackHeader")%></h1></div>
         <p class="feedback">
             <%= i18next.t("feedbackMessage_1")%>
@@ -307,7 +307,7 @@
         <form id="feedbackform" name="feedback" type="POST">
             <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30"></textarea>
             <br />
-            <input class="button" type="submit" value=<%= i18next.t("feedbackButton")%> />
+            <a id="submitButton" class="button finish"><%= i18next.t("feedbackButton")%> </a>
         </form>
     </script>
 
@@ -330,60 +330,65 @@
             <a class="back" title="zurück" alt="zurück button" href="#"></a>
             <h1><%= i18next.t("contactHeader")%></h1>
         </div>
-
         <div>
-            <% contacts.each(function(levelOne) { %>
-                <% if(levelOne.attributes.courseID == courseID) { %>
-                    <% levelOne.attributes.contactPersonsObject.forEach(function (levelTwo) { %>
-                        <button class="accordion"><%- levelTwo.category %></button>
-                        <div class="panel">
-                        <p>
-                        <% levelTwo.content.forEach(function(levelThree) { %>
-                            <% if (levelThree.category) { %>
-                                <h3><%- levelThree.category %></h3>
-                            <% } %>
-
-                            <% levelThree.content.forEach(function(contact, index) { %>
-                                <div class="contact">
-                                    <% if (contact.name) { %>
-                                        <div>
-                                            <span class="contact-name"><%- contact.name %></span>
-                                            <% if (contact.comment) { %>
-                                                <span> (<%- contact.comment %>)</span>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                    <% if (contact.location) { %>
-                                        <div><%- contact.location %></div>
-                                    <% } %>
-                                    <% if (contact.tel) { %>
-                                        <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel %></a></div>
-                                    <% } %>
-                                    <% if (contact.alt_tel) { %>
-                                        <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel %></a></div>
-                                    <% } %>
-                                    <% if (contact.secretary) { %>
-                                        <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary %></a></div>
-                                    <% } %>
-                                    <% if (contact.mail) { %>
-                                        <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
-                                    <% } %>
-                                    <% if (contact.consultation) { %>
-                                        <div>
-                                            <span>Sprechzeiten: </span>
-                                            <span><%- contact.consultation %></span>
-                                            <% if (contact.consultation_url) { %>
-                                                <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                </div>
+            <% _.each(contacts.models,function(levelOne) { %>
+                <% if(levelOne.get('courseID') == courseID) { %>
+                    <% if(!levelOne.get('contactPersonsObject') == "") { %>
+                        <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
+                            <button class="accordion"><%- levelTwo.category %></button>
+                            <div class="panel">
+                            <p>
+                            <% levelTwo.content.forEach(function(levelThree) { %>
+                                <% if (levelThree.category) { %>
+                                    <h3><%- levelThree.category %></h3>
+                                <% } %>
+                                <% levelThree.content.forEach(function(contact, index) { %>
+                                    <div class="contact">
+                                        <% if (contact.name) { %>
+                                            <div>
+                                                <span class="contact-name"><%- contact.name %></span>
+                                                <% if (contact.comment) { %>
+                                                    <span> (<%- contact.comment %>)</span>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                        <% if (contact.location) { %>
+                                            <div><%- contact.location %></div>
+                                        <% } %>
+                                        <% if (contact.tel) { %>
+                                            <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.alt_tel) { %>
+                                            <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.secretary) { %>
+                                            <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.mail) { %>
+                                            <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
+                                        <% } %>
+                                        <% if (contact.consultation) { %>
+                                            <div>
+                                                <span>Sprechzeiten: </span>
+                                                <span><%- contact.consultation %></span>
+                                                <% if (contact.consultation_url) { %>
+                                                    <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                <% }); %>
                             <% }); %>
-                        <% }); %>
-                        </p>
-                        </div>
-                    <% }) %>    
-                <% }%>
+                            </p>
+                            </div>
+                        <% }) %>    
+                    <% } else {%>
+                        <br />
+                        <br />
+                        <br />
+                        <h2> <%= i18next.t("noContacts")%> </h2>
+                    <% }%>
+                <% } %>
             <% }); %>
         </div>
     </script>

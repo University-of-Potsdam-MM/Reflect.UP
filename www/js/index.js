@@ -83,7 +83,17 @@ var app = {
             "languageMessage" : "Möchtest du die Sprache der App wechseln? Bitte wahlen:",
             "panelLogout" : "Logout",
             "infoMessage_1" : "In erster Linie beantwortest du die Fragen für dich. Diese App möchte dich lediglich auf deinem Lernprozess begleiten und dir hilfreich zur Seite zu stehen. Ziel ist es weniger, dich mit Faktenwissen zu bombardieren, sondern dich dabei zu unterstützen deine reflexiven Kompetenzen weiterzuentwickeln und kompetente Eigenverantwortlichkeit zu fördern. Deshalb gibt es auch keine richtigen und falschen Antworten. $t(infoMessage_2)",
-            "infoMessage_2" : "Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym."
+            "infoMessage_2" : "Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym.",
+            "notificationAlert" : "Du wirst eine Benachrichtigung bekommen.",
+            "notiMessage_1_0" : "Du hast einen Termin am: ",
+            "notiMessage_1_1" : " um ",
+            "notiMessage_1_2" : " Uhr",
+            "notiMessage_2" : "Du hast morgen einen Termin.",
+            "notiMessage_3_0" : "Termin",
+            "notiMessage_3_1" : " Uhr nicht vergessen",
+            "notiMessage_3_2" : " nicht vergessen",
+            "notiConfirmDialog" : "Möchtest du die Benachrichtigung für diesen Termin stornieren?",
+            "noContacts" : "      Keine Kontakte verfügbar."
         }
     },
     en : {
@@ -132,7 +142,17 @@ var app = {
             "languageMessage" : "Would you like to change the language of the app? Please choose:",
             "panelLogout" : "Logout",
             "infoMessage_1" : "This is a self-testing exercise. This App is ment to assist you during your learning process, being a useful tool in your hand. By using it, you are not expected to learn a large amount of facts, but to make it easier to develop your own flexible competences and sense of responsability. Therefore there are no right or wrong answers. $t(infoMessage_2)",
-            "infoMessage_2" : "The answers are submitted and checked in an anonymous way."
+            "infoMessage_2" : "The answers are submitted and checked in an anonymous way.",
+            "notificationAlert" : "You will receive a notification.",
+            "notiMessage_1_0" : "You have an appointment on the ",
+            "notiMessage_1_1" : " at ",
+            "notiMessage_1_2" : " o' clock",
+            "notiMessage_2" : "You have an appointment tomorrow.",
+            "notiMessage_3_0" : "Don't forget your appointment",
+            "notiMessage_3_1" : ".",
+            "notiMessage_3_2" : " .",
+            "notiConfirmDialog" : "Would you like to cancel the notifiation for this appointment?",
+            "noContacts" : "      No contacts available."
         }
     },
     es : {
@@ -181,7 +201,17 @@ var app = {
             "languageMessage" : "¿Te gustaría cambiar el idioma de la aplicación? Por favor elige:",
             "panelLogout" : "Salir",
             "infoMessage_1" : "Este es un ejercicio de auto-evaluación. Esta aplicación es para ayudarte durante tu proceso de aprendizaje, siendo una herramienta útil a tu alcance. Al utilizarla, no se espera que aprendas una gran cantidad de hechos, sino que sea más fácil desarrollar tus propias competencias flexibles y sentido de responsabilidad. Por lo tanto, no hay respuestas correctas o incorrectas. $t(infoMessage_2)",
-            "infoMessage_2" : "La verificación de las respuestas sucede de manera anónima."
+            "infoMessage_2" : "La verificación de las respuestas sucede de manera anónima.",
+            "notificationAlert" : "Vas a recibir una notificación.",
+            "notiMessage_1_0" : "Tienes una cita el ",
+            "notiMessage_1_1" : " a las ",
+            "notiMessage_1_2" : " horas",
+            "notiMessage_2" : "Tienes una cita mañana.",
+            "notiMessage_3_0" : "No olvides tu cita",
+            "notiMessage_3_1" : ".",
+            "notiMessage_3_2" : ".",
+            "notiConfirmDialog" : "¿Te gustaría cancelar la notificación para esta cita?",
+            "noContacts" : "      No hay contactos disponibles."
         }
     }}
     };
