@@ -966,14 +966,38 @@ var ContactPersonsView = Backbone.View.extend({
         "click a.external": "openExternal"
     },
 
+    /*
+    collectionInit: function(){
+        this.collection= new ContactPersonCollection();
+
+
+    }
+
+myFunction(query, function(returnValue) {
+  // use the return value here instead of like a regular (non-evented) return value
+});*/
+
+
     initialize: function() {
+
         this.collection = new ContactPersonCollection();
-        this.listenTo(this.collection, "sync error", this.render);
+        var that= this;
+        this.collection.fetch({
+            //async: false,   (DEPRECATED)
+            success: function () {
+                that.renderWrap();
+            },
+            error: function() {
+                that.collection.fetch().done(function(){
+                    that.renderWrap();
+                });
+            }
+        });
 
+    },
+
+    renderWrap: function() {
         this.render();
-
-        this.collection.fetch();
-
     },
 
     openExternal: function(event) {

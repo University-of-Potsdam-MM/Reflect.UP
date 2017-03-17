@@ -525,7 +525,7 @@ var Contact = Backbone.Model.extend({
  */
 var ContactPersonCollection = Backbone.Collection.extend({
 
-    url:'/UPReflection/www/js/config.json',
+    url:'js/config.json',
     model: Contact,
 });
 
