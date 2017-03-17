@@ -966,18 +966,6 @@ var ContactPersonsView = Backbone.View.extend({
         "click a.external": "openExternal"
     },
 
-    /*
-    collectionInit: function(){
-        this.collection= new ContactPersonCollection();
-
-
-    }
-
-myFunction(query, function(returnValue) {
-  // use the return value here instead of like a regular (non-evented) return value
-});*/
-
-
     initialize: function() {
 
         this.collection = new ContactPersonCollection();
