@@ -79,6 +79,13 @@
 	min-height: 30px;
 }
 
+.checkbox-button,input[type="checkbox"] {
+	float: left;
+	margin: 20px 20px 0px 5px;
+	min-width: 30px;
+	min-height: 30px;
+}
+
 #answer label {
 	float: left;
 	margin-top: 25px;
