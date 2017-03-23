@@ -642,14 +642,13 @@ var InitialSetupView = Backbone.View.extend({
     initialize: function(){    
 		this.model= new Configuration({id:1});
 		this.collection = new TabCollection();
+
 		this.collection.fetch();
 		this.listenTo(this.collection, "sync", this.render);
-		
-            this.listenTo(this.collection, "error", this.fetchError);
+        this.listenTo(this.collection, "error", this.fetchError);
     },
 
     render: function(){
-		//console.log(this.collection);
         this.$el.html(this.template({tabs: this.collection, t:_t}));
         return this;
     },
@@ -1135,6 +1134,7 @@ var Router = Backbone.Router.extend({
             document.getElementById("infopanel").style.display = "none";
         }
         if (this.view){
+            this.view.undelegateEvents();
             if (this.view.destroy)
                 this.view.destroy();
 
