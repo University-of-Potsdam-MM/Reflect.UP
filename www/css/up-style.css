@@ -232,25 +232,42 @@ button.accordion.active:after {
 }
 
 /* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
-.course-list{
+#course-list{
+	
+	font-family: 'Source Sans Pro', arial,  sans-serif;
 
 }
 
 .course {
-	margin: 10px 10px 20px 10px;
-	border-bottom: 2px solid;
+	margin: 10px 10px 30px 10px;
+	
 }
 
 .institution{
 	font-size: 0.8em;
+	color:#353535;
 }
 
 .courseLink{
-	font-weight: bold;
+	font-size: 120%;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+	 
 }
 
 .infobutton {
-	float: right;
+	
+	    color: #dedede;
+    display: inline-block;
+    margin-top: 13px;
+	
+}
+
+.infobutton.active {
+	color:#014260;
 }
 
 .courseBlock {
@@ -258,21 +275,74 @@ button.accordion.active:after {
 	text-align:left;
 	float: left;
 	padding-bottom: 10px;
+	width: 90%;
+	padding-right: 10px;
+    box-sizing: border-box;
 }
 
 .infobox{
 	display: block;
 	text-align: right;
+	    width: 10%;
+    float: right;
 }
 
 .courseDescription {
 	display: none;
+	position: relative;
+	margin-top: 5px;
+}
+
+.courseDescription:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 0 13px 11px;
+border-color: #FFFFFF transparent;
+display: block;
+width: 0;
+z-index: 1;
+margin-left: -13px;
+top: -10px;
+right:0;
+}
+
+.courseDescription:before 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 0 13px 11px;
+border-color: #7F7F7F transparent;
+display: block;
+width: 0;
+z-index: 0;
+margin-left: -13px;
+top: -10px;
+right:0;
 }
 
 .courseDescription p{
-	background-color: #f5f5f5;
-	padding: 10px;
-	border: 1px solid #eee;
+	    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #dedede;
+	font-size: .9em;
+}
+
+p.welcome {
+	text-align: left;
+    margin-top:80px;
+    font-size: .9em;
+	line-height:2em;
+    border-bottom: 1px solid #bebebe;
+	margin-bottom:5px;
+	font-weight:bold;
+	
+}
+
+p.welcome em {
+	 color: #000;
 }
 
 

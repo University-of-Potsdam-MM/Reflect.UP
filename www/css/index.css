@@ -205,6 +205,9 @@ p {
 
 p.welcome, p.feedback {
 	text-align: center;
+	font-family: 'Source Sans Pro', arial,  sans-serif;
+	margin-left:10px;
+	margin-right:10px;
 }
 
 #header.hasBackButton h1 {
