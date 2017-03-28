@@ -1,6 +1,7 @@
         {
     "de" : {
         "translation": {
+            "welcomeLogin" : "Willkommen",
             "titleHome" : "Reflect.UP",
             "impressum" : "Impressum",
             "title_login" : "Reflect.UP - Anmeldung",
@@ -49,6 +50,7 @@
     },
     "en" : {
         "translation" : {
+            "welcomeLogin" : "Welcome",
             "titleHome" : "Reflect.UP",
             "impressum" : "References",
             "title_login" : "Reflect.UP - Login",
@@ -97,6 +99,7 @@
     },
     "es" : {
         "translation" : {
+            "welcomeLogin" : "Bienvenida",
             "titleHome" : "Reflect.UP",
             "impressum" : "Referencias",
             "title_login" : "Reflect.UP - Login",

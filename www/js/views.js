@@ -635,7 +635,8 @@ var InitialSetupView = Backbone.View.extend({
 	el: '#app',
 	template: _.template($('#template-initial-setup').html()),
 	events: {
-		'click .courseTab' : 'writeConfigAttributes',
+		'click .courseBlock' : 'writeConfigAttributes',
+        'click .infobutton' : 'toggleInfoBox'
 	},
 	model: Configuration,
 	
@@ -651,6 +652,12 @@ var InitialSetupView = Backbone.View.extend({
     render: function(){
         this.$el.html(this.template({tabs: this.collection, t:_t}));
         return this;
+    },
+
+    toggleInfoBox: function(ev){
+        var element = $(ev.currentTarget);
+        console.log()
+        $(element).parent().parent().find(".courseDescription").toggle();
     },
 	
 	fetchError: function(err, param) {

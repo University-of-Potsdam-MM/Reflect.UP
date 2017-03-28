@@ -27,11 +27,17 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="css/up-style.css" />
     <link rel="stylesheet" type="text/css" href="css/mbExtruder.css" />
+    <!--
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+    -->
 
     <script type="text/javascript" src="cordova.js"></script>
 
 	<!--  jquery extruder plugin for navigation panel -->
     <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <!--
+    <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    -->
     <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
     <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
     <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
@@ -65,6 +71,36 @@
     </script>
 
     <!--
+        Template:       Initial Setup Screen for Grid Boxes
+    -->
+    <script type="text/template" id="template-initial-setup">
+        <div id="header">
+            <h1><%= i18next.t("welcomeLogin")%></h1>
+        </div>
+        <p class="welcome">
+            <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
+            <br />
+        </p>
+        <div id="course-list">
+            <% _.each(tabs.models, function(tab){ %>
+            <div class="course">
+                <div class="courseBlock" id="<%= tab.get('id')%>">
+                    <div class="institution"><%= tab.get('institution')%></div>
+                    <div class="courseLink"><%= tab.get('title')%></div>
+                </div>
+                <div class="infobox">
+                    <i class="fa fa-info-circle fa-2x infobutton" aria-hidden="true"></i>
+                </div>
+                <div style="clear:both"></div>
+                <div class="courseDescription">
+                    <p><%= tab.get('description')%></p>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </script>
+
+    <!--
         Template:       Home Screen
     -->
     <script type="text/template" id="template-home-screen">
@@ -85,7 +121,8 @@
         Template:       Config Screen
     -->
     <script type="text/template" id="template-config-screen">
-        <div id="header">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="#initialSetup"></a>
             <h1><%= i18next.t("title_login")%></h1>
         </div>
         <p style="display: none;" class="loginerror"><%= i18next.t("loginError")%></p>
@@ -110,30 +147,6 @@
             <a class="footerlink"><%= i18next.t("impressum")%></a>
         </div>
     </script>
-	
-    <!--
-        Template:       Initial Setup Screen for Grid Boxes
-    -->
-	<script type= "text/template" id="template-initial-setup">
-        <p class="welcome">
-            <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
-			<br />
-        </p>
-		<div class= "flex-grid">
-			<% _.each(tabs.models, function(tab){ %>
-				<div id="<%= tab.get('id')%>" class="courseTab">
-					<p style="font-size:18px;"><%= tab.get('title')%></p>
-					<br>
-					<p><%= tab.get('description')%></p>
-                    <div id="tab-logo-container" class="logo-container-format">
-                        <% if(tab.get('uniLogoPath') != ''){ %>
-                            <img src= <%= tab.get('uniLogoPath')%> alt="uni_logo" style="width:100px;heigh:100px">
-                        <% } %> 
-                    </div>
-				</div>
-			<% }); %>
-		</div>
-	</script>
 
     <!--
         Template:       Languages selection page

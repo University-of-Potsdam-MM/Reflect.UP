@@ -39,6 +39,7 @@ var app = {
         {
     de : {
         translation: {
+            "welcomeLogin" : "Willkommen",
             "titleHome" : "Reflect.UP",
             "impressum" : "Impressum",
             "title_login" : "Reflect.UP - Anmeldung",
@@ -98,6 +99,7 @@ var app = {
     },
     en : {
         translation : {
+            "welcomeLogin" : "Welcome",
             "titleHome" : "Reflect.UP",
             "impressum" : "References",
             "title_login" : "Reflect.UP - Login",
@@ -157,6 +159,7 @@ var app = {
     },
     es : {
         translation : {
+            "welcomeLogin" : "Bienvenida",
             "titleHome" : "Reflect.UP",
             "impressum" : "Referencias",
             "title_login" : "Reflect.UP - Login",
