@@ -116,7 +116,7 @@ body {
 	height: 50px;
 }
 
-.data {
+.data, .data-full {
 	display: inline-block;
 	vertical-align: middle;
 	width: 60px;
