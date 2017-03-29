@@ -861,7 +861,7 @@ var FeedbackView = Backbone.View.extend({
         $.ajax({
             url: that.model.get('moodleServiceEndpoint'),
             data: {
-                wstoken: that.model.get("accessToken"),
+                wstoken: that.model.get("moodleAccessToken"),
                 wsfunction: "local_reflect_post_feedback",
                 moodlewsrestformat: "json",
                 feedback: feedbacktext,
