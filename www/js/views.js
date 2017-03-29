@@ -427,6 +427,15 @@ var QuestionView = Backbone.View.extend({
         if (this.model.hasNext())
             var nextId = this.model.nextId();
 
+        var actualIndex= 0;
+        if (this.collection.get('conditionalCase')){
+            if(this.model.get('actualIndex') == 0){
+                actualIndex=1;
+            } else{
+                actualIndex= this.model.get('actualIndex');
+            }
+        }
+
         this.$el.html(
             this.template({
                 questionText: this.model.get('questionText'),
@@ -437,6 +446,7 @@ var QuestionView = Backbone.View.extend({
                 total: this.model.get('total'),
                 containerId: this.collection.get('id'),
                 lastQuestion: 0,
+                actualInd: actualIndex,
             })
         );
         if (this.model.get('type') === "multichoice" &&
