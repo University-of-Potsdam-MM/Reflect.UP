@@ -30,7 +30,7 @@
     <!--
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
     -->
-	
+
 	<!--embed source sans pro from google fonts --->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 
@@ -80,27 +80,28 @@
         <div id="header">
             <h1><%= i18next.t("welcomeLogin")%></h1>
         </div>
-        <p class="welcome">
-            <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
-            <br />
-        </p>
-        <div id="course-list">
-            <% _.each(tabs.models, function(tab){ %>
-            <div class="course">
-                <div class="courseBlock" id="<%= tab.get('id')%>">
-                    <div class="institution"><%= tab.get('institution')%></div>
-                    <div class="courseLink"><%= tab.get('title')%></div>
+        <div id="initialSetup">
+            <p class="welcome">
+                <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
+                <br />
+            </p>
+            <div id="course-list">
+                <% _.each(tabs.models, function(tab){ %>
+                <div class="course">
+                    <div class="courseBlock" id="<%= tab.get('id')%>">
+                        <div class="institution"><%= tab.get('institution')%></div>
+                        <div class="courseLink"><%= tab.get('title')%></div>
+                    </div>
+                    <div class="infobox">
+                        <i class="fa fa-info-circle fa-2x infobutton" aria-hidden="true"></i>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="courseDescription">
+                        <p><%= tab.get('description')%></p>
+                    </div>
                 </div>
-                <div class="infobox">
-                    <i class="fa fa-info-circle fa-2x infobutton" aria-hidden="true"></i>
-					<!-- <i class="fa fa-info-circle fa-2x infobutton active" aria-hidden="true"></i> -->
-                </div>
-                <div style="clear:both"></div>
-                <div class="courseDescription">
-                    <p><%= tab.get('description')%></p>
-                </div>
+                <% }); %>
             </div>
-            <% }); %>
         </div>
     </script>
 
@@ -262,7 +263,7 @@
         <div class="clear"></div>
          <% if (fullView == true && passed == false) { %>
 			<% if (model.toNotify == false && model.visible == true) { %>
-				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a> 
+				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
 			<% } else if(model.toNotify == true){ %>
 			<a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
 			<% } %>
@@ -301,7 +302,7 @@
                 <br />
                 <a href="#" class="button finish"><%= i18next.t("buttonFinish")%></a>
             </div>
-        <% } %>    
+        <% } %>
     </script>
 
     <script type="text/template" id="template-impressum">
@@ -398,7 +399,7 @@
                             <% }); %>
                             </p>
                             </div>
-                        <% }) %>    
+                        <% }) %>
                     <% } else {%>
                         <br />
                         <br />

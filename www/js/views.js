@@ -44,7 +44,7 @@ var AppointmentListItemView = Backbone.View.extend({
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView, passed: PassedCase}));
         return this;
     },
-	
+
 	scheduleNotification : function(counter,appointmentTitle,notificationMessage,notificationTime,saveCase){
 		cordova.plugins.notification.local.schedule({
 			id: counter,
@@ -65,7 +65,7 @@ var AppointmentListItemView = Backbone.View.extend({
 			Config.save();
 		}
 	},
-	
+
 	displayAlert : function(){
 		navigator.notification.alert(
 			i18next.t("notificationAlert"),  // message
@@ -101,7 +101,7 @@ var AppointmentListItemView = Backbone.View.extend({
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
-					notificationMessage = notificationMessage.concat("."); 
+					notificationMessage = notificationMessage.concat(".");
 				}
 				// calculate the value for the time one week before the appointment
 				var notificationTime= beginDate - 604800000;
@@ -110,14 +110,14 @@ var AppointmentListItemView = Backbone.View.extend({
 				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
 				notiCounter++;
                 notiHash[appointmentTitle]= [];
-                notiHash[appointmentTitle].push(notiCounter); 
+                notiHash[appointmentTitle].push(notiCounter);
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,0);
-				// form notification message to get a reminder the day before				
+				// form notification message to get a reminder the day before
 				notificationMessage = i18next.t("notiMessage_2");
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
-					notificationMessage = notificationMessage.concat("."); 
+					notificationMessage = notificationMessage.concat(".");
 				}
 				// calculate the value for the time one day before the appointment
 				notificationTime = beginDate - 86400000;
@@ -130,12 +130,12 @@ var AppointmentListItemView = Backbone.View.extend({
 				self.displayAlert();
 			}
 			if(hoursToBegin < 168 && hoursToBegin > 24){
-				// form notification message to get a reminder the day before				
+				// form notification message to get a reminder the day before
 				var notificationMessage = i18next.t("notiMessage_2");
 				if(beginDate.getTime != beginDate.getTime){
 					notificationMessage = notificationMessage.concat(i18next.t("notiMessage_1_1")+("0"+beginDate.getHours()).slice(-2)+":"+("0"+beginDate.getMinutes()).slice(-2)+i18next.t("notiMessage_1_2"));
 				}else{
-					notificationMessage = notificationMessage.concat("."); 
+					notificationMessage = notificationMessage.concat(".");
 				}
 				// calculate the value for the time one day before the appointment
 				var notificationTime = beginDate - 86400000;
@@ -203,7 +203,7 @@ var AppointmentListItemView = Backbone.View.extend({
             });
         }
     },
-	
+
     hideButtonFunction : function(ev) {
         // get appointment list and current clicked appointment
         var currTitle= this.model.get('title');
@@ -627,9 +627,9 @@ var HomeView = Backbone.View.extend({
     }
 });
 
-	
+
 /**
- *		View - InitialSetupView			
+ *		View - InitialSetupView
  */
 var InitialSetupView = Backbone.View.extend({
 	el: '#app',
@@ -639,8 +639,8 @@ var InitialSetupView = Backbone.View.extend({
         'click .infobutton' : 'toggleInfoBox'
 	},
 	model: Configuration,
-	
-    initialize: function(){    
+
+    initialize: function(){
 		this.model= new Configuration({id:1});
 		this.collection = new TabCollection();
 
@@ -656,14 +656,14 @@ var InitialSetupView = Backbone.View.extend({
 
     toggleInfoBox: function(ev){
         var element = $(ev.currentTarget);
-        console.log()
+        $(element).toggleClass('active');
         $(element).parent().parent().find(".courseDescription").toggle();
     },
-	
+
 	fetchError: function(err, param) {
             console.log('Error loading Opening-JSON file', err, param);
     },
-	
+
 	writeConfigAttributes: function(ev){
 		this.model.fetch();
 		var element = $(ev.currentTarget);
@@ -683,8 +683,8 @@ var InitialSetupView = Backbone.View.extend({
 		Backbone.history.navigate('config', { trigger : true });
 	}
 });
-	
-	
+
+
 
 /**
  *      View - ConfigView
@@ -1140,10 +1140,14 @@ var Router = Backbone.Router.extend({
         if(document.getElementById("infopanel")){
             document.getElementById("infopanel").style.display = "none";
         }
+        //console.log(this.view);
         if (this.view){
-            this.view.undelegateEvents();
-            if (this.view.destroy)
-                this.view.destroy();
+            // COMPLETELY UNBIND THE VIEW
+            //this.view.undelegateEvents();
+            //this.view.$el.removeData().unbind();
+            // Remove view from DOM
+            //this.view.remove();
+            //Backbone.View.prototype.remove.call(this.view);
 
             this.view = null;
         }
@@ -1154,7 +1158,7 @@ var Router = Backbone.Router.extend({
     home : function(){
         this.switchView(new HomeView());
     },
-	
+
 	initialSetup : function(){
 		this.switchView(new InitialSetupView);
 	},

@@ -34,8 +34,8 @@ var app = {
         Config.fetch();
         var language= Config.get('appLanguage');
         // initialize i18next to get the correct translation of the app's texts
-        var options= {debug: true, lng: language, load: 'all', fallbackLng: 'de', 
-        resources: 
+        var options= {debug: true, lng: language, load: 'all', fallbackLng: 'de',
+        resources:
         {
     de : {
         translation: {
@@ -52,7 +52,7 @@ var app = {
             "submit" : "Anmelden",
             "welcomeMessage_1" : "Um den angeforderten Dienst nutzen zu können, musst du dich hier einloggen.",
             "welcomeMessage_2" : "Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.",
-            "setupMessage" : "Da gibt es verschiedene Kurse zum Wahlen:",
+            "setupMessage" : "Die folgenden Kurse stehen zur Verfügung:",
             "titleQuestions" : "Reflexionsfragen",
             "teaser_1" : "Du hast noch nicht alle Reflexionsfragen beanwortet! Nimm Dir ein Wenig Zeit und gehe die fehlenden Fragen durch.",
             "questions_button" : "Zu den Reflexionsfragen",
@@ -112,7 +112,7 @@ var app = {
             "submit" : "Submit",
             "welcomeMessage_1" : "In order to use this service you must first login.",
             "welcomeMessage_2" : "Please use only the initial part of your email without @uni-potsdam.de.",
-            "setupMessage" : "Here you can see the different courses you can choose from:",
+            "setupMessage" : "You can choose from the listed courses:",
             "titleQuestions" : "Quizzes",
             "teaser_1" : "You haven't answered all the quizzes yet! Take a little time and go through the remaining questions.",
             "questions_button" : "To the quizzes",

@@ -233,14 +233,13 @@ button.accordion.active:after {
 
 /* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
 #course-list{
-	
 	font-family: 'Source Sans Pro', arial,  sans-serif;
-
 }
 
 .course {
-	margin: 10px 10px 30px 10px;
-	
+	margin: 5px 5px 5px 10px;
+	padding: 0px 5px 0px 5px;
+	border-bottom: 1px solid;
 }
 
 .institution{
@@ -253,17 +252,12 @@ button.accordion.active:after {
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-
-	 
 }
 
 .infobutton {
-	
-	    color: #dedede;
+    color: #dedede;
     display: inline-block;
     margin-top: 13px;
-	
 }
 
 .infobutton.active {
@@ -283,7 +277,7 @@ button.accordion.active:after {
 .infobox{
 	display: block;
 	text-align: right;
-	    width: 10%;
+    width: 10%;
     float: right;
 }
 
@@ -293,44 +287,42 @@ button.accordion.active:after {
 	margin-top: 5px;
 }
 
-.courseDescription:after 
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 0 13px 11px;
-border-color: #FFFFFF transparent;
-display: block;
-width: 0;
-z-index: 1;
-margin-left: -13px;
-top: -10px;
-right:0;
+.courseDescription:after{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	margin-left: -13px;
+	top: -10px;
+	right:0;
 }
 
-.courseDescription:before 
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 0 13px 11px;
-border-color: #7F7F7F transparent;
-display: block;
-width: 0;
-z-index: 0;
-margin-left: -13px;
-top: -10px;
-right:0;
+.courseDescription:before{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+	margin-left: -13px;
+	top: -10px;
+	right:0;
 }
 
 .courseDescription p{
-	    background-color: #fff;
+    background-color: #fff;
     padding: 10px;
     border: 1px solid #dedede;
 	font-size: .9em;
 }
 
-p.welcome {
+#initialSetup p.welcome {
 	text-align: left;
     margin-top:80px;
     font-size: .9em;
@@ -338,10 +330,10 @@ p.welcome {
     border-bottom: 1px solid #bebebe;
 	margin-bottom:5px;
 	font-weight:bold;
-	
+
 }
 
-p.welcome em {
+#initialSetup p.welcome em {
 	 color: #000;
 }
 
