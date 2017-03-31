@@ -453,6 +453,9 @@ var QuestionView = Backbone.View.extend({
             this.model.get('choices')){
             // get the prefix "multi" or "singl" and implement the corresponding
             //  case of multiple choice (single or multiple answers)
+	    if(this.model.get('label') == undefined){
+                this.model.set('label',"");
+            }
             if(this.model.get('label').substring(0,5) == "multi"){
                 var selectedChoices= this.model.get('answerText');
                 var count = 1;
