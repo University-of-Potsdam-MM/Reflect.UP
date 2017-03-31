@@ -71,7 +71,7 @@ var Question = Backbone.Model.extend({
         dependValue : null,     //      to support conditional questions on feedbacks
         answerText : null,
         choices: null,
-        //lastQuestion: 0
+        label: null,            // label is necessary to implement both types of multi-choice questions
     },
 
     hasPrevious: function(){
@@ -297,7 +297,8 @@ var QuestionContainerList = Backbone.Collection.extend({
                             questionText: questText,
                             type: question.type,
                             dependItem: question.dependitem,
-                            dependValue: question.dependvalue
+                            dependValue: question.dependvalue,
+                            label: question.label
                         });
 
                         if (question.choices) {
