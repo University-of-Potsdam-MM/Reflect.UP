@@ -289,10 +289,14 @@
     <script type="text/template" id="template-question">
         <% if(lastQuestion == 0){  %>
         <div id="header">
-         <%  if(total == 1){ %>
-        <h1><%= i18next.t("questionCounter")%></h1></div>
+        <% if(actualInd == 0){ %>
+            <%  if(total == 1){ %>
+            <h1><%= i18next.t("questionCounter")%></h1></div>
+            <% }else{ %>
+            <h1><%= i18next.t("questionCounter")%><%- number %> / <%- total %></h1>
+            <% } %>
         <% }else{ %>
-        <h1><%= i18next.t("questionCounter")%><%- number %> / <%- total %></h1>
+            <h1><%= i18next.t("questionCounter")%><%- actualInd %></h1>
         <% } %>
         </div>
         <div class="content-container">

@@ -71,6 +71,7 @@ var Question = Backbone.Model.extend({
         dependValue : null,     //      to support conditional questions on feedbacks
         answerText : null,
         choices: null,
+        actualIndex: 0,
         label: null,            // label is necessary to implement both types of multi-choice questions
     },
 
@@ -126,7 +127,8 @@ var QuestionContainer = Backbone.Model.extend({
         questionList: QuestionList,
         feedbackMessage: '',
         answersHash: {},
-        actualPath: []
+        actualPath: [],
+        conditionalCase: false,
     },
 
     initialize: function(){
@@ -151,9 +153,11 @@ var QuestionContainer = Backbone.Model.extend({
                     return null;
                 this.set('currentIndex', this.get('currentIndex') + 1);
                 nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
+                nextOnSequence.set('actualIndex',answeredPath.length + 1);
             }
             return this.current();
         }
+        nextOnSequence.set('actualIndex',answeredPath.length + 1);
         return this.current();
     },
 
@@ -300,6 +304,10 @@ var QuestionContainerList = Backbone.Collection.extend({
                             dependValue: question.dependvalue,
                             label: question.label
                         });
+
+                        if(question.dependitem != 0){
+                            questionContainer.set('conditionalCase',true);
+                        }
 
                         if (question.choices) {
                             // each choice must be checked in order to ensure that the text that is not enclosed
