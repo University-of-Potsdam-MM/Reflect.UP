@@ -19,7 +19,7 @@ var AppointmentListItemView = Backbone.View.extend({
         'click #notificationButton':'notifyButtonFunction',
         'click #cancelNotificationButton' : 'cancelNotificationFunction',
         'click' : 'toggle',
-        'click .data':'hideButtonFunction',
+        'click .data-full':'hideButtonFunction',
         'webkitAnimationEnd' : 'toggleAppointment',
         'mozAnimationEnd' : 'toggleAppointment',
         'MSAnimationEnd' : 'toggleAppointment',
@@ -451,33 +451,63 @@ var QuestionView = Backbone.View.extend({
         );
         if (this.model.get('type') === "multichoice" &&
             this.model.get('choices')){
-            var selectedChoice= this.model.get('answerText');
-            var count = 1;
-            var that = this;
-            var form = $('<form action="">');
-            this.$("#answer").append(form);
-            _.each(this.model.get('choices'), function(choice){
-                var radioInput = $('<input/>');
-                radioInput.attr('type', 'radio');
-                radioInput.attr('name', 'choice');
-                radioInput.attr('id', 'radio' + count);
-                radioInput.attr('value', count);
+            // get the prefix "multi" or "singl" and implement the corresponding
+            //  case of multiple choice (single or multiple answers)
+            if(this.model.get('label').substring(0,5) == "multi"){
+                var selectedChoices= this.model.get('answerText');
+                var count = 1;
+                var that = this;
+                var form = $('<form action="">');
+                this.$("#answer").append(form);
+                _.each(this.model.get('choices'), function(choice){
+                    var checkboxInput = $('<input/>');
+                    checkboxInput.attr('type', 'checkbox');
+                    checkboxInput.attr('name', 'choice');
+                    checkboxInput.attr('id', 'checkbox' + count);
+                    checkboxInput.attr('value', count);
 
-                //set the radioImput to be selected if selectedChoice == count
-                if(selectedChoice == count){
-                    radioInput.attr('checked','checked');
-                }
+                    //set the checkboxInput to be selected if selectedChoices contains the current index
+                    if (selectedChoices != null){
+                        for(var i=0; i<selectedChoices.length; i++){
+                            if(selectedChoices[i] == count){
+                                checkboxInput.attr('checked','checked');    
+                            }
+                        }
+                    }
+                    var checkboxLabel = $('<label/>');
+                    checkboxLabel.attr('for', 'checkbox' + count);
+                    checkboxLabel.text(choice);
+                    form.append(checkboxInput);
+                    form.append(checkboxLabel);
+                    form.append($('<div style="clear: both"></div>'));
+                    count++;
+                })
+            }else{
+                var selectedChoice= this.model.get('answerText');
+                var count = 1;
+                var that = this;
+                var form = $('<form action="">');
+                this.$("#answer").append(form);
+                _.each(this.model.get('choices'), function(choice){
+                    var radioInput = $('<input/>');
+                    radioInput.attr('type', 'radio');
+                    radioInput.attr('name', 'choice');
+                    radioInput.attr('id', 'radio' + count);
+                    radioInput.attr('value', count);
 
-                var radioLabel = $('<label/>');
-                radioLabel.attr('for', 'radio' + count);
-                radioLabel.text(choice);
-
-                form.append(radioInput);
-                form.append(radioLabel);
-                form.append($('<div style="clear: both"></div>'));
-
-                count++;
-            })
+                    //set the radioInput to be selected if selectedChoice == count
+                    if(selectedChoice == count){
+                        radioInput.attr('checked','checked');
+                    }
+                    var radioLabel = $('<label/>');
+                    radioLabel.attr('for', 'radio' + count);
+                    radioLabel.text(choice);
+                    form.append(radioInput);
+                    form.append(radioLabel);
+                    form.append($('<div style="clear: both"></div>'));
+                    count++;
+                })
+            }
         }
         else{
             var textarea = $('<textarea>')
@@ -546,10 +576,24 @@ var QuestionView = Backbone.View.extend({
     saveValues: function(){
         if (this.model.get('type') === "multichoice") {
             var $input= this.$('#answer input[name=choice]:checked');
-            var choiceNumber= $input.val();
-            var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
+            if($input.length > 1){
+                var choiceNumber= [];
+                var choicesText= "";
+                $("input[name=choice]:checked").each(function () {
+                    var idNum = $(this).val();
+                    var checkedText= $('label[for=checkbox'+idNum+']').text();
+                    //console.log('current text: '+checkedText);
+                    choiceNumber.push(idNum);
+                    choicesText= choicesText.concat("|").concat(checkedText);
+                });
+                var recordedAnswer= choicesText.substring(1,choicesText.length);
+            }else{
+                var choiceNumber= $input.val();
+                //console.log('this is the input value: '+choiceNumber);
+                var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
+            }
             if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
-                return false;
+                    return false;
             }
             this.model.set("answerText",choiceNumber);
             //make sure that values are saved on answersHash without trailing line breaks!
@@ -871,7 +915,7 @@ var FeedbackView = Backbone.View.extend({
         $.ajax({
             url: that.model.get('moodleServiceEndpoint'),
             data: {
-                wstoken: that.model.get("accessToken"),
+                wstoken: that.model.get("moodleAccessToken"),
                 wsfunction: "local_reflect_post_feedback",
                 moodlewsrestformat: "json",
                 feedback: feedbacktext,

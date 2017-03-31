@@ -226,8 +226,8 @@
 
     <script type="text/template" id="template-appointment-list-item">
         <div class="date-container" >
-        <div class="data">
         <% if (fullView == true) { %>
+            <div class="data-full">
             <div id="hideAppointmentIcon" class="hideAppointmentButton">
             <% if (model.visible == true) { %>
                 <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
@@ -235,21 +235,33 @@
                 <i class="fa fa-eye icon-large" aria-hidden="true"></i>
             <% } %>
             </div>
+        <% }else{ %>
+            <div class="data">
         <% } %>
-        <div class="date" >
-        <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
-        <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
-        <br />-<br />
-        <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
-        <% } %>
+        <div class="date">
+            <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
         </div>
-        <div class="time" >
+        <div class="time">
+        <% if (model.begin.getTime() === model.end.getTime()){  %>
+
+        <% }else{ %>
+        <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
+        <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
+        <% } %>
+        <% } %>
+
+        </div>
+        <div class="date">
+            <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
+                <br />-<br />
+                <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
+            <% } %>
+        </div>
+        <div class="time">
         <% if (model.begin.getTime() === model.end.getTime()){  %>
         <%= i18next.t("fullDay")%>
         <% }else{ %>
         <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
-        <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
-        -
         <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
         <% } %>
         <% } %>
