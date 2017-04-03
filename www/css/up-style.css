@@ -164,13 +164,6 @@ button.accordion.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
-/* Simple class to give the correct format to the notification button (which is an empty bell)*/
-.notifyAppointmentButton{
-	position: relative;
-	top: 45%;
-	left: 80%;
-}
-
 /* removed class defines a web-kit-animation for appointments, together with the following keyframes */
 /*		definitions */
 .out {
@@ -322,11 +315,12 @@ button.accordion.active:after {
 	right:0;
 }
 
-.courseDescription p{
+.courseDescription p, .content-container p, p.feedback {
     background-color: #fff;
     padding: 10px;
     border: 1px solid #dedede;
 	font-size: .9em;
+	text-align: center;
 }
 
 #initialSetup p.welcome {
@@ -352,9 +346,10 @@ button.accordion.active:after {
 
 /* Simple class to format the select box containing the languages in which the app is available*/
 #language-select-container{
-	width: '500px';
 	margin: auto;
 	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 80px;
 }
 
 
@@ -383,11 +378,4 @@ button.accordion.active:after {
 
 .blue {
   background-color: #7c95bc;
-}
-
-#language-ok-button {
-	width: 40%;
-	float: none;
-	position: relative;
-	left: 30%;
 }

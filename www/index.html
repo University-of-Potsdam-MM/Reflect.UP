@@ -166,9 +166,6 @@
         <p class="welcome">
             <em style="font-style:normal;"><%= i18next.t("languageMessage")%></em>
         </p>
-        <br />
-        <br />
-        <br />
         <div id= language-select-container class= "language-select blue rounded">
             <select id= language-select>
               <option value="de">Deutsch</option>
@@ -176,11 +173,7 @@
               <option value="es">Español</option>
             </select>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div id= language-ok-button class="prev-next-nav" >
+        <div id="language" class="button">
             <a id="changeButton" class="button"><i class="fa fa-exchange icon-large" aria-hidden="true"></i>  OK</a>
         </div>
     </script>
@@ -225,61 +218,67 @@
     </script>
 
     <script type="text/template" id="template-appointment-list-item">
-        <div class="date-container" >
-        <% if (fullView == true) { %>
-            <div class="data-full">
-            <div id="hideAppointmentIcon" class="hideAppointmentButton">
-            <% if (model.visible == true) { %>
-                <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+        <div class="date-content">
+            <div class="date-container">
+            <% if (fullView == true) { %>
+                <div class="data-full">
+                <div id="hideAppointmentIcon" class="hideAppointmentButton">
+                <% if (model.visible == true) { %>
+                    <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+                <% }else{ %>
+                    <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+                <% } %>
+                </div>
             <% }else{ %>
-                <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+                <div class="data">
+            <% } %>
+            <div class="date">
+                <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
+            </div>
+            <div class="time">
+            <% if (model.begin.getTime() === model.end.getTime()){  %>
+
+            <% }else{ %>
+            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
+            <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
+            <% } %>
+            <% } %>
+
+            </div>
+            <div class="date">
+                <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
+                    <br />-<br />
+                    <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
+                <% } %>
+            </div>
+            <div class="time">
+            <% if (model.begin.getTime() === model.end.getTime()){  %>
+            <%= i18next.t("fullDay")%>
+            <% }else{ %>
+            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
+            <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
+            <% } %>
             <% } %>
             </div>
-        <% }else{ %>
-            <div class="data">
-        <% } %>
-        <div class="date">
-            <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
+            </div>
+            </div>
+            <% if (fullView == true) { %> <div class="description-full"> <% }else{ %> <div class="description"> <% } %>
+            <%= model.title %></div>
+            <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
+            <%= model.description %></div>
         </div>
-        <div class="time">
-        <% if (model.begin.getTime() === model.end.getTime()){  %>
-
-        <% }else{ %>
-        <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
-        <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
-        <% } %>
-        <% } %>
-
-        </div>
-        <div class="date">
-            <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
-                <br />-<br />
-                <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
+        <div class="notification">
+            <% if (fullView == true && passed == false) { %>
+            <% if (model.toNotify == false && model.visible == true) { %>
+                <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
+            <% } else if(model.toNotify == true){ %>
+            <a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
             <% } %>
-        </div>
-        <div class="time">
-        <% if (model.begin.getTime() === model.end.getTime()){  %>
-        <%= i18next.t("fullDay")%>
-        <% }else{ %>
-        <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
-        <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
-        <% } %>
-        <% } %>
-        </div>
-        </div>
-        </div>
-        <% if (fullView == true) { %> <div class="description-full"> <% }else{ %> <div class="description"> <% } %>
-        <%= model.title %></div>
-        <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
-        <%= model.description %></div>
-        <div class="clear"></div>
-         <% if (fullView == true && passed == false) { %>
-			<% if (model.toNotify == false && model.visible == true) { %>
-				<a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
-			<% } else if(model.toNotify == true){ %>
-			<a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
-			<% } %>
          <% } %>
+
+        </div>
+        <div class="clear"></div>
+
     </script>
 
     <script type="text/template" id="template-question-collection-list-item">
@@ -300,7 +299,7 @@
         <% } %>
         </div>
         <div class="content-container">
-            <p><%- questionText %></p>
+            <p class="questionText"><%- questionText %></p>
             <div id="answer-feedback"></div>
             <div id="answer"></div>
         </div>

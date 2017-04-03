@@ -96,6 +96,16 @@ body {
 	margin-left: 3px;
 }
 
+.date-content {
+	width: 90%;
+	float: left;
+}
+
+.notification {
+	width: 10%;
+	float: right;
+}
+
 .date-container {
 	float: left;
 	margin-right: 15px;
@@ -203,7 +213,7 @@ p {
 	margin-top: 0;
 }
 
-p.welcome, p.feedback {
+p.welcome {
 	text-align: center;
 	font-family: 'Source Sans Pro', arial,  sans-serif;
 	margin-left:10px;
@@ -261,8 +271,8 @@ li {
 }
 
 #appointments li {
-	padding-top: 10px;
-	padding-bottom: 1em;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	border-bottom: 1px solid #444;
 }
 
@@ -411,9 +421,10 @@ a.button {
 	border-bottom: 1px solid #CCC;
 	border-left: 1px solid #CCC;
 	color: #cfdae3;
+	margin: auto;
 }
 
-#feedbackform .button {
+#feedbackform .button, #language .button {
 	width: 50%;
     border: 0px solid #CCC;
     background-color: #003f60 !important;
