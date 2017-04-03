@@ -159,7 +159,7 @@ var app = {
     },
     es : {
         translation : {
-            "welcomeLogin" : "Bienvenida",
+            "welcomeLogin" : "Te damos la bienvenida",
             "titleHome" : "Reflect.UP",
             "impressum" : "Referencias",
             "title_login" : "Reflect.UP - Login",

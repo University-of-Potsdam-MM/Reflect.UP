@@ -214,6 +214,10 @@ p.welcome, p.feedback {
 	margin-left:60px;
 }
 
+#header.hasLanguagesButton h1 {
+	margin-left:30px;
+}
+
 h2 {
 	font-weight: bold;
 	margin-top: 10px;
@@ -359,6 +363,25 @@ textarea {
 	border-radius: 50%;
 	text-indent: 1px;
 	line-height: 1.4em;
+}
+
+.languages_init {
+	float: right;
+	padding-right: .5em;
+	font-size: 1.6em;
+	line-height: 1.8;
+	margin-top: 15px;
+}
+
+.languages_init:before{
+	content: "\f0ac";
+	display: block;
+	font-size: 1em;
+	font-family: FontAwesome;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-os-font-smoothing: grayscale;
+	color: #FFF;	
 }
 
 .prev-next-nav {
