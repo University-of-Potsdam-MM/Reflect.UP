@@ -146,7 +146,7 @@ var AppointmentListItemView = Backbone.View.extend({
                 Config.set('notificationsHash',notiHashSTR);
                 Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
-				displayAlert();
+				self.displayAlert();
 			}
 			if(hoursToBegin < 24 && hoursToBegin > 3){
 				// form notification message to get a reminder three hours before the appointment
@@ -165,7 +165,7 @@ var AppointmentListItemView = Backbone.View.extend({
                 Config.set('notificationsHash',notiHashSTR);
                 Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
-				displayAlert();
+				self.displayAlert();
 			}
 			// NOTE: it is up to the user to delete the notifications from the notification center once they have been triggered
          }); // on device ready
@@ -182,26 +182,29 @@ var AppointmentListItemView = Backbone.View.extend({
         var notiHash= window.JSON.parse(notiHashSTR);
         var appointmentTitle= this.model.get('title');
         var notiArray= notiHash[appointmentTitle];
-        var response = confirm(i18next.t("notiConfirmDialog"));
+        //var response = confirm(i18next.t("notiConfirmDialog"));
         var that= this;
-        if(!response){
-            return;
-        }else{
-            //use this data structure to cancel the notifications with a confirmation dialog before executing:
-            //  cordova.plugins.notification.local.cancel([list_of_numberIDs],function(){callback_function},scope);
-            cordova.plugins.notification.local.cancel(notiArray,function(){
-                that.model.set('toNotify',false);
-                var notiListSTR= Config.get('notificationsList');
-                var notiListOBJ= window.JSON.parse(notiListSTR);
-                var index = notiListOBJ.titlesToNotify.indexOf(appointmentTitle);
-                if (index > -1) {
-                    notiListOBJ.titlesToNotify.splice(index, 1);
-                }
-                notiListSTR= window.JSON.stringify(notiListOBJ);
-                Config.set('notificationsList',notiListSTR);
-                Config.save();
-            });
-        }
+        navigator.notification.confirm(i18next.t("notiConfirmDialog"),function(buttonIndex){
+            console.log("canceling function - index button: "+buttonIndex);
+            if(buttonIndex == 1){
+                return;
+            }else{
+                //use this data structure to cancel the notifications with a confirmation dialog before executing:
+                //  cordova.plugins.notification.local.cancel([list_of_numberIDs],function(){callback_function},scope);
+                cordova.plugins.notification.local.cancel(notiArray,function(){
+                    that.model.set('toNotify',false);
+                    var notiListSTR= Config.get('notificationsList');
+                    var notiListOBJ= window.JSON.parse(notiListSTR);
+                    var index = notiListOBJ.titlesToNotify.indexOf(appointmentTitle);
+                    if (index > -1) {
+                        notiListOBJ.titlesToNotify.splice(index, 1);
+                    }
+                    notiListSTR= window.JSON.stringify(notiListOBJ);
+                    Config.set('notificationsList',notiListSTR);
+                    Config.save();
+                });
+            }
+        },"",[i18next.t("noButton"),i18next.t("yesButton")]);
     },
 
     hideButtonFunction : function(ev) {
