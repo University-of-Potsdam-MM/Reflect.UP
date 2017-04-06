@@ -154,7 +154,7 @@ var app = {
             "notiMessage_2" : "You have an appointment tomorrow.",
             "notiMessage_3_0" : "Don't forget your appointment",
             "notiMessage_3_1" : ".",
-            "notiMessage_3_2" : " .",
+            "notiMessage_3_2" : ".",
             "notiConfirmDialog" : "Would you like to cancel the notifiation for this appointment?",
             "yesButton" : "Yes",
             "noButton" : "No",
