@@ -37,11 +37,13 @@ var SubscribeToUniqush = function(registrationId) {
 	});
 };
 
-var PushServiceRegister = function(){
+var PushServiceRegister = function(courseID){
     if (typeof PushNotification === "undefined") {
         console.log("PushNotification NOT available");
         return;
     }
+
+    pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID); 
 
 	var push = PushNotification.init({
         android: {
@@ -76,10 +78,30 @@ var PushServiceRegister = function(){
             //alert('You selected button ' + buttonIndex);
         }
 
+        //obtain current language from the Configuration model in local storage
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        var language= Config.get('appLanguage');
+        console.log('obtained language: '+language);
+        //filter according to language and consider German to be the default language
+        var dataObj= window.JSON.parse(data.message);
+        var message= "";
+        var title= "";
+        if(dataObj[language].message != ""){
+            message= dataObj[language].message;
+        }else{
+            message= dataObj['de'].message;
+        }
+        if(dataObj[language].message != ""){
+            title= dataObj[language].title;
+        }else{
+            title= dataObj['de'].title;
+        }
+
         navigator.notification.alert(
-            data.message,           // message
+            message,           // message
             onConfirm,         // callback
-            data.title,            // title
+            title,            // title
             'OK'                  // buttonName
         );
         console.log("Push notification received: " + JSON.stringify(data));

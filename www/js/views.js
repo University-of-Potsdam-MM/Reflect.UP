@@ -788,6 +788,11 @@ var InitialSetupView = Backbone.View.extend({
 		this.model.save();
 		// navigate to the normal login page
 		Backbone.history.navigate('config', { trigger : true });
+
+        //now that the course's id is set, it is possible to subscribe the app to
+        //  the right service
+        PushServiceRegister(paramsOBJ.get('courseID'));
+
 	},
 
     openLanguagesPage: function(){
