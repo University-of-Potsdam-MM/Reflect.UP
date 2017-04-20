@@ -1162,7 +1162,8 @@ var LogoutView = Backbone.View.extend({
             success: this.reroute,
             error: this.retryDestroy
         });
-        this.model.set();
+        // unsubscribe from push notification service
+        UnsubscribeToUniqush();
     },
 
     reroute: function() {
