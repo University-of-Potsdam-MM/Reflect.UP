@@ -693,7 +693,8 @@ var InitialSetupView = Backbone.View.extend({
 	template: _.template($('#template-initial-setup').html()),
 	events: {
 		'click .courseBlock' : 'writeConfigAttributes',
-        'click .infobutton' : 'toggleInfoBox'
+        'click .infobutton' : 'toggleInfoBox',
+        'click #languages_button' : 'openLanguagesPage',
 	},
 	model: Configuration,
 
@@ -738,7 +739,14 @@ var InitialSetupView = Backbone.View.extend({
 		this.model.save();
 		// navigate to the normal login page
 		Backbone.history.navigate('config', { trigger : true });
-	}
+	},
+
+    openLanguagesPage: function(){
+        //console.log('Triggering openLanguagesPage function!');
+        this.undelegateEvents();
+        Backbone.history.navigate('#languagesInit', {trigger: true});
+    }
+
 });
 
 
@@ -1095,10 +1103,12 @@ var LogoutView = Backbone.View.extend({
 
     initialize: function() {
 		this.model= new Configuration({id:1});
+        this.model.fetch();
         this.model.destroy({
             success: this.reroute,
-            error: this.reroute
+            error: this.retryDestroy
         });
+        this.model.set();
     },
 
     reroute: function() {
@@ -1106,7 +1116,14 @@ var LogoutView = Backbone.View.extend({
         if(navigator.app){
             navigator.app.exitApp();
         }
+    },
+
+    retryDestroy: function() {
+        this.model.destroy();
+        this.reroute();
     }
+
+
 });
 
 
@@ -1114,14 +1131,18 @@ var LogoutView = Backbone.View.extend({
  *      View - LanguagesPageView
  */
 var LanguagesPageView = Backbone.View.extend({
+    initialSetupCase: false,
     el: '#app',
     template: _.template($('#template-languages-selection').html()),
     events: {
         "click #changeButton": "changeLanguage"
     },
 
-    initialize: function() {
+    initialize: function(options) {
         this.model= new Configuration({id:1});
+        if ("caseInit" in options){
+            this.initialSetupCase= true;
+        }
         this.render();
     },
 
@@ -1130,7 +1151,14 @@ var LanguagesPageView = Backbone.View.extend({
         //get the new selected language
         var selected_language= $("#language-select option:selected").val();
         //if selected language is the current one, no change is necessary
-        if(selected_language == this.model.get('appLanguage')) Backbone.history.navigate('', { trigger : true });
+        if(selected_language == this.model.get('appLanguage')){
+            if (this.initialSetupCase){
+                this.initialSetupCase = false;
+                Backbone.history.navigate('initialSetup', { trigger : true });    
+            }else{
+                Backbone.history.navigate('', { trigger : true });
+            }
+        }
         //else, apply the changes
         this.model.set('appLanguage',selected_language);
         this.model.save();
@@ -1147,12 +1175,23 @@ var LanguagesPageView = Backbone.View.extend({
         $('#panel-logout').text(i18next.t("panelLogout"));
         $('#infopanel-content').html(i18next.t("infoMessage_1"));
         //navigate to home
-        Backbone.history.navigate('', { trigger : true });
+        if (this.initialSetupCase){
+            this.initialSetupCase = false;
+            Backbone.history.navigate('initialSetup', { trigger : true });    
+        }else{
+            Backbone.history.navigate('', { trigger : true });
+        }
     },
 
     render: function(){
-        this.$el.html(this.template({t: _t}));
-        return this;
+        if(!this.initialSetupCase){
+            this.$el.html(this.template({t: _t, caseInit: false}));
+            return this;
+        }else {
+            this.$el.html(this.template({t: _t, caseInit: true}));
+            //this.initialSetupCase= false;
+            return this;
+        }
     }
 });
 
@@ -1175,7 +1214,8 @@ var Router = Backbone.Router.extend({
         'feedbackresult' : 'feedbackresult',
         'contactpersons': 'contactpersons',
         'languages' : 'languages',
-        'logout': 'logout'
+        'logout': 'logout',
+        'languagesInit': 'languagesInit'
     },
 
     switchView : function(view){
@@ -1217,7 +1257,7 @@ var Router = Backbone.Router.extend({
     },
 
 	initialSetup : function(){
-		this.switchView(new InitialSetupView);
+		this.switchView(new InitialSetupView());
 	},
 
     config: function(){
@@ -1255,10 +1295,15 @@ var Router = Backbone.Router.extend({
     },
 
     languages: function() {
-        this.switchView(new LanguagesPageView())
+        this.switchView(new LanguagesPageView({}))
     },
 
     logout: function() {
         this.switchView(new LogoutView())
+    },
+
+    languagesInit: function() {
+        this.switchView(new LanguagesPageView({caseInit: 1}))
     }
+
 });
