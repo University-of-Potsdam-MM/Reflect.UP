@@ -1,6 +1,9 @@
+
+var global_registrationId = "";
+
 var pushDetails = {
 	senderID: "38438927043",
-	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/subscribe",
+	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/",
 	serviceName: "reflectup",
     authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
 };
@@ -24,7 +27,8 @@ var UniqushCreateOptions = function(id) {
 }
 
 var SubscribeToUniqush = function(registrationId) {
-	var uri = new URI(pushDetails.uniqushUrl);
+    var url_subscribe= pushDetails.uniqushUrl.concat("subscribe");
+	var uri = new URI(url_subscribe);
 	uri.search(UniqushCreateOptions(registrationId));
 
 	console.log("Registering push via " + uri.href());
@@ -37,14 +41,28 @@ var SubscribeToUniqush = function(registrationId) {
 	});
 };
 
+var UnsubscribeToUniqush = function(){
+    var url_unsubscribe= pushDetails.uniqushUrl.concat("unsubscribe");
+    var regID= global_registrationId;
+    var uri= new URI(url_unsubscribe);
+    uri.search(UniqushCreateOptions(regID));
+
+    $.ajax({
+        url: uri.href(),
+        headers: pushDetails.authHeader,
+        success: function(response) { console.log("Successfully contacted uniqush server. Server responded with " + response); },
+        error: function() { console.log("Some error happened while contacting the uniqush server"); }
+    });  
+
+}
+
 var PushServiceRegister = function(courseID){
     if (typeof PushNotification === "undefined") {
         console.log("PushNotification NOT available");
         return;
     }
 
-    pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID); 
-
+    pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID);
 	var push = PushNotification.init({
         android: {
             senderID: pushDetails.senderID
@@ -66,6 +84,7 @@ var PushServiceRegister = function(courseID){
             // empty id, what do we do?
             console.log("ERROR: Push registration id empty");
         } else {
+            global_registrationId= data.registrationId;
             SubscribeToUniqush(data.registrationId);
         }
     });
@@ -104,7 +123,7 @@ var PushServiceRegister = function(courseID){
             title,            // title
             'OK'                  // buttonName
         );
-        console.log("Push notification received: " + JSON.stringify(data));
+        //console.log("Push notification received: " + JSON.stringify(data));
     });
 
     push.on("error", function(data) {
