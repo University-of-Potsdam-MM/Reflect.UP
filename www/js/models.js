@@ -434,7 +434,6 @@ var AppointmentCollection = Backbone.Collection.extend({
 						var appointmentsTitle= notifyListOBJ.titlesToNotify[s];
 						if(appointmentsTitle == itemName || appointmentsTitle == title_with_tags){
 							notifyable= 1;
-                            console.log("toNotify: "+appointmentsTitle);
 							break;
 						}
 					}
