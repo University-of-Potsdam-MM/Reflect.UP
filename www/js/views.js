@@ -59,7 +59,14 @@ var AppointmentListItemView = Backbone.View.extend({
 			var notiListOBJ= window.JSON.parse(notiListSTR);
 			//store the new value of the notification counter for this user
 			Config.set('notificationsCounter', counter);
-			notiListOBJ.titlesToNotify.push(appointmentTitle);
+            //if multilingual tags are present in moodle-element,
+            //  the titlesToNotify list must hold a language independen-element
+            var full_appointment_title= this.model.get('fullTitle');
+            if(full_appointment_title != ""){
+                notiListOBJ.titlesToNotify.push(full_appointment_title);
+            }else{
+                notiListOBJ.titlesToNotify.push(appointmentTitle);
+            }
 			notiListSTR = window.JSON.stringify(notiListOBJ);
 			Config.set('notificationsList', notiListSTR);
 			Config.save();
@@ -90,6 +97,7 @@ var AppointmentListItemView = Backbone.View.extend({
         var notiHash= window.JSON.parse(notiHashSTR);
 		var hoursToBegin= (beginDate - currTime) / 3600000;
 		var self= this;
+        var full_appointment_title= this.model.get('fullTitle');
         document.addEventListener('deviceready',function(){
 			// manage three different cases depending on the amount of time before the beginning of the appointment
 			//		case 1: more than 7 days => the user gets a notification one week before and the day before
@@ -109,8 +117,14 @@ var AppointmentListItemView = Backbone.View.extend({
 				//var _15_sec_after= new Date(currTime.getTime() + 15*1000);
 				//var _30_sec_after= new Date(currTime.getTime() + 30*1000);
 				notiCounter++;
-                notiHash[appointmentTitle]= [];
-                notiHash[appointmentTitle].push(notiCounter);
+                var hash_title_el= "";
+                if(full_appointment_title != ""){
+                    hash_title_el= full_appointment_title;
+                }else{
+                    hash_title_el= appointmentTitle;
+                }
+                notiHash[hash_title_el]= [];
+                notiHash[hash_title_el].push(notiCounter);
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,0);
 				// form notification message to get a reminder the day before
 				notificationMessage = i18next.t("notiMessage_2");
@@ -122,7 +136,7 @@ var AppointmentListItemView = Backbone.View.extend({
 				// calculate the value for the time one day before the appointment
 				notificationTime = beginDate - 86400000;
 				notiCounter++;
-                notiHash[appointmentTitle].push(notiCounter);
+                notiHash[hash_title_el].push(notiCounter);
                 notiHashSTR= window.JSON.stringify(notiHash);
                 Config.set('notificationsHash',notiHashSTR);
                 Config.save();
@@ -140,13 +154,19 @@ var AppointmentListItemView = Backbone.View.extend({
 				// calculate the value for the time one day before the appointment
 				var notificationTime = beginDate - 86400000;
 				notiCounter++;
-                notiHash[appointmentTitle]= [];
-                notiHash[appointmentTitle].push(notiCounter);
+                var hash_title_el= "";
+                if(full_appointment_title != ""){
+                    hash_title_el= full_appointment_title;
+                }else{
+                    hash_title_el= appointmentTitle;
+                }
+                notiHash[hash_title_el]= [];
+                notiHash[hash_title_el].push(notiCounter);
                 notiHashSTR= window.JSON.stringify(notiHash);
                 Config.set('notificationsHash',notiHashSTR);
                 Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
-				displayAlert();
+				self.displayAlert();
 			}
 			if(hoursToBegin < 24 && hoursToBegin > 3){
 				// form notification message to get a reminder three hours before the appointment
@@ -159,13 +179,19 @@ var AppointmentListItemView = Backbone.View.extend({
 				// calculate the value for the time three hours before the appointment
 				var notificationTime = beginDate - 10800000;
 				notiCounter++;
-                notiHash[appointmentTitle]= [];
-                notiHash[appointmentTitle].push(notiCounter);
+                var hash_title_el= "";
+                if(full_appointment_title != ""){
+                    hash_title_el= full_appointment_title;
+                }else{
+                    hash_title_el= appointmentTitle;
+                }
+                notiHash[hash_title_el]= [];
+                notiHash[hash_title_el].push(notiCounter);
                 notiHashSTR= window.JSON.stringify(notiHash);
                 Config.set('notificationsHash',notiHashSTR);
                 Config.save();
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
-				displayAlert();
+				self.displayAlert();
 			}
 			// NOTE: it is up to the user to delete the notifications from the notification center once they have been triggered
          }); // on device ready
@@ -178,30 +204,41 @@ var AppointmentListItemView = Backbone.View.extend({
         //    and store the new entries whenever a notification is scheduled
         var Config= new Configuration({id:1});
         Config.fetch();
+        var appointmentTitle= this.model.get('title');
+        var full_appointment_title= this.model.get('fullTitle');
         var notiHashSTR= Config.get('notificationsHash');
         var notiHash= window.JSON.parse(notiHashSTR);
-        var appointmentTitle= this.model.get('title');
-        var notiArray= notiHash[appointmentTitle];
-        var response = confirm(i18next.t("notiConfirmDialog"));
-        var that= this;
-        if(!response){
-            return;
+        var notiArray= [];
+        if(full_appointment_title != ""){
+            notiArray= notiHash[full_appointment_title];
         }else{
-            //use this data structure to cancel the notifications with a confirmation dialog before executing:
-            //  cordova.plugins.notification.local.cancel([list_of_numberIDs],function(){callback_function},scope);
-            cordova.plugins.notification.local.cancel(notiArray,function(){
-                that.model.set('toNotify',false);
-                var notiListSTR= Config.get('notificationsList');
-                var notiListOBJ= window.JSON.parse(notiListSTR);
-                var index = notiListOBJ.titlesToNotify.indexOf(appointmentTitle);
-                if (index > -1) {
-                    notiListOBJ.titlesToNotify.splice(index, 1);
-                }
-                notiListSTR= window.JSON.stringify(notiListOBJ);
-                Config.set('notificationsList',notiListSTR);
-                Config.save();
-            });
+            notiArray= notiHash[appointmentTitle];
         }
+        var that= this;
+        navigator.notification.confirm(i18next.t("notiConfirmDialog"),function(buttonIndex){
+            if(buttonIndex == 1){
+                return;
+            }else{
+                //use this data structure to cancel the notifications with a confirmation dialog before executing:
+                //  cordova.plugins.notification.local.cancel([list_of_numberIDs],function(){callback_function},scope);
+                cordova.plugins.notification.local.cancel(notiArray,function(){
+                    that.model.set('toNotify',false);
+                    var notiListSTR= Config.get('notificationsList');
+                    var notiListOBJ= window.JSON.parse(notiListSTR);
+                    var index = 0;
+                    if(full_appointment_title != ""){
+                        index= _.indexOf(notiListOBJ.titlesToNotify, full_appointment_title);
+                        notiListOBJ.titlesToNotify.splice(index, 1);
+                    }else{
+                        index = _.indexOf(notiListOBJ.titlesToNotify, appointmentTitle);
+                        notiListOBJ.titlesToNotify.splice(index, 1);
+                    }
+                    notiListSTR= window.JSON.stringify(notiListOBJ);
+                    Config.set('notificationsList',notiListSTR);
+                    Config.save();
+                });
+            }
+        },"",[i18next.t("noButton"),i18next.t("yesButton")]);
     },
 
     hideButtonFunction : function(ev) {
@@ -212,16 +249,28 @@ var AppointmentListItemView = Backbone.View.extend({
         var apListSTR = Config.get('appointmentList');
         var apListOBJ = window.JSON.parse(apListSTR);
 
+        var full_appointment_title= this.model.get('fullTitle');
+
         //add class that triggers an animation on the appointment
         this.$el.addClass('out');
-
         if (this.$el.hasClass('darkClass')){
             // remove appointment from appointment list
-            var index = _.indexOf(apListOBJ.removedTitles, currTitle);
-            apListOBJ.removedTitles.splice(index, 1);
+            var index = 0;
+            if(full_appointment_title != ""){
+                index= _.indexOf(apListOBJ.removedTitles, full_appointment_title);
+                apListOBJ.removedTitles.splice(index, 1);
+            }else{
+                index = _.indexOf(apListOBJ.removedTitles, currTitle);
+                apListOBJ.removedTitles.splice(index, 1);
+            }
         }else{
-            // add appointment to appointment list
-            apListOBJ.removedTitles.push(currTitle);
+            //if multilingual tags are present in moodle-element,
+            //  the removedTitles list must hold a language-independen element
+            if(full_appointment_title != ""){
+                apListOBJ.removedTitles.push(full_appointment_title);
+            }else{
+                apListOBJ.removedTitles.push(currTitle);
+            }
         }
 
         apListSTR = window.JSON.stringify(apListOBJ);

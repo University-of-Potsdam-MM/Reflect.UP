@@ -41,7 +41,8 @@ var Appointment = Backbone.Model.extend({
     // the start page of the application.
 	defaults:{
 		title : 'Appointment Title',
-        begin : new Date(),
+        fullTitle : '',                 //attribute used to hold the whole title including multilingual-tags
+        begin : new Date(),                 // if these exist. Necessary for language independent comparisons.
         end : new Date(),
 		toNotify: false,
         visible: true,
@@ -410,6 +411,19 @@ var AppointmentCollection = Backbone.Collection.extend({
                 var result = new Array();
 
                 _.each(data.events, function(item){
+                    var itemName= item.name;
+                    //checking for multi language tags
+                    var matchPattern= /<span lang=/i;
+                    var found= itemName.search(itemName);
+                    var title_with_tags= '';
+                    if (found != -1){
+                        title_with_tags= itemName;
+                    }
+                    // 'name' and 'description' attributes are to be checked for multi language tags
+                    var language= Config.get('appLanguage');
+                    itemName= that.processMoodleContents(language,itemName);
+                    var itemDescription= item.description;
+                    itemDescription= that.processMoodleContents(language,itemDescription);                    
 					//check if the model to be added is listed in the list of appointments to notify,
 					//in that case, the model's attribute toNotify is set to be true
 					var notifyListSTR= Config.get('notificationsList');
@@ -418,8 +432,9 @@ var AppointmentCollection = Backbone.Collection.extend({
 					var notifyable= 0;
 					for(var s=0; s<numElements; s++){
 						var appointmentsTitle= notifyListOBJ.titlesToNotify[s];
-						if(appointmentsTitle == item.name){
+						if(appointmentsTitle == itemName || appointmentsTitle == title_with_tags){
 							notifyable= 1;
+                            console.log("toNotify: "+appointmentsTitle);
 							break;
 						}
 					}
@@ -429,13 +444,6 @@ var AppointmentCollection = Backbone.Collection.extend({
 					else{
 						toNotify= false;
 					}
-
-                    // 'name' and 'description' attributes are to be checked for multi language tags
-                    var language= Config.get('appLanguage');
-                    var itemName= item.name;
-                    itemName= that.processMoodleContents(language,itemName);
-                    var itemDescription= item.description;
-                    itemDescription= that.processMoodleContents(language,itemDescription);
                     // at this point, there must be a checking to see wether the model to be added exists
                     // in the list of removed appointmets; in case it is, the visible attribute is set to
                     // false, and the appointment is not shown within the start page
@@ -445,12 +453,11 @@ var AppointmentCollection = Backbone.Collection.extend({
                     var deleted = 0;
                     for (var k=0; k<numAppointments; k++){
                         var appointmentModelsTitle = apListOBJ.removedTitles[k];
-                        if(appointmentModelsTitle == item.name){
+                        if(appointmentModelsTitle == itemName || appointmentModelsTitle == title_with_tags){
                             deleted = 1;
                             break;
                         }
                     }
-
                     if(deleted != 1){
                         visible = true;
                     }else{
@@ -458,6 +465,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                     }
                     result.push(new Appointment({
                         title: itemName,
+                        fullTitle: title_with_tags,
                         description: itemDescription,
                         begin : new Date(item.timestart * 1000),
                         end: new Date((item.timestart + item.timeduration)*1000),
