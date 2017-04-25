@@ -243,6 +243,7 @@ var AppointmentListItemView = Backbone.View.extend({
 
     hideButtonFunction : function(ev) {
         // get appointment list and current clicked appointment
+
         var currTitle= this.model.get('title');
 
         Config.fetch();
@@ -849,7 +850,7 @@ var ConfigView = Backbone.View.extend({
             },
             headers: that.model.get("accessToken")
         }).done(function(data){
-            console.log(data);
+            //console.log(data);
             if (data.error){
                 that.trigger('errorHandler');
             }else{
@@ -1232,8 +1233,10 @@ var LanguagesPageView = Backbone.View.extend({
         //navigate to home
         if (this.initialSetupCase){
             this.initialSetupCase = false;
+            this.undelegateEvents();
             Backbone.history.navigate('initialSetup', { trigger : true });    
         }else{
+            this.undelegateEvents();
             Backbone.history.navigate('', { trigger : true });
         }
     },
