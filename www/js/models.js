@@ -414,7 +414,7 @@ var AppointmentCollection = Backbone.Collection.extend({
                     var itemName= item.name;
                     //checking for multi language tags
                     var matchPattern= /<span lang=/i;
-                    var found= itemName.search(itemName);
+                    var found= itemName.search(matchPattern);
                     var title_with_tags= '';
                     if (found != -1){
                         title_with_tags= itemName;

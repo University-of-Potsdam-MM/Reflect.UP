@@ -221,7 +221,6 @@ button.accordion.active:after {
 /* This class is used to give appointments a greyed-out look when they are marked as not important*/
 /* It basically puts a "white cloth" with low opacity over the html that has it*/
 .darkClass{
-	background-color: white;
 	opacity: 0.5;
 }
 
