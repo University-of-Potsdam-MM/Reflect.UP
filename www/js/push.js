@@ -101,7 +101,6 @@ var PushServiceRegister = function(courseID){
         var Config= new Configuration({id:1});
         Config.fetch();
         var language= Config.get('appLanguage');
-        console.log('obtained language: '+language);
         //filter according to language and consider German to be the default language
         var dataObj= window.JSON.parse(data.message);
         var message= "";
