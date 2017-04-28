@@ -20,10 +20,11 @@ var AppointmentListItemView = Backbone.View.extend({
         'click #cancelNotificationButton' : 'cancelNotificationFunction',
         'click' : 'toggle',
         'click .data-full':'hideButtonFunction',
-        'webkitAnimationEnd' : 'toggleAppointment',
-        'mozAnimationEnd' : 'toggleAppointment',
-        'MSAnimationEnd' : 'toggleAppointment',
         'animationend' : 'toggleAppointment',
+        'webkitAnimationEnd' : 'toggleAppointment',
+        'oAnimationEnd' : 'toggleAppointment',
+        'MSAnimationEnd' : 'toggleAppointment',
+        'mozAnimationEnd' : 'toggleAppointment',
     },
 
     toggle: function(){
