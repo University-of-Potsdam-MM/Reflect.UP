@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  *  @module  models
  */
 var app = (app || {} );
@@ -183,7 +211,7 @@ var QuestionContainer = Backbone.Model.extend({
         if(nextOnSequence.get("dependItem") != 0){
             // if the dependency of the next question in the row is satisfied, then
             //      it is selected to be the next question
-            while (nextOnSequence.get("dependValue") != this.get("answersHash")[nextOnSequence.get("dependItem")] && nextOnSequence.get("dependItem") != 0){
+            while (nextOnSequence.get("dependValue") != this.get("answersHash")[nextOnSequence.get("dependItem")] &amp;&amp; nextOnSequence.get("dependItem") != 0){
                 if (this.get('currentIndex') == listLength - 1)
                     return null;
                 this.set('currentIndex', this.get('currentIndex') + 1);
@@ -197,7 +225,7 @@ var QuestionContainer = Backbone.Model.extend({
     },
 
     previous: function(){
-        if (this.get('currentIndex') <= 0)
+        if (this.get('currentIndex') &lt;= 0)
             return null;
         // pop previous index from actualPath to know which was the last answered question
         var answeredPath= this.get('actualPath');
@@ -261,17 +289,17 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var matchPattern= /<span lang=/i;
+        var matchPattern= /&lt;span lang=/i;
         var found= stringToAnalize.search(matchPattern);
         //form the name of the enclosing tags
-        var openTag= '<span lang="'+language+'" class="multilang">';
-        var closeTag= '</span>';
+        var openTag= '&lt;span lang="'+language+'" class="multilang">';
+        var closeTag= '&lt;/span>';
         if(found != -1){
             //extract text in the correct language
             var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
             //if the preferred language was not found, rollback to german
             if(results == null){
-                var openTag_2= '<span lang="de" class="multilang">';
+                var openTag_2= '&lt;span lang="de" class="multilang">';
                 results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
             }
             return results[1];
@@ -299,13 +327,13 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
         .done(function(data) {
             //console.log(" obtained feedbacks: \n"+window.JSON.stringify(data));
             if (data.message) {
-                if (options && options.error)
+                if (options &amp;&amp; options.error)
                     options.error(data.message);
 
                 //return;
             }
 
-            if (options && options.success)
+            if (options &amp;&amp; options.success)
                 if (!data.feedbacks || data.feedbacks.length == 0){
                         options.success([]);
                         return;
@@ -320,7 +348,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                     itemName= that.processMoodleContents(language,itemName);
                     var feedMsg= item.feedbackMessage;
                     //detect if there is a custom feedback message and process it
-                    if(feedMsg != undefined && feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
+                    if(feedMsg != undefined &amp;&amp; feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
                     var questionContainer = new QuestionContainer({
                         id: item.id,
                         title: itemName,
@@ -352,7 +380,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                             //      by multi language tags will be still shown by default, same as Moodle filter
                             var choicesArray= question.choices.substring(6).split('|');
                             var arrayLength= choicesArray.length;
-                            for(var k=0; k < arrayLength; k++){
+                            for(var k=0; k &lt; arrayLength; k++){
                                 var choiceText= choicesArray[k];
                                 choicesArray[k]= that.processMoodleContents(language,choiceText);;
                             }
@@ -383,17 +411,17 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var matchPattern= /<span lang=/i;
+        var matchPattern= /&lt;span lang=/i;
         var found= stringToAnalize.search(matchPattern);
         //form the name of the enclosing tags
-        var openTag= '<span lang="'+language+'" class="multilang">';
-        var closeTag= '</span>';
+        var openTag= '&lt;span lang="'+language+'" class="multilang">';
+        var closeTag= '&lt;/span>';
         if(found != -1){
             //extract text in the correct language
             var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
             //if the preferred language was not found, rollback to german
             if(results == null){
-                var openTag_2= '<span lang="de" class="multilang">';
+                var openTag_2= '&lt;span lang="de" class="multilang">';
                 results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
             }
             return results[1];
@@ -436,13 +464,13 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
         .done(function(data) {
             //console.log(data);
             if (data.message) {
-                if (options && options.error)
+                if (options &amp;&amp; options.error)
                     options.error(data.message);
 
                 return;
             }
 
-            if (options && options.success)
+            if (options &amp;&amp; options.success)
                 if (!data.events || data.events.length == 0){
                         options.success([]);
                         return;
@@ -453,7 +481,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                 _.each(data.events, function(item){
                     var itemName= item.name;
                     //checking for multi language tags
-                    var matchPattern= /<span lang=/i;
+                    var matchPattern= /&lt;span lang=/i;
                     var found= itemName.search(matchPattern);
                     var title_with_tags= '';
                     if (found != -1){
@@ -470,7 +498,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
 					var notifyListOBJ= window.JSON.parse(notifyListSTR);
 					var numElements= notifyListOBJ.titlesToNotify.length;
 					var notifyable= 0;
-					for(var s=0; s<numElements; s++){
+					for(var s=0; s&lt;numElements; s++){
 						var appointmentsTitle= notifyListOBJ.titlesToNotify[s];
 						if(appointmentsTitle == itemName || appointmentsTitle == title_with_tags){
 							notifyable= 1;
@@ -490,7 +518,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                     var apListOBJ = window.JSON.parse(apListSTR);
                     var numAppointments = apListOBJ.removedTitles.length;
                     var deleted = 0;
-                    for (var k=0; k<numAppointments; k++){
+                    for (var k=0; k&lt;numAppointments; k++){
                         var appointmentModelsTitle = apListOBJ.removedTitles[k];
                         if(appointmentModelsTitle == itemName || appointmentModelsTitle == title_with_tags){
                             deleted = 1;
@@ -550,17 +578,17 @@ var Contact = Backbone.Model.extend({});
  * [{
  *   category: ...,
  *   content: [{
- *     category: <optional>,
+ *     category: &lt;optional>,
  *     content: [{
- *       name: <optional>,
- *       comment: <optional>,
- *       location: <optional>,
- *       tel: <optional>,
- *       alt_tel: <optional>,
- *       secretary: <optional>,
- *       mail: <optional>,
- *       consultation: <optional>,
- *       consultation_url: <optional>
+ *       name: &lt;optional>,
+ *       comment: &lt;optional>,
+ *       location: &lt;optional>,
+ *       tel: &lt;optional>,
+ *       alt_tel: &lt;optional>,
+ *       secretary: &lt;optional>,
+ *       mail: &lt;optional>,
+ *       consultation: &lt;optional>,
+ *       consultation_url: &lt;optional>
  *     }]
  *   }]
  * }]
@@ -572,4 +600,26 @@ var ContactPersonCollection = Backbone.Collection.extend(/** @lends ContactPerso
     /** @type {Contact} */
     model: Contact,
     url:'js/config.json'
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li><li><a href="module-models.html">models</a></li><li><a href="module-push.html">push</a></li><li><a href="module-views.html">views</a></li></ul><h3>Classes</h3><ul><li><a href="module-index-validateChoice.html">validateChoice</a></li><li><a href="module-models-Appointment.html">Appointment</a></li><li><a href="module-models-AppointmentCollection.html">AppointmentCollection</a></li><li><a href="module-models-Configuration.html">Configuration</a></li><li><a href="module-models-Contact.html">Contact</a></li><li><a href="module-models-ContactPersonCollection.html">ContactPersonCollection</a></li><li><a href="module-models-Feedback.html">Feedback</a></li><li><a href="module-models-Question.html">Question</a></li><li><a href="module-models-QuestionContainer.html">QuestionContainer</a></li><li><a href="module-models-QuestionContainerList.html">QuestionContainerList</a></li><li><a href="module-models-QuestionList.html">QuestionList</a></li><li><a href="module-models-Screen.html">Screen</a></li><li><a href="module-models-Tab.html">Tab</a></li><li><a href="module-models-TabCollection.html">TabCollection</a></li><li><a href="module-push-PushServiceRegister.html">PushServiceRegister</a></li><li><a href="module-push-SubscribeToUniqush.html">SubscribeToUniqush</a></li><li><a href="module-push-UniqushCreateOptions.html">UniqushCreateOptions</a></li><li><a href="module-push-UnsubscribeToUniqush.html">UnsubscribeToUniqush</a></li><li><a href="module-views-AppointmentListItemView.html">AppointmentListItemView</a></li><li><a href="module-views-AppointmentListView.html">AppointmentListView</a></li><li><a href="module-views-AppointmentsView.html">AppointmentsView</a></li><li><a href="module-views-ConfigView.html">ConfigView</a></li><li><a href="module-views-ContactPersonsView.html">ContactPersonsView</a></li><li><a href="module-views-FeedbackResultView.html">FeedbackResultView</a></li><li><a href="module-views-FeedbackView.html">FeedbackView</a></li><li><a href="module-views-HomeView.html">HomeView</a></li><li><a href="module-views-ImpressumView.html">ImpressumView</a></li><li><a href="module-views-InitialSetupView.html">InitialSetupView</a></li><li><a href="module-views-LogoutView.html">LogoutView</a></li><li><a href="module-views-QuestionCollectionListView.html">QuestionCollectionListView</a></li><li><a href="module-views-QuestionContainerView.html">QuestionContainerView</a></li><li><a href="module-views-QuestionsView.html">QuestionsView</a></li><li><a href="module-views-QuestionView.html">QuestionView</a></li><li><a href="module-views-Router.html">Router</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 15 2017 14:48:25 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

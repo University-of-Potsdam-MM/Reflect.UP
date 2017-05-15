@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: views.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: views.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  *  @module  views
  */
 /**
@@ -47,7 +75,7 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
         var beginDate= new Date(this.model.get('begin'));
         var currTime= new Date();
         var hoursToBegin= (beginDate - currTime) / 3600000;
-        if(hoursToBegin < 3)PassedCase=true;
+        if(hoursToBegin &lt; 3)PassedCase=true;
         this.$el.html(this.template({model: this.model.toJSON(), fullView: this.fullView, passed: PassedCase}));
         return this;
     },
@@ -150,7 +178,7 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
 				self.displayAlert();
 			}
-			if(hoursToBegin < 168 && hoursToBegin > 24){
+			if(hoursToBegin &lt; 168 &amp;&amp; hoursToBegin > 24){
 				// form notification message to get a reminder the day before
 				var notificationMessage = i18next.t("notiMessage_2");
 				if(beginDate.getTime != beginDate.getTime){
@@ -175,7 +203,7 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
 				self.scheduleNotification(notiCounter,appointmentTitle,notificationMessage,notificationTime,1);
 				self.displayAlert();
 			}
-			if(hoursToBegin < 24 && hoursToBegin > 3){
+			if(hoursToBegin &lt; 24 &amp;&amp; hoursToBegin > 3){
 				// form notification message to get a reminder three hours before the appointment
 				var notificationMessage = i18next.t("notiMessage_3_0");
 				if(beginDate.getTime != beginDate.getTime){
@@ -354,7 +382,7 @@ var AppointmentListView = Backbone.View.extend(/** @lends AppointmentListView.pr
     },
 
     addOne : function(appointment){
-        if (this.$("#appointments").children().length < this.limit || this.limit == -1){
+        if (this.$("#appointments").children().length &lt; this.limit || this.limit == -1){
         	if (this.limit == -1) {
         		var view = new AppointmentListItemView({model : appointment, fullView: true});
 
@@ -518,7 +546,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                 actualInd: actualIndex,
             })
         );
-        if (this.model.get('type') === "multichoice" &&
+        if (this.model.get('type') === "multichoice" &amp;&amp;
             this.model.get('choices')){
             // get the prefix "multi" or "singl" and implement the corresponding
             //  case of multiple choice (single or multiple answers)
@@ -529,10 +557,10 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                 var selectedChoices= this.model.get('answerText');
                 var count = 1;
                 var that = this;
-                var form = $('<form action="">');
+                var form = $('&lt;form action="">');
                 this.$("#answer").append(form);
                 _.each(this.model.get('choices'), function(choice){
-                    var checkboxInput = $('<input/>');
+                    var checkboxInput = $('&lt;input/>');
                     checkboxInput.attr('type', 'checkbox');
                     checkboxInput.attr('name', 'choice');
                     checkboxInput.attr('id', 'checkbox' + count);
@@ -540,28 +568,28 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
 
                     //set the checkboxInput to be selected if selectedChoices contains the current index
                     if (selectedChoices != null){
-                        for(var i=0; i<selectedChoices.length; i++){
+                        for(var i=0; i&lt;selectedChoices.length; i++){
                             if(selectedChoices[i] == count){
                                 checkboxInput.attr('checked','checked');
                             }
                         }
                     }
-                    var checkboxLabel = $('<label/>');
+                    var checkboxLabel = $('&lt;label/>');
                     checkboxLabel.attr('for', 'checkbox' + count);
                     checkboxLabel.text(choice);
                     form.append(checkboxInput);
                     form.append(checkboxLabel);
-                    form.append($('<div style="clear: both"></div>'));
+                    form.append($('&lt;div style="clear: both">&lt;/div>'));
                     count++;
                 })
             }else{
                 var selectedChoice= this.model.get('answerText');
                 var count = 1;
                 var that = this;
-                var form = $('<form action="">');
+                var form = $('&lt;form action="">');
                 this.$("#answer").append(form);
                 _.each(this.model.get('choices'), function(choice){
-                    var radioInput = $('<input/>');
+                    var radioInput = $('&lt;input/>');
                     radioInput.attr('type', 'radio');
                     radioInput.attr('name', 'choice');
                     radioInput.attr('id', 'radio' + count);
@@ -571,18 +599,18 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                     if(selectedChoice == count){
                         radioInput.attr('checked','checked');
                     }
-                    var radioLabel = $('<label/>');
+                    var radioLabel = $('&lt;label/>');
                     radioLabel.attr('for', 'radio' + count);
                     radioLabel.text(choice);
                     form.append(radioInput);
                     form.append(radioLabel);
-                    form.append($('<div style="clear: both"></div>'));
+                    form.append($('&lt;div style="clear: both">&lt;/div>'));
                     count++;
                 })
             }
         }
         else{
-            var textarea = $('<textarea>')
+            var textarea = $('&lt;textarea>')
             if (this.model.get("answerText"))
                     textarea.append(this.model.get("answerText"));
             this.$("#answer").append(textarea);
@@ -594,7 +622,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
         el.preventDefault();
         if (!this.saveValues()) {
             // notify user that he has to choose an answer
-            this.$("#answer-feedback").append('<p style="color: red;">'+i18next.t("feedbackTeaser")+'</p>')
+            this.$("#answer-feedback").append('&lt;p style="color: red;">'+i18next.t("feedbackTeaser")+'&lt;/p>')
             return false;
         }
         // wert speicher
@@ -611,7 +639,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                 this.$("#end-message").html(feedMsg);
             }
             else{
-                this.$("#end-message").html('<p><i class="fa fa-check"></i>'+i18next.t("messageFinish")+'</p>');
+                this.$("#end-message").html('&lt;p>&lt;i class="fa fa-check">&lt;/i>'+i18next.t("messageFinish")+'&lt;/p>');
             }
             return false;
         }
@@ -966,7 +994,7 @@ var ImpressumView = Backbone.View.extend(/** @lends ImpressumView.prototype */{
         //      at the end of the document
         //var logoPath= Config.get('uniLogoPath');
         //if(logoPath != ''){
-        //    var imgTag = $('<img alt="university_logo">');
+        //    var imgTag = $('&lt;img alt="university_logo">');
         //    imgTag.attr('src',logoPath);
         //    this.$("#logo-container").append(imgTag);
         //    return this;
@@ -1183,7 +1211,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         var acc = document.getElementsByClassName("accordion");
         var i;
 
-        for (i = 0; i < acc.length; i++) {
+        for (i = 0; i &lt; acc.length; i++) {
             acc[i].onclick = function(){
                 this.classList.toggle("active");
                 this.nextElementSibling.classList.toggle("show");
@@ -1419,3 +1447,26 @@ var Router = Backbone.Router.extend(/** @lends Router.prototype */{
     }
 
 });
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li><li><a href="module-models.html">models</a></li><li><a href="module-push.html">push</a></li><li><a href="module-views.html">views</a></li></ul><h3>Classes</h3><ul><li><a href="module-index-validateChoice.html">validateChoice</a></li><li><a href="module-models-Appointment.html">Appointment</a></li><li><a href="module-models-AppointmentCollection.html">AppointmentCollection</a></li><li><a href="module-models-Configuration.html">Configuration</a></li><li><a href="module-models-Contact.html">Contact</a></li><li><a href="module-models-ContactPersonCollection.html">ContactPersonCollection</a></li><li><a href="module-models-Feedback.html">Feedback</a></li><li><a href="module-models-Question.html">Question</a></li><li><a href="module-models-QuestionContainer.html">QuestionContainer</a></li><li><a href="module-models-QuestionContainerList.html">QuestionContainerList</a></li><li><a href="module-models-QuestionList.html">QuestionList</a></li><li><a href="module-models-Screen.html">Screen</a></li><li><a href="module-models-Tab.html">Tab</a></li><li><a href="module-models-TabCollection.html">TabCollection</a></li><li><a href="module-push-PushServiceRegister.html">PushServiceRegister</a></li><li><a href="module-push-SubscribeToUniqush.html">SubscribeToUniqush</a></li><li><a href="module-push-UniqushCreateOptions.html">UniqushCreateOptions</a></li><li><a href="module-push-UnsubscribeToUniqush.html">UnsubscribeToUniqush</a></li><li><a href="module-views-AppointmentListItemView.html">AppointmentListItemView</a></li><li><a href="module-views-AppointmentListView.html">AppointmentListView</a></li><li><a href="module-views-AppointmentsView.html">AppointmentsView</a></li><li><a href="module-views-ConfigView.html">ConfigView</a></li><li><a href="module-views-ContactPersonsView.html">ContactPersonsView</a></li><li><a href="module-views-FeedbackResultView.html">FeedbackResultView</a></li><li><a href="module-views-FeedbackView.html">FeedbackView</a></li><li><a href="module-views-HomeView.html">HomeView</a></li><li><a href="module-views-ImpressumView.html">ImpressumView</a></li><li><a href="module-views-InitialSetupView.html">InitialSetupView</a></li><li><a href="module-views-LogoutView.html">LogoutView</a></li><li><a href="module-views-QuestionCollectionListView.html">QuestionCollectionListView</a></li><li><a href="module-views-QuestionContainerView.html">QuestionContainerView</a></li><li><a href="module-views-QuestionsView.html">QuestionsView</a></li><li><a href="module-views-QuestionView.html">QuestionView</a></li><li><a href="module-views-Router.html">Router</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 15 2017 14:48:25 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

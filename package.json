@@ -1,0 +1,23 @@
+{
+  "name": "reflectup",
+  "version": "3.0.0",
+  "description": "app for study freshman",
+  "main": "README.md",
+  "dependencies": {
+    "jsdoc": "^3.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/University-of-Potsdam-MM/Reflect.UP.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/University-of-Potsdam-MM/UPReflection/issues"
+  },
+  "homepage": "https://github.com/University-of-Potsdam-MM/UPReflection#readme"
+}

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.unipotsdam.reflectup" version="2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="de.unipotsdam.reflectup" version="3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Reflect.UP</name>
     <description>
        App der WiSo-Fakultät entwickelt im Rahmen des eLiS-Projekts un der Studieneingangsphase.
     </description>
-    <author email="info@elis.uni-potsdam.de" href="http://www.elis.uni-potsdam.de/">
+    <author email="info@elis.uni-potsdam.de" href="http://www.uni-potsdam.de/elis">
         eLiS-Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
