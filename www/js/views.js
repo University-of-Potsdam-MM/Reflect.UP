@@ -864,7 +864,7 @@ var ConfigView = Backbone.View.extend({
 		this.model.fetch();
         //now that the course's id is set, it is possible to subscribe the app to
         //  the right service
-        PushServiceRegister(this.model.get('courseID');
+        PushServiceRegister(this.model.get('courseID'));
         var that = this;
         console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
         $.ajax({
