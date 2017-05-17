@@ -100,7 +100,7 @@ var Question = Backbone.Model.extend({
         answerText : null,
         choices: null,
         actualIndex: 0,
-        label: null,            // label is necessary to implement both types of multi-choice questions
+        multiple_choice: 0
     },
 
     hasPrevious: function(){
@@ -339,8 +339,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                             questionText: questText,
                             type: question.type,
                             dependItem: question.dependitem,
-                            dependValue: question.dependvalue,
-                            label: question.label
+                            dependValue: question.dependvalue
                         });
 
                         if(question.dependitem != 0){
@@ -348,6 +347,10 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                         }
 
                         if (question.choices) {
+                            //verify if the first character of the 'question.choices' is 'c' for 'checkbox'
+                            if(question.choices.substring(0,1) == 'c'){
+                                q.set("multiple_choice",1);
+                            }
                             // each choice must be checked in order to ensure that the text that is not enclosed
                             //      by multi language tags will be still shown by default, same as Moodle filter
                             var choicesArray= question.choices.substring(6).split('|');
