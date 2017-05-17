@@ -502,12 +502,8 @@ var QuestionView = Backbone.View.extend({
         );
         if (this.model.get('type') === "multichoice" &&
             this.model.get('choices')){
-            // get the prefix "multi" or "singl" and implement the corresponding
-            //  case of multiple choice (single or multiple answers)
-	    if(this.model.get('label') == undefined){
-                this.model.set('label',"");
-            }
-            if(this.model.get('label').substring(0,5) == "multi"){
+
+            if(this.model.get('multiple_choice') == 1){
                 var selectedChoices= this.model.get('answerText');
                 var count = 1;
                 var that = this;
@@ -791,10 +787,6 @@ var InitialSetupView = Backbone.View.extend({
 		// navigate to the normal login page
 		Backbone.history.navigate('config', { trigger : true });
 
-        //now that the course's id is set, it is possible to subscribe the app to
-        //  the right service
-        PushServiceRegister(paramsOBJ.get('courseID'));
-
 	},
 
     openLanguagesPage: function(){
@@ -870,6 +862,9 @@ var ConfigView = Backbone.View.extend({
 
     enrolUser: function(){
 		this.model.fetch();
+        //now that the course's id is set, it is possible to subscribe the app to
+        //  the right service
+        PushServiceRegister(this.model.get('courseID');
         var that = this;
         console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
         $.ajax({
