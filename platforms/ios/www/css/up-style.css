@@ -1,0 +1,381 @@
+/*Loginform*/
+#loginform {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+#loginform input {
+	display: block;
+	border: 1px solid #fff;
+	font-size: 1.3em;
+	background-color: #fff !important;
+	width: 95%;
+	padding: 10px;
+}
+
+#loginform input[type="submit"] {
+	border: 0px solid #CCC;
+	background-color: #003f60 !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	width: 43%;
+	border-radius: 80px;
+	color: #FFF;
+}
+
+/*Loginform*/
+#submitform textarea {
+	display: block;
+	border: 1px solid #fff;
+	font-size: 1.3em;
+	background-color: #fff !important;
+	width: 80%;
+	padding: 10px;
+}
+
+#submitform input[type="submit"] {
+	border: 1px solid #ccc;
+	background-color: #ccc !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 1em;
+	width: 43%;
+}
+
+#loginform label {
+	font-family: georgia, serif;
+	font-style: italic;
+	display: block;
+	margin-top: .3em;
+	color: #003f60;
+	font-size: 2em
+}
+
+#loginform label:first-child {
+	margin-top: 0;
+}
+
+.loginerror {
+	padding: .5em;
+	background: #cfdae3999;
+	border: 1px solid red;
+}
+
+/*Terminbutton*/
+
+/*Inhalt*/
+.content-container {
+	min-width: 250px;
+}
+
+.radio-button,input[type="radio"] {
+	float: left;
+	margin: 20px 20px 0px 5px;
+	min-width: 30px;
+	min-height: 30px;
+}
+
+.checkbox-button,input[type="checkbox"] {
+	float: left;
+	margin: 20px 20px 0px 5px;
+	min-width: 30px;
+	min-height: 30px;
+}
+
+#answer label {
+	float: left;
+	margin-top: 25px;
+	width: 80%;
+}
+
+.submitbutton {
+	display: inline-block;
+	padding-left: 30px !important;
+	padding-right: 30px !important;
+	margin-right: 10px;
+	height: 42px;
+	padding-bottom: 0 !important;
+	padding-top: 0px !important;
+	margin-top: -4;
+	line-height: 42px;
+}
+
+.contact-name {
+	font-weight: bold;
+}
+
+.contact {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.external {
+	color: #003f60;
+	text-decoration: underline;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #ededed;
+    color: #004260;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    border: 2px solid #cfdae3;
+    outline: none;
+    transition: 0.4s;
+    font-size: 1.1em;
+    border-radius: 4px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active {
+    background-color: #cfdae3;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 2000px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+}
+
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* removed class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.out {
+	-webkit-animation: disappear 0.6s;
+	-webkit-animation-fill-mode: forwards;
+	animation: disappear 0.6s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes disappear{
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX(500%);
+	}
+}
+
+@-webkit-keyframes disappear {
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+}
+
+/* reinserted class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.in {
+	-webkit-animation: reappear 0.8s;
+	-webkit-animation-fill-mode: forwards;
+	animation: reappear 0.8s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+	}
+}
+
+@-webkit-keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);		-
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX (0%);
+	}
+}
+
+
+/* This class is used to give appointments a greyed-out look when they are marked as not important*/
+/* It basically puts a "white cloth" with low opacity over the html that has it*/
+.darkClass{
+	opacity: 0.5;
+}
+
+.hideAppointmentButton{
+	display: inline-block;
+	vertical-align: middle;
+	width: 50px;
+}
+
+/* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
+#course-list{
+	font-family: 'Source Sans Pro', arial,  sans-serif;
+}
+
+.course {
+	margin: 5px 5px 5px 10px;
+	padding: 0px 5px 0px 5px;
+	border-bottom: 1px solid;
+}
+
+.institution{
+	font-size: 0.8em;
+	color:#353535;
+}
+
+.courseLink{
+	font-size: 120%;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.infobutton {
+    color: #dedede;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+.infobutton.active {
+	color:#014260;
+}
+
+.courseBlock {
+	display: block;
+	text-align:left;
+	float: left;
+	padding-bottom: 10px;
+	width: 90%;
+	padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.infobox{
+	display: block;
+	text-align: right;
+    width: 10%;
+    float: right;
+}
+
+.courseDescription {
+	display: none;
+	position: relative;
+	margin-top: 5px;
+}
+
+.courseDescription:after{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	margin-left: -13px;
+	top: -10px;
+	right:0;
+}
+
+.courseDescription:before{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+	margin-left: -13px;
+	top: -10px;
+	right:0;
+}
+
+.courseDescription p, .content-container p, p.feedback {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #dedede;
+	font-size: .9em;
+	text-align: center;
+}
+
+#initialSetup p.welcome {
+	text-align: left;
+    margin-top:80px;
+    font-size: .9em;
+	line-height:2em;
+    border-bottom: 1px solid #bebebe;
+	margin-bottom:5px;
+	font-weight:bold;
+
+}
+
+#initialSetup p.welcome em {
+	 color: #000;
+}
+
+
+/*  Simple class to set the relative position of the logos that are to be displayed within the boxes of the initial-setup page   */
+.logo-container-format{
+	object-position: center;
+}
+
+/* Simple class to format the select box containing the languages in which the app is available*/
+#language-select-container{
+	margin: auto;
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 80px;
+}
+
+
+.language-select {
+  height: 29px;
+  overflow: hidden;
+  width: 40%;
+}
+
+
+.language-select select {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  height: 32px;
+  padding: 5px;
+  /* If you add too much padding here, the options won't show in IE */
+  width: 90%;
+}
+
+.rounded {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.blue {
+  background-color: #7c95bc;
+}
