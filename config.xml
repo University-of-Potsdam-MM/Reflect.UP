@@ -84,7 +84,7 @@
         <variable name="SENDER_ID" value="38438927043" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" version="1" />
-    <plugin name="de.appplant.cordova.plugin.local-notification" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" /> 
     <access origin="*" />
     <content src="index.html" />
     <engine name="ios" spec="~3.9.2" />
