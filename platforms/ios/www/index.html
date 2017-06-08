@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/up-style.css" />
+    <link rel="stylesheet" type="text/css" href="css/mbExtruder.css" />
+    <!--
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+    -->
+
+	<!--embed source sans pro from google fonts --->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+	<!--  jquery extruder plugin for navigation panel -->
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <!--
+    <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    -->
+    <script type="text/javascript" src="js/lib/jquery.hoverIntent.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.mb.flipText.js"></script>
+    <script type="text/javascript" src="js/lib/mbExtruder.js"></script>
+
+    <!-- i18next library for internationalization of the app's languages-->
+    <script type="text/javascript" src="js/lib/i18next.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+
+          $("#panel").buildMbExtruder({
+          	 position:"right",
+               width:300,
+               extruderOpacity:.8,
+               onExtOpen:function(){},
+               onExtContentLoad:function(){},
+               onExtClose:function(){},
+               closeOnExternalClick: true
+          });
+
+          $("#infopanel").buildMbExtruder({
+             position:"bottom",
+               width:300,
+               extruderOpacity:.8,
+               onExtOpen:function(){},
+               onExtContentLoad:function(){},
+               onExtClose:function(){}
+          });
+        });
+
+    </script>
+
+    <!--
+        Template:       Initial Setup Screen for Grid Boxes
+    -->
+    <script type="text/template" id="template-initial-setup">
+        <div id="header" class="hasLanguagesButton">
+            <a id="languages_button" class="languages_init" title="languages" alt="initial languages"></a> 
+            <h1><%= i18next.t("welcomeLogin")%></h1>
+        </div>
+        <div id="initialSetup">
+            <p class="welcome">
+                <em style="font-style:normal;"><%= i18next.t("setupMessage")%></em>
+                <br />
+            </p>
+            <div id="course-list">
+                <% _.each(tabs.models, function(tab){ %>
+                <div class="course">
+                    <div class="courseBlock" id="<%= tab.get('id')%>">
+                        <div class="institution"><%= tab.get('institution')%></div>
+                        <div class="courseLink"><%= tab.get('title')%></div>
+                    </div>
+                    <div class="infobox">
+                        <i class="fa fa-info-circle fa-2x infobutton" aria-hidden="true"></i>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="courseDescription">
+                        <p><%= tab.get('description')%></p>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </script>
+
+    <!--
+        Template:       Home Screen
+    -->
+    <script type="text/template" id="template-home-screen">
+        <div id="header">
+            <h1><%= i18next.t("titleHome")%></h1>
+        </div>
+        <div id="dates"></div>
+        <div id="questions"></div>
+
+        <div class="impressum-footer" >
+            <a class="footerlink"><%= i18next.t("impressum")%></a>
+        </div>
+        <br />
+        <br />
+    </script>
+
+    <!--
+        Template:       Config Screen
+    -->
+    <script type="text/template" id="template-config-screen">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="#initialSetup"></a>
+            <h1><%= i18next.t("title_login")%></h1>
+        </div>
+        <p style="display: none;" class="loginerror"><%= i18next.t("loginError")%></p>
+        <p style="display: none;" class="loginrunning"><%= i18next.t("loginRunning")%></p>
+
+        <div class="loginform">
+            <form id="loginform" type="POST">
+                <label for"username"><%= i18next.t("userName")%></label>
+                <input type="text" id="username" placeholder= <%= i18next.t("userName_placeHolder")%> />
+                <label for"password"><%= i18next.t("password")%></label>
+                <input type="password" id="password" placeholder=<%= i18next.t("password_placeHolder")%> />
+                <input type="submit" value=<%= i18next.t("submit")%> />
+            </form>
+
+            <p class="welcome">
+                <em style="font-style:normal;"><%= i18next.t("welcomeMessage_1")%></em>
+                <br />
+                <%= i18next.t("welcomeMessage_2")%>
+            </p>
+        </div>
+        <div class="impressum-footer" >
+            <a class="footerlink"><%= i18next.t("impressum")%></a>
+        </div>
+    </script>
+
+    <!--
+        Template:       Languages selection page
+    -->
+    <script type="text/template" id="template-languages-selection">
+        <div id="header" class="hasBackButton">
+            <% if(caseInit == false){ %>
+                <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <% } else { %>
+                <a class="back" title="zurück" alt="zurück button" href="#initialSetup"></a>
+            <% } %>
+            <h1> <%= i18next.t("panelLanguages")%></h1>
+        </div>
+        <br />
+        <br />
+        <p class="welcome">
+            <em style="font-style:normal;"><%= i18next.t("languageMessage")%></em>
+        </p>
+        <div id= language-select-container class= "language-select blue rounded">
+            <select id= language-select>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+        </div>
+        <div id="language" class="button">
+            <a id="changeButton" class="button"><i class="fa fa-exchange icon-large" aria-hidden="true"></i>  OK</a>
+        </div>
+    </script>
+
+    <!--
+        Template:       Question Screen
+    -->
+    <script type="text/template" id="template-questions-screen">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <h1> <%= i18next.t("titleQuestions")%></h1>
+        </div>
+        <div id="questions"></div>
+    </script>
+
+    <!--
+        Template:       Question Collection List
+    -->
+    <script type="text/template" id="template-question-collection-list">
+        <% if (model.length > 0 && notice){ %>
+            <div id="teaser">
+                <p><%= i18next.t("teaser_1")%></p>
+                <a href="#questions"><%= i18next.t("questions_button")%></a>
+            </div>
+        <% }else if (model.length == 0){ %>
+            <div id="teaser">
+                <p><%= i18next.t("teaser_2")%></p>
+            </div>
+        <% }else{ %>
+            <ul id="question-collection"></ul>
+        <% } %>
+    </script>
+
+    <script type="text/template" id="template-appointments-screen">
+        <div id="header" class="hasBackButton"><a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <h1><%= i18next.t("appointmentsTitle")%></h1></div>
+        <div id="dates"></div>
+    </script>
+
+    <script type="text/template" id="template-appointment-list">
+        <ul id="appointments"></ul>
+    </script>
+
+    <script type="text/template" id="template-appointment-list-item">
+        <div class="date-content">
+            <div class="date-container">
+            <% if (fullView == true) { %>
+                <div class="data-full">
+                <div id="hideAppointmentIcon" class="hideAppointmentButton">
+                <% if (model.visible == true) { %>
+                    <i class="fa fa-eye-slash icon-large" aria-hidden="true"></i>
+                <% }else{ %>
+                    <i class="fa fa-eye icon-large" aria-hidden="true"></i>
+                <% } %>
+                </div>
+            <% }else{ %>
+                <div class="data">
+            <% } %>
+            <div class="date">
+                <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
+            </div>
+            <div class="time">
+            <% if (model.begin.getTime() === model.end.getTime()){  %>
+
+            <% }else{ %>
+            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
+            <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
+            <% } %>
+            <% } %>
+
+            </div>
+            <div class="date">
+                <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
+                    <br />-<br />
+                    <%- ('0'+(model.end.getDate())).slice(-2) %>.<%- ('0'+(model.end.getMonth()+1)).slice(-2) %>
+                <% } %>
+            </div>
+            <div class="time">
+            <% if (model.begin.getTime() === model.end.getTime()){  %>
+            <%= i18next.t("fullDay")%>
+            <% }else{ %>
+            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
+            <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
+            <% } %>
+            <% } %>
+            </div>
+            </div>
+            </div>
+            <% if (fullView == true) { %> <div class="description-full"> <% }else{ %> <div class="description"> <% } %>
+            <%= model.title %></div>
+            <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
+            <%= model.description %></div>
+        </div>
+        <div class="notification">
+            <% if (fullView == true && passed == false) { %>
+            <% if (model.toNotify == false && model.visible == true) { %>
+                <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
+            <% } else if(model.toNotify == true){ %>
+            <a  id="cancelNotificationButton" class="notifyAppointmentButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+            <% } %>
+         <% } %>
+
+        </div>
+        <div class="clear"></div>
+
+    </script>
+
+    <script type="text/template" id="template-question-collection-list-item">
+        <a href="questions/<%- containerId %>/<%- questionId %>"> <%- title %></a>
+    </script>
+
+    <script type="text/template" id="template-question">
+        <% if(lastQuestion == 0){  %>
+        <div id="header">
+        <% if(actualInd == 0){ %>
+            <%  if(total == 1){ %>
+            <h1><%= i18next.t("questionCounter")%></h1></div>
+            <% }else{ %>
+            <h1><%= i18next.t("questionCounter")%><%- number %> / <%- total %></h1>
+            <% } %>
+        <% }else{ %>
+            <h1><%= i18next.t("questionCounter")%><%- actualInd %></h1>
+        <% } %>
+        </div>
+        <div class="content-container">
+            <p class="questionText"><%- questionText %></p>
+            <div id="answer-feedback"></div>
+            <div id="answer"></div>
+        </div>
+        <div class="prev-next-nav" >
+            <div class="np-wrapper">
+                 <a href="#questions/<%- containerId %>/<%- previousId %>" id="previousButton"><%= i18next.t("backButton")%></a>
+                 <a href="#questions/<%- containerId %>/<%- nextId %>" id="nextButton"><%= i18next.t("nextButton")%></a>
+            </div>
+        </div>
+        <% } else{ %>
+            <div id="header"><h1><%= i18next.t("headerFinish")%></h1></div>
+            <div id="end-message" ></div>
+            <div class="prev-next-nav">
+                <br />
+                <br />
+                <a href="#" class="button finish"><%= i18next.t("buttonFinish")%></a>
+            </div>
+        <% } %>
+    </script>
+
+    <script type="text/template" id="template-impressum">
+        <div id="impressum-html-content" >
+        </div>
+        <br />
+        <div id="logo-container">
+        </div>
+    </script>
+
+
+    <script type="text/template" id="template-feedback">
+        <div id="header" class="hasBackButton"> <a class="back" id="back_button" title="zurück" alt="zurück button" href="#"></a>
+        <h1><%= i18next.t("feedbackHeader")%></h1></div>
+        <p class="feedback">
+            <%= i18next.t("feedbackMessage_1")%>
+            <br/><br/>
+            <%= i18next.t("feedbackMessage_2")%>
+        </p>
+        <form id="feedbackform" name="feedback" type="POST">
+            <textarea id="feedbacktext" name="feedbacktext" rows="5" cols="30"></textarea>
+            <br />
+            <a id="submitButton" class="button finish"><%= i18next.t("feedbackButton")%> </a>
+        </form>
+    </script>
+
+
+    <script type="text/template" id="template-feedbackresult">
+        <div id="header">
+            <h1><%= i18next.t("feedbackFinish_header")%></h1>
+        </div>
+        <div id="feedbackresult">
+            <p><i class="fa fa-check"></i><%= i18next.t("feedbackFinish_message")%></p>
+
+            <div class="prev-next-nav">
+                <a href="#" class="button finish"><%= i18next.t("feedbackFinish_button")%></a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="template-contact-persons">
+        <div id="header" class="hasBackButton">
+            <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <h1><%= i18next.t("contactHeader")%></h1>
+        </div>
+        <div>
+            <% _.each(contacts.models,function(levelOne) { %>
+                <% if(levelOne.get('courseID') == courseID) { %>
+                    <% if(!levelOne.get('contactPersonsObject') == "") { %>
+                        <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
+                            <button class="accordion"><%- levelTwo.category %></button>
+                            <div class="panel">
+                            <p>
+                            <% levelTwo.content.forEach(function(levelThree) { %>
+                                <% if (levelThree.category) { %>
+                                    <h3><%- levelThree.category %></h3>
+                                <% } %>
+                                <% levelThree.content.forEach(function(contact, index) { %>
+                                    <div class="contact">
+                                        <% if (contact.name) { %>
+                                            <div>
+                                                <span class="contact-name"><%- contact.name %></span>
+                                                <% if (contact.comment) { %>
+                                                    <span> (<%- contact.comment %>)</span>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                        <% if (contact.location) { %>
+                                            <div><%- contact.location %></div>
+                                        <% } %>
+                                        <% if (contact.tel) { %>
+                                            <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.alt_tel) { %>
+                                            <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.secretary) { %>
+                                            <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                        <% } %>
+                                        <% if (contact.mail) { %>
+                                            <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
+                                        <% } %>
+                                        <% if (contact.consultation) { %>
+                                            <div>
+                                                <span>Sprechzeiten: </span>
+                                                <span><%- contact.consultation %></span>
+                                                <% if (contact.consultation_url) { %>
+                                                    <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                <% }); %>
+                            <% }); %>
+                            </p>
+                            </div>
+                        <% }) %>
+                    <% } else {%>
+                        <br />
+                        <br />
+                        <br />
+                        <h2> <%= i18next.t("noContacts")%> </h2>
+                    <% }%>
+                <% } %>
+            <% }); %>
+        </div>
+    </script>
+
+    <script type="text/javascript" src="js/lib/underscore.js"></script>
+    <script type="text/javascript" src="js/lib/backbone.js"></script>
+    <script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
+    <script type="text/javascript" src="js/lib/URI.js"></script>
+
+    <script type="text/javascript" src="js/models.js"></script>
+    <script type="text/javascript" src="js/views.js"></script>
+    <script type="text/javascript" src="js/push.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <title>Reflect.UP</title>
+</head>
+<body onload="app.initialize()">
+	<div id="app"></div>
+
+	 <div id="panel" class="{url:'panel.html'}"></div>
+     <div id="infopanel" class="{title: 'Info', url:'infopanel.html'}"></div>
+
+</body>
+</html>
