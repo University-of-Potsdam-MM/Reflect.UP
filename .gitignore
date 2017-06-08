@@ -13,6 +13,7 @@
 
 # generated files - android project subfolder
 **/platforms/android/
+**/platforms/ios/
 
 
 # generated files
