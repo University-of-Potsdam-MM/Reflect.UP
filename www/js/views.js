@@ -892,6 +892,7 @@ var ConfigView = Backbone.View.extend(/** @lends ConfigView.prototype */{
 		this.model.fetch();
         //now that the course's id is set, it is possible to subscribe the app to
         //  the right service
+
         PushServiceRegister(this.model.get('courseID'));
         var that = this;
         console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
@@ -908,6 +909,7 @@ var ConfigView = Backbone.View.extend(/** @lends ConfigView.prototype */{
             if (data.error){
                 that.trigger('errorHandler');
             }else{
+                that.undelegateEvents();
                 Backbone.history.navigate('', { trigger : true });
             }
         }).error(function(xhr, status, error){
