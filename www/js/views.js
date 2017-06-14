@@ -90,7 +90,6 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
 	},
 
     notifyButtonFunction : function(ev) {
-        console.log("Notification button was pressed!");
 		var appointmentTitle= this.model.get('title');
 		var beginDate= new Date(this.model.get('begin'));
 		var endDate= new Date(this.model.get('end'));
