@@ -22,8 +22,8 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
     template : _.template($('#template-appointment-list-item').html()),
     /** @member {{}} - default events the view should be listening to */
     events: {
-        'click #notificationButton':'notifyButtonFunction',
-        'click #cancelNotificationButton' : 'cancelNotificationFunction',
+        'click .notifyAppointmentButton':'notifyButtonFunction',
+        'click .cancelNotificationButton' : 'cancelNotificationFunction',
         'click' : 'toggle',
         'click .data-full':'hideButtonFunction',
         'animationend' : 'toggleAppointment',
@@ -90,6 +90,7 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
 	},
 
     notifyButtonFunction : function(ev) {
+        console.log("Notification button was pressed!");
 		var appointmentTitle= this.model.get('title');
 		var beginDate= new Date(this.model.get('begin'));
 		var endDate= new Date(this.model.get('end'));
