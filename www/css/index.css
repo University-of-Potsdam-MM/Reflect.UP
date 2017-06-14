@@ -106,6 +106,16 @@ body {
 	float: right;
 }
 
+.notifyAppointmentButton {
+	width: 30px;
+	height: 30px;
+}
+
+.cancelNotificationButton{
+	width: 30px;
+	height: 30px;
+}
+
 .date-container {
 	float: left;
 	margin-right: 15px;

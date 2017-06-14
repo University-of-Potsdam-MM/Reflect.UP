@@ -22,8 +22,8 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
     template : _.template($('#template-appointment-list-item').html()),
     /** @member {{}} - default events the view should be listening to */
     events: {
-        'click #notificationButton':'notifyButtonFunction',
-        'click #cancelNotificationButton' : 'cancelNotificationFunction',
+        'click .notifyAppointmentButton':'notifyButtonFunction',
+        'click .cancelNotificationButton' : 'cancelNotificationFunction',
         'click' : 'toggle',
         'click .data-full':'hideButtonFunction',
         'animationend' : 'toggleAppointment',
