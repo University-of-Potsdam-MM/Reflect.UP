@@ -85,7 +85,9 @@ var PushServiceRegister = function(courseID){
         console.log("PushNotification NOT available");
         return;
     }
-
+    // reset value of pushDetails.serviceName to the original value to prevent 
+    //      appending IDs of previous selected courses
+    pushDetails.serviceName= "reflectup";
     pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID);
 	var push = PushNotification.init({
         android: {
