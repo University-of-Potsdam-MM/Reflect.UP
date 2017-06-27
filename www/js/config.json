@@ -885,16 +885,305 @@
 						}]
 							}]
 						}]},
-{"id" : 5,
-			  "courseID" : "UPR10",
-			  "moodleServiceEndpoint" : "http://141.89.171.82:81/moodle/webservice/rest/server.php",
-			  "moodleLoginEndpoint" : "http://141.89.171.82:81/moodle/login/token.php",
+{"id" : 7,
+			  "courseID" : "UPR-1718-MatNat",
+			  "moodleServiceEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+			  "moodleLoginEndpoint" : "https://api.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
 			  "accessToken" : {"Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa"},
-			  "title" : "Test-Kurs auf Manuel's laptop",
+			  "title" : "Studieneingangsphase (MatNatFak)",
 			  "institution": "Universität Potsdam",
-			  "description" : "Kurs für die Studieneingangsphase an der Philosophischen Fakultät für das Wintersemester 17/18.",
+			  "description" : "Kurs für die Studieneingangsphase an der Matematisch-Naturwissenschaftliche Fakultät für das Wintersemester 17/18.",
 			  "impressumTemplate": "<div id=\"header\" class=\"hasBackButton\"> <a class=\"back\" title=\"zurück\" alt=\"zurück button\" href=\"#\"></a>\n             <h1>Impressum</h1>\n        </div>\n\n            <em style=\"font-family: Helvetica, Arial, sans-serif;font-size: 1em;font-weight:normal; text-align:left;\">Herausgeber</em>\n            <p>\n            Universität Potsdam<br />\n            Am Neuen Palais 10<br />\n            14469 Potsdam<br /><br />\n            <b>Tel.:</b> 0331 977-0<br />\n            <b>Fax:</b> 0331 97 21 63<br />\n            <b>Web:</b> www.uni-potsdam.de<br />\n            </p>\n\n            <em>Verantwortlich für den App Store Account des Service Mobile.UP der Universität Potsdam</em>\n            <p>\n            Ulrike Lucke, CIO der Universität Potsdam<br />\n            14469 Potsdam<br />\n            <b>E-Mail:</b> <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>\n            </p>\n\n            <em>Rechtsform und gesetzliche Vertretung</em>\n            <p>\n            Die Universität Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver Günther, Ph.D., Präsident der Universität Potsdam, Am Neuen Palais 10, 14469 Potsdam.\n            </p>\n\n            <em>Zuständige Aufsichtsbehörde</em>\n            <p>Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg, Dortustr. 36, 14467 Potsdam</p>\n\n            <em>Umsatzsteueridentifikationsnummer und inhaltliche Verantwortlichkeit</em>\n            <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE138408327</p>\n            <p>Die inhaltliche Verantwortlichkeit i. S. v. § 5 TMG und § 55 Abs. 2 RStV übernimmt der ASTA (Allgemeiner Studierendenausschuss) der Universität Potsdam.</p>\n\n            <em>Haftung</em>\n            <p>Für die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a\n            href=\"(http://www.zeik.uni-potsdam.de/fileadmin/projects/zeik/assets/benutzerordnung_zeik.pdf\">Nutzungsordnung der ZEIK</a>. Die Haftung erfolgt ausschließlich für die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. Applikationen Dritter können ein einigen Stellen in Reflect.UP verlinkt werden. Diese werden jedoch separat installiert und beinhalten eigene Nutzungsrichtlinien. Für die Inhalte solcher Apps zeichnet sich die Universität Potsdam nicht verantwortlich.<br /><br />Der Zugriff ist technisch abgesichert und die Daten werden nicht zwischengespeichert. Die Verwendung dieses Dienstes erfolgt durch den Nutzer freiwillig.</p>\n\n                </p>\n\n            <h1>Ansprechpartner</h1>\n            <p>\n            <b>Alexander Knoth</b><br /> Universität Potsdam<br /> Wirtschafts- und Sozialwissenschaftliche Fakultät<br /> August-Bebel-Str. 89<br /> 14482 Potsdam<br />\n            Haus 1 | 1.54<br />\n            <br /> <b>Telefon:</b> +49-331-977-3564 <br style=\"clear: left;\">\n\n            </p>\n            </div>\n\n            <div>\n            <h1>Mitmachen</h1>\n            <p>\n            Es gibt die Möglichkeit als studentische Mitarbeiter innerhalb von\n            Lehrprojekten, Aufträgen oder Anstellung an der App-Entwicklung im\n            Rahmen des eLiS-Projekts mitzuwirken.<br />Die App ist als Open\n            Source Projekt veröffentlicht.<br />\n            <br />Wenn Sie sich für eine Mitarbeit an der App interessieren,\n            können Sie gern das Entwicklerteam unter <a href=\"mailto:elis-dev@lists.cs.uni-potsdam.de\">elis-dev@lists.cs.uni-potsdam.de</a>\n            kontaktieren.\n            </p>\n            </div>",
 			  "uniLogoPath": "../www/img/Phillogo.svg",
-			  "contactPersonsObject": ""}
-
+			  "contactPersonsObject": [{
+							"category": "Ein-Fach-Bachelor",
+							"content": [{
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Biochemie",
+								"content": [{
+									"name": "Dr. Olaf Behrsing",
+									"location": "Campus Golm | Haus 25, Zi, B/1.08",
+									"tel": "+49 331 977-5246",
+									"alt_tel" : "+49 331 977-5342",
+									"mail": "biowissBC@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Matematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Molekularbiologie/Physiologie",
+								"content": [{
+									"name": "Dr. Anke Koch",
+									"location": "Campus Golm | Haus 20, Zi. 0.06",
+									"tel": "+49 331 977-2652",
+									"mail": "biowissMP@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung Matematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Organismishce Biologie",
+								"content": [{
+									"name": "Dr. Volker Kummer",
+									"location": "Maulbeerallee 1, Raum 2.06a",
+									"tel": "+49 331 977-4888",
+									"mail": "kummer@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+											}]
+							}, {
+								"category": "Beauftragte für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften",
+								"content": [{
+									"name": "Prof. Dr. Katja M. Arndt",
+									"location": "Campus Golm | Haus 25, Zi. B/1.06",
+									"tel": "+49 331 977-5261",
+									"mail": "katja.arndt@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Chemie",
+								"content": [{
+									"name": "Dr. Andreas Koch",
+									"location": "Campus Golm | Haus 25, Zi. D.0.21",
+									"tel": "+49 331 977-5198",
+									"mail": "andreas.koch@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bacheor Chemie",
+								"content": [{
+									"name": "Prof. Dr. P. Wessig",
+									"location": "Campus Golm | Haus 25, Zi. D.06",
+									"tel": "+49 331 977-5401",
+									"mail": "wessing@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},	{
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Ernährungswissenschaft",
+								"content": [{
+									"name": "Prof. Dr. Gerhard P. Püschel",
+									"location": "Institut für Ernährungswissenschaft, Arthur-Scheunert-Allee 114-116 D-14558 Nuthetal, OT Berholz-Rehbrücke",
+									"tel": "+49 033200 88-5694",
+									"mail": "gpuesche@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},	{
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geoökologie",
+								"content": [{
+									"name": "Dr. Torsten Lipp",
+									"location": "Campus Golm | Haus 12, Zi. 1.01",
+									"tel": "+49 331 977-2419",
+									"mail": "tlipp@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},	
+							{
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geoökologie",
+								"content": [{
+									"name": "Prof. Dr. Axel Bronstert",
+									"location": "Campus Golm | Haus 1, Zi. 1.09",
+									"tel": "+49 331 977 2548",
+									"mail": "axelbron@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},	{
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Mineralogie",
+								"content": [{
+									"name": "apl. Prof. Dr. Uwe Altenberger",
+									"location": "Campus Golm | Haus 27, Zi. 1.28",
+									"tel": "+49 331 977-5806",
+									"mail": "uwe@geo.uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Geologie",
+								"content": [{
+									"name": "apl. Prof. Dr. Martin Trauth",
+									"location": "Campus Golm | Haus 27, Zi. 1.32",
+									"tel": "+49 331 977-5810",
+									"mail": "trauth@geo.uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}], 
+							}, {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Geophysik",
+								"content": [{
+									"name": "apl. Prof. Dr. Frank Krüger",
+									"location": "Campus Golm | Haus 27, Zi. 1.36",
+									"tel": "+49 331 977-5813",
+									"mail": "krueger@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bacheor Geowissenschaften/International Field Geosciences",
+								"content": [{
+									"name": "apl. Prof. Dr. Martin Trauth",
+									"location": "Campus Golm | Haus 27, Zi. 1.32",
+									"tel": "+49 331 977-5810",
+									"mail": "trauth@geo.uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},
+								{
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Informatik/Computational Science",
+								"content": [{
+									"name": "Dipl.- Math. Petra Vogel",
+									"location": "Campus Griebnitzsee | Haus 4, Zi. 0.14",
+									"tel": "+49 0331 977-3004",
+									"mail": "pvogel@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Informatik/Computational Science",
+								"content": [{
+									"name": "Prof. Dr. Andreas Schwill",
+									"location": "Campus Griebnitzsee | Haus 4, Zi. 2.16",
+									"tel": "+49 331 977-3100",
+									"mail": "schwill@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Mathematik",
+								"content": [{
+									"name": "Prof. Dr. Gilles Blanchard",
+									"location": "Campus Golm | Haus 09, Raum 1.16",
+									"tel": "+49 331 977-1098",
+									"mail": "gilles.blanchard@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragte für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Mathematik",
+								"content": [{
+									"name": "Prof. Dr. Hannelore Liero",
+									"location": "Campus Golm | Haus 09, Raum 1.09",
+									"tel": "+49 331 977-1319",
+									"mail": "liero@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Physik",
+								"content": [{
+									"name": "Dr. Horst Gebert",
+									"location": "Campus Golm | Haus 28, Zi. 1.023",
+									"tel": "+49 331 977-1354",
+									"mail": "horst.gebert@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Physik",
+								"content": [{
+									"name": "Prof. Dr. Matias Bargheer",
+									"location": "Campus Golm | Haus 28, Zi. 1.032",
+									"tel": "+49 331 977-4272",
+									"mail": "bargheer@uni-potsdam.de",
+									"consultation": "Dienstag 09.30 - 10.30 Uhr (in der vorlesungsfreien Zeit nur nach Voranmeldung per email)"
+								}]
+							}
+						]
+						}, {
+							"category": "Lehramtsbezogener Bachelor",
+							"content": [ {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät lehramtsbezogener Bachelor: Biologie",
+								"content": [{
+									"name": "Prof. Dr. Helmut Prechtl",
+									"location": "Campus Golm | Haus 13, Zi. 2.08",
+									"tel": "+49 331 977-2192",
+									"mail": "prechtl@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bacheor Biologie",
+								"content": [{
+									"name": "Prof. Dr. Helmut Prechtl",
+									"location": "Campus Golm | Haus 13, Zi. 2.08",
+									"tel": "+49 331 977-2192",
+									"mail": "prechtl@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Studienfachberatung: Matematisch-Naturwissenschaftliche Fakultät Lehramtsbezogener Bachelor: Chemie",
+								"content": [{
+									"name": "apl. Prof. Dr. Brigitte Duvinage",
+									"location": "Campus Golm | Haus 25, Zi. D.1.10-1.11",
+									"tel": "+49 331 977-5182",
+									"mail": "duvinage@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}, {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: Lehramtsbezogener Bachelor: Chemie",
+								"content": [{
+									"name": "apl. Prof. Dr. Brigitte Duvinage",
+									"location": "Campus Golm | Haus 25, Zi. D.1.10-1.11",
+									"tel": "+49 331 977-5182",
+									"mail": "duvinage@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},  {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Geographie",
+								"content": [{
+									"name": "Maik Wienecke",
+									"location": "Campus Golm | Haus 24, Zi. 0.67",
+									"tel": "+49 331 977-2278",
+									"mail": "wienecke@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},  {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Geographie",
+								"content": [{
+									"name": "Prof. Dr. Manfred Rolfes",
+									"location": "Campus Golm | Haus 24, Zi. 0.67",
+									"tel": "+49 331 977-3205",
+									"mail": "mrolfes@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},  {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Informatik",
+								"content": [{
+									"name": "Prof. Dr. Andreas Schwill",
+									"location": "Campus Griebnitzsee | Haus 4, Zi. 2.16",
+									"tel": "+49 331 977-3100",
+									"mail": "schwill@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},   {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Informatik",
+								"content": [{
+									"name": "Prof. Dr. Andreas Schwill",
+									"location": "Campus Griebnitzsee | Haus 4, Zi. 2.16",
+									"tel": "+49 331 977-3100",
+									"mail": "schwill@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},  {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Mathematik",
+								"content": [{
+									"name": "Dr. Axel Brückner",
+									"location": "Campus Golm | Haus 9, Zi. 0.19",
+									"tel": "+49 331 977-1477",
+									"mail": "brueckne@math.uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},   {
+								"category": "Beauftragte für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Mathematik",
+								"content": [{
+									"name": "apl. Prof. Dr. Hannelore Liero",
+									"location": "Campus Golm | Haus 09, Raum 1.09",
+									"tel": "+49 331 977-1319",
+									"mail": "liero@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},  {
+								"category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche: lehramtsbezogener Bachelor: Physik",
+								"content": [{
+									"name": "Dr. rer. nat. Uta Magdans",
+									"location": "Campus Golm | Haus 28, Zi. 1.112",
+									"tel": "+49 331 977-5482",
+									"mail": "magdans@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							},   {
+								"category": "Beauftragter für Prüfungswesen: Mathematisch-Naturwissenschaftliche Fakultät: lehramtsbezogener Bachelor: Physik",
+								"content": [{
+									"name": "Prof. Dr. Arkady Pikovsky",
+									"location": "Campus Golm | Haus 28, Zi. 2.087",
+									"tel": "+49 331 977-1472",
+									"mail": "pikovsky@uni-potsdam.de",
+									"consultation": "nach Vereinbarung"
+								}]
+							}
+						]
+							}]
+						}
 ]
