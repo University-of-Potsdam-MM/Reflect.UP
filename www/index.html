@@ -354,6 +354,7 @@
             <% _.each(contacts.models,function(levelOne) { %>
                 <% if(levelOne.get('courseID') == courseID) { %>
                     <% if(!levelOne.get('contactPersonsObject') == "") { %>
+                        <% console.log('contatctPersonsObject: '+window.JSON.stringify(levelOne.get('contactPersonsObject')))%>
                         <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
                             <button class="accordion"><%- levelTwo.category %></button>
                             <div class="panel">

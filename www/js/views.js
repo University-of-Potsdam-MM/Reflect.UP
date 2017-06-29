@@ -1142,7 +1142,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         this.collection.fetch({
             //async: false,   (DEPRECATED)
             success: function () {
-                that.renderWrap();
+                that.render();
             },
             error: function() {
                 that.collection.fetch().done(function(){
@@ -1151,10 +1151,6 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
             }
         });
 
-    },
-
-    renderWrap: function() {
-        this.render();
     },
 
     openExternal: function(event) {
