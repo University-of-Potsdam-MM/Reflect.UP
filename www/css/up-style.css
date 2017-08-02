@@ -149,7 +149,7 @@ div.panel {
 
 div.panel.show {
     opacity: 1;
-    max-height: 2000px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+    max-height: 9000px;  /*Whatever you like, as long as its more than the height of the content (on all screen sizes) */
 }
 
 button.accordion:after {
