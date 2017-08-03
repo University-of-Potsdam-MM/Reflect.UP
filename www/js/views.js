@@ -830,12 +830,13 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
  *      @constructor
  *      @augments Backbone.View
  */
-var ConfigView = Backbone.View.extend(/** @lends ConfigView.prototype */{
+var ConfigView = Backbone.View.extend(/** @rends ConfigView.prototype */{
     el: '#app',
 
     template: _.template($('#template-config-screen').html()),
     events: {
-        'submit #loginform': 'submit'
+        'submit #loginform': 'submit',
+        'click .footerlink_Config': 'impressum_config'
     },
     /** @type {Configuration} */
     model: Configuration,
@@ -929,6 +930,10 @@ var ConfigView = Backbone.View.extend(/** @lends ConfigView.prototype */{
         this.$(".loginrunning").hide();
     },
 
+    impressum_config: function(){
+        Backbone.history.navigate('impressumConfig', { trigger : true });
+    },
+
     render: function(){
 		//call tab view
         this.$el.html(this.template({t: _t}));
@@ -944,15 +949,24 @@ var ConfigView = Backbone.View.extend(/** @lends ConfigView.prototype */{
  *      @augments Backbone.View
  */
 var ImpressumView = Backbone.View.extend(/** @lends ImpressumView.prototype */{
+    configCase : false,
     el: '#app',
     template: _.template($('#template-impressum').html()),
 
-    initialize: function(){
+    initialize: function(options){
+        if("caseConfig" in options){
+            this.configCase = true;
+        }
         this.render();
     },
 
     render: function(){
-        this.$el.html(this.template());
+        if(!this.configCase){
+            this.$el.html(this.template({caseConfiguration : false}));
+        }
+        else{
+            this.$el.html(this.template({caseConfiguration : true}));
+        }
         // fill the emptied template with the contents of Configuration´s
         //      'impressumTemplate' attribute
         Config= new Configuration({id:1});
@@ -1320,7 +1334,8 @@ var Router = Backbone.Router.extend(/** @lends Router.prototype */{
         'contactpersons': 'contactpersons',
         'languages' : 'languages',
         'logout': 'logout',
-        'languagesInit': 'languagesInit'
+        'languagesInit': 'languagesInit',
+        'impressumConfig' : 'impressumConfig'
     },
 
     switchView : function(view){
@@ -1384,7 +1399,7 @@ var Router = Backbone.Router.extend(/** @lends Router.prototype */{
     },
 
     impressum: function(){
-        this.switchView(new ImpressumView())
+        this.switchView(new ImpressumView({}))
     },
 
     feedback: function() {
@@ -1409,6 +1424,10 @@ var Router = Backbone.Router.extend(/** @lends Router.prototype */{
 
     languagesInit: function() {
         this.switchView(new LanguagesPageView({caseInit: 1}))
+    },
+
+    impressumConfig: function() {
+        this.switchView(new ImpressumView({caseConfig: 1}));
     }
 
 });
