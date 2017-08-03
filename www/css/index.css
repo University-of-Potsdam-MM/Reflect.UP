@@ -350,6 +350,12 @@ textarea {
 	color: #FFF;
 }
 
+.footerlink_Config{
+	display: inline-block;
+	padding-left: .1em;
+	color: #FFF;	
+}
+
 .radio-button {
 	margin: 10px;
 	height: 20px;

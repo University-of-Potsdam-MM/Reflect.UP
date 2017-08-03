@@ -132,7 +132,7 @@
             </p>
         </div>
         <div class="impressum-footer" >
-            <a class="footerlink"><%= i18next.t("impressum")%></a>
+            <a class="footerlink_Config"><%= i18next.t("impressum")%></a>
         </div>
     </script>
 
@@ -308,6 +308,14 @@
     </script>
 
     <script type="text/template" id="template-impressum">
+        <div id="header" class="hasBackButton">
+            <% if(caseConfiguration == false){ %>
+                <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <%} else { %>
+                <a class="back" title="zurück" alt="zurück button" href="#config"></a>
+            <% } %>
+            <h1>Impressum</h1>
+        </div>
         <div id="impressum-html-content" >
         </div>
         <br />
@@ -354,7 +362,6 @@
             <% _.each(contacts.models,function(levelOne) { %>
                 <% if(levelOne.get('courseID') == courseID) { %>
                     <% if(!levelOne.get('contactPersonsObject') == "") { %>
-                        <% console.log('contatctPersonsObject: '+window.JSON.stringify(levelOne.get('contactPersonsObject')))%>
                         <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
                             <button class="accordion"><%- levelTwo.category %></button>
                             <div class="panel">
