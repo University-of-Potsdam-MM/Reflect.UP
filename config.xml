@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.unipotsdam.reflectup" version="3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="de.unipotsdam.reflectup" version="3.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Reflect.UP</name>
     <description>
        App der WiSo-Fakultät entwickelt im Rahmen des eLiS-Projekts un der Studieneingangsphase.
@@ -84,7 +84,7 @@
         <variable name="SENDER_ID" value="38438927043" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" version="1" />
-    <plugin name="de.appplant.cordova.plugin.local-notification" /> 
+    <plugin name="de.appplant.cordova.plugin.local-notification" />
     <access origin="*" />
     <content src="index.html" />
     <engine name="ios" spec="~4.3.0" />

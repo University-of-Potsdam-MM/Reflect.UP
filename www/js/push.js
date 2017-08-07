@@ -7,7 +7,7 @@ var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/",
 	serviceName: "reflectup",
-    authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
+    authHeader: { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa" }
 };
 
 /**
@@ -85,7 +85,7 @@ var PushServiceRegister = function(courseID){
         console.log("PushNotification NOT available");
         return;
     }
-    // reset value of pushDetails.serviceName to the original value to prevent 
+    // reset value of pushDetails.serviceName to the original value to prevent
     //      appending IDs of previous selected courses
     pushDetails.serviceName= "reflectup";
     pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID);
