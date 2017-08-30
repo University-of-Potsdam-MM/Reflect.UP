@@ -1225,9 +1225,9 @@ var LogoutView = Backbone.View.extend(/** @lends LogoutView.prototype */{
 
     reroute: function() {
         Backbone.history.navigate('initialSetup', {trigger: true});
-        if(navigator.app){
-            navigator.app.exitApp();
-        }
+        //if(navigator.app){
+        //    navigator.app.exitApp();
+        //}
     },
 
     retryDestroy: function() {
