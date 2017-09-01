@@ -128,20 +128,25 @@ var PushServiceRegister = function(courseID){
         Config.fetch();
         var language= Config.get('appLanguage');
         //filter according to language and consider German to be the default language
-        var dataObj= window.JSON.parse(data.message);
         var message= "";
         var title= "";
-        if(dataObj[language].message != ""){
-            message= dataObj[language].message;
-        }else{
-            message= dataObj['de'].message;
+        if(language == 'de'){
+            title= data.additionalData.title_DE;
+            message= data.additionalData.message_DE;
+        }else if(language == 'es'){
+            title= data.additionalData.title_ES;
+            message= data.additionalData.message_ES;
         }
-        if(dataObj[language].message != ""){
-            title= dataObj[language].title;
-        }else{
-            title= dataObj['de'].title;
+        else if(language == 'en'){
+            title= data.additionalData.title_EN;
+            message= data.additionalData.message_EN;
         }
-
+        // if there is no title/message on the locally selected language, use the german title/message
+        //  as default
+        if(message == '' || title == ''){
+            title= data.additionalData.title_DE;
+            message= data.additionalData.message_DE;
+        }
         navigator.notification.alert(
             message,           // message
             onConfirm,         // callback
