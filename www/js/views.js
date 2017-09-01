@@ -1301,11 +1301,16 @@ var LanguagesPageView = Backbone.View.extend(/** @lends LanguagesPageView.protot
     },
 
     render: function(){
+        this.model.fetch();
+        var current_language= this.model.get('appLanguage');
+        var preSelectedLang= 0;
+        if(current_language == 'en')preSelectedLang= 1;
+        else if(current_language == 'es')preSelectedLang= 2;
         if(!this.initialSetupCase){
-            this.$el.html(this.template({t: _t, caseInit: false}));
+            this.$el.html(this.template({t: _t, caseInit: false, selectedLang : preSelectedLang}));
             return this;
         }else {
-            this.$el.html(this.template({t: _t, caseInit: true}));
+            this.$el.html(this.template({t: _t, caseInit: true, selectedLang : preSelectedLang}));
             //this.initialSetupCase= false;
             return this;
         }

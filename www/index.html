@@ -155,9 +155,19 @@
         </p>
         <div id= language-select-container class= "language-select blue rounded">
             <select id= language-select>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-              <option value="es">Español</option>
+              <% if(selectedLang == 0){ %>
+                <option value="de" selected>Deutsch</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+              <% }else if(selectedLang == 1){ %>
+                <option value="de">Deutsch</option>
+                <option value="en" selected>English</option>
+                <option value="es">Español</option>
+              <% }else if(selectedLang == 2){ %>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+                <option value="es" selected>Español</option>
+              <% } %>
             </select>
         </div>
         <div id="language" class="button">
