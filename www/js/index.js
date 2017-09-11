@@ -106,7 +106,7 @@ var app = {
         translation : {
             "welcomeLogin" : "Welcome",
             "titleHome" : "Reflect.UP",
-            "impressum" : "References",
+            "impressum" : "Imprint",
             "title_login" : "Reflect.UP - Login",
             "loginError" : "Login failed!",
             "loginRunning" : "Logging in...",

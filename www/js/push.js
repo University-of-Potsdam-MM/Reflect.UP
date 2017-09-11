@@ -7,7 +7,7 @@ var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/",
 	serviceName: "reflectup",
-    authHeader: { "Authorization": "Bearer c06156e119040a27a4b43fa933f130" }
+    authHeader: { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa" }
 };
 
 /**
@@ -85,7 +85,7 @@ var PushServiceRegister = function(courseID){
         console.log("PushNotification NOT available");
         return;
     }
-    // reset value of pushDetails.serviceName to the original value to prevent 
+    // reset value of pushDetails.serviceName to the original value to prevent
     //      appending IDs of previous selected courses
     pushDetails.serviceName= "reflectup";
     pushDetails.serviceName= pushDetails.serviceName.concat("-"+courseID);
@@ -128,20 +128,25 @@ var PushServiceRegister = function(courseID){
         Config.fetch();
         var language= Config.get('appLanguage');
         //filter according to language and consider German to be the default language
-        var dataObj= window.JSON.parse(data.message);
         var message= "";
         var title= "";
-        if(dataObj[language].message != ""){
-            message= dataObj[language].message;
-        }else{
-            message= dataObj['de'].message;
+        if(language == 'de'){
+            title= data.additionalData.title_DE;
+            message= data.additionalData.message_DE;
+        }else if(language == 'es'){
+            title= data.additionalData.title_ES;
+            message= data.additionalData.message_ES;
         }
-        if(dataObj[language].message != ""){
-            title= dataObj[language].title;
-        }else{
-            title= dataObj['de'].title;
+        else if(language == 'en'){
+            title= data.additionalData.title_EN;
+            message= data.additionalData.message_EN;
         }
-
+        // if there is no title/message on the locally selected language, use the german title/message
+        //  as default
+        if(message == '' || title == ''){
+            title= data.additionalData.title_DE;
+            message= data.additionalData.message_DE;
+        }
         navigator.notification.alert(
             message,           // message
             onConfirm,         // callback

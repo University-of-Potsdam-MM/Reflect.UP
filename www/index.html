@@ -132,7 +132,7 @@
             </p>
         </div>
         <div class="impressum-footer" >
-            <a class="footerlink"><%= i18next.t("impressum")%></a>
+            <a class="footerlink_Config"><%= i18next.t("impressum")%></a>
         </div>
     </script>
 
@@ -155,9 +155,19 @@
         </p>
         <div id= language-select-container class= "language-select blue rounded">
             <select id= language-select>
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-              <option value="es">Español</option>
+              <% if(selectedLang == 0){ %>
+                <option value="de" selected>Deutsch</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+              <% }else if(selectedLang == 1){ %>
+                <option value="de">Deutsch</option>
+                <option value="en" selected>English</option>
+                <option value="es">Español</option>
+              <% }else if(selectedLang == 2){ %>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+                <option value="es" selected>Español</option>
+              <% } %>
             </select>
         </div>
         <div id="language" class="button">
@@ -308,6 +318,14 @@
     </script>
 
     <script type="text/template" id="template-impressum">
+        <div id="header" class="hasBackButton">
+            <% if(caseConfiguration == false){ %>
+                <a class="back" title="zurück" alt="zurück button" href="#"></a>
+            <%} else { %>
+                <a class="back" title="zurück" alt="zurück button" href="#config"></a>
+            <% } %>
+            <h1><%= i18next.t("impressum")%></h1>
+        </div>
         <div id="impressum-html-content" >
         </div>
         <br />
@@ -354,7 +372,6 @@
             <% _.each(contacts.models,function(levelOne) { %>
                 <% if(levelOne.get('courseID') == courseID) { %>
                     <% if(!levelOne.get('contactPersonsObject') == "") { %>
-                        <% console.log('contatctPersonsObject: '+window.JSON.stringify(levelOne.get('contactPersonsObject')))%>
                         <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
                             <button class="accordion"><%- levelTwo.category %></button>
                             <div class="panel">
