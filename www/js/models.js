@@ -261,22 +261,21 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var matchPattern= /<span lang=/i;
-        var found= stringToAnalize.search(matchPattern);
-        //form the name of the enclosing tags
-        var openTag= '<span lang="'+language+'" class="multilang">';
-        var closeTag= '</span>';
-        if(found != -1){
-            //extract text in the correct language
-            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
-            //if the preferred language was not found, rollback to german
-            if(results == null){
-                var openTag_2= '<span lang="de" class="multilang">';
-                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
-            }
-            return results[1];
+        var x2js = new X2JS();
+        var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
+        var result ='';
+
+        if (jsonObj.xml.span != undefined){
+            _.each(jsonObj.xml.span, function(element){
+                if (language === element._lang){
+
+                    result = element.__text;
+                }
+            });
+        }else{
+            result = jsonObj.xml;
         }
-        return stringToAnalize;
+        return result;
     },
 
     sync: function(method, model, options){
@@ -386,22 +385,21 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var matchPattern= /<span lang=/i;
-        var found= stringToAnalize.search(matchPattern);
-        //form the name of the enclosing tags
-        var openTag= '<span lang="'+language+'" class="multilang">';
-        var closeTag= '</span>';
-        if(found != -1){
-            //extract text in the correct language
-            var results= stringToAnalize.match(new RegExp(openTag + "(.*?)" + closeTag));
-            //if the preferred language was not found, rollback to german
-            if(results == null){
-                var openTag_2= '<span lang="de" class="multilang">';
-                results= stringToAnalize.match(new RegExp(openTag_2 + "(.*?)" + closeTag));
-            }
-            return results[1];
+        var x2js = new X2JS();
+        var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
+        var result ='';
+
+        if (jsonObj.xml.span != undefined){
+            _.each(jsonObj.xml.span, function(element){
+                if (language === element._lang){
+
+                    result = element.__text;
+                }
+            });
+        }else{
+            result = jsonObj.xml;
         }
-        return stringToAnalize;
+        return result;
     },
 
     sync: function(method, model, options){
