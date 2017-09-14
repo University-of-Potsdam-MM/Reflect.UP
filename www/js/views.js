@@ -1023,6 +1023,7 @@ var FeedbackView = Backbone.View.extend(/** @lends FeedbackView.prototype */{
     submit: function(ev) {
         ev.preventDefault();
         var feedbacktext = $('#feedbacktext').val();
+        feedbacktext = $('<div />').text(feedbacktext).html();
         var that = this;
         $.ajax({
             url: that.model.get('moodleServiceEndpoint'),
