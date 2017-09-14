@@ -774,7 +774,7 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
 		this.model= new Configuration({id:1});
 		this.collection = new TabCollection();
 
-		this.collection.fetch();
+		this.collection.fetch({ headers: {'Authorization' :'Basic USERNAME:PASSWORD'} });
 		this.listenTo(this.collection, "sync", this.render);
         this.listenTo(this.collection, "error", this.fetchError);
     },
