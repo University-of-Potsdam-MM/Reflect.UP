@@ -264,16 +264,17 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
         var x2js = new X2JS();
         var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
         var result ='';
+        if (jsonObj != null){
+            if (jsonObj.xml.span != undefined){
+                _.each(jsonObj.xml.span, function(element){
+                    if (language === element._lang){
 
-        if (jsonObj.xml.span != undefined){
-            _.each(jsonObj.xml.span, function(element){
-                if (language === element._lang){
-
-                    result = element.__text;
-                }
-            });
-        }else{
-            result = jsonObj.xml;
+                        result = element.__text;
+                    }
+                });
+            }else{
+                result = jsonObj.xml;
+            }
         }
         return result;
     },
@@ -388,16 +389,17 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
         var x2js = new X2JS();
         var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
         var result ='';
+        if (jsonObj != null){
+            if (jsonObj.xml.span != undefined){
+                _.each(jsonObj.xml.span, function(element){
+                    if (language === element._lang){
 
-        if (jsonObj.xml.span != undefined){
-            _.each(jsonObj.xml.span, function(element){
-                if (language === element._lang){
-
-                    result = element.__text;
-                }
-            });
-        }else{
-            result = jsonObj.xml;
+                        result = element.__text;
+                    }
+                });
+            }else{
+                result = jsonObj.xml;
+            }
         }
         return result;
     },
