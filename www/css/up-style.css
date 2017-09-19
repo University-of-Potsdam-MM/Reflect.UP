@@ -111,6 +111,8 @@
 .contact {
 	margin-top: 1em;
 	margin-bottom: 1em;
+	line-height:1.4em;
+	font-family: "source sans pro", Helvetica, Arial, sans-serif;
 }
 
 .external {
@@ -126,11 +128,13 @@ button.accordion {
     padding: 15px;
     width: 100%;
     text-align: left;
-    border: 2px solid #cfdae3;
+    margin-bottom:1px;
     outline: none;
     transition: 0.4s;
     font-size: 1.1em;
-    border-radius: 4px;
+    border: none;
+	position:relative;
+	line-height: 1.5em;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -153,15 +157,23 @@ div.panel.show {
 }
 
 button.accordion:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
+    content: '\f067';
+    font-size: 18px;
     color: #777;
-    float: right;
-    margin-left: 5px;
+    position: absolute;
+    right: 5px;
+    font-family: fontawesome;
+    top: 30%;
 }
 
 button.accordion.active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
+    content: "\f068"; /* Unicode character for "minus" sign (-) */
+	font-size: 18px;
+    color: #777;
+    position: absolute;
+    right: 5px;
+    font-family: fontawesome;
+    top: 30%;
 }
 
 /* removed class defines a web-kit-animation for appointments, together with the following keyframes */
@@ -226,9 +238,14 @@ button.accordion.active:after {
 }
 
 .hideAppointmentButton{
-	display: inline-block;
-	vertical-align: middle;
-	width: 50px;
+	 display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    border-bottom: 1px dotted #97a9b9;
+    padding: 4px 0 4px 0;
+    /* text-align: left; */
+    margin-bottom: 3px;
+}
 }
 
 /* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
@@ -321,6 +338,7 @@ button.accordion.active:after {
     border: 1px solid #dedede;
 	font-size: .9em;
 	text-align: center;
+	font-family: "source sans pro", helvetica, arial, sans-serif;
 }
 
 #initialSetup p.welcome {
@@ -377,5 +395,5 @@ button.accordion.active:after {
 }
 
 .blue {
-  background-color: #7c95bc;
+  background-color: #d0dae3;
 }
