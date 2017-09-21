@@ -20,6 +20,7 @@
 
 	<!--  jquery extruder plugin for navigation panel -->
     <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/xml2json.js"></script>
     <!--
     <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
     -->
@@ -233,14 +234,9 @@
                 <%- ('0'+(model.begin.getDate())).slice(-2) %>.<%- ('0'+(model.begin.getMonth()+1)).slice(-2) %>.
             </div>
             <div class="time">
-            <% if (model.begin.getTime() === model.end.getTime()){  %>
-
-            <% }else{ %>
-            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
-            <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
-            <% } %>
-            <% } %>
-
+                <% if (model.begin.getTime() != model.end.getTime()){  %>
+                    <%- ('0'+model.begin.getHours()).slice(-2) %>:<%- ('0'+model.begin.getMinutes()).slice(-2) %>
+                <% } %>
             </div>
             <div class="date">
                 <% if (model.begin.getDate() != model.end.getDate() || model.begin.getMonth() != model.end.getMonth()){ %>
@@ -249,13 +245,11 @@
                 <% } %>
             </div>
             <div class="time">
-            <% if (model.begin.getTime() === model.end.getTime()){  %>
-            <%= i18next.t("fullDay")%>
-            <% }else{ %>
-            <% if (model.begin.getHours() != 0 || model.begin.getMinutes() != 0){ %>
-            <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
-            <% } %>
-            <% } %>
+                <% if (model.begin.getTime() === model.end.getTime()){  %>
+                    <%= i18next.t("fullDay")%>
+                <% }else{ %>
+                    <%- ('0'+model.end.getHours()).slice(-2) %>:<%- ('0'+model.end.getMinutes()).slice(-2) %>
+                <% } %>
             </div>
             </div>
             </div>
