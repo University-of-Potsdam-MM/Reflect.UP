@@ -107,7 +107,7 @@ body {
    
 }
 
-.notifyAppointmentButton {
+.notifyAppointmentButton, {
 	margin: 0 auto;
     display: inline-block;
     background-color: #d0dae3;
@@ -117,10 +117,7 @@ body {
     height: 1em;
 }
 
-.cancelNotificationButton{
-	width: 30px;
-	height: 30px;
-}
+
 
 .date-container {
 	float: left;
@@ -235,6 +232,13 @@ p {
 	margin-top: 0;
 }
 
+p.left {
+	text-align:left;
+	margin-left:10px;
+	font-family: 'Source Sans Pro', arial,  sans-serif;
+	margin-right:10px;
+}
+
 p.welcome {
 	text-align: center;
 	font-family: 'Source Sans Pro', arial,  sans-serif;
@@ -345,11 +349,13 @@ a:visited {
 	display: block;
 	margin: 0 auto;
 	width: 95%;
+	 
 }
 
 textarea {
 	width: 80%;
 	height: 150px;
+	margin-left:10px;
 }
 
 #answer {
@@ -523,6 +529,7 @@ a.button {
 	font-size: inherit;
 	padding: 0;
 	padding-left: 0;
+	margin-top: 30px;
 }
 
 #panel.extruder .voice a.label {
@@ -644,10 +651,8 @@ a.button {
 }
 
 #panel.extruder.right.isOpened .flap {
-	border-left: 1px solid #999;
-	border-top: 1px solid #999;
-	border-bottom: 1px solid #999;
-	margin-left: 0px;
+	
+	margin-left: 40px;
 	width: 27px;
 }
 
