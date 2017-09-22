@@ -16,6 +16,44 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
+/*
+ *   Potsdam design variables
+ *
+ */
+ /*
+:root {
+  --base_color: #003f60;
+  --base_color_2: #004260;
+  --contrast_color: #000;
+  --background_color: #fff;
+  --background_color_2: #fff;
+  --date_container_color: #d0dae3;
+  --menu_button_color: #cfdae3;
+  --notification_button_color: #d0dae3;
+  --appointment_border_color: #cec7c7;
+}
+*/
+
+/*
+ *   Viadrina design variables
+ *
+ */
+:root {
+  --base_color: #15327A;
+  --base_color_2: #15327A;
+  --contrast_color: #F8C400;
+  --background_color: #fff;
+  --background_color_2: #fff;
+  --date_container_color: #CCCCAF;
+  --menu_button_color: #CCCCAF;
+  --notification_button_color: #F8C400;
+  --appointment_border_color: #F8C400;
+}
+
+
+
 * {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	/* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -29,13 +67,13 @@ body {
 	-webkit-user-select: none;
 	/* prevent copy paste, to allow, change 'none' to 'text' */
 	/*background-color:#E4E4E4;*/
-	background-color: #fff;
+	background-color: var(--background_color);
 	background-attachment: fixed;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	height: 100%;
 	margin: 0;
-	color: #003f60;
+	color: var(--base_color);
 }
 
 /*layout sections*/
@@ -44,7 +82,7 @@ body {
 	margin-top: 70px;
 }
 #header {
-	background-color: #004260;
+	background-color: var(--base_color_2);
 	height: 62px;
 	
 	margin-bottom: 10px;
@@ -68,7 +106,7 @@ body {
 	padding-bottom: 10px;
 	padding-top: 10px;
 	width: 100%;
-	background: #004260;
+	background: var(--base_color_2);
 	padding-left: 10px;
 }
 
@@ -89,7 +127,7 @@ body {
 	margin-right: 5px;
 	content: "\f086";
 	margin-left: 3px;
-	color: #003f60;
+	color: var(--base_color);
 }
 
 #dates {
@@ -110,7 +148,7 @@ body {
 .notifyAppointmentButton, {
 	margin: 0 auto;
     display: inline-block;
-    background-color: #d0dae3;
+    background-color: var(--notification_button_color);
     padding: 6px;
     border-radius: 50%;
     width: 1em;
@@ -127,7 +165,7 @@ body {
 	font-family: "source sans pro", sans-serif;
     font-weight: 600;
 	width: 70px;
-	background-color:#d0dae3;
+	background-color: var(--date_container_color);
 }
 
 .date-container:before {
@@ -155,7 +193,7 @@ body {
 
 .time {
 	font-size: .8em;
-	color: #003f60;
+	color: var(--base_color);
 	font-family: sans-serif;
 	display: inline;
 }
@@ -224,7 +262,7 @@ body {
   line-height: 1.8em;
   font-family: "source sans pro", helvetica, sans-serif;
   font-style: italic;
-  color: #FFF;
+  color: var(--background_color_2);
 }
 
 p {
@@ -262,7 +300,7 @@ h2 {
 }
 
 em {
-	color: #003f60;
+	color: var(--base_color);
 }
 
 h1+em {
@@ -295,7 +333,7 @@ li {
 
 #questions li {
 	border-radius: 80px;
-    background: #004260;
+    background: var(--base_color_2);
     padding-left: 20px;
     margin-bottom: 5px;
 }
@@ -303,7 +341,7 @@ li {
 #appointments li {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #cec7c7;
+	border-bottom: 1px solid var(--appointment_border_color);
 }
 
 li.collabsable a {
@@ -332,11 +370,11 @@ li.collabsable a:after {
 
 a {
 	text-decoration: none;
-	color: #003f60;
+	color: var(--base_color);
 }
 
 a:active {
-	color: #003f60;
+	color: var(--base_color);
 }
 
 a:visited {
@@ -365,13 +403,13 @@ textarea {
 .footerlink {
 	display: inline-block;
 	padding-left: .1em;
-	color: #FFF;
+	color: var(--background_color);
 }
 
 .footerlink_Config{
 	display: inline-block;
 	padding-left: .1em;
-	color: #FFF;	
+	color: var(--background_color);	
 }
 
 .radio-button {
@@ -399,7 +437,7 @@ textarea {
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     -moz-os-font-smoothing: grayscale;
-    color: #FFF;
+    color: var(--background_color);
     /* border: 2px solid #cfdae3; */
     width: 30px;
     height: 30px;
@@ -426,7 +464,7 @@ textarea {
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-os-font-smoothing: grayscale;
-	color: #FFF;	
+	color: var(--background_color);	
 }
 
 .prev-next-nav {
@@ -444,7 +482,7 @@ textarea {
 .prev-next-nav a {
 	width: 50%;
 	border: 0px solid #CCC;
-	background-color: #003f60 !important;
+	background-color: var(--base_color) !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	margin-top: 1em;
@@ -453,13 +491,13 @@ textarea {
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	color: #FFF;
+	color: var(--background_color);
 	float: left;
 }
 
 .prev-next-nav .button.finish {
 	text-align: center;
-	color: #FFF;
+	color: var(--background_color);
 	margin: 0 auto;
 	float: none !important;
 }
@@ -478,14 +516,14 @@ a.button {
 	border-right: 1px solid #CCC;
 	border-bottom: 1px solid #CCC;
 	border-left: 1px solid #CCC;
-	color: #cfdae3;
+	color: var(--menu_button_color);
 	margin: auto;
 }
 
 #feedbackform .button, #language .button {
 	width: 50%;
     border: 0px solid #CCC;
-    background-color: #003f60 !important;
+    background-color: var(--base_color) !important;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1em;
 	margin: 0 auto;
@@ -494,7 +532,7 @@ a.button {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    color: #FFF;
+    color: var(--background_color);
 }
 
 #teaser a {
@@ -502,12 +540,12 @@ a.button {
 	text-align: center;
 	font-size: 1.5em;
 	border: 0px solid #CCC;
-	background-color: #004260 !important;
+	background-color: var(--base_color_2) !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1em;
 	margin-top: -1em;
 	border-radius: 80px;
-	color: #FFF;
+	color: var(--background_color);
 	min-width: 60%;
 	float: right;
 	padding: 10px;
@@ -517,7 +555,7 @@ a.button {
 /* panel */
 #panel.extruder.right .extruder-content {
 	border-left: 1px solid #999;
-	background-color: #004260;
+	background-color: var(--base_color_2);
 	padding-top: 40px;
 }
 
@@ -542,8 +580,8 @@ a.button {
 
 #navigation-footer h1 {
 	font-size: 1.3em;
-	color: #cfdae3;
-	color: #FFF;
+	color: var(--menu_button_color);
+	color: var(--background_color);
 	font-family: georgia, serif;
 	font-style: italic;
 	font-weight: normal;
@@ -555,7 +593,7 @@ a.button {
 
 #navigation-footer a.button {
 	border: none;
-	background-color: #cfdae3;
+	background-color: var(--menu_button_color);
 	white-space: nowrap;
 	border-bottom: 1px solid #999;
 	display: block;
@@ -563,7 +601,7 @@ a.button {
 }
 
 #navigation-footer .button.home:before {
-	color: #003f60;
+	color: var(--base_color);
 	content: "\f015";
 	font-family: FontAwesome;
 	margin-right: 5px;
@@ -618,7 +656,7 @@ a.button {
 	font-family: FontAwesome;
     margin-right: 5px;
     content: "\f0c9";
-    color: #FFF;
+    color: var(--background_color);
     font-size: 1.7em;
 }
 
@@ -628,10 +666,10 @@ a.button {
 
 #panel.extruder.right .flap {
 	font-size: 18px;
-	color: #FFF;
+	color: var(--background_color);
 	top: 0;
 	padding: 15px 5px 5px 5px;
-	background-color: #004260;
+	background-color: var(--base_color_2);
 	width: 50px;
 	height: 42px;
 	position: absolute;
@@ -670,7 +708,7 @@ a.button {
 	padding: 10px;
     text-align: center;
     font-size: .8em;
-    color: #FFF;
+    color: var(--background_color);
 }
 
 #feedbackresult p {

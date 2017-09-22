@@ -1,3 +1,38 @@
+
+/*
+ *   Potsdam design variables
+ *
+ */
+/*
+:root {
+  --base_color: #003f60;
+  --base_color_2: #004260;
+  --contrast_color: #000;
+  --background_color: #fff;
+  --background_color_2: #fff;
+  --date_container_color: #d0dae3;
+  --menu_button_color: #cfdae3;
+  --notification_button_color: #d0dae3;
+  --appointment_border: #cec7c7;
+}
+*/
+/*
+ *   Viadrina design variables
+ *
+ */
+:root {
+  --base_color: #15327A;
+  --base_color_2: #15327A;
+  --contrast_color: #F8C400;
+  --background_color: #fff;
+  --background_color_2: #fff;
+  --date_container_color: #CCCCAF;
+  --menu_button_color: #CCCCAF;
+  --notification_button_color: #F8C400;
+  --appointment_border: #F8C400;
+}
+
+
 /*Loginform*/
 #loginform {
 	padding-bottom: 10px;
@@ -6,16 +41,16 @@
 
 #loginform input {
 	display: block;
-	border: 1px solid #fff;
+	border: 1px solid var(--background_color);
 	font-size: 1.3em;
-	background-color: #fff !important;
+	background-color: var(--background_color) !important;
 	width: 95%;
 	padding: 10px;
 }
 
 #loginform input[type="submit"] {
 	border: 0px solid #CCC;
-	background-color: #003f60 !important;
+	background-color: var(--base_color) !important;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 1.3em;
 	margin: auto;
@@ -23,13 +58,13 @@
 	margin-bottom: 1em;
 	width: 43%;
 	border-radius: 80px;
-	color: #FFF;
+	color: var(--background_color);
 }
 
 /*Loginform*/
 #submitform textarea {
 	display: block;
-	border: 1px solid #fff;
+	border: 1px solid var(--background_color);
 	font-size: 1.3em;
 	background-color: #fff !important;
 	width: 80%;
@@ -51,7 +86,7 @@
 	font-style: italic;
 	display: block;
 	margin-top: .3em;
-	color: #003f60;
+	color: var(--base_color);
 	font-size: 2em
 }
 
@@ -116,14 +151,14 @@
 }
 
 .external {
-	color: #003f60;
+	color: var(--base_color);
 	text-decoration: underline;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
     background-color: #ededed;
-    color: #004260;
+    color: var(--base_color_2);
     cursor: pointer;
     padding: 15px;
     width: 100%;
@@ -256,7 +291,7 @@ button.accordion.active:after {
 .course {
 	margin: 5px 5px 5px 10px;
 	padding: 0px 5px 0px 5px;
-	border-bottom: 1px solid;
+	border-bottom: 1px var(--contrast_color) solid;
 }
 
 .institution{
@@ -333,7 +368,7 @@ button.accordion.active:after {
 }
 
 .courseDescription p, .content-container p, p.feedback {
-    background-color: #fff;
+    background-color: var(--background_color);
     padding: 10px;
 	font-size: .9em;
 	text-align: center;
@@ -395,5 +430,5 @@ button.accordion.active:after {
 }
 
 .blue {
-  background-color: #d0dae3;
+  background-color: var(--date_container_color);
 }
