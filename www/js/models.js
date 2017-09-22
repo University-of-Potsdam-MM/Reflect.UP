@@ -3,6 +3,8 @@
  */
 var app = (app || {} );
 
+var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+
 /**
  *      model for holding the configuration
  *      @name Configuration
@@ -47,7 +49,7 @@ var Tab = Backbone.Model.extend({});
 var TabCollection = Backbone.Collection.extend(/** @lends TabCollection.prototype */{
     /** @type {Tab} */
 	model: Tab,
-	url: 'js/config.json',
+	url: configURL,
 });
 
 
