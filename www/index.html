@@ -151,10 +151,10 @@
         </div>
         <br />
         <br />
-        <p class="welcome">
-            <em style="font-style:normal;"><%= i18next.t("languageMessage")%></em>
+        <p class="left">
+            <%= i18next.t("languageMessage")%>
         </p>
-        <div id= language-select-container class= "language-select blue rounded">
+        <div id= language-select-container class= "language-select">
             <select id= language-select>
               <% if(selectedLang == 0){ %>
                 <option value="de" selected>Deutsch</option>
@@ -263,7 +263,7 @@
             <% if (model.toNotify == false && model.visible == true) { %>
                 <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
             <% } else if(model.toNotify == true){ %>
-            <a  id="cancelNotificationButton" class="cancelNotificationButton"><i class="fa fa-bell icon-large" aria-hidden="true"></i></a>
+            <a  id="cancelNotificationButton" class="cancelNotificationButton"><i class="fa fa-bell-slash icon-large" aria-hidden="true"></i></a>
             <% } %>
          <% } %>
 

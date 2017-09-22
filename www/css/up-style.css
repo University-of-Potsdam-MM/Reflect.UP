@@ -329,13 +329,12 @@ button.accordion.active:after {
 	z-index: 0;
 	margin-left: -13px;
 	top: -10px;
-	right:0;
+	right: 0;
 }
 
 .courseDescription p, .content-container p, p.feedback {
     background-color: #fff;
     padding: 10px;
-    border: 1px solid #dedede;
 	font-size: .9em;
 	text-align: center;
 	font-family: "source sans pro", helvetica, arial, sans-serif;
@@ -364,28 +363,29 @@ button.accordion.active:after {
 
 /* Simple class to format the select box containing the languages in which the app is available*/
 #language-select-container{
-	margin: auto;
-	text-align: center;
-	margin-top: 40px;
-	margin-bottom: 80px;
+	margin-left: 10px;
+    text-align: left;
+    margin-bottom: 80px;
+	max-width: 300px;
 }
 
 
 .language-select {
   height: 29px;
   overflow: hidden;
-  width: 40%;
+  width: 100%;
 }
 
 
 .language-select select {
-  background: transparent;
+  background: rgb(243, 241, 241);
   border: none;
   font-size: 18px;
   height: 32px;
   padding: 5px;
   /* If you add too much padding here, the options won't show in IE */
   width: 90%;
+  color: #676262;
 }
 
 .rounded {
