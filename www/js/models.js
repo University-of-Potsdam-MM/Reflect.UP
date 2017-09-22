@@ -275,7 +275,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                     }
                 });
             }else{
-                result = jsonObj.xml;
+                result = stringToAnalize;
             }
         }
         return result;
@@ -400,7 +400,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                     }
                 });
             }else{
-                result = jsonObj.xml;
+                result = stringToAnalize;
             }
         }
         return result;
