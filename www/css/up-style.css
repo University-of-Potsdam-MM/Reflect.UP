@@ -3,7 +3,6 @@
  *   Potsdam design variables
  *
  */
-/*
 :root {
   --base_color: #003f60;
   --base_color_2: #004260;
@@ -15,11 +14,12 @@
   --notification_button_color: #d0dae3;
   --appointment_border: #cec7c7;
 }
-*/
+
 /*
  *   Viadrina design variables
  *
  */
+ /*
 :root {
   --base_color: #15327A;
   --base_color_2: #15327A;
@@ -31,7 +31,7 @@
   --notification_button_color: #F8C400;
   --appointment_border: #F8C400;
 }
-
+*/
 
 /*Loginform*/
 #loginform {
