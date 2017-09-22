@@ -22,7 +22,7 @@
  *   Potsdam design variables
  *
  */
- /*
+ /*  Color variables - Potsdam*/
 :root {
   --base_color: #003f60;
   --base_color_2: #004260;
@@ -34,12 +34,15 @@
   --notification_button_color: #d0dae3;
   --appointment_border_color: #cec7c7;
 }
-*/
+
+
 
 /*
  *   Viadrina design variables
  *
  */
+ /*  Color variables - Viadrina*/
+ /*
 :root {
   --base_color: #15327A;
   --base_color_2: #15327A;
@@ -51,8 +54,14 @@
   --notification_button_color: #F8C400;
   --appointment_border_color: #F8C400;
 }
-
-
+*/
+/*   Custom fonts - Viadrina*/
+/*
+@font-face {
+  font-family: regularFont;
+  src: url('../../docs/fonts/Viadrina_fonts/TheSansPlain.eot') format('eot'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.woff') format('woff'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.svg') format('svg'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.ttf') format('truetype');
+}
+*/
 
 * {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -165,7 +174,7 @@ body {
 	margin-right: 15px;
 	text-align: center;
 	/*border: 1px solid #003f60;*/
-	font-family: "source sans pro", sans-serif;
+	font-family: regularFont, 'Source Sans Pro', sans-serif;
     font-weight: 600;
 	width: 70px;
 	background-color: var(--date_container_color);
@@ -209,7 +218,7 @@ body {
 	white-space: nowrap;
 	font-weight: bold;
 	line-height: 1.6em;
-	font-family: "source sans pro", helvetica, arial, sans-serif;
+	font-family: regularFont, 'Source Sans Pro', helvetica, arial, sans-serif;
 }
 
 .description-full {
@@ -263,7 +272,7 @@ body {
   white-space: nowrap;
   margin-left: 5px;
   line-height: 1.8em;
-  font-family: "source sans pro", helvetica, sans-serif;
+  font-family: regularFont, 'Source Sans Pro', helvetica, sans-serif;
   font-style: italic;
   color: var(--background_color_2);
 }
@@ -275,7 +284,7 @@ p {
 
 p.welcome {
 	text-align: center;
-	font-family: 'Source Sans Pro', arial,  sans-serif;
+	font-family: regularFont, 'Source Sans Pro', arial,  sans-serif;
 	margin-left:10px;
 	margin-right:10px;
 }

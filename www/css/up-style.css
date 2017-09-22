@@ -3,7 +3,6 @@
  *   Potsdam design variables
  *
  */
-/*
 :root {
   --base_color: #003f60;
   --base_color_2: #004260;
@@ -15,11 +14,13 @@
   --notification_button_color: #d0dae3;
   --appointment_border: #cec7c7;
 }
-*/
+
 /*
  *   Viadrina design variables
  *
  */
+ /*  Color variables - Viadrina */
+ /*
 :root {
   --base_color: #15327A;
   --base_color_2: #15327A;
@@ -31,7 +32,14 @@
   --notification_button_color: #F8C400;
   --appointment_border: #F8C400;
 }
-
+*/
+/*   Custom fonts - Viadrina*/
+/*
+@font-face {
+  font-family: regularFont;
+  src: url('../../docs/fonts/Viadrina_fonts/TheSansPlain.eot') format('eot'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.woff') format('woff'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.svg') format('svg'), url('../../docs/fonts/Viadrina_fonts/TheSansPlain.ttf') format('truetype');
+}
+*/
 
 /*Loginform*/
 #loginform {
@@ -147,7 +155,7 @@
 	margin-top: 1em;
 	margin-bottom: 1em;
 	line-height:1.4em;
-	font-family: "source sans pro", Helvetica, Arial, sans-serif;
+	font-family: regularFont, 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
 
 .external {
@@ -285,7 +293,7 @@ button.accordion.active:after {
 
 /* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
 #course-list{
-	font-family: 'Source Sans Pro', arial,  sans-serif;
+	font-family: regularFont, 'Source Sans Pro', arial,  sans-serif;
 }
 
 .course {
@@ -373,7 +381,7 @@ button.accordion.active:after {
     border: 1px solid #dedede;
 	font-size: .9em;
 	text-align: center;
-	font-family: "source sans pro", helvetica, arial, sans-serif;
+	font-family: regularFont, 'Source Sans Pro', helvetica, arial, sans-serif;
 }
 
 #initialSetup p.welcome {

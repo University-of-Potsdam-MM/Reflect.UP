@@ -398,9 +398,10 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                     }
                 });
             }else{
-                result = jsonObj.xml;
+                result = stringToAnalize;
             }
         }
+        console.log('result: '+result);
         return result;
     },
 
