@@ -277,6 +277,12 @@ p.left {
 	margin-right:10px;
 }
 
+p.center{
+	text-align: center;
+	margin: 10px auto;
+	font-family: 'Source Sans Pro', arial,  sans-serif;
+}
+
 p.welcome {
 	text-align: center;
 	font-family: 'Source Sans Pro', arial,  sans-serif;

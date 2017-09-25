@@ -398,19 +398,15 @@ button.accordion.active:after {
 
 /* Simple class to format the select box containing the languages in which the app is available*/
 #language-select-container{
-	margin-left: 10px;
-    text-align: left;
-    margin-bottom: 80px;
+	margin: 40px auto;
 	max-width: 300px;
 }
-
 
 .language-select {
   height: 29px;
   overflow: hidden;
   width: 100%;
 }
-
 
 .language-select select {
   background: rgb(243, 241, 241);
