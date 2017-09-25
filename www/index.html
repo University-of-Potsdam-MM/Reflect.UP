@@ -260,12 +260,14 @@
         </div>
         <div class="notification">
             <% if (fullView == true && passed == false) { %>
-            <% if (model.toNotify == false && model.visible == true) { %>
-                <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
-            <% } else if(model.toNotify == true){ %>
-            <a  id="cancelNotificationButton" class="cancelNotificationButton"><i class="fa fa-bell-slash icon-large" aria-hidden="true"></i></a>
+                <% if (model.toNotify == false && model.visible == true) { %>
+                    <a id="notificationButton" class="notifyAppointmentButton"><i class="fa fa-bell-o icon-large" aria-hidden="true"></i></a>
+                <% } else if(model.toNotify == true){ %>
+                    <a id="cancelNotificationButton" class="cancelNotificationButton"><i class="fa fa-bell-slash icon-large" aria-hidden="true"></i></a>
+                <% } %>
+            <% } else { %>
+                <i class="fa fa-plus icon-large expandBox" aria-hidden="true"></i>
             <% } %>
-         <% } %>
 
         </div>
         <div class="clear"></div>

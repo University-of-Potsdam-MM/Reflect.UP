@@ -265,7 +265,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
         //checking for multi language tags
         var x2js = new X2JS();
         var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
-        var result ='';
+        var result =stringToAnalize;
         if (jsonObj != null){
             if (jsonObj.xml.span != undefined){
                 _.each(jsonObj.xml.span, function(element){
@@ -274,8 +274,6 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                         result = element.__text;
                     }
                 });
-            }else{
-                result = stringToAnalize;
             }
         }
         return result;
@@ -390,7 +388,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
         //checking for multi language tags
         var x2js = new X2JS();
         var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
-        var result ='';
+        var result =stringToAnalize;
         if (jsonObj != null){
             if (jsonObj.xml.span != undefined){
                 _.each(jsonObj.xml.span, function(element){
@@ -399,8 +397,6 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                         result = element.__text;
                     }
                 });
-            }else{
-                result = stringToAnalize;
             }
         }
         return result;

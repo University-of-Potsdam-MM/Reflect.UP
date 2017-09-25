@@ -34,7 +34,9 @@ var AppointmentListItemView = Backbone.View.extend(/** @lends AppointmentListIte
     },
 
     toggle: function(){
+        console.log(this.$el);
         this.$el.find('.subdescription').toggleClass("expand");
+        this.$el.find('.expandBox').toggleClass("fa-plus fa-minus");
     },
 
     render : function() {
