@@ -227,6 +227,7 @@ var QuestionContainer = Backbone.Model.extend({
                 answer: question.get("answerText")
             })
         });
+        //console.log("result.answers: "+window.JSON.stringify(result.answers));
 		var Config= new Configuration({id:1});
 		Config.fetch();
         var token = Config.get("moodleAccessToken");
@@ -273,7 +274,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
                     }
                 });
             }else{
-                result = jsonObj.xml;
+                result = stringToAnalize;
             }
         }
         return result;
