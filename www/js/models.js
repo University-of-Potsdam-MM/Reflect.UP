@@ -452,6 +452,11 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                 var result = new Array();
 
                 _.each(data.events, function(item){
+                    console.log(item);
+                    // don't display events with modulename feedback
+                    if (item.modulename == "feedback")
+                        return true;
+                    // start parsing of objects
                     var itemName= item.name;
                     //checking for multi language tags
                     var matchPattern= /<span lang=/i;
@@ -480,8 +485,7 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
 					}
 					if(notifyable == 1){
 						toNotify= true;
-					}
-					else{
+					}else{
 						toNotify= false;
 					}
                     // at this point, there must be a checking to see wether the model to be added exists
@@ -572,5 +576,5 @@ var Contact = Backbone.Model.extend({});
 var ContactPersonCollection = Backbone.Collection.extend(/** @lends ContactPersonCollection.prototype */{
     /** @type {Contact} */
     model: Contact,
-    url:'js/config.json'
+    url: configURL
 });
