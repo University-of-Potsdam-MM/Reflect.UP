@@ -270,14 +270,6 @@ var app = {
             });
         });
 
-
-        /*
-        // PushService
-            // wait until the course ID is set, to listen to the right service
-        PushServiceRegister();
-        */
-
-
         if((navigator.network.connection.type).toUpperCase() != "NONE" && (navigator.network.connection.type).toUpperCase() != "UNKNOWN") {
             app.onDeviceOnline();
         }else{

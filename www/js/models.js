@@ -452,7 +452,6 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
                 var result = new Array();
 
                 _.each(data.events, function(item){
-                    console.log(item);
                     // don't display events with modulename feedback
                     if (item.modulename == "feedback")
                         return true;

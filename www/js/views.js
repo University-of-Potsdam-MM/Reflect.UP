@@ -892,10 +892,10 @@ var ConfigView = Backbone.View.extend(/** @rends ConfigView.prototype */{
 
     enrolUser: function(){
 		this.model.fetch();
-        //now that the course's id is set, it is possible to subscribe the app to
-        //  the right service
-
-        PushServiceRegister(this.model.get('courseID'));
+        // now that the course's id is set, it is possible to subscribe the app to
+        // the right service
+        if (window.device)
+            PushServiceRegister(this.model.get('courseID'));
         var that = this;
         console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
         $.ajax({
@@ -1156,7 +1156,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         this.collection = new ContactPersonCollection();
         var that= this;
         this.collection.fetch({
-            //async: false,   (DEPRECATED)
+            headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
             success: function () {
                 that.render();
             },
@@ -1166,7 +1166,6 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
                 });
             }
         });
-
     },
 
     openExternal: function(event) {
