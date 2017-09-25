@@ -53,3 +53,7 @@ src/app/nbproject/private/private.properties
 src/app/nbproject/project.properties
 src/app/nbproject/project.xml
 plugins/**
+
+# CSS Files
+**/www/css/index.css
+**/www/css/up-styles.css

@@ -18,10 +18,13 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
        - index.html (Startpunkt der App)
 ```
 
-## PhoneGap
+## Cordova
 
-- http://phonegap.com
-- http://docs.build.phonegap.com/en_US/introduction_getting_started.md.html
+- https://cordova.apache.org/
+
+### CSS generieren
+1. `npm install` ausführen
+2. `script/gulpfile.js styles` auführen
 
 ## Moodle-Webservice
 
@@ -30,10 +33,10 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
 
 ### Moodle-Webservice API
 - https://docs.moodle.org/dev/Web_service_API_functions
- 
+
 # Installation
 
-## 1. Moodle-Webservices aktivieren 
+## 1. Moodle-Webservices aktivieren
 
 siehe https://docs.moodle.org/29/en/Using_web_services
 - Plugins -> Web Services -> Manage Protocols -> Enable REST
@@ -47,4 +50,3 @@ siehe https://docs.moodle.org/29/en/Using_web_services
 ## 3. Kurs anlegen
 - Kurs mit ID UPR1 anlegen (Kurs muss sichtbar sein)
 - Termine anlegen
-
