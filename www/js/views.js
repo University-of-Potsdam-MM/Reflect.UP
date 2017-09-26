@@ -633,10 +633,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
             return false;
         }
 
-        var destination = 'questions/'
-            + this.collection.get('id')
-            + '/'
-            + q.id;
+        var destination = 'questions/' + this.collection.get('id') + '/' + q.id;
         this.undelegateEvents();
         Backbone.history.navigate(destination, {trigger: true});
         return false;
@@ -646,23 +643,21 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
         if (this.model.get('type') === "multichoice") {
             var $input= this.$('#answer input[name=choice]:checked');
             if($input.length > 1){
-                var choiceNumber= [];
-                var choicesText= "";
+                var choiceNumber = "";
                 $("input[name=choice]:checked").each(function () {
                     var idNum = $(this).val();
                     var checkedText= $('label[for=checkbox'+idNum+']').text();
                     //console.log('current text: '+checkedText);
-                    choiceNumber.push(idNum);
-                    choicesText= choicesText.concat("|").concat(checkedText);
+                    choiceNumber= choiceNumber.concat("|").concat(checkedText);
                 });
-                var recordedAnswer= choicesText.substring(1,choicesText.length);
+                var recordedAnswer= choiceNumber;
             }else{
                 var choiceNumber= $input.val();
                 //console.log('this is the input value: '+choiceNumber);
                 var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
             }
             if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
-                    return false;
+                return false;
             }
             this.model.set("answerText",choiceNumber);
             //make sure that values are saved on answersHash without trailing line breaks!
