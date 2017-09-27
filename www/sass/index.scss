@@ -1,27 +1,6 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-
-/**
- *   Potsdam design variables
- *
- */
+/******Potsdam*******
+***design variables**
+*********************/
 $base_color: #003f60;
 $base_color_2: #004260;
 $contrast_color: #000;
@@ -32,11 +11,9 @@ $menu_button_color: #cfdae3;
 $notification_button_color: #d0dae3;
 $appointment_border: #cec7c7;
 
-
-/**
- *   Viadrina design variables
- *
- */
+/******Viadrina******
+***design variables**
+*********************/
 /*
 $base_color: #15327A;
 $base_color_2: #15327A;
@@ -78,7 +55,6 @@ body {
 #header {
 	background-color: $base_color_2;
 	height: 62px;
-
 	margin-bottom: 10px;
 	position: fixed;
 	top: 0;
@@ -94,6 +70,8 @@ body {
 	text-align: right;
 }
 
+/*****Impressum******
+*********************/
 #impressum-html-content {
 	text-align: center;
 }
@@ -374,8 +352,8 @@ li.collabsable a:after {
 	margin-top: -33px;
 }
 
-/*links*/
-
+/*******Links********
+*********************/
 a {
 	text-decoration: none;
 	color: $base_color;
@@ -389,19 +367,13 @@ a:visited {
 	text-decoration: none;
 }
 
-/*forms*/
-
-#feedbackform textarea {
+/*******Forms********
+*********************/
+textarea {
 	display: block;
 	margin: 0 auto;
-	width: 95%;
-
-}
-
-textarea {
-	width: 80%;
+	width: 85%;
 	height: 150px;
-	margin-left:10px;
 }
 
 #answer {
@@ -438,7 +410,7 @@ textarea {
 }
 
 .back:before {
-	    content: "\f104";
+    content: "\f104";
     display: block;
     font-size: 35px;
     font-family: FontAwesome;
@@ -560,7 +532,8 @@ a.button {
 	float: right;
 }
 
-/* panel */
+/*******Panels*******
+*********************/
 #panel.extruder.right .extruder-content {
 	border-left: 1px solid #999;
 	background-color: $base_color_2;
@@ -697,7 +670,6 @@ a.button {
 }
 
 #panel.extruder.right.isOpened .flap {
-
 	margin-left: 40px;
 	width: 27px;
 }
@@ -721,4 +693,399 @@ a.button {
 
 #feedbackresult p {
 	text-align: center;
+}
+
+/*Loginform*/
+#loginform {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+#loginform input {
+	display: block;
+	border: 1px solid $background_color;
+	font-size: 1.3em;
+	background-color: $background_color !important;
+	width: 95%;
+	padding: 10px;
+}
+
+#loginform input[type="submit"] {
+	border: 0px solid #CCC;
+	background-color: $base_color !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	width: 43%;
+	border-radius: 80px;
+	color: $background_color;
+}
+
+/*Loginform*/
+#submitform textarea {
+	display: block;
+	border: 1px solid $background_color;
+	font-size: 1.3em;
+	background-color: #fff !important;
+	width: 80%;
+	padding: 10px;
+}
+
+#submitform input[type="submit"] {
+	border: 1px solid #ccc;
+	background-color: #ccc !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 1em;
+	width: 43%;
+}
+
+#loginform label {
+	font-family: georgia, serif;
+	font-style: italic;
+	display: block;
+	margin-top: .3em;
+	color: $base_color;
+	font-size: 2em
+}
+
+#loginform label:first-child {
+	margin-top: 0;
+}
+
+.loginerror {
+	padding: .5em;
+	background: #cfdae3999;
+	border: 1px solid red;
+}
+
+/*Terminbutton*/
+
+/*Inhalt*/
+.content-container {
+	min-width: 250px;
+}
+
+.radio-button,input[type="radio"] {
+	float: left;
+	margin: 20px 20px 0px 5px;
+	min-width: 30px;
+	min-height: 30px;
+}
+
+.checkbox-button,input[type="checkbox"] {
+	float: left;
+	margin: 20px 20px 0px 5px;
+	min-width: 30px;
+	min-height: 30px;
+}
+
+#answer label {
+	float: left;
+	margin-top: 25px;
+	width: 80%;
+}
+
+.submitbutton {
+	display: inline-block;
+	padding-left: 30px !important;
+	padding-right: 30px !important;
+	margin-right: 10px;
+	height: 42px;
+	padding-bottom: 0 !important;
+	padding-top: 0px !important;
+	margin-top: -4;
+	line-height: 42px;
+}
+
+.contact-name {
+	font-weight: bold;
+}
+
+.contact {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	line-height:1.4em;
+	font-family: "source sans pro", Helvetica, Arial, sans-serif;
+}
+
+.external {
+	color: $base_color;
+	text-decoration: underline;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: $background_color_2;
+    color: $base_color_2;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    margin-bottom:1px;
+    outline: none;
+    transition: 0.4s;
+    font-size: 1.1em;
+    border: none;
+	position:relative;
+	line-height: 1.5em;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active {
+    background-color: #cfdae3;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 9000px;  /*Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+}
+
+button.accordion:after {
+    content: '\f067';
+    font-size: 18px;
+    color: #777;
+    position: absolute;
+    right: 5px;
+    font-family: fontawesome;
+    top: 30%;
+}
+
+button.accordion.active:after {
+    content: "\f068"; /* Unicode character for "minus" sign (-) */
+	font-size: 18px;
+    color: #777;
+    position: absolute;
+    right: 5px;
+    font-family: fontawesome;
+    top: 30%;
+}
+
+/* removed class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.out {
+	-webkit-animation: disappear 0.6s;
+	-webkit-animation-fill-mode: forwards;
+	animation: disappear 0.6s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes disappear{
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX(500%);
+	}
+}
+
+@-webkit-keyframes disappear {
+	100%{
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+}
+
+/* reinserted class defines a web-kit-animation for appointments, together with the following keyframes */
+/*		definitions */
+.in {
+	-webkit-animation: reappear 0.8s;
+	-webkit-animation-fill-mode: forwards;
+	animation: reappear 0.8s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+	}
+}
+
+@-webkit-keyframes reappear {
+	0% {
+		-webkit-transform: translateX(500%);
+		transform: translateX (500%);
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+		transform: translateX (0%);
+	}
+}
+
+
+/* This class is used to give appointments a greyed-out look when they are marked as not important*/
+/* It basically puts a "white cloth" with low opacity over the html that has it*/
+.darkClass{
+	opacity: 0.5;
+}
+
+.hideAppointmentButton{
+	 display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    border-bottom: 1px dotted #97a9b9;
+    padding: 4px 0 4px 0;
+    /* text-align: left; */
+    margin-bottom: 3px;
+}
+
+/* Simple class to give format to the boxes containing the courses information in the initial-setup page*/
+#course-list{
+	font-family: 'Source Sans Pro', arial,  sans-serif;
+}
+
+.course {
+	margin: 5px 5px 5px 10px;
+	padding: 0px 5px 0px 5px;
+	border-bottom: 1px $contrast_color solid;
+}
+
+.institution{
+	font-size: 0.8em;
+	color:#353535;
+}
+
+.courseLink{
+	font-size: 120%;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.infobutton {
+    color: #dedede;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+.infobutton.active {
+	color:#014260;
+}
+
+.courseBlock {
+	display: block;
+	text-align:left;
+	float: left;
+	padding-bottom: 10px;
+	width: 90%;
+	padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.infobox{
+	display: block;
+	text-align: right;
+    width: 10%;
+    float: right;
+}
+
+.courseDescription {
+	display: none;
+	position: relative;
+	margin-top: 5px;
+}
+
+.courseDescription:after{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	margin-left: -13px;
+	top: -10px;
+	right:0;
+}
+
+.courseDescription:before{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 13px 11px;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+	margin-left: -13px;
+	top: -10px;
+	right: 0;
+}
+
+.courseDescription p, .content-container p, p.feedback {
+    background-color: $background_color_2;
+    padding: 10px;
+	font-size: .9em;
+	text-align: center;
+	font-family: "source sans pro", helvetica, arial, sans-serif;
+}
+
+#initialSetup p.welcome {
+	text-align: left;
+    margin-top:80px;
+    font-size: .9em;
+	line-height:2em;
+    border-bottom: 1px solid #bebebe;
+	margin-bottom:5px;
+	font-weight:bold;
+
+}
+
+#initialSetup p.welcome em {
+	 color: #000;
+}
+
+
+/*  Simple class to set the relative position of the logos that are to be displayed within the boxes of the initial-setup page   */
+.logo-container-format{
+	object-position: center;
+}
+
+/* Simple class to format the select box containing the languages in which the app is available*/
+#language-select-container{
+	margin: 40px auto;
+	max-width: 300px;
+}
+
+.language-select {
+  height: 29px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.language-select select {
+  background: rgb(243, 241, 241);
+  border: none;
+  font-size: 18px;
+  height: 32px;
+  padding: 5px;
+  /* If you add too much padding here, the options won't show in IE */
+  width: 90%;
+  color: #676262;
+}
+
+.rounded {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.blue {
+  background-color: $date_container_color;
 }
