@@ -50,6 +50,8 @@ var TabCollection = Backbone.Collection.extend(/** @lends TabCollection.prototyp
     /** @type {Tab} */
 	model: Tab,
 	url: configURL,
+    // loca json file for testing:
+    //url: 'js/config.json'
 });
 
 

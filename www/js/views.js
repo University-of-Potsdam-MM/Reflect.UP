@@ -643,21 +643,24 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
         if (this.model.get('type') === "multichoice") {
             var $input= this.$('#answer input[name=choice]:checked');
             if($input.length > 1){
-                var choiceNumber = "";
+                var choiceNumber= "";
+                var choicesText= "";
                 $("input[name=choice]:checked").each(function () {
                     var idNum = $(this).val();
                     var checkedText= $('label[for=checkbox'+idNum+']').text();
                     //console.log('current text: '+checkedText);
-                    choiceNumber= choiceNumber.concat("|").concat(checkedText);
+                    choiceNumber= choiceNumber.concat("|").concat(idNum);
+                    choicesText= choicesText.concat("|").concat(checkedText);
                 });
-                var recordedAnswer= choiceNumber;
+                var recordedAnswer= choicesText.substring(1,choicesText.length);
+                var choiceNumber= choiceNumber.substring(1,choiceNumber.length)
             }else{
                 var choiceNumber= $input.val();
                 //console.log('this is the input value: '+choiceNumber);
                 var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
             }
             if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
-                return false;
+                    return false;
             }
             this.model.set("answerText",choiceNumber);
             //make sure that values are saved on answersHash without trailing line breaks!
@@ -771,6 +774,8 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
 		this.collection = new TabCollection();
 
 		this.collection.fetch({ headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'} });
+        // local config.json fetch for testing:
+        //this.collection.fetch();
 		this.listenTo(this.collection, "sync", this.render);
         this.listenTo(this.collection, "error", this.fetchError);
     },
