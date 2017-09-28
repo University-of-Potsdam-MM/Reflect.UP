@@ -4,6 +4,8 @@
   "description": "app for study freshman",
   "main": "README.md",
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "jquery.mb.extruder": "^2.6.0",
     "jsdoc": "^3.4.3"
   },
   "devDependencies": {
