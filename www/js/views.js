@@ -773,7 +773,7 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
 		this.model= new Configuration({id:1});
 		this.collection = new TabCollection();
 
-		this.collection.fetch({ headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'} });
+		this.collection.fetch({ headers: {'Authorization' :'Bearer DXO0AkddD9bRM6D8S9AJDSea18wa '} });
         // local config.json fetch for testing:
         //this.collection.fetch();
 		this.listenTo(this.collection, "sync", this.render);
@@ -1156,7 +1156,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         this.collection = new ContactPersonCollection();
         var that= this;
         this.collection.fetch({
-            headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
+            headers: {'Authorization' :'Bearer DXO0AkddD9bRM6D8S9AJDSea18wa '},
             success: function () {
                 that.render();
             },
