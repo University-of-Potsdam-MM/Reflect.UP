@@ -1037,7 +1037,7 @@ button.accordion.active:after {
 	right: 0;
 }
 
-.courseDescription p, .content-container p, p.feedback {
+.courseDescription p, .content-container p, p.feedback, #end-message {
     background-color: $background_color_2;
     padding: 10px;
 	font-size: .9em;
@@ -1053,7 +1053,6 @@ button.accordion.active:after {
     border-bottom: 1px solid #bebebe;
 	margin-bottom:5px;
 	font-weight:bold;
-
 }
 
 #initialSetup p.welcome em {
