@@ -796,29 +796,10 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         return this;
     },
 
-    /*
-    onErrorHandler: function(){
-        this.collection.url = 'js/config.json';
-        console.log(this.collection);
-        this.collection.fetch();
-        console.log("collection fetched from url: "+this.collection.url);
-        this.render;
-    },
-
-    onDataHandler: function(){
-        console.log('configuration object fetched from server');
-        this.render;
-    },
-    */
-
     toggleInfoBox: function(ev){
         var element = $(ev.currentTarget);
         $(element).toggleClass('active');
         $(element).parent().parent().find(".courseDescription").toggle();
-    },
-
-	fetchError: function(err, param) {
-            console.log('Error loading Opening-JSON file', err, param);
     },
 
 	writeConfigAttributes: function(ev){
