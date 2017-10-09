@@ -265,18 +265,15 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var x2js = new X2JS();
-        var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
+        var domObj = $($.parseHTML(stringToAnalize));
         var result =stringToAnalize;
-        if (jsonObj != null){
-            if (jsonObj.xml.span != undefined){
-                _.each(jsonObj.xml.span, function(element){
-                    if (language === element._lang){
 
-                        result = element.__text;
-                    }
-                });
-            }
+        if (domObj.length>1){
+            _.each(domObj, function(element){
+                if ($(element)[0].lang == language){
+                    result = element;
+                }
+            });
         }
         return result;
     },
@@ -317,12 +314,13 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
 
                 _.each(data.feedbacks, function(item){
 
-                    var itemName= item.name;
                     var language= Config.get('appLanguage');
-                    itemName= that.processMoodleContents(language,itemName);
-                    var feedMsg= item.feedbackMessage;
-                    //detect if there is a custom feedback message and process it
-                    if(feedMsg != undefined && feedMsg != '')feedMsg= that.processMoodleContents(language,feedMsg);
+                    var itemName= item.name;
+                    itemName = that.processMoodleContents(language, itemName);
+
+                    var feedMsg = item.feedbackMessage;
+                    feedMsg = that.processMoodleContents(language, feedMsg);
+
                     var questionContainer = new QuestionContainer({
                         id: item.id,
                         title: itemName,
@@ -388,18 +386,15 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
 
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
-        var x2js = new X2JS();
-        var jsonObj = x2js.xml_str2json('<xml>'+stringToAnalize+'</xml>');
+        var domObj = $($.parseHTML(stringToAnalize));
         var result =stringToAnalize;
-        if (jsonObj != null){
-            if (jsonObj.xml.span != undefined){
-                _.each(jsonObj.xml.span, function(element){
-                    if (language === element._lang){
 
-                        result = element.__text;
-                    }
-                });
-            }
+        if (domObj.length>1){
+            _.each(domObj, function(element){
+                if ($(element)[0].lang == language){
+                    result = element;
+                }
+            });
         }
         return result;
     },
