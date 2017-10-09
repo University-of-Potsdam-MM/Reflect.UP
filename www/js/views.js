@@ -770,14 +770,25 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
 	model: Configuration,
 
     initialize: function(){
-		this.model= new Configuration({id:1});
-		this.collection = new TabCollection();
+        this.model= new Configuration({id:1});
+        this.collection = new TabCollection();
+        var that = this;
+        var onDataHandler = function(collection, response, options) {
+            console.log('configuration object fetched from server');
+            that.render();
+        };
 
-		this.collection.fetch({ headers: {'Authorization' :'Bearer DXO0AkddD9bRM6D8S9AJDSea18wa '} });
-        // local config.json fetch for testing:
-        //this.collection.fetch();
-		this.listenTo(this.collection, "sync", this.render);
-        this.listenTo(this.collection, "error", this.fetchError);
+        var onErrorHandler = function(collection, response, options) {
+            that.collection.url = 'js/config.json';
+            console.log(that.collection);
+            that.collection.fetch();
+            console.log("collection fetched from url: "+that.collection.url);
+            that.render();
+        };
+
+        this.collection.fetch({success : onDataHandler, error: onErrorHandler, headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'} });
+        this.listenTo(this.collection, "sync", this.render);
+
     },
 
     render: function(){
@@ -789,10 +800,6 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         var element = $(ev.currentTarget);
         $(element).toggleClass('active');
         $(element).parent().parent().find(".courseDescription").toggle();
-    },
-
-	fetchError: function(err, param) {
-            console.log('Error loading Opening-JSON file', err, param);
     },
 
 	writeConfigAttributes: function(ev){
