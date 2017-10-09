@@ -3,7 +3,7 @@
  */
 var app = (app || {} );
 
-var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
 
 /**
  *      model for holding the configuration
@@ -28,6 +28,7 @@ var Configuration = Backbone.Model.extend({
         appLanguage: 'de',
         courseID: '',
         notificationsHash: '{"initialAttribute": ""}',
+        pushDetails:''
     }
 });
 
