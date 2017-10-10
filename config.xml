@@ -85,6 +85,9 @@
     </plugin>
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="de.appplant.cordova.plugin.local-notification" />
+    <plugin name="cordova-plugin-customurlscheme">
+            <variable name="URL_SCHEME" value="reflectup" />
+    </plugin>
     <access origin="*" />
     <content src="index.html" />
     <engine name="ios" spec="~4.3.0" />
