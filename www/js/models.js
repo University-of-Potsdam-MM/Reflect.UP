@@ -3,7 +3,7 @@
  */
 var app = (app || {} );
 
-var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
 
 /**
  *      model for holding the configuration
@@ -269,7 +269,7 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
         if (domObj.length>1){
             _.each(domObj, function(element){
                 if ($(element)[0].lang == language){
-                    result = element;
+                    result = $(element).html();
                 }
             });
         }
@@ -385,12 +385,12 @@ var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCol
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
         var domObj = $($.parseHTML(stringToAnalize));
-        var result =stringToAnalize;
+        var result = stringToAnalize;
 
         if (domObj.length>1){
             _.each(domObj, function(element){
                 if ($(element)[0].lang == language){
-                    result = element;
+                    result = $(element).html();
                 }
             });
         }

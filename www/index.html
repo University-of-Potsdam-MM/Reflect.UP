@@ -252,9 +252,10 @@
             </div>
             </div>
             <% if (fullView == true) { %> <div class="description-full"> <% }else{ %> <div class="description"> <% } %>
-            <%= $(model.title).html() === undefined ? model.title : $(model.title).html() %></div>
+            <%= model.title %></div>
             <% if (fullView == true) { %> <div class="subdescription-full"> <% }else{ %> <div class="subdescription"> <% } %>
-            <%= $(model.description).html() === undefined ? model.description : $(model.description).html() %></div>
+            <%= model.description %>
+            </div>
         </div>
         <div class="notification">
             <% if (fullView == true && passed == false) { %>
