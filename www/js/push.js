@@ -5,9 +5,9 @@ var global_registrationId = "";
 
 var pushDetails = {
 	senderID: "38438927043",
-	uniqushUrl: "https://api.uni-potsdam.de/endpoints/pushAPI/",
+	uniqushUrl: "https://apiup.uni-potsdam.de/endpoints/pushAPI/",
 	serviceName: "reflectup",
-    authHeader: { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
+    authHeader: { "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8" }
 };
 
 /**
