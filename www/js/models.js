@@ -3,7 +3,10 @@
  */
 var app = (app || {} );
 
-var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
+var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+
+// use the following URL to force the application to work with local config.json object
+//var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
 
 /**
  *      model for holding the configuration
