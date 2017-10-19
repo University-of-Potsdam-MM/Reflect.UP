@@ -1,12 +1,14 @@
 Reflect.UP - Reflexions-App der Universität Potsdam
 ============
 
-Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situationen-lernen
+# Allgemeine Informationen
+
+Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situationen-lernen
 
 ## Projektstruktur
 ```
  - src
-   - app (Phonegap App)
+   - app (Cordova App)
      - ...
      - www (Hauptordner)
        - css
@@ -22,10 +24,6 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
 
 - https://cordova.apache.org/
 
-### CSS generieren
-1. `npm install` ausführen
-2. `script/gulpfile.js styles` auführen
-
 ## Moodle-Webservice
 
 ### Moodle-Webservice entwickeln
@@ -36,17 +34,28 @@ Allgemeine Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und
 
 # Installation
 
-## 1. Moodle-Webservices aktivieren
+## 1. App installieren
+
+1. `npm install` ausführen
+2. CSS-Anpassungen in `www/sass/index.scss`
+3. `script/gulpfile.js styles` auführen
+4. `cordova platform add android`
+5. `cordova prepare android`
+6. `cordova run android`
+
+
+## 2. Moodle-Webservices aktivieren
 
 siehe https://docs.moodle.org/29/en/Using_web_services
 - Plugins -> Web Services -> Manage Protocols -> Enable REST
 - "create Token" capability für die entspr. User aktivieren
 - "Web Service Rest" cap. für entspr. User aktivieren
 
-## 2. Reflection-Webservice installieren
+## 3. Reflection-Webservice installieren
 
 - siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-local_reflection
+- siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-block_pushnotification
 
-## 3. Kurs anlegen
-- Kurs mit ID UPR1 anlegen (Kurs muss sichtbar sein)
-- Termine anlegen
+## 4. Kurse anlegen
+- Kurse anlegen und Endpoints sowie IDs in der `www/js/config.json` konfigurieren
+- Kurs befüllen, Termine & Feedbacks anlegen
