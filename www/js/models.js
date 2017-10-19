@@ -251,16 +251,10 @@ var QuestionContainer = Backbone.Model.extend({
 
 
 /**
- *      Collection - QuestionContainerList
- *      ToDo: Triggered twice
- *      @name QuestionContainerList
- *      @constructor
- *      @augments Backbone.Collection
+ *      Empty model that extends collection and holds the function: processMoodleContents
+ *      to prevent it to be duplicated.
  */
-var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContainerList.prototype */{
-    /** @type {QuestionContainer} */
-    model : QuestionContainer,
-
+var MoodleCollectionModel = Backbone.Collection.extend({
     processMoodleContents: function(language, stringToAnalize){
         //checking for multi language tags
         var domObj = $($.parseHTML(stringToAnalize));
@@ -274,7 +268,20 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
             });
         }
         return result;
-    },
+    }
+});
+
+
+/**
+ *      Collection - QuestionContainerList
+ *      ToDo: Triggered twice
+ *      @name QuestionContainerList
+ *      @constructor
+ *      @augments Backbone.Collection
+ */
+var QuestionContainerList = MoodleCollectionModel.extend(/** @lends QuestionContainerList.prototype */{
+    /** @type {QuestionContainer} */
+    model : QuestionContainer,
 
     sync: function(method, model, options){
 		var Config= new Configuration({id:1});
@@ -378,24 +385,9 @@ var QuestionContainerList = Backbone.Collection.extend(/** @lends QuestionContai
  *      @constructor
  *      @augments Backbone.Collection
  */
-var AppointmentCollection = Backbone.Collection.extend(/** @lends AppointmentCollection.prototype */{
+var AppointmentCollection = MoodleCollectionModel.extend(/** @lends AppointmentCollection.prototype */{
     /** @type {Appointment} */
 	model : Appointment,
-
-    processMoodleContents: function(language, stringToAnalize){
-        //checking for multi language tags
-        var domObj = $($.parseHTML(stringToAnalize));
-        var result = stringToAnalize;
-
-        if (domObj.length>1){
-            _.each(domObj, function(element){
-                if ($(element)[0].lang == language){
-                    result = $(element).html();
-                }
-            });
-        }
-        return result;
-    },
 
     sync: function(method, model, options){
 
