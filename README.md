@@ -39,9 +39,12 @@ Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situat
 1. `npm install` ausführen
 2. CSS-Anpassungen in `www/sass/index.scss`
 3. `script/gulpfile.js styles` auführen
+4. Optional können noch JSON und CSS minifiziert werden `gulp minify-css & gulp minify-json`
 4. `cordova platform add android`
 5. `cordova prepare android`
 6. `cordova run android`
+
+7. Unter iOS müssen bei Capabilities Push-Notifications aktiviert werden, siehe hierzu auch den Wiki-Beitrag [Push-Nachrichten](https://github.com/University-of-Potsdam-MM/Reflect.UP/wiki/Push-Nachrichten)
 
 
 ## 2. Moodle-Webservices aktivieren
