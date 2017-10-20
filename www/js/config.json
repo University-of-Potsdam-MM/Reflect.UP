@@ -24,7 +24,8 @@
                                 "location": "Griebnitzsee, Haus 6, Raum 0.08",
                                 "tel": "+49 331 977-3689",
                                 "mail": "moisa@uni-potsdam.de",
-                                "consultation": "Öffnungszeiten siehe Website (<a href=\"https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html\" target=\"_blank\">https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html</a>)"
+                                "consultation": "Öffnungszeiten siehe Website",
+                                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
                             }
                         ]
                     }
@@ -41,7 +42,8 @@
                                 "location": "Griebnitzsee, Haus 6, Raum 0.05",
                                 "tel": "+49 331 977-3409",
                                 "mail": "ines.padelt@uni-potsdam.de",
-                                "consultation": "Öffnungszeiten siehe Website (<a href=\"https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html\" target=\"_blank\">https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html</a>)"
+                                "consultation": "Öffnungszeiten siehe Website",
+                                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
                             }
                         ]
                     }
@@ -58,7 +60,8 @@
                                 "location": "Griebnitzsee, Haus 7, Raum 3.09",
                                 "tel": "+49 331 977-3589",
                                 "mail": "anne.voigt@uni-potsdam.de",
-                                "consultation": "Öffnungszeiten siehe Website (<a href=\"https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html\" target=\"_blank\">https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html</a>)"
+                                "consultation": "Öffnungszeiten siehe Website",
+                                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
                             }
                         ]
                     }
