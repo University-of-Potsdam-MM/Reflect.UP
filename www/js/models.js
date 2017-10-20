@@ -3,7 +3,7 @@
  */
 var app = (app || {} );
 
-var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
 
 /**
  *      model for holding the configuration

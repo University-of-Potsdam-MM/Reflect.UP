@@ -781,6 +781,7 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         var onErrorHandler = function(collection, response, options) {
             that.collection.url = 'js/config.json';
             console.log(that.collection);
+            that.model.set('contactsURL','js/config.json');
             that.collection.fetch();
             console.log("collection fetched from url: "+that.collection.url);
             that.render();
@@ -1162,6 +1163,9 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
 
         this.collection = new ContactPersonCollection();
         var that= this;
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        this.collection.url= Config.get('contactsURL');
         this.collection.fetch({
             headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
             success: function () {
@@ -1169,10 +1173,11 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
             },
             error: function() {
                 that.collection.fetch().done(function(){
-                    that.renderWrap();
+                    that.render();
                 });
             }
         });
+        this.listenTo(this.collection, "sync", this.render);  
     },
 
     openExternal: function(event) {
