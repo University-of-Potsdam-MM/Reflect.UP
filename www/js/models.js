@@ -28,6 +28,7 @@ var Configuration = Backbone.Model.extend({
         appLanguage: 'de',
         courseID: '',
         notificationsHash: '{"initialAttribute": ""}',
+	contactsURL: '',
     }
 });
 
