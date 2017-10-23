@@ -775,6 +775,7 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         var that = this;
         var onDataHandler = function(collection, response, options) {
             console.log('configuration object fetched from server');
+  	    that.model.set('contactsURL',that.collection.url);
             that.render();
         };
 
