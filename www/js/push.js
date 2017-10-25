@@ -3,15 +3,6 @@
  */
 var global_registrationId = "";
 
-/*
-var pushDetails = {
-	senderID: "38438927043",
-	uniqushUrl: "https://apiup.uni-potsdam.de/endpoints/pushAPI/",
-	serviceName: "reflectup",
-    authHeader: { "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8" }
-};
-*/
-
 /**
  *  function for creation of options used for uniqush interaction
  *  @constructor
@@ -73,7 +64,6 @@ var UnsubscribeToUniqush = function(pushDetails){
         success: function(response) { console.log("Successfully contacted uniqush server. Server responded with " + response); },
         error: function() { console.log("Some error happened while contacting the uniqush server"); }
     });
-
 }
 
 
