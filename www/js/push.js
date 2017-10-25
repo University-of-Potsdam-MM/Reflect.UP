@@ -3,19 +3,21 @@
  */
 var global_registrationId = "";
 
+/*
 var pushDetails = {
 	senderID: "38438927043",
 	uniqushUrl: "https://apiup.uni-potsdam.de/endpoints/pushAPI/",
 	serviceName: "reflectup",
     authHeader: { "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8" }
 };
+*/
 
 /**
  *  function for creation of options used for uniqush interaction
  *  @constructor
  *  @param {int} id - device id
  */
-var UniqushCreateOptions = function(id) {
+var UniqushCreateOptions = function(id, pushDetails) {
     var result = {
         service: pushDetails.serviceName
     };
@@ -39,10 +41,10 @@ var UniqushCreateOptions = function(id) {
  *  @constructor
  *  @param {int} registrationId - registrationId
  */
-var SubscribeToUniqush = function(registrationId) {
+var SubscribeToUniqush = function(registrationId, pushDetails) {
     var url_subscribe= pushDetails.uniqushUrl.concat("subscribe");
 	var uri = new URI(url_subscribe);
-	uri.search(UniqushCreateOptions(registrationId));
+	uri.search(UniqushCreateOptions(registrationId, pushDetails));
 
 	console.log("Registering push via " + uri.href());
 
@@ -59,11 +61,11 @@ var SubscribeToUniqush = function(registrationId) {
  *  function for unsubscription to the uniqush push service
  *  @constructor
  */
-var UnsubscribeToUniqush = function(){
+var UnsubscribeToUniqush = function(pushDetails){
     var url_unsubscribe= pushDetails.uniqushUrl.concat("unsubscribe");
     var regID= global_registrationId;
     var uri= new URI(url_unsubscribe);
-    uri.search(UniqushCreateOptions(regID));
+    uri.search(UniqushCreateOptions(regID, pushDetails));
 
     $.ajax({
         url: uri.href(),
@@ -80,7 +82,7 @@ var UnsubscribeToUniqush = function(){
  *  @constructor
  *  @param {string} courseID - id of a moodle course
  */
-var PushServiceRegister = function(courseID){
+var PushServiceRegister = function(courseID, pushDetails){
     if (typeof PushNotification === "undefined") {
         console.log("PushNotification NOT available");
         return;
@@ -103,7 +105,6 @@ var PushServiceRegister = function(courseID){
         },
         windows: {}
     });
-
     push.on("registration", function(data) {
         // Registration ID received, inform uniqush-push server
         if (data.registrationId.length == 0) {
@@ -111,7 +112,7 @@ var PushServiceRegister = function(courseID){
             console.log("ERROR: Push registration id empty");
         } else {
             global_registrationId= data.registrationId;
-            SubscribeToUniqush(data.registrationId);
+            SubscribeToUniqush(data.registrationId, pushDetails);
         }
     });
 

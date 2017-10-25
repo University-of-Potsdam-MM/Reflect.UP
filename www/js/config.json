@@ -7,6 +7,12 @@
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
         },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
+        },
         "title": "Studieneingangsphase (Jura-Fak)",
         "institution": "Universität Potsdam",
         "description": "Kurs für die Studieneingangsphase an der Juristischen Fakultät für das Wintersemester 17/18.",
@@ -100,6 +106,12 @@
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
         },
         "title": "Studieneingangsphase (Hum-Fak)",
         "institution": "Universität Potsdam",
@@ -2104,6 +2116,12 @@
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
         },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
+        },
         "title": "Studieneingangsphase (WiSo-Fak)",
         "institution": "Universität Potsdam",
         "description": "Kurs für die Studieneingangsphase an der WiSo-Fakultät für das Wintersemester 17/18.",
@@ -2483,6 +2501,12 @@
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
         },
         "title": "Studieneingangsphase (Phil-Fak)",
         "institution": "Universität Potsdam",
@@ -3342,6 +3366,12 @@
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
         },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
+        },
         "title": "Studieneingangsphase (MatNat-Fak)",
         "institution": "Universität Potsdam",
         "description": "Kurs für die Studieneingangsphase an der Matematisch-Naturwissenschaftliche Fakultät für das Wintersemester 17/18.",
@@ -3740,6 +3770,12 @@
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
         "accessToken": {
             "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        },
+        "pushDetails" : {
+            "senderID": "38438927043",
+            "uniqushUrl": "https://api.uni-potsdam.de/endpoints/pushAPI/",
+            "serviceName": "reflectup",
+            "authHeader": { "Authorization": "Bearer DXO0AkddD9bRM6D8S9AJDSea18wa " }
         },
         "title": "Testkurs",
         "institution": "eLiS-Projekt",

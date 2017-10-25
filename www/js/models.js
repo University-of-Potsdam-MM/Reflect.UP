@@ -5,6 +5,9 @@ var app = (app || {} );
 
 var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
+// use the following URL to force the application to work with local config.json object
+//var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
+
 /**
  *      model for holding the configuration
  *      @name Configuration
@@ -28,6 +31,7 @@ var Configuration = Backbone.Model.extend({
         appLanguage: 'de',
         courseID: '',
         notificationsHash: '{"initialAttribute": ""}',
+        pushDetails:''
     }
 });
 

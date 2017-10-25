@@ -780,7 +780,6 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
 
         var onErrorHandler = function(collection, response, options) {
             that.collection.url = 'js/config.json';
-            console.log(that.collection);
             that.collection.fetch();
             console.log("collection fetched from url: "+that.collection.url);
             that.render();
@@ -814,6 +813,7 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         this.model.set('impressumTemplate',paramsOBJ.get('impressumTemplate'));
         this.model.set('uniLogoPath',paramsOBJ.get('uniLogoPath'));
         this.model.set('courseID',paramsOBJ.get('courseID'));
+        this.model.set('pushDetails',paramsOBJ.get('pushDetails'));
         console.log('recorded the course ID:'+paramsOBJ.get('courseID'));
 		// save model to local storage
 		this.model.save();
@@ -902,7 +902,7 @@ var ConfigView = Backbone.View.extend(/** @rends ConfigView.prototype */{
         // now that the course's id is set, it is possible to subscribe the app to
         // the right service
         if (window.device)
-            PushServiceRegister(this.model.get('courseID'));
+            PushServiceRegister(this.model.get('courseID'), this.model.get('pushDetails'));
         var that = this;
         console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
         $.ajax({
@@ -1228,7 +1228,7 @@ var LogoutView = Backbone.View.extend(/** @lends LogoutView.prototype */{
             error: this.retryDestroy
         });
         // unsubscribe from push notification service
-        UnsubscribeToUniqush();
+        UnsubscribeToUniqush(this.model.get('pushDetails'));
     },
 
     reroute: function() {
