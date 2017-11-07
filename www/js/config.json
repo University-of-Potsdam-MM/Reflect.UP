@@ -367,10 +367,10 @@
                         "category": "Sportwissenschaft (Diplom)",
                         "content": [
                             {
-                                "name": "Dr. Henning Ohlert",
+                                "name": "Dr. Janet Kühl",
                                 "location": " - ",
-                                "tel": "+49 331 977-1303",
-                                "mail": "hans-henning.ohlert@uni-potsdam.de",
+                                "tel": "+49 331 977-2544",
+                                "mail": "janet.kuehl@uni-potsdam.de",
                                 "consultation": "nach Vereinbarung"
                             }
                         ]
@@ -379,10 +379,10 @@
                         "category": "Sporttherapie und Prävention (B.A.)",
                         "content": [
                             {
-                                "name": "Dr. Henning Ohlert",
+                                "name": "Dr. Janet Kühl",
                                 "location": " - ",
-                                "tel": "+49 331 977-1303",
-                                "mail": "hans-henning.ohlert@uni-potsdam.de",
+                                "tel": "+49 331 977-2544",
+                                "mail": "janet.kuehl@uni-potsdam.de",
                                 "consultation": "nach Vereinbarung"
                             }
                         ]
@@ -391,22 +391,10 @@
                         "category": "Sportmanagement (B.A.)",
                         "content": [
                             {
-                                "name": "Dr. Henning Ohlert",
+                                "name": "Dr. Janet Kühl",
                                 "location": " - ",
-                                "tel": "+49 331 977-1303",
-                                "mail": "hans-henning.ohlert@uni-potsdam.de",
-                                "consultation": "nach Vereinbarung"
-                            }
-                        ]
-                    },
-                    {
-                        "category": "Sportwissenschaft Leistungssport (M. Sc.)",
-                        "content": [
-                            {
-                                "name": "Dr. Henning Ohlert",
-                                "location": " - ",
-                                "tel": "+49 331 977-1303",
-                                "mail": "hans-henning.ohlert@uni-potsdam.de",
+                                "tel": "+49 331 977-2544",
+                                "mail": "janet.kuehl@uni-potsdam.de",
                                 "consultation": "nach Vereinbarung"
                             }
                         ]
@@ -434,11 +422,12 @@
                         "category": "Lehramt Sport Sek.II/Sek.I (B. Ed., M. Ed.)",
                         "content": [
                             {
-                                "name": "Dr. Martin Fritzenberg",
+                                "name": "Dr. Bernd Bahro",
                                 "location": " - ",
-                                "tel": "+49 331 977-1024",
-                                "mail": "martin.fritzenberg@uni-potsdam.de",
-                                "consultation": "nach Vereinbarung"
+                                "tel": "+49 331 977-2360",
+                                "mail": "berno.bahro@uni-potsdam.de",
+                                "consultation": "siehe Doodle ",
+                                "consultation_url": "https://doodle.com/poll/rnfy567fhzs585qi"
                             }
                         ]
                     },
@@ -516,11 +505,12 @@
                         "category": "Lehramt Sport Sek.II/Sek.I (B.Ed., M.Ed.)",
                         "content": [
                             {
-                                "name": "Dr. Martin Fritzenberg",
+                                "name": "Dr. Bernd Bahro",
                                 "location": " - ",
-                                "tel": "+49 331 977-1024",
-                                "mail": "martin.fritzenberg@uni-potsdam.de",
-                                "consultation": "nach Vereinbarung"
+                                "tel": "+49 331 977-2360",
+                                "mail": "berno.bahro@uni-potsdam.de",
+                                "consultation": "siehe Doodle ",
+                                "consultation_url": "https://doodle.com/poll/rnfy567fhzs585qi"
                             }
                         ]
                     },
@@ -1111,12 +1101,12 @@
                         "category": "Akad. Mitarbeiter/innen",
                         "content": [
                             {
-                                "name": "Dr. Henning Ohlert (Studiengänge Sportmanagement)",
+                                "name": "Dr. Janet Kühl",
                                 "location": " - ",
-                                "tel": "",
-                                "mail": "",
-                                "consultation": ""
-                            },
+                                "tel": "+49 331 977-2544",
+                                "mail": "janet.kuehl@uni-potsdam.de",
+                                "consultation": "nach Vereinbarung"
+                            }
                             {
                                 "name": "Juliane Müller (gesundheitsbezogene Studiengänge)",
                                 "location": " - ",
@@ -1182,11 +1172,11 @@
                                 "consultation": ""
                             },
                             {
-                                "name": "Dr. Henning Ohlert",
+                                "name": "Dr. Janet Kühl",
                                 "location": " - ",
-                                "tel": "",
-                                "mail": "",
-                                "consultation": ""
+                                "tel": "+49 331 977-2544",
+                                "mail": "janet.kuehl@uni-potsdam.de",
+                                "consultation": "nach Vereinbarung"
                             }
                         ]
                     },
