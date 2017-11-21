@@ -3,7 +3,7 @@
  */
 var app = (app || {} );
 
-var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
 
 // use the following URL to force the application to work with local config.json object
 //var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
@@ -246,7 +246,7 @@ var QuestionContainer = Backbone.Model.extend({
                 answers: result.answers,
                 courseID : Config.get('courseID')
             },
-            headers: Config.get('accessToken')
+            //headers: Config.get('accessToken')
         }).done(function(data) {
             console.log(data);
         });
@@ -303,7 +303,7 @@ var QuestionContainerList = MoodleCollection.extend(/** @lends QuestionContainer
                 moodlewsrestformat: "json",
                 courseID: Config.get('courseID')
             },
-            headers: Config.get('accessToken')
+            //headers: Config.get('accessToken')
         })
 
         .done(function(data) {
@@ -343,9 +343,11 @@ var QuestionContainerList = MoodleCollection.extend(/** @lends QuestionContainer
                         // 'questionText' text and 'choices' are to be checked for multi language tags
                         var questText= question.questionText;
                         questText= that.processMoodleContents(language,questText);
+                        // in the case of the University Viadrina, the question's numbering must be
+                        //  inverted due to the newer Moodle version used
                         var q = new Question({
                             id: question.id,
-                            number: i+1,
+                            number: item.questions.length - i,
                             total: item.questions.length,
                             questionText: questText,
                             type: question.type,
@@ -372,7 +374,9 @@ var QuestionContainerList = MoodleCollection.extend(/** @lends QuestionContainer
                             }
                             q.set("choices",choicesArray);
                         }
-                        questionContainer.get('questionList').add(q);
+                        // in the case of th University Viadrina, due to the Moodle version,
+                        //  questions have to be added in inverted order (using unshift instead of add or push)
+                        questionContainer.get('questionList').unshift(q);
                     });
 
                     result.push(questionContainer);
@@ -424,7 +428,7 @@ var AppointmentCollection = MoodleCollection.extend(/** @lends AppointmentCollec
                 },
                 courseID : Config.get('courseID')
             },
-            headers: Config.get('accessToken')
+            //headers: Config.get('accessToken')
         })
 
         .done(function(data) {

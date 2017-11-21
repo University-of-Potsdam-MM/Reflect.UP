@@ -715,7 +715,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                 moodlewsrestformat: "json",
                 courseID : this.model.get('courseID')
             },
-            headers: that.model.get("accessToken")
+            //headers: that.model.get("accessToken")
         }).done(function(data){
             //console.log(data);
             if ((data.errorcode == 'invalidtoken') || token == ""){
@@ -785,7 +785,8 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
             that.render();
         };
 
-        this.collection.fetch({success : onDataHandler, error: onErrorHandler, headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'} });
+        //this.collection.fetch({success : onDataHandler, error: onErrorHandler, headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'} });
+        this.collection.fetch({success : onDataHandler, error: onErrorHandler});
         this.listenTo(this.collection, "sync", this.render);
 
     },
@@ -878,7 +879,7 @@ var ConfigView = Backbone.View.extend(/** @rends ConfigView.prototype */{
                 password: password,
                 service: 'reflect'
             },
-            headers: that.model.get("accessToken")
+            //headers: that.model.get("accessToken")
         }).done(function(data){
             //console.log(data);
             if (data.error){
@@ -913,7 +914,7 @@ var ConfigView = Backbone.View.extend(/** @rends ConfigView.prototype */{
                 moodlewsrestformat: "json",
                 courseID : that.model.get('courseID')
             },
-            headers: that.model.get("accessToken")
+            //headers: that.model.get("accessToken")
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');
@@ -1042,7 +1043,7 @@ var FeedbackView = Backbone.View.extend(/** @lends FeedbackView.prototype */{
                 feedback: feedbacktext,
                 courseID: that.model.get('courseID')
             },
-            headers: that.model.get("accessToken")
+            //headers: that.model.get("accessToken")
         }).done(function(data){
             if (data.error){
                 that.trigger('errorHandler');
@@ -1163,7 +1164,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         this.collection = new ContactPersonCollection();
         var that= this;
         this.collection.fetch({
-            headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
+            //headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
             success: function () {
                 that.render();
             },
