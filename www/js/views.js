@@ -660,7 +660,7 @@ var QuestionView = Backbone.View.extend(/** @lends QuestionView.prototype */{
                 var recordedAnswer = $('label[for='+$input.attr('id')+']').text();
             }
             if (typeof recordedAnswer === 'undefined' || !recordedAnswer){
-                    return false;
+                return false;
             }
             this.model.set("answerText",choiceNumber);
             //make sure that values are saved on answersHash without trailing line breaks!
@@ -775,11 +775,13 @@ var InitialSetupView = Backbone.View.extend(/** @lends InitialSetupView.prototyp
         var that = this;
         var onDataHandler = function(collection, response, options) {
             console.log('configuration object fetched from server');
+            that.model.set('contactsURL',that.collection.url);
             that.render();
         };
 
         var onErrorHandler = function(collection, response, options) {
             that.collection.url = 'js/config.json';
+            that.model.set('contactsURL','js/config.json');
             that.collection.fetch();
             console.log("collection fetched from url: "+that.collection.url);
             that.render();
@@ -1151,8 +1153,12 @@ var QuestionsView = Backbone.View.extend(/** @lends QuestionsView.prototype */{
  *      @name ContactPersonsView
  *      @constructor
  *      @augments Backbone.View
+ *
+ *      In the case of the Viadrina University, this view is not necessary
+ *
  */
-var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prototype */{
+/*
+var ContactPersonsView = Backbone.View.extend({
     el: '#app',
     template: _.template($('#template-contact-persons').html()),
     events: {
@@ -1163,6 +1169,11 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
 
         this.collection = new ContactPersonCollection();
         var that= this;
+
+        var Config= new Configuration({id:1});
+        Config.fetch();
+        this.collection.url= Config.get('contactsURL');
+
         this.collection.fetch({
             //headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
             success: function () {
@@ -1170,10 +1181,11 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
             },
             error: function() {
                 that.collection.fetch().done(function(){
-                    that.renderWrap();
+                    that.render();
                 });
             }
         });
+        this.listenTo(this.collection, "sync", this.render);
     },
 
     openExternal: function(event) {
@@ -1210,7 +1222,7 @@ var ContactPersonsView = Backbone.View.extend(/** @lends ContactPersonsView.prot
         return this;
     }
 });
-
+*/
 
 /**
  *      LogoutView

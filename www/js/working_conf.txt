@@ -1,0 +1,26 @@
+
+
+
+-----  Manuel's laptop tests
+
+        "id": 6,
+        "courseID": "UPR10",
+        "moodleServiceEndpoint": "http://141.23.214.244:81/moodle/webservice/rest/server.php",
+        "moodleLoginEndpoint": "http://141.23.214.244:81/moodle/login/token.php",
+        "accessToken": {
+            "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        },
+        "title": "Testkurs - Manuel's laptop :)",
+
+
+
+----- viadrina tests
+
+        "id": 6,
+        "courseID": "UDP1",
+        "moodleServiceEndpoint": "https://moodle-test.europa-uni.de/webservice/rest/server.php",
+        "moodleLoginEndpoint": "https://moodle-test.europa-uni.de/login/token.php",
+        "accessToken": {
+            "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        },
+        "title": "Testkurs - Viadrina",

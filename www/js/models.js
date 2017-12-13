@@ -3,7 +3,7 @@
  */
 var app = (app || {} );
 
-var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
+var configURL = "https://moodle-test.europa-uni.de/reflect.json";
 
 // use the following URL to force the application to work with local config.json object
 //var configURL = "https://api.uni-potsdam.de/endpoints/staticContent/2.0/configs.json";
@@ -31,7 +31,8 @@ var Configuration = Backbone.Model.extend({
         appLanguage: 'de',
         courseID: '',
         notificationsHash: '{"initialAttribute": ""}',
-        pushDetails:''
+        pushDetails:'',
+        contactsURL:''
     }
 });
 
@@ -194,11 +195,18 @@ var QuestionContainer = Backbone.Model.extend({
                     return null;
                 this.set('currentIndex', this.get('currentIndex') + 1);
                 nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
-                nextOnSequence.set('actualIndex',answeredPath.length + 1);
+                var newNum= answeredPath.length + 1;
+                //console.log("setting question number to (case 1): "+newNum);
+                nextOnSequence.set('actualIndex',newNum);
             }
+            var newNum= answeredPath.length + 1;
+            //console.log("setting question number to (case 3): "+newNum);
+            nextOnSequence.set('actualIndex',newNum);
             return this.current();
         }
-        nextOnSequence.set('actualIndex',answeredPath.length + 1);
+        var newNum= answeredPath.length + 1;
+        //console.log("setting question number to (case 2): "+newNum);
+        nextOnSequence.set('actualIndex',newNum);
         return this.current();
     },
 
@@ -539,8 +547,11 @@ var Screen = Backbone.Model.extend({
  *      @name Contact
  *      @constructor
  *      @augments Backbone.Model
+ *
+ *      For the Viadrina University, this model is not necessary
+ *
  */
-var Contact = Backbone.Model.extend({});
+//var Contact = Backbone.Model.extend({});
 
 
 /**
@@ -568,9 +579,13 @@ var Contact = Backbone.Model.extend({});
  *      @name ContactPersonCollection
  *      @constructor
  *      @augments Backbone.Collection
+ *
+ *  For the Viadrina University, this model is not necessary
+ *
  */
-var ContactPersonCollection = Backbone.Collection.extend(/** @lends ContactPersonCollection.prototype */{
-    /** @type {Contact} */
+/*
+var ContactPersonCollection = Backbone.Collection.extend({
     model: Contact,
     url: configURL
 });
+*/

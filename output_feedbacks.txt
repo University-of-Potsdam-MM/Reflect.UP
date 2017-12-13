@@ -1,0 +1,1035 @@
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 34
+    [feedback] => 9
+    [template] => 0
+    [name] => Hello, please describe in the following lines the city you were born in:
+    [label] => bornIN
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 35
+    [feedback] => 9
+    [template] => 0
+    [name] => If it was your choice, which of the following animals would you rather be:
+    [label] => animals
+    [presentation] => r>>>>>Eagle
+|Horse
+|Blue whale
+|Raven
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 14
+    [feedback] => 6
+    [template] => 0
+    [name] => Question type: Multiple choice - multiple answers
+    [label] => multi-culti
+    [presentation] => c>>>>>Multi answer - 1|Multi answer - 2|Multi answer - 3|Multi answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 15
+    [feedback] => 6
+    [template] => 0
+    [name] => Multiple choice - single answer
+    [label] => single
+    [presentation] => r>>>>>single answer - 1|single answer - 2|single answer - 3|single answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 14
+    [dependvalue] => Multi answer - 1
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 16
+    [feedback] => 6
+    [template] => 0
+    [name] => Final text question
+    [label] => text
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 17
+    [feedback] => 7
+    [template] => 0
+    [name] => This is a multiple choice question of type 2
+    [label] => multi-initial
+    [presentation] => c>>>>>one|two|three|four
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 18
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 20
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked three.
+    [label] => text2
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => three
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 21
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 22
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked one and two
+    [label] => text1
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => one|two
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 23
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 24
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked two and four
+    [label] => text3
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 7
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => two,four
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 25
+    [feedback] => 7
+    [template] => 0
+    [name] => Final text question. Have a nice day!
+    [label] => finaltext
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 8
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 90
+    [feedback] => 37
+    [template] => 0
+    [name] => Is this longer text question too long?
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 91
+    [feedback] => 37
+    [template] => 0
+    [name] => Which kind of meat do you prefer?
+    [label] => 
+    [presentation] => r>>>>>Beef|Mutton|Pork|I don't eat meat
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 92
+    [feedback] => 37
+    [template] => 0
+    [name] => When would you like to go to the movies?
+    [label] => 
+    [presentation] => c>>>>>Friday|Saturday|Sunday|None of the above
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 93
+    [feedback] => 37
+    [template] => 0
+    [name] => In the following text box, write an example of automation techniques:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 94
+    [feedback] => 37
+    [template] => 0
+    [name] => Can someone consider a human being a commodity?
+    [label] => 
+    [presentation] => r>>>>>Yes|No|If they come from abroad and most probably won't complain|I don't know
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 95
+    [feedback] => 37
+    [template] => 0
+    [name] => Please write the main four components of a wind mill:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 34
+    [feedback] => 9
+    [template] => 0
+    [name] => Hello, please describe in the following lines the city you were born in:
+    [label] => bornIN
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 35
+    [feedback] => 9
+    [template] => 0
+    [name] => If it was your choice, which of the following animals would you rather be:
+    [label] => animals
+    [presentation] => r>>>>>Eagle
+|Horse
+|Blue whale
+|Raven
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 14
+    [feedback] => 6
+    [template] => 0
+    [name] => Question type: Multiple choice - multiple answers
+    [label] => multi-culti
+    [presentation] => c>>>>>Multi answer - 1|Multi answer - 2|Multi answer - 3|Multi answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 15
+    [feedback] => 6
+    [template] => 0
+    [name] => Multiple choice - single answer
+    [label] => single
+    [presentation] => r>>>>>single answer - 1|single answer - 2|single answer - 3|single answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 14
+    [dependvalue] => Multi answer - 1
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 16
+    [feedback] => 6
+    [template] => 0
+    [name] => Final text question
+    [label] => text
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 17
+    [feedback] => 7
+    [template] => 0
+    [name] => This is a multiple choice question of type 2
+    [label] => multi-initial
+    [presentation] => c>>>>>one|two|three|four
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 18
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 20
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked three.
+    [label] => text2
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => three
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 21
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 22
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked one and two
+    [label] => text1
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => one|two
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 23
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 24
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked two and four
+    [label] => text3
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 7
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => two,four
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 25
+    [feedback] => 7
+    [template] => 0
+    [name] => Final text question. Have a nice day!
+    [label] => finaltext
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 8
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 90
+    [feedback] => 37
+    [template] => 0
+    [name] => Is this longer text question too long?
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 91
+    [feedback] => 37
+    [template] => 0
+    [name] => Which kind of meat do you prefer?
+    [label] => 
+    [presentation] => r>>>>>Beef|Mutton|Pork|I don't eat meat
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 92
+    [feedback] => 37
+    [template] => 0
+    [name] => When would you like to go to the movies?
+    [label] => 
+    [presentation] => c>>>>>Friday|Saturday|Sunday|None of the above
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 93
+    [feedback] => 37
+    [template] => 0
+    [name] => In the following text box, write an example of automation techniques:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 94
+    [feedback] => 37
+    [template] => 0
+    [name] => Can someone consider a human being a commodity?
+    [label] => 
+    [presentation] => r>>>>>Yes|No|If they come from abroad and most probably won't complain|I don't know
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 95
+    [feedback] => 37
+    [template] => 0
+    [name] => Please write the main four components of a wind mill:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 34
+    [feedback] => 9
+    [template] => 0
+    [name] => Hello, please describe in the following lines the city you were born in:
+    [label] => bornIN
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 35
+    [feedback] => 9
+    [template] => 0
+    [name] => If it was your choice, which of the following animals would you rather be:
+    [label] => animals
+    [presentation] => r>>>>>Eagle
+|Horse
+|Blue whale
+|Raven
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 14
+    [feedback] => 6
+    [template] => 0
+    [name] => Question type: Multiple choice - multiple answers
+    [label] => multi-culti
+    [presentation] => c>>>>>Multi answer - 1|Multi answer - 2|Multi answer - 3|Multi answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 15
+    [feedback] => 6
+    [template] => 0
+    [name] => Multiple choice - single answer
+    [label] => single
+    [presentation] => r>>>>>single answer - 1|single answer - 2|single answer - 3|single answer - 4
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 14
+    [dependvalue] => Multi answer - 1
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 16
+    [feedback] => 6
+    [template] => 0
+    [name] => Final text question
+    [label] => text
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 17
+    [feedback] => 7
+    [template] => 0
+    [name] => This is a multiple choice question of type 2
+    [label] => multi-initial
+    [presentation] => c>>>>>one|two|three|four
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 18
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 20
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked three.
+    [label] => text2
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => three
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 21
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 22
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked one and two
+    [label] => text1
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => one|two
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 23
+    [feedback] => 7
+    [template] => 0
+    [name] => 
+    [label] => 
+    [presentation] => 
+    [typ] => pagebreak
+    [hasvalue] => 0
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 24
+    [feedback] => 7
+    [template] => 0
+    [name] => You picked two and four
+    [label] => text3
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 7
+    [required] => 0
+    [dependitem] => 17
+    [dependvalue] => two,four
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 25
+    [feedback] => 7
+    [template] => 0
+    [name] => Final text question. Have a nice day!
+    [label] => finaltext
+    [presentation] => 30|255
+    [typ] => textfield
+    [hasvalue] => 1
+    [position] => 8
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 90
+    [feedback] => 37
+    [template] => 0
+    [name] => Is this longer text question too long?
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 4
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 91
+    [feedback] => 37
+    [template] => 0
+    [name] => Which kind of meat do you prefer?
+    [label] => 
+    [presentation] => r>>>>>Beef|Mutton|Pork|I don't eat meat
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 1
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 92
+    [feedback] => 37
+    [template] => 0
+    [name] => When would you like to go to the movies?
+    [label] => 
+    [presentation] => c>>>>>Friday|Saturday|Sunday|None of the above
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 5
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => h
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 93
+    [feedback] => 37
+    [template] => 0
+    [name] => In the following text box, write an example of automation techniques:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 6
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 94
+    [feedback] => 37
+    [template] => 0
+    [name] => Can someone consider a human being a commodity?
+    [label] => 
+    [presentation] => r>>>>>Yes|No|If they come from abroad and most probably won't complain|I don't know
+    [typ] => multichoice
+    [hasvalue] => 1
+    [position] => 3
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+
+Whole feedback item: 
+stdClass Object
+(
+    [id] => 95
+    [feedback] => 37
+    [template] => 0
+    [name] => Please write the main four components of a wind mill:
+    [label] => 
+    [presentation] => 30|5
+    [typ] => textarea
+    [hasvalue] => 1
+    [position] => 2
+    [required] => 0
+    [dependitem] => 0
+    [dependvalue] => 
+    [options] => 
+)
+

@@ -43,9 +43,9 @@ var app = {
     de : {
         translation: {
             "welcomeLogin" : "Willkommen",
-            "titleHome" : "Reflect.UP",
+            "titleHome" : "Reflect Viadrina",
             "impressum" : "Impressum",
-            "title_login" : "Reflect.UP - Anmeldung",
+            "title_login" : "Reflect Viadrina - Anmeldung",
             "loginError" : "Login fehlgeschlagen!",
             "loginRunning" : "Login läuft...",
             "userName" : "Benutzername",
@@ -105,9 +105,9 @@ var app = {
     en : {
         translation : {
             "welcomeLogin" : "Welcome",
-            "titleHome" : "Reflect.UP",
+            "titleHome" : "Reflect Viadrina",
             "impressum" : "Imprint",
-            "title_login" : "Reflect.UP - Login",
+            "title_login" : "Reflect Viadrina - Login",
             "loginError" : "Login failed!",
             "loginRunning" : "Logging in...",
             "userName" : "Username",
@@ -167,9 +167,9 @@ var app = {
     es : {
         translation : {
             "welcomeLogin" : "Te damos la bienvenida",
-            "titleHome" : "Reflect.UP",
+            "titleHome" : "Reflect Viadrina",
             "impressum" : "Referencias",
-            "title_login" : "Reflect.UP - Login",
+            "title_login" : "Reflect Viadrina - Login",
             "loginError" : "Error al acceder.",
             "loginRunning" : "Accediendo...",
             "userName" : "Nombre de usuario",
