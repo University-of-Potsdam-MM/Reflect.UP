@@ -193,9 +193,9 @@ define([
                     de : {
                         translation: {
                             "welcomeLogin" : "Willkommen",
-                            "titleHome" : "Reflect.UP",
+                            "titleHome" : "Reflect Viadrina",
                             "impressum" : "Impressum",
-                            "title_login" : "Reflect.UP - Anmeldung",
+                            "title_login" : "Reflect Viadrina - Anmeldung",
                             "loginError" : "Login fehlgeschlagen!",
                             "loginRunning" : "Login läuft...",
                             "userName" : "Benutzername",
@@ -255,9 +255,9 @@ define([
                     en : {
                         translation : {
                             "welcomeLogin" : "Welcome",
-                            "titleHome" : "Reflect.UP",
+                            "titleHome" : "Reflect Viadrina",
                             "impressum" : "Imprint",
-                            "title_login" : "Reflect.UP - Login",
+                            "title_login" : "Reflect Viadrina - Login",
                             "loginError" : "Login failed!",
                             "loginRunning" : "Logging in...",
                             "userName" : "Username",

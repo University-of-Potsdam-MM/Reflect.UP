@@ -9,7 +9,7 @@ define([
     'use strict';
 
 
-    var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
+    var configURL = "https://moodle-test.europa-uni.de/reflect.json";
 
     /**     @name Tab
      *      @constructor
