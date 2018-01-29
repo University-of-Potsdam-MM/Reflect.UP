@@ -6,42 +6,11 @@ define([
     'backbone',
     'util',
     'appointment/appointment.views',
-    'question/question.views'
-], function(jquery, Backbone, config, appointmentViews, questionViews) {
+    'question/question.views',
+    'loginLogoutConfig/loginLogoutConfig.models'
+], function(jquery, Backbone, config, appointmentViews, questionViews, loginLogoutConfigViews) {
     'use strict';
 
-    var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
-
-    /**     @name Tab
-     *      @constructor
-     *      @augments Backbone.Model
-     */
-    var Tab = Backbone.Model.extend({});
-
-
-    /**     collection for the starting page to select a course from a list
-     *      @name TabCollection
-     *      @constructor
-     *      @augments Backbone.Collection
-     */
-    var TabCollection = Backbone.Collection.extend(/** @lends TabCollection.prototype */{
-        /** @type {Tab} */
-        model: Tab,
-        url: configURL
-    });
-
-
-    /**     model for a single screen in the web app
-     *      @name Screen
-     *      @constructor
-     *      @augments Backbone.Model
-     */
-    var Screen = Backbone.Model.extend({
-        defaults : {
-            title : "Screen title",
-            content : "",
-        },
-    });
 
     /**  vie for the HomeView
      *      @name HomeView
@@ -131,8 +100,8 @@ define([
         model: app.models.Configuration,
 
         initialize: function(){
-            this.model= new config.Configuration({id:1});
-            this.collection = new TabCollection();
+            this.model = new config.Configuration({id:1});
+            this.collection = new loginLogoutConfigViews.TabCollection();
             var that = this;
             var onDataHandler = function(collection, response, options) {
                 console.log('configuration object fetched from server');
@@ -165,9 +134,9 @@ define([
         writeConfigAttributes: function(ev){
             this.model.fetch();
             var element = $(ev.currentTarget);
-            var ID= element.attr('id');
+            var ID = element.attr('id');
             //retrieve the parameters to be stored in Config model
-            var paramsOBJ= this.collection.get(ID);
+            var paramsOBJ = this.collection.get(ID);
             this.model.set('accessToken',paramsOBJ.get('accessToken'));
             this.model.set('moodleServiceEndpoint',paramsOBJ.get('moodleServiceEndpoint'));
             this.model.set('moodleLoginEndpoint',paramsOBJ.get('moodleLoginEndpoint'));
@@ -201,7 +170,7 @@ define([
         el: '#app',
 
         initialize: function() {
-            this.model= new config.Configuration({id:1});
+            this.model = new config.Configuration({id:1});
             this.model.fetch();
             this.model.destroy({
                 success: this.reroute,

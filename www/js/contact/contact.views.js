@@ -54,7 +54,7 @@ define([
             // parsing method of the obtained collection of contacts is going to be different if the json object
             //  is provided from a general config.json file (a third level of parsing is needed + only the
             //  corresponding contact persons page to the recorded course ID is to be loaded)
-            var Config= new config.Configuration({id:1});
+            var Config = new config.Configuration({id:1});
             Config.fetch();
             var cID= Config.get('courseID');
             this.$el.html(this.template({contacts: this.collection, t:_t, courseID: cID}));

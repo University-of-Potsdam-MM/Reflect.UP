@@ -1,3 +1,6 @@
+/**
+ *  @module  login.sso
+ */
 define([
     'jquery',
     'underscore'
@@ -103,14 +106,6 @@ define([
             .filter(function(action) { return action.predicate(event, loginRequest); })
             .each(function(action) { action.action(event, loginRequest, loginRequest.browser); });
     };
-
-
-    /*
-     * Move URLs to configuration
-     */
-    var idpBaseUrl = "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO";
-    var idpUrl = "https://idp.uni-potsdam.de/idp/Authn/UserPassword";
-    var attributeReleaseUrl = "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease";
 
     var openBrowser = function(actions, loginRequest, success, error) {
         var browser = loginRequest.browser;
