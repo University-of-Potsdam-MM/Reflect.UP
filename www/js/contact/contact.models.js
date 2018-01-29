@@ -7,9 +7,6 @@ define([
 ], function($, Backbone) {
     'use strict';
 
-
-    var configURL = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
-
     /**
      *      model for a contact information
      *      @name Contact
@@ -47,8 +44,7 @@ define([
      */
     var ContactPersonCollection = Backbone.Collection.extend(/** @lends ContactPersonCollection.prototype */{
         /** @type {Contact} */
-        model: Contact,
-        url: configURL
+        model: Contact
     });
 
     return {

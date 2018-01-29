@@ -27,7 +27,6 @@ define([
     var idpUrl = "https://idp.uni-potsdam.de/idp/Authn/UserPassword";
     var attributeReleaseUrl = "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease";
 
-
     /**     @name Router
      *      @constructor
      *      @augments Backbone.Router

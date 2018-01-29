@@ -145,6 +145,7 @@ define([
             this.model.set('uniLogoPath',paramsOBJ.get('uniLogoPath'));
             this.model.set('courseID',paramsOBJ.get('courseID'));
             this.model.set('pushDetails',paramsOBJ.get('pushDetails'));
+            this.model.set('contactPersonsObject', paramsOBJ.get('contactPersonsObject'));
             console.log('recorded the course ID:'+paramsOBJ.get('courseID'));
             // save model to local storage
             this.model.save();
@@ -173,12 +174,12 @@ define([
         initialize: function() {
             this.model = new config.Configuration({id:1});
             this.model.fetch();
+            // unsubscribe from push notification service
+            this.listenTo(this.model, "sync", push.UnsubscribeToUniqush(this.model.get('pushDetails')));
             this.model.destroy({
                 success: this.reroute,
                 error: this.retryDestroy
             });
-            // unsubscribe from push notification service
-            this.listenTo(this.model, "sync", push.UnsubscribeToUniqush(this.model.get('pushDetails')));
         },
 
         reroute: function() {
