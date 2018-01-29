@@ -5,10 +5,11 @@ define([
     'jquery',
     'backbone',
     'util',
+    'push',
     'appointment/appointment.views',
     'question/question.views',
     'loginLogoutConfig/loginLogoutConfig.models'
-], function(jquery, Backbone, config, appointmentViews, questionViews, loginLogoutConfigViews) {
+], function(jquery, Backbone, config, push, appointmentViews, questionViews, loginLogoutConfigViews) {
     'use strict';
 
 
@@ -177,7 +178,7 @@ define([
                 error: this.retryDestroy
             });
             // unsubscribe from push notification service
-            UnsubscribeToUniqush(this.model.get('pushDetails'));
+            this.listenTo(this.model, "sync", push.UnsubscribeToUniqush(this.model.get('pushDetails')));
         },
 
         reroute: function() {
@@ -263,7 +264,7 @@ define([
             // now that the course's id is set, it is possible to subscribe the app to
             // the right service
             if (window.device)
-                PushServiceRegister(this.model.get('courseID'), this.model.get('pushDetails'));
+                push.PushServiceRegister(this.model.get('courseID'), this.model.get('pushDetails'));
             var that = this;
             console.log("current moodle access token: "+that.model.get('moodleAccessToken'));
             $.ajax({
