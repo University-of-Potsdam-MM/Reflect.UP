@@ -25,7 +25,7 @@ define([
         initialize: function() {
 
             this.collection = new contactModels.ContactPersonCollection();
-            var that= this;
+            var that = this;
             this.collection.fetch({
                 headers: {'Authorization' :'Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8'},
                 success: function () {
@@ -33,10 +33,11 @@ define([
                 },
                 error: function() {
                     that.collection.fetch().done(function(){
-                        that.renderWrap();
+                        that.render();
                     });
                 }
             });
+            this.listenTo(this.collection, "sync", this.render);
         },
 
         openExternal: function(event) {
