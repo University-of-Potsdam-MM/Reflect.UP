@@ -7,9 +7,12 @@ define([
 ], function($, Backbone) {
     'use strict';
 
+<<<<<<< HEAD
 
     var configURL = "https://moodle-test.europa-uni.de/reflect.json";
 
+=======
+>>>>>>> master
     /**
      *      model for a contact information
      *      @name Contact
@@ -47,8 +50,7 @@ define([
      */
     var ContactPersonCollection = Backbone.Collection.extend(/** @lends ContactPersonCollection.prototype */{
         /** @type {Contact} */
-        model: Contact,
-        url: configURL
+        model: Contact
     });
 
     return {

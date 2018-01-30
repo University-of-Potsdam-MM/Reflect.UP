@@ -8,9 +8,12 @@ define([
 ], function(jquery, Backbone, config) {
     'use strict';
 
+<<<<<<< HEAD
 
     var configURL = "https://moodle-test.europa-uni.de/reflect.json";
 
+=======
+>>>>>>> master
     /**     @name Tab
      *      @constructor
      *      @augments Backbone.Model
@@ -26,11 +29,10 @@ define([
     var TabCollection = Backbone.Collection.extend(/** @lends TabCollection.prototype */{
         /** @type {Tab} */
         model: Tab,
-        url: configURL
+        url: config.configURL
     });
 
     return {
-        configURL : configURL,
         TabCollection : TabCollection
     }
 

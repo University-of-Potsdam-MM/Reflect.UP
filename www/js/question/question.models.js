@@ -110,11 +110,18 @@ define([
                         return null;
                     this.set('currentIndex', this.get('currentIndex') + 1);
                     nextOnSequence = this.get('questionList').at(this.get('currentIndex'));
-                    nextOnSequence.set('actualIndex',answeredPath.length + 1);
+                    var newNum = answeredPath.length + 1;
+                    //console.log("setting question number to (case 1): "+newNum);
+                    nextOnSequence.set('actualIndex', newNum);
                 }
+                var newNum= answeredPath.length + 1;
+                //console.log("setting question number to (case 3): "+newNum);
+                nextOnSequence.set('actualIndex', newNum);
                 return this.current();
             }
-            nextOnSequence.set('actualIndex',answeredPath.length + 1);
+            var newNum= answeredPath.length + 1;
+            //console.log("setting question number to (case 2): "+newNum);
+            nextOnSequence.set('actualIndex', newNum);
             return this.current();
         },
 

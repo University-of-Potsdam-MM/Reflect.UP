@@ -3,7 +3,7 @@ Reflect.UP - Reflexions-App der Universität Potsdam
 
 # Allgemeine Informationen
 
-Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situationen-lernen
+Informationen: [http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situationen-lernen](Slideshare - Mobil in und aus Situationen lernen)
 
 ## Projektstruktur
 ```
@@ -15,22 +15,18 @@ Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situat
        - ...
        - img
        - js
-       - config.xml
+        - appointment
+        - contact
+        - ...
+        - config.json
        - ...
        - index.html (Startpunkt der App)
+     - config.xml
 ```
 
 ## Cordova
 
 - https://cordova.apache.org/
-
-## Moodle-Webservice
-
-### Moodle-Webservice entwickeln
-- https://docs.moodle.org/dev/Web_services_API
-
-### Moodle-Webservice API
-- https://docs.moodle.org/dev/Web_service_API_functions
 
 # Installation
 
@@ -38,23 +34,28 @@ Informationen: http://de.slideshare.net/alekiy/reflectup-mobil-in-und-aus-situat
 
 1. `npm install` ausführen
 2. CSS-Anpassungen in `www/sass/index.scss`
-3. `script/gulpfile.js styles` auführen
+3. `script/gulpfile.js styles` ausführen
 4. Optional können noch JSON und CSS minifiziert werden `gulp minify-css & gulp minify-json`
-4. `cordova platform add android`
-5. `cordova prepare android`
-6. `cordova run android`
+5. Anpassungen der `config.json` und der ConfigURL in `util.js` (Unter der ConfigURL sollte die config.json auf einem Server liegen)
+6. `cordova platform add android`
+7. `cordova prepare android`
+8. `cordova run android`
 
 7. Unter iOS müssen bei Capabilities Push-Notifications aktiviert werden, siehe hierzu auch den Wiki-Beitrag [Push-Nachrichten](https://github.com/University-of-Potsdam-MM/Reflect.UP/wiki/Push-Nachrichten)
 
 
 ## 2. Moodle-Webservices aktivieren
 
+### Informationen zum Moodle-Webservice API
+- https://docs.moodle.org/dev/Web_services_API
+- https://docs.moodle.org/dev/Web_service_API_functions
+
 siehe https://docs.moodle.org/29/en/Using_web_services
 - Plugins -> Web Services -> Manage Protocols -> Enable REST
 - "create Token" capability für die entspr. User aktivieren
 - "Web Service Rest" cap. für entspr. User aktivieren
 
-## 3. Reflection-Webservice installieren
+## 3. Reflection-Webservice und Pushnotification-Block installieren
 
 - siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-local_reflection
 - siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-block_pushnotification

@@ -364,70 +364,64 @@
             <h1><%= i18next.t("contactHeader")%></h1>
         </div>
         <div>
-            <% _.each(contacts.models,function(levelOne) { %>
-                <% if(levelOne.get('courseID') == courseID) { %>
-                    <% if(!levelOne.get('contactPersonsObject') == "") { %>
-                        <% levelOne.get('contactPersonsObject').forEach(function (levelTwo) { %>
-                            <button class="accordion"><%- levelTwo.category %></button>
-                            <div class="panel">
-                            <p>
-                            <% levelTwo.content.forEach(function(levelThree) { %>
-                                <% if (levelThree.category) { %>
-                                    <h3><%- levelThree.category %></h3>
-                                <% } %>
-                                <% levelThree.content.forEach(function(contact, index) { %>
-                                    <div class="contact">
-                                        <% if (contact.name) { %>
-                                            <div>
-                                                <span class="contact-name"><%- contact.name %></span>
-                                                <% if (contact.comment) { %>
-                                                    <span> (<%- contact.comment %>)</span>
-                                                <% } %>
-                                            </div>
-                                        <% } %>
-                                        <% if (contact.location) { %>
-                                            <div><%- contact.location %></div>
-                                        <% } %>
-                                        <% if (contact.tel) { %>
-                                            <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
-                                        <% } %>
-                                        <% if (contact.alt_tel) { %>
-                                            <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
-                                        <% } %>
-                                        <% if (contact.secretary) { %>
-                                            <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
-                                        <% } %>
-                                        <% if (contact.mail) { %>
-                                            <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
-                                        <% } %>
-                                        <% if (contact.consultation) { %>
-                                            <div>
-                                                <span>Sprechzeiten: </span>
-                                                <span><%- contact.consultation %></span>
-                                                <% if (contact.consultation_url) { %>
-                                                    <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
-                                                <% } %>
-                                            </div>
+            <% _.each(contacts.models, function(levelOne) { %>
+                <% if(levelOne.length != 0) { %>
+                    <button class="accordion"><%- levelOne.get('category') %></button>
+                    <div class="panel">
+                    <p>
+                    <% _.each(levelOne.get('content'), function(levelTwo) { %>
+                        <% if (levelTwo.category) { %>
+                            <h3><%- levelTwo.category %></h3>
+                        <% } %>
+                        <% _.each(levelTwo.content, function(contact, index) { %>
+                            <div class="contact">
+                                <% if (contact.name) { %>
+                                    <div>
+                                        <span class="contact-name"><%- contact.name %></span>
+                                        <% if (contact.comment) { %>
+                                            <span> (<%- contact.comment %>)</span>
                                         <% } %>
                                     </div>
-                                <% }); %>
-                            <% }); %>
-                            </p>
+                                <% } %>
+                                <% if (contact.location) { %>
+                                    <div><%- contact.location %></div>
+                                <% } %>
+                                <% if (contact.tel) { %>
+                                    <div>Tel.: <a class="external" href="tel:<%= contact.telLink %>"><%- contact.tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                <% } %>
+                                <% if (contact.alt_tel) { %>
+                                    <div>Tel.: <a class="external" href="tel:<%= contact.alt_telLink %>"><%- contact.alt_tel.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                <% } %>
+                                <% if (contact.secretary) { %>
+                                    <div>Sekr.: <a class="external" href="tel:<%= contact.secretary_telLink %>"><%- contact.secretary.replace(/\+/g,"00").replace(/\s/g,"").replace(/\-/g,"") %></a></div>
+                                <% } %>
+                                <% if (contact.mail) { %>
+                                    <div>E-Mail: <a class="external" href="mailto:<%= contact.mail %>"><%- contact.mail %></a></div>
+                                <% } %>
+                                <% if (contact.consultation) { %>
+                                    <div>
+                                        <span>Sprechzeiten: </span>
+                                        <span><%- contact.consultation %></span>
+                                        <% if (contact.consultation_url) { %>
+                                            <span><a class="external" href="<%= contact.consultation_url %>"><%- contact.consultation_url %></a></span>
+                                        <% } %>
+                                    </div>
+                                <% } %>
                             </div>
-                        <% }) %>
-                    <% } else {%>
-                        <br />
-                        <br />
-                        <br />
-                        <h2> <%= i18next.t("noContacts")%> </h2>
-                    <% }%>
-                <% } %>
+                        <% }); %>
+                    <% }) %>
+                    </p>
+                    </div>
+                <% } else {%>
+                    <br />
+                    <br />
+                    <br />
+                    <h2> <%= i18next.t("noContacts")%> </h2>
+                <% }%>
             <% }); %>
         </div>
     </script>
 
-
-    <script type="text/javascript" src="js/push.js"></script>
     <script type="text/javascript" data-main="js/main" src="js/lib/require.js"></script>
 
     <title>Reflect.UP</title>
