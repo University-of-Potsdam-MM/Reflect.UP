@@ -28,3 +28,7 @@ gulp.task('minify-json', function () {
         .pipe(jsonminify())
         .pipe(gulp.dest('../www/js/'));
 });
+
+gulp.task('watch', function(){
+  gulp.watch('www/sass/*.scss', ['styles'])
+})
