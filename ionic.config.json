@@ -1,0 +1,7 @@
+{
+  "name": "reflect-up-ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

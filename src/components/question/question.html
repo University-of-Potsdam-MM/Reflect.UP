@@ -1,0 +1,12 @@
+<div *ngIf="!isCompleted" padding-horizontal padding-top>
+  <ion-item no-lines class="question" tappable (click)="goToDetailPage()">
+    <ion-icon name="arrow-dropright" item-end></ion-icon>
+    <div [innerHTML]="processMoodleContents(questions.name)" text-wrap></div>
+  </ion-item>
+</div>
+<div *ngIf="isCompleted" padding-horizontal padding-top>
+  <ion-item no-lines class="completedQuestion" tappable (click)="goToDetailPage()">
+    <div [innerHTML]="processMoodleContents(questions.name)" text-wrap></div>
+    <ion-icon name="arrow-dropright" item-end></ion-icon>
+  </ion-item>
+</div>

@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "pageHeader.loginPage" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form (ngSubmit)="login()" #registerForm="ngForm">
+      <!-- input fields -->
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-label stacked>{{ "label.loginPage.username" | translate }}</ion-label>
+              <ion-input
+                autocapitalize="none"
+                type="text"
+                [placeholder]="'label.loginPage.username' | translate"
+                name="id"
+                [(ngModel)]="loginCredentials.username"
+                required
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>{{ "label.loginPage.password" | translate }}</ion-label>
+              <ion-input
+                type="password"
+                [placeholder]="'label.loginPage.password' | translate"
+                name="password"
+                [(ngModel)]="loginCredentials.password"
+                required
+              ></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <!-- buttons -->
+      <ion-row padding-horizontal>
+          <button ion-button class="loginButtons" type="submit">
+            {{ "buttonLabel.login" | translate }}
+          </button>
+          <button ion-button class="loginButtons" type="reset" (click)="abort()">
+            {{ "buttonLabel.cancel" | translate }}
+          </button>
+      </ion-row>
+
+    </form>
+  </div>
+
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content class="reminder">
+          {{ "label.loginPage.loginInfoMessage" | translate }}
+          {{ "label.loginPage.loginInfoMessageMail" | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+</ion-row>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment>
+      <button class="tabButtons" ion-button color="primary" clear icon-left (click)="openImpressum()">
+        <ion-icon name="book"></ion-icon>
+        {{ "pageHeader.impressumPage" | translate }}
+      </button>
+      <button class="tabButtons" ion-button color="primary" clear icon-left (click)="openSettings()">
+        <ion-icon name="settings"></ion-icon>
+        {{ "pageHeader.settingsPage" | translate }}
+      </button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

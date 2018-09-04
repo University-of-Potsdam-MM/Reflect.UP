@@ -1,0 +1,144 @@
+{
+    "buttonLabel": {
+        "agree": "Zustimmen",
+        "back": "Zurück",
+        "cancel": "Abbrechen",
+        "disagree": "Ablehnen",
+        "filter": "Filter",
+        "finish": "Fertig",
+        "goToQuestions": "Zu den Reflexionsfragen",
+        "hide": "Ausblenden",
+        "login": "Anmelden",
+        "next": "Weiter",
+        "no": "Nein",
+        "notify": "Benachrichtigen",
+        "ok": "OK",
+        "ok_2": "Okay",
+        "pickDate": "Datum",
+        "pickDateRange": "Zeitraum",
+        "show": "Anzeigen",
+        "show_2": "Einblenden",
+        "showAll": "Alle",
+        "showLess": "Weniger anzeigen",
+        "showMore": "Mehr anzeigen",
+        "showCompletedQuestions": "Beantwortete Reflexionsfragen anzeigen",
+        "submit": "Abschicken",
+        "tryAgain": "Erneut probieren?",
+        "yes": "Ja"
+    },
+    "label": {
+        "appointmentsPage": {
+            "fullDayEvent": "ganztägig",
+            "noAppointmentsAvailable": "Keine Termine",
+            "time": "Uhr",
+            "timeEnd": "Ende",
+            "timeStart": "Beginn",
+            "today": "Heute",
+            "tomorrow": "Morgen",
+            "thisWeek": "Diese Woche",
+            "later": "Zukünftig"
+        },
+        "contactsPage": {
+            "consultingTime": "Sprechzeiten:",
+            "email": "E-Mail:",
+            "noContactsAvailable": "Keine Kontakte verfügbar.",
+            "phone": "Tel.:",
+            "website": "Website:"
+        },
+        "disagreeTOSPage": {
+            "infoMessage": "Die Nutzungsbedingungen müssen akzeptiert werden, um diese Anwendung zu nutzen."
+        },
+        "feedbackPage": {
+            "feedbackSend": "Feedback erfolgreich abgeschickt.",
+            "infoMessage_1": "Du bist gefragt! Dir fällt bei Deinem Studieneinstieg etwas auf, das verbessert werden könnte? Du hast Anregungen zu Deinem Studium, Lob oder Kritik? Teil es uns mit! Jederzeit!",
+            "infoMessage_2": "Natürlich freuen wir uns auch über Rückmeldungen zur App, damit wir sie kontinuierlich an Deine Bedürfnisse anpassen können.",
+            "questionNotAnswered": "Bitte beantworte die Frage.",
+            "textPlaceholder": "Hier kannst du dein Feedback eintragen!"
+        },
+        "infoPage": {
+            "infoMessage_1": "In erster Linie beantwortest du die Fragen für dich. Diese App möchte dich lediglich auf deinem Lernprozess begleiten und dir hilfreich zur Seite stehen. Ziel ist es weniger, dich mit Faktenwissen zu bombardieren, sondern dich dabei zu unterstützen, deine reflexiven Kompetenzen weiterzuentwickeln und kompetente Eigenverantwortlichkeit zu fördern. Deshalb gibt es auch keine richtigen und falschen Antworten.",
+            "infoMessage_2": "Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym."
+
+        },
+        "loginPage": {
+            "loginInfoMessage": "Um den angeforderten Dienst nutzen zu können, musst du dich hier einloggen.",
+            "loginInfoMessageMail": "Bitte verwende zur Anmeldung als Benutzername dein Mailkürzel ohne @uni-potsdam.de.",
+            "password": "Passwort",
+            "username": "Benutzername"
+        },
+        "logoutPage": {
+            "questionLogout": "Ausloggen?"
+        },
+        "menu": "Menü",
+        "pushMessagesPage": {
+            "noMessagesReceived": "Du hast bisher keine Push-Nachrichten erhalten."
+        },
+        "questionsPage": {
+            "hintNewMoodlePlugin": "Das Moodle-Plugin muss aktualisiert werden, um beantwortete Fragen anzeigen zu können.",
+            "hintNewQuestionsSoon": "Weitere Reflexionsfragen folgen bald!",
+            "hintNoQuestionsAnswered": "Du hast noch keine Reflexionsfragen beantwortet",
+            "hintUnansweredQuestions": "Du hast noch nicht alle Reflexionsfragen beanwortet! Nimm dir ein wenig Zeit und gehe die fehlenden Fragen durch.",
+            "feedbackCompleted": "Vielen Dank, du hast alle Fragen beantwortet."
+        },
+        "selectModulePage": {
+            "placeholderSearch": "Suchen",
+            "selectModuleMessage": "Die folgenden Kurse stehen zur Verfügung:"
+        },
+        "settingsPage": {
+            "changeLanguage": "Möchtest du die Sprache der App wechseln? Bitte wählen:",
+            "language": "Sprache"
+        },
+        "university": "Universität Potsdam"
+    },
+    "pageHeader": {
+        "appointmentsPage": "Termine",
+        "appointmentsPage_2": "Weitere Termine",
+        "contactsPage": "Ansprechpartner",
+        "disagreeTOSPage": "Nutzungsbedingungen",
+        "feedbackPage": "Feedback",
+        "headerFeedback": "Feedback abgeben",
+        "headerFinish": "Fertig",
+        "headerQuestionCount": "Frage ",
+        "homePage": "Reflect.UP",
+        "homePage_alt": "Startseite",
+        "impressumPage": "Impressum",
+        "infoPage": "Info",
+        "loginPage": "Reflect.UP - Anmeldung",
+        "logoutPage": "Logout",
+        "pushMessagesPage": "Push-Nachrichten",
+        "questionsPage": "Reflexionsfragen",
+        "selectModulePage": "Willkommen",
+        "settingsPage": "Einstellungen"
+    },
+    "statusMessage": {
+        "error": {
+            "http401": "Nicht authorisiert",
+            "http404": "Seite nicht gefunden",
+            "login": "Login fehlgeschlagen.",
+            "loginCredentials": "Benutzername und Passwort stimmen nicht überein.",
+            "network": "Es gibt Probleme mit dem Netzwerk, bitte prüfen Sie Ihre Internetverbindung.",
+            "title": "Fehler",
+            "transmission": "Bei der Übertragung ist ein Fehler aufgetreten, bitte versuchen Sie es erneut oder kontaktieren sie das Entwicklerteam.",
+            "unknown": "Es liegt ein unbekanntes Problem vor, bitte kontaktieren Sie das Entwicklerteam."
+        },
+        "login": {
+            "noInput": "Bitte geben Sie etwas ein.",
+            "running": "Login läuft..."
+        },
+        "notification": {
+            "cancel": "Möchtest du die Benachrichtigung für diesen Termin stornieren?",
+            "scheduled": "Du wirst eine Benachrichtigung bekommen.",
+            "pushMessage_1_0": "Du hast einen Termin am: ",
+            "pushMessage_1_1": " um ",
+            "pushMessage_1_2": " Uhr",
+            "pushMessage_2": "Du hast morgen einen Termin",
+            "pushMessage_3_0": "Termin",
+            "pushMessage_3_1": " Uhr nicht vergessen.",
+            "pushMessage_3_2": "Uhr."
+        },
+        "tos": {
+            "message": "Die Nutzung dieses Services erfolgt freiwillig. Die im Rahmen der Nutzung erhobenen Daten werden ausschließlich zur Bereitstellung des Services verwendet und nicht an Dritte weitergegeben. Die Verwendung der Daten erfolgt nach den Bestimmungen des brandenburgischen Datenschutzgesetzes.\nDiese Smartphone-App ist nur in Verbindung mit einer separaten, abgeschlossenen Kursumgebung der Lehr- und Lernplattform „Moodle“ nutzbar. Die innerhalb dieses Kurses angebotenen Features werden den Nutzern / Nutzerinnen mithilfe eines Web-Services in der App angezeigt und zur Bearbeitung freigegeben bzw. über einen Push-Service mitgeteilt. Sämtliche Datenübertragungen sind SSL (OpenSSL/1.0.1q) verschlüsselt. Jeder Zugriff und jede Bearbeitung von Daten wird ausschließlich innerhalb der Moodle-Kursumgebung ausgeführt. Weder in der App selbst, noch auf dem verwendeten Smartphone werden Daten gespeichert. Eine Anmeldung in der Moodle-Kursumgebung ohne Verwendung der App ist nicht möglich. Die Kursumgebung und die entsprechenden Features werden ausschließlich von den zuständigen Kursbetreuenden und Administratoren gestaltet und bedient.\nMithilfe der auf dem Push-Service-Provider gespeicherten Teilnehmergeräte-IDs können die Kursbetreuer(innen) Mitteilungen an den gesamten Kreis der Nutzer/innen senden. Diese Push-Mitteilungen beinhalten i.d.R. wichtige Ereignisse, Anregungen zur Reflexion und Hinweise.\nDer verwendete Webserver, der Uniqush-Push-Server und die Moodle-Umgebung sind Bestandteile der IT-Systemlandschaft des eLiS-Projekts an der Universität Potsdam. Sie werden gemäß den dort geltenden technischen und rechtlichen Standards sowie gemäß den geltenden Nutzungsbedingungen betrieben.\nDie vorab erhaltenen Informationen zum Forschungsprojekt, sowie die hier beschriebenen Informationen zur Nutzung und zum Datenschutz habe ich gelesen und erkläre mich damit einverstanden.",
+            "title": "Bestimmungen und Informationen zum Datenschutz"
+        }
+    }
+}

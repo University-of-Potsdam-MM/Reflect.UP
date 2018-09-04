@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle right>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ "pageHeader.contactsPage" | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="selectedModule">
+        <ion-list>
+            <div *ngFor="let module of selectedModule.contactPersonsObject; let i = index" padding-left padding-right padding-top>
+                <ion-item no-lines class="groupLevel1"  tappable (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
+                    <ion-icon item-left name="arrow-dropright" *ngIf="!isLevel1Shown('idx'+i)"></ion-icon>
+                    <ion-icon item-left name="arrow-dropdown" *ngIf="isLevel1Shown('idx'+i)"></ion-icon>
+                    <h2 text-wrap>{{ module.category }}</h2>
+                </ion-item>
+                <div *ngIf="module.content && isLevel1Shown('idx'+i)">
+                    <div *ngFor="let child of module.content; let j = index">
+
+                        <div *ngIf="child.content">
+                            <!-- Es gibt eventuell Unterkategorien -->
+
+                            <div *ngIf="child.category">
+                                <!-- Es gibt Unterkategorien -->
+                                <ion-item no-lines class="groupLevel2" tappable (click)="toggleLevel2('idx'+i+'idx'+j)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+j)}">
+                                    <ion-icon item-left name="arrow-dropright" *ngIf="!isLevel2Shown('idx'+i+'idx'+j)"></ion-icon>
+                                    <ion-icon item-left name="arrow-dropdown" *ngIf="isLevel2Shown('idx'+i+'idx'+j)"></ion-icon>
+                                    <h3 text-wrap>{{ child.category }}</h3>
+                                </ion-item>
+                                <div *ngIf="isLevel2Shown('idx'+i+'idx'+j)">
+                                    <ion-item class="childitem" no-lines *ngFor="let item of child.content">
+                                        <contact
+                                        [name]="item.name"
+                                        [location]="item.location"
+                                        [tel]="item.tel"
+                                        [mail]="item.mail"
+                                        [consultation]="item.consultation"
+                                        [consultation_url]="item.consultation_url"></contact>
+                                    </ion-item>
+                                </div>
+                            </div>
+
+                            <div *ngIf="!child.category">
+                                <!-- Es sind Unterkategorien angelegt, aber ohne Namen -->
+                                <ion-item no-lines *ngFor="let item of child.content">
+                                    <contact
+                                    [name]="item.name"
+                                    [location]="item.location"
+                                    [tel]="item.tel"
+                                    [mail]="item.mail"
+                                    [consultation]="item.consultation"
+                                    [consultation_url]="item.consultation_url"></contact>
+                                </ion-item>
+                            </div>
+                        </div>
+
+                        <div *ngIf="!child.content">
+                            <!-- Es gibt keine Unterkategorien -->
+                            <ion-item no-lines>
+                                <contact
+                                [name]="child.name"
+                                [location]="child.location"
+                                [tel]="child.tel"
+                                [mail]="child.mail"
+                                [consultation]="child.consultation"
+                                [consultation_url]="child.consultation_url"></contact>
+                            </ion-item>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <tab-bar></tab-bar>
+</ion-footer>

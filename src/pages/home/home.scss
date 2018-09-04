@@ -1,0 +1,25 @@
+page-home {
+    .hiddenCard {
+        display: none;
+    }
+    
+    ion-fab {
+        padding-bottom: 30px;
+        padding-left: 10px;
+    }
+
+    .hideLongDescription {
+                div {
+                    line-height: 20px;
+                    max-height: 63px;
+                    overflow: hidden;
+                }
+    }
+
+    .longDescription {
+        div {
+            line-height: 20px;
+        }
+    }
+
+}

@@ -1,0 +1,50 @@
+<div [class]="getCardClass()">
+  <ion-card>
+    <ion-card-header text-wrap>
+      <h2><div [innerHTML]="processMoodleContents(event.name)" text-wrap></div></h2>
+      <div class="date">
+        <p *ngIf="!isFullDayEvent" text-wrap>{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
+        <p  *ngIf="isFullDayEvent" text-wrap>{{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}</p>
+      </div>  
+    </ion-card-header>
+
+    <ion-card-content>
+      <div [class]="getDescriptionClass()">
+        <div class='divDescription' [innerHTML]="processMoodleContents(event.description)" text-wrap></div>
+      </div>
+      <div *ngIf="isHomePage" [id]="index" align="right">
+        <button *ngIf="!showLongDescription" ion-button clear small (click)="toggleLongDescription()">
+          {{ "buttonLabel.showMore" | translate }}
+        </button>
+        <button *ngIf="showLongDescription" ion-button clear small (click)="toggleLongDescription()">
+          {{ "buttonLabel.showLess" | translate }}
+        </button>
+      </div>
+      <ion-row class="btn-group-appointment">
+        <ion-col *ngIf="isPushAllowed && isCordovaApp && !hasAlreadyBegun">
+          <div class="reminder">
+            <button (click)="scheduleNotification()" ion-button icon-left clear small>
+              <ion-icon name="alarm"></ion-icon>
+              <div *ngIf="!isNotificationScheduled">{{ "buttonLabel.notify" | translate}}</div>
+              <div *ngIf="isNotificationScheduled">{{ "buttonLabel.cancel" | translate }}</div>
+            </button>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div align="right">
+          <button (click)="toggleCardVisibility()" ion-button icon-left clear small>
+            <ng-container *ngIf="isVisible;else hidden">
+              <ion-icon name="eye-off"></ion-icon>
+                <div>{{ "buttonLabel.hide" | translate }}</div>
+            </ng-container>
+            <ng-template #hidden>
+              <ion-icon name="eye"></ion-icon>
+              <div>{{ "buttonLabel.show_2" | translate }}</div>
+            </ng-template>
+          </button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</div>

@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ "pageHeader.disagreeTOSPage" | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content class="reminder">
+          {{ "label.disagreeTOSPage.infoMessage" | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <div align="center">
+    <button ion-button (click)="tryTOSagain()">
+      {{ "buttonLabel.tryAgain" | translate }}
+    </button>
+  </div>
+</ion-content>

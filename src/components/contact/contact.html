@@ -1,0 +1,9 @@
+<div text-wrap>
+  <b *ngIf="name">{{ name }}</b><br *ngIf="name">
+  <p *ngIf="location && location.length > 3" text>{{ location }}</p>
+  <p *ngIf="tel">{{"label.contactsPage.phone" | translate }} <a *ngIf="tel" href="tel:{{ tel }}">{{ tel }}</a></p>
+  <p *ngIf="mail">{{"label.contactsPage.email" | translate }} <a *ngIf="mail" href="mailto:{{ mail }}">{{ mail }}</a></p>
+  <p *ngIf="consultation" text>{{"label.contactsPage.consultingTime" | translate }} {{ consultation }}</p>
+  <p *ngIf="consultation_url" text style="display:inline">{{ "label.contactsPage.website" | translate}} </p>
+  <a *ngIf="consultation_url" href="{{ consultation_url }}">{{ "label.university" | translate}}</a>
+</div>

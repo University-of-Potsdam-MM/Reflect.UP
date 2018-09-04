@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="answersSubmitted">{{ "pageHeader.headerFinish" | translate }}</ion-title>
+    <ion-title *ngIf="!answersSubmitted">{{ "pageHeader.headerQuestionCount" | translate }} {{ questionNavIndex }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let quest of questionList; let i = index">
+
+    <div *ngIf="isPageActive[i]">
+
+      <ion-list-header class="header" no-lines tappable (click)="openURL(processMoodleContents(quest.questionText))" no-padding>
+        <h6 tappable [innerHTML]="processMoodleContents(quest.questionText, true)" text-wrap></h6>
+      </ion-list-header>
+      <p *ngIf="!answerSelected[i] && !isCompleted" style="color:red;">{{ "label.feedbackPage.questionNotAnswered" | translate }}</p>
+      <div *ngIf="quest.type === 'multichoice'; then multichoice else textarea"></div>
+
+      <ng-template #multichoice>
+        <div>
+          <ion-list radio-group>
+            <ion-item *ngFor="let answers of choicesList[i]; let j = index">
+              <ion-label [innerHTML]="processMoodleContents(answers, true)" text-wrap></ion-label>
+              <ion-checkbox *ngIf="isCheckbox[i]" ngDefaultControl [(ngModel)]="checkBoxValue[i][j]" (click)="openURL(processMoodleContents(answers))" name="checkBoxValue" [disabled]="isCompleted"></ion-checkbox>
+              <ion-radio *ngIf="!isCheckbox[i]" [checked]="radioBtnValue[i][j]" (ionSelect)="handleRadios(i,j, processMoodleContents(answers))" item-left [disabled]="isCompleted"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ng-template>
+
+      <ng-template #textarea>
+        <ion-list>
+          <textarea id="inputText" placeholder="Text..." rows="8" ngDefaultControl [(ngModel)]="textBoxValue[i]" name="textBoxValue" [disabled]="isCompleted"></textarea>
+        </ion-list>
+      </ng-template>
+
+      <div align="center">
+        <button id="navButtons" (click)="goBack(i)" [disabled]="isFirstQuestion" ion-button color="light">
+          <ion-icon name="arrow-back" padding-right></ion-icon>
+          {{ "buttonLabel.back" | translate }}
+        </button>
+        <button id="navButtons" (click)="goForward(i)" ion-button color="light">
+          <div>{{ "buttonLabel.next" | translate }}</div>
+          <ion-icon name="arrow-forward" padding-left></ion-icon>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div *ngIf="answersSubmitted">
+    <ion-card>
+      <ion-card-content class="reminder">
+      <ion-item text-wrap>
+        <h2>{{ "label.questionsPage.feedbackCompleted" | translate}}</h2>
+      </ion-item>
+      <ion-item *ngIf="feedbackMessage">
+        <div class="description" [innerHTML]="processMoodleContents(feedbackMessage)" text-wrap></div>
+      </ion-item>
+    </ion-card-content>
+    </ion-card>
+    <div align="center">
+      <button id="navButtons" (click)="goBackLast()" ion-button color="light">
+        <ion-icon name="arrow-back" padding-right></ion-icon>
+        {{ "buttonLabel.back" | translate }}
+      </button>
+      <button id="navButtons" (click)="backToRoot()" ion-button [disabled]="isCompleted">
+        <div >{{ "buttonLabel.finish" | translate }}</div>
+      </button>
+    </div>
+  </div>
+</ion-content>

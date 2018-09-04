@@ -1,0 +1,138 @@
+{
+    "buttonLabel": {
+        "agree": "Aceptar",
+        "back": "Anterior",
+        "cancel": "Cancelar",
+        "disagree": "Rechazar",
+        "filter": "Filtrado",
+        "finish": "Listo",
+        "goToQuestions": "A las encuestas",
+        "hide": "Esconder",
+        "login": "Iniciar sesión",
+        "next": "Siguiente",
+        "no": "No",
+        "notify": "Notifícame",
+        "ok": "OKEY",
+        "ok_2": "Aprobar",
+        "show": "Mostrar",
+        "show_2": "Mostrar",
+        "showLess": "Weniger anzeigen",
+        "showMore": "Mehr anzeigen",
+        "showCompletedQuestions": "Mostrar preguntas respondidas",
+        "submit": "Enviar",
+        "tryAgain": "¿Inténtalo de nuevo?",
+        "yes": "Sí"
+    },
+    "label": {
+        "appointmentsPage": {
+            "fullDayEvent": "día completo",
+            "noAppointmentsAvailable": "No hay citas disponibles.",
+            "time": "",
+            "timeEnd": "Final",
+            "timeStart": "Comenzando"
+        },
+        "contactsPage": {
+            "consultingTime": "Horas laborables:",
+            "contact": "Contacto:",
+            "email": "E-mail:",
+            "noContactsAvailable": "No hay contactos disponibles.",
+            "phone": "Teléfono:",
+            "website": "Sitio web:"
+        },
+        "disagreeTOSPage": {
+            "infoMessage": "Debe aceptar los Términos del servicio para usar esta aplicación."
+        },
+        "feedbackPage": {
+            "feedbackSend": "Tus comentarios han sido enviados.",
+            "infoMessage_1": "¡Tu opinión es importante! ¿Crees que se podría mejorar algo con respecto a la fase inicial de tus estudios? ¿Te gustaría sugerir algo, ya sea positivo o una crítica? ¡Compártelo con nosotros en cualquier momento!",
+            "infoMessage_2": "Desde luego, nos dará gusto recibir comentarios sobre la aplicación, para poder adaptarla a tus necesidades.",
+            "questionNotAnswered": "Para seguir debes elegir una respuesta.",
+            "textPlaceholder": "¡Puedes ingresar tus comentarios aquí!"
+        },
+        "infoPage": {
+            "infoMessage_1": "Este es un ejercicio de auto-evaluación. Esta aplicación es para ayudarte durante tu proceso de aprendizaje, siendo una herramienta útil a tu alcance. Al utilizarla, no se espera que aprendas una gran cantidad de hechos, sino que sea más fácil desarrollar tus propias competencias flexibles y sentido de responsabilidad. Por lo tanto, no hay respuestas correctas o incorrectas.",
+            "infoMessage_2": "La verificación de las respuestas sucede de manera anónima."
+
+        },
+        "loginPage": {
+            "loginInfoMessage": "Para poder usar el servicio necesitas acceder a tu cuenta.",
+            "loginInfoMessageMail": "Escribe solamente la parte inicial de tu correo electrónico sin @uni-potsdam.de",
+            "password": "Contraseña",
+            "username": "Nombre de usuario"
+        },
+        "logoutPage": {
+            "questionLogout": "¿Cerrar sesión?"
+        },
+        "menu": "Menú",
+        "pushMessagesPage": {
+            "noMessagesReceived": "No has recibido ninguna notificación push todavía."
+        },
+        "questionsPage": {
+            "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",
+            "hintNewQuestionsSoon": "¡Más encuestas vienen próximamente!",
+            "hintNoQuestionsAnswered": "You haven't answered any questions yet.",
+            "hintUnansweredQuestions": "¡No has contestado todas las encuestas todavía! Tómate un momento para contestar el resto de las preguntas.",
+            "feedbackCompleted": "Muchas gracias, has respondido a todas las preguntas."
+        },
+        "selectModulePage": {
+            "placeholderSearch": "Búsqueda",
+            "selectModuleMessage": "Aquí puedes ver los diferentes cursos para elegir:"
+        },
+        "settingsPage": {
+            "changeLanguage": "¿Te gustaría cambiar el idioma de la aplicación? Por favor elige:",
+            "language": "Idiomas"
+        },
+        "university": "Universidad de Potsdam"
+    },
+    "pageHeader": {
+        "appointmentsPage": "Citas",
+        "appointmentsPage_2": "Mas citas",
+        "contactsPage": "Contacto",
+        "disagreeTOSPage": "Terms of Service",
+        "feedbackPage": "Feedback",
+        "headerFeedback": "Enviar feedback",
+        "headerFinish": "Listo",
+        "headerQuestionCount": "Pregunta ",
+        "homePage": "Reflect.UP",
+        "homePage_alt": "Página principal",
+        "impressumPage": "Referencias",
+        "infoPage": "Info",
+        "loginPage": "Reflect.UP - Iniciar sesión",
+        "logoutPage": "Cerrar sesión",
+        "pushMessagesPage": "Mensaje",
+        "questionsPage": "Encuestas",
+        "selectModulePage": "Te damos la bienvenida",
+        "settingsPage": "Configuraciones"
+    },
+    "statusMessage": {
+        "error": {
+            "http401": "No autorizado",
+            "http404": "Página no encontrada",
+            "login": "Error al acceder.",
+            "loginCredentials": "El nombre de usuario y la contraseña ingresados no coinciden.",
+            "network": "Parece que hay un problema con la conexión de red de tu dispositivo. Comprueba tu conexión a Internet.",
+            "title": "Error",
+            "transmission": "Por favor intente de nuevo o contacte a los desarrolladores.",
+            "unknown": "Hay un problema desconocido, póngase en contacto con los desarrolladores."
+        },
+        "login": {
+            "noInput": "Por favor ingrese nombre de usuario y contraseña.",
+            "running": "Accediendo..."
+        },
+        "notification": {
+            "cancel": "¿Te gustaría cancelar la notificación para esta cita?",
+            "scheduled": "Vas a recibir una notificación.",
+            "pushMessage_1_0": "Tienes una cita el ",
+            "pushMessage_1_1": " a las ",
+            "pushMessage_1_2": " horas",
+            "pushMessage_2": "Tienes una cita mañana",
+            "pushMessage_3_0": "No olvides tu cita",
+            "pushMessage_3_1": ".",
+            "pushMessage_3_2": "."
+        },
+        "tos": {
+            "message": "Die Nutzung dieses Services erfolgt freiwillig. Die im Rahmen der Nutzung erhobenen Daten werden ausschließlich zur Bereitstellung des Services verwendet und nicht an Dritte weitergegeben. Die Verwendung der Daten erfolgt nach den Bestimmungen des brandenburgischen Datenschutzgesetzes.\nDiese Smartphone-App ist nur in Verbindung mit einer separaten, abgeschlossenen Kursumgebung der Lehr- und Lernplattform „Moodle“ nutzbar. Die innerhalb dieses Kurses angebotenen Features werden den Nutzern / Nutzerinnen mithilfe eines Web-Services in der App angezeigt und zur Bearbeitung freigegeben bzw. über einen Push-Service mitgeteilt. Sämtliche Datenübertragungen sind SSL (OpenSSL/1.0.1q) verschlüsselt. Jeder Zugriff und jede Bearbeitung von Daten wird ausschließlich innerhalb der Moodle-Kursumgebung ausgeführt. Weder in der App selbst, noch auf dem verwendeten Smartphone werden Daten gespeichert. Eine Anmeldung in der Moodle-Kursumgebung ohne Verwendung der App ist nicht möglich. Die Kursumgebung und die entsprechenden Features werden ausschließlich von den zuständigen Kursbetreuenden und Administratoren gestaltet und bedient.\nMithilfe der auf dem Push-Service-Provider gespeicherten Teilnehmergeräte-IDs können die Kursbetreuer(innen) Mitteilungen an den gesamten Kreis der Nutzer/innen senden. Diese Push-Mitteilungen beinhalten i.d.R. wichtige Ereignisse, Anregungen zur Reflexion und Hinweise.\nDer verwendete Webserver, der Uniqush-Push-Server und die Moodle-Umgebung sind Bestandteile der IT-Systemlandschaft des eLiS-Projekts an der Universität Potsdam. Sie werden gemäß den dort geltenden technischen und rechtlichen Standards sowie gemäß den geltenden Nutzungsbedingungen betrieben.\nDie vorab erhaltenen Informationen zum Forschungsprojekt, sowie die hier beschriebenen Informationen zur Nutzung und zum Datenschutz habe ich gelesen und erkläre mich damit einverstanden.",
+            "title": "Bestimmungen und Informationen zum Datenschutz"
+        }
+    }
+}

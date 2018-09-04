@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ "pageHeader.headerFeedback" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="submitted; then submittedTemplate; else notSubmittedTemplate">
+  </div>
+
+  <!-- displayed after feedback has been submitted -->
+  <ng-template #submittedTemplate>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content class="reminder">
+              {{ "label.feedbackPage.feedbackSend" | translate }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button full (click)="goHome()">
+            {{ "buttonLabel.finish" | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+  </ng-template>
+
+  <!-- displayed when no feedback has been submitted -->
+  <ng-template #notSubmittedTemplate>
+    <form (ngSubmit)="asyncSendFeedback(feedbackText)" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content class="reminder">
+                {{ "label.feedbackPage.infoMessage_1" | translate }}
+                <br>
+                <br>
+                {{ "label.feedbackPage.infoMessage_2" | translate }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding-right>
+        <ion-col>
+          <ion-item>
+            <ion-textarea #myInput id="myInput" (ionChange)="resize()"
+              type="text"
+              [placeholder]="'label.feedbackPage.textPlaceholder' | translate"
+              name="feedbackText"
+              [(ngModel)]="feedbackText"
+              required
+            >
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row padding horizontal>
+        <ion-col>
+          <button ion-button icon-start class="submit-btn" full type="submit">
+            <ion-icon name="checkmark" ></ion-icon>
+            {{ "buttonLabel.submit" | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ng-template>
+</ion-content>
+
+<ion-footer>
+    <tab-bar></tab-bar>
+</ion-footer>

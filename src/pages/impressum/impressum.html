@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "pageHeader.impressumPage" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div [innerHTML]="processMoodleContents(impressum)" padding></div>
+  <ion-card tappable (click)="toggleTOS()">
+    <ion-item text-wrap>
+      <ion-icon *ngIf="!showTOS" item-left name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="showTOS" item-left name="arrow-dropdown"></ion-icon>
+      {{ "statusMessage.tos.title" | translate }}
+    </ion-item>
+    <ion-card-content *ngIf="showTOS" class="reminder">
+      {{ "statusMessage.tos.message" | translate }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

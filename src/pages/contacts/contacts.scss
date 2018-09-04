@@ -1,0 +1,25 @@
+page-contacts {
+    .groupLevel1 {
+        background-color: #f4f4f4;
+        border-radius: 0px;
+    }
+
+    .item[no-lines]:nth-child(odd)  {
+        background-color:color($colors, secondary)
+    }
+    
+    .item[no-lines]  {
+        background-color:color($colors, secondary)
+    }
+    
+
+    .childitem {
+
+        padding-left: 55px;
+    
+    }
+
+    .item-ios p {
+        color:color($colors, dark);
+    }
+}

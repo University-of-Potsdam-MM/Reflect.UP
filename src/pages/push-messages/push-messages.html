@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ "pageHeader.pushMessagesPage" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngIf="noPushMessages">
+    <ion-col>
+      <ion-card>
+        <ion-card-content text-wrap class="reminder">
+          {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <div *ngFor="let mess of pushList; let i = index">
+    <ion-row *ngIf="!noPushMessages">
+      <ion-col>
+        <ion-card>
+          <ion-card-header text-wrap>
+            <div *ngIf="!mess.pushTime || timeStampArray[i] == 'Invalid date'">{{ mess.pushTitle }}</div>
+            <div *ngIf="mess.pushTime && timeStampArray[i] != 'Invalid date'">{{ mess.pushTitle }} – {{ timeStampArray[i] }} {{ "label.appointmentsPage.time" | translate }}</div>
+          </ion-card-header>
+          <ion-card-content text-wrap class="reminder">
+            {{ mess.pushMessage }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <tab-bar></tab-bar>
+</ion-footer>

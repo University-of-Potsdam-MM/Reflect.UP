@@ -1,0 +1,151 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+// Add UP Font
+// --------------------------------------------------*/
+/* Source Sans Pro Regular */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Sans Pro Regular"), local("Source-Sans-Pro-Regular") format("truetype");
+}
+
+/* Source Sans Pro Light */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Source Sans Pro Light"), local("Source-Sans-Pro-Light") format("truetype");
+}
+
+/* Source Sans Pro Italic 
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  src:local("Source Sans Pro Italic"), local("Source-Sans-Pro-Italic"), url("../assets/fonts/SourceSansPro-Italic.ttf") format("truetype");
+} */
+
+/* Source Sans Pro Bold */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Source Sans Pro Bold"), local("Sourc-Sans-Pro-Bold") format("truetype");
+}
+
+// Add UP CD Items
+// --------------------------------------------------*/
+
+.header::after {
+    content: "";
+    position: absolute;
+    width: 33%;
+    height: 10px;
+    background-color:color($colors, primary);
+    bottom: -10px;
+}
+
+.card .card-content.reminder {
+  padding: 10px !important;
+  border: 4px solid color($colors, secondary) !important;
+  margin-top:0;
+}
+
+// Change Background Colors and Box Shadows
+// --------------------------------------------------*/
+
+ion-header {
+	background-color:  color($colors, upgrey)!important;
+  box-shadow: 0 0 0 #000;
+  
+  .toolbar-background {
+    background-color: color($colors, upgrey)!important;
+  }
+}
+
+ion-footer {
+	background-color:  color($colors, upwhite)!important;
+  box-shadow: 0 0 0 #000;
+  
+  .toolbar-background {
+    background-color: color($colors, upwhite)!important;
+  }
+}
+
+/*reset default theme box shadows and border radius */
+
+.button-md, button, .button-ios {
+  -webkit-box-shadow: 0 0 0 0 #fff;
+  box-shadow:  0 0 0 0 #fff;
+  border-radius:0;
+}
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+	background-image:none;
+}
+
+.item-md {
+	background-color:transparent;
+}
+
+.item-inner .list {
+	border-top:1px solid color($colors, upgrey);
+}
+
+.alert-ios .alert-wrapper {
+  border-radius: 0;
+}
+
+.popover-ios .popover-content,
+.popover .popover-content,
+.popover-ios .popover-content {
+  border-radius:0;
+}
+
+// Change Font Colors
+// --------------------------------------------------*/
+.toolbar-title {
+	color:color($colors, primary);
+	font-family: "Source Sans Pro", arial, sans-serif;
+}
+
+.content, .item {
+	color:#353535;
+}
+
+.item h3, .item h4, .item h5, .item h6 {
+	color:color($colors, primary);
+	font-weight:bold;
+}
+
+// Adjust Layout Paddings and Margins
+// --------------------------------------------------*/
+
+.scroll-content {
+	padding-top:10px;
+}
+
+// reset rounded corners
+// --------------------------------------------------*/
+.button-md, button {
+  border-radius: 0;
+}
+
+.card, .card-md, .card-ios {
+  box-shadow: none!important;
+}

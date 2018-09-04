@@ -1,0 +1,123 @@
+.card, .card-md, .card-ios {
+    border-width:0;
+    box-shadow: 0 0 0 #000;
+    margin: 10px auto;
+    
+    .card-header-md, .card-header {
+        padding: 0px 10px 0px 0px;
+    }
+
+    h2 {
+        font-weight: bold;
+        color:color($colors, primary);
+        margin:0;
+        line-height: 2.5rem;
+
+    }
+
+    .card-content, .card-content-md {
+        padding: 0px 10px 0px 0px;
+        border-left: 1px solid color($colors, upgrey);
+        border-right: 1px solid color($colors, upgrey);
+        border-bottom: 1px solid color($colors, upgrey);
+        padding-right: 10px;       
+        width: calc(100% - 10px);
+        padding: .2em;
+        margin-top: -2px;
+
+        p {
+            color:color($colors, primary);
+        }
+
+        div {
+            line-height: 20px;
+        }
+
+        .btn-group-appointment {
+            padding:0;
+
+            .col {
+                padding:0;
+            }
+
+            button {
+                padding-left:0;
+            }
+        }
+    }
+
+    .date {
+        background-color: color($colors, upligthblue);
+        margin-top: -2px;
+        padding-left: .2em;
+        position: relative;
+        padding-top: .4em;
+        padding-bottom: .4em;
+
+        p {
+            color:color($colors, primary);
+            padding-left:30px;
+            margin:0;
+        }
+ 
+    }
+    .date:before {
+        content: "\f403";
+        font-family: "Ionicons";
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 5px;
+        bottom: 0;
+        right: 0;
+        height: 20px;
+        color: color($colors, primary);
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        text-rendering: auto;
+        line-height: 1;
+        font-size: 18px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.hiddenCard {
+
+    .card, card-md {
+
+        .date:before {
+            content: "\f17a";
+            font-family: "Ionicons";
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 5px;
+            bottom: 0;
+            right: 0;
+            height: 20px;
+            color: color($colors, primary);
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .date {
+            background-color:color($colors, upgrey);
+            opacity:.5;
+        }
+
+        .card-content p {
+            opacity:.5;
+        }
+    }
+
+}

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ "pageHeader.questionsPage" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-top>
+    <div align="center" *ngIf="!isLoaded" padding>
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <ion-row *ngIf="isLoaded && noQuestions">
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="reminder">
+            {{ "label.questionsPage.hintNewQuestionsSoon" | translate }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="isLoaded">
+      <question *ngFor="let quest of questionList; let i = index" [questions]="quest"></question>
+    </div>
+
+    <div *ngIf="isLoaded && !noCompletedQuestions" padding-top padding-horizontal>
+      <button ion-button icon-left color="secondary" full (click)="toggleCompleted()" text-wrap>
+        <ion-icon item-left *ngIf="!showCompletedQuestions" name="arrow-dropright"></ion-icon>
+        <ion-icon item-left *ngIf="showCompletedQuestions" name="arrow-dropdown"></ion-icon>
+        <div align="center">{{ "buttonLabel.showCompletedQuestions" | translate }}</div>
+      </button>
+    </div>
+
+    <div *ngIf="showCompletedQuestions">
+      <div *ngFor="let quest of completedQuestionList; let i = index">
+        <question [questions]="quest"></question>
+      </div>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+    <tab-bar></tab-bar>
+</ion-footer>
