@@ -26,13 +26,11 @@
       <question *ngFor="let quest of questionList; let i = index" [questions]="quest"></question>
     </div>
 
-    <div *ngIf="isLoaded && !noCompletedQuestions" padding-top padding-horizontal>
-      <button ion-button icon-left color="secondary" full (click)="toggleCompleted()" text-wrap>
-        <ion-icon item-left *ngIf="!showCompletedQuestions" name="arrow-dropright"></ion-icon>
-        <ion-icon item-left *ngIf="showCompletedQuestions" name="arrow-dropdown"></ion-icon>
-        <div align="center">{{ "buttonLabel.showCompletedQuestions" | translate }}</div>
-      </button>
-    </div>
+    <button *ngIf="isLoaded" [disabled]="noCompletedQuestions" no-lines ion-item detail-none padding-top padding-horizontal (click)="toggleCompleted()" text-wrap>
+      <ion-icon item-left *ngIf="!showCompletedQuestions" name="arrow-dropright"></ion-icon>
+      <ion-icon item-left *ngIf="showCompletedQuestions" name="arrow-dropdown"></ion-icon>
+      <div>{{ "buttonLabel.showCompletedQuestions" | translate }}</div>
+    </button>
 
     <div *ngIf="showCompletedQuestions">
       <div *ngFor="let quest of completedQuestionList; let i = index">
