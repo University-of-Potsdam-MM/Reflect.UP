@@ -45,7 +45,7 @@
   </div>
 
   <div *ngIf="isLoaded && showAll">
-    <button no-lines ion-item [disabled]="!isEventToday" (click)="showEventToday = !showEventToday">
+    <button no-lines ion-item detail-none [disabled]="!isEventToday" (click)="showEventToday = !showEventToday">
       <div *ngIf="!isEventToday">{{ "label.appointmentsPage.today" | translate }} ({{ "label.appointmentsPage.noAppointmentsAvailable" | translate }})</div>
       <div *ngIf="isEventToday">{{ "label.appointmentsPage.today" | translate }}</div>
       <ion-icon *ngIf="showEventToday && isEventToday" item-left name="arrow-dropdown"></ion-icon>
@@ -59,7 +59,7 @@
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
     </div>
-    <button no-lines ion-item [disabled]="!isEventTomorrow" (click)="showEventTomorrow = !showEventTomorrow">
+    <button no-lines ion-item detail-none [disabled]="!isEventTomorrow" (click)="showEventTomorrow = !showEventTomorrow">
       <div *ngIf="!isEventTomorrow">{{ "label.appointmentsPage.tomorrow" | translate }} ({{ "label.appointmentsPage.noAppointmentsAvailable" | translate }})</div>
       <div *ngIf="isEventTomorrow">{{ "label.appointmentsPage.tomorrow" | translate }}</div>
       <ion-icon *ngIf="showEventTomorrow && isEventTomorrow" item-left name="arrow-dropdown"></ion-icon>
@@ -73,7 +73,7 @@
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
     </div>
-    <button no-lines ion-item [disabled]="!isEventThisWeek" (click)="showEventThisWeek = !showEventThisWeek">
+    <button no-lines ion-item detail-none [disabled]="!isEventThisWeek" (click)="showEventThisWeek = !showEventThisWeek">
       <div *ngIf="!isEventThisWeek">{{ "label.appointmentsPage.thisWeek" | translate }} ({{ "label.appointmentsPage.noAppointmentsAvailable" | translate }})</div>
       <div *ngIf="isEventThisWeek">{{ "label.appointmentsPage.thisWeek" | translate }}</div>
       <ion-icon *ngIf="showEventThisWeek && isEventThisWeek" item-left name="arrow-dropdown"></ion-icon>
@@ -87,7 +87,7 @@
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
     </div>
-    <button no-lines ion-item [disabled]="!isEventLater" (click)="showEventLater = !showEventLater">
+    <button no-lines ion-item detail-none [disabled]="!isEventLater" (click)="showEventLater = !showEventLater">
       <div *ngIf="!isEventLater">{{ "label.appointmentsPage.later" | translate }} ({{ "label.appointmentsPage.noAppointmentsAvailable" | translate }})</div>
       <div *ngIf="isEventLater">{{ "label.appointmentsPage.later" | translate }}</div>
       <ion-icon *ngIf="showEventLater && isEventLater" item-left name="arrow-dropdown"></ion-icon>
