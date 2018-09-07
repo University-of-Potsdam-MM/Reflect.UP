@@ -1,61 +1,37 @@
-# ANDROID / ECLIPSE
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
 
-# built application files
-*.apk
-*.ap_
-.cordova
+*~
+*.sw[mnpcod]
+*.log
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+.vscode/
+npm-debug.log*
 
-# files for the dex VM
-*.dex
+node_modules/
+.idea/
+.sourcemaps/
+.sass-cache/
+.tmp/
+.versions/
+coverage/
+dist/
+node_modules/
+tmp/
+temp/
+hooks/
+platforms/
+plugins/
+plugins/android.json
+plugins/ios.json
+www/
+$RECYCLE.BIN/
 
-# Java class files
-*.class
-
-# generated files - android project subfolder
-**/platforms/android/
-**/platforms/ios/
-**/platforms/browser/
-**/node_modules/
-
-
-# generated files
-bin/
-gen/
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# IOS / Xcode
-build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-*.xcworkspace
-!default.xcworkspace
-xcuserdata
-profile
-*.moved-aside
-IOS/www/
-
-# OSX
 .DS_Store
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-src/app/nbproject/private/private.properties
-src/app/nbproject/project.properties
-src/app/nbproject/project.xml
-plugins/**
-
-# CSS Files
-**/www/css/index.css
-**/www/css/up-style.css
+Thumbs.db
+UserInterfaceState.xcuserstate
+res
