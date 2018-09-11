@@ -184,7 +184,13 @@ export class QuestionDetailPage {
     return result;
   }
 
-  goBack(i) {
+  goBack() {
+    var i,j;
+    for (j = 0; j < this.isPageActive.length; j++) {
+      if (this.isPageActive[j]) {
+        i = j;
+      }
+    }
     if (this.questionList[i].dependitem != "0") {
       if (this.questionList[i].type == "textarea") {
         this.textBoxValue[i] = "";
@@ -216,7 +222,13 @@ export class QuestionDetailPage {
     this.isPageActive[this.latestPage] = true;
   }
 
-  goForward(i) {
+  goForward() {
+    var i,j;
+    for (j = 0; j < this.isPageActive.length; j++) {
+      if (this.isPageActive[j]) {
+        i = j;
+      }
+    }
     this.isAnswerSelected(i);
     if (this.answerSelected[i] || this.isCompleted) {
       this.isPageActive[i] = false;
