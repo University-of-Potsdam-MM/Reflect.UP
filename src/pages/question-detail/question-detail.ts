@@ -25,7 +25,7 @@ export class QuestionDetailPage {
   public feedbackID;
   public feedbackMessage;
   public isCompleted;
-  public questionList: QuestionsObject[];
+  public questionList: QuestionsObject[] = [];
   public answerList: AnswerObject[];
   public choicesList:string[][] = [];
   public isCheckbox:boolean[] = [];
@@ -36,7 +36,14 @@ export class QuestionDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService, public questionprov: QuestionProvider) {
     this.feedbackID = navParams.get('id');
-    this.questionList = navParams.get('questions');
+
+    var tmpQuestionList = navParams.get('questions');
+    var i;
+    for (i = 0; i < tmpQuestionList.length; i++) {
+      if (tmpQuestionList[i].type == "multichoice" || tmpQuestionList[i].type == "textarea") {
+        this.questionList.push(tmpQuestionList[i]);
+      }
+    }
     this.feedbackMessage = this.htmlDecode(navParams.get('message'));
     this.isCompleted = navParams.get('isCompleted');
     this.isPageActive[0] = true;

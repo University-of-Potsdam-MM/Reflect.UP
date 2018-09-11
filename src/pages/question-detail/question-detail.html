@@ -31,7 +31,7 @@
         </div>
       </ng-template>
 
-      <ng-template #textarea>
+      <ng-template *ngIf="quest.type === 'textarea'" #textarea>
         <ion-list>
           <textarea id="inputText" placeholder="Text..." rows="8" ngDefaultControl [(ngModel)]="textBoxValue[i]" name="textBoxValue" [disabled]="isCompleted"></textarea>
         </ion-list>
