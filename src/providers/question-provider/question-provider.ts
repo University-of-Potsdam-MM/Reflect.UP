@@ -23,32 +23,28 @@ export class QuestionProvider {
   }
 
   private checkIfReady() {
-    this.readyObservable = Observable.create(
-      observer => {
-        this.storage.get("questionParameterLoaded").then(
-          loaded => {
-            if (loaded) {
-              observer.next(true);
-            } else {
-              observer.next(false);
-            }
+    this.readyObservable = Observable.create(observer => {
+      this.storage.get("questionParameterLoaded").then(
+        loaded => {
+          if (loaded) {
+            observer.next(true);
+          } else {
+            observer.next(false);
           }
-        )
-      }
-    )
+        }
+      )
+    });
   }
 
   public loadParams() {
-    this.storage.get(this.configStorageKey).then(
-      (config:IModuleConfig) => {
-        if (config) {
-          this.url = config.moodleServiceEndpoint;
-          this.course_id = config.courseID;
-          this.accessToken = config.authorization.credentials.accessToken;
-          this.storage.set("questionParameterLoaded", true);
-        }
+    this.storage.get(this.configStorageKey).then((config:IModuleConfig) => {
+      if (config) {
+        this.url = config.moodleServiceEndpoint;
+        this.course_id = config.courseID;
+        this.accessToken = config.authorization.credentials.accessToken;
+        this.storage.set("questionParameterLoaded", true);
       }
-    );
+    });
     this.storage.get("session").then((token) => {
       if (token) {
         this.wstoken = token.token;
@@ -112,9 +108,8 @@ export class QuestionProvider {
     params = params.append("courseID",             this.course_id);
 
     this.http.get(this.url, {headers:headers, params:params}).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
     });
-
  }
 
 }

@@ -10,6 +10,7 @@ import { ConnectionProvider } from '../providers/connection-provider/connection-
 import { PageInterface } from '../lib/interfaces';
 import { IModuleConfig } from '../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
+import { CacheService } from "ionic-cache";
 
 /* ~~~ Pages ~~~ */
 import { HomePage } from '../pages/home/home';
@@ -40,7 +41,8 @@ export class MyApp {
       private connection: ConnectionProvider,
       private storage: Storage,
       private pushProv: PushProvider,
-      private keyboard: Keyboard) {
+      private keyboard: Keyboard,
+      private cache: CacheService) {
     this.initApp();
   }
 
@@ -55,6 +57,8 @@ export class MyApp {
     await this.initMenu();
 
     this.platform.ready().then(() => {
+      this.cache.setDefaultTTL(60 * 60 * 24);     // 24h caching
+      this.cache.setOfflineInvalidate(false);     // keep cached results when device is offline
       if (this.platform.is("cordova")) {
         this.splashScreen.hide();
         this.statusBar.styleDefault();

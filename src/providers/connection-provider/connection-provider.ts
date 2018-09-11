@@ -25,29 +25,27 @@ export class ConnectionProvider {
    * @return Observable<boolean>
    */
   public checkOnlinePromise():Promise<boolean> {
-    return new Promise<boolean>(
-      (resolve, reject) => {
-        if (this.platform.is("cordova")) {
-          switch(this.network.type) {
-            case "unknown": {
-              // there obviously is 'some' network, so I guess it's okay
-              resolve(true);
-              break;
-            };
-            case "none": {
-              // there is no network
-              resolve(false);
-              break;
-            };
-            default: {
-              // there is some defined type of network
-              resolve(true);
-              break;
-            }
+    return new Promise<boolean>((resolve, reject) => {
+      if (this.platform.is("cordova")) {
+        switch(this.network.type) {
+          case "unknown": {
+            // there obviously is 'some' network, so I guess it's okay
+            resolve(true);
+            break;
+          };
+          case "none": {
+            // there is no network
+            resolve(false);
+            break;
+          };
+          default: {
+            // there is some defined type of network
+            resolve(true);
+            break;
           }
-        } else { resolve(true); }
-      }
-    );
+        }
+      } else { resolve(true); }
+    });
   }
 
   /**
@@ -60,29 +58,27 @@ export class ConnectionProvider {
    * @return Observable<boolean>
    */
   public checkOnline():Observable<boolean> {
-    return Observable.create(
-      observer => {
-        if (this.platform.is("cordova")) {
-          switch(this.network.type) {
-            case "unknown": {
-              // there obviously is 'some' network, so I guess it's okay
-              observer.next(true);
-              break;
-            };
-            case "none": {
-              // there is no network
-              observer.next(false);
-              break;
-            };
-            default: {
-              // there is some defined type of network
-              observer.next(true);
-              break;
-            }
+    return Observable.create(observer => {
+      if (this.platform.is("cordova")) {
+        switch(this.network.type) {
+          case "unknown": {
+            // there obviously is 'some' network, so I guess it's okay
+            observer.next(true);
+            break;
+          };
+          case "none": {
+            // there is no network
+            observer.next(false);
+            break;
+          };
+          default: {
+            // there is some defined type of network
+            observer.next(true);
+            break;
           }
-        } else { observer.next(true); }
-      }
-    );
+        }
+      } else { observer.next(true); }
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { CacheService } from "ionic-cache";
 
 @Injectable()
 export class EventProvider {
@@ -17,39 +18,33 @@ export class EventProvider {
   private accessToken:string;
   public readyObservable:Observable<boolean>;
 
-  constructor(private http: HttpClient, public storage: Storage) {
+  constructor(private http: HttpClient, public storage: Storage, private cache: CacheService) {
     this.checkIfReady();
     this.loadParams();
   }
 
   private checkIfReady() {
-    this.readyObservable = Observable.create(
-      observer => {
-        this.storage.get("eventParameterLoaded").then(
-          loaded => {
-            if (loaded) {
-              observer.next(true);
-            } else {
-              observer.next(false);
-            }
-          }
-        )
-      }
-    )
+    this.readyObservable = Observable.create(observer => {
+      this.storage.get("eventParameterLoaded").then(loaded => {
+        if (loaded) {
+          observer.next(true);
+        } else {
+          observer.next(false);
+        }
+      });
+    });
   }
 
   public loadParams() {
-    this.storage.get(this.configStorageKey).then(
-      (config:IModuleConfig) => {
-        if (config) {
-          this.url = config.moodleServiceEndpoint;
-          this.course_id = config.courseID;
-          this.accessToken = config.authorization.credentials.accessToken;
-          this.storage.set("eventParameterLoaded", true);
-        }
+    this.storage.get(this.configStorageKey).then((config:IModuleConfig) => {
+      if (config) {
+        this.url = config.moodleServiceEndpoint;
+        this.course_id = config.courseID;
+        this.accessToken = config.authorization.credentials.accessToken;
+        this.storage.set("eventParameterLoaded", true);
       }
-    );
-    this.storage.get("session").then((token) => {
+    });
+    this.storage.get("session").then(token => {
       if (token) {
         this.wstoken = token.token;
       }
@@ -76,7 +71,9 @@ export class EventProvider {
     let headers:HttpHeaders = new HttpHeaders()
       .append("Authorization",      this.accessToken);
 
-    return this.http.get<AppointConfig>(this.url, {headers:headers,params:params});
+    let request = this.http.get<AppointConfig>(this.url, {headers:headers,params:params});
+
+    return this.cache.loadFromObservable("cachedEvents", request);
 
   }
 
