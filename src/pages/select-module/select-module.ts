@@ -9,6 +9,7 @@ import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { ConnectionProvider } from '../../providers/connection-provider/connection-provider';
+import { CacheService } from 'ionic-cache';
 
 /**
  * SelectModulePage
@@ -39,7 +40,8 @@ export class SelectModulePage {
     private storage: Storage,
     private alertCtrl: AlertController,
     private menu: MenuController,
-    private popoverCtrl: PopoverController) {
+    private popoverCtrl: PopoverController,
+    private cache: CacheService) {
       this.menu.enable(false,"sideMenu");
   }
 
@@ -87,7 +89,9 @@ export class SelectModulePage {
 
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList) => {
+        let request = this.http.get<IModuleConfig[]>(this.config_url);
+
+        this.cache.loadFromObservable("cachedConfig", request).subscribe((configList) => {
           for (let config of configList) {
             this.moduleConfigList.push(
               {
@@ -142,7 +146,9 @@ export class SelectModulePage {
 
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList) => {
+        let request = this.http.get<IModuleConfig[]>(this.config_url);
+
+        this.cache.loadFromObservable("cachedConfig", request).subscribe((configList) => {
           for (let config of configList) {
             if (config.id == index) {
               // store found config in storage

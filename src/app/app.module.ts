@@ -74,7 +74,7 @@ import { QuestionDetailPage } from './../pages/question-detail/question-detail';
         deps: [HttpClient]
       }
     }),
-    CacheModule.forRoot({ keyPrefix: 'myAppCache' })
+    CacheModule.forRoot({ keyPrefix: 'myAppCache-' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
