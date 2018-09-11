@@ -9,4 +9,9 @@ page-questions {
         text-transform:none;
     }
 
+    .completedQuestion {
+        background-color: color($colors, secondary);
+        border-radius: 0px;
+    }
+
 }
