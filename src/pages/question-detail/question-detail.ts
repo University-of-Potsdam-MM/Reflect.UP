@@ -356,8 +356,8 @@ export class QuestionDetailPage {
 
   backToRoot() {
     this.sendAnswers();
-    this.navCtrl.setRoot(HomePage, {fromSideMenu: true});
-    this.navCtrl.push(QuestionsPage);
+    this.navCtrl.setRoot(HomePage, { fromSideMenu: true });
+    this.navCtrl.push(QuestionsPage, { forceReload: true });
   }
 
   htmlDecode(value) {
@@ -394,7 +394,6 @@ export class QuestionDetailPage {
           url = "http://" + url.replace('www.','');
         }
         return url;
-        // return '<a href="' + url + '">' + url + '</a>';
       });
     }
   }

@@ -25,63 +25,64 @@ export class QuestionsPage {
               public translate: TranslateService,
               public alertCtrl: AlertController,
               public questions: QuestionProvider)
-  {
-    this.isLoaded = false;
+  { }
+
+  ngOnInit() {
+    var forceReload;
+    if (this.navParams.get("forceReload")) {
+      forceReload = true;
+    } else { forceReload = false; }
+    this.loadQuestions(forceReload);
   }
 
-  public ngOnInit() {
-
+  loadQuestions(forceReload) {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
         this.isLoaded = false;
         this.questions.loadParams();
 
-        this.questions.readyObservable.subscribe(
-          ready => {
-            if (ready) {
-              this.questions.getQuestions().subscribe((questionJson:QuestionConfig) => {
-                if (questionJson.feedbacks) {
-                  this.questionList = questionJson.feedbacks;
+        this.questions.readyObservable.subscribe(ready => {
+          if (ready) {
+            this.questions.getQuestions(forceReload).subscribe((questionJson:QuestionConfig) => {
+              if (questionJson.feedbacks) {
+                this.questionList = questionJson.feedbacks;
 
-                  if (this.questionList.length < 1) {
-                    this.noQuestions = true;
-                  }
-                } else {
+                if (this.questionList.length < 1) {
                   this.noQuestions = true;
-                  console.log("error fetching feedbacks from server.");
                 }
+              } else {
+                this.noQuestions = true;
+                console.log("error fetching feedbacks from server.");
+              }
+             });
 
-              })
-
-              this.questions.getAnsweredQuestions().subscribe((questionJson:QuestionConfig) => {
-                if (questionJson.feedbacks) {
-                  for (let feedback of questionJson.feedbacks) {
-                    if (feedback.answers.length > 0) {
-                      this.completedQuestionList.push(feedback);
-                    }
+            this.questions.getAnsweredQuestions(forceReload).subscribe((questionJson:QuestionConfig) => {
+              if (questionJson.feedbacks) {
+                for (let feedback of questionJson.feedbacks) {
+                  if (feedback.answers.length > 0) {
+                    this.completedQuestionList.push(feedback);
                   }
+                }
   
-                  if (this.completedQuestionList.length > 0) {
-                    this.noCompletedQuestions = false;
-                  }
-                } else {
-                  console.log("error fetching completed feedbacks from server.");
+                if (this.completedQuestionList.length > 0) {
+                  this.noCompletedQuestions = false;
                 }
+              } else {
+                console.log("error fetching completed feedbacks from server.");
+              }
 
-                this.isLoaded = true;
-              })
-
-            }
+              this.isLoaded = true;
+            });
           }
-        )
+        });
       } else {
         // there is no network connection
         this.showAlert("statusMessage.error.network");
       }
-    })
+    });
   }
 
-  private showAlert(alertTextKey:string): void {
+  showAlert(alertTextKey:string): void {
     let alert = this.alertCtrl.create({
       title: this.translate.instant("statusMessage.error.title"),
       subTitle: this.translate.instant(alertTextKey),

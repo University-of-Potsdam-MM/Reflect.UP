@@ -4,6 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
+import { CacheService } from "ionic-cache";
 
 @Injectable()
 export class QuestionProvider {
@@ -16,8 +17,9 @@ export class QuestionProvider {
   private accessToken:string;
   public readyObservable:Observable<boolean>;
 
-  constructor(public http: HttpClient,
-              public storage: Storage) {
+  constructor(private http: HttpClient,
+              private storage: Storage,
+              private cache: CacheService) {
     this.checkIfReady();
     this.loadParams();
   }
@@ -52,22 +54,25 @@ export class QuestionProvider {
     });
   }
 
-  public getQuestions(): Observable<QuestionConfig> {
+  public getQuestions(forceReload?): Observable<QuestionConfig> {
 
     let params:HttpParams = new HttpParams()
       .append("wstoken",              this.wstoken)
       .append("wsfunction",           "local_reflect_get_feedbacks")
       .append("moodlewsrestformat",   "json")
       .append("courseID",           this.course_id);
-      // .append("courseID",              "UPR-1718-T"); // Test-Kurs
 
     let headers:HttpHeaders = new HttpHeaders()
       .append("Authorization",        this.accessToken);
 
-    return this.http.get<QuestionConfig>(this.url, {headers:headers,params:params});
+    let request = this.http.get<QuestionConfig>(this.url, {headers:headers,params:params});
+
+    if (forceReload) { this.cache.removeItem("cachedQuestions"); }
+
+    return this.cache.loadFromObservable("cachedQuestions", request);
   }
 
-  public getAnsweredQuestions(): Observable<QuestionConfig> {
+  public getAnsweredQuestions(forceReload?): Observable<QuestionConfig> {
 
     let params:HttpParams = new HttpParams()
       .append("wstoken",              this.wstoken)
@@ -78,7 +83,11 @@ export class QuestionProvider {
     let headers:HttpHeaders = new HttpHeaders()
       .append("Authorization",        this.accessToken);
 
-    return this.http.get<QuestionConfig>(this.url, {headers:headers,params:params});
+    let request = this.http.get<QuestionConfig>(this.url, {headers:headers,params:params});
+
+    if (forceReload) { this.cache.removeItem("cachedCompletedQuestions"); }
+
+    return this.cache.loadFromObservable("cachedCompletedQuestions", request);
   }
 
  // resultID = ID der Feedback Kategorie
@@ -104,11 +113,10 @@ export class QuestionProvider {
       params = params.append(answerString,   resultAnswersArray[i][1]); // 1 = answer
     }
 
-    // params = params.append("courseID",             "UPR-1718-T");
     params = params.append("courseID",             this.course_id);
 
     this.http.get(this.url, {headers:headers, params:params}).subscribe((data) => {
-      // console.log(data);
+      console.log(data);
     });
  }
 
