@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConnectionProvider } from '../../providers/connection-provider/connection-provider';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { IModuleConfig } from '../../lib/interfaces/config';
 
 @IonicPage()
 @Component({
@@ -24,7 +26,8 @@ export class QuestionsPage {
               public connection: ConnectionProvider,
               public translate: TranslateService,
               public alertCtrl: AlertController,
-              public questions: QuestionProvider)
+              public questions: QuestionProvider,
+              private storage: Storage)
   { }
 
   ngOnInit() {
@@ -32,48 +35,47 @@ export class QuestionsPage {
     if (this.navParams.get("forceReload")) {
       forceReload = true;
     } else { forceReload = false; }
-    this.loadQuestions(forceReload);
+    this.storage.get("config").then(config => {
+      this.storage.get("session").then(session => {
+        this.loadQuestions(config, session.token, forceReload);
+      });
+    });
   }
 
-  loadQuestions(forceReload) {
+  loadQuestions(config:IModuleConfig, token, forceReload) {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
         this.isLoaded = false;
-        this.questions.loadParams();
 
-        this.questions.readyObservable.subscribe(ready => {
-          if (ready) {
-            this.questions.getQuestions(forceReload).subscribe((questionJson:QuestionConfig) => {
-              if (questionJson.feedbacks) {
-                this.questionList = questionJson.feedbacks;
+        this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
+          if (questionJson.feedbacks) {
+            this.questionList = questionJson.feedbacks;
 
-                if (this.questionList.length < 1) {
-                  this.noQuestions = true;
-                }
-              } else {
-                this.noQuestions = true;
-                console.log("error fetching feedbacks from server.");
-              }
-             });
-
-            this.questions.getAnsweredQuestions(forceReload).subscribe((questionJson:QuestionConfig) => {
-              if (questionJson.feedbacks) {
-                for (let feedback of questionJson.feedbacks) {
-                  if (feedback.answers.length > 0) {
-                    this.completedQuestionList.push(feedback);
-                  }
-                }
-  
-                if (this.completedQuestionList.length > 0) {
-                  this.noCompletedQuestions = false;
-                }
-              } else {
-                console.log("error fetching completed feedbacks from server.");
-              }
-
-              this.isLoaded = true;
-            });
+            if (this.questionList.length < 1) {
+              this.noQuestions = true;
+            }
+          } else {
+            this.noQuestions = true;
+            console.log("error fetching feedbacks from server.");
           }
+        });
+
+        this.questions.getAnsweredQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
+          if (questionJson.feedbacks) {
+            for (let feedback of questionJson.feedbacks) {
+              if (feedback.answers.length > 0) {
+                this.completedQuestionList.push(feedback);
+              }
+            }
+
+            if (this.completedQuestionList.length > 0) {
+              this.noCompletedQuestions = false;
+            }
+          } else {
+            console.log("error fetching completed feedbacks from server.");
+          }
+
+          this.isLoaded = true;
         });
       } else {
         // there is no network connection

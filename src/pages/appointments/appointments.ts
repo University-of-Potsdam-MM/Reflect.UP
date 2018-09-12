@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Push } from '@ionic-native/push';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import * as moment from 'moment';
+import { IModuleConfig } from '../../lib/interfaces/config';
 
 @IonicPage()
 @Component({
@@ -98,11 +99,9 @@ export class AppointmentsPage {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
         this.isLoaded = false;
-        this.appointm.loadParams();
-
-        this.appointm.readyObservable.subscribe(ready => {
-          if (ready) {
-            this.appointm.getAppointments().subscribe((appointConf:AppointConfig) => {
+        this.storage.get("config").then((config:IModuleConfig) => {
+          this.storage.get("session").then(session => {
+            this.appointm.getAppointments(config, session.token).subscribe((appointConf:AppointConfig) => {
               if (appointConf.events) {
                 this.storage.get("hiddenCards").then((array:string[]) => {
                   if (array) {
@@ -160,7 +159,7 @@ export class AppointmentsPage {
                 this.isLoaded = true;
               }
             });
-          }
+          });
         });
       } else {
         // there is no network connection
