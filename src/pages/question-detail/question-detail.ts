@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -34,7 +35,11 @@ export class QuestionDetailPage {
   public latestPage = 0;
   public questionNavIndex = 1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService, public questionprov: QuestionProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private translate: TranslateService,
+              private questionProv: QuestionProvider,
+              private storage: Storage) {
     this.feedbackID = navParams.get('id');
 
     var tmpQuestionList = navParams.get('questions');
@@ -326,7 +331,11 @@ export class QuestionDetailPage {
       }
     }
 
-    this.questionprov.sendAnswers(this.feedbackID,resultArray);
+    this.storage.get("config").then(config => {
+      this.storage.get("session").then(session => {
+        this.questionProv.sendAnswers(this.feedbackID, resultArray, config, session.token);
+      });
+    });
   }
 
   isAnswerSelected(i) {
