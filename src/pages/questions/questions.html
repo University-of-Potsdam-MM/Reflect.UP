@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content padding-top>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
+
     <div align="center" *ngIf="!isLoaded" padding>
         <ion-spinner></ion-spinner>
     </div>

@@ -12,7 +12,7 @@ export class EventProvider {
   constructor(private http: HttpClient, private cache: CacheService) 
   { }
 
-  public getAppointments(config:IModuleConfig, token): Observable<AppointConfig> {
+  public getAppointments(config:IModuleConfig, token, forceReload?): Observable<AppointConfig> {
 
     var url = config.moodleServiceEndpoint;
     var courseID = config.courseID;
@@ -38,6 +38,8 @@ export class EventProvider {
       .append("Authorization", accessToken);
 
     let request = this.http.get<AppointConfig>(url, {headers:headers,params:params});
+
+    if (forceReload) { this.cache.removeItem("cachedEvents"); }
 
     return this.cache.loadFromObservable("cachedEvents", request);
 

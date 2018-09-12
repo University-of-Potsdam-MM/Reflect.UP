@@ -75,7 +75,7 @@ export class HomePage {
     }
   }
 
-  initHome() {
+  initHome(refresher?, ionRefresh?) {
     var lastView = this.navCtrl.last().name;
 
     this.storage.get("session").then((session) => {
@@ -87,26 +87,31 @@ export class HomePage {
             this.storage.get("config").then((config:IModuleConfig) => {
               if (config) {
 
-                if (lastView == "HomePage" || this.fromSideMenu || lastView == "SettingsPage") {
+                if (lastView == "HomePage" || this.fromSideMenu || lastView == "SettingsPage" || ionRefresh) {
 
-                  this.isLoaded = false;
-                  this.isLoaded2 = false;
+                  if (!ionRefresh) {
+                    this.isLoaded = false;
+                    this.isLoaded2 = false;
+                  }
+                  
                   this.fromSideMenu = false;
-                    
-                  this.enrollSelf(config, session.token);
+                  
+                  if (!ionRefresh && this.fromSideMenu) { this.enrollSelf(config, session.token); }
   
-                  this.checkUpdatedCards("HomePage", config, session.token);
-                  this.loadQuestions(config, session.token);
+                  var forceReload;
+                  if (ionRefresh) { forceReload = true; } else { forceReload = false; }
+                  this.checkUpdatedCards("HomePage", config, session.token, forceReload);
+                  this.loadQuestions(config, session.token, refresher);
                    
                   if (this.platform.is("ios") || this.platform.is("android")) {
                     this.storage.get("pushRegistered").then(push => {
                       if (push != "yes") {
                         this.pushProv.registerPushService(config);
                       }
-                    })
+                    });
                   }
                 } else if (lastView == "AppointmentsPage") {
-                  this.checkUpdatedCards(lastView, config, session.token);
+                  this.checkUpdatedCards(lastView, config, session.token, false);
                 } else if (lastView == "QuestionsPage") {
                   this.isLoaded2 = false;
                   this.loadQuestions(config, session.token);
@@ -143,36 +148,36 @@ export class HomePage {
     });
   }
 
-  checkUpdatedCards(lastView, config, token) {
+  checkUpdatedCards(lastView, config, token, forceReload) {
     this.storage.get("hiddenCards").then((hiddenArray:string[]) => {
       if (lastView != "HomePage") {
         this.storage.get("scheduledEvents").then((scheduledArray:string[]) => {
           if (hiddenArray) {
             if (!(hiddenArray.length == this.hiddenCardsLastCheck.length && hiddenArray.every((value, index) => value == this.hiddenCardsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView, config, token);
+              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
             } else if (scheduledArray) {
               if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-                this.loadAppointments(hiddenArray, lastView, config, token);
+                this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
               }
             }
           } else if (scheduledArray) {
             if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView, config, token);
+              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
             }
           } else {
-            this.loadAppointments(hiddenArray, lastView, config, token);
+            this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
           }
         });
       } else {
-        this.loadAppointments(hiddenArray, lastView, config, token);
+        this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
       }
     });
   }
 
-  loadAppointments(hiddenCardArray:string[], lastView, config, token) {
+  loadAppointments(hiddenCardArray:string[], lastView, config, token, forceReload) {
     this.hiddenCardsLastCheck = hiddenCardArray;
     if (lastView != "HomePage") { this.isLoaded = false; }
-    this.appointm.getAppointments(config, token).subscribe((appointConf:AppointConfig) => {
+    this.appointm.getAppointments(config, token, forceReload).subscribe((appointConf:AppointConfig) => {
       if (appointConf.events) {
         this.eventList = [];
         var j = 0;
@@ -233,8 +238,10 @@ export class HomePage {
     });
   }
 
-  loadQuestions(config, token) {
-    this.questions.getQuestions(config, token).subscribe((questionJson:QuestionConfig) => {
+  loadQuestions(config, token, refresher?) {
+    var forceReload;
+    if (refresher) { forceReload = true; } else { forceReload = false; }
+    this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
       if (questionJson.feedbacks) {
         if (questionJson.feedbacks.length > 0) { this.openQuestions = true; } else { this.openQuestions = false; }
       } else {
@@ -242,6 +249,9 @@ export class HomePage {
         console.log("error fetching feedbacks from server.");
       }    
       this.isLoaded2 = true;
+      if (refresher) {
+        this.doRefresh(refresher, true);
+      }
     });
   }
 
@@ -264,6 +274,14 @@ export class HomePage {
 
   goToQuestions() {
     this.navCtrl.push(QuestionsPage);
+  }
+
+  doRefresh(refresher, refreshingComplete?) {
+    if (refreshingComplete) { 
+      refresher.complete();
+    } else {
+      this.initHome(refresher, true);
+    }
   }
 
 }

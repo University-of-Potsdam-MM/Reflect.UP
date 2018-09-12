@@ -35,17 +35,21 @@ export class QuestionsPage {
     if (this.navParams.get("forceReload")) {
       forceReload = true;
     } else { forceReload = false; }
+    this.initQuestions(forceReload);
+  }
+
+  initQuestions(forceReload, refresher?) {
     this.storage.get("config").then(config => {
       this.storage.get("session").then(session => {
-        this.loadQuestions(config, session.token, forceReload);
+        this.loadQuestions(config, session.token, forceReload, refresher);
       });
     });
   }
 
-  loadQuestions(config:IModuleConfig, token, forceReload) {
+  loadQuestions(config:IModuleConfig, token, forceReload, refresher?) {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
-        this.isLoaded = false;
+        if (!refresher) { this.isLoaded = false; }
 
         this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
           if (questionJson.feedbacks) {
@@ -62,6 +66,7 @@ export class QuestionsPage {
 
         this.questions.getAnsweredQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
           if (questionJson.feedbacks) {
+            this.completedQuestionList = [];
             for (let feedback of questionJson.feedbacks) {
               if (feedback.answers.length > 0) {
                 this.completedQuestionList.push(feedback);
@@ -76,6 +81,7 @@ export class QuestionsPage {
           }
 
           this.isLoaded = true;
+          if (refresher) { this.doRefresh(refresher, true); }
         });
       } else {
         // there is no network connection
@@ -97,6 +103,14 @@ export class QuestionsPage {
 
   toggleCompleted() {
     this.showCompletedQuestions = !this.showCompletedQuestions;
+  }
+
+  doRefresh(refresher, refreshingComplete?) {
+    if (refreshingComplete) {
+      refresher.complete();
+    } else {
+      this.initQuestions(true, refresher);
+    }
   }
 
 }
