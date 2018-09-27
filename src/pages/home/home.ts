@@ -130,7 +130,7 @@ export class HomePage {
 
   enrollSelf(config:IModuleConfig, token) {
     var moodleAccessPoint = config.moodleServiceEndpoint;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
     var courseID = config.courseID;
     var wstoken = token;
 

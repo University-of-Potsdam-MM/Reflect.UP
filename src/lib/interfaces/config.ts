@@ -30,7 +30,7 @@ interface PushDetails
 {
 	senderID:string;
 	uniqushUrl:string;
-	serviceName:string;
+	service:string;
 	XAnAppKey:string;
 	authHeader:AccessToken;
 }

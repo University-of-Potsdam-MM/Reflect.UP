@@ -16,7 +16,7 @@ export class EventProvider {
 
     var url = config.moodleServiceEndpoint;
     var courseID = config.courseID;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
 
 
     var today = new Date();

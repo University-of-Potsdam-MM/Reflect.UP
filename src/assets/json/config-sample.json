@@ -4,16 +4,34 @@
     "courseID": "Course ID des Moodle-Kurses",
     "moodleServiceEndpoint": "<moodle>/webservice/rest/server.php",
     "authorization": {
-      "moodleLoginEndpoint": "<moodle>/login/token.php",
-      "accessToken": "Authorization Header falls erforderlich",
-      "moodlewsrestformat": "json",
-      "service": "reflect",
-      "method": "Authentifizierungsmethode credentials|sso|oidc"
+      "method": "Authentifizierungsmethode credentials|sso",
+      "credentials": {
+        "moodleLoginEndpoint": "<moodle>/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "Authorization": "Authorization Header falls erforderlich"
+        }
+      }, 
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "<moodle>/mobile/launch.php",
+          "login": "<moodle>/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "<moodle>/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "<moodle>/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "<moodle>/idp/uApprove/AttributeRelease",
+          "pluginUrlParams":{
+            "service":"service name",
+            "passport":"passport"
+          }
+        }
+      }
     },
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "URL zum AirNotifier Endpoint",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "authHeader": {
         "Authorization": "Authorization Header falls erforderlich "
       }

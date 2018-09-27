@@ -15,7 +15,7 @@ export class QuestionProvider {
 
     var url = config.moodleServiceEndpoint;
     var courseID = config.courseID;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
 
     let params:HttpParams = new HttpParams()
       .append("wstoken",              token)
@@ -37,7 +37,7 @@ export class QuestionProvider {
 
     var url = config.moodleServiceEndpoint;
     var courseID = config.courseID;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
 
     let params:HttpParams = new HttpParams()
       .append("wstoken",              token)
@@ -63,7 +63,7 @@ export class QuestionProvider {
 
     var url = config.moodleServiceEndpoint;
     var courseID = config.courseID;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
 
     let headers:HttpHeaders = new HttpHeaders()
       .append("Authorization", accessToken);

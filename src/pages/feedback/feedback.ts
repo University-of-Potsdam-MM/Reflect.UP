@@ -41,7 +41,7 @@ export class FeedbackPage {
       let session:ISession = await this.storage.get("session");
 
       let httpHeaders = new HttpHeaders()
-        .append("Authorization",      config.authorization.credentials.accessToken);
+        .append("Authorization",      config.authorization.credentials.authHeader.accessToken);
 
       let httpParams = new HttpParams({encoder: new WebHttpUrlEncodingCodec})
         .append("wstoken",            session.token)
