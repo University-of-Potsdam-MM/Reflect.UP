@@ -83,8 +83,9 @@ export class MyApp {
         this.connection.checkOnline().subscribe((online) => {
           if (online) {
             let request = this.http.get<IModuleConfig[]>(config_url);
+            let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
-            this.cache.loadFromObservable("cachedConfig", request).subscribe((configList) => {
+            this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
               for (let config of configList) {
                 if (localConfig.id == config.id) {
                   // store up-to-date config in storage

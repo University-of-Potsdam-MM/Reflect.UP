@@ -90,8 +90,9 @@ export class SelectModulePage {
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
         let request = this.http.get<IModuleConfig[]>(this.config_url);
+        let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
-        this.cache.loadFromObservable("cachedConfig", request).subscribe((configList) => {
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
           for (let config of configList) {
             this.moduleConfigList.push(
               {
@@ -147,8 +148,9 @@ export class SelectModulePage {
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
         let request = this.http.get<IModuleConfig[]>(this.config_url);
+        let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
-        this.cache.loadFromObservable("cachedConfig", request).subscribe((configList) => {
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
           for (let config of configList) {
             if (config.id == index) {
               // store found config in storage
