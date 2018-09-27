@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "appVersion": 1.0,
     "courseID": "Course ID des Moodle-Kurses",
     "moodleServiceEndpoint": "<moodle>/webservice/rest/server.php",
     "authorization": {

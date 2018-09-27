@@ -78,22 +78,36 @@ export class MyApp {
   private initConfig() {
     var config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
-    this.storage.get("config").then((localConfig) => {
+    this.storage.get("config").then((localConfig:IModuleConfig) => {
       if (localConfig) {
         this.connection.checkOnline().subscribe((online) => {
           if (online) {
             let request = this.http.get<IModuleConfig[]>(config_url);
             let ttl = 60 * 60 * 24 * 7; // cache config for one week
+            let jsonPath:string = 'assets/json/config.json';
 
-            this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
-              for (let config of configList) {
-                if (localConfig.id == config.id) {
-                  // store up-to-date config in storage
-                  this.storage.set("config", config);
-                  this.initPush(config);
-                  break;
+            this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
+              this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+                for (let config of configList) {
+                  if (localConfig.id == config.id) {
+                    for (let jsonConfig of jsonConfigList) {
+                      if (jsonConfig.id == config.id) {
+                        // check for new appVersion and notify user if new update is available
+                        if (jsonConfig.appVersion) {
+                          if (config.appVersion > jsonConfig.appVersion) {
+                            this.storage.set("appUpdateAvailable", "1");
+                          } else { this.storage.set("appUpdateAvailable", "0"); }
+                        } else { this.storage.set("appUpdateAvailable", "1"); }
+                      }
+                    }
+
+                    // store up-to-date config in storage
+                    this.storage.set("config", config);
+                    this.initPush(config);
+                    break;
+                  }
                 }
-              }
+              });
             });
           } else {
             this.initPush(localConfig);
@@ -113,7 +127,7 @@ export class MyApp {
    * even after app has been closed
    * @param config 
    */
-  private initPush(config) {
+  private initPush(config:IModuleConfig) {
     if (this.platform.is("ios") || this.platform.is("android")) {
       this.pushProv.registerPushService(config);
     }
@@ -186,6 +200,5 @@ export class MyApp {
         this.nav.push(page.pageName);
       }
     }
-
   }
 }

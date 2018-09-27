@@ -151,14 +151,26 @@ export class SelectModulePage {
         let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
         this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
-          for (let config of configList) {
-            if (config.id == index) {
-              // store found config in storage
-              this.storage.set(this.configStorageKey, config);
-              this.navCtrl.push(LoginPage);
-              break;
+          this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
+            for (let config of configList) {
+              if (config.id == index) {
+                for (let localConfig of localConfigList) {
+                  if (localConfig.id == config.id) {
+                    // check for new appVersion and notify user if new update is available
+                    if (localConfig.appVersion) {
+                      if (config.appVersion > localConfig.appVersion) {
+                        this.storage.set("appUpdateAvailable", "1");
+                      } else { this.storage.set("appUpdateAvailable", "0"); }
+                    } else { this.storage.set("appUpdateAvailable", "1"); }
+                  }
+                }
+                // store found config in storage
+                this.storage.set(this.configStorageKey, config);
+                this.navCtrl.push(LoginPage);
+                break;
+              }
             }
-          }
+          });
         });
       } else {
         this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {

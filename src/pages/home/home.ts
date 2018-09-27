@@ -60,6 +60,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.initHome();
+    if (this.platform.is("ios") || this.platform.is("android")) { this.checkForAppUpdate(); }
   }
 
   ionViewDidLoad() {
@@ -282,6 +283,44 @@ export class HomePage {
     } else {
       this.initHome(refresher, true);
     }
+  }
+
+  checkForAppUpdate() {
+    this.storage.get("appUpdateAvailable").then(updateAvailable => {
+      if (updateAvailable == "1") {
+        if (this.platform.is("ios")) {
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant("statusMessage.update.title"),
+            message: this.translate.instant("statusMessage.update.messageIOS"),
+            buttons: [
+              {
+                text: this.translate.instant("buttonLabel.ok"),
+                handler: () => {
+                  this.storage.set("appUpdateAvailable", "0");
+                }
+              }
+            ],
+            enableBackdropDismiss: false,
+          });
+          alert.present();
+        } else {
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant("statusMessage.update.title"),
+            message: this.translate.instant("statusMessage.update.messageANDROID"),
+            buttons: [
+              {
+                text: this.translate.instant("buttonLabel.ok"),
+                handler: () => {
+                  this.storage.set("appUpdateAvailable", "0");
+                }
+              }
+            ],
+            enableBackdropDismiss: false,
+          });
+          alert.present();
+        }
+      }
+    });
   }
 
 }
