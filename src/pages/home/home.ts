@@ -286,39 +286,43 @@ export class HomePage {
   }
 
   checkForAppUpdate() {
-    this.storage.get("appUpdateAvailable").then(updateAvailable => {
-      if (updateAvailable == "1") {
-        if (this.platform.is("ios")) {
-          let alert = this.alertCtrl.create({
-            title: this.translate.instant("statusMessage.update.title"),
-            message: this.translate.instant("statusMessage.update.messageIOS"),
-            buttons: [
-              {
-                text: this.translate.instant("buttonLabel.ok"),
-                handler: () => {
-                  this.storage.set("appUpdateAvailable", "0");
-                }
-              }
-            ],
-            enableBackdropDismiss: false,
-          });
-          alert.present();
-        } else {
-          let alert = this.alertCtrl.create({
-            title: this.translate.instant("statusMessage.update.title"),
-            message: this.translate.instant("statusMessage.update.messageANDROID"),
-            buttons: [
-              {
-                text: this.translate.instant("buttonLabel.ok"),
-                handler: () => {
-                  this.storage.set("appUpdateAvailable", "0");
-                }
-              }
-            ],
-            enableBackdropDismiss: false,
-          });
-          alert.present();
-        }
+    this.storage.get("config").then((config:IModuleConfig) => {
+      if (config) {
+        this.storage.get("appUpdateAvailable").then(updateAvailable => {
+          if (updateAvailable == "1") {
+            if (this.platform.is("ios")) {
+              let alert = this.alertCtrl.create({
+                title: this.translate.instant("statusMessage.update.title"),
+                message: this.translate.instant("statusMessage.update.messageIOS"),
+                buttons: [
+                  {
+                    text: this.translate.instant("buttonLabel.ok"),
+                    handler: () => {
+                      this.storage.set("appUpdateAvailable", config.appVersion);
+                    }
+                  }
+                ],
+                enableBackdropDismiss: false,
+              });
+              alert.present();
+            } else {
+              let alert = this.alertCtrl.create({
+                title: this.translate.instant("statusMessage.update.title"),
+                message: this.translate.instant("statusMessage.update.messageANDROID"),
+                buttons: [
+                  {
+                    text: this.translate.instant("buttonLabel.ok"),
+                    handler: () => {
+                      this.storage.set("appUpdateAvailable", config.appVersion);
+                    }
+                  }
+                ],
+                enableBackdropDismiss: false,
+              });
+              alert.present();
+            }
+          }
+        });
       }
     });
   }

@@ -157,11 +157,15 @@ export class SelectModulePage {
                 for (let localConfig of localConfigList) {
                   if (localConfig.id == config.id) {
                     // check for new appVersion and notify user if new update is available
-                    if (localConfig.appVersion) {
-                      if (config.appVersion > localConfig.appVersion) {
-                        this.storage.set("appUpdateAvailable", "1");
-                      } else { this.storage.set("appUpdateAvailable", "0"); }
-                    } else { this.storage.set("appUpdateAvailable", "1"); }
+                    this.storage.get("appUpdateAvailable").then((appUpdateStorage) => {
+                      if (appUpdateStorage != config.appVersion) {
+                        if (localConfig.appVersion) {
+                          if (config.appVersion > localConfig.appVersion) {
+                            this.storage.set("appUpdateAvailable", "1");
+                          } else { this.storage.set("appUpdateAvailable", config.appVersion); }
+                        } else { this.storage.set("appUpdateAvailable", "1"); }
+                      }
+                    });
                   }
                 }
                 // store found config in storage
