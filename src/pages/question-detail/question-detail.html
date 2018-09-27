@@ -55,24 +55,26 @@
 </ion-content>
 
 <ion-footer>
-  <div *ngIf="!answersSubmitted" align="center">
-    <button id="navButtons" (click)="goBack()" [disabled]="isFirstQuestion" ion-button color="secondary">
-      <ion-icon name="arrow-back" padding-right></ion-icon>
-      {{ "buttonLabel.back" | translate }}
-    </button>
-    <button id="navButtons" (click)="goForward()" ion-button color="secondary">
-      <div>{{ "buttonLabel.next" | translate }}</div>
-      <ion-icon name="arrow-forward" padding-left></ion-icon>
-    </button>
-  </div>
-
-  <div *ngIf="answersSubmitted" align="center">
-    <button id="navButtons" (click)="goBackLast()" ion-button color="secondary">
-      <ion-icon name="arrow-back" padding-right></ion-icon>
-      {{ "buttonLabel.back" | translate }}
-    </button>
-    <button id="navButtons" (click)="backToRoot()" ion-button [disabled]="isCompleted" color="primary">
-      <div >{{ "buttonLabel.finish" | translate }}</div>
-    </button>
-  </div>
+  <ion-toolbar>
+    <div *ngIf="!answersSubmitted" align="center">
+      <button id="navButtons" (click)="goBack()" [disabled]="isFirstQuestion" ion-button color="secondary">
+        <ion-icon name="arrow-back" padding-right></ion-icon>
+        {{ "buttonLabel.back" | translate }}
+      </button>
+      <button id="navButtons" (click)="goForward()" ion-button color="secondary">
+        <div>{{ "buttonLabel.next" | translate }}</div>
+        <ion-icon name="arrow-forward" padding-left></ion-icon>
+      </button>
+    </div>
+    
+    <div *ngIf="answersSubmitted" align="center">
+      <button id="navButtons" (click)="goBackLast()" ion-button color="secondary">
+        <ion-icon name="arrow-back" padding-right></ion-icon>
+        {{ "buttonLabel.back" | translate }}
+      </button>
+      <button id="navButtons" (click)="backToRoot()" ion-button [disabled]="isCompleted" color="primary">
+        <div >{{ "buttonLabel.finish" | translate }}</div>
+      </button>
+    </div>
+  </ion-toolbar>
 </ion-footer>
