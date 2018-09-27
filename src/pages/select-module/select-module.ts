@@ -92,7 +92,7 @@ export class SelectModulePage {
         let request = this.http.get<IModuleConfig[]>(this.config_url);
         let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
-        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
           for (let config of configList) {
             this.moduleConfigList.push(
               {
@@ -113,7 +113,7 @@ export class SelectModulePage {
           }
         });
       } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList) => {
+        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
           for (let config of localConfigList) {
             this.moduleConfigList.push(
               {
@@ -150,7 +150,7 @@ export class SelectModulePage {
         let request = this.http.get<IModuleConfig[]>(this.config_url);
         let ttl = 60 * 60 * 24 * 7; // cache config for one week
 
-        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList) => {
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
           for (let config of configList) {
             if (config.id == index) {
               // store found config in storage
@@ -161,7 +161,7 @@ export class SelectModulePage {
           }
         });
       } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList) => {
+        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
           for (let config of localConfigList) {
             if (config.id == index) {
               // store found config in storage

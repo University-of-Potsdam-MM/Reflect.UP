@@ -8,6 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { Storage } from '@ionic/storage';
+import { IModuleConfig } from '../../lib/interfaces/config';
 
 @IonicPage()
 @Component({
@@ -331,7 +332,7 @@ export class QuestionDetailPage {
       }
     }
 
-    this.storage.get("config").then(config => {
+    this.storage.get("config").then((config:IModuleConfig) => {
       this.storage.get("session").then(session => {
         this.questionProv.sendAnswers(this.feedbackID, resultArray, config, session.token);
       });

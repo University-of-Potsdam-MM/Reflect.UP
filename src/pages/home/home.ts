@@ -148,7 +148,7 @@ export class HomePage {
     });
   }
 
-  checkUpdatedCards(lastView, config, token, forceReload) {
+  checkUpdatedCards(lastView, config:IModuleConfig, token, forceReload) {
     this.storage.get("hiddenCards").then((hiddenArray:string[]) => {
       if (lastView != "HomePage") {
         this.storage.get("scheduledEvents").then((scheduledArray:string[]) => {
@@ -174,7 +174,7 @@ export class HomePage {
     });
   }
 
-  loadAppointments(hiddenCardArray:string[], lastView, config, token, forceReload) {
+  loadAppointments(hiddenCardArray:string[], lastView, config:IModuleConfig, token, forceReload) {
     this.hiddenCardsLastCheck = hiddenCardArray;
     if (lastView != "HomePage") { this.isLoaded = false; }
     this.appointm.getAppointments(config, token, forceReload).subscribe((appointConf:AppointConfig) => {
@@ -238,7 +238,7 @@ export class HomePage {
     });
   }
 
-  loadQuestions(config, token, refresher?) {
+  loadQuestions(config:IModuleConfig, token, refresher?) {
     var forceReload;
     if (refresher) { forceReload = true; } else { forceReload = false; }
     this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {

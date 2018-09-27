@@ -39,7 +39,7 @@ export class QuestionsPage {
   }
 
   initQuestions(forceReload, refresher?) {
-    this.storage.get("config").then(config => {
+    this.storage.get("config").then((config:IModuleConfig) => {
       this.storage.get("session").then(session => {
         this.loadQuestions(config, session.token, forceReload, refresher);
       });
