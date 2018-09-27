@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="de.unipotsdam.reflectup" android-versionCode="60100" id="de.unipotsdam.reflectup" ios-CFBundleVersion="201809041530" os-CFBundleIdentifier="de.unipotsdam.reflectup" version="6.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="de.unipotsdam.reflectup" android-versionCode="60200" id="de.unipotsdam.reflectup" ios-CFBundleVersion="201809271530" os-CFBundleIdentifier="de.unipotsdam.reflectup" version="6.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Reflect.UP</name>
     <description>App der Universität Potsdam entwickelt im Rahmen des eLiS-Projekts und der Studieneingangsphase.</description>
     <author email="elis-info@lists.cs.uni-potsdam.de" href="https://www.uni-potsdam.de/reflectup/">eLiS-/Reflect.UP-Team</author>

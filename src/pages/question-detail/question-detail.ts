@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
+import { Storage } from '@ionic/storage';
+import { IModuleConfig } from '../../lib/interfaces/config';
 
 @IonicPage()
 @Component({
@@ -25,7 +27,7 @@ export class QuestionDetailPage {
   public feedbackID;
   public feedbackMessage;
   public isCompleted;
-  public questionList: QuestionsObject[];
+  public questionList: QuestionsObject[] = [];
   public answerList: AnswerObject[];
   public choicesList:string[][] = [];
   public isCheckbox:boolean[] = [];
@@ -34,9 +36,20 @@ export class QuestionDetailPage {
   public latestPage = 0;
   public questionNavIndex = 1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService, public questionprov: QuestionProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private translate: TranslateService,
+              private questionProv: QuestionProvider,
+              private storage: Storage) {
     this.feedbackID = navParams.get('id');
-    this.questionList = navParams.get('questions');
+
+    var tmpQuestionList = navParams.get('questions');
+    var i;
+    for (i = 0; i < tmpQuestionList.length; i++) {
+      if (tmpQuestionList[i].type == "multichoice" || tmpQuestionList[i].type == "textarea") {
+        this.questionList.push(tmpQuestionList[i]);
+      }
+    }
     this.feedbackMessage = this.htmlDecode(navParams.get('message'));
     this.isCompleted = navParams.get('isCompleted');
     this.isPageActive[0] = true;
@@ -177,7 +190,13 @@ export class QuestionDetailPage {
     return result;
   }
 
-  goBack(i) {
+  goBack() {
+    var i,j;
+    for (j = 0; j < this.isPageActive.length; j++) {
+      if (this.isPageActive[j]) {
+        i = j;
+      }
+    }
     if (this.questionList[i].dependitem != "0") {
       if (this.questionList[i].type == "textarea") {
         this.textBoxValue[i] = "";
@@ -209,7 +228,13 @@ export class QuestionDetailPage {
     this.isPageActive[this.latestPage] = true;
   }
 
-  goForward(i) {
+  goForward() {
+    var i,j;
+    for (j = 0; j < this.isPageActive.length; j++) {
+      if (this.isPageActive[j]) {
+        i = j;
+      }
+    }
     this.isAnswerSelected(i);
     if (this.answerSelected[i] || this.isCompleted) {
       this.isPageActive[i] = false;
@@ -307,7 +332,11 @@ export class QuestionDetailPage {
       }
     }
 
-    this.questionprov.sendAnswers(this.feedbackID,resultArray);
+    this.storage.get("config").then((config:IModuleConfig) => {
+      this.storage.get("session").then(session => {
+        this.questionProv.sendAnswers(this.feedbackID, resultArray, config, session.token);
+      });
+    });
   }
 
   isAnswerSelected(i) {
@@ -337,8 +366,8 @@ export class QuestionDetailPage {
 
   backToRoot() {
     this.sendAnswers();
-    this.navCtrl.setRoot(HomePage, {fromSideMenu: true});
-    this.navCtrl.push(QuestionsPage);
+    this.navCtrl.setRoot(HomePage, { fromSideMenu: true });
+    this.navCtrl.push(QuestionsPage, { forceReload: true });
   }
 
   htmlDecode(value) {
@@ -375,7 +404,6 @@ export class QuestionDetailPage {
           url = "http://" + url.replace('www.','');
         }
         return url;
-        // return '<a href="' + url + '">' + url + '</a>';
       });
     }
   }

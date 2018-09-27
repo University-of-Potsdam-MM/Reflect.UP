@@ -18,7 +18,8 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { PushProvider } from '../providers/push-provider/push-provider';
 import { Keyboard } from '@ionic-native/keyboard';
 import { HttpLoaderFactory } from '../lib/interfaces';
-import { CalendarModule } from "ion2-calendar";
+import { CalendarModule } from 'ion2-calendar';
+import { CacheModule } from 'ionic-cache';
 
 /* ~~~ Pages ~~~ */
 import { MyApp } from './app.component';
@@ -72,7 +73,8 @@ import { QuestionDetailPage } from './../pages/question-detail/question-detail';
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    CacheModule.forRoot({ keyPrefix: 'myAppCache-' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,16 +1,18 @@
 [
   {
     "id": 0,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-J",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -30,10 +32,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "ed1739b4232cbe61a6d670cd9946c4cb",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
       }
     },
     "title": "Studieneingangsphase (Jura-Fak)",
@@ -110,16 +112,18 @@
   },
   {
     "id": 1,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-H",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -139,10 +143,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "6352c258349f58fbe25dd6c4ac2d7ab5",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Studieneingangsphase (Hum-Fak)",
@@ -514,16 +518,18 @@
   },
   {
     "id": 2,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-W",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -543,10 +549,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "6c1a1bb0f22509d9a7dfaf139453ef23",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Studieneingangsphase (WiSo-Fak)",
@@ -788,16 +794,18 @@
   },
   {
     "id": 3,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-P",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -817,10 +825,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "a3007f6520059ba593a8cf9867c4c2c8",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Studieneingangsphase (Phil-Fak)",
@@ -1581,16 +1589,18 @@
   },
   {
     "id": 4,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-M",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -1610,10 +1620,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "be3f80ac5bd1cf133fe8f1655c9546f8",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Studieneingangsphase (MatNat-Fak)",
@@ -1760,16 +1770,18 @@
   },
   {
     "id": 5,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-L",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -1789,10 +1801,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "e491729830615086e34d9358a586ef95",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Studieneingangsphase (Lehramt)",
@@ -1818,16 +1830,18 @@
   },
   {
     "id": 6,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-JE",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -1847,10 +1861,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "fddd97bc2a66e02bb57f651b6629bb27",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Examensbegleitung (Jura)",
@@ -1938,16 +1952,18 @@
   },
   {
     "id": 7,
+    "appVersion": 6.2,
     "courseID": "UPR-1819-T",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
       "credentials": {
         "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8",
         "moodlewsrestformat": "json",
         "service": "reflect",
-        "method": "credentials"
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
       },
       "sso": {
         "ssoUrls": {
@@ -1967,10 +1983,10 @@
     "pushDetails": {
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
-      "serviceName": "reflectup",
+      "service": "reflectup",
       "XAnAppKey": "9d30a10fc70f862816b99f859430c007",
       "authHeader": {
-        "Authorization": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
     "title": "Testkurs",

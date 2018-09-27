@@ -60,6 +60,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.initHome();
+    if (this.platform.is("ios") || this.platform.is("android")) { this.checkForAppUpdate(); }
   }
 
   ionViewDidLoad() {
@@ -75,64 +76,62 @@ export class HomePage {
     }
   }
 
-  initHome() {
+  initHome(refresher?, ionRefresh?) {
     var lastView = this.navCtrl.last().name;
 
-    this.storage.get("session").then(
-      (session) => {
-        if (!session) {
-          this.navCtrl.setRoot(SelectModulePage);
-        } else {
-          this.connection.checkOnline().subscribe(online => {
-            if (online) {
-              this.storage.get("config").then((config:IModuleConfig) => {
-                if (config) {
+    this.storage.get("session").then((session) => {
+      if (!session) {
+        this.navCtrl.setRoot(SelectModulePage);
+      } else {
+        this.connection.checkOnline().subscribe(online => {
+          if (online) {
+            this.storage.get("config").then((config:IModuleConfig) => {
+              if (config) {
 
-                  if (lastView == "HomePage" || this.fromSideMenu || lastView == "SettingsPage") {
+                if (lastView == "HomePage" || this.fromSideMenu || lastView == "SettingsPage" || ionRefresh) {
 
+                  if (!ionRefresh) {
                     this.isLoaded = false;
                     this.isLoaded2 = false;
-                    this.fromSideMenu = false;
-                    
-                    this.enrollSelf(config, session.token);
-
-                    this.appointm.loadParams();
-                    this.questions.loadParams();
-  
-                    this.checkUpdatedCards("HomePage");
-                    this.loadQuestions();
-                    
-                    if (this.platform.is("ios") || this.platform.is("android")) {
-                      this.storage.get("pushRegistered").then(push => {
-                        if (push != "yes") {
-                          this.pushProv.registerPushService(config);
-                        }
-                      })
-                    }
-                  } else if (lastView == "AppointmentsPage") {
-                    this.appointm.loadParams();
-                    this.checkUpdatedCards(lastView);
-                  } else if (lastView == "QuestionsPage") {
-                    this.isLoaded2 = false;
-                    this.questions.loadParams();
-                    this.loadQuestions();
                   }
-
+                  
+                  this.fromSideMenu = false;
+                  
+                  if (!ionRefresh && this.fromSideMenu) { this.enrollSelf(config, session.token); }
+  
+                  var forceReload;
+                  if (ionRefresh) { forceReload = true; } else { forceReload = false; }
+                  this.checkUpdatedCards("HomePage", config, session.token, forceReload);
+                  this.loadQuestions(config, session.token, refresher);
+                   
+                  if (this.platform.is("ios") || this.platform.is("android")) {
+                    this.storage.get("pushRegistered").then(push => {
+                      if (push != "yes") {
+                        this.pushProv.registerPushService(config);
+                      }
+                    });
+                  }
+                } else if (lastView == "AppointmentsPage") {
+                  this.checkUpdatedCards(lastView, config, session.token, false);
+                } else if (lastView == "QuestionsPage") {
+                  this.isLoaded2 = false;
+                  this.loadQuestions(config, session.token);
                 }
-              });
 
-            } else {
-              this.showAlert("statusMessage.error.network");
-            }
-          });
-        }
+              }
+            });
+
+          } else {
+            this.showAlert("statusMessage.error.network");
+          }
+        });
       }
-    )
+    });
   }
 
   enrollSelf(config:IModuleConfig, token) {
     var moodleAccessPoint = config.moodleServiceEndpoint;
-    var accessToken = config.authorization.credentials.accessToken;
+    var accessToken = config.authorization.credentials.authHeader.accessToken;
     var courseID = config.courseID;
     var wstoken = token;
 
@@ -146,116 +145,113 @@ export class HomePage {
       .append("Authorization", accessToken);
     
     this.http.get(moodleAccessPoint, {headers:headers, params:params}).subscribe(data => {
-      // console.log("local enrol self");
+      console.log("local enrol self");
     });
   }
 
-  checkUpdatedCards(lastView) {
+  checkUpdatedCards(lastView, config:IModuleConfig, token, forceReload) {
     this.storage.get("hiddenCards").then((hiddenArray:string[]) => {
       if (lastView != "HomePage") {
         this.storage.get("scheduledEvents").then((scheduledArray:string[]) => {
           if (hiddenArray) {
             if (!(hiddenArray.length == this.hiddenCardsLastCheck.length && hiddenArray.every((value, index) => value == this.hiddenCardsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView);
+              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
             } else if (scheduledArray) {
               if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-                this.loadAppointments(hiddenArray, lastView);
+                this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
               }
             }
           } else if (scheduledArray) {
             if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView);
+              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
             }
           } else {
-            this.loadAppointments(hiddenArray, lastView);
+            this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
           }
         });
       } else {
-        this.loadAppointments(hiddenArray, lastView);
+        this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
       }
     });
   }
 
-  loadAppointments(hiddenCardArray:string[], lastView) {
+  loadAppointments(hiddenCardArray:string[], lastView, config:IModuleConfig, token, forceReload) {
     this.hiddenCardsLastCheck = hiddenCardArray;
     if (lastView != "HomePage") { this.isLoaded = false; }
-    this.appointm.readyObservable.subscribe(ready => {
-      if (ready) {
-        this.appointm.getAppointments().subscribe((appointConf:AppointConfig) => {
-          if (appointConf.events) {
-            this.eventList = [];
-            var j = 0;
-            if (hiddenCardArray) {
-              for (let event of appointConf.events) {
-                if (event.modulename != "feedback") {
-                  var foundID = hiddenCardArray.find(element => element == event.id.toString());
-                  if (foundID != undefined) {
-                    this.hiddenEvent[event.id] = true;
-                  } else if (j > 2) {
-                    this.hiddenEvent[event.id] = true;
-                  } else {
-                    this.hiddenEvent[event.id] = false;
-                    j = j + 1;
-                  }
-                  this.eventList.push(event);
-                }
+    this.appointm.getAppointments(config, token, forceReload).subscribe((appointConf:AppointConfig) => {
+      if (appointConf.events) {
+        this.eventList = [];
+        var j = 0;
+        if (hiddenCardArray) {
+          for (let event of appointConf.events) {
+            if (event.modulename != "feedback") {
+              var foundID = hiddenCardArray.find(element => element == event.id.toString());
+              if (foundID != undefined) {
+                this.hiddenEvent[event.id] = true;
+              } else if (j > 2) {
+                this.hiddenEvent[event.id] = true;
+              } else {
+                this.hiddenEvent[event.id] = false;
+                j = j + 1;
               }
-            } else {
-              for (let event of appointConf.events) {
-                if (event.modulename != "feedback") {
-                  if (j > 2) {
-                    this.hiddenEvent[event.id] = true;
-                  } else {
-                    this.hiddenEvent[event.id] = false;
-                    j = j + 1;
-                  }
-                  this.eventList.push(event);
-                }
+              this.eventList.push(event);
+            }
+          }
+        } else {
+          for (let event of appointConf.events) {
+            if (event.modulename != "feedback") {
+              if (j > 2) {
+                this.hiddenEvent[event.id] = true;
+              } else {
+                this.hiddenEvent[event.id] = false;
+                j = j + 1;
+              }
+              this.eventList.push(event);
+            }
+          }
+        }
+        
+        this.storage.get("scheduledEvents").then((array:string[]) => {
+          this.scheduledEventsLastCheck = array;
+          var notificationID;
+          if (array) {
+            for (let event of appointConf.events) {
+              if (event.modulename != "feedback") {
+                notificationID = event.id * 10;
+                var foundID = array.find(element => element == notificationID.toString());
+                if (foundID != undefined) {
+                  this.scheduledEvent[event.id] = true;
+                } else { this.scheduledEvent[event.id] = false; }
               }
             }
-            
-            this.storage.get("scheduledEvents").then((array:string[]) => {
-              this.scheduledEventsLastCheck = array;
-              var notificationID;
-              if (array) {
-                for (let event of appointConf.events) {
-                  if (event.modulename != "feedback") {
-                    notificationID = event.id * 10;
-                    var foundID = array.find(element => element == notificationID.toString());
-                    if (foundID != undefined) {
-                      this.scheduledEvent[event.id] = true;
-                    } else { this.scheduledEvent[event.id] = false; }
-                  }
-                }
-              } else {
-                for (let event of appointConf.events) {
-                  if (event.modulename != "feedback") {
-                    this.scheduledEvent[event.id] = false;
-                  }
-                }
-              }
-              this.isLoaded = true;
-            });
           } else {
-            this.isLoaded = true;
+            for (let event of appointConf.events) {
+              if (event.modulename != "feedback") {
+                this.scheduledEvent[event.id] = false;
+              }
+            }
           }
+          this.isLoaded = true;
         });
-      } else { this.isLoaded = true; }
+      } else {
+        this.isLoaded = true;
+      }
     });
   }
 
-  loadQuestions() {
-    this.questions.readyObservable.subscribe(ready => {
-      if (ready) {
-        this.questions.getQuestions().subscribe((questionJson:QuestionConfig) => {
-          if (questionJson.feedbacks) {
-            if (questionJson.feedbacks.length > 0) { this.openQuestions = true; } else { this.openQuestions = false; }
-          } else {
-            this.openQuestions = false;
-            console.log("error fetching feedbacks from server.");
-          }    
-          this.isLoaded2 = true;
-        })
+  loadQuestions(config:IModuleConfig, token, refresher?) {
+    var forceReload;
+    if (refresher) { forceReload = true; } else { forceReload = false; }
+    this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
+      if (questionJson.feedbacks) {
+        if (questionJson.feedbacks.length > 0) { this.openQuestions = true; } else { this.openQuestions = false; }
+      } else {
+        this.openQuestions = false;
+        console.log("error fetching feedbacks from server.");
+      }    
+      this.isLoaded2 = true;
+      if (refresher) {
+        this.doRefresh(refresher, true);
       }
     });
   }
@@ -279,6 +275,56 @@ export class HomePage {
 
   goToQuestions() {
     this.navCtrl.push(QuestionsPage);
+  }
+
+  doRefresh(refresher, refreshingComplete?) {
+    if (refreshingComplete) { 
+      refresher.complete();
+    } else {
+      this.initHome(refresher, true);
+    }
+  }
+
+  checkForAppUpdate() {
+    this.storage.get("config").then((config:IModuleConfig) => {
+      if (config) {
+        this.storage.get("appUpdateAvailable").then(updateAvailable => {
+          if (updateAvailable == "1") {
+            if (this.platform.is("ios")) {
+              let alert = this.alertCtrl.create({
+                title: this.translate.instant("statusMessage.update.title"),
+                message: this.translate.instant("statusMessage.update.messageIOS"),
+                buttons: [
+                  {
+                    text: this.translate.instant("buttonLabel.ok"),
+                    handler: () => {
+                      this.storage.set("appUpdateAvailable", config.appVersion);
+                    }
+                  }
+                ],
+                enableBackdropDismiss: false,
+              });
+              alert.present();
+            } else {
+              let alert = this.alertCtrl.create({
+                title: this.translate.instant("statusMessage.update.title"),
+                message: this.translate.instant("statusMessage.update.messageANDROID"),
+                buttons: [
+                  {
+                    text: this.translate.instant("buttonLabel.ok"),
+                    handler: () => {
+                      this.storage.set("appUpdateAvailable", config.appVersion);
+                    }
+                  }
+                ],
+                enableBackdropDismiss: false,
+              });
+              alert.present();
+            }
+          }
+        });
+      }
+    });
   }
 
 }

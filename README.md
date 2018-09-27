@@ -110,7 +110,7 @@ siehe https://docs.moodle.org/29/en/Using_web_services
 
 - siehe hierzu https://github.com/University-of-Potsdam-MM/reflect-block_pushnotification
 
-#### Konfirugration von AirNotifier
+#### Konfiguration von AirNotifier
 
 Die Konfiguration der App zum Nutzen des jeweiligen Push-Service ist etwas umfangreicher. Eine Anleitung für den AirNotifier findet sich hier:
 

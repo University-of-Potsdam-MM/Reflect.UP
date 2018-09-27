@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Push } from '@ionic-native/push';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import * as moment from 'moment';
+import { IModuleConfig } from '../../lib/interfaces/config';
 
 @IonicPage()
 @Component({
@@ -94,18 +95,18 @@ export class AppointmentsPage {
     this.initEvents();
   }
 
-  initEvents() {
+  initEvents(refresher?, ionRefresh?) {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
-        this.isLoaded = false;
-        this.appointm.loadParams();
-
-        this.appointm.readyObservable.subscribe(ready => {
-          if (ready) {
-            this.appointm.getAppointments().subscribe((appointConf:AppointConfig) => {
+        var forceReload;
+        if (!ionRefresh) { this.isLoaded = false; forceReload = false; } else { forceReload = true; }
+        this.storage.get("config").then((config:IModuleConfig) => {
+          this.storage.get("session").then(session => {
+            this.appointm.getAppointments(config, session.token, forceReload).subscribe((appointConf:AppointConfig) => {
               if (appointConf.events) {
                 this.storage.get("hiddenCards").then((array:string[]) => {
                   if (array) {
+                    this.eventList = [];
                     for (let event of appointConf.events) {
                       if (event.modulename != "feedback") {
                         var foundID = array.find(element => element == event.id.toString());
@@ -118,6 +119,7 @@ export class AppointmentsPage {
                       }
                     }
                   } else {
+                    this.eventList = [];
                     for (let event of appointConf.events) {
                       if (event.modulename != "feedback") {
                         this.hiddenEvent[event.id] = false;
@@ -154,13 +156,15 @@ export class AppointmentsPage {
                     }
                   }
                   this.isLoaded = true;
+                  if (ionRefresh) { this.doRefresh(refresher, true); }
                 });
               } else {
                 this.noAppointments = true;
                 this.isLoaded = true;
+                if (ionRefresh) { this.doRefresh(refresher, true); }
               }
             });
-          }
+          });
         });
       } else {
         // there is no network connection
@@ -253,6 +257,14 @@ export class AppointmentsPage {
     this.dateRange = { from: "", to: "" };
     this.eventList = this.tmpEventList;
     if (this.eventList.length < 1) { this.noAppointments = true; }
+  }
+
+  doRefresh(refresher, refreshingComplete?) {
+    if (refreshingComplete) {
+      refresher.complete();
+    } else {
+      this.initEvents(refresher, true);
+    }
   }
 
 }

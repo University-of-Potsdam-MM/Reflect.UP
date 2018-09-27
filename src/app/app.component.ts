@@ -10,6 +10,7 @@ import { ConnectionProvider } from '../providers/connection-provider/connection-
 import { PageInterface } from '../lib/interfaces';
 import { IModuleConfig } from '../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
+import { CacheService } from "ionic-cache";
 
 /* ~~~ Pages ~~~ */
 import { HomePage } from '../pages/home/home';
@@ -40,7 +41,8 @@ export class MyApp {
       private connection: ConnectionProvider,
       private storage: Storage,
       private pushProv: PushProvider,
-      private keyboard: Keyboard) {
+      private keyboard: Keyboard,
+      private cache: CacheService) {
     this.initApp();
   }
 
@@ -55,6 +57,8 @@ export class MyApp {
     await this.initMenu();
 
     this.platform.ready().then(() => {
+      this.cache.setDefaultTTL(60 * 60 * 24);     // 24h caching
+      this.cache.setOfflineInvalidate(false);     // keep cached results when device is offline
       if (this.platform.is("cordova")) {
         this.splashScreen.hide();
         this.statusBar.styleDefault();
@@ -74,19 +78,40 @@ export class MyApp {
   private initConfig() {
     var config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
-    this.storage.get("config").then((localConfig) => {
+    this.storage.get("config").then((localConfig:IModuleConfig) => {
       if (localConfig) {
         this.connection.checkOnline().subscribe((online) => {
           if (online) {
-            this.http.get<IModuleConfig[]>(config_url).subscribe((configList) => {
-              for (let config of configList) {
-                if (localConfig.id == config.id) {
-                  // store up-to-date config in storage
-                  this.storage.set("config", config);
-                  this.initPush(config);
-                  break;
+            let request = this.http.get<IModuleConfig[]>(config_url);
+            let ttl = 60 * 60 * 24 * 7; // cache config for one week
+            let jsonPath:string = 'assets/json/config.json';
+
+            this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
+              this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+                for (let config of configList) {
+                  if (localConfig.id == config.id) {
+                    for (let jsonConfig of jsonConfigList) {
+                      if (jsonConfig.id == config.id) {
+                        this.storage.get("appUpdateAvailable").then(appUpdateStorage => {
+                          if (appUpdateStorage != config.appVersion) {
+                            // check for new appVersion and notify user if new update is available
+                            if (jsonConfig.appVersion) {
+                              if (config.appVersion > jsonConfig.appVersion) {
+                                this.storage.set("appUpdateAvailable", "1");
+                              } else { this.storage.set("appUpdateAvailable", config.appVersion); }
+                            } else { this.storage.set("appUpdateAvailable", "1"); }
+                          }
+                        });
+                      }
+                    }
+
+                    // store up-to-date config in storage
+                    this.storage.set("config", config);
+                    this.initPush(config);
+                    break;
+                  }
                 }
-              }
+              });
             });
           } else {
             this.initPush(localConfig);
@@ -106,7 +131,7 @@ export class MyApp {
    * even after app has been closed
    * @param config 
    */
-  private initPush(config) {
+  private initPush(config:IModuleConfig) {
     if (this.platform.is("ios") || this.platform.is("android")) {
       this.pushProv.registerPushService(config);
     }
@@ -179,6 +204,5 @@ export class MyApp {
         this.nav.push(page.pageName);
       }
     }
-
   }
 }

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { IModuleConfig } from '../../lib/interfaces/config';
+import { CacheService } from 'ionic-cache';
 
 /**
  * LogoutPage
@@ -22,7 +23,8 @@ export class LogoutPage {
     public navParams: NavParams,
     public storage: Storage,
     private pushProv: PushProvider,
-    private platform: Platform
+    private platform: Platform,
+    private cache: CacheService
   ) {
   }
 
@@ -32,7 +34,7 @@ export class LogoutPage {
    * unsets current session, thus logging the user out
    */
   public performLogout(): void {
-
+    this.cache.clearAll();
     this.storage.set("session", null);
     this.storage.set("config", null);
     this.storage.set("pushRegistered", "no");

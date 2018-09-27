@@ -9,6 +9,7 @@ import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { ConnectionProvider } from '../../providers/connection-provider/connection-provider';
+import { CacheService } from 'ionic-cache';
 
 /**
  * SelectModulePage
@@ -39,7 +40,8 @@ export class SelectModulePage {
     private storage: Storage,
     private alertCtrl: AlertController,
     private menu: MenuController,
-    private popoverCtrl: PopoverController) {
+    private popoverCtrl: PopoverController,
+    private cache: CacheService) {
       this.menu.enable(false,"sideMenu");
   }
 
@@ -87,7 +89,10 @@ export class SelectModulePage {
 
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList) => {
+        let request = this.http.get<IModuleConfig[]>(this.config_url);
+        let ttl = 60 * 60 * 24 * 7; // cache config for one week
+
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
           for (let config of configList) {
             this.moduleConfigList.push(
               {
@@ -108,7 +113,7 @@ export class SelectModulePage {
           }
         });
       } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList) => {
+        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
           for (let config of localConfigList) {
             this.moduleConfigList.push(
               {
@@ -142,18 +147,37 @@ export class SelectModulePage {
 
     this.connection.checkOnline().subscribe((online) => {
       if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList) => {
-          for (let config of configList) {
-            if (config.id == index) {
-              // store found config in storage
-              this.storage.set(this.configStorageKey, config);
-              this.navCtrl.push(LoginPage);
-              break;
+        let request = this.http.get<IModuleConfig[]>(this.config_url);
+        let ttl = 60 * 60 * 24 * 7; // cache config for one week
+
+        this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
+          this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
+            for (let config of configList) {
+              if (config.id == index) {
+                for (let localConfig of localConfigList) {
+                  if (localConfig.id == config.id) {
+                    // check for new appVersion and notify user if new update is available
+                    this.storage.get("appUpdateAvailable").then((appUpdateStorage) => {
+                      if (appUpdateStorage != config.appVersion) {
+                        if (localConfig.appVersion) {
+                          if (config.appVersion > localConfig.appVersion) {
+                            this.storage.set("appUpdateAvailable", "1");
+                          } else { this.storage.set("appUpdateAvailable", config.appVersion); }
+                        } else { this.storage.set("appUpdateAvailable", "1"); }
+                      }
+                    });
+                  }
+                }
+                // store found config in storage
+                this.storage.set(this.configStorageKey, config);
+                this.navCtrl.push(LoginPage);
+                break;
+              }
             }
-          }
+          });
         });
       } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList) => {
+        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
           for (let config of localConfigList) {
             if (config.id == index) {
               // store found config in storage
