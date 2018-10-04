@@ -174,11 +174,13 @@ export class AppointmentsPage {
   }
 
   checkEventDates() {
-    let currentDate = moment();
+    var currentDate;
     var i;
     for (i = 0; i < this.tmpEventList.length; i++) {
       var beginDate = moment(this.tmpEventList[i].timestart * 1000);
       var endDate = moment((this.tmpEventList[i].timestart + this.tmpEventList[i].timeduration) * 1000);
+      var tmpDate = new Date();
+      currentDate = moment(tmpDate);
       if ((moment(beginDate).isSameOrBefore(currentDate, 'day')) && (moment(endDate).isSameOrAfter(currentDate, 'day'))) {
         // today
         this.eventToday[this.tmpEventList[i].id] = true;
