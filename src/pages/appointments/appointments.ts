@@ -206,7 +206,7 @@ export class AppointmentsPage {
       title: this.translate.instant("statusMessage.error.title"),
       subTitle: this.translate.instant(alertTextKey),
       buttons: [
-        this.translate.instant("alertButton.ok")
+        this.translate.instant("buttonLabel.ok")
       ]
     });
     alert.present();
