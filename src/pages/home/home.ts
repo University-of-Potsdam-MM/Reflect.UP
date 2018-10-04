@@ -77,33 +77,18 @@ export class HomePage {
   }
 
   initHome(refresher?, ionRefresh?) {
-    var lastView = this.navCtrl.last().name;
 
     this.storage.get("session").then((session) => {
       if (!session) {
         this.navCtrl.setRoot(SelectModulePage);
       } else {
         this.connection.checkOnline().subscribe(online => {
-          if (online) {
+          if (online || !ionRefresh) {
             this.storage.get("config").then((config:IModuleConfig) => {
               if (config) {
+                if (online) {
+                  this.enrollSelf(config, session.token);
 
-                if (lastView == "HomePage" || this.fromSideMenu || lastView == "SettingsPage" || ionRefresh) {
-
-                  if (!ionRefresh) {
-                    this.isLoaded = false;
-                    this.isLoaded2 = false;
-                  }
-                  
-                  this.fromSideMenu = false;
-                  
-                  if (!ionRefresh && this.fromSideMenu) { this.enrollSelf(config, session.token); }
-  
-                  var forceReload;
-                  if (ionRefresh) { forceReload = true; } else { forceReload = false; }
-                  this.checkUpdatedCards("HomePage", config, session.token, forceReload);
-                  this.loadQuestions(config, session.token, refresher);
-                   
                   if (this.platform.is("ios") || this.platform.is("android")) {
                     this.storage.get("pushRegistered").then(push => {
                       if (push != "yes") {
@@ -111,10 +96,24 @@ export class HomePage {
                       }
                     });
                   }
-                } else if (lastView == "AppointmentsPage") {
-                  this.checkUpdatedCards(lastView, config, session.token, false);
-                } else if (lastView == "QuestionsPage") {
-                  this.isLoaded2 = false;
+                } else { this.showAlert("statusMessage.error.network"); }
+
+                if (this.fromSideMenu || ionRefresh) {
+                  
+                  var forceReload;
+                  if (!ionRefresh) {
+                    this.isLoaded = false;
+                    this.isLoaded2 = false;
+                    forceReload = false;
+                  } else { forceReload = true; }
+                  
+                  this.fromSideMenu = false;
+  
+                  this.checkUpdatedCards(false, config, session.token, forceReload);
+                  this.loadQuestions(config, session.token, refresher);
+                  
+                } else {
+                  this.checkUpdatedCards(true, config, session.token, false);
                   this.loadQuestions(config, session.token);
                 }
 
@@ -149,35 +148,34 @@ export class HomePage {
     });
   }
 
-  checkUpdatedCards(lastView, config:IModuleConfig, token, forceReload) {
+  checkUpdatedCards(notHome, config:IModuleConfig, token, forceReload) {
     this.storage.get("hiddenCards").then((hiddenArray:string[]) => {
-      if (lastView != "HomePage") {
+      if (notHome) {
         this.storage.get("scheduledEvents").then((scheduledArray:string[]) => {
           if (hiddenArray) {
-            if (!(hiddenArray.length == this.hiddenCardsLastCheck.length && hiddenArray.every((value, index) => value == this.hiddenCardsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
+            if (!((hiddenArray.length == this.hiddenCardsLastCheck.length) && (hiddenArray.every((value, index) => value == this.hiddenCardsLastCheck[index])))) {
+              this.loadAppointments(hiddenArray, config, token, forceReload);
             } else if (scheduledArray) {
-              if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-                this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
+              if (!((scheduledArray.length == this.scheduledEventsLastCheck.length) && (scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index])))) {
+                this.loadAppointments(hiddenArray, config, token, forceReload);
               }
             }
           } else if (scheduledArray) {
-            if (!(scheduledArray.length == this.scheduledEventsLastCheck.length && scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index]))) {
-              this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
+            if (!((scheduledArray.length == this.scheduledEventsLastCheck.length) && (scheduledArray.every((value, index) => value == this.scheduledEventsLastCheck[index])))) {
+              this.loadAppointments(hiddenArray, config, token, forceReload);
             }
           } else {
-            this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
+            this.loadAppointments(hiddenArray, config, token, forceReload);
           }
         });
       } else {
-        this.loadAppointments(hiddenArray, lastView, config, token, forceReload);
+        this.loadAppointments(hiddenArray, config, token, forceReload);
       }
     });
   }
 
-  loadAppointments(hiddenCardArray:string[], lastView, config:IModuleConfig, token, forceReload) {
+  loadAppointments(hiddenCardArray:string[], config:IModuleConfig, token, forceReload) {
     this.hiddenCardsLastCheck = hiddenCardArray;
-    if (lastView != "HomePage") { this.isLoaded = false; }
     this.appointm.getAppointments(config, token, forceReload).subscribe((appointConf:AppointConfig) => {
       if (appointConf.events) {
         this.eventList = [];

@@ -48,7 +48,7 @@ export class QuestionsPage {
 
   loadQuestions(config:IModuleConfig, token, forceReload, refresher?) {
     this.connection.checkOnline().subscribe(online => {
-      if (online) {
+      if (online || !forceReload) {
         if (!refresher) { this.isLoaded = false; }
 
         this.questions.getQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {

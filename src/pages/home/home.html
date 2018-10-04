@@ -15,7 +15,7 @@
     refreshingText=""></ion-refresher-content>
   </ion-refresher>
 
-  <div align="center" *ngIf="!isLoaded2" padding>
+  <div align="center" *ngIf="!isLoaded || !isLoaded2" padding>
     <ion-spinner></ion-spinner>
   </div>
 
@@ -41,10 +41,6 @@
     </div>
   </div>
 
-  <div align="center" *ngIf="!isLoaded && isLoaded2" padding>
-      <ion-spinner></ion-spinner>
-  </div>
-
   <div *ngIf="isLoaded">
     <event *ngFor="let ev of eventList; let i = index"
     [event]="ev"
@@ -52,7 +48,7 @@
     [scheduledEvent]="scheduledEvent[ev.id]"
     [index]="i"
     [isPushAllowed]="isPushAllowed"
-    (visibilityChanged)="initHome(undefinded, true)"
+    (visibilityChanged)="initHome()"
     (notificationStatusChanged)="notificationStatusChanged()"></event>
   </div>
 

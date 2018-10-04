@@ -63,8 +63,16 @@ export class MyApp {
         this.splashScreen.hide();
         this.statusBar.styleDefault();
         this.keyboard.disableScroll(true);
-        this.storage.set("hiddenCards", []);
-        this.storage.set("scheduledEvents", []);
+        this.storage.get("hiddenCards").then(array => {
+          if (array == undefined) {
+            this.storage.set("hiddenCards", ["-1"]);
+          }
+        });
+        this.storage.get("scheduledEvents").then(array => {
+          if (array == undefined) {
+            this.storage.set("scheduledEvents", ["-1"]);
+          }
+        });
       }
     });
   }
@@ -113,8 +121,6 @@ export class MyApp {
                 }
               });
             });
-          } else {
-            this.initPush(localConfig);
           }
           this.rootPage = HomePage;
         });

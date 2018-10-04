@@ -97,7 +97,7 @@ export class AppointmentsPage {
 
   initEvents(refresher?, ionRefresh?) {
     this.connection.checkOnline().subscribe(online => {
-      if (online) {
+      if (online || !ionRefresh) {
         var forceReload;
         if (!ionRefresh) { this.isLoaded = false; forceReload = false; } else { forceReload = true; }
         this.storage.get("config").then((config:IModuleConfig) => {

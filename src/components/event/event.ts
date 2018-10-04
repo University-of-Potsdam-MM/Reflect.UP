@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
 import { AlertController } from 'ionic-angular';
 import { EventObject } from '../../lib/interfaces/appointm';
+import { HomePage } from '../../pages/home/home';
 
 @Component({
   selector: 'event',
@@ -52,7 +53,7 @@ export class EventComponent {
    * sets flags onInit and launches initEvent()
    */
   ngOnInit() {
-    if (this.navCtrl.getActive().name == "HomePage") { 
+    if (this.navCtrl.getActive().component == HomePage) { 
       this.isHomePage = true;
       this.showLongDescription = false;
     } else {
