@@ -147,7 +147,7 @@ export class MyApp {
     if (this.platform.is("ios") || this.platform.is("android")) {
       this.pagesInMenu = [
         { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
-        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "alarm" },
+        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
         { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
         { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
         { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
@@ -158,7 +158,7 @@ export class MyApp {
     } else {
       this.pagesInMenu = [
         { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
-        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "alarm" },
+        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
         { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
         { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
         { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
