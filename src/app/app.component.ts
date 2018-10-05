@@ -105,9 +105,9 @@ export class MyApp {
                             // check for new appVersion and notify user if new update is available
                             if (jsonConfig.appVersion) {
                               if (config.appVersion > jsonConfig.appVersion) {
-                                this.storage.set("appUpdateAvailable", "1");
+                                this.storage.set("appUpdateAvailable", 1);
                               } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                            } else { this.storage.set("appUpdateAvailable", "1"); }
+                            } else { this.storage.set("appUpdateAvailable", 1); }
                           }
                         });
                       }
