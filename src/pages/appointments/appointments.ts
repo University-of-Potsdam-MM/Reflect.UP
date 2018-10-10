@@ -174,18 +174,20 @@ export class AppointmentsPage {
   }
 
   checkEventDates() {
-    var currentDate;
-    var i;
+    var currentDate, tommorowDate, i, beginDate, endDate;
     for (i = 0; i < this.tmpEventList.length; i++) {
-      var beginDate = moment(this.tmpEventList[i].timestart * 1000);
-      var endDate = moment((this.tmpEventList[i].timestart + this.tmpEventList[i].timeduration) * 1000);
-      var tmpDate = new Date();
+      beginDate = moment(this.tmpEventList[i].timestart * 1000);
+      endDate = moment((this.tmpEventList[i].timestart + this.tmpEventList[i].timeduration) * 1000);
+      let tmpDate = new Date();
       currentDate = moment(tmpDate);
-      if ((moment(beginDate).isSameOrBefore(currentDate, 'day')) && (moment(endDate).isSameOrAfter(currentDate, 'day'))) {
-        // today
-        this.eventToday[this.tmpEventList[i].id] = true;
-        this.isEventToday = true;
-      } else if ((moment(beginDate).isSameOrBefore(currentDate.add(1, 'day'), 'day')) && (moment(endDate).isSameOrAfter(currentDate.add(1, 'day'), 'day'))) {
+      tommorowDate = moment(tmpDate).add(1, 'day');
+      if (moment(beginDate).isSameOrBefore(currentDate, 'day')) {
+        if (moment(endDate).isSameOrAfter(currentDate, 'day')) {
+          // today
+          this.eventToday[this.tmpEventList[i].id] = true;
+          this.isEventToday = true;
+        }
+      } else if ((moment(beginDate).isSameOrBefore(tommorowDate, 'day')) && (moment(endDate).isSameOrAfter(tommorowDate, 'day'))) {
         // tomorrow
         this.eventTomorrow[this.tmpEventList[i].id] = true;
         this.isEventTomorrow = true;
