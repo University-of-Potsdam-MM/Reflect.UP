@@ -57,7 +57,7 @@ export class MyApp {
     await this.initMenu();
 
     this.platform.ready().then(() => {
-      this.cache.setDefaultTTL(60 * 60 * 24);     // 24h caching
+      this.cache.setDefaultTTL(60 * 60 * 2);     // 2h caching
       this.cache.setOfflineInvalidate(false);     // keep cached results when device is offline
       if (this.platform.is("cordova")) {
         this.splashScreen.hide();
@@ -90,11 +90,9 @@ export class MyApp {
       if (localConfig) {
         this.connection.checkOnline().subscribe((online) => {
           if (online) {
-            let request = this.http.get<IModuleConfig[]>(config_url);
-            let ttl = 60 * 60 * 24 * 7; // cache config for one week
             let jsonPath:string = 'assets/json/config.json';
 
-            this.cache.loadFromObservable("cachedConfig", request, "config", ttl).subscribe((configList:IModuleConfig[]) => {
+            this.http.get<IModuleConfig[]>(config_url).subscribe((configList:IModuleConfig[]) => {
               this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
                 for (let config of configList) {
                   if (localConfig.id == config.id) {

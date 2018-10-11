@@ -39,7 +39,6 @@ export class LogoutPage {
     this.storage.set("config", null);
     this.storage.set("pushRegistered", "no");
     if (this.platform.is("ios") || this.platform.is("android")) {
-      // use actual courseID in the future
       this.storage.get("config").then(
         (config:IModuleConfig) => {
           if (config) {
