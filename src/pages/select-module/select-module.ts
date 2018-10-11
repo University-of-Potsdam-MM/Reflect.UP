@@ -155,9 +155,9 @@ export class SelectModulePage {
                       if (appUpdateStorage != config.appVersion) {
                         if (localConfig.appVersion) {
                           if (config.appVersion > localConfig.appVersion) {
-                            this.storage.set("appUpdateAvailable", "1");
+                            this.storage.set("appUpdateAvailable", 1);
                           } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                        } else { this.storage.set("appUpdateAvailable", "1"); }
+                        } else { this.storage.set("appUpdateAvailable", 1); }
                       }
                     });
                   }
