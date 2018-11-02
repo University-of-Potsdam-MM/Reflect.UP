@@ -9,7 +9,6 @@ import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { ConnectionProvider } from '../../providers/connection-provider/connection-provider';
-import { CacheService } from 'ionic-cache';
 
 /**
  * SelectModulePage
@@ -41,7 +40,7 @@ export class SelectModulePage {
     private alertCtrl: AlertController,
     private menu: MenuController,
     private popoverCtrl: PopoverController,
-    private cache: CacheService) {
+    ) {
       this.menu.enable(false,"sideMenu");
   }
 

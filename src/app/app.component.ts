@@ -1,4 +1,3 @@
-import { Keyboard } from '@ionic-native/keyboard';
 import { PushProvider } from '../providers/push-provider/push-provider';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -41,7 +40,6 @@ export class MyApp {
       private connection: ConnectionProvider,
       private storage: Storage,
       private pushProv: PushProvider,
-      private keyboard: Keyboard,
       private cache: CacheService) {
     this.initApp();
   }
@@ -62,7 +60,6 @@ export class MyApp {
       if (this.platform.is("cordova")) {
         this.splashScreen.hide();
         this.statusBar.styleDefault();
-        this.keyboard.disableScroll(true);
         this.storage.get("hiddenCards").then(array => {
           if (array == undefined) {
             this.storage.set("hiddenCards", ["-1"]);
