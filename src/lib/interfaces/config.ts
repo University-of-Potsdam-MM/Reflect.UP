@@ -10,6 +10,7 @@ export interface IModuleConfig
 	title:string;
 	institution:string;
 	description:string;
+	mintEnabled?:boolean;
 	impressumTemplate:string;
 	uniLogo:string;
 	contactPersonsObject:ContactPersonsObject[];
