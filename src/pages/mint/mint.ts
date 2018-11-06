@@ -39,7 +39,7 @@ export class MintPage {
   showOpeningHours(imagePath:string) {
     let url = "https://www.uni-potsdam.de/fileadmin01/projects/mnfakul/Dokumente_und_Übersichten/Studium_und_Lehre/Fächer_und_Tutoren_WiSe_18_19.pdf";
 
-    if (this.platform.is("ios") || this.platform.is("android")) {
+    if (this.platform.is("cordova")) {
       let options = {
         share: true,
         closeButton: true, 
