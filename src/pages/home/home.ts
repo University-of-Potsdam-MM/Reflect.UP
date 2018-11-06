@@ -60,7 +60,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.initHome();
-    if (this.platform.is("cordova") { this.checkForAppUpdate(); }
+    if (this.platform.is("cordova")) { this.checkForAppUpdate(); }
   }
 
   ionViewDidLoad() {
