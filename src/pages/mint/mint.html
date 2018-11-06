@@ -37,11 +37,17 @@
     Charlotte Riemer (<a href="mailto:miriemer@​uni-potsdam.de">miriemer@​uni-potsdam.de</a>)
   </div>
 
-  <h6 padding-left padding-right>Campus Golm (Haus 26, Raum 0.76)</h6>
-  <img src="assets/imgs/mint/mint-1.jpg" tappable (click)="showOpeningHours('assets/imgs/mint/mint-1.jpg')">
-
-  <h6 padding-left padding-right >Campus Griebnitzsee (Haus 4, Raum 2.01)</h6>
-  <img src="assets/imgs/mint/mint-2.jpg" tappable (click)="showOpeningHours('assets/imgs/mint/mint-2.jpg')">
+  <div *ngIf="configLoaded" padding>
+    <div *ngFor="let mintCampus of mintDetails" (click)="console.log(mintDetails)">
+      <h6>{{ mintCampus.campus }}</h6>
+  
+      <div *ngFor="let mintTutor of mintCampus.schedule">
+        {{ mintTutor.tutor }}
+        {{ mintTutor.subject }}
+        {{ mintTutor.timeslot }}
+      </div>
+    </div>
+  </div>
   
 </ion-content>
 

@@ -159,8 +159,10 @@ export class MyApp {
       this.pagesInMenu.push({ title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"});
     }
 
-    if (config.mintEnabled) {
-      this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
+    if (config != undefined) {
+      if (config.mintEnabled) {
+        this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
+      }
     }
 
     this.pagesInMenu.push({ title: "pageHeader.settingsPage", pageName: SettingsPage, icon: "settings"});
