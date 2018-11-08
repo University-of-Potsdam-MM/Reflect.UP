@@ -51,5 +51,10 @@ export interface IMintObject {
 interface IMintSchedule {
 	tutor:string;
 	subject:string;
-	timeslot:string;
+	timeslot:IMintTimeslot[];
+}
+
+interface IMintTimeslot {
+	day: string;
+	time: string;
 }

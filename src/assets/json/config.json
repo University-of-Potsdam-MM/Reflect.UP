@@ -1636,58 +1636,149 @@
         "schedule": [
           {
             "tutor": "Lukas",
-            "subject": "Mathe",
-            "timeslot": "Montag 10 - 12 Uhr, Donnerstag 14 - 18 Uhr"
+            "subject": "Mathematik",
+            "timeslot": [
+              {
+                "day": "Montag",
+                "time": "10 - 12"
+              },
+              {
+                "day": "Donnerstag",
+                "time": "14 - 18"
+              }
+            ]
           },
           {
             "tutor": "Martin",
-            "subject": "Mathe, Physik",
-            "timeslot": "Dienstag 14 - 18 Uhr, Mittwoch 14 - 16 Uhr, Freitag 12 - 14 Uhr"
+            "subject": "Mathematik, Physik",
+            "timeslot": [
+              {
+                "day": "Dienstag",
+                "time": "14 - 18"
+              },
+              {
+                "day": "Mittwoch",
+                "time": "14 - 16"
+              },
+              {
+                "day": "Freitag",
+                "time": "12 - 14"
+              }
+            ]
           },
           {
             "tutor": "Jasmin",
-            "subject": "Mathe, Physik",
-            "timeslot": "Freitag 12 - 16 Uhr"
+            "subject": "Mathematik, Physik",
+            "timeslot": [
+              {
+                "day": "Freitag",
+                "time": "12 - 16"
+              }
+            ]
           },
           {
             "tutor": "Mark",
-            "subject": "Mathe, Physik",
-            "timeslot": "Dienstag 14 - 16 Uhr, Mittwoch 12 - 16 Uhr, Donnerstag 14 - 16 Uhr"
+            "subject": "Mathematik, Physik",
+            "timeslot": [
+              {
+                "day": "Dienstag",
+                "time": "14 - 16"
+              },
+              {
+                "day": "Mittwoch",
+                "time": "12 - 16"
+              },
+              {
+                "day": "Donnerstag",
+                "time": "14 - 16"
+              }
+            ]
           },
           {
             "tutor": "Danny",
-            "subject": "Mathe, Chemie",
-            "timeslot": "Montag 8 - 10 Uhr, Donnerstag 14 - 16 Uhr"
+            "subject": "Mathematik, Chemie",
+            "timeslot": [
+              {
+                "day": "Montag",
+                "time": "8 - 10"
+              },
+              {
+                "day": "Donnerstag",
+                "time": "14 - 16"
+              }
+            ]
           },
           {
             "tutor": "Anja",
-            "subject": "Mathe, Chemie",
-            "timeslot": "Dienstag 16 - 18 Uhr, Mittwoch 12 - 16 Uhr, Freitag 12 - 16 Uhr"
+            "subject": "Mathematik, Chemie",
+            "timeslot": [
+              {
+                "day": "Dienstag",
+                "time": "16 - 18"
+              },
+              {
+                "day": "Mittwoch",
+                "time":"12 - 16"
+              },
+              {
+                "day": "Freitag",
+                "time":"12 - 16"
+              }
+            ]
           },
           {
             "tutor": "Sophie",
-            "subject": "Mathe, Biologie",
-            "timeslot": "Mittwoch 12 - 14 Uhr"
+            "subject": "Mathematik, Biologie",
+            "timeslot": [
+              {
+                "day": "Mittwoch",
+                "time":"12 - 14"
+              }
+            ]
           },
           {
             "tutor": "Lisa",
             "subject": "Chemie, Biologie",
-            "timeslot": "Mittwoch 12 - 14 Uhr, Donnerstag 16 - 18 Uhr"
+            "timeslot": [
+              {
+                "day": "Mittwoch",
+                "time": "12 - 14"
+              },
+              {
+                "day": "Donnerstag",
+                "time": "16 - 18"
+              }
+            ]
           },
           {
             "tutor": "Alexander",
             "subject": "Chemie, Physik",
-            "timeslot": "Donnerstag 14 - 18 Uhr"
+            "timeslot": [
+              {
+                "day": "Donnerstag",
+                "time": "14 - 18"
+              }
+            ]
           },
           {
             "tutor": "Steffi",
             "subject": "Chemie, Physik",
-            "timeslot": "Montag 10 - 12 Uhr"
+            "timeslot": [
+              {
+                "day": "Montag",
+                "time": "10 - 12"
+              }
+            ]
           },
           {
             "tutor": "Ulrike",
             "subject": "Ernährungswissenschaft",
-            "timeslot": "Dienstag 14 - 18 Uhr"
+            "timeslot": [
+              {
+                "day": "Dienstag",
+                "time": "14 - 18"
+              }
+            ]
           }
         ]
       },
@@ -1697,12 +1788,30 @@
           {
             "tutor": "Jessica",
             "subject": "Informatik",
-            "timeslot": "Montag 16 - 18 Uhr, Dienstag 18 - 20 Uhr"
+            "timeslot": [
+              {
+                "day": "Montag",
+                "time": "16 - 18"
+              },
+              {
+                "day": "Dienstag",
+                "time": "18 - 20"
+              }
+            ]
           },
           {
             "tutor": "Bastian",
             "subject": "Informatik, Physik",
-            "timeslot": "Montag 16 - 18 Uhr, Dienstag 18 - 20 Uhr"
+            "timeslot": [
+              {
+                "day": "Montag",
+                "time": "16 - 18"
+              },
+              {
+                "day": "Dienstag",
+                "time": "18 - 20"
+              }
+            ]
           }
         ]
       }

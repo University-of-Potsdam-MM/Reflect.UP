@@ -134,7 +134,7 @@ export class MyApp {
    * @param config 
    */
   private initPush(config:IModuleConfig) {
-    if (this.platform.is("ios") || this.platform.is("android")) {
+    if (this.platform.is("cordova")) {
       this.pushProv.registerPushService(config);
     }
   }
