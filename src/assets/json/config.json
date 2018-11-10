@@ -1639,11 +1639,11 @@
             "subject": "Mathematik",
             "timeslot": [
               {
-                "day": "Montag",
+                "day": "Mo",
                 "time": "10 - 12"
               },
               {
-                "day": "Donnerstag",
+                "day": "Do",
                 "time": "14 - 18"
               }
             ]
@@ -1653,15 +1653,15 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "14 - 18"
               },
               {
-                "day": "Mittwoch",
+                "day": "Mi",
                 "time": "14 - 16"
               },
               {
-                "day": "Freitag",
+                "day": "Fr",
                 "time": "12 - 14"
               }
             ]
@@ -1671,7 +1671,7 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Freitag",
+                "day": "Fr",
                 "time": "12 - 16"
               }
             ]
@@ -1681,15 +1681,15 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "14 - 16"
               },
               {
-                "day": "Mittwoch",
+                "day": "Mi",
                 "time": "12 - 16"
               },
               {
-                "day": "Donnerstag",
+                "day": "Do",
                 "time": "14 - 16"
               }
             ]
@@ -1699,11 +1699,11 @@
             "subject": "Mathematik, Chemie",
             "timeslot": [
               {
-                "day": "Montag",
+                "day": "Mo",
                 "time": "8 - 10"
               },
               {
-                "day": "Donnerstag",
+                "day": "Do",
                 "time": "14 - 16"
               }
             ]
@@ -1713,15 +1713,15 @@
             "subject": "Mathematik, Chemie",
             "timeslot": [
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "16 - 18"
               },
               {
-                "day": "Mittwoch",
+                "day": "Mi",
                 "time":"12 - 16"
               },
               {
-                "day": "Freitag",
+                "day": "Fr",
                 "time":"12 - 16"
               }
             ]
@@ -1731,7 +1731,7 @@
             "subject": "Mathematik, Biologie",
             "timeslot": [
               {
-                "day": "Mittwoch",
+                "day": "Mi",
                 "time":"12 - 14"
               }
             ]
@@ -1741,11 +1741,11 @@
             "subject": "Chemie, Biologie",
             "timeslot": [
               {
-                "day": "Mittwoch",
+                "day": "Mi",
                 "time": "12 - 14"
               },
               {
-                "day": "Donnerstag",
+                "day": "Do",
                 "time": "16 - 18"
               }
             ]
@@ -1755,7 +1755,7 @@
             "subject": "Chemie, Physik",
             "timeslot": [
               {
-                "day": "Donnerstag",
+                "day": "Do",
                 "time": "14 - 18"
               }
             ]
@@ -1765,7 +1765,7 @@
             "subject": "Chemie, Physik",
             "timeslot": [
               {
-                "day": "Montag",
+                "day": "Mo",
                 "time": "10 - 12"
               }
             ]
@@ -1775,7 +1775,7 @@
             "subject": "Ernährungswissenschaft",
             "timeslot": [
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "14 - 18"
               }
             ]
@@ -1790,11 +1790,11 @@
             "subject": "Informatik",
             "timeslot": [
               {
-                "day": "Montag",
+                "day": "Mo",
                 "time": "16 - 18"
               },
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "18 - 20"
               }
             ]
@@ -1804,11 +1804,11 @@
             "subject": "Informatik, Physik",
             "timeslot": [
               {
-                "day": "Montag",
+                "day": "Mo",
                 "time": "16 - 18"
               },
               {
-                "day": "Dienstag",
+                "day": "Di",
                 "time": "18 - 20"
               }
             ]

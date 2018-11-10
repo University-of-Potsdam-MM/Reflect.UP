@@ -14,7 +14,7 @@ export class MintPage {
   mintDetailsAll:IMintObject[] = [];
   configLoaded = false;
   availableSubjects = [];
-  chosenSubjects;
+  chosenSubject;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage) {
   }
@@ -71,16 +71,16 @@ export class MintPage {
       this.mintDetails[i].schedule = [];
     }
 
-    if (this.chosenSubjects.length > 0) {
+    if (this.chosenSubject.length > 0 && !(this.chosenSubject.trim() == "--")) {
       // check tutors that teach a chosen subject, add them to the schedule
       for (i = 0; i < this.mintDetailsAll.length; i++) {
         for (j = 0; j < this.mintDetailsAll[i].schedule.length; j++) {
           var hits = 0;
-          for (k = 0; k < this.chosenSubjects.length; k++) {
-            if (this.mintDetailsAll[i].schedule[j].subject.includes(this.chosenSubjects[k].trim())) {
+          for (k = 0; k < this.chosenSubject.length; k++) {
+            if (this.mintDetailsAll[i].schedule[j].subject.includes(this.chosenSubject[k].trim())) {
               hits += 1;
             }
-            if (hits == this.chosenSubjects.length) {
+            if (hits == this.chosenSubject.length) {
               if (!this.isInArray(this.mintDetails[i].schedule, this.mintDetailsAll[i].schedule[j])) {
                 this.mintDetails[i].schedule.push(this.mintDetailsAll[i].schedule[j]);
               }
