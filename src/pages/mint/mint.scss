@@ -2,4 +2,10 @@ page-mint {
     .blue {
         color: color($colors, primary);
     }
+
+    .row.lastRow {
+        .col {
+            border-bottom: 1px solid gray;
+        }
+    }
 }

@@ -51,7 +51,7 @@
         </ion-option> 
       </ion-select>
     </ion-item>
-    <div *ngFor="let mintCampus of mintDetails" padding>
+    <div *ngFor="let mintCampus of mintDetails; let j = index" padding>
       <h5>{{ mintCampus.campus }}</h5>
       <div *ngIf="!(mintCampus.schedule.length > 0)" align="center">
         Kein Angebot für das gewählte Fach.
@@ -60,22 +60,36 @@
         <span *ngFor="let mintTutor of mintCampus.schedule; let i = index; let even = even">
           <ion-row *ngIf="even">
             <ion-col col-2>
-              <b>
-                Tutor: <br>
-                Fach: <br>
-                Zeit:
-              </b>
+              <b>Tutor:</b>
             </ion-col>
             <ion-col>
-              {{ mintTutor.tutor }}<br>
-              {{ mintTutor.subject }}<br>
+              {{ mintTutor.tutor }}
+            </ion-col>
+            <ion-col *ngIf="mintCampus.schedule[i+1]">
+              {{ mintCampus.schedule[i+1].tutor }}
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="even">
+            <ion-col col-2>
+              <b>Fach:</b>
+            </ion-col>
+            <ion-col>
+              {{ mintTutor.subject }}
+            </ion-col>
+            <ion-col *ngIf="mintCampus.schedule[i+1]">
+              {{ mintCampus.schedule[i+1].subject }}
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="even" [ngClass]="checkLastRow(j, i)">
+            <ion-col col-2>
+              <b>Zeit:</b>
+            </ion-col>
+            <ion-col>
               <span *ngFor="let date of mintTutor.timeslot; let last = last">
                 {{ date.day }}: {{ date.time }} {{ "label.appointmentsPage.time" | translate }}<br *ngIf="!last">
               </span>
             </ion-col>
             <ion-col *ngIf="mintCampus.schedule[i+1]">
-              {{ mintCampus.schedule[i+1].tutor }}<br>
-              {{ mintCampus.schedule[i+1].subject }}<br>
               <span *ngFor="let date of mintCampus.schedule[i+1].timeslot; let last = last">
                 {{ date.day }}: {{ date.time }} {{ "label.appointmentsPage.time" | translate }}<br *ngIf="!last">
               </span>

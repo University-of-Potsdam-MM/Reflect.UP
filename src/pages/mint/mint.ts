@@ -96,4 +96,12 @@ export class MintPage {
 
   }
 
+  checkLastRow(campusIndex, tutorIndex) {
+    if ((this.mintDetails[campusIndex].schedule.length-1 != tutorIndex)) {
+      if ((this.mintDetails[campusIndex].schedule.length-2 != tutorIndex)) {
+        return "lastRow"
+      } else { return "" }
+    } else { return "" }
+  }
+
 }
