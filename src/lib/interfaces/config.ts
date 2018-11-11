@@ -10,6 +10,8 @@ export interface IModuleConfig
 	title:string;
 	institution:string;
 	description:string;
+	mintEnabled?:boolean;
+	mintDetails?:IMintObject[];
 	impressumTemplate:string;
 	uniLogo:string;
 	contactPersonsObject:ContactPersonsObject[];
@@ -39,4 +41,20 @@ interface PushDetails
 interface AccessToken
 {
 	Authorization:string;
+}
+
+export interface IMintObject {
+	campus:string;
+	schedule:IMintSchedule[];
+}
+
+interface IMintSchedule {
+	tutor:string;
+	subject:string;
+	timeslot:IMintTimeslot[];
+}
+
+interface IMintTimeslot {
+	day: string;
+	time: string;
 }

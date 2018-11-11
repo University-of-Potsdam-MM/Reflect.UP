@@ -21,6 +21,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { LogoutPage } from '../pages/logout/logout';
 import { SelectModulePage } from '../pages/select-module/select-module';
 import { PushMessagesPage } from './../pages/push-messages/push-messages';
+import { MintPage } from '../pages/mint/mint';
 
 @Component({
   templateUrl: 'app.html'
@@ -133,7 +134,7 @@ export class MyApp {
    * @param config 
    */
   private initPush(config:IModuleConfig) {
-    if (this.platform.is("ios") || this.platform.is("android")) {
+    if (this.platform.is("cordova")) {
       this.pushProv.registerPushService(config);
     }
   }
@@ -143,30 +144,29 @@ export class MyApp {
    *
    * sets up menu entries and icons
    */
-  private initMenu() {
-    // only show push-notifications page when on mobile device
+  private async initMenu() {
+    let config:IModuleConfig = await this.storage.get("config");
+
+    this.pagesInMenu = [
+      { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
+      { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
+      { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
+      { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
+      { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
+    ];
+
     if (this.platform.is("ios") || this.platform.is("android")) {
-      this.pagesInMenu = [
-        { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
-        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
-        { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
-        { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
-        { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
-        { title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"},
-        { title: "pageHeader.settingsPage", pageName: SettingsPage, icon: "settings"},
-        { title: "pageHeader.logoutPage", pageName: LogoutPage, icon: "log-out" }
-      ];
-    } else {
-      this.pagesInMenu = [
-        { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
-        { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
-        { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
-        { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
-        { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
-        { title: "pageHeader.settingsPage", pageName: SettingsPage, icon: "settings"},
-        { title: "pageHeader.logoutPage", pageName: LogoutPage, icon: "log-out" }
-      ];
+      this.pagesInMenu.push({ title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"});
     }
+
+    if (config != undefined) {
+      if (config.mintEnabled) {
+        this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
+      }
+    }
+
+    this.pagesInMenu.push({ title: "pageHeader.settingsPage", pageName: SettingsPage, icon: "settings"});
+    this.pagesInMenu.push({ title: "pageHeader.logoutPage", pageName: LogoutPage, icon: "log-out" });
   }
 
   /**

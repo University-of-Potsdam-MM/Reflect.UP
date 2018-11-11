@@ -38,7 +38,7 @@ export class LogoutPage {
     this.storage.set("session", null);
     this.storage.set("config", null);
     this.storage.set("pushRegistered", "no");
-    if (this.platform.is("ios") || this.platform.is("android")) {
+    if (this.platform.is("cordova")) {
       this.storage.get("config").then(
         (config:IModuleConfig) => {
           if (config) {

@@ -20,6 +20,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HttpLoaderFactory } from '../lib/interfaces';
 import { CalendarModule } from 'ion2-calendar';
 import { CacheModule } from 'ionic-cache';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { File } from '@ionic-native/file';
 
 /* ~~~ Pages ~~~ */
 import { MyApp } from './app.component';
@@ -38,6 +40,7 @@ import { PopoverPage } from './../pages/popover/popover';
 import { PushMessagesPage } from './../pages/push-messages/push-messages';
 import { InfoPage } from './../pages/info/info';
 import { QuestionDetailPage } from './../pages/question-detail/question-detail';
+import { MintPage } from '../pages/mint/mint';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { QuestionDetailPage } from './../pages/question-detail/question-detail';
     QuestionDetailPage,
     ImpressumPage,
     DisagreeTosPage,
+    MintPage,
     InfoPage,
     PopoverPage,
     PushMessagesPage
@@ -91,6 +95,7 @@ import { QuestionDetailPage } from './../pages/question-detail/question-detail';
     QuestionDetailPage,
     ImpressumPage,
     DisagreeTosPage,
+    MintPage,
     InfoPage,
     PopoverPage,
     PushMessagesPage
@@ -106,6 +111,8 @@ import { QuestionDetailPage } from './../pages/question-detail/question-detail';
     LocalNotifications,
     UPLoginProvider,
     QuestionProvider,
+    PhotoViewer,
+    File,
     InAppBrowser,
     Push,
     PushProvider,

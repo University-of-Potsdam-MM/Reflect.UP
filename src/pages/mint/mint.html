@@ -1,0 +1,107 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ "pageHeader.mintPage" | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <h5 padding-top padding-left padding-right>
+    <b class="blue">M</b>athematik, <b class="blue">I</b>nformatik, <b class="blue">N</b>aturwissenschaften, <b class="blue">T</b>echnik
+  </h5>
+
+  <div padding>
+    <div style="text-align: justify;">
+      Du bist in den ersten Semestern deines Studiums und dir fehlt manchmal der Durchblick bei Studieninhalten oder bei der Studienorganisation? Dann bist du im MINT-Raum genau richtig!<br><br>
+      Hier unterstützen dich fortgeschrittene Studierende bei deinem Selbststudium oder helfen dabei Verständnisfragen in den mathematisch-naturwissenschaftlichen Fächern zu klären, damit du dich in deinem Studium wohl fühlen kannst.
+      <br><br>
+      <b>Wir bieten dir:</b>
+    </div>
+
+    <ol>
+      <li>einen Platz zum eigenen Lernen und Arbeiten (Selbststudium)</li><br>
+      <li>Hilfe zur Selbsthilfe bei naturwissenschaftlichen Übungsblättern von TutorInnen höherer Semester</li><br>
+      <li>
+        Unterstützung beim wissenschaftlichen Schreiben von Hausarbeiten und Bachelorarbeiten. Insbesondere können unsere TutorenInnen dich beraten bei:<br><br>
+        <ul>
+          <li>Literaturrecherche in Datenbanken</li>
+          <li>Strukturiertem Schreiben und richtigem Zitieren</li>
+        </ul>
+      </li>
+    </ol>
+
+    <br>
+    <b>Koordinatorin MINT-Raums:</b><br>
+    Charlotte Riemer (<a href="mailto:miriemer@​uni-potsdam.de">miriemer@​uni-potsdam.de</a>)
+  </div>
+
+  <div *ngIf="configLoaded">
+    <ion-item>
+      <ion-label>Fach auswählen</ion-label>
+      <ion-select [(ngModel)]="chosenSubject" (ionChange)="changeSchedule()" multiple="false"
+      okText="{{ 'buttonLabel.ok' | translate }}" cancelText="{{ 'buttonLabel.cancel' | translate }}"
+      padding-right>
+        <ion-option>
+          --
+        </ion-option>
+        <ion-option *ngFor="let subject of availableSubjects">
+          {{ subject }}
+        </ion-option> 
+      </ion-select>
+    </ion-item>
+    <div *ngFor="let mintCampus of mintDetails; let j = index" padding>
+      <h5>{{ mintCampus.campus }}</h5>
+      <div *ngIf="!(mintCampus.schedule.length > 0)" align="center">
+        Kein Angebot für das gewählte Fach.
+      </div>
+      <ion-grid>
+        <span *ngFor="let mintTutor of mintCampus.schedule; let i = index; let even = even">
+          <ion-row *ngIf="even">
+            <ion-col col-2>
+              <b>Tutor:</b>
+            </ion-col>
+            <ion-col>
+              {{ mintTutor.tutor }}
+            </ion-col>
+            <ion-col *ngIf="mintCampus.schedule[i+1]">
+              {{ mintCampus.schedule[i+1].tutor }}
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="even">
+            <ion-col col-2>
+              <b>Fach:</b>
+            </ion-col>
+            <ion-col>
+              {{ mintTutor.subject }}
+            </ion-col>
+            <ion-col *ngIf="mintCampus.schedule[i+1]">
+              {{ mintCampus.schedule[i+1].subject }}
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="even" [ngClass]="checkLastRow(j, i)">
+            <ion-col col-2>
+              <b>Zeit:</b>
+            </ion-col>
+            <ion-col>
+              <span *ngFor="let date of mintTutor.timeslot; let last = last">
+                {{ date.day }}: {{ date.time }} {{ "label.appointmentsPage.time" | translate }}<br *ngIf="!last">
+              </span>
+            </ion-col>
+            <ion-col *ngIf="mintCampus.schedule[i+1]">
+              <span *ngFor="let date of mintCampus.schedule[i+1].timeslot; let last = last">
+                {{ date.day }}: {{ date.time }} {{ "label.appointmentsPage.time" | translate }}<br *ngIf="!last">
+              </span>
+            </ion-col>
+          </ion-row>
+        </span>
+      </ion-grid>
+    </div>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+  <tab-bar></tab-bar>
+</ion-footer>

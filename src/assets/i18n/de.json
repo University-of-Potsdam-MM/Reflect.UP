@@ -108,7 +108,8 @@
         "pushMessagesPage": "Push-Nachrichten",
         "questionsPage": "Reflexionsfragen",
         "selectModulePage": "Willkommen",
-        "settingsPage": "Einstellungen"
+        "settingsPage": "Einstellungen",
+        "mintPage": "MINT-Raum"
     },
     "statusMessage": {
         "error": {

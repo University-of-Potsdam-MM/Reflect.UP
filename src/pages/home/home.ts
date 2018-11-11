@@ -60,7 +60,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.initHome();
-    if (this.platform.is("ios") || this.platform.is("android")) { this.checkForAppUpdate(); }
+    if (this.platform.is("cordova")) { this.checkForAppUpdate(); }
   }
 
   ionViewDidLoad() {
@@ -89,7 +89,7 @@ export class HomePage {
                 if (online) {
                   this.enrollSelf(config, session.token);
 
-                  if (this.platform.is("ios") || this.platform.is("android")) {
+                  if (this.platform.is("cordova")) {
                     this.storage.get("pushRegistered").then(push => {
                       if (push != "yes") {
                         this.pushProv.registerPushService(config);
