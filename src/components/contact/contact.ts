@@ -21,7 +21,13 @@ export class ContactComponent {
   @Input()
   consultation_url?:string;
 
+  shortenedUrl;
+
   constructor() {
+  }
+
+  ngOnInit() {
+    this.shortenedUrl = this.consultation_url.substring(0, 30) + "...";
   }
 
 }

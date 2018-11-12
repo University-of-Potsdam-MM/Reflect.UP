@@ -5,5 +5,5 @@
   <p *ngIf="mail">{{"label.contactsPage.email" | translate }} <a *ngIf="mail" href="mailto:{{ mail }}">{{ mail }}</a></p>
   <p *ngIf="consultation" text>{{"label.contactsPage.consultingTime" | translate }} {{ consultation }}</p>
   <p *ngIf="consultation_url" text style="display:inline">{{ "label.contactsPage.website" | translate}} </p>
-  <a *ngIf="consultation_url" href="{{ consultation_url }}">{{ "label.university" | translate}}</a>
+  <a *ngIf="consultation_url" href="{{ consultation_url }}">{{ shortenedUrl }}</a>
 </div>
