@@ -14,8 +14,8 @@
   </ion-row>
   <ion-list>
     <ion-item><b>Impressum & Rechtliches</b></ion-item>
-    <button ion-item detail-push (click)="openPage('LegalNoticePage')">Impressum</button>
-    <button ion-item detail-push (click)="openPage('PrivacyPolicyPage')">Datenschutz</button>
-    <button ion-item detail-push (click)="openPage('TermsOfUsePage')">Nutzungsbedingungen</button>
+    <button ion-item detail-push (click)="openPage('LegalNoticePage')">{{ "pageHeader.legalNoticePage" | translate }}</button>
+    <button ion-item detail-push (click)="openPage('PrivacyPolicyPage')">{{ "pageHeader.privacyPolicyPage" | translate }}</button>
+    <button ion-item detail-push (click)="openPage('TermsOfUsePage')">{{ "pageHeader.termsOfUsePage" | translate }}</button>
   </ion-list>
 </ion-content>
