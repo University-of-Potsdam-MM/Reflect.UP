@@ -5,15 +5,17 @@
 </ion-header>
 
 <ion-content>
-  <div [innerHTML]="processMoodleContents(impressum)" padding></div>
-  <ion-card tappable (click)="toggleTOS()">
-    <ion-item text-wrap>
-      <ion-icon *ngIf="!showTOS" item-left name="arrow-dropright"></ion-icon>
-      <ion-icon *ngIf="showTOS" item-left name="arrow-dropdown"></ion-icon>
-      {{ "statusMessage.tos.title" | translate }}
-    </ion-item>
-    <ion-card-content *ngIf="showTOS" class="reminder">
-      {{ "statusMessage.tos.message" | translate }}
-    </ion-card-content>
-  </ion-card>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/imgs/logos/logo_uni_potsdam.svg"/>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-item><b>Impressum & Rechtliches</b></ion-item>
+    <button ion-item detail-push (click)="openPage('LegalNoticePage')">Impressum</button>
+    <button ion-item detail-push (click)="openPage('PrivacyPolicyPage')">Datenschutz</button>
+    <button ion-item detail-push (click)="openPage('TermsOfUsePage')">Nutzungsbedingungen</button>
+  </ion-list>
 </ion-content>

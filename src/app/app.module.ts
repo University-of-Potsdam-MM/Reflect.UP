@@ -20,8 +20,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HttpLoaderFactory } from '../lib/interfaces';
 import { CalendarModule } from 'ion2-calendar';
 import { CacheModule } from 'ionic-cache';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
-import { File } from '@ionic-native/file';
 
 /* ~~~ Pages ~~~ */
 import { MyApp } from './app.component';
@@ -41,6 +39,9 @@ import { PushMessagesPage } from './../pages/push-messages/push-messages';
 import { InfoPage } from './../pages/info/info';
 import { QuestionDetailPage } from './../pages/question-detail/question-detail';
 import { MintPage } from '../pages/mint/mint';
+import { LegalNoticePage } from '../pages/legal-notice/legal-notice';
+import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
+import { TermsOfUsePage } from '../pages/terms-of-use/terms-of-use';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,10 @@ import { MintPage } from '../pages/mint/mint';
     MintPage,
     InfoPage,
     PopoverPage,
-    PushMessagesPage
+    PushMessagesPage,
+    LegalNoticePage,
+    PrivacyPolicyPage,
+    TermsOfUsePage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +102,10 @@ import { MintPage } from '../pages/mint/mint';
     MintPage,
     InfoPage,
     PopoverPage,
-    PushMessagesPage
+    PushMessagesPage,
+    LegalNoticePage,
+    PrivacyPolicyPage,
+    TermsOfUsePage
   ],
   providers: [
     StatusBar,
@@ -111,8 +118,6 @@ import { MintPage } from '../pages/mint/mint';
     LocalNotifications,
     UPLoginProvider,
     QuestionProvider,
-    PhotoViewer,
-    File,
     InAppBrowser,
     Push,
     PushProvider,

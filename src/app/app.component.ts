@@ -87,7 +87,7 @@ export class MyApp {
     this.storage.get("config").then((localConfig:IModuleConfig) => {
       if (localConfig) {
         this.connection.checkOnline().subscribe((online) => {
-          if (online) {
+          if (!online) {
             let jsonPath:string = 'assets/json/config.json';
 
             this.http.get<IModuleConfig[]>(config_url).subscribe((configList:IModuleConfig[]) => {
@@ -121,6 +121,10 @@ export class MyApp {
           this.rootPage = HomePage;
         });
       } else {
+        let jsonPath:string = 'assets/json/config.json';
+        this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+          this.storage.set("fallbackConfig", jsonConfigList[0]);
+        });
         this.rootPage = SelectModulePage;
       }
     });
