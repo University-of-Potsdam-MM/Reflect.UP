@@ -50,49 +50,50 @@ export class SelectModulePage {
   }
 
   ngOnInit() {
-    this.getDescriptions();
     this.presentTOS();
+    this.getDescriptions();
   }
 
   presentTOS() {
-    this.storage.get("fallbackConfig").then((config:IModuleConfig) => {
-      if (config) {
-        this.tosMessageDE = config.tosTemplateDE;
-        this.tosMessageEN = config.tosTemplateEN;
-      }
-    });
+    let jsonPath:string = 'assets/json/config.json';
+    this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+      this.storage.set("fallbackConfig", jsonConfigList[0]);
+      let config = jsonConfigList[0];
+      this.tosMessageDE = config.tosTemplateDE;
+      this.tosMessageEN = config.tosTemplateEN;
 
-    this.storage.get("ToS").then((ToS) => {
-      if (ToS != "agree") {
-        var msg;
-        if (this.translate.currentLang == "de") {
-          msg = this.tosMessageDE;
-        } else { msg = this.tosMessageEN; }
-        let alert = this.alertCtrl.create({
-          title: this.translate.instant('statusMessage.tos.title'),
-          message: msg,
-          buttons: [
-            {
-              text: this.translate.instant('buttonLabel.disagree'),
-              role: 'disagree',
-              handler: () => {
-                this.storage.set("ToS", "disagree");
-                this.navCtrl.setRoot(DisagreeTosPage);
+      this.storage.get("ToS").then((ToS) => {
+        if (ToS != "agree") {
+          var msg;
+          if (this.translate.currentLang == "de") {
+            msg = this.tosMessageDE;
+          } else { msg = this.tosMessageEN; }
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant('statusMessage.tos.title'),
+            message: msg,
+            buttons: [
+              {
+                text: this.translate.instant('buttonLabel.disagree'),
+                role: 'disagree',
+                handler: () => {
+                  this.storage.set("ToS", "disagree");
+                  this.navCtrl.setRoot(DisagreeTosPage);
+                }
+              },
+              {
+                text: this.translate.instant('buttonLabel.agree'),
+                role: 'agree',
+                handler: () => {
+                  this.storage.set("ToS", "agree");
+                }
               }
-            },
-            {
-              text: this.translate.instant('buttonLabel.agree'),
-              role: 'agree',
-              handler: () => {
-                this.storage.set("ToS", "agree");
-              }
-            }
-          ],
-          enableBackdropDismiss: false,
-        });
-        alert.present();
-      }
-    })
+            ],
+            enableBackdropDismiss: false,
+          });
+          alert.present();
+        }
+      });
+    });
   }
 
   /**
@@ -103,7 +104,7 @@ export class SelectModulePage {
   public getDescriptions():void {
 
     this.connection.checkOnline().subscribe((online) => {
-      if (online) {
+      if (!online) {
         this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
           for (let config of configList) {
             this.moduleConfigList.push(
@@ -158,7 +159,7 @@ export class SelectModulePage {
   public selectConfig(index:number):void {
 
     this.connection.checkOnline().subscribe((online) => {
-      if (online) {
+      if (!online) {
         this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
           this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
             for (let config of configList) {
