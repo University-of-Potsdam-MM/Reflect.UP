@@ -55,6 +55,9 @@
             "questionNotAnswered": "Please answer the question.",
             "textPlaceholder": "You can enter your feedback here!"
         },
+        "impressumPage": {
+            "listHeader": "Legal Notice"
+        },
         "infoPage": {
             "infoMessage_1": "This is a self-testing exercise. This App is ment to assist you during your learning process, being a useful tool in your hand. By using it, you are not expected to learn a large amount of facts, but to make it easier to develop your own flexible competences and sense of responsability. Therefore there are no right or wrong answers.",
             "infoMessage_2": "The answers are submitted and checked in an anonymous way."

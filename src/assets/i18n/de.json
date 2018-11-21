@@ -55,6 +55,9 @@
             "questionNotAnswered": "Bitte beantworte die Frage.",
             "textPlaceholder": "Hier kannst du dein Feedback eintragen!"
         },
+        "impressumPage": {
+            "listHeader": "Impressum & Rechtliches"
+        },
         "infoPage": {
             "infoMessage_1": "In erster Linie beantwortest du die Fragen für dich. Diese App möchte dich lediglich auf deinem Lernprozess begleiten und dir hilfreich zur Seite stehen. Ziel ist es weniger, dich mit Faktenwissen zu bombardieren, sondern dich dabei zu unterstützen, deine reflexiven Kompetenzen weiterzuentwickeln und kompetente Eigenverantwortlichkeit zu fördern. Deshalb gibt es auch keine richtigen und falschen Antworten.",
             "infoMessage_2": "Die Beantwortung der Fragen sowie deren Auswertung erfolgt anonym."
@@ -100,7 +103,7 @@
         "headerQuestionCount": "Frage ",
         "homePage": "Reflect.UP",
         "homePage_alt": "Startseite",
-        "impressumPage": "Impressum & Rechtliches",
+        "impressumPage": "Rechtliches",
         "legalNoticePage": "Impressum",
         "privacyPolicyPage": "Datenschutz",
         "termsOfUsePage": "Nutzungsbedingungen",
