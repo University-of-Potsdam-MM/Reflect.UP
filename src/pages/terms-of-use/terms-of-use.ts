@@ -12,7 +12,7 @@ export class TermsOfUsePage {
   config;
   termsDE;
   termsEN;
-  lang
+  lang;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService) {
   }
