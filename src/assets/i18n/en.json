@@ -55,10 +55,12 @@
             "questionNotAnswered": "Please answer the question.",
             "textPlaceholder": "You can enter your feedback here!"
         },
+        "impressumPage": {
+            "listHeader": "Legal Notice"
+        },
         "infoPage": {
             "infoMessage_1": "This is a self-testing exercise. This App is ment to assist you during your learning process, being a useful tool in your hand. By using it, you are not expected to learn a large amount of facts, but to make it easier to develop your own flexible competences and sense of responsability. Therefore there are no right or wrong answers.",
             "infoMessage_2": "The answers are submitted and checked in an anonymous way."
-
         },
         "loginPage": {
             "loginInfoMessage": "In order to use this service you must first login.",
@@ -102,6 +104,9 @@
         "homePage": "Reflect.UP",
         "homePage_alt": "Home",
         "impressumPage": "Legal Notice",
+        "legalNoticePage": "Information",
+        "privacyPolicyPage": "Privacy policy",
+        "termsOfUsePage": "Terms of Use",
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Login",
         "logoutPage": "Logout",
@@ -138,8 +143,7 @@
             "pushMessage_3_2": "."
         },
         "tos": {
-            "message": "Die Nutzung dieses Services erfolgt freiwillig. Die im Rahmen der Nutzung erhobenen Daten werden ausschließlich zur Bereitstellung des Services verwendet und nicht an Dritte weitergegeben. Die Verwendung der Daten erfolgt nach den Bestimmungen des brandenburgischen Datenschutzgesetzes.\nDiese Smartphone-App ist nur in Verbindung mit einer separaten, abgeschlossenen Kursumgebung der Lehr- und Lernplattform „Moodle“ nutzbar. Die innerhalb dieses Kurses angebotenen Features werden den Nutzern / Nutzerinnen mithilfe eines Web-Services in der App angezeigt und zur Bearbeitung freigegeben bzw. über einen Push-Service mitgeteilt. Sämtliche Datenübertragungen sind SSL (OpenSSL/1.0.1q) verschlüsselt. Jeder Zugriff und jede Bearbeitung von Daten wird ausschließlich innerhalb der Moodle-Kursumgebung ausgeführt. Weder in der App selbst, noch auf dem verwendeten Smartphone werden Daten gespeichert. Eine Anmeldung in der Moodle-Kursumgebung ohne Verwendung der App ist nicht möglich. Die Kursumgebung und die entsprechenden Features werden ausschließlich von den zuständigen Kursbetreuenden und Administratoren gestaltet und bedient.\nMithilfe der auf dem Push-Service-Provider gespeicherten Teilnehmergeräte-IDs können die Kursbetreuer(innen) Mitteilungen an den gesamten Kreis der Nutzer/innen senden. Diese Push-Mitteilungen beinhalten i.d.R. wichtige Ereignisse, Anregungen zur Reflexion und Hinweise.\nDer verwendete Webserver, der Uniqush-Push-Server und die Moodle-Umgebung sind Bestandteile der IT-Systemlandschaft des eLiS-Projekts an der Universität Potsdam. Sie werden gemäß den dort geltenden technischen und rechtlichen Standards sowie gemäß den geltenden Nutzungsbedingungen betrieben.\nDie vorab erhaltenen Informationen zum Forschungsprojekt, sowie die hier beschriebenen Informationen zur Nutzung und zum Datenschutz habe ich gelesen und erkläre mich damit einverstanden.",
-            "title": "Bestimmungen und Informationen zum Datenschutz"
+            "title": "Privacy Policy"
         },
         "update": {
             "messageIOS": "A new Reflect.UP update is now available. Please visit the App Store to download the latest version.",

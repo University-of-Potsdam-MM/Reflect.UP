@@ -9,6 +9,7 @@ import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { ConnectionProvider } from '../../providers/connection-provider/connection-provider';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * SelectModulePage
@@ -31,10 +32,14 @@ export class SelectModulePage {
   searchTerm: string = '';
   searchItems: any;
 
+  tosMessageDE;
+  tosMessageEN;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
+    private translate: TranslateService,
     private connection: ConnectionProvider,
     private storage: Storage,
     private alertCtrl: AlertController,
@@ -45,38 +50,50 @@ export class SelectModulePage {
   }
 
   ngOnInit() {
-    this.getDescriptions();
     this.presentTOS();
+    this.getDescriptions();
   }
 
   presentTOS() {
-    this.storage.get("ToS").then((ToS) => {
-      if (ToS != "agree") {
-        let alert = this.alertCtrl.create({
-          title: 'Bestimmungen und Informationen zum Datenschutz',
-          message: 'Die Nutzung dieses Services erfolgt freiwillig. Die im Rahmen der Nutzung erhobenen Daten werden ausschließlich zur Bereitstellung des Services verwendet und nicht an Dritte weitergegeben. Die Verwendung der Daten erfolgt nach den Bestimmungen des brandenburgischen Datenschutzgesetzes.\nDiese Smartphone-App ist nur in Verbindung mit einer separaten, abgeschlossenen Kursumgebung der Lehr- und Lernplattform „Moodle“ nutzbar. Die innerhalb dieses Kurses angebotenen Features werden den Nutzern / Nutzerinnen mithilfe eines Web-Services in der App angezeigt und zur Bearbeitung freigegeben bzw. über einen Push-Service mitgeteilt. Sämtliche Datenübertragungen sind SSL (OpenSSL/1.0.1q) verschlüsselt. Jeder Zugriff und jede Bearbeitung von Daten wird ausschließlich innerhalb der Moodle-Kursumgebung ausgeführt. Weder in der App selbst, noch auf dem verwendeten Smartphone werden Daten gespeichert. Eine Anmeldung in der Moodle-Kursumgebung ohne Verwendung der App ist nicht möglich. Die Kursumgebung und die entsprechenden Features werden ausschließlich von den zuständigen Kursbetreuenden und Administratoren gestaltet und bedient.\nMithilfe der auf dem Push-Service-Provider gespeicherten Teilnehmergeräte-IDs können die Kursbetreuer(innen) Mitteilungen an den gesamten Kreis der Nutzer/innen senden. Diese Push-Mitteilungen beinhalten i.d.R. wichtige Ereignisse, Anregungen zur Reflexion und Hinweise.\nDer verwendete Webserver, der Uniqush-Push-Server und die Moodle-Umgebung sind Bestandteile der IT-Systemlandschaft des eLiS-Projekts an der Universität Potsdam. Sie werden gemäß den dort geltenden technischen und rechtlichen Standards sowie gemäß den geltenden Nutzungsbedingungen betrieben.\nDie vorab erhaltenen Informationen zum Forschungsprojekt, sowie die hier beschriebenen Informationen zur Nutzung und zum Datenschutz habe ich gelesen und erkläre mich damit einverstanden.',
-          buttons: [
-            {
-              text: "Ablehnen",
-              role: 'disagree',
-              handler: () => {
-                this.storage.set("ToS", "disagree");
-                this.navCtrl.setRoot(DisagreeTosPage);
+    let jsonPath:string = 'assets/json/config.json';
+    this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+      this.storage.set("fallbackConfig", jsonConfigList[0]);
+      let config = jsonConfigList[0];
+      this.tosMessageDE = config.tosTemplateDE;
+      this.tosMessageEN = config.tosTemplateEN;
+
+      this.storage.get("ToS").then((ToS) => {
+        if (ToS != "agree") {
+          var msg;
+          if (this.translate.currentLang == "de") {
+            msg = this.tosMessageDE;
+          } else { msg = this.tosMessageEN; }
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant('statusMessage.tos.title'),
+            message: msg,
+            buttons: [
+              {
+                text: this.translate.instant('buttonLabel.disagree'),
+                role: 'disagree',
+                handler: () => {
+                  this.storage.set("ToS", "disagree");
+                  this.navCtrl.setRoot(DisagreeTosPage);
+                }
+              },
+              {
+                text: this.translate.instant('buttonLabel.agree'),
+                role: 'agree',
+                handler: () => {
+                  this.storage.set("ToS", "agree");
+                }
               }
-            },
-            {
-              text: "Zustimmen",
-              role: 'agree',
-              handler: () => {
-                this.storage.set("ToS", "agree");
-              }
-            }
-          ],
-          enableBackdropDismiss: false,
-        });
-        alert.present();
-      }
-    })
+            ],
+            enableBackdropDismiss: false,
+          });
+          alert.present();
+        }
+      });
+    });
   }
 
   /**
