@@ -34,7 +34,7 @@
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^2.0.1",
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-android": "7.1.1",
+    "cordova-android": "7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
     "cordova-plugin-badge": "^0.8.7",
@@ -98,9 +98,9 @@
       "cordova-plugin-file": {}
     },
     "platforms": [
-      "android",
       "browser",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
