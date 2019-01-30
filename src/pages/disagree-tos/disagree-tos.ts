@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { IModuleConfig } from '../../lib/interfaces/config';
+import { ImpressumPage } from '../impressum/impressum';
+import { SettingsPage } from '../settings/settings';
 
 @IonicPage()
 @Component({
@@ -57,6 +59,14 @@ export class DisagreeTosPage {
         enableBackdropDismiss: false,
       });
     alert.present();
+  }
+
+  openImpressum() {
+    this.navCtrl.push(ImpressumPage);
+  }
+
+  openSettings() {
+    this.navCtrl.push(SettingsPage, { hideTabBar: true });
   }
 
 }

@@ -1,6 +1,6 @@
 page-disagree-tos {
     .card {
-        .card-content, 
+        .card-content,
         .card-content-ios,
         .card-content-md {
             border:none;
@@ -8,4 +8,7 @@ page-disagree-tos {
         }
     }
 
+    .tabButtons {
+        width: auto;
+    }
 }

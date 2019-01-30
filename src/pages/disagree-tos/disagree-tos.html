@@ -23,3 +23,18 @@
     </button>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment>
+      <button class="tabButtons" ion-button color="primary" clear icon-left (click)="openImpressum()">
+        <ion-icon name="book"></ion-icon>
+        {{ "pageHeader.impressumPage" | translate }}
+      </button>
+      <button class="tabButtons" ion-button color="primary" clear icon-left (click)="openSettings()">
+        <ion-icon name="settings"></ion-icon>
+        {{ "pageHeader.settingsPage" | translate }}
+      </button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
