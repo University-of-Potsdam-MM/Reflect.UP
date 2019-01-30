@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-J",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -117,7 +117,7 @@
   },
   {
     "id": 1,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-H",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -528,7 +528,7 @@
   },
   {
     "id": 2,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-W",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -809,7 +809,7 @@
   },
   {
     "id": 3,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-P",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -1609,7 +1609,7 @@
   },
   {
     "id": 4,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-M",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -1982,7 +1982,7 @@
   },
   {
     "id": 5,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-L",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -2047,7 +2047,7 @@
   },
   {
     "id": 6,
-    "appVersion": 6.5,
+    "appVersion": 6.6,
     "courseID": "UPR-1819-JE",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {

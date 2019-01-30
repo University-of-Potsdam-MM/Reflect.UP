@@ -77,7 +77,7 @@ export class MyApp {
 
   /**
    * initConfig
-   * 
+   *
    * fetches config from server if there's an internet connection
    * sets root page accordingly
    */
@@ -132,10 +132,10 @@ export class MyApp {
 
   /**
    * initPush
-   * 
+   *
    * registers push service to ensure push notifications work
    * even after app has been closed
-   * @param config 
+   * @param config
    */
   private initPush(config:IModuleConfig) {
     if (this.platform.is("cordova")) {
@@ -148,8 +148,10 @@ export class MyApp {
    *
    * sets up menu entries and icons
    */
-  private async initMenu() {
+  async initMenu() {
     let config:IModuleConfig = await this.storage.get("config");
+
+    this.pagesInMenu = [];
 
     this.pagesInMenu = [
       { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },

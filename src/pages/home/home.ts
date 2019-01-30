@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { QuestionConfig } from '../../lib/interfaces/question';
 import { PushProvider } from '../../providers/push-provider/push-provider';
 import { Push } from '@ionic-native/push';
+import { MyApp } from '../../app/app.component';
 
 /**
  * HomePage
@@ -42,6 +43,7 @@ export class HomePage {
       private appointm: EventProvider,
       private connection: ConnectionProvider,
       private alertCtrl: AlertController,
+      private app: MyApp,
       private translate: TranslateService,
       private questions: QuestionProvider,
       private pushProv: PushProvider,
@@ -99,23 +101,25 @@ export class HomePage {
                 } else { this.showAlert("statusMessage.error.network"); }
 
                 if (this.fromSideMenu || ionRefresh) {
-                  
+
                   var forceReload;
                   if (!ionRefresh) {
                     this.isLoaded = false;
                     this.isLoaded2 = false;
                     forceReload = false;
                   } else { forceReload = true; }
-                  
+
                   this.fromSideMenu = false;
-  
+
                   this.checkUpdatedCards(false, config, session.token, forceReload);
                   this.loadQuestions(config, session.token, refresher);
-                  
+
                 } else {
                   this.checkUpdatedCards(true, config, session.token, false);
                   this.loadQuestions(config, session.token);
                 }
+
+                this.app.initMenu();
 
               }
             });
@@ -142,7 +146,7 @@ export class HomePage {
 
     let headers: HttpHeaders = new HttpHeaders()
       .append("Authorization", accessToken);
-    
+
     this.http.get(moodleAccessPoint, {headers:headers, params:params}).subscribe(data => {
       console.log("local enrol self");
     });
@@ -208,7 +212,7 @@ export class HomePage {
             }
           }
         }
-        
+
         this.storage.get("scheduledEvents").then((array:string[]) => {
           this.scheduledEventsLastCheck = array;
           var notificationID;
@@ -246,7 +250,7 @@ export class HomePage {
       } else {
         this.openQuestions = false;
         console.log("error fetching feedbacks from server.");
-      }    
+      }
       this.isLoaded2 = true;
       if (refresher) {
         this.doRefresh(refresher, true);
@@ -276,7 +280,7 @@ export class HomePage {
   }
 
   doRefresh(refresher, refreshingComplete?) {
-    if (refreshingComplete) { 
+    if (refreshingComplete) {
       refresher.complete();
     } else {
       this.initHome(refresher, true);
