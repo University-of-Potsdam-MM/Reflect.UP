@@ -1,3 +1,11 @@
 page-privacy-policy {
+    h1, h2, h3, p {
+        hyphens: auto!important;
+    }
 
+    h1, h2, h3 {
+        font-size: large;
+    }
+
+    text-align: justify;
 }

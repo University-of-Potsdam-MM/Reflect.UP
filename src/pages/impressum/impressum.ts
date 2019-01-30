@@ -35,7 +35,6 @@ export class ImpressumPage {
   }
 
   openPage(page) {
-    console.log(this.config);
     if (page == "LegalNoticePage") {
       this.navCtrl.push(LegalNoticePage, { 'config': this.config });
     } else if (page == "PrivacyPolicyPage") {
