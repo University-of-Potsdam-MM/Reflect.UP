@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{ "pageHeader.mintPage" | translate }}</ion-title>
   </ion-navbar>
 
@@ -48,7 +51,7 @@
         </ion-option>
         <ion-option *ngFor="let subject of availableSubjects">
           {{ subject }}
-        </ion-option> 
+        </ion-option>
       </ion-select>
     </ion-item>
     <div *ngFor="let mintCampus of mintDetails; let j = index" padding>
@@ -99,7 +102,7 @@
       </ion-grid>
     </div>
   </div>
-  
+
 </ion-content>
 
 <ion-footer>

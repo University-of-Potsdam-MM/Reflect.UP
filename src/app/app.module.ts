@@ -73,6 +73,7 @@ import { TermsOfUsePage } from '../pages/terms-of-use/terms-of-use';
     CalendarModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: ' ',
+      mode: 'md'
     }),
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({

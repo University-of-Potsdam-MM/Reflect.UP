@@ -32,7 +32,7 @@
   src: local("Source Sans Pro Light"), local("Source-Sans-Pro-Light") format("truetype");
 }
 
-/* Source Sans Pro Italic 
+/* Source Sans Pro Italic
 
 @font-face {
   font-family: "Source Sans Pro";
@@ -73,18 +73,18 @@
 ion-header {
 	background-color:  color($colors, upgrey)!important;
   box-shadow: 0 0 0 #000;
-  
+
   .toolbar-background {
     background-color: color($colors, upgrey)!important;
   }
 }
 
 ion-footer {
-	background-color:  color($colors, upwhite)!important;
+	background-color:  color($colors, upgrey)!important;
   box-shadow: 0 0 0 #000;
-  
+
   .toolbar-background {
-    background-color: color($colors, upwhite)!important;
+    background-color: color($colors, upgrey)!important;
   }
 }
 
