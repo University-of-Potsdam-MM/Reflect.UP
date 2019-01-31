@@ -18,8 +18,7 @@
   <div align="center">
     <ion-col>
       <button ion-button [ngClass]="showAll ? 'activeCalendarButton' : 'calendarButton'" (click)="resetCalendar()">{{ "buttonLabel.showAll" | translate}}</button>
-      <button ion-button [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; rangeCalendarMode = false; showBasicCalendar = !showBasicCalendar; showRangeCalendar = false; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</button>
-      <button ion-button [ngClass]="rangeCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="rangeCalendarMode = true; basicCalendarMode = false; showRangeCalendar = !showRangeCalendar; showBasicCalendar = false; showAll = false;">{{ "buttonLabel.pickDateRange" | translate}}</button>
+      <button ion-button [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; showBasicCalendar = true; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</button>
     </ion-col>
   </div>
 
@@ -40,11 +39,11 @@
   <div align="center" *ngIf="!isLoaded" padding>
     <ion-spinner></ion-spinner>
   </div>
-  
+
   <div *ngIf="isLoaded && !showAll">
     <event *ngFor="let ev of eventList; let i = index"
       [event]="ev"
-      [hiddenEvent]="hiddenEvent[ev.id]" 
+      [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
@@ -60,7 +59,7 @@
     <div *ngFor="let ev of eventList; let i = index">
       <event *ngIf="eventToday[ev.id] && showEventToday"
       [event]="ev"
-      [hiddenEvent]="hiddenEvent[ev.id]" 
+      [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
@@ -74,7 +73,7 @@
     <div *ngFor="let ev of eventList; let i = index">
       <event *ngIf="eventTomorrow[ev.id] && showEventTomorrow"
       [event]="ev"
-      [hiddenEvent]="hiddenEvent[ev.id]" 
+      [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
@@ -88,7 +87,7 @@
     <div *ngFor="let ev of eventList; let i = index">
       <event *ngIf="eventThisWeek[ev.id] && showEventThisWeek"
       [event]="ev"
-      [hiddenEvent]="hiddenEvent[ev.id]" 
+      [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
@@ -102,14 +101,14 @@
     <div *ngFor="let ev of eventList; let i = index">
       <event *ngIf="eventLater[ev.id] && showEventLater"
       [event]="ev"
-      [hiddenEvent]="hiddenEvent[ev.id]" 
+      [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
       [isPushAllowed]="isPushAllowed" ></event>
     </div>
   </div>
 
-  
+
   <ion-row *ngIf="noAppointments">
       <ion-col>
         <ion-card>
