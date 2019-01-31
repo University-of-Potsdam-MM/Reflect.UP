@@ -31,13 +31,7 @@
                                 </ion-item>
                                 <div *ngIf="isLevel2Shown('idx'+i+'idx'+j)">
                                     <ion-item class="childitem" no-lines *ngFor="let item of child.content">
-                                        <contact
-                                        [name]="item.name"
-                                        [location]="item.location"
-                                        [tel]="item.tel"
-                                        [mail]="item.mail"
-                                        [consultation]="item.consultation"
-                                        [consultation_url]="item.consultation_url"></contact>
+                                        <contact [item]="item"></contact>
                                     </ion-item>
                                 </div>
                             </div>
@@ -45,13 +39,7 @@
                             <div *ngIf="!child.category">
                                 <!-- Es sind Unterkategorien angelegt, aber ohne Namen -->
                                 <ion-item no-lines *ngFor="let item of child.content">
-                                    <contact
-                                    [name]="item.name"
-                                    [location]="item.location"
-                                    [tel]="item.tel"
-                                    [mail]="item.mail"
-                                    [consultation]="item.consultation"
-                                    [consultation_url]="item.consultation_url"></contact>
+                                    <contact [item]="item"></contact>
                                 </ion-item>
                             </div>
                         </div>
@@ -59,13 +47,7 @@
                         <div *ngIf="!child.content">
                             <!-- Es gibt keine Unterkategorien -->
                             <ion-item no-lines>
-                                <contact
-                                [name]="child.name"
-                                [location]="child.location"
-                                [tel]="child.tel"
-                                [mail]="child.mail"
-                                [consultation]="child.consultation"
-                                [consultation_url]="child.consultation_url"></contact>
+                                <contact [item]="child"></contact>
                             </ion-item>
                         </div>
 

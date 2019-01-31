@@ -6,20 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ContactComponent {
 
-  @Input()
-  name:string;
-  @Input()
-  location:string;
-  @Input()
-  tel:string;
-  @Input()
-  alt_tel?:string
-  @Input()
-  mail:string;
-  @Input()
-  consultation:string;
-  @Input()
-  consultation_url?:string;
+  @Input() item;
 
   shortenedUrl;
 
@@ -27,7 +14,9 @@ export class ContactComponent {
   }
 
   ngOnInit() {
-    this.shortenedUrl = this.consultation_url.substring(0, 30) + "...";
+    if (this.item.consultation_url) {
+      this.shortenedUrl = this.item.consultation_url.substring(0, 30) + "...";
+    }
   }
 
 }
