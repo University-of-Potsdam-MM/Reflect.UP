@@ -66,17 +66,13 @@ export class QuestionsPage {
 
         this.questions.getAnsweredQuestions(config, token, forceReload).subscribe((questionJson:QuestionConfig) => {
           if (questionJson.feedbacks) {
-            this.completedQuestionList = [];
-            for (let feedback of questionJson.feedbacks) {
-              if (feedback.answers.length > 0) {
-                this.completedQuestionList.push(feedback);
-              }
-            }
+            this.completedQuestionList = questionJson.feedbacks;
 
             if (this.completedQuestionList.length > 0) {
               this.noCompletedQuestions = false;
             }
           } else {
+            this.noCompletedQuestions = true;
             console.log("error fetching completed feedbacks from server.");
           }
 
