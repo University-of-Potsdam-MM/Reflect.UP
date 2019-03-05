@@ -55,7 +55,7 @@ export class QuestionsPage {
           if (questionJson.feedbacks) {
             this.questionList = questionJson.feedbacks;
 
-            if (this.questionList.length > 0) {
+            if (this.questionList.length < 1) {
               this.noQuestions = true;
             }
           } else {
