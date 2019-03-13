@@ -2115,10 +2115,10 @@
                   "category": "",
                   "content": [
                       {
-                          "name": "Ines Padelt",
+                          "name": "jura.plus",
                           "location": "Griebnitzsee, Haus 6, Raum 0.05",
                           "tel": "+49 331 977-3409",
-                          "mail": "ines.padelt@uni-potsdam.de",
+                          "mail": "jura.plus@uni-potsdam.de",
                           "consultation": "Öffnungszeiten siehe Website",
                           "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
                       }
@@ -2127,44 +2127,18 @@
           ]
       },
       {
-          "category": "Beauftragte für den integrierten Bachelor of Laws",
+          "category": "Examenssprechstunde",
           "content": [
               {
                   "category": "",
                   "content": [
                       {
-                          "name": "Anne Voigt",
-                          "location": "Griebnitzsee, Haus 6, Raum 0.06",
-                          "tel": "+49 331 977-3589",
-                          "mail": "anne.voigt@uni-potsdam.de",
+                          "name": "Tim Nordemann",
+                          "location": "Griebnitzsee, Haus 1, Raum 2.36",
+                          "tel": "+49 331 977-3525",
+                          "mail": "nordemann@uni-potsdam.de ",
                           "consultation": "Öffnungszeiten siehe Website",
-                          "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/llb/kontakt.html"
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          "category": "Studieneingangsphase",
-          "content": [
-              {
-                  "category": "Studieneingangsphase: Juristische Fakultät",
-                  "content": [
-                      {
-                          "name": "Lisa Zierke",
-                          "location": "Griebnitzsee, Haus 1, Raum 2.45",
-                          "tel": "+49 331 977-3230",
-                          "mail": "lisa.zierke@uni-potsdam.de",
-                          "consultation": "Nach Vereinbarung",
-                          "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/team-studieneingangsphase.html"
-                      },
-                      {
-                          "name": "Anja van Bernum",
-                          "location": "Griebnitzsee, Haus 1, Raum 2.45",
-                          "tel": "+49 331 977-3734",
-                          "mail": "anja.van.bernum@uni-potsdam.de",
-                          "consultation": "Nach Vereinbarung",
-                          "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/team-studieneingangsphase.html"
+                          "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/ejp/juraplus.html"
                       }
                   ]
               }
