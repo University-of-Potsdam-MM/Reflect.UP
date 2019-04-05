@@ -33,20 +33,19 @@ export class LogoutPage {
    *
    * unsets current session, thus logging the user out
    */
-  public performLogout(): void {
+  performLogout() {
+    if (this.platform.is("cordova")) {
+      this.storage.get("config").then((config:IModuleConfig) => {
+        if (config) {
+          this.pushProv.unsubscribeToPush(config);
+          this.storage.set("config", null);
+        }
+      });
+    } else { this.storage.set("config", null); }
+
     this.cache.clearAll();
     this.storage.set("session", null);
-    this.storage.set("config", null);
     this.storage.set("pushRegistered", "no");
-    if (this.platform.is("cordova")) {
-      this.storage.get("config").then(
-        (config:IModuleConfig) => {
-          if (config) {
-            this.pushProv.unsubscribeToPush(config);
-          }
-        }
-      );
-    }
     this.navCtrl.setRoot(SelectModulePage);
   }
 
