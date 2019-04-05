@@ -117,28 +117,35 @@ export class EventComponent {
    * @param stringToAnalize - string that could containt multi-language tags
    */
   processMoodleContents(stringToAnalize:string) {
-    var domObj = $($.parseHTML(stringToAnalize));
-    var result = stringToAnalize;
-    let language = this.translate.currentLang;
-
-    if (domObj.length > 1) {
-
-        _.each(domObj, function(element) {
-          if ($(element)[0].lang == language) {
-            result = $(element).html();
-          }
-        });
-
-        // use englisch as a fallback
-        if (result == stringToAnalize) {
+    try {
+      var domObj = $($.parseHTML(stringToAnalize));
+      var result = stringToAnalize;
+      let language = this.translate.currentLang;
+  
+      if (domObj.length > 1) {
+  
           _.each(domObj, function(element) {
-            if ($(element)[0].lang == "en") {
+            if ($(element)[0].lang == language) {
               result = $(element).html();
             }
           });
-        }
+  
+          // use englisch as a fallback
+          if (result == stringToAnalize) {
+            _.each(domObj, function(element) {
+              if ($(element)[0].lang == "en") {
+                result = $(element).html();
+              }
+            });
+          }
+      }
+      return result;
     }
-    return result;
+
+    catch(e) {
+      console.log(e);
+      return stringToAnalize;
+    }
   }
 
   /**

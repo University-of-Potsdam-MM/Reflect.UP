@@ -45,29 +45,37 @@ export class QuestionComponent {
 
   processMoodleContents(stringToAnalize:string) {
     //checking for multi language tags
-    var domObj = $($.parseHTML(stringToAnalize));
-    var result = stringToAnalize;
-    let language = this.translate.currentLang;
 
-    if (domObj.length > 1) {
-
-      _.each(domObj, function(element) {
-        if ($(element)[0].lang == language) {
-          result = $(element).html();
-        }
-      });
-
-      // since there are some strings without spanish translation
-      // use englisch as a fallback
-      if (result == stringToAnalize) {
+    try {
+      var domObj = $($.parseHTML(stringToAnalize));
+      var result = stringToAnalize;
+      let language = this.translate.currentLang;
+  
+      if (domObj.length > 1) {
+  
         _.each(domObj, function(element) {
-          if ($(element)[0].lang == "en") {
+          if ($(element)[0].lang == language) {
             result = $(element).html();
           }
         });
+  
+        // since there are some strings without spanish translation
+        // use englisch as a fallback
+        if (result == stringToAnalize) {
+          _.each(domObj, function(element) {
+            if ($(element)[0].lang == "en") {
+              result = $(element).html();
+            }
+          });
+        }
       }
+      return result;
     }
-    return result;
+
+    catch(e) {
+      console.log(e);
+      return stringToAnalize;
+    }
   }
 
 }

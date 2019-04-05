@@ -162,32 +162,39 @@ export class QuestionDetailPage {
   processMoodleContents(stringToAnalize:string, shorterURL?:boolean) {
     //checking for multi language tags
     
-    stringToAnalize = this.urlify(stringToAnalize, shorterURL);
+    try {
+      stringToAnalize = this.urlify(stringToAnalize, shorterURL);
 
-    var domObj = $($.parseHTML(stringToAnalize));
-    var result = stringToAnalize;
-    let language = this.translate.currentLang;
-
-    if (domObj.length > 1) {
-
-      _.each(domObj, function(element) {
-        if ($(element)[0].lang == language) {
-          result = $(element).html();
-        }
-      });
-
-      // since there are some strings without spanish translation
-      // use englisch as a fallback
-      if (result == stringToAnalize) {
+      var domObj = $($.parseHTML(stringToAnalize));
+      var result = stringToAnalize;
+      let language = this.translate.currentLang;
+  
+      if (domObj.length > 1) {
+  
         _.each(domObj, function(element) {
-          if ($(element)[0].lang == "en") {
+          if ($(element)[0].lang == language) {
             result = $(element).html();
           }
         });
+  
+        // since there are some strings without spanish translation
+        // use englisch as a fallback
+        if (result == stringToAnalize) {
+          _.each(domObj, function(element) {
+            if ($(element)[0].lang == "en") {
+              result = $(element).html();
+            }
+          });
+        }
       }
+  
+      return result;
     }
 
-    return result;
+    catch(e) {
+      console.log(e);
+      return stringToAnalize;
+    }
   }
 
   goBack() {
@@ -275,7 +282,7 @@ export class QuestionDetailPage {
               for (k = 0; k < this.choicesList[j].length; k++) {
                 if (this.processMoodleContents(this.choicesList[j][k].trim()) == this.processMoodleContents(this.questionList[i].dependvalue)) {
                   if (this.radioBtnValue[j][k]) {
-                    console.log(this.radioBtnValue[j][k]);
+                    // console.log(this.radioBtnValue[j][k]);
                     // condition fullfilled
                     this.previousPage[i] = p;
                     this.isPageActive[i] = true;
@@ -371,16 +378,23 @@ export class QuestionDetailPage {
   }
 
   htmlDecode(value) {
-    var tmp = $("<textarea/>").html(value).text();
-    if (!$(tmp).find('span')[1]) {
-      return tmp;
-    } else {
-      let language = this.translate.currentLang;
-      if (language == "de") {
-        return "<p>" + $(tmp).find('span').html() + "</p>";
+    try {
+      var tmp = $("<textarea/>").html(value).text();
+      if (!$(tmp).find('span')[1]) {
+        return tmp;
       } else {
-        return "<p>" + $(tmp).find('span').eq(1).html() + "</p>";
+        let language = this.translate.currentLang;
+        if (language == "de") {
+          return "<p>" + $(tmp).find('span').html() + "</p>";
+        } else {
+          return "<p>" + $(tmp).find('span').eq(1).html() + "</p>";
+        }
       }
+    }
+    
+    catch(e) {
+      console.log(e);
+      return value;
     }
   }
 
@@ -395,7 +409,7 @@ export class QuestionDetailPage {
         regShortURL.lastIndex = 0;
         var tmpUrl = regShortURL.exec(url)[3];
         tmpUrl = "(Website: " + tmpUrl.replace('www.','') + ")";
-        console.log(tmpUrl);
+        // console.log(tmpUrl);
         return tmpUrl;
       });
     } else {
