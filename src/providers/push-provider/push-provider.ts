@@ -77,14 +77,17 @@ export class PushProvider {
 
     // doesn't work with livereload
     this.http.post(url_subscribe, myData, myHeaders).subscribe(res => {
-      // console.log("(subscribe): successfully contacted the push server.");
+      console.log("(subscribe): successfully contacted the push server.");
+      console.log(res);
       this.storage.set("pushRegistered", "yes");
     }, err => {
+      console.log("(subscribe): error while contacting the push server.");
+      console.log(err);
+      console.log(err.message);
+
       if (err.status == 200) {
-        // console.log("(subscribe): successfully contacted the push server.");
+        console.log("(subscribe): successfully contacted the push server.");
         this.storage.set("pushRegistered", "yes");
-      } else {
-        console.log("(subscribe): error while contacting the push server: " + err.message);
       }
     });
 
@@ -125,8 +128,9 @@ export class PushProvider {
     // notification channel for Android O and above
     this.push.createChannel({
       id: "Reflect.UP",
-      description: "Channel for Reflect.UP notifications",
-      importance: 3
+      description: "Channel for Reflect.UP",
+      importance: 3,
+      visibility: 1
     }).then(() => console.log("Channel created.")).catch(() => {
       console.log("Error creating the Channel.");
     });
