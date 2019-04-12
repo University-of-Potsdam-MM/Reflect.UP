@@ -93,7 +93,7 @@ export class HomePage {
 
                   if (this.platform.is("cordova")) {
                     this.storage.get("pushRegistered").then(push => {
-                      if (push) {
+                      if (!push) {
                         this.pushProv.registerPushService(config);
                       }
                     });
