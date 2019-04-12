@@ -42,6 +42,7 @@ import { MintPage } from '../pages/mint/mint';
 import { LegalNoticePage } from '../pages/legal-notice/legal-notice';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
 import { TermsOfUsePage } from '../pages/terms-of-use/terms-of-use';
+import { HTTP } from '@ionic-native/http';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { TermsOfUsePage } from '../pages/terms-of-use/terms-of-use';
     InAppBrowser,
     Push,
     PushProvider,
-    Keyboard
+    Keyboard,
+    HTTP
   ]
 })
 export class AppModule {}

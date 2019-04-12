@@ -45,7 +45,7 @@ interface PushDetails
 
 interface AccessToken
 {
-	Authorization:string;
+	accessToken:string;
 }
 
 export interface IMintObject {

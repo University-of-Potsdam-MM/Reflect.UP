@@ -45,7 +45,7 @@ export class LogoutPage {
 
     this.cache.clearAll();
     this.storage.set("session", null);
-    this.storage.set("pushRegistered", "no");
+    this.storage.set("pushRegistered", false);
     this.navCtrl.setRoot(SelectModulePage);
   }
 
