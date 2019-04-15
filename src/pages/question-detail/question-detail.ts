@@ -154,6 +154,12 @@ export class QuestionDetailPage {
           this.isCheckbox[i] = false;
         }
 
+        if (Array.isArray(choiceArray)) {
+          for (let j = 0; j < choiceArray.length; j++) {
+            choiceArray[j] = choiceArray[j].trim();
+          }
+        }
+
         this.choicesList[i] = choiceArray;
       }
     }
@@ -161,22 +167,22 @@ export class QuestionDetailPage {
 
   processMoodleContents(stringToAnalize:string, shorterURL?:boolean) {
     //checking for multi language tags
-    
+
     try {
       stringToAnalize = this.urlify(stringToAnalize, shorterURL);
 
       var domObj = $($.parseHTML(stringToAnalize));
       var result = stringToAnalize;
       let language = this.translate.currentLang;
-  
+
       if (domObj.length > 1) {
-  
+
         _.each(domObj, function(element) {
           if ($(element)[0].lang == language) {
             result = $(element).html();
           }
         });
-  
+
         // since there are some strings without spanish translation
         // use englisch as a fallback
         if (result == stringToAnalize) {
@@ -187,7 +193,7 @@ export class QuestionDetailPage {
           });
         }
       }
-  
+
       return result;
     }
 
@@ -254,19 +260,19 @@ export class QuestionDetailPage {
     var j,k;
     if (i < this.questionList.length) {
       this.isFirstQuestion = false;
-      if (this.questionList[i].dependitem == "0") {
+      if (this.questionList[i].dependitem.trim() == "0") {
         // next question is NOT a conditional question
         this.previousPage[i] = p;
         this.isPageActive[i] = true;
       } else {
         // next question is a conditional question
         for (j = 0; j < this.questionList.length; j++) {
-          if (this.questionList[j].id.toString() == this.questionList[i].dependitem) {
+          if (this.questionList[j].id.toString().trim() == this.questionList[i].dependitem.trim()) {
             // next question depends on answer from question j
             if (this.isCheckbox[j]) {
               // checkbox
               for (k = 0; k < this.choicesList[j].length; k++) {
-                if (this.processMoodleContents(this.choicesList[j][k].trim()) == this.processMoodleContents(this.questionList[i].dependvalue)) {
+                if (this.processMoodleContents(this.choicesList[j][k].trim()) == this.processMoodleContents(this.questionList[i].dependvalue.trim())) {
                   if (this.checkBoxValue[j][k]) {
                     // condition fullfilled
                     this.previousPage[i] = p;
@@ -280,7 +286,7 @@ export class QuestionDetailPage {
             } else {
               // radio
               for (k = 0; k < this.choicesList[j].length; k++) {
-                if (this.processMoodleContents(this.choicesList[j][k].trim()) == this.processMoodleContents(this.questionList[i].dependvalue)) {
+                if (this.processMoodleContents(this.choicesList[j][k].trim()) == this.processMoodleContents(this.questionList[i].dependvalue.trim())) {
                   if (this.radioBtnValue[j][k]) {
                     // console.log(this.radioBtnValue[j][k]);
                     // condition fullfilled
@@ -320,7 +326,7 @@ export class QuestionDetailPage {
         var checkBoxString = "";
         for (l = 0; l < this.checkBoxValue[k].length; l++) {
           if (this.checkBoxValue[k][l]) {
-            if (checkBoxString == "") {
+            if (checkBoxString.trim() == "") {
               checkBoxString = checkBoxString.concat((l+1));
             } else {
               checkBoxString = checkBoxString.concat("|" + (l+1));
@@ -349,7 +355,7 @@ export class QuestionDetailPage {
   isAnswerSelected(i) {
     var k;
     if (this.questionList[i].type == "textarea") {
-      if (this.textBoxValue[i] == "") {
+      if (this.textBoxValue[i].trim() == "") {
         this.answerSelected[i] = false;
       } else {
         this.answerSelected[i] = true;
@@ -391,7 +397,7 @@ export class QuestionDetailPage {
         }
       }
     }
-    
+
     catch(e) {
       console.log(e);
       return value;
@@ -401,7 +407,7 @@ export class QuestionDetailPage {
   // adds http:// to URLs like www.uni.de or uni.de
   urlify(text, shorterURL?:boolean) {
     var urlRegex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
-    
+
     // shortens the URL to just show the main-domain if shorterURL == true
     if (shorterURL) {
       return text.replace(urlRegex, function(url) {

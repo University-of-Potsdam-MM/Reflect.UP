@@ -148,7 +148,7 @@ export class HomePage {
       .append("Authorization", accessToken);
 
     this.http.get(moodleAccessPoint, {headers:headers, params:params}).subscribe(data => {
-      console.log("local enrol self");
+      // console.log("local enrol self");
     });
   }
 
