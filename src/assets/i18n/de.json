@@ -24,7 +24,9 @@
         "showCompletedQuestions": "Beantwortete Reflexionsfragen",
         "submit": "Abschicken",
         "tryAgain": "Erneut probieren?",
-        "yes": "Ja"
+        "yes": "Ja",
+        "faculties": "Fakultäten",
+        "modules": "Module"
     },
     "label": {
         "appointmentsPage": {
@@ -84,7 +86,8 @@
         },
         "selectModulePage": {
             "placeholderSearch": "Suchen",
-            "selectModuleMessage": "Die folgenden Kurse stehen zur Verfügung:"
+            "selectModuleMessage": "Die folgenden Kurse stehen zur Verfügung:",
+            "noCoursesAvailable": "Derzeit sind keine Kurse verfügbar."
         },
         "settingsPage": {
             "changeLanguage": "Möchtest du die Sprache der App wechseln? Bitte wählen:",

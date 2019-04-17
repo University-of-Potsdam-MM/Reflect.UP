@@ -3,7 +3,7 @@ import { ImpressumPage } from './../impressum/impressum';
 import { PopoverPage } from './../popover/popover';
 import { DisagreeTosPage } from './../disagree-tos/disagree-tos';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, MenuController, PopoverController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
@@ -30,14 +30,15 @@ export class SelectModulePage {
   config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
   searchTerm: string = '';
-  searchItems: any;
+  facultyCourses = [];
+  moduleCourses = [];
 
   tosMessageDE;
   tosMessageEN;
+  activeSegment;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     public http: HttpClient,
     private translate: TranslateService,
     private connection: ConnectionProvider,
@@ -52,6 +53,7 @@ export class SelectModulePage {
   ngOnInit() {
     this.presentTOS();
     this.getDescriptions();
+    this.activeSegment = 'faculty';
   }
 
   presentTOS() {
@@ -110,6 +112,8 @@ export class SelectModulePage {
             this.moduleConfigList.push(
               {
                 id:           config.id,
+                faculty:      config.faculty,
+                type:         config.type,
                 title:        config.title,
                 institution:  config.institution,
                 description:  config.description,
@@ -118,12 +122,8 @@ export class SelectModulePage {
               }
             );
           }
-          if (this.navParams.data.searchTerm) {
-            this.searchTerm = this.navParams.data.searchTerm;
-            this.setFilteredItems();
-          } else {
-            this.setFilteredItems();
-          }
+
+          this.setFilteredItems();
         });
       } else {
         this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
@@ -131,6 +131,8 @@ export class SelectModulePage {
             this.moduleConfigList.push(
               {
                 id:           config.id,
+                faculty:      config.faculty,
+                type:         config.type,
                 title:        config.title,
                 institution:  config.institution,
                 description:  config.description,
@@ -139,12 +141,8 @@ export class SelectModulePage {
               }
             );
           }
-          if (this.navParams.data.searchTerm) {
-            this.searchTerm = this.navParams.data.searchTerm;
-            this.setFilteredItems();
-          } else {
-            this.setFilteredItems();
-          }
+
+          this.setFilteredItems();
         });
       }
     });
@@ -168,12 +166,12 @@ export class SelectModulePage {
                   if (localConfig.id == config.id) {
                     // check for new appVersion and notify user if new update is available
                     this.storage.get("appUpdateAvailable").then((appUpdateStorage) => {
-                      if (appUpdateStorage != config.appVersion) {
+                      if (appUpdateStorage !== config.appVersion) {
                         if (localConfig.appVersion) {
                           if (config.appVersion > localConfig.appVersion) {
-                            this.storage.set("appUpdateAvailable", 1);
+                            this.storage.set("appUpdateAvailable", true);
                           } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                        } else { this.storage.set("appUpdateAvailable", 1); }
+                        } else { this.storage.set("appUpdateAvailable", true); }
                       }
                     });
                   }
@@ -203,12 +201,23 @@ export class SelectModulePage {
 
   setFilteredItems() {
     var tmpString = this.searchTerm.replace(/-/g,'');
-    this.searchItems = this.filterItems(tmpString);
+    const filterResults = this.filterItems(tmpString);
+
+    this.facultyCourses = [];
+    this.moduleCourses = [];
+    for (let i = 0; i < filterResults.length; i++) {
+      if (filterResults[i].type === 'faculty') {
+        this.facultyCourses.push(filterResults[i]);
+      } else {
+        this.moduleCourses.push(filterResults[i]);
+      }
+    }
   }
 
   filterItems(searchTerm) {
     return this.moduleConfigList.filter((item) => {
-      return (item.title.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
+      return  (item.faculty.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
+              (item.title.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.institution.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.description.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.courseID.toLowerCase().slice(4,6).concat('/').concat(item.courseID.slice(6,8)).indexOf(searchTerm.toLowerCase()) > -1);
@@ -216,9 +225,14 @@ export class SelectModulePage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, this.moduleConfigList);
-    popover.present({
-      ev: myEvent
+    let popover = this.popoverCtrl.create(PopoverPage, { modules: this.moduleConfigList, activeSegment: this.activeSegment });
+    popover.present({ ev: myEvent });
+    popover.onWillDismiss(data => {
+      if (data) {
+        this.searchTerm = data.searchTerm;
+        this.activeSegment = data.activeSegment;
+        this.setFilteredItems();
+      }
     });
   }
 
