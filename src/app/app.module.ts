@@ -74,6 +74,7 @@ import { HTTP } from '@ionic-native/http';
     CalendarModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: ' ',
+      backButtonIcon: 'ios-arrow-back',
       mode: 'md'
     }),
     IonicStorageModule.forRoot(),
