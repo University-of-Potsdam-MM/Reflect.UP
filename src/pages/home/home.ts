@@ -291,7 +291,7 @@ export class HomePage {
     this.storage.get("config").then((config:IModuleConfig) => {
       if (config) {
         this.storage.get("appUpdateAvailable").then(updateAvailable => {
-          if (updateAvailable == 1) {
+          if (updateAvailable === true) {
             if (this.platform.is("ios")) {
               let alert = this.alertCtrl.create({
                 title: this.translate.instant("statusMessage.update.title"),

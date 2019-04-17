@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-J",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -38,7 +38,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
       }
     },
-    "title": "Studieneingangsphase (Jura-Fak)",
+    "title": "Studieneingangsphase",
+    "faculty": "Jura-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der Juristischen Fakultät für das Sommersemester 2019",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",
@@ -117,7 +119,7 @@
   },
   {
     "id": 1,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-H",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -154,7 +156,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Studieneingangsphase (Hum-Fak)",
+    "title": "Studieneingangsphase",
+    "faculty": "Hum-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der Humanwissenschaftlichen Fakultät für das Sommersemester 2019",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",
@@ -528,7 +532,7 @@
   },
   {
     "id": 2,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-W",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -565,7 +569,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Studieneingangsphase (WiSo-Fak)",
+    "title": "Studieneingangsphase",
+    "faculty": "WiSo-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der WiSo-Fakultät für das Sommersemester 2019",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",
@@ -809,7 +815,7 @@
   },
   {
     "id": 3,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-P",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -846,7 +852,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Studieneingangsphase (Phil-Fak)",
+    "title": "Studieneingangsphase",
+    "faculty": "Phil-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der Philosophischen Fakultät für das Sommersemester 2019",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",
@@ -1609,7 +1617,7 @@
   },
   {
     "id": 4,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-M",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -1646,7 +1654,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Studieneingangsphase (MatNat-Fak)",
+    "title": "Studieneingangsphase",
+    "faculty": "MatNat-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der Mathematisch-Naturwissenschaftliche Fakultät für das Sommersemester 2019",
     "mintEnabled": true,
@@ -1660,11 +1670,19 @@
             "timeslot": [
               {
                 "day": "Mo",
+                "time": "16 - 18"
+              },
+              {
+                "day": "Di",
+                "time": "12 - 14"
+              },
+              {
+                "day": "Mi",
                 "time": "10 - 12"
               },
               {
-                "day": "Do",
-                "time": "14 - 18"
+                "day": "Fr",
+                "time": "10 - 12"
               }
             ]
           },
@@ -1673,23 +1691,13 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Di",
-                "time": "14 - 18"
+                "day": "Mo",
+                "time": "12 - 16"
               },
               {
-                "day": "Mi",
+                "day": "Di",
                 "time": "14 - 16"
               },
-              {
-                "day": "Fr",
-                "time": "12 - 14"
-              }
-            ]
-          },
-          {
-            "tutor": "Jasmin",
-            "subject": "Mathematik, Physik",
-            "timeslot": [
               {
                 "day": "Fr",
                 "time": "12 - 16"
@@ -1701,16 +1709,16 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Di",
+                "day": "Mo",
                 "time": "14 - 16"
+              },
+              {
+                "day": "Di",
+                "time": "12 - 16"
               },
               {
                 "day": "Mi",
                 "time": "12 - 16"
-              },
-              {
-                "day": "Do",
-                "time": "14 - 16"
               }
             ]
           },
@@ -1719,40 +1727,18 @@
             "subject": "Mathematik, Chemie",
             "timeslot": [
               {
-                "day": "Mo",
-                "time": "8 - 10"
-              },
-              {
-                "day": "Do",
-                "time": "14 - 16"
-              }
-            ]
-          },
-          {
-            "tutor": "Anja",
-            "subject": "Mathematik, Chemie",
-            "timeslot": [
-              {
-                "day": "Di",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Mi",
-                "time":"12 - 16"
-              },
-              {
                 "day": "Fr",
-                "time":"12 - 16"
+                "time": "10 - 14"
               }
             ]
           },
           {
             "tutor": "Sophie",
-            "subject": "Mathematik, Biologie",
+            "subject": "Mathematik, Latein",
             "timeslot": [
               {
                 "day": "Mi",
-                "time":"12 - 14"
+                "time":"10 - 12"
               }
             ]
           },
@@ -1761,32 +1747,26 @@
             "subject": "Chemie, Biologie",
             "timeslot": [
               {
-                "day": "Mi",
+                "day": "Mo",
                 "time": "12 - 14"
               },
               {
-                "day": "Do",
+                "day": "Mo",
                 "time": "16 - 18"
-              }
-            ]
-          },
-          {
-            "tutor": "Alexander",
-            "subject": "Chemie, Physik",
-            "timeslot": [
+              },
               {
-                "day": "Do",
-                "time": "14 - 18"
+                "day": "Fr",
+                "time": "14 - 16"
               }
             ]
           },
           {
-            "tutor": "Steffi",
+            "tutor": "Alex",
             "subject": "Chemie, Physik",
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "10 - 12"
+                "time": "14 - 18"
               }
             ]
           },
@@ -1795,15 +1775,25 @@
             "subject": "Ernährungswissenschaft",
             "timeslot": [
               {
-                "day": "Di",
-                "time": "14 - 18"
+                "day": "Mi",
+                "time": "12 - 16"
+              }
+            ]
+          },
+          {
+            "tutor": "Tatjana",
+            "subject": "Geografie, Physik",
+            "timeslot": [
+              {
+                "day": "Mi",
+                "time": "12 - 16"
               }
             ]
           }
         ]
       },
       {
-        "campus": "Griebnitzsee (Haus 4, Raum 2.01)",
+        "campus": "Griebnitzsee (Haus 4, Raum 1.02)",
         "schedule": [
           {
             "tutor": "Jessica",
@@ -1811,11 +1801,7 @@
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Di",
-                "time": "18 - 20"
+                "time": "12 - 16"
               }
             ]
           },
@@ -1825,11 +1811,7 @@
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Di",
-                "time": "18 - 20"
+                "time": "12 - 16"
               }
             ]
           }
@@ -1982,7 +1964,7 @@
   },
   {
     "id": 5,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-19-L",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -2019,7 +2001,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Studieneingangsphase (Lehramt)",
+    "title": "Studieneingangsphase",
+    "faculty": "Lehramt",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase aller Lehramtsstudierenden für das Sommersemester 2019",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",
@@ -2047,7 +2031,7 @@
   },
   {
     "id": 6,
-    "appVersion": 6.8,
+    "appVersion": 7.0,
     "courseID": "UPR-1819-JE",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -2084,7 +2068,9 @@
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
     },
-    "title": "Examensbegleitung (Jura)",
+    "title": "Examensbegleitung",
+    "faculty": "Jura-Fak",
+    "type": "faculty",
     "institution": "Universität Potsdam",
     "description": "Kurs für alle Examensstudierenden an der Juristischen Fakultät",
     "impressumTemplateDE": "<h2>Herausgeber<\/h2>\r\n<p>Universit&auml;t Potsdam<br \/>Am Neuen Palais 10<br \/>14469 Potsdam<br>Telefon: 0331 977-0<br \/>Fax: 0331 97 21 63<br \/>E-Mail:&nbsp;<a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><\/p>\r\n<h2><strong>Rechtsform und gesetzliche Vertretung<\/strong><\/h2>\r\n<p>Die Universit&auml;t Potsdam ist eine K&ouml;rperschaft des &Ouml;ffentlichen Rechts. Sie wird gesetzlich vertreten durch Prof. Oliver G&uuml;nther, Ph.D., Pr&auml;sident der Universit&auml;t Potsdam, Am Neuen Palais 10, 14469 Potsdam.<\/p>\r\n<h2><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde<\/strong><\/h2>\r\n<p>Ministerium f&uuml;r Wissenschaft, Forschung und Kultur des Landes Brandenburg&nbsp;<br \/>Dortustr. 36&nbsp;<br \/>14467 Potsdam<br>Telefon: 0331 866 49 99<br \/>E-Mail:&nbsp;<a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><\/p>\r\n<h2><strong>Umsatzsteueridentifikationsnummer<\/strong><\/h2>\r\n<p>DE138408327<\/p>\r\n<h2><strong>Inhaltliche Verantwortlichkeit i. S. v. &sect; 5 TMG und &sect; 55 Abs. 2 RStV<\/strong><\/h2>\r\n<p>Der App Store Account der Universit&auml;t Potsdam und der Dienst Reflect.UP werden von Frau Prof. Dr. Ulrike Lucke betreut:<br \/><br \/>Prof. Dr. Ulrike Lucke<br \/>Institut f&uuml;r Informatik &amp; Computational Science<br \/>August-Bebel-Stra&szlig;e 89<br \/>14482 Potsdam<br \/><br \/>Telefon: 0331 977-3023<br \/>Fax: 0331 977-3042<br \/><br \/>E-Mail:&nbsp;<a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>Teile dieser Arbeit wurden aus Mitteln des Bundesministeriums f&uuml;r Bildung und Forschung unter dem F&ouml;rderkennzeichen 01PL11037 gef&ouml;rdert.<\/p>\r\n<h2><strong>Haftungsausschluss<\/strong><\/h2>\r\n<p>F&uuml;r die Punkte Haftung, Urheberrecht und Datenschutz gilt die <a href=\"https:\/\/www.uni-potsdam.de\/fileadmin01\/projects\/zim\/files\/1998benutzerordnung_zeik.pdf\">Nutzungsordnung des ZIM<\/a>. Die Haftung erfolgt ausschlie&szlig;lich f&uuml;r die Erstinstallation und weiteren Updates aus dem App Store oder anderen offiziellen Quellen. <\/p>\r\n<h3><strong>Haftung f&uuml;r Inhalte<\/strong><\/h3>\r\n<p>Die Inhalte unserer App wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t&nbsp;der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen. Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<\/p>\r\n<h3><strong>Haftung f&uuml;r Links<\/strong><\/h3>\r\n<p>Unser Angebot enth&auml;lt Links zu externen Diensten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Angebote ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Angebote wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Inhalte ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.<\/p>",

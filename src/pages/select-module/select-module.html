@@ -3,39 +3,82 @@
     <ion-title>{{ "pageHeader.selectModulePage" | translate }}</ion-title>
   </ion-navbar>
   <ion-toolbar>
+    <ion-segment [(ngModel)]="activeSegment">
+      <ion-segment-button value="faculty" (click)="activeSegment = 'faculty'">
+        <ion-label>{{ "buttonLabel.faculties" | translate }}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="course" (click)="activeSegment = 'course'">
+        <ion-label >{{ "buttonLabel.modules" | translate }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar>
     <ion-segment>
       <ion-searchbar
       [(ngModel)]="searchTerm"
       (ionInput)="setFilteredItems()"
       [debounce]="500"
       [placeholder]="'label.selectModulePage.placeholderSearch' | translate"></ion-searchbar>
-<!--       <button class="filter-modules" ion-button icon-start (click)="presentPopover($event)"><ion-icon name="funnel"></ion-icon>{{ "buttonLabel.filter" | translate }}</button> -->
+      <button class="filter-modules" ion-button icon-start (click)="presentPopover($event)"
+      *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)">
+        <ion-icon name="funnel"></ion-icon>
+        {{ "buttonLabel.filter" | translate }}
+      </button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content text-wrap>
-  <div padding-top padding-left>
+  <div padding-top padding-left
+    *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)">
     <em>{{ "label.selectModulePage.selectModuleMessage" | translate }}</em>
   </div>
-  
-  <ion-card
-    *ngFor="let moduleConfig of searchItems; let i = index"
-    [attr.data-index]="i" tappable (click)="selectConfig(i)">
-    <ion-item>
-      <ion-avatar item-start>
-        <img
-          src="{{logoPath + moduleConfig.uniLogo}}"
-          alt="{{moduleConfig.uniLogo}}" />
-      </ion-avatar>
-      <h2>{{moduleConfig.title}}</h2>
-      <p>{{moduleConfig.institution}}</p>
-    </ion-item>
-    <ion-card-content>
-      <p>{{moduleConfig.description}}</p>
-    </ion-card-content>
 
-  </ion-card>
+  <span *ngIf="activeSegment === 'faculty'">
+    <div align="center" *ngIf="facultyCourses.length == 0" padding-top>
+      <p>
+        {{ "label.selectModulePage.noCoursesAvailable" | translate }}
+      </p>
+    </div>
+    <ion-card *ngFor="let moduleConfig of facultyCourses; let i = index"
+    [attr.data-index]="i" tappable (click)="selectConfig(moduleConfig.courseID)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img
+            src="{{logoPath + moduleConfig.uniLogo}}"
+            alt="{{moduleConfig.uniLogo}}" />
+        </ion-avatar>
+        <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
+        <p>{{moduleConfig.institution}}</p>
+      </ion-item>
+      <ion-card-content>
+        <p>{{moduleConfig.description}}</p>
+      </ion-card-content>
+    </ion-card>
+  </span>
+
+  <span *ngIf="activeSegment === 'course'">
+    <div align="center" *ngIf="moduleCourses.length == 0" padding-top>
+      <p>
+        {{ "label.selectModulePage.noCoursesAvailable" | translate }}
+      </p>
+    </div>
+    <ion-card *ngFor="let moduleConfig of moduleCourses; let i = index"
+    [attr.data-index]="i" tappable (click)="selectConfig(moduleConfig.courseID)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img
+            src="{{logoPath + moduleConfig.uniLogo}}"
+            alt="{{moduleConfig.uniLogo}}" />
+        </ion-avatar>
+        <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
+        <p>{{moduleConfig.institution}}</p>
+      </ion-item>
+      <ion-card-content>
+        <p>{{moduleConfig.description}}</p>
+      </ion-card-content>
+    </ion-card>
+  </span>
 </ion-content>
 
 <ion-footer>

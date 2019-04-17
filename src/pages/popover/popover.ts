@@ -1,6 +1,5 @@
-import { SelectModulePage } from './../select-module/select-module';
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams, App } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,32 +10,34 @@ export class PopoverPage {
 
   moduleConfigList: any[] = [];
   moduleSemester: string[] = [];
+  activeSegment;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, private appCtrl: App) {
-    this.moduleConfigList = navParams.data;
-    var i;
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+    this.moduleConfigList = navParams.data.modules;
+    this.activeSegment = navParams.data.activeSegment;
     this.moduleSemester = [];
-    for (i = 0; i < this.moduleConfigList.length; i++) {
+    for (let i = 0; i < this.moduleConfigList.length; i++) {
       var semesterFound = false;
-      let editedTerm = this.moduleConfigList[i].courseID.slice(4,6).concat('/').concat(this.moduleConfigList[i].courseID.slice(6,8));
-      var j;
-      for (j = 0; j < this.moduleSemester.length; j++) {
+      let editedTerm = this.moduleConfigList[i].faculty;
+      for (let j = 0; j < this.moduleSemester.length; j++) {
         if (this.moduleSemester[j] == editedTerm) {
           semesterFound = true;
         }
       }
-      if (!semesterFound) { this.moduleSemester.push(editedTerm); }
+      if (!semesterFound) {
+        if (this.moduleConfigList[i].type === this.activeSegment) {
+          this.moduleSemester.push(editedTerm);
+        }
+      }
     }
   }
 
   close(searchTerm:string) {
-    this.viewCtrl.dismiss();
-    this.appCtrl.getRootNavs()[0].setRoot(SelectModulePage, { searchTerm: searchTerm });
+    this.viewCtrl.dismiss({ searchTerm: searchTerm, activeSegment: this.activeSegment });
   }
 
   clear() {
-    this.viewCtrl.dismiss();
-    this.appCtrl.getRootNavs()[0].setRoot(SelectModulePage);
+    this.viewCtrl.dismiss({ searchTerm: '', activeSegment: this.activeSegment });
   }
 
 }

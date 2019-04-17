@@ -24,7 +24,9 @@
         "showCompletedQuestions": "Answered questions",
         "submit": "Submit",
         "tryAgain": "Try again?",
-        "yes": "Yes"
+        "yes": "Yes",
+        "faculties": "Faculties",
+        "modules": "Modules"
     },
     "label": {
         "appointmentsPage": {
@@ -84,7 +86,8 @@
         },
         "selectModulePage": {
             "placeholderSearch": "Search",
-            "selectModuleMessage": "You can choose from the listed courses:"
+            "selectModuleMessage": "You can choose from the listed courses:",
+            "noCoursesAvailable": "There are no courses available right now."
         },
         "settingsPage": {
             "changeLanguage": "Would you like to change the language of the app? Please choose:",

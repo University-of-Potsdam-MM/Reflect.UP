@@ -3,7 +3,7 @@ import { ImpressumPage } from './../impressum/impressum';
 import { PopoverPage } from './../popover/popover';
 import { DisagreeTosPage } from './../disagree-tos/disagree-tos';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, MenuController, PopoverController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { IModuleConfig } from '../../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
@@ -26,18 +26,19 @@ export class SelectModulePage {
   public moduleConfigList = [];
   public logoPath:string = "assets/imgs/logos/"
   private jsonPath:string = 'assets/json/config.json';
-  private configStorageKey:string = "config";
+
   config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
   searchTerm: string = '';
-  searchItems: any;
+  facultyCourses = [];
+  moduleCourses = [];
 
   tosMessageDE;
   tosMessageEN;
+  activeSegment;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     public http: HttpClient,
     private translate: TranslateService,
     private connection: ConnectionProvider,
@@ -52,6 +53,7 @@ export class SelectModulePage {
   ngOnInit() {
     this.presentTOS();
     this.getDescriptions();
+    this.activeSegment = 'faculty';
   }
 
   presentTOS() {
@@ -102,51 +104,21 @@ export class SelectModulePage {
    * fetches module config descriptions from ModuleProvider
    */
   public getDescriptions():void {
+    this.connection.checkOnline().subscribe(online => {
+      this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+        if (online) {
+          this.http.get<IModuleConfig[]>(this.config_url).subscribe((fetchedConfigList:IModuleConfig[]) => {
+            if (jsonConfigList[0].appVersion > fetchedConfigList[0].appVersion) {
+              this.moduleConfigList = jsonConfigList;
+            } else { this.moduleConfigList = fetchedConfigList; }
 
-    this.connection.checkOnline().subscribe((online) => {
-      if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
-          for (let config of configList) {
-            this.moduleConfigList.push(
-              {
-                id:           config.id,
-                title:        config.title,
-                institution:  config.institution,
-                description:  config.description,
-                uniLogo:      config.uniLogo,
-                courseID:     config.courseID
-              }
-            );
-          }
-          if (this.navParams.data.searchTerm) {
-            this.searchTerm = this.navParams.data.searchTerm;
             this.setFilteredItems();
-          } else {
-            this.setFilteredItems();
-          }
-        });
-      } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-          for (let config of localConfigList) {
-            this.moduleConfigList.push(
-              {
-                id:           config.id,
-                title:        config.title,
-                institution:  config.institution,
-                description:  config.description,
-                uniLogo:      config.uniLogo,
-                courseID:     config.courseID
-              }
-            );
-          }
-          if (this.navParams.data.searchTerm) {
-            this.searchTerm = this.navParams.data.searchTerm;
-            this.setFilteredItems();
-          } else {
-            this.setFilteredItems();
-          }
-        });
-      }
+          });
+        } else {
+          this.moduleConfigList = jsonConfigList;
+          this.setFilteredItems();
+        }
+      });
     });
   }
 
@@ -156,59 +128,36 @@ export class SelectModulePage {
    * selects a chosen module and forwards the user to the LoginPage
    * @param index
    */
-  public selectConfig(index:number):void {
-
-    this.connection.checkOnline().subscribe((online) => {
-      if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
-          this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-            for (let config of configList) {
-              if (config.id == index) {
-                for (let localConfig of localConfigList) {
-                  if (localConfig.id == config.id) {
-                    // check for new appVersion and notify user if new update is available
-                    this.storage.get("appUpdateAvailable").then((appUpdateStorage) => {
-                      if (appUpdateStorage != config.appVersion) {
-                        if (localConfig.appVersion) {
-                          if (config.appVersion > localConfig.appVersion) {
-                            this.storage.set("appUpdateAvailable", 1);
-                          } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                        } else { this.storage.set("appUpdateAvailable", 1); }
-                      }
-                    });
-                  }
-                }
-                // store found config in storage
-                this.storage.set(this.configStorageKey, config);
-                this.navCtrl.push(LoginPage);
-                break;
-              }
-            }
-          });
-        });
-      } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-          for (let config of localConfigList) {
-            if (config.id == index) {
-              // store found config in storage
-              this.storage.set(this.configStorageKey, config);
-              this.navCtrl.push(LoginPage);
-              break;
-            }
-          }
-        });
+  public selectConfig(courseID:number):void {
+    for (let config of this.moduleConfigList) {
+      if (config.courseID == courseID) {
+        // store found config in storage
+        this.storage.set("config", config);
+        this.navCtrl.push(LoginPage);
+        break;
       }
-    });
+    }
   }
 
   setFilteredItems() {
     var tmpString = this.searchTerm.replace(/-/g,'');
-    this.searchItems = this.filterItems(tmpString);
+    const filterResults = this.filterItems(tmpString);
+
+    this.facultyCourses = [];
+    this.moduleCourses = [];
+    for (let i = 0; i < filterResults.length; i++) {
+      if (filterResults[i].type === 'faculty') {
+        this.facultyCourses.push(filterResults[i]);
+      } else {
+        this.moduleCourses.push(filterResults[i]);
+      }
+    }
   }
 
   filterItems(searchTerm) {
     return this.moduleConfigList.filter((item) => {
-      return (item.title.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
+      return  (item.faculty.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
+              (item.title.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.institution.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.description.toLowerCase().replace(/-/g,'').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.courseID.toLowerCase().slice(4,6).concat('/').concat(item.courseID.slice(6,8)).indexOf(searchTerm.toLowerCase()) > -1);
@@ -216,9 +165,14 @@ export class SelectModulePage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, this.moduleConfigList);
-    popover.present({
-      ev: myEvent
+    let popover = this.popoverCtrl.create(PopoverPage, { modules: this.moduleConfigList, activeSegment: this.activeSegment });
+    popover.present({ ev: myEvent });
+    popover.onWillDismiss(data => {
+      if (data) {
+        this.searchTerm = data.searchTerm;
+        this.activeSegment = data.activeSegment;
+        this.setFilteredItems();
+      }
     });
   }
 

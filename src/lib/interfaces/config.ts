@@ -2,6 +2,8 @@ import { ILoginConfig_Credentials, ILoginConfig_SSO } from '../../providers/logi
 export interface IModuleConfig
 {
 	id:number;
+	faculty:string;
+	type:string;
 	appVersion:number;
 	courseID:string;
 	moodleServiceEndpoint:string;
