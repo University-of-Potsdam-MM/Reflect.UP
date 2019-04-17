@@ -41,7 +41,7 @@
       </p>
     </div>
     <ion-card *ngFor="let moduleConfig of facultyCourses; let i = index"
-    [attr.data-index]="i" tappable (click)="selectConfig(i)">
+    [attr.data-index]="i" tappable (click)="selectConfig(moduleConfig.courseID)">
       <ion-item>
         <ion-avatar item-start>
           <img
@@ -64,7 +64,7 @@
       </p>
     </div>
     <ion-card *ngFor="let moduleConfig of moduleCourses; let i = index"
-    [attr.data-index]="i" tappable (click)="selectConfig(i)">
+    [attr.data-index]="i" tappable (click)="selectConfig(moduleConfig.courseID)">
       <ion-item>
         <ion-avatar item-start>
           <img

@@ -91,28 +91,35 @@ export class MyApp {
             let jsonPath:string = 'assets/json/config.json';
 
             this.http.get<IModuleConfig[]>(config_url).subscribe((configList:IModuleConfig[]) => {
-              this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+              this.http.get<IModuleConfig[]>(jsonPath).subscribe( async (jsonConfigList:IModuleConfig[]) => {
+                const appUpdateStorage = await this.storage.get("appUpdateAvailable");
                 for (let config of configList) {
                   if (localConfig.id == config.id) {
+
+                    let configToSave = config;
                     for (let jsonConfig of jsonConfigList) {
                       if (jsonConfig.id == config.id) {
-                        this.storage.get("appUpdateAvailable").then(appUpdateStorage => {
-                          if (appUpdateStorage != config.appVersion) {
-                            // check for new appVersion and notify user if new update is available
-                            if (jsonConfig.appVersion) {
-                              if (config.appVersion > jsonConfig.appVersion) {
-                                this.storage.set("appUpdateAvailable", true);
-                              } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                            } else { this.storage.set("appUpdateAvailable", true); }
-                          }
-                        });
+                        if (appUpdateStorage != config.appVersion) {
+                          // check for new appVersion and notify user if new update is available
+                          if (jsonConfig.appVersion) {
+                            if (config.appVersion > jsonConfig.appVersion) {
+                              this.storage.set("appUpdateAvailable", true);
+                            } else if (jsonConfig.appVersion > config.appVersion) {
+                              this.storage.set("appUpdateAvailable", jsonConfig.appVersion);
+                              configToSave = jsonConfig;
+                            }
+                          } else { this.storage.set("appUpdateAvailable", true); }
+                        } else if (jsonConfig.appVersion > config.appVersion) {
+                          configToSave = jsonConfig;
+                        }
                       }
                     }
 
                     // store up-to-date config in storage
-                    this.storage.set("config", config);
-                    this.initPush(config);
+                    this.storage.set("config", configToSave);
+                    this.initPush(configToSave);
                     break;
+
                   }
                 }
               });

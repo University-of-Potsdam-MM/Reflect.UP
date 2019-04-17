@@ -26,7 +26,7 @@ export class SelectModulePage {
   public moduleConfigList = [];
   public logoPath:string = "assets/imgs/logos/"
   private jsonPath:string = 'assets/json/config.json';
-  private configStorageKey:string = "config";
+
   config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
 
   searchTerm: string = '';
@@ -104,47 +104,21 @@ export class SelectModulePage {
    * fetches module config descriptions from ModuleProvider
    */
   public getDescriptions():void {
+    this.connection.checkOnline().subscribe(online => {
+      this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
+        if (online) {
+          this.http.get<IModuleConfig[]>(this.config_url).subscribe((fetchedConfigList:IModuleConfig[]) => {
+            if (jsonConfigList[0].appVersion > fetchedConfigList[0].appVersion) {
+              this.moduleConfigList = jsonConfigList;
+            } else { this.moduleConfigList = fetchedConfigList; }
 
-    this.connection.checkOnline().subscribe((online) => {
-      if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
-          for (let config of configList) {
-            this.moduleConfigList.push(
-              {
-                id:           config.id,
-                faculty:      config.faculty,
-                type:         config.type,
-                title:        config.title,
-                institution:  config.institution,
-                description:  config.description,
-                uniLogo:      config.uniLogo,
-                courseID:     config.courseID
-              }
-            );
-          }
-
+            this.setFilteredItems();
+          });
+        } else {
+          this.moduleConfigList = jsonConfigList;
           this.setFilteredItems();
-        });
-      } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-          for (let config of localConfigList) {
-            this.moduleConfigList.push(
-              {
-                id:           config.id,
-                faculty:      config.faculty,
-                type:         config.type,
-                title:        config.title,
-                institution:  config.institution,
-                description:  config.description,
-                uniLogo:      config.uniLogo,
-                courseID:     config.courseID
-              }
-            );
-          }
-
-          this.setFilteredItems();
-        });
-      }
+        }
+      });
     });
   }
 
@@ -154,49 +128,15 @@ export class SelectModulePage {
    * selects a chosen module and forwards the user to the LoginPage
    * @param index
    */
-  public selectConfig(index:number):void {
-
-    this.connection.checkOnline().subscribe((online) => {
-      if (online) {
-        this.http.get<IModuleConfig[]>(this.config_url).subscribe((configList:IModuleConfig[]) => {
-          this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-            for (let config of configList) {
-              if (config.id == index) {
-                for (let localConfig of localConfigList) {
-                  if (localConfig.id == config.id) {
-                    // check for new appVersion and notify user if new update is available
-                    this.storage.get("appUpdateAvailable").then((appUpdateStorage) => {
-                      if (appUpdateStorage !== config.appVersion) {
-                        if (localConfig.appVersion) {
-                          if (config.appVersion > localConfig.appVersion) {
-                            this.storage.set("appUpdateAvailable", true);
-                          } else { this.storage.set("appUpdateAvailable", config.appVersion); }
-                        } else { this.storage.set("appUpdateAvailable", true); }
-                      }
-                    });
-                  }
-                }
-                // store found config in storage
-                this.storage.set(this.configStorageKey, config);
-                this.navCtrl.push(LoginPage);
-                break;
-              }
-            }
-          });
-        });
-      } else {
-        this.http.get<IModuleConfig[]>(this.jsonPath).subscribe((localConfigList:IModuleConfig[]) => {
-          for (let config of localConfigList) {
-            if (config.id == index) {
-              // store found config in storage
-              this.storage.set(this.configStorageKey, config);
-              this.navCtrl.push(LoginPage);
-              break;
-            }
-          }
-        });
+  public selectConfig(courseID:number):void {
+    for (let config of this.moduleConfigList) {
+      if (config.courseID == courseID) {
+        // store found config in storage
+        this.storage.set("config", config);
+        this.navCtrl.push(LoginPage);
+        break;
       }
-    });
+    }
   }
 
   setFilteredItems() {
