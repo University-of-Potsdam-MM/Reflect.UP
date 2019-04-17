@@ -1670,11 +1670,19 @@
             "timeslot": [
               {
                 "day": "Mo",
+                "time": "16 - 18"
+              },
+              {
+                "day": "Di",
+                "time": "12 - 14"
+              },
+              {
+                "day": "Mi",
                 "time": "10 - 12"
               },
               {
-                "day": "Do",
-                "time": "14 - 18"
+                "day": "Fr",
+                "time": "10 - 12"
               }
             ]
           },
@@ -1683,23 +1691,13 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Di",
-                "time": "14 - 18"
+                "day": "Mo",
+                "time": "12 - 16"
               },
               {
-                "day": "Mi",
+                "day": "Di",
                 "time": "14 - 16"
               },
-              {
-                "day": "Fr",
-                "time": "12 - 14"
-              }
-            ]
-          },
-          {
-            "tutor": "Jasmin",
-            "subject": "Mathematik, Physik",
-            "timeslot": [
               {
                 "day": "Fr",
                 "time": "12 - 16"
@@ -1711,16 +1709,16 @@
             "subject": "Mathematik, Physik",
             "timeslot": [
               {
-                "day": "Di",
+                "day": "Mo",
                 "time": "14 - 16"
+              },
+              {
+                "day": "Di",
+                "time": "12 - 16"
               },
               {
                 "day": "Mi",
                 "time": "12 - 16"
-              },
-              {
-                "day": "Do",
-                "time": "14 - 16"
               }
             ]
           },
@@ -1729,40 +1727,18 @@
             "subject": "Mathematik, Chemie",
             "timeslot": [
               {
-                "day": "Mo",
-                "time": "8 - 10"
-              },
-              {
-                "day": "Do",
-                "time": "14 - 16"
-              }
-            ]
-          },
-          {
-            "tutor": "Anja",
-            "subject": "Mathematik, Chemie",
-            "timeslot": [
-              {
-                "day": "Di",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Mi",
-                "time":"12 - 16"
-              },
-              {
                 "day": "Fr",
-                "time":"12 - 16"
+                "time": "10 - 14"
               }
             ]
           },
           {
             "tutor": "Sophie",
-            "subject": "Mathematik, Biologie",
+            "subject": "Mathematik, Latein",
             "timeslot": [
               {
                 "day": "Mi",
-                "time":"12 - 14"
+                "time":"10 - 12"
               }
             ]
           },
@@ -1771,32 +1747,26 @@
             "subject": "Chemie, Biologie",
             "timeslot": [
               {
-                "day": "Mi",
+                "day": "Mo",
                 "time": "12 - 14"
               },
               {
-                "day": "Do",
+                "day": "Mo",
                 "time": "16 - 18"
-              }
-            ]
-          },
-          {
-            "tutor": "Alexander",
-            "subject": "Chemie, Physik",
-            "timeslot": [
+              },
               {
-                "day": "Do",
-                "time": "14 - 18"
+                "day": "Fr",
+                "time": "14 - 16"
               }
             ]
           },
           {
-            "tutor": "Steffi",
+            "tutor": "Alex",
             "subject": "Chemie, Physik",
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "10 - 12"
+                "time": "14 - 18"
               }
             ]
           },
@@ -1805,15 +1775,25 @@
             "subject": "Ernährungswissenschaft",
             "timeslot": [
               {
-                "day": "Di",
-                "time": "14 - 18"
+                "day": "Mi",
+                "time": "12 - 16"
+              }
+            ]
+          },
+          {
+            "tutor": "Tatjana",
+            "subject": "Geografie, Physik",
+            "timeslot": [
+              {
+                "day": "Mi",
+                "time": "12 - 16"
               }
             ]
           }
         ]
       },
       {
-        "campus": "Griebnitzsee (Haus 4, Raum 2.01)",
+        "campus": "Griebnitzsee (Haus 4, Raum 1.02)",
         "schedule": [
           {
             "tutor": "Jessica",
@@ -1821,11 +1801,7 @@
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Di",
-                "time": "18 - 20"
+                "time": "12 - 16"
               }
             ]
           },
@@ -1835,11 +1811,7 @@
             "timeslot": [
               {
                 "day": "Mo",
-                "time": "16 - 18"
-              },
-              {
-                "day": "Di",
-                "time": "18 - 20"
+                "time": "12 - 16"
               }
             ]
           }
