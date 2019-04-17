@@ -18,6 +18,8 @@ import { CacheService } from 'ionic-cache';
 })
 export class LogoutPage {
 
+  config: IModuleConfig;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,6 +30,10 @@ export class LogoutPage {
   ) {
   }
 
+  async ngOnInit() {
+    this.config = await this.storage.get("config");
+  }
+
   /**
    * performLogout
    *
@@ -35,12 +41,10 @@ export class LogoutPage {
    */
   performLogout() {
     if (this.platform.is("cordova")) {
-      this.storage.get("config").then((config:IModuleConfig) => {
-        if (config) {
-          this.pushProv.unsubscribeToPush(config);
-          this.storage.set("config", null);
-        }
-      });
+      if (this.config) {
+        this.pushProv.unsubscribeToPush(this.config);
+        this.storage.set("config", null);
+      }
     } else { this.storage.set("config", null); }
 
     this.cache.clearAll();
