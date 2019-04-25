@@ -15,15 +15,19 @@ export class ContactsPage {
   showLevel1 = null;
   showLevel2 = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage
+    ) {
+  }
 
-    this.storage.get(this.configStorageKey).then(
-      (config:IModuleConfig) => {
-        if (config) {
-          this.selectedModule = config;
-        }
+  ngOnInit() {
+    this.storage.get(this.configStorageKey).then((config:IModuleConfig) => {
+      if (config) {
+        this.selectedModule = config;
       }
-    )
+    });
   }
 
   toggleLevel1(idx) {

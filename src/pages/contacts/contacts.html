@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <div *ngIf="selectedModule">
+    <div *ngIf="selectedModule && selectedModule.contactPersonsObject && selectedModule.contactPersonsObject.length > 0">
         <ion-list>
             <div *ngFor="let module of selectedModule.contactPersonsObject; let i = index" padding-left padding-right padding-top>
                 <ion-item no-lines class="groupLevel1"  tappable (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
@@ -56,6 +56,12 @@
             </div>
         </ion-list>
     </div>
+
+    <ion-card *ngIf="!(selectedModule && selectedModule.contactPersonsObject && selectedModule.contactPersonsObject.length > 0)">
+        <ion-card-content class="reminder">
+            <div>{{ "label.contactsPage.noContactsAvailable" | translate }}</div>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
 
 <ion-footer>
