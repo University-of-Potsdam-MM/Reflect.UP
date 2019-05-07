@@ -2190,7 +2190,7 @@
     "id": 8,
     "appVersion": "6.8.3",
     "courseID": "UPR-1718-T",
-    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "moodleServiceEndpoint": "https://moodle-test.rz.uni-potsdam.de/webservice/rest/server.php",
     "authorization": {
       "method": "sso",
       "credentials": {
