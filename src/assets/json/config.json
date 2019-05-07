@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-J",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -119,7 +119,7 @@
   },
   {
     "id": 1,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-H",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -532,7 +532,7 @@
   },
   {
     "id": 2,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-W",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -815,7 +815,7 @@
   },
   {
     "id": 3,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-P",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -1617,7 +1617,7 @@
   },
   {
     "id": 4,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-M",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -1964,7 +1964,7 @@
   },
   {
     "id": 5,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-19-L",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -2031,7 +2031,7 @@
   },
   {
     "id": 6,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "UPR-1819-JE",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
@@ -2134,7 +2134,7 @@
   },
   {
     "id": 7,
-    "appVersion": 7.0,
+    "appVersion": "6.8.3",
     "courseID": "TdLB-19",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
