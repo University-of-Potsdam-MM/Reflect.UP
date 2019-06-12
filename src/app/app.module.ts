@@ -1,83 +1,57 @@
-import { ComponentsModule } from './../components/components.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConfigService } from './services/config/config.service';
 import { IonicStorageModule } from '@ionic/storage';
-import { Network } from '@ionic-native/network';
-import { StatusBar } from '@ionic-native/status-bar';
-import { ConnectionProvider } from '../providers/connection-provider/connection-provider';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { EventProvider } from '../providers/event-provider/event-provider';
-import { Push } from '@ionic-native/push';
-import { UPLoginProvider } from '../providers/login-provider/login';
-import { QuestionProvider } from '../providers/question-provider/question-provider';
-import { InAppBrowser } from "@ionic-native/in-app-browser";
-import { PushProvider } from '../providers/push-provider/push-provider';
-import { Keyboard } from '@ionic-native/keyboard';
-import { HttpLoaderFactory } from '../lib/interfaces';
-import { CalendarModule } from 'ion2-calendar';
+import { UPLoginProvider } from './services/login-provider/login';
+import { environment } from 'src/environments/environment';
 import { CacheModule } from 'ionic-cache';
+import { LoggingService } from 'ionic-logging-service';
+import { HttpLoaderFactory } from './lib/interfaces';
 
-/* ~~~ Pages ~~~ */
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { SettingsPage } from '../pages/settings/settings';
-import { LoginPage } from '../pages/login/login';
-import { LogoutPage } from '../pages/logout/logout'
-import { QuestionsPage } from '../pages/questions/questions';
-import { AppointmentsPage } from '../pages/appointments/appointments';
-import { ContactsPage } from '../pages/contacts/contacts';
-import { FeedbackPage } from '../pages/feedback/feedback';
-import { SelectModulePage } from '../pages/select-module/select-module';
-import { ImpressumPage } from './../pages/impressum/impressum';
-import { DisagreeTosPage } from './../pages/disagree-tos/disagree-tos';
-import { PopoverPage } from './../pages/popover/popover';
-import { PushMessagesPage } from './../pages/push-messages/push-messages';
-import { InfoPage } from './../pages/info/info';
-import { QuestionDetailPage } from './../pages/question-detail/question-detail';
-import { MintPage } from '../pages/mint/mint';
-import { LegalNoticePage } from '../pages/legal-notice/legal-notice';
-import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
-import { TermsOfUsePage } from '../pages/terms-of-use/terms-of-use';
-import { HTTP } from '@ionic-native/http';
+export function initConfig(config: ConfigService) {
+  return () => config.load('assets/config.json');
+}
+
+export class IonicGestureConfig extends HammerGestureConfig {
+  buildHammer(element: HTMLElement) {
+      const mc = new (<any> window).Hammer(element);
+
+      for (const eventName in this.overrides) {
+          if (eventName) {
+              mc.get(eventName).set(this.overrides[eventName]);
+          }
+      }
+
+      return mc;
+  }
+}
+
+export function configureLogging(loggingService: LoggingService): () => void {
+  return () => loggingService.configure(environment.logging);
+}
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    LogoutPage,
-    QuestionsPage,
-    AppointmentsPage,
-    ContactsPage,
-    FeedbackPage,
-    SelectModulePage,
-    SettingsPage,
-    QuestionDetailPage,
-    ImpressumPage,
-    DisagreeTosPage,
-    MintPage,
-    InfoPage,
-    PopoverPage,
-    PushMessagesPage,
-    LegalNoticePage,
-    PrivacyPolicyPage,
-    TermsOfUsePage
+    AppComponent
   ],
+  entryComponents: [],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ComponentsModule,
-    CalendarModule,
-    IonicModule.forRoot(MyApp, {
-      backButtonText: ' ',
+    IonicModule.forRoot({
       backButtonIcon: 'ios-arrow-back',
-      mode: 'md'
+      backButtonText: '',
+      mode: 'md',
+      rippleEffect: true
     }),
-    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -85,47 +59,33 @@ import { HTTP } from '@ionic-native/http';
         deps: [HttpClient]
       }
     }),
-    CacheModule.forRoot({ keyPrefix: 'myAppCache-' })
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    LogoutPage,
-    QuestionsPage,
-    AppointmentsPage,
-    ContactsPage,
-    FeedbackPage,
-    SelectModulePage,
-    SettingsPage,
-    QuestionDetailPage,
-    ImpressumPage,
-    DisagreeTosPage,
-    MintPage,
-    InfoPage,
-    PopoverPage,
-    PushMessagesPage,
-    LegalNoticePage,
-    PrivacyPolicyPage,
-    TermsOfUsePage
+    IonicStorageModule.forRoot({
+      driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage']
+    }),
+    CacheModule.forRoot({ keyPrefix: 'cache-' }),
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Network,
-    ConnectionProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConnectionProvider,
-    EventProvider,
-    LocalNotifications,
     UPLoginProvider,
-    QuestionProvider,
-    InAppBrowser,
-    Push,
-    PushProvider,
-    Keyboard,
-    HTTP
-  ]
+    ConfigService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfig,
+      deps: [ConfigService],
+      multi: true
+    },
+    {
+      deps: [LoggingService],
+      multi: true,
+      provide: APP_INITIALIZER,
+      useFactory: configureLogging
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

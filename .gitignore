@@ -12,10 +12,11 @@ log.txt
 .vscode/
 npm-debug.log*
 
-node_modules/
 .idea/
 .sourcemaps/
+.gradle/
 .sass-cache/
+.gradle/
 .tmp/
 .versions/
 coverage/
@@ -29,9 +30,10 @@ plugins/
 plugins/android.json
 plugins/ios.json
 www/
+res/
 $RECYCLE.BIN/
+documentation/
 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
-res

@@ -1,222 +1,113 @@
-import { PushProvider } from '../providers/push-provider/push-provider';
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Platform, IonRouterOutlet, NavController, MenuController } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { CacheService } from 'ionic-cache';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '../../node_modules/@angular/common/http';
-import { ConnectionProvider } from '../providers/connection-provider/connection-provider';
-import { PageInterface } from '../lib/interfaces';
-import { IModuleConfig } from '../lib/interfaces/config';
 import { Storage } from '@ionic/storage';
-import { CacheService } from "ionic-cache";
-
-/* ~~~ Pages ~~~ */
-import { HomePage } from '../pages/home/home';
-import { ContactsPage } from '../pages/contacts/contacts';
-import { AppointmentsPage } from '../pages/appointments/appointments';
-import { FeedbackPage } from '../pages/feedback/feedback';
-import { QuestionsPage } from '../pages/questions/questions';
-import { SettingsPage } from '../pages/settings/settings';
-import { LogoutPage } from '../pages/logout/logout';
-import { SelectModulePage } from '../pages/select-module/select-module';
-import { PushMessagesPage } from './../pages/push-messages/push-messages';
-import { MintPage } from '../pages/mint/mint';
+import { Router } from '@angular/router';
+import { PageInterface } from './lib/interfaces';
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
-export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+export class AppComponent {
 
-  rootPage: any;
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
+
   pagesInMenu: PageInterface[];
+  menuSetup = false;
 
   constructor(
-      private platform: Platform,
-      private statusBar: StatusBar,
-      private splashScreen: SplashScreen,
-      private translate: TranslateService,
-      private http: HttpClient,
-      private connection: ConnectionProvider,
-      private storage: Storage,
-      private pushProv: PushProvider,
-      private cache: CacheService) {
-    this.initApp();
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private cache: CacheService,
+    private translate: TranslateService,
+    private storage: Storage,
+    private router: Router,
+    private navCtrl: NavController,
+    private menuCtrl: MenuController
+  ) {
+    this.initializeApp();
   }
 
-  /**
-   * initApp
-   *
-   * initializes the app
-   */
-  private async initApp() {
-    await this.initConfig();
-    await this.initTranslate();
-    await this.initMenu();
-
+  initializeApp() {
     this.platform.ready().then(() => {
-      this.cache.setDefaultTTL(60 * 60 * 2);     // 2h caching
-      this.cache.setOfflineInvalidate(false);     // keep cached results when device is offline
-      if (this.platform.is("cordova")) {
+      if (this.platform.is('cordova')) {
+        if (this.platform.is('android')) {
+          this.listenToBackButton();
+          this.statusBar.backgroundColorByHexString('#014260');
+        } else { this.statusBar.styleDefault(); }
+
         this.splashScreen.hide();
-        this.statusBar.styleDefault();
-        this.storage.get("hiddenCards").then(array => {
-          if (array == undefined) {
-            this.storage.set("hiddenCards", ["-1"]);
-          }
-        });
-        this.storage.get("scheduledEvents").then(array => {
-          if (array == undefined) {
-            this.storage.set("scheduledEvents", ["-1"]);
-          }
-        });
       }
+
+      this.initializeMenu();
+      this.initializeTranslate();
+      this.cache.setDefaultTTL(7200);
+      this.cache.setOfflineInvalidate(false);
     });
   }
 
-  /**
-   * initConfig
-   *
-   * fetches config from server if there's an internet connection
-   * sets root page accordingly
-   */
-  private initConfig() {
-    var config_url = "https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json";
-
-    this.storage.get("config").then((localConfig:IModuleConfig) => {
-      if (localConfig) {
-        this.connection.checkOnline().subscribe((online) => {
-          if (online) {
-            let jsonPath:string = 'assets/json/config.json';
-
-            this.http.get<IModuleConfig[]>(config_url).subscribe((configList:IModuleConfig[]) => {
-              this.http.get<IModuleConfig[]>(jsonPath).subscribe( async (jsonConfigList:IModuleConfig[]) => {
-                const appUpdateStorage = await this.storage.get("appUpdateAvailable");
-                for (let config of configList) {
-                  if (localConfig.id == config.id) {
-
-                    let configToSave = config;
-                    for (let jsonConfig of jsonConfigList) {
-                      if (jsonConfig.id == config.id) {
-                        if (appUpdateStorage != config.appVersion) {
-                          // check for new appVersion and notify user if new update is available
-                          if (jsonConfig.appVersion) {
-                            if (config.appVersion > jsonConfig.appVersion) {
-                              this.storage.set("appUpdateAvailable", true);
-                            } else if (jsonConfig.appVersion > config.appVersion) {
-                              this.storage.set("appUpdateAvailable", jsonConfig.appVersion);
-                              configToSave = jsonConfig;
-                            }
-                          } else { this.storage.set("appUpdateAvailable", true); }
-                        } else if (jsonConfig.appVersion > config.appVersion) {
-                          configToSave = jsonConfig;
-                        }
-                      }
-                    }
-
-                    // store up-to-date config in storage
-                    this.storage.set("config", configToSave);
-                    this.initPush(configToSave);
-                    break;
-
-                  }
-                }
-              });
-            });
-          }
-          this.rootPage = HomePage;
-        });
-      } else {
-        let jsonPath:string = 'assets/json/config.json';
-        this.http.get<IModuleConfig[]>(jsonPath).subscribe((jsonConfigList:IModuleConfig[]) => {
-          this.storage.set("fallbackConfig", jsonConfigList[0]);
-        });
-        this.rootPage = SelectModulePage;
-      }
-    });
-  }
-
-  /**
-   * initPush
-   *
-   * registers push service to ensure push notifications work
-   * even after app has been closed
-   * @param config
-   */
-  private initPush(config:IModuleConfig) {
-    if (this.platform.is("cordova")) {
-      this.pushProv.registerPushService(config);
-    }
-  }
-
-  /**
-   * initMenu
-   *
-   * sets up menu entries and icons
-   */
-  async initMenu() {
-    let config:IModuleConfig = await this.storage.get("config");
-
-    this.pagesInMenu = [];
-
-    this.pagesInMenu = [
-      { title: "pageHeader.homePage_alt", pageName: HomePage, icon: "home" },
-      { title: "pageHeader.appointmentsPage_2", pageName: AppointmentsPage, icon: "calendar" },
-      { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
-      { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
-      { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
-    ];
-
-    if (this.platform.is("ios") || this.platform.is("android")) {
-      this.pagesInMenu.push({ title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"});
-    }
-
-    if (config != undefined) {
-      if (config.mintEnabled) {
-        this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
-      }
-    }
-
-    this.pagesInMenu.push({ title: "pageHeader.settingsPage", pageName: SettingsPage, icon: "settings"});
-    this.pagesInMenu.push({ title: "pageHeader.logoutPage", pageName: LogoutPage, icon: "log-out" });
-  }
-
-  /**
-   * initTranslate
-   *
-   * sets up translation
-   */
-  private initTranslate() {
-    // set the default language for translation strings, and the current language.
+  async initializeTranslate() {
     this.translate.setDefaultLang('de');
 
-    // check if language preference has been saved to storage
-    this.storage.get("appLanguage").then((value) => {
-      if (value != null) {
-        this.translate.use(value);
-      } else {
-        this.translate.use("de");
-        this.storage.set("appLanguage","de");
+    const userLanguage = await this.storage.get('appLanguage');
+    if (userLanguage) { this.translate.use(userLanguage); } else { this.storage.set('appLanguage', 'de'); }
+  }
+
+  initializeMenu() {
+    this.pagesInMenu = [
+      { title: 'pageHeader.homePage_alt', pageName: '/home', icon: 'home' },
+      { title: 'pageHeader.appointmentsPage_2', pageName: '/appointments', icon: 'calendar' },
+      { title: 'pageHeader.questionsPage', pageName: '/questions', icon: 'create' },
+      { title: 'pageHeader.contactsPage', pageName: '/contacts', icon: 'contacts' },
+      { title: 'pageHeader.feedbackPage', pageName: '/feedback', icon: 'chatboxes' },
+    ];
+
+    if (this.platform.is('ios') || this.platform.is('android')) {
+      this.pagesInMenu.push({ title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'});
+    }
+
+    // if (config != undefined) {
+    //   if (config.mintEnabled) {
+    //     this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
+    //   }
+    // }
+
+    this.pagesInMenu.push({ title: 'pageHeader.settingsPage', pageName: '/settings', icon: 'settings'});
+    this.menuSetup = true;
+  }
+
+  openPage(page: PageInterface) {
+    this.menuCtrl.close();
+    if (page.pageName !== this.router.url) {
+      this.navCtrl.navigateBack('/home');
+      if (page.pageName !== '/home') {
+        setTimeout(() => {
+          this.navCtrl.navigateForward(page.pageName);
+        }, 1);
       }
-    });
+    }
   }
 
   /**
-   * openPage
-   *
-   * opens the selected page
-   * @param page
+   * listens to backbutton and closes application if backbutton is pressed on
+   * home screen
    */
-  openPage(page:PageInterface) {
-    // pushes selected page (except if its the HomePage, then it sets a new root)
-    if ((page.pageName == HomePage) && (this.nav.getActive().component != HomePage)) {
-      this.nav.setRoot(page.pageName, {fromSideMenu: true});
-    } else {
-      if (this.nav.getActive().component != page.pageName) {
-        this.nav.popToRoot();
-        this.nav.push(page.pageName);
-      }
-    }
+  listenToBackButton() {
+    // workaround for #694
+    // https://forum.ionicframework.com/t/hardware-back-button-with-ionic-4/137905/56
+    this.platform.backButton.subscribe(async() => {
+      this.routerOutlets.forEach(() => {
+        if (this.router.url === '/home') {
+          navigator['app'].exitApp();
+        } else {
+          window.history.back();
+        }
+      });
+    });
   }
 }
