@@ -15,8 +15,8 @@ export class HomePage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const configIndeces = await this.storage.get('config');
-    if (!configIndeces) {
+    const sessions = await this.storage.get('sessions');
+    if (!sessions) {
       this.navCtrl.navigateRoot('/select-module');
     }
   }

@@ -7,7 +7,7 @@ import { IModuleConfig } from 'src/app/lib/config';
 })
 export class ConfigService {
 
-  static config: IModuleConfig;
+  static config: IModuleConfig[];
 
   constructor(
     private http: HttpClient

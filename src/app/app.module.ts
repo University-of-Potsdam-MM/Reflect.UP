@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './services/config/config.service';
 import { IonicStorageModule } from '@ionic/storage';
@@ -16,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { CacheModule } from 'ionic-cache';
 import { LoggingService } from 'ionic-logging-service';
 import { HttpLoaderFactory } from './lib/interfaces';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 export function initConfig(config: ConfigService) {
   return () => config.load('assets/config.json', 'config');
@@ -71,6 +71,7 @@ export function configureLogging(loggingService: LoggingService): () => void {
     SplashScreen,
     UPLoginProvider,
     ConfigService,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
     {

@@ -1797,6 +1797,7 @@
         ]
       }
     ],
+    "uniLogo": "logo_phil.svg",
     "contactPersonsObject": [
       {
         "category": "Ein-Fach-Bachelor",
@@ -2147,7 +2148,7 @@
     "id": 8,
     "appVersion": "6.8.4",
     "courseID": "UPR-1718-T",
-    "moodleServiceEndpoint": "https://moodle-test.rz.uni-potsdam.de/webservice/rest/server.php",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/webservice/rest/server.php",
     "authorization": {
       "method": "sso",
       "credentials": {
@@ -2183,7 +2184,7 @@
       }
     },
     "title": "Testkurs auf Moodle-Test",
-    "faculty": "Zentrum für Informationstechnologie und Medienmanagement",
+    "faculty": "SSO",
     "type": "course",
     "institution": "Universität Potsdam",
     "description": "Testkurs",

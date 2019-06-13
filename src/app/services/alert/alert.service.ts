@@ -17,7 +17,7 @@ export interface IAlertOptions {
 })
 export class AlertService {
 
-  currentAlert = null;
+  currentAlert = undefined;
   logger: Logger;
 
   /**
@@ -50,13 +50,13 @@ export class AlertService {
           text: this.translate.instant('pageHeader.homePage_alt'),
           handler: () => {
             this.navCtrl.navigateRoot('/home');
-            this.currentAlert = null;
+            this.currentAlert = undefined;
           }
         },
         {
           text: this.translate.instant('buttonLabel.next'),
           handler: () => {
-            this.currentAlert = null;
+            this.currentAlert = undefined;
           }
         }
       ];
