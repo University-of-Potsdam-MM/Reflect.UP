@@ -18,11 +18,11 @@ export class ConfigService {
    * https://blogs.msdn.microsoft.com/premier_developer/2018/03/01/angular-how-to-editable-config-files/
    *
    */
-  load(uri: string) {
+  load(uri: string, key: string) {
     return new Promise<void>((resolve, reject) => {
       this.http.get(uri).toPromise().then(
         (response: IModuleConfig) => {
-          ConfigService.config = response;
+          ConfigService[key] = response;
           resolve();
         }
       ).catch(() => {

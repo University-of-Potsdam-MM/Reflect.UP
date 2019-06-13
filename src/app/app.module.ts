@@ -18,7 +18,7 @@ import { LoggingService } from 'ionic-logging-service';
 import { HttpLoaderFactory } from './lib/interfaces';
 
 export function initConfig(config: ConfigService) {
-  return () => config.load('assets/config.json');
+  return () => config.load('assets/config.json', 'config');
 }
 
 export class IonicGestureConfig extends HammerGestureConfig {

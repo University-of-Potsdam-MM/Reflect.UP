@@ -12,14 +12,7 @@ export interface IModuleConfig {
 	title: string;
 	institution: string;
 	description: string;
-	mintEnabled?: boolean;
 	mintDetails?: IMintObject[];
-	impressumTemplateDE: string;
-	impressumTemplateEN: string;
-	tosTemplateDE: string;
-	tosTemplateEN: string;
-	privacyTemplateDE: string;
-	privacyTemplateEN: string;
 	uniLogo: string;
 	contactPersonsObject: ContactPersonsObject[];
 }
