@@ -15,7 +15,7 @@ export class WebHttpUrlEncodingCodec implements HttpParameterCodec {
     decodeKey(k: string): string { return decodeURIComponent(k); }
     decodeValue(v: string) { return decodeURIComponent(v); }
 }
-  
+
 export interface PageInterface {
     title: string;
     pageName: any;
@@ -29,6 +29,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 export interface PushMessage {
     pushMessage: string,
     pushTitle: string,
-    pushCount: number,
+    pushCount?: number,
     pushTime: any
   }
