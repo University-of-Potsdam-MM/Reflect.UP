@@ -27,8 +27,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 export interface PushMessage {
-    pushMessage: string,
-    pushTitle: string,
-    pushCount?: number,
-    pushTime: any
-  }
+    id: number;
+    timestamp: any;
+    title: string;
+    message: string;
+}

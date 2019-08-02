@@ -8,31 +8,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-row *ngIf="noPushMessages">
-    <ion-col>
-      <ion-card>
-        <ion-card-content text-wrap class="reminder">
-          {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+  <ion-card *ngIf="responseError">
+    <ion-card-content text-wrap class="reminder">
+      {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
+    </ion-card-content>
+  </ion-card>
 
-  <div *ngFor="let mess of pushList; let i = index">
-    <ion-row *ngIf="!noPushMessages">
+  <ion-grid *ngIf="!responseError && pushMessages">
+    <ion-row *ngFor="let push of pushMessages; let i = index">
       <ion-col>
         <ion-card>
           <ion-card-header text-wrap>
-            <div *ngIf="!mess.pushTime || timeStampArray[i] == 'Invalid date'">{{ mess.pushTitle }}</div>
-            <div *ngIf="mess.pushTime && timeStampArray[i] != 'Invalid date'">{{ mess.pushTitle }} – {{ timeStampArray[i] }} {{ "label.appointmentsPage.time" | translate }}</div>
+            <h3>{{ push.title }}</h3>
           </ion-card-header>
-          <ion-card-content text-wrap class="reminder">
-            {{ mess.pushMessage }}
+          <ion-card-content text-wrap>
+            {{ push.message }}
+
+            <div align="right" class="pushdate">
+              {{ push.timestamp }} {{ "label.appointmentsPage.time" | translate }}
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-  </div>
+  </ion-grid>
 
 </ion-content>
 

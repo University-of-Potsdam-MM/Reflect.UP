@@ -132,9 +132,7 @@ export class PushProvider {
 
         // set default title if there is no title in push notification
         let title = "Reflect.UP";
-        if (data.title) { title = data.title; }
-
-        this.saveNotifications(data.message, title, data.additionalData.foreground);
+        if (data.title && data.title !== '') { title = data.title; }
 
         // only schedule an alert when notification is received while app in foreground
         if (data.additionalData.foreground) {
@@ -156,6 +154,9 @@ export class PushProvider {
             enableBackdropDismiss: false,
           });
           alert.present();
+        } else {
+          const nav = this.app.getRootNav();
+          nav.push(PushMessagesPage);
         }
 
         // calling pushObject.finish (necessary on iOS)
@@ -177,36 +178,6 @@ export class PushProvider {
 
       pushObject.on("error").subscribe(data => {
         console.log("Push error happened: " + data.message);
-      });
-    }
-  }
-
-  async saveNotifications(message: string, title: string, isForeground: boolean) {
-
-    let pushDetails = {
-      pushMessage: message,
-      pushTitle: title,
-      pushTime: moment()
-    }
-
-    const oldArray = await this.storage.get('savedNotifications');
-    var notArray: PushMessage[];
-    let lastIndex = 0;
-    if (oldArray) {
-      lastIndex = oldArray.length;
-      notArray = new Array(oldArray.length + 1);
-      notArray = oldArray.slice(0,lastIndex);
-    } else { notArray = new Array(1); }
-
-    notArray[lastIndex] = pushDetails;
-    // save notification to local storage
-    if (isForeground) {
-      this.storage.set("savedNotifications", notArray);
-    } else {
-      this.storage.set("savedNotifications", notArray).then(() => {
-        // redirect user to messages page
-        const nav = this.app.getRootNav();
-        nav.push(PushMessagesPage);
       });
     }
   }

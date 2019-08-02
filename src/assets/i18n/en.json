@@ -75,7 +75,7 @@
         },
         "menu": "Menu",
         "pushMessagesPage": {
-            "noMessagesReceived": "You haven't received any push notifications yet."
+            "noMessagesReceived": "Messages could not be loaded."
         },
         "questionsPage": {
             "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",

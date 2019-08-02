@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -30,6 +31,7 @@ export class SettingsPage {
   onChange(lang) {
     this.language = lang;
     this.translate.use(this.language);
+    moment.locale(this.language);
     this.storage.set("appLanguage",this.language);
   }
 
