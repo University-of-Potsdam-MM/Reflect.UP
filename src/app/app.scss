@@ -52,6 +52,10 @@
 // Add UP CD Items
 // --------------------------------------------------*/
 
+ion-navbar, ion-toolbar {
+  min-height: 40px!important;
+}
+
 .header::after {
     content: "";
     position: absolute;

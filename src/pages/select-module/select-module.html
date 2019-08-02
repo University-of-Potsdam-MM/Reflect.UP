@@ -2,8 +2,8 @@
   <ion-navbar>
     <ion-title>{{ "pageHeader.selectModulePage" | translate }}</ion-title>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="activeSegment">
+  <ion-toolbar class="coursesegment">
+    <ion-segment [(ngModel)]="activeSegment" class="coursesegment">
       <ion-segment-button value="faculty" (click)="activeSegment = 'faculty'">
         <ion-label>{{ "buttonLabel.faculties" | translate }}</ion-label>
       </ion-segment-button>

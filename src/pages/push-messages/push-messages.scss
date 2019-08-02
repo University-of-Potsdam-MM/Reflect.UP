@@ -1,7 +1,7 @@
 page-push-messages {
     h3 {
         font-size: 0.95em!important;
-        color: var(--ion-color-primary)!important;
+        color: color($colors, primary)!important;
         font-weight: bold!important;
     }
 
@@ -18,7 +18,8 @@ page-push-messages {
         .card-content-ios,
         .card-content-md {
             border:none;
-            padding-top: 5px;
+            padding-top: 5px!important;
+            padding: 0;
         }
     }
 }
