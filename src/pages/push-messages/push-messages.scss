@@ -1,6 +1,5 @@
 page-push-messages {
     h3 {
-        font-size: 0.95em!important;
         color: color($colors, primary)!important;
         font-weight: bold!important;
     }
@@ -10,7 +9,7 @@ page-push-messages {
     }
 
     ion-row {
-        border-bottom:1px solid #ededed;
+        border-bottom:1px solid color($colors, secondary);
     }
 
     .card {

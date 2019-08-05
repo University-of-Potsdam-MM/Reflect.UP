@@ -20,6 +20,7 @@ export class PushMessagesPage {
 
   pushMessages: PushMessage[];
   responseError = false;
+  isLoaded = false;
 
   constructor(
     public navCtrl: NavController,
@@ -32,11 +33,13 @@ export class PushMessagesPage {
     this.getPushMessages();
   }
 
-  async getPushMessages() {
+  async getPushMessages(refresher?) {
     const session: ISession = await this.storage.get("session");
     const config: IModuleConfig = await this.storage.get("config");
 
     this.responseError = false;
+
+    if (!refresher) { this.isLoaded = false; }
 
     const params: HttpParams = new HttpParams()
       .append("wstoken", session.token)
@@ -67,7 +70,20 @@ export class PushMessagesPage {
         console.log('ERROR while getting messages');
         console.log(JSON.stringify(response));
       }
+
+      if (refresher) { refresher.complete(); }
+      this.isLoaded = true;
+    }, error => {
+      this.responseError = true;
+      console.log('ERROR while getting messages');
+      console.log(JSON.stringify(error));
+      if (refresher) { refresher.complete(); }
+      this.isLoaded = true;
     });
+  }
+
+  doRefresh(refresher) {
+    this.getPushMessages(refresher);
   }
 
 }

@@ -8,28 +8,37 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
+
+  <div align="center" *ngIf="!isLoaded" padding>
+    <ion-spinner></ion-spinner>
+  </div>
+
   <ion-card *ngIf="responseError">
     <ion-card-content text-wrap class="reminder">
       {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
     </ion-card-content>
   </ion-card>
 
-  <ion-grid *ngIf="!responseError && pushMessages">
+  <ion-grid *ngIf="isLoaded && !responseError && pushMessages">
     <ion-row *ngFor="let push of pushMessages; let i = index">
-      <ion-col>
-        <ion-card>
-          <ion-card-header text-wrap>
-            <h3>{{ push.title }}</h3>
-          </ion-card-header>
-          <ion-card-content text-wrap>
-            {{ push.message }}
+      <ion-card>
+        <ion-card-header text-wrap>
+          <h3>{{ push.title }}</h3>
+        </ion-card-header>
+        <ion-card-content text-wrap>
+          {{ push.message }}
 
-            <div align="right" class="pushdate">
-              {{ push.timestamp }} {{ "label.appointmentsPage.time" | translate }}
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+          <div align="right" class="pushdate">
+            {{ push.timestamp }} {{ "label.appointmentsPage.time" | translate }}
+          </div>
+        </ion-card-content>
+      </ion-card>
     </ion-row>
   </ion-grid>
 
