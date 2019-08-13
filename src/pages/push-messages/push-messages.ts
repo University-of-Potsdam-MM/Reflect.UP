@@ -43,7 +43,6 @@ export class PushMessagesPage {
 
     const params: HttpParams = new HttpParams()
       .append("wstoken", session.token)
-      //.append("wstoken", "879992a39c5392775ed8f0967de59878")
       .append("wsfunction", "local_reflect_get_messages")
       .append("moodlewsrestformat", "json")
       .append("courseID", config.courseID);
@@ -52,7 +51,6 @@ export class PushMessagesPage {
       .append("Authorization", config.authorization.credentials.authHeader.accessToken);
 
     const endpoint = config.moodleServiceEndpoint;
-    //const endpoint = "http://localhost:8888/moodle37/webservice/rest/server.php";
 
     this.http.get(endpoint, { headers: headers, params: params }).subscribe((response: MessagesResponse) => {
       if (response.messages) {
@@ -64,7 +62,10 @@ export class PushMessagesPage {
           }
         }
 
-        this.pushMessages = response.messages;
+        if (Array.isArray(response.messages)) {
+          this.pushMessages = response.messages.reverse();
+        } else { this.pushMessages = response.messages; }
+
       } else {
         this.responseError = true;
         console.log('ERROR while getting messages');

@@ -75,7 +75,7 @@
         },
         "menu": "Menu",
         "pushMessagesPage": {
-            "noMessagesReceived": "Messages could not be loaded."
+            "noMessagesReceived": "No messages received."
         },
         "questionsPage": {
             "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",
@@ -113,7 +113,7 @@
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Login",
         "logoutPage": "Logout",
-        "pushMessagesPage": "Push notifications",
+        "pushMessagesPage": "Messages",
         "questionsPage": "Questions",
         "selectModulePage": "Welcome",
         "settingsPage": "Settings",
