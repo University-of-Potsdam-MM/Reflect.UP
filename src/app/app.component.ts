@@ -22,6 +22,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import { SelectModulePage } from '../pages/select-module/select-module';
 import { PushMessagesPage } from './../pages/push-messages/push-messages';
 import { MintPage } from '../pages/mint/mint';
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'app.html'
@@ -166,11 +167,8 @@ export class MyApp {
       { title: "pageHeader.questionsPage", pageName: QuestionsPage, icon: "create" },
       { title: "pageHeader.contactsPage", pageName: ContactsPage, icon: "contacts" },
       { title: "pageHeader.feedbackPage", pageName: FeedbackPage, icon: "chatboxes" },
+      { title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"}
     ];
-
-    if (this.platform.is("ios") || this.platform.is("android")) {
-      this.pagesInMenu.push({ title: "pageHeader.pushMessagesPage", pageName: PushMessagesPage, icon: "chatbubbles"});
-    }
 
     if (config != undefined) {
       if (config.mintEnabled) {
@@ -195,9 +193,11 @@ export class MyApp {
     this.storage.get("appLanguage").then((value) => {
       if (value != null) {
         this.translate.use(value);
+        moment.locale(value);
       } else {
         this.translate.use("de");
         this.storage.set("appLanguage","de");
+        moment.locale("de");
       }
     });
   }

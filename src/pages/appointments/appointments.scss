@@ -5,6 +5,16 @@ page-appointments {
         }
     }
 
+    .item {
+        min-height: 10px;
+        max-height: 35px;
+    }
+
+    .button {
+        min-height: 10px;
+        max-height: 30px;
+    }
+
     .card-content.reminder {
         border:none;
         text-align: center;

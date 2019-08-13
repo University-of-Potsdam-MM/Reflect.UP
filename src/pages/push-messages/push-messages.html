@@ -8,34 +8,42 @@
 </ion-header>
 
 <ion-content>
-  <ion-row *ngIf="noPushMessages">
-    <ion-col>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
+
+  <div align="center" *ngIf="!isLoaded" padding>
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="responseError">
+    <ion-card-content text-wrap class="reminder">
+      {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid *ngIf="isLoaded && !responseError && pushMessages">
+    <ion-row *ngFor="let push of pushMessages; let i = index">
       <ion-card>
-        <ion-card-content text-wrap class="reminder">
-          {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
+        <ion-card-header text-wrap>
+          <h3>{{ push.title }}</h3>
+        </ion-card-header>
+        <ion-card-content text-wrap>
+          {{ push.message }}
+
+          <div align="right" class="pushdate">
+            {{ push.timestamp }} {{ "label.appointmentsPage.time" | translate }}
+          </div>
         </ion-card-content>
       </ion-card>
-    </ion-col>
-  </ion-row>
-
-  <div *ngFor="let mess of pushList; let i = index">
-    <ion-row *ngIf="!noPushMessages">
-      <ion-col>
-        <ion-card>
-          <ion-card-header text-wrap>
-            <div *ngIf="!mess.pushTime || timeStampArray[i] == 'Invalid date'">{{ mess.pushTitle }}</div>
-            <div *ngIf="mess.pushTime && timeStampArray[i] != 'Invalid date'">{{ mess.pushTitle }} – {{ timeStampArray[i] }} {{ "label.appointmentsPage.time" | translate }}</div>
-          </ion-card-header>
-          <ion-card-content text-wrap class="reminder">
-            {{ mess.pushMessage }}
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
     </ion-row>
-  </div>
+  </ion-grid>
 
 </ion-content>
 
 <ion-footer>
-    <tab-bar></tab-bar>
+  <tab-bar></tab-bar>
 </ion-footer>

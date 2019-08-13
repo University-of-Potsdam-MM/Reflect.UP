@@ -1,4 +1,18 @@
 page-select-module {
+
+    ion-toolbar {
+        padding-bottom: 0;
+    }
+
+    ion-toolbar.coursesegment, ion-segment.coursesegment {
+        min-height: 20px;
+        max-height: 25px;
+
+        ion-label {
+            margin: 0;
+        }
+    }
+
     .searchbar-md .searchbar-input,
     .searchbar-ios .searchbar-input,
     .searchbar .searchbar-input  {
@@ -14,7 +28,7 @@ page-select-module {
 
     .filter-modules.activated {
         background-color:transparent;
-        color:color($colors, primary); 
+        color:color($colors, primary);
     }
 
     .card {
@@ -23,7 +37,7 @@ page-select-module {
             font-size: 90%;
         }
 
-        .card-content, 
+        .card-content,
         .card-content-ios,
         .card-content-md {
             border:none;
@@ -37,7 +51,7 @@ page-select-module {
         .card-content-md p,
         .card-content p,
         .card-content-ios p {
-        
+
             margin-left: 50px;
         }
     }

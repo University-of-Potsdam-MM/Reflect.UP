@@ -1,10 +1,24 @@
 page-push-messages {
+    h3 {
+        color: color($colors, primary)!important;
+        font-weight: bold!important;
+    }
+
+    .pushdate {
+        font-size: 0.8em;
+    }
+
+    ion-row {
+        border-bottom:1px solid color($colors, secondary);
+    }
+
     .card {
-        .card-content, 
+        .card-content,
         .card-content-ios,
         .card-content-md {
             border:none;
-            text-align: center;
+            padding-top: 5px!important;
+            padding: 0;
         }
     }
 }

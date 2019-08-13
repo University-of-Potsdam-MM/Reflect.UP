@@ -9,4 +9,13 @@ question {
         background-color: color($colors, secondary);
         border-radius: 0px;
     }
+
+    .item {
+        min-height: 10px;
+        max-height: 40px;
+    }
+
+    .title {
+        font-size: small;
+    }
 }

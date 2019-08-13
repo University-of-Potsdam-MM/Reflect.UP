@@ -17,8 +17,8 @@
 
   <div align="center">
     <ion-col>
-      <button ion-button [ngClass]="showAll ? 'activeCalendarButton' : 'calendarButton'" (click)="resetCalendar()">{{ "buttonLabel.showAll" | translate}}</button>
-      <button ion-button [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; showBasicCalendar = true; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</button>
+      <button ion-button size="small" [ngClass]="showAll ? 'activeCalendarButton' : 'calendarButton'" (click)="resetCalendar()">{{ "buttonLabel.showAll" | translate}}</button>
+      <button ion-button size="small" [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; showBasicCalendar = true; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</button>
     </ion-col>
   </div>
 
