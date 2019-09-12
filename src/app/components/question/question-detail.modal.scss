@@ -1,0 +1,52 @@
+textarea {
+    width: 100%;
+    border-color: var(--ion-color-medium);
+    border-width: 1px;
+    border-style:solid;
+    padding: .2em;
+}
+
+#navButtons {
+    width: 30%;
+}
+
+.header {
+    h6 {
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+}
+
+.list-ios > .item-block:first-child,
+.list-ios > .item-block:last-child,
+.list-ios > .item-wrapper:last-child .item-block {
+    border:none;
+}
+
+.list-ios > .item-block:last-child .item-inner,
+.list-ios > .item-wrapper:last-child .item-block .item-inner,
+.list-ios .item-block .item-inner {
+
+    border-bottom: 0.55px solid var(--ion-color-medium);
+
+}
+
+.radio-ios .radio-icon {
+    width:20px;
+    height:20px;
+    background-color: var(--ion-color-medium);
+}
+
+.radio button, .item-radio, .item-checkbox {
+    padding-left:0 !important;
+}
+
+div.description {
+    font-size: 1.35rem;
+}
+
+ion-card {
+    ion-card-content {
+        text-align: center;
+    }
+}

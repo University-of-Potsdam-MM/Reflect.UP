@@ -13,6 +13,8 @@ const routes: Routes = [
   { path: 'questions', loadChildren: './pages/questions/questions.module#QuestionsPageModule' },
   { path: 'select-module', loadChildren: './pages/select-module/select-module.module#SelectModulePageModule' },
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
+  { path: 'info', loadChildren: './pages/info/info.module#InfoPageModule' },
+  { path: 'impressum', loadChildren: './pages/impressum/impressum.module#ImpressumPageModule' },
 ];
 
 @NgModule({

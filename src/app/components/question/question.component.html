@@ -1,0 +1,12 @@
+<div *ngIf="!isCompleted" padding-horizontal padding-top>
+  <ion-item lines="none" class="question" (click)="goToDetailPage()">
+    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+    <div class="title" [innerHTML]="processMoodleContents(questions.name)" text-wrap></div>
+  </ion-item>
+</div>
+<div *ngIf="isCompleted" padding-horizontal padding-top>
+  <ion-item lines="none" class="completedQuestion" (click)="goToDetailPage()">
+    <div class="title" [innerHTML]="processMoodleContents(questions.name)" text-wrap></div>
+    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+  </ion-item>
+</div>
