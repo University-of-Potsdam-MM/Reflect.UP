@@ -1,16 +1,16 @@
 <div [class]="getCardClass()">
   <ion-card>
-    <ion-card-header text-wrap>
-      <h2><div [innerHTML]="processMoodleContents(event.name)" text-wrap></div></h2>
+    <ion-card-header class="ion-text-wrap">
+      <h2><div [innerHTML]="processMoodleContents(event.name)" class="ion-text-wrap"></div></h2>
       <div class="date">
-        <p *ngIf="!isFullDayEvent" text-wrap>{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
-        <p  *ngIf="isFullDayEvent" text-wrap>{{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}</p>
+        <p *ngIf="!isFullDayEvent" class="ion-text-wrap">{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
+        <p  *ngIf="isFullDayEvent" class="ion-text-wrap">{{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}</p>
       </div>
     </ion-card-header>
 
     <ion-card-content>
       <div [class]="getDescriptionClass()">
-        <div class="divDescription" [innerHTML]="processMoodleContents(event.description)" text-wrap></div>
+        <div class="divDescription ion-text-wrap" [innerHTML]="processMoodleContents(event.description)"></div>
       </div>
       <div *ngIf="isHomePage" [id]="index" align="right">
         <ion-button *ngIf="!showLongDescription" fill="clear" size="small" (click)="toggleLongDescription()">

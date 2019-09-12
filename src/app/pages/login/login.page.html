@@ -66,7 +66,7 @@
 
   <ion-list inset>
     <ion-item *ngFor="let moduleConfig of coursesToLogin">
-      <ion-label text-wrap>
+      <ion-label class="ion-text-wrap">
         <h3>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h3>
       </ion-label>
       <ion-icon *ngIf="moduleConfig.isLoading === true" name="sync"></ion-icon>

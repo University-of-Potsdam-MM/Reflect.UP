@@ -14,7 +14,7 @@
         <div *ngIf="isPageActive[i]">
 
         <ion-list-header class="header" lines="none" (click)="openURL(processMoodleContents(quest.questionText))" no-padding>
-            <h6 [innerHTML]="processMoodleContents(quest.questionText, true)" text-wrap></h6>
+            <h6 [innerHTML]="processMoodleContents(quest.questionText, true)" class="ion-text-wrap"></h6>
         </ion-list-header>
         <p *ngIf="!answerSelected[i] && !isCompleted" style="color:red;">{{ "label.feedbackPage.questionNotAnswered" | translate }}</p>
         <div *ngIf="quest.type === 'multichoice'; then multichoice else textarea"></div>
@@ -23,7 +23,7 @@
             <div>
             <ion-list radio-group>
                 <ion-item *ngFor="let answers of choicesList[i]; let j = index">
-                <ion-label [innerHTML]="processMoodleContents(answers, true)" text-wrap></ion-label>
+                <ion-label [innerHTML]="processMoodleContents(answers, true)" class="ion-text-wrap"></ion-label>
                 <ion-checkbox *ngIf="isCheckbox[i]" ngDefaultControl [(ngModel)]="checkBoxValue[i][j]" (click)="openURL(processMoodleContents(answers))" name="checkBoxValue" [disabled]="isCompleted"></ion-checkbox>
                 <ion-radio *ngIf="!isCheckbox[i]" [checked]="radioBtnValue[i][j]" (ionSelect)="handleRadios(i,j, processMoodleContents(answers))" slot="start" [disabled]="isCompleted"></ion-radio>
                 </ion-item>
@@ -43,11 +43,11 @@
     <div *ngIf="answersSubmitted">
         <ion-card>
         <ion-card-content class="reminder">
-        <ion-item text-wrap>
+        <ion-item class="ion-text-wrap">
             <h2>{{ "label.questionsPage.feedbackCompleted" | translate}}</h2>
         </ion-item>
         <ion-item *ngIf="feedbackMessage">
-            <div class="description" [innerHTML]="processMoodleContents(feedbackMessage)" text-wrap></div>
+            <div class="description ion-text-wrap" [innerHTML]="processMoodleContents(feedbackMessage)"></div>
         </ion-item>
         </ion-card-content>
         </ion-card>

@@ -15,6 +15,19 @@
           <ion-icon color="primary" name="log-out" slot="start"></ion-icon>
           <ion-label>{{ 'pageHeader.logoutPage' | translate }}</ion-label>
         </ion-item>
+        <ion-item-divider color="primary">
+          <ion-label>
+            {{ "buttonLabel.modules" | translate }}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item *ngFor="let session of courseSessions">
+          <ion-label class="ion-text-wrap">
+            {{ session.courseName }}
+            <p>{{ session.courseFac }}</p>
+          </ion-label>
+          <!-- <ion-icon name="eye"></ion-icon> -->
+          <ion-icon name="square" size="large" [style]="getHexColor(session)"></ion-icon>
+        </ion-item>
       </ion-item-group>
     </ion-content>
   </ion-menu>

@@ -8,6 +8,8 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { PageInterface } from './lib/interfaces';
 import * as moment from 'moment';
+import { IModuleConfig } from './lib/config';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent {
 
   pagesInMenu: PageInterface[];
   menuSetup = false;
+  courseSessions: IModuleConfig[];
 
   constructor(
     private platform: Platform,
@@ -28,6 +31,7 @@ export class AppComponent {
     private translate: TranslateService,
     private storage: Storage,
     private router: Router,
+    private sanitizer: DomSanitizer,
     private navCtrl: NavController,
     private menuCtrl: MenuController
   ) {
@@ -47,9 +51,14 @@ export class AppComponent {
 
       this.initializeMenu();
       this.initializeTranslate();
+      this.initializeSession();
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
     });
+  }
+
+  async initializeSession() {
+    this.courseSessions = await this.storage.get('sessions');
   }
 
   async initializeTranslate() {
@@ -98,6 +107,10 @@ export class AppComponent {
         }, 1);
       }
     }
+  }
+
+  getHexColor(moduleConfig) {
+    return this.sanitizer.bypassSecurityTrustStyle('color: ' + moduleConfig['hexColor']);
   }
 
   /**

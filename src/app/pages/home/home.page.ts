@@ -18,6 +18,6 @@ export class HomePage implements OnInit {
     const sessions = await this.storage.get('sessions');
     if (!sessions) {
       this.navCtrl.navigateRoot('/select-module');
-    }
+    } else { console.log(sessions); }
   }
 }

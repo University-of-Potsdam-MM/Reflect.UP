@@ -77,8 +77,10 @@ export class LoginPage implements OnInit {
 
         if (sessionObs) {
           sessionObs.subscribe((session: ISession) => {
-            session['courseID'] = config.courseID;
-            session['hexColor'] = config['hexColor'];
+            session.courseID = config.courseID;
+            session.hexColor = config.hexColor;
+            session.courseName = config.title;
+            session.courseFac = config.faculty;
 
             loginSessions.push(session);
             this.coursesToLogin[idx]['isLoading'] = false;
