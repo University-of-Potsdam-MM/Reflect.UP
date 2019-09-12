@@ -19,7 +19,7 @@ export class TabBarComponent implements OnInit {
   openPage(pageID) {
     switch (pageID) {
       case 0: {
-        if (this.router.url === '/home') {
+        if (this.router.url !== '/home') {
           this.navCtrl.navigateRoot('/home');
         }
         break;

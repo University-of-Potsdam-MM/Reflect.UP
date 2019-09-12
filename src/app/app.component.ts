@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { PageInterface } from './lib/interfaces';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +56,13 @@ export class AppComponent {
     this.translate.setDefaultLang('de');
 
     const userLanguage = await this.storage.get('appLanguage');
-    if (userLanguage) { this.translate.use(userLanguage); } else { this.storage.set('appLanguage', 'de'); }
+    if (userLanguage) {
+      this.translate.use(userLanguage);
+      moment.locale(userLanguage);
+    } else {
+      this.storage.set('appLanguage', 'de');
+      moment.locale('de');
+    }
   }
 
   initializeMenu() {

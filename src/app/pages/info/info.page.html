@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>info</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>{{ 'pageHeader.infoPage' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-content class="reminder">
+      {{ "label.infoPage.infoMessage_1" | translate }}
+      {{ "label.infoPage.infoMessage_2" | translate }}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InfoPage } from './info.page';
+import { TermsOfServicePage } from './terms-of-service.page';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/lib/interfaces';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 const routes: Routes = [
   {
     path: '',
-    component: InfoPage
+    component: TermsOfServicePage
   }
 ];
 
@@ -31,6 +31,6 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  declarations: [InfoPage]
+  declarations: [TermsOfServicePage]
 })
-export class InfoPageModule {}
+export class TermsOfServicePageModule {}

@@ -5,7 +5,9 @@ import { QuestionComponent } from './question/question.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../lib/interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,14 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [
       IonicModule,
       CommonModule,
-      TranslateModule
+      TranslateModule,
+      TranslateModule.forChild({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (HttpLoaderFactory),
+          deps: [HttpClient]
+        }
+      }),
     ],
     exports: [
       EventComponent,

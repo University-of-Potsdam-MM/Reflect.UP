@@ -15,6 +15,9 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'info', loadChildren: './pages/info/info.module#InfoPageModule' },
   { path: 'impressum', loadChildren: './pages/impressum/impressum.module#ImpressumPageModule' },
+  { path: 'legal-notice', loadChildren: './pages/legal-notice/legal-notice.module#LegalNoticePageModule' },
+  { path: 'privacy-policy', loadChildren: './pages/privacy-policy/privacy-policy.module#PrivacyPolicyPageModule' },
+  { path: 'terms-of-service', loadChildren: './pages/terms-of-service/terms-of-service.module#TermsOfServicePageModule' },
 ];
 
 @NgModule({
