@@ -1,0 +1,21 @@
+.groupLevel1 {
+    background-color: #f4f4f4;
+    border-radius: 0px;
+}
+
+ion-item:nth-child(odd)  {
+    --background: var(--ion-color-secondary);
+}
+
+ion-item {
+    --background: var(--ion-color-secondary);
+}
+
+
+.childitem {
+    padding-left: 55px;
+}
+
+ion-item p {
+    color: var(--ion-color-dark);
+}

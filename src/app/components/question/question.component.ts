@@ -34,10 +34,10 @@ export class QuestionComponent implements OnInit {
         backdropDismiss: false,
         component: QuestionDetailModalPage,
         componentProps: {
-          id:         this.questions.id,
-          questions:  this.questions.questions,
-          message:    this.questions.feedbackMessage,
-          answers:    this.questions.answers,
+          feedbackID:         this.questions.id,
+          tmpQuestionsList:  this.questions.questions,
+          feedbackMessage:    this.questions.feedbackMessage,
+          answerList:    this.questions.answers,
           isCompleted: this.isCompleted
         }
       });
@@ -50,9 +50,9 @@ export class QuestionComponent implements OnInit {
         backdropDismiss: false,
         component: QuestionDetailModalPage,
         componentProps: {
-          id:         this.questions.id,
-          questions:  this.questions.questions,
-          message:    this.questions.feedbackMessage,
+          feedbackID:         this.questions.id,
+          tmpQuestionsList:  this.questions.questions,
+          feedbackMessage:    this.questions.feedbackMessage,
           isCompleted: this.isCompleted
         }
       });

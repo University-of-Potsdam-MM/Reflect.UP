@@ -41,9 +41,9 @@ export class EventService {
 
     const request = this.http.get<AppointConfig>(url, {headers: headers, params: params});
 
-    if (forceReload) { this.cache.removeItem('cachedEvents'); }
+    if (forceReload) { this.cache.removeItem('cachedEvents' + courseID); }
 
-    return this.cache.loadFromObservable('cachedEvents', request);
+    return this.cache.loadFromObservable('cachedEvents' + courseID, request);
 
   }
 }

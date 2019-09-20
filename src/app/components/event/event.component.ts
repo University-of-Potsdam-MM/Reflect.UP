@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-event',

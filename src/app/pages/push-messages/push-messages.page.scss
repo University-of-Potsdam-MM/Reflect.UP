@@ -1,0 +1,20 @@
+h3 {
+    color: var(--ion-color-primary) !important;
+    font-weight: bold!important;
+}
+
+.pushdate {
+    font-size: 0.8em;
+}
+
+ion-row {
+    border-bottom:1px solid var(--ion-color-secondary);
+}
+
+ion-card {
+    ion-card-content {
+        border:none;
+        padding-top: 5px!important;
+        padding: 0;
+    }
+}

@@ -16,9 +16,13 @@ import { CacheModule } from 'ionic-cache';
 import { LoggingService } from 'ionic-logging-service';
 import { HttpLoaderFactory } from './lib/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Network } from '@ionic-native/network/ngx';
+import { Push } from '@ionic-native/push/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 
 export function initConfig(config: ConfigService) {
-  return () => config.load('assets/config.json', 'config');
+  return () => config.load('assets/config.json');
 }
 
 export class IonicGestureConfig extends HammerGestureConfig {
@@ -71,7 +75,11 @@ export function configureLogging(loggingService: LoggingService): () => void {
     SplashScreen,
     UPLoginProvider,
     ConfigService,
+    Network,
+    Push,
+    HTTP,
     InAppBrowser,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
     {

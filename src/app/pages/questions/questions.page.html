@@ -7,5 +7,49 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="initQuestions(true, $event)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
 
+  <div align="center" *ngIf="!isLoaded" padding>
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ng-container *ngFor="let module of sessions; let m = index">
+    <ion-item-divider *ngIf="isLoaded" color="primary" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+      <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
+    </ion-item-divider>
+
+    <ion-row *ngIf="isLoaded && noQuestions[m] && moduleExpanded[m]">
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="reminder">
+            {{ "label.questionsPage.hintNewQuestionsSoon" | translate }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="isLoaded && moduleExpanded[m]">
+      <app-question *ngFor="let quest of questionList[m]" [questions]="quest"></app-question>
+    </div>
+
+    <div *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]" padding-top padding-horizontal text-wrap>
+      <ion-item class="completedQuestion" lines="none" (click)="showCompletedQuestions[m] = !showCompletedQuestions[m]">
+        <ion-icon slot="start" *ngIf="!showCompletedQuestions[m]" name="arrow-dropright"></ion-icon>
+        <ion-icon slot="start" *ngIf="showCompletedQuestions[m]" name="arrow-dropdown"></ion-icon>
+        <div>{{ "buttonLabel.showCompletedQuestions" | translate }}</div>
+      </ion-item>
+    </div>
+
+    <div *ngIf="showCompletedQuestions[m] && moduleExpanded[m]">
+      <app-question *ngFor="let quest of completedQuestionList[m]" [questions]="quest"></app-question>
+    </div>
+  </ng-container>
 </ion-content>
+
+<ion-footer>
+  <app-tab-bar></app-tab-bar>
+</ion-footer>

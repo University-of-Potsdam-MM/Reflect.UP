@@ -7,5 +7,41 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
 
+  <div align="center" *ngIf="!isLoaded" padding>
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ng-container *ngFor="let module of sessions; let m = index">
+    <ion-item-divider *ngIf="isLoaded" color="primary" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+      <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
+    </ion-item-divider>
+    <ion-card *ngIf="responseError[m] && moduleExpanded[m]">
+      <ion-card-content class="reminder ion-text-wrap">
+        {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-grid *ngIf="isLoaded && !responseError[m] && pushMessages[m] && moduleExpanded[m]">
+      <ion-row *ngFor="let push of pushMessages[m]; let i = index">
+        <ion-card>
+          <ion-card-header class="ion-text-wrap">
+            <h3>{{ push.title }}</h3>
+          </ion-card-header>
+          <ion-card-content class="ion-text-wrap">
+            {{ push.message }}
+
+            <div align="right" class="pushdate">
+              {{ push.timestamp }} {{ "label.appointmentsPage.time" | translate }}
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
 </ion-content>

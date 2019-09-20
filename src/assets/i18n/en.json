@@ -9,6 +9,7 @@
         "goToQuestions": "To the questions",
         "hide": "Hide",
         "login": "Login",
+        "logout": "Logout",
         "next": "Next",
         "no": "No",
         "notify": "Notify Me",
@@ -71,11 +72,11 @@
             "username": "Username"
         },
         "logoutPage": {
-            "questionLogout": "Logout?"
+            "questionLogout": "Please choose the courses to log out from."
         },
         "menu": "Menu",
         "pushMessagesPage": {
-            "noMessagesReceived": "You haven't received any push notifications yet."
+            "noMessagesReceived": "No messages received."
         },
         "questionsPage": {
             "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",
@@ -90,7 +91,7 @@
             "noCoursesAvailable": "There are no courses available right now."
         },
         "settingsPage": {
-            "changeLanguage": "Would you like to change the language of the app? Please choose:",
+            "changeLanguage": "Would you like to change the language of the app?",
             "language": "Language"
         },
         "university": "University  of Potsdam"
@@ -113,7 +114,7 @@
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Login",
         "logoutPage": "Logout",
-        "pushMessagesPage": "Push notifications",
+        "pushMessagesPage": "Messages",
         "questionsPage": "Questions",
         "selectModulePage": "Welcome",
         "settingsPage": "Settings",

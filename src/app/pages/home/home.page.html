@@ -8,6 +8,48 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""></ion-refresher-content>
+  </ion-refresher>
+
+  <div align="center" *ngIf="!isLoaded || !isLoaded2" padding>
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div>
+    <ion-card *ngIf="isLoaded2">
+      <ion-card-content class="reminder">
+        <div *ngIf="openQuestions" text-wrap>{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
+        <div *ngIf="!openQuestions" text-wrap>{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
+        <br *ngIf="openQuestions">
+        <div align="right">
+          <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" text-wrap>
+              {{ "buttonLabel.goToQuestions" | translate }}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
+      <ion-fab mini left bottom edge>
+        <div ion-fab color="darkerSecondary">
+          <ion-icon name="ios-chatbubbles"></ion-icon>
+        </div>
+      </ion-fab>
+    </div>
+  </div>
+
+  <div *ngIf="isLoaded">
+    <app-event *ngFor="let ev of eventList; let i = index"
+    [event]="ev"
+    [hiddenEvent]="hiddenEvent[ev.id]"
+    [scheduledEvent]="scheduledEvent[ev.id]"
+    [index]="i"
+    [isPushAllowed]="isPushAllowed"
+    (visibilityChanged)="initHome()"
+    (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+  </div>
 </ion-content>
 
 <ion-footer>

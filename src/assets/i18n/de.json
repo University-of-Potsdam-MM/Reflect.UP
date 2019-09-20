@@ -9,6 +9,7 @@
         "goToQuestions": "Zu den Reflexionsfragen",
         "hide": "Ausblenden",
         "login": "Anmelden",
+        "logout": "Abmelden",
         "next": "Weiter",
         "no": "Nein",
         "notify": "Benachrichtigen",
@@ -71,11 +72,11 @@
             "username": "Benutzername"
         },
         "logoutPage": {
-            "questionLogout": "Ausloggen?"
+            "questionLogout": "Bitte wählen Sie die Kurse aus, von denen Sie sich abmelden möchten."
         },
         "menu": "Menü",
         "pushMessagesPage": {
-            "noMessagesReceived": "Du hast bisher keine Push-Nachrichten erhalten."
+            "noMessagesReceived": "Keine Nachrichten vorhanden."
         },
         "questionsPage": {
             "hintNewMoodlePlugin": "Das Moodle-Plugin muss aktualisiert werden, um beantwortete Fragen anzeigen zu können.",
@@ -90,7 +91,7 @@
             "noCoursesAvailable": "Derzeit sind keine Kurse verfügbar."
         },
         "settingsPage": {
-            "changeLanguage": "Möchtest du die Sprache der App wechseln? Bitte wählen:",
+            "changeLanguage": "Möchtest du die Sprache der App wechseln?",
             "language": "Sprache"
         },
         "university": "Universität Potsdam"
@@ -113,7 +114,7 @@
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Anmeldung",
         "logoutPage": "Logout",
-        "pushMessagesPage": "Push-Nachrichten",
+        "pushMessagesPage": "Nachrichten",
         "questionsPage": "Reflexionsfragen",
         "selectModulePage": "Willkommen",
         "settingsPage": "Einstellungen",

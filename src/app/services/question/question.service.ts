@@ -32,9 +32,9 @@ export class QuestionService {
 
     const request = this.http.get<QuestionConfig>(url, {headers: headers, params: params});
 
-    if (forceReload) { this.cache.removeItem('cachedQuestions'); }
+    if (forceReload) { this.cache.removeItem('cachedQuestions' + courseID); }
 
-    return this.cache.loadFromObservable('cachedQuestions', request);
+    return this.cache.loadFromObservable('cachedQuestions' + courseID, request);
   }
 
   public getAnsweredQuestions(config: IModuleConfig, token, forceReload?): Observable<QuestionConfig> {
@@ -54,9 +54,9 @@ export class QuestionService {
 
     const request = this.http.get<QuestionConfig>(url, {headers: headers, params: params});
 
-    if (forceReload) { this.cache.removeItem('cachedCompletedQuestions'); }
+    if (forceReload) { this.cache.removeItem('cachedCompletedQuestions' + courseID); }
 
-    return this.cache.loadFromObservable('cachedCompletedQuestions', request);
+    return this.cache.loadFromObservable('cachedCompletedQuestions' + courseID, request);
   }
 
  // resultID = ID der Feedback Kategorie

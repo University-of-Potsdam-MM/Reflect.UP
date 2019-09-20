@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>
+      {{ 'pageHeader.logoutPage' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding-top>
+    <ion-card>
+      <ion-card-content class="reminder">
+        {{ "label.logoutPage.questionLogout" | translate }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-list inset>
+    <ion-item *ngFor="let session of sessions">
+      <ion-checkbox [(ngModel)]="session.isChecked" slot="start"></ion-checkbox>
+      <ion-label class="ion-text-wrap">
+        <h3>{{ session.courseName }} ({{ session.courseFac }})</h3>
+      </ion-label>
+      <ion-icon name="square" size="large" [style]="getHexColor(session)"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <div align="right" padding-end>
+    <ion-button (click)="performLogout()" [disabled]="isModuleSelected()">
+      {{ "buttonLabel.logout" | translate }}
+    </ion-button>
+  </div>
+</ion-content>

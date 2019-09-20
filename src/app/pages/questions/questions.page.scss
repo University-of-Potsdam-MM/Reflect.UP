@@ -1,0 +1,19 @@
+ion-card {
+    ion-card-content {
+        text-align: center
+    }
+}
+
+ion-button.btn-accordeon {
+    text-transform:none;
+}
+
+.completedQuestion {
+    background-color: var(--ion-color-secondary);
+    border-radius: 0px;
+}
+
+ion-item {
+    min-height: 10px;
+    max-height: 40px;
+}

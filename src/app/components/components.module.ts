@@ -8,18 +8,22 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../lib/interfaces';
 import { HttpClient } from '@angular/common/http';
+import { QuestionDetailModalPage } from './question/question-detail.modal';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
       EventComponent,
       ContactComponent,
       QuestionComponent,
-      TabBarComponent
+      TabBarComponent,
+      QuestionDetailModalPage
     ],
     imports: [
       IonicModule,
       CommonModule,
       TranslateModule,
+      FormsModule,
       TranslateModule.forChild({
         loader: {
           provide: TranslateLoader,
@@ -33,6 +37,9 @@ import { HttpClient } from '@angular/common/http';
       ContactComponent,
       QuestionComponent,
       TabBarComponent
+    ],
+    entryComponents: [
+      QuestionDetailModalPage
     ]
   })
   export class ComponentsModule { }

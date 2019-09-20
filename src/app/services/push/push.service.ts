@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Push, PushOptions, PushObject } from '@ionic-native/push/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { IModuleConfig } from 'src/app/lib/config';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'

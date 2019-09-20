@@ -2,7 +2,7 @@
   {
     "id": 0,
     "appVersion": "6.8.4",
-    "courseID": "UPR-19-J",
+    "courseID": "UPR-1920-J",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
@@ -33,7 +33,7 @@
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
       "service": "reflectup",
-      "XAnAppKey": "2c16255806f4fe89c4fed013bbfa196a",
+      "XAnAppKey": "98c604cdb2a7b2cfa64025a657fac476",
       "authHeader": {
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
       }
@@ -42,7 +42,7 @@
     "faculty": "Jura-Fak",
     "type": "faculty",
     "institution": "Universität Potsdam",
-    "description": "Kurs für die Studieneingangsphase an der Juristischen Fakultät für das Sommersemester 2019",
+    "description": "Kurs für die Studieneingangsphase an der Juristischen Fakultät für das Wintersemester 2019/2020",
     "uniLogo": "logo_jurist.svg",
     "contactPersonsObject": [
       {
@@ -78,10 +78,10 @@
         "content": [{
           "category": "",
           "content": [{
-            "name": "Anne Voigt",
+            "name": "N.N. (siehe Website)",
             "location": "Griebnitzsee, Haus 6, Raum 0.06",
             "tel": "+49 331 977-3589",
-            "mail": "anne.voigt@uni-potsdam.de",
+            "mail": "hannes.arndt@uni-potsdam.de",
             "consultation": "Öffnungszeiten siehe Website",
             "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/llb/kontakt.html"
           }]
@@ -115,7 +115,7 @@
   {
     "id": 1,
     "appVersion": "6.8.4",
-    "courseID": "UPR-19-H",
+    "courseID": "UPR-1920-H",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
       "method": "credentials",
@@ -146,7 +146,7 @@
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
       "service": "reflectup",
-      "XAnAppKey": "916945337a676a0a4a849657646d91ab",
+      "XAnAppKey": "f35639ab0deb6fb66f03adba07267317",
       "authHeader": {
         "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
       }
@@ -155,7 +155,7 @@
     "faculty": "Hum-Fak",
     "type": "faculty",
     "institution": "Universität Potsdam",
-    "description": "Kurs für die Studieneingangsphase an der Humanwissenschaftlichen Fakultät für das Sommersemester 2019",
+    "description": "Kurs für die Studieneingangsphase an der Humanwissenschaftlichen Fakultät für das Wintersemester 2019/2020",
     "uniLogo": "logo_human.svg",
     "contactPersonsObject": [
       {

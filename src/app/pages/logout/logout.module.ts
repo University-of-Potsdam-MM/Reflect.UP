@@ -5,17 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AppointmentsPage } from './appointments.page';
+import { LogoutPage } from './logout.page';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/lib/interfaces';
 import { HttpClient } from '@angular/common/http';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { CalendarModule } from 'ion2-calendar';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppointmentsPage
+    component: LogoutPage
   }
 ];
 
@@ -24,8 +22,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModule,
-    CalendarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -35,6 +31,6 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  declarations: [AppointmentsPage]
+  declarations: [LogoutPage]
 })
-export class AppointmentsPageModule {}
+export class LogoutPageModule {}

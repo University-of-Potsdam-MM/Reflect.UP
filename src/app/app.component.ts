@@ -10,6 +10,7 @@ import { PageInterface } from './lib/interfaces';
 import * as moment from 'moment';
 import { IModuleConfig } from './lib/config';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ConfigService } from './services/config/config.service';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,8 @@ export class AppComponent {
     private router: Router,
     private sanitizer: DomSanitizer,
     private navCtrl: NavController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private configService: ConfigService
   ) {
     this.initializeApp();
   }
@@ -49,9 +51,9 @@ export class AppComponent {
         this.splashScreen.hide();
       }
 
+      this.initializeSession();
       this.initializeMenu();
       this.initializeTranslate();
-      this.initializeSession();
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
     });
@@ -74,26 +76,29 @@ export class AppComponent {
     }
   }
 
-  initializeMenu() {
+  async initializeMenu() {
     this.pagesInMenu = [
       { title: 'pageHeader.homePage_alt', pageName: '/home', icon: 'home' },
       { title: 'pageHeader.appointmentsPage_2', pageName: '/appointments', icon: 'calendar' },
       { title: 'pageHeader.questionsPage', pageName: '/questions', icon: 'create' },
       { title: 'pageHeader.contactsPage', pageName: '/contacts', icon: 'contacts' },
-      { title: 'pageHeader.feedbackPage', pageName: '/feedback', icon: 'chatboxes' },
+      { title: 'pageHeader.feedbackPage', pageName: '/feedback', icon: 'send' },
+      { title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'}
     ];
 
-    if (this.platform.is('ios') || this.platform.is('android')) {
-      this.pagesInMenu.push({ title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'});
+    this.courseSessions = await this.storage.get('sessions');
+    if (this.courseSessions) {
+      for (const session of this.courseSessions) {
+        const config = this.configService.getConfigById(session.courseID);
+        if (config.mintDetails) {
+          this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics'});
+          break;
+        }
+      }
     }
 
-    // if (config != undefined) {
-    //   if (config.mintEnabled) {
-    //     this.pagesInMenu.push({ title: "pageHeader.mintPage", pageName: MintPage, icon: "md-analytics"});
-    //   }
-    // }
-
     this.pagesInMenu.push({ title: 'pageHeader.settingsPage', pageName: '/settings', icon: 'settings'});
+    this.pagesInMenu.push({ title: 'pageHeader.logoutPage', pageName: '/logout', icon: 'log-out' });
     this.menuSetup = true;
   }
 
