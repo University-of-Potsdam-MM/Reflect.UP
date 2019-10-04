@@ -9,11 +9,11 @@ ion-button.btn-accordeon {
 }
 
 .completedQuestion {
-    background-color: var(--ion-color-secondary);
+    --background: var(--ion-color-secondary);
     border-radius: 0px;
+    font-size: small;
 }
 
-ion-item {
-    min-height: 10px;
-    max-height: 40px;
+ion-item-divider {
+    --color: black;
 }

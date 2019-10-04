@@ -9,15 +9,13 @@
 </ion-header>
 
 <ion-content>
-  <div padding-top>
-    <ion-card>
-      <ion-card-content class="reminder">
-        {{ "label.logoutPage.questionLogout" | translate }}
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-card padding-top>
+    <ion-card-content class="reminder">
+      {{ "label.logoutPage.questionLogout" | translate }}
+    </ion-card-content>
+  </ion-card>
 
-  <ion-list inset>
+  <ion-list>
     <ion-item *ngFor="let session of sessions">
       <ion-checkbox [(ngModel)]="session.isChecked" slot="start"></ion-checkbox>
       <ion-label class="ion-text-wrap">

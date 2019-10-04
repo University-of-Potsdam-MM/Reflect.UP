@@ -1,19 +1,9 @@
-.question {
-    background-color: var(--ion-color-primary);
-    color: var(--ion-color-light);
-    border-radius: 0px;
+.title {
+    font-size: small;
 }
 
 .completedQuestion {
-    background-color: var(--ion-color-secondary);
-    border-radius: 0px;
-}
-
-.item {
-    min-height: 10px;
-    max-height: 40px;
-}
-
-.title {
-    font-size: small;
+    ion-label {
+        --color: black;
+    }
 }

@@ -6,57 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-top">
   <ion-list>
     <ng-container *ngFor="let module of selectedModules; let m = index">
-      <ion-item-divider color="primary" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+      <ion-item-divider (click)="moduleExpanded[m] = !moduleExpanded[m]">
         <ion-label>{{ module.title }} ({{ module.faculty }})</ion-label>
+        <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="arrow-dropdown"></ion-icon>
+        <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="arrow-dropright"></ion-icon>
       </ion-item-divider>
       <div *ngIf="module && module.contactPersonsObject && module.contactPersonsObject.length > 0 && moduleExpanded[m]">
-        <ion-list class="ion-no-padding">
-          <div *ngFor="let module of module.contactPersonsObject; let i = index">
-            <ion-item lines="none" class="groupLevel1" (click)="toggleLevel1('idx'+ m + '.'+ i)" [ngClass]="{active: isLevel1Shown('idx'+ m + '.'+ i)}">
-              <ion-icon slot="start" name="arrow-dropright" *ngIf="!isLevel1Shown('idx'+ m + '.'+ i)"></ion-icon>
-              <ion-icon slot="start" name="arrow-dropdown" *ngIf="isLevel1Shown('idx'+ m + '.'+ i)"></ion-icon>
-              <ion-label><h3 class="ion-text-wrap">{{ module.category }}</h3></ion-label>
-            </ion-item>
-            <div *ngIf="module.content && isLevel1Shown('idx'+ m + '.'+ i)">
-              <div *ngFor="let child of module.content; let j = index">
-
-                <div *ngIf="child.content">
-                  <!-- Es gibt eventuell Unterkategorien -->
-
-                  <div *ngIf="child.category">
-                    <!-- Es gibt Unterkategorien -->
-                    <ion-item lines="none" class="groupLevel2" (click)="toggleLevel2('idx'+ m + '.'+ i+'idx'+j)" [ngClass]="{active: isLevel2Shown('idx'+ m + '.'+ i+'idx'+j)}">
-                      <ion-icon slot="start" name="arrow-dropright" *ngIf="!isLevel2Shown('idx'+ m + '.'+ i+'idx'+j)"></ion-icon>
-                      <ion-icon slot="start" name="arrow-dropdown" *ngIf="isLevel2Shown('idx'+ m + '.'+ i+'idx'+j)"></ion-icon>
-                      <ion-label><h3 class="ion-text-wrap">{{ child.category }}</h3></ion-label>
-                    </ion-item>
-                    <div *ngIf="isLevel2Shown('idx'+ m + '.'+ i+'idx'+j)">
-                      <ion-item class="childitem" lines="none" *ngFor="let item of child.content">
-                        <app-contact [item]="item"></app-contact>
-                      </ion-item>
-                    </div>
-                  </div>
-
-                  <div *ngIf="!child.category">
-                    <!-- Es sind Unterkategorien angelegt, aber ohne Namen -->
-                    <ion-item lines="none" *ngFor="let item of child.content">
-                      <app-contact [item]="item"></app-contact>
-                    </ion-item>
-                  </div>
-                </div>
-
-                <div *ngIf="!child.content">
-                  <!-- Es gibt keine Unterkategorien -->
-                  <ion-item lines="none">
-                    <app-contact [item]="child"></app-contact>
-                  </ion-item>
-                </div>
-
-              </div>
-            </div>
+        <ion-list class="ion-padding-horizontal">
+          <div *ngFor="let module of module.contactPersonsObject; let i = index" class="ion-margin-top">
+            <app-contact-persons [contactPersonsObject]="module"></app-contact-persons>
           </div>
         </ion-list>
       </div>

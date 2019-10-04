@@ -58,6 +58,11 @@ ion-card ion-card-content.reminder {
     padding: 7.5px !important;
     border: 2px solid var(--ion-color-secondary) !important;
     margin-top: 0;
+    color: black;
+}
+
+ion-card {
+    box-shadow: none !important;
 }
 
 ion-back-button {

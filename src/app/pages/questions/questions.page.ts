@@ -99,6 +99,7 @@ export class QuestionsPage implements OnInit {
       fin();
     }, error => {
       console.log(error);
+      this.noQuestions[idx] = true;
       fin();
     });
   }
@@ -116,6 +117,7 @@ export class QuestionsPage implements OnInit {
       fin();
     }, error => {
       console.log(error);
+      this.noCompletedQuestions[idx] = true;
       fin();
     });
   }

@@ -4,11 +4,6 @@
     }
 }
 
-ion-item {
-    min-height: 10px;
-    max-height: 35px;
-}
-
 ion-button {
     min-height: 10px;
     max-height: 30px;
@@ -21,13 +16,13 @@ ion-card-content.reminder {
 
 .calendarButton {
     width: 30.5%;
-    background-color: var(--ion-color-light-blue);
+    --background: var(--ion-color-light-blue);
     color: var(--ion-color-primary);
 }
 
 .activeCalendarButton {
     width: 30.5%;
-    background-color: var(--ion-color-primary);
+    --background: var(--ion-color-primary);
     color: var(--ion-color-light-blue);
 }
 

@@ -101,7 +101,7 @@ export class AppointmentsPage implements OnInit {
           const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
 
           this.appointm.getAppointments(config, itm.token, ionRefresh).subscribe(async (appointConfig: AppointConfig) => {
-            if (appointConfig.events) {
+            if (appointConfig && appointConfig.events) {
               const hiddenArray = await this.storage.get('hiddenCards');
               const scheduledArray = await this.storage.get('scheduledEvents');
               let notificationID;

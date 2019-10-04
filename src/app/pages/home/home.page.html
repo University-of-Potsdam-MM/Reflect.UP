@@ -7,8 +7,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+<ion-content padding>
+  <ion-refresher (ionRefresh)="initHome($event, true)" slot="fixed">
     <ion-refresher-content
     pullingText=""
     refreshingText=""></ion-refresher-content>
@@ -18,26 +18,24 @@
     <ion-spinner></ion-spinner>
   </div>
 
-  <div>
-    <ion-card *ngIf="isLoaded2">
-      <ion-card-content class="reminder">
-        <div *ngIf="openQuestions" text-wrap>{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
-        <div *ngIf="!openQuestions" text-wrap>{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
-        <br *ngIf="openQuestions">
-        <div align="right">
-          <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" text-wrap>
-              {{ "buttonLabel.goToQuestions" | translate }}
-          </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
-    <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
-      <ion-fab mini left bottom edge>
-        <div ion-fab color="darkerSecondary">
-          <ion-icon name="ios-chatbubbles"></ion-icon>
-        </div>
-      </ion-fab>
-    </div>
+  <ion-card *ngIf="isLoaded2">
+    <ion-card-content class="reminder">
+      <div *ngIf="openQuestions" text-wrap>{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
+      <div *ngIf="!openQuestions" text-wrap>{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
+      <br *ngIf="openQuestions">
+      <div align="right">
+        <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" text-wrap>
+            {{ "buttonLabel.goToQuestions" | translate }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
+    <ion-fab horizontal="left" vertical="bottom" edge="true">
+      <ion-fab-button color="primary" (click)="goToQuestions()">
+        <ion-icon name="ios-chatbubbles"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
 
   <div *ngIf="isLoaded">

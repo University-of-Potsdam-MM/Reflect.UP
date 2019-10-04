@@ -1,10 +1,16 @@
 <div [class]="getCardClass()">
   <ion-card>
     <ion-card-header class="ion-text-wrap">
-      <h2><div [innerHTML]="processMoodleContents(event.name)" class="ion-text-wrap"></div></h2>
+      <h6><div [innerHTML]="processMoodleContents(event.name)" class="ion-text-wrap"></div></h6>
       <div class="date">
-        <p *ngIf="!isFullDayEvent" class="ion-text-wrap">{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
-        <p  *ngIf="isFullDayEvent" class="ion-text-wrap">{{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}</p>
+        <p *ngIf="!isFullDayEvent" class="ion-text-wrap">
+          <ion-icon name="clock" color="primary" padding-end></ion-icon>
+          {{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}
+        </p>
+        <p *ngIf="isFullDayEvent" class="ion-text-wrap">
+          <ion-icon name="clock" color="primary" padding-end></ion-icon>
+          {{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}
+        </p>
       </div>
     </ion-card-header>
 

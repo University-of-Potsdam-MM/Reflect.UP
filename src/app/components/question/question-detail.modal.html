@@ -42,14 +42,14 @@
 
     <div *ngIf="answersSubmitted">
         <ion-card>
-        <ion-card-content class="reminder">
-        <ion-item class="ion-text-wrap">
-            <h2>{{ "label.questionsPage.feedbackCompleted" | translate}}</h2>
-        </ion-item>
-        <ion-item *ngIf="feedbackMessage">
-            <div class="description ion-text-wrap" [innerHTML]="processMoodleContents(feedbackMessage)"></div>
-        </ion-item>
-        </ion-card-content>
+            <ion-card-content class="reminder">
+                <ion-item class="ion-text-wrap">
+                    <h2>{{ "label.questionsPage.feedbackCompleted" | translate}}</h2>
+                </ion-item>
+                <ion-item *ngIf="feedbackMessage">
+                    <div class="description ion-text-wrap" [innerHTML]="processMoodleContents(feedbackMessage)"></div>
+                </ion-item>
+            </ion-card-content>
         </ion-card>
     </div>
 </ion-content>

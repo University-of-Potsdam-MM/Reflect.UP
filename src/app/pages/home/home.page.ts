@@ -250,7 +250,7 @@ export class HomePage implements OnInit {
   }
 
   goToQuestions() {
-    this.navCtrl.navigateRoot('questions');
+    this.navCtrl.navigateForward('/questions');
   }
 
   async checkForAppUpdate() {

@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding-top>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
     pullingText=""
@@ -18,20 +18,24 @@
   </div>
 
   <ng-container *ngFor="let module of sessions; let m = index">
-    <ion-item-divider *ngIf="isLoaded" color="primary" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+    <ion-item-divider *ngIf="isLoaded" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+      <ion-icon *ngIf="moduleExpanded[m] && !responseError[m]" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!moduleExpanded[m] || responseError[m]" slot="start" name="arrow-dropright"></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
+      <ion-badge *ngIf="pushMessages[m] && pushMessages[m].length !== 0" mode="ios" slot="end" color="primary" margin-end>{{ pushMessages[m].length }}</ion-badge>
+      <ion-badge *ngIf="!pushMessages[m] || pushMessages[m].length === 0" mode="ios" slot="end" color="light" margin-end>0</ion-badge>
     </ion-item-divider>
-    <ion-card *ngIf="responseError[m] && moduleExpanded[m]">
+    <!-- <ion-card *ngIf="responseError[m] && moduleExpanded[m]">
       <ion-card-content class="reminder ion-text-wrap">
         {{ "label.pushMessagesPage.noMessagesReceived" | translate }}
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 
-    <ion-grid *ngIf="isLoaded && !responseError[m] && pushMessages[m] && moduleExpanded[m]">
-      <ion-row *ngFor="let push of pushMessages[m]; let i = index">
+    <ng-container *ngIf="isLoaded && !responseError[m] && pushMessages[m] && moduleExpanded[m]">
+      <div class="pushContainer" *ngFor="let push of pushMessages[m]; let i = index" padding-horizontal>
         <ion-card>
           <ion-card-header class="ion-text-wrap">
-            <h3>{{ push.title }}</h3>
+            <ion-card-subtitle>{{ push.title }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content class="ion-text-wrap">
             {{ push.message }}
@@ -41,7 +45,7 @@
             </div>
           </ion-card-content>
         </ion-card>
-      </ion-row>
-    </ion-grid>
+      </div>
+    </ng-container>
   </ng-container>
 </ion-content>

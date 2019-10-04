@@ -7,7 +7,7 @@ ion-card {
         padding: 0px 10px 0px 0px;
     }
 
-    h2 {
+    h6 {
         font-weight: bold;
         color: var(--ion-color-primary);
         margin: 0;
@@ -55,59 +55,15 @@ ion-card {
 
         p {
             color: var(--ion-color-primary);
-            padding-left: 30px;
             margin: 0;
         }
 
-    }
-    .date:before {
-        content: "\f403";
-        font-family: "Ionicons";
-        position: absolute;
-        margin: auto;
-        top: 0;
-        left: 5px;
-        bottom: 0;
-        right: 0;
-        height: 20px;
-        color: var(--ion-color-primary);
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        text-rendering: auto;
-        line-height: 1;
-        font-size: 18px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 }
 
 .hiddenCard {
 
     .card, card-md {
-
-        .date:before {
-            content: "\f17a";
-            font-family: "Ionicons";
-            position: absolute;
-            margin: auto;
-            top: 0;
-            left: 5px;
-            bottom: 0;
-            right: 0;
-            height: 20px;
-            color: var(--ion-color-primary);
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-            text-transform: none;
-            text-rendering: auto;
-            line-height: 1;
-            font-size: 18px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
 
         .date {
             background-color: var(--ion-color-medium);

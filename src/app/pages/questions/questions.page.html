@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding-top>
   <ion-refresher (ionRefresh)="initQuestions(true, $event)" slot="fixed">
     <ion-refresher-content
     pullingText=""
@@ -18,8 +18,12 @@
   </div>
 
   <ng-container *ngFor="let module of sessions; let m = index">
-    <ion-item-divider *ngIf="isLoaded" color="primary" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+    <ion-item-divider *ngIf="isLoaded" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+      <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="arrow-dropright"></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
+      <ion-badge *ngIf="questionList[m] && questionList[m].length !== 0" mode="ios" slot="end" color="primary" margin-end>{{ questionList[m].length }}</ion-badge>
+      <ion-badge *ngIf="!questionList[m] || questionList[m].length === 0" mode="ios" slot="end" color="light" margin-end>0</ion-badge>
     </ion-item-divider>
 
     <ion-row *ngIf="isLoaded && noQuestions[m] && moduleExpanded[m]">
@@ -32,7 +36,7 @@
       </ion-col>
     </ion-row>
 
-    <div *ngIf="isLoaded && moduleExpanded[m]">
+    <div *ngIf="isLoaded && moduleExpanded[m] && !noQuestions[m]">
       <app-question *ngFor="let quest of questionList[m]" [questions]="quest"></app-question>
     </div>
 
@@ -40,11 +44,13 @@
       <ion-item class="completedQuestion" lines="none" (click)="showCompletedQuestions[m] = !showCompletedQuestions[m]">
         <ion-icon slot="start" *ngIf="!showCompletedQuestions[m]" name="arrow-dropright"></ion-icon>
         <ion-icon slot="start" *ngIf="showCompletedQuestions[m]" name="arrow-dropdown"></ion-icon>
-        <div>{{ "buttonLabel.showCompletedQuestions" | translate }}</div>
+        <ion-label>{{ "buttonLabel.showCompletedQuestions" | translate }}</ion-label>
+        <ion-badge *ngIf="completedQuestionList[m] && completedQuestionList[m].length !== 0" mode="ios" slot="end" color="primary" margin-end>{{ completedQuestionList[m].length }}</ion-badge>
+        <ion-badge *ngIf="!completedQuestionList[m] || completedQuestionList[m].length === 0" mode="ios" slot="end" color="light" margin-end>0</ion-badge>
       </ion-item>
     </div>
 
-    <div *ngIf="showCompletedQuestions[m] && moduleExpanded[m]">
+    <div *ngIf="showCompletedQuestions[m] && moduleExpanded[m] && !noCompletedQuestions[m]">
       <app-question *ngFor="let quest of completedQuestionList[m]" [questions]="quest"></app-question>
     </div>
   </ng-container>

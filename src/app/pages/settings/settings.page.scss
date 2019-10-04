@@ -1,4 +1,8 @@
-ion-item {
-    min-height: 10px;
-    max-height: 50px;
+ion-avatar {
+    max-width: 30px;
+    max-height: 30px;
+}
+
+ion-item-divider {
+    --color: black;
 }

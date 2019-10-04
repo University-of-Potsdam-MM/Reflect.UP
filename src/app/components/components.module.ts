@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ContactComponent } from './contact/contact.component';
 import { EventComponent } from './event/event.component';
 import { QuestionComponent } from './question/question.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
@@ -10,14 +9,15 @@ import { HttpLoaderFactory } from '../lib/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { QuestionDetailModalPage } from './question/question-detail.modal';
 import { FormsModule } from '@angular/forms';
+import { ContactPersonsComponent } from './contact-persons/contact-persons.component';
 
 @NgModule({
     declarations: [
       EventComponent,
-      ContactComponent,
       QuestionComponent,
       TabBarComponent,
-      QuestionDetailModalPage
+      QuestionDetailModalPage,
+      ContactPersonsComponent
     ],
     imports: [
       IonicModule,
@@ -34,9 +34,9 @@ import { FormsModule } from '@angular/forms';
     ],
     exports: [
       EventComponent,
-      ContactComponent,
       QuestionComponent,
-      TabBarComponent
+      TabBarComponent,
+      ContactPersonsComponent
     ],
     entryComponents: [
       QuestionDetailModalPage
