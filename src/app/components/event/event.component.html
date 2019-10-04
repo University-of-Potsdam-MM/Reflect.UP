@@ -15,7 +15,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <div [class]="getDescriptionClass()">
+      <div [ngClass]="!showLongDescription && isHomePage ? 'hideLongDescription' : 'longDescription'">
         <div class="divDescription ion-text-wrap" [innerHTML]="processMoodleContents(event.description)"></div>
       </div>
       <div *ngIf="isHomePage" [id]="index" align="right">

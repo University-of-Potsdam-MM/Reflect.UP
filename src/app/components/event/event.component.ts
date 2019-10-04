@@ -177,7 +177,7 @@ export class EventComponent implements OnInit, AfterViewInit {
       // save new hiddenCards-array to storage
       this.storage.set('hiddenCards', tmpArray).then(data => {
         if (this.isHomePage) {
-          this.visibilityChanged.emit();
+          this.visibilityChanged.emit(this.event.id);
         }
       });
     });
@@ -201,12 +201,6 @@ export class EventComponent implements OnInit, AfterViewInit {
     if (height < 63) {
       btnDiv.setAttribute('style', 'display:none;');
     }
-  }
-
-  getDescriptionClass() {
-    if (!this.showLongDescription) {
-      return 'hideLongDescription';
-    } else { return 'longDescription'; }
   }
 
   toggleLongDescription() {

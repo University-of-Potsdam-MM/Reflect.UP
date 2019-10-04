@@ -11,16 +11,3 @@ ion-card {
     margin-left: 0;
 }
 
-.hideLongDescription {
-    div {
-        line-height: 20px;
-        max-height: 63px;
-        overflow: hidden;
-    }
-}
-
-.longDescription {
-    div {
-        line-height: 20px;
-    }
-}

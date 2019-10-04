@@ -28,6 +28,7 @@ export class HomePage implements OnInit {
   eventList: EventObject[] = [];
   isLoaded;
   isLoaded2;
+  isRefreshing;
   openQuestions = false;
   hiddenCardsLastCheck: string[] = [];
   scheduledEventsLastCheck: string[] = [];
@@ -82,11 +83,14 @@ export class HomePage implements OnInit {
     }, 5000);
   }
 
-  initHome(refresher?, ionRefresh?) {
+  initHome(refresher?) {
     this.connection.checkOnline().subscribe(online => {
-      if (online || !ionRefresh) {
+      if (online) {
 
-        if (ionRefresh) { this.isLoaded = false; }
+        if (!refresher) {
+          this.isLoaded = false;
+          this.isLoaded2 = false;
+        } else { this.isRefreshing = true; }
 
         const loop = dLoop(this.sessions, (itm, idx, fin) => {
           const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
@@ -103,8 +107,8 @@ export class HomePage implements OnInit {
         });
 
         loop.then(() => {
-          this.checkUpdatedCards();
-          this.loadQuestions(refresher);
+          this.checkUpdatedCards(refresher);
+          this.loadQuestions(refresher ? true : false);
           this.app.initializeMenu();
         });
 
@@ -132,7 +136,7 @@ export class HomePage implements OnInit {
     this.http.get(moodleAccessPoint, {headers: headers, params: params}).subscribe(() => { });
   }
 
-  async checkUpdatedCards() {
+  async checkUpdatedCards(refresher?) {
     const hiddenArray = await this.storage.get('hiddenCards');
     const scheduledArray = await this.storage.get('scheduledEvents');
 
@@ -150,18 +154,25 @@ export class HomePage implements OnInit {
     }
 
     if (newHiddenEvents || newScheduledEvents) {
-      this.loadAppointments(hiddenArray, scheduledArray, true);
-    } else { this.isLoaded = true; }
+      if (refresher) {
+        this.loadAppointments(hiddenArray, scheduledArray, refresher);
+      } else {
+        this.loadAppointments(hiddenArray, scheduledArray);
+      }
+    } else {
+      if (refresher) { refresher.target.complete(); this.isRefreshing = false; }
+      this.isLoaded = true;
+    }
   }
 
-  loadAppointments(hiddenCardArray: string[], scheduledEventsArray: string[], forceReload) {
+  loadAppointments(hiddenCardArray: string[], scheduledEventsArray: string[], refresher?) {
     if (hiddenCardArray !== undefined) { this.hiddenCardsLastCheck = hiddenCardArray; }
     if (scheduledEventsArray !== undefined) { this.scheduledEventsLastCheck = scheduledEventsArray; }
 
     const tmpEventArray = [];
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
       const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
-      this.appointm.getAppointments(config, itm.token, forceReload).subscribe((appointConf: AppointConfig) => {
+      this.appointm.getAppointments(config, itm.token, refresher ? true : false).subscribe((appointConf: AppointConfig) => {
         if (appointConf.events) {
           for (const event of appointConf.events) {
             if (event.modulename !== 'feedback') {
@@ -205,11 +216,36 @@ export class HomePage implements OnInit {
       }
 
       this.isLoaded = true;
+      if (refresher) { refresher.target.complete(); this.isRefreshing = false; }
     });
   }
 
-  loadQuestions(refresher?) {
-    const forceReload = refresher ? true : false;
+  async visibilityChanged(eventID) {
+    this.isRefreshing = true;
+    const hiddenCardArray = await this.storage.get('hiddenCards');
+    this.hiddenEvent[eventID] = true;
+
+    let i = 0;
+    for (const event of this.eventList) {
+
+      if (hiddenCardArray) {
+        const foundID = hiddenCardArray.find(element => element === event.id.toString());
+        if (foundID !== undefined) {
+          this.hiddenEvent[event.id] = true;
+        } else { this.hiddenEvent[event.id] = false; }
+      }
+
+      if (!this.hiddenEvent[event.id]) {
+        if (i > 2) {
+          this.hiddenEvent[event.id] = true;
+        } else { i += 1; }
+      }
+    }
+
+    this.isRefreshing = false;
+  }
+
+  loadQuestions(forceReload) {
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
       if (!this.openQuestions) {
         const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
@@ -230,7 +266,6 @@ export class HomePage implements OnInit {
 
     loop.then(() => {
       this.isLoaded2 = true;
-      if (refresher) { refresher.target.complete(); }
     });
   }
 

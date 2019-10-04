@@ -22,38 +22,42 @@ export class AppointmentsPage implements OnInit {
 
   // boolean flags
   isLoaded;
-  noAppointments;
+  noAppointments = false;
   isPushAllowed;
   showBasicCalendar = false;
-  // showRangeCalendar = false;
+
   showAll = true;
   basicCalendarMode = false;
-  // rangeCalendarMode = false;
+
   isEventToday = false;
   isEventTomorrow = false;
   isEventThisWeek = false;
   isEventLater = false;
+
   showEventToday = true;
-  showEventTomorrow = true;
-  showEventThisWeek = true;
-  showEventLater = true;
+  showEventTomorrow = false;
+  showEventThisWeek = false;
+  showEventLater = false;
 
   // calendar variables
   date: string;
   type: 'moment';
-  // dateRange: { from: string; to: string; };
-  // optionsRange: CalendarComponentOptions = {
-  //   pickMode: 'range',
-  //   monthPickerFormat: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ']
-  // };
+
   optionsBasic: CalendarComponentOptions = {
     monthPickerFormat: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ']
   };
 
   tmpEventList: EventObject[] = []; // backup list
   eventList: EventObject[] = [];    // where all the event object are stored
+
+  eventListToday: EventObject[] = [];
+  eventListTomorrow: EventObject[] = [];
+  eventListThisWeek: EventObject[] = [];
+  eventListLater: EventObject[] = [];
+
   hiddenEvent: boolean[] = [];      // whether event with event.id is hidden (hiddenEvent[event.id] == true)
   scheduledEvent: boolean[] = [];   // whether event with event.id has scheduled notification (scheduledEvent[event.id] == true)
+
   eventToday: boolean[] = [];
   eventTomorrow: boolean[] = [];
   eventThisWeek: boolean[] = [];
@@ -76,7 +80,6 @@ export class AppointmentsPage implements OnInit {
     this.sessions = await this.storage.get('sessions');
 
     if (this.translate.currentLang === 'en') {
-      // this.optionsRange.monthPickerFormat = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
       this.optionsBasic.monthPickerFormat = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     }
 
@@ -138,8 +141,8 @@ export class AppointmentsPage implements OnInit {
         loop.then(() => {
           if (tmpEventArray.length < 1) { this.noAppointments = true; }
           if (refresher) { refresher.target.complete(); }
-          this.eventList = tmpEventArray;
-          this.tmpEventList = tmpEventArray;
+          this.eventList = tmpEventArray.sort((a: EventObject, b: EventObject) => a.timestart - b.timestart);
+          this.tmpEventList = tmpEventArray.sort((a: EventObject, b: EventObject) => a.timestart - b.timestart);
           this.isLoaded = true;
           this.checkEventDates();
           console.log(this.eventList);
@@ -152,6 +155,11 @@ export class AppointmentsPage implements OnInit {
   }
 
   checkEventDates() {
+    this.eventListToday = [];
+    this.eventListTomorrow = [];
+    this.eventListThisWeek = [];
+    this.eventListLater = [];
+
     let currentDate, tommorowDate, i, beginDate, endDate;
     for (i = 0; i < this.tmpEventList.length; i++) {
       beginDate = moment(this.tmpEventList[i].timestart * 1000);
@@ -163,19 +171,23 @@ export class AppointmentsPage implements OnInit {
         if (moment(endDate).isSameOrAfter(currentDate, 'day')) {
           // today
           this.eventToday[this.tmpEventList[i].id] = true;
+          this.eventListToday.push(this.tmpEventList[i]);
           this.isEventToday = true;
         }
       } else if ((moment(beginDate).isSameOrBefore(tommorowDate, 'day')) && (moment(endDate).isSameOrAfter(tommorowDate, 'day'))) {
         // tomorrow
         this.eventTomorrow[this.tmpEventList[i].id] = true;
+        this.eventListTomorrow.push(this.tmpEventList[i]);
         this.isEventTomorrow = true;
       } else if ((moment(beginDate).isSameOrBefore(currentDate, 'week')) && (moment(endDate).isSameOrAfter(currentDate, 'week'))) {
         // this week
         this.eventThisWeek[this.tmpEventList[i].id] = true;
+        this.eventListThisWeek.push(this.tmpEventList[i]);
         this.isEventThisWeek = true;
       } else {
         // later
         this.eventLater[this.tmpEventList[i].id] = true;
+        this.eventListLater.push(this.tmpEventList[i]);
         this.isEventLater = true;
       }
     }
@@ -206,35 +218,12 @@ export class AppointmentsPage implements OnInit {
     if (this.eventList.length < 1) { this.noAppointments = true; }
   }
 
-  // pickRange($event) {
-  //   console.log($event);
-  //   this.noAppointments = false;
-  //   let i;
-  //   this.eventList = [];
-  //   for (i = 0; i < this.tmpEventList.length; i++) {
-  //     const beginDate = moment(this.tmpEventList[i].timestart * 1000);
-  //     const endDate = moment((this.tmpEventList[i].timestart + this.tmpEventList[i].timeduration) * 1000);
-  //     if ((moment(beginDate).isSame($event.from, 'day'))
-  //     || (moment(beginDate).isBefore($event.from)
-  //     && moment(endDate).isSameOrAfter($event.from))
-  //     || (moment(beginDate).isAfter($event.from)
-  //     && (moment(beginDate).isSameOrBefore($event.to)
-  //     || moment(beginDate).isSame($event.to, 'day')))) {
-  //       this.eventList.push(this.tmpEventList[i]);
-  //     }
-  //   }
-  //   if (this.eventList.length < 1) { this.noAppointments = true; }
-  // }
-
   resetCalendar() {
     this.showAll = true;
     this.noAppointments = false;
     this.basicCalendarMode = false;
     this.showBasicCalendar = false;
-    // this.showRangeCalendar = false;
-    // this.rangeCalendarMode = false;
     this.date = '';
-    // this.dateRange = { from: '', to: '' };
     this.eventList = this.tmpEventList;
     if (this.eventList.length < 1) { this.noAppointments = true; }
   }

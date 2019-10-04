@@ -3,10 +3,6 @@ ion-card-subtitle {
     font-weight: bold!important;
 }
 
-ion-card-header {
-    padding: 0;
-}
-
 .pushdate {
     font-size: 0.8em;
 }
@@ -15,11 +11,15 @@ ion-item-divider {
     --color: black;
 }
 
-.pushContainer {
-    border-bottom:1px solid var(--ion-color-secondary);
-}
+ion-card.pushMessage {
+    --background: var(--ion-color-secondary);
+    border-radius: 0;
+    --color: black;
 
-ion-card {
+    ion-card-header {
+        padding: 0;
+    }
+
     ion-card-content {
         border:none;
         padding-top: 5px!important;

@@ -9,6 +9,10 @@ ion-button {
     max-height: 30px;
 }
 
+ion-item-divider {
+    --color: black;
+}
+
 ion-card-content.reminder {
     border: none;
     text-align: center;
