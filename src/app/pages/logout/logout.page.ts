@@ -3,7 +3,7 @@ import { ISession } from 'src/app/services/login-provider/interfaces';
 import { Storage } from '@ionic/storage';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CacheService } from 'ionic-cache';
-import { Platform, NavController } from '@ionic/angular';
+import { Platform, NavController, Events } from '@ionic/angular';
 import { PushService } from 'src/app/services/push/push.service';
 import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
@@ -24,7 +24,8 @@ export class LogoutPage implements OnInit {
     private platform: Platform,
     private push: PushService,
     private navCtrl: NavController,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private events: Events
   ) { }
 
   async ngOnInit() {
@@ -57,10 +58,22 @@ export class LogoutPage implements OnInit {
 
       this.cache.clearAll();
       if (newSessionObject.length > 0) {
-        this.storage.set('sessions', newSessionObject);
+        newSessionObject.sort((a: ISession, b: ISession) => {
+          const aName = a.courseName + ' ' + a.courseFac;
+          const bName = b.courseName + ' ' + b.courseFac;
+
+          if (aName.toLowerCase() < bName.toLowerCase()) { return -1; }
+          if (aName.toLowerCase() > bName.toLowerCase()) { return 1; }
+          return 0;
+        });
+        this.storage.set('sessions', newSessionObject).finally(() => {
+          this.events.publish('userLogin');
+        });
         this.navCtrl.navigateRoot('/home');
       } else {
-        this.storage.set('sessions', undefined);
+        this.storage.set('sessions', undefined).finally(() => {
+          this.events.publish('userLogin');
+        });
         this.navCtrl.navigateRoot('/select-module');
       }
 

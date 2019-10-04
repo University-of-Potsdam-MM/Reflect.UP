@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICredentials, ISession, ELoginErrors } from 'src/app/services/login-provider/interfaces';
 import { Storage } from '@ionic/storage';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, Events } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IModuleConfig } from 'src/app/lib/config';
 import { Observable } from 'rxjs';
@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
     private alert: AlertService,
     private translate: TranslateService,
     private platform: Platform,
-    private UPLogin: UPLoginProvider
+    private UPLogin: UPLoginProvider,
+    private events: Events,
   ) {
     this.loginCredentials = {username: '', password: ''};
   }
@@ -120,7 +121,17 @@ export class LoginPage implements OnInit {
     });
 
     loop.then(() => {
-      this.storage.set('sessions', loginSessions);
+      loginSessions.sort((a: ISession, b: ISession) => {
+        const aName = a.courseName + ' ' + a.courseFac;
+        const bName = b.courseName + ' ' + b.courseFac;
+
+        if (aName.toLowerCase() < bName.toLowerCase()) { return -1; }
+        if (aName.toLowerCase() > bName.toLowerCase()) { return 1; }
+        return 0;
+      });
+      this.storage.set('sessions', loginSessions).finally(() => {
+        this.events.publish('userLogin');
+      });
       this.storage.remove('coursesToLogin');
       this.navCtrl.navigateRoot('/home');
     });
