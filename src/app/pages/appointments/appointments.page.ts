@@ -145,7 +145,6 @@ export class AppointmentsPage implements OnInit {
           this.tmpEventList = tmpEventArray.sort((a: EventObject, b: EventObject) => a.timestart - b.timestart);
           this.isLoaded = true;
           this.checkEventDates();
-          console.log(this.eventList);
         });
       } else {
         // there is no network connection

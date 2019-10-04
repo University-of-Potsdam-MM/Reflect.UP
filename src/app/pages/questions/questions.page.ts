@@ -93,7 +93,7 @@ export class QuestionsPage implements OnInit {
         if (this.questionList[idx].length < 1) { this.noQuestions[idx] = true; }
       } else {
         this.noQuestions[idx] = true;
-        console.log('error fetching feedbacks from server.');
+        console.log('no feedbacks from server.');
       }
 
       fin();
@@ -111,7 +111,7 @@ export class QuestionsPage implements OnInit {
         if (this.completedQuestionList[idx].length < 1) { this.noCompletedQuestions[idx] = true; }
       } else {
         this.noCompletedQuestions[idx] = true;
-        console.log('error fetching completed feedbacks from server.');
+        console.log('no completed feedbacks from server.');
       }
 
       fin();

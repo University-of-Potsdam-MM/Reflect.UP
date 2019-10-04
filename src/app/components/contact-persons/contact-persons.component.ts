@@ -13,9 +13,7 @@ export class ContactPersonsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.contactPersonsObject);
-  }
+  ngOnInit() { }
 
   shortenURL(url: string): string {
     return url.substring(0, 30) + '...';

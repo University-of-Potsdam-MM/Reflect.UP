@@ -86,16 +86,16 @@ export class AppComponent {
       { title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'}
     ];
 
-    this.courseSessions = await this.storage.get('sessions');
-    if (this.courseSessions) {
-      for (const session of this.courseSessions) {
-        const config = this.configService.getConfigById(session.courseID);
-        if (config.mintDetails) {
-          this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics'});
-          break;
-        }
-      }
-    }
+    // this.courseSessions = await this.storage.get('sessions');
+    // if (this.courseSessions) {
+    //   for (const session of this.courseSessions) {
+    //     const config = this.configService.getConfigById(session.courseID);
+    //     if (config.mintDetails) {
+    //       this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics'});
+    //       break;
+    //     }
+    //   }
+    // }
 
     this.pagesInMenu.push({ title: 'pageHeader.settingsPage', pageName: '/settings', icon: 'settings'});
     this.pagesInMenu.push({ title: 'pageHeader.logoutPage', pageName: '/logout', icon: 'log-out' });

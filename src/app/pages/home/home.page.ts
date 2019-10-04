@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
     this.sessions = await this.storage.get('sessions');
     if (!this.sessions) {
       this.navCtrl.navigateRoot('/select-module');
-    } else { console.log(this.sessions); }
+    }
 
     this.initHome();
     if (this.platform.is('cordova')) {
@@ -250,7 +250,7 @@ export class HomePage implements OnInit {
       if (!this.openQuestions) {
         const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
         this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
-          if (questionJSON.feedbacks) {
+          if (questionJSON && questionJSON.feedbacks) {
             if (questionJSON.feedbacks.length > 0) {
               this.openQuestions = true;
             } else { this.openQuestions = false; }
