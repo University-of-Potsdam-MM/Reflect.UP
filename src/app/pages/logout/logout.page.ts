@@ -3,10 +3,11 @@ import { ISession } from 'src/app/services/login-provider/interfaces';
 import { Storage } from '@ionic/storage';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CacheService } from 'ionic-cache';
-import { Platform, NavController, Events } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { PushService } from 'src/app/services/push/push.service';
 import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-logout',
@@ -25,7 +26,7 @@ export class LogoutPage implements OnInit {
     private push: PushService,
     private navCtrl: NavController,
     private configService: ConfigService,
-    private events: Events
+    private app: AppComponent
   ) { }
 
   async ngOnInit() {
@@ -67,12 +68,12 @@ export class LogoutPage implements OnInit {
           return 0;
         });
         this.storage.set('sessions', newSessionObject).finally(() => {
-          this.events.publish('userLogin');
+          this.app.initializeSession();
         });
         this.navCtrl.navigateRoot('/home');
       } else {
         this.storage.set('sessions', undefined).finally(() => {
-          this.events.publish('userLogin');
+          this.app.initializeSession();
         });
         this.navCtrl.navigateRoot('/select-module');
       }

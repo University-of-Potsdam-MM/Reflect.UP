@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
-import { Platform, IonRouterOutlet, NavController, MenuController, Events } from '@ionic/angular';
+import { Platform, IonRouterOutlet, NavController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CacheService } from 'ionic-cache';
@@ -34,7 +34,6 @@ export class AppComponent {
     private storage: Storage,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private events: Events,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
     private configService: ConfigService
@@ -52,10 +51,6 @@ export class AppComponent {
 
         this.splashScreen.hide();
       }
-
-      this.events.subscribe('userLogin', () => {
-        this.initializeSession();
-      });
 
       this.initializeSession();
       this.initializeMenu();

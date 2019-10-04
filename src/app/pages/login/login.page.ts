@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICredentials, ISession, ELoginErrors } from 'src/app/services/login-provider/interfaces';
 import { Storage } from '@ionic/storage';
-import { NavController, Platform, Events } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IModuleConfig } from 'src/app/lib/config';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/services/alert/alert.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UPLoginProvider } from 'src/app/services/login-provider/login';
 import * as dLoop from 'delayed-loop';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginPage implements OnInit {
     private translate: TranslateService,
     private platform: Platform,
     private UPLogin: UPLoginProvider,
-    private events: Events,
+    private app: AppComponent
   ) {
     this.loginCredentials = {username: '', password: ''};
   }
@@ -130,7 +131,7 @@ export class LoginPage implements OnInit {
         return 0;
       });
       this.storage.set('sessions', loginSessions).finally(() => {
-        this.events.publish('userLogin');
+        this.app.initializeSession();
       });
       this.storage.remove('coursesToLogin');
       this.navCtrl.navigateRoot('/home');
