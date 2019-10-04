@@ -16,7 +16,7 @@
   <ion-select *ngIf="!submitted" (ionChange)="setSelectedModule($event)"
     [placeholder]="'buttonLabel.selectCourse' | translate" [cancelText]="'buttonLabel.cancel' | translate">
     <ion-select-option *ngFor="let module of sessions" [value]="module">
-      {{ module.courseName }} ({{ module.courseFac }})
+      {{ module.courseFac }} ({{ module.courseName }})
     </ion-select-option>
   </ion-select>
 

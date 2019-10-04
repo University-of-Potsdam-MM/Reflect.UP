@@ -21,7 +21,7 @@
       [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
     </ion-searchbar>
     <!-- <ion-button fill="clear">
-      <ion-icon name="funnel" padding-end></ion-icon>
+      <ion-icon name="funnel" class="ion-padding-end"></ion-icon>
       <ion-label>{{ "buttonLabel.filter" | translate }}</ion-label>
     </ion-button> -->
     </ion-row>
@@ -29,7 +29,7 @@
 </ion-header>
 
 <ion-content>
-  <div padding-start padding-top
+  <div class="ion-padding-start ion-padding-top"
     *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)">
     <em>{{ "label.selectModulePage.selectModuleMessage" | translate }}</em>
   </div>

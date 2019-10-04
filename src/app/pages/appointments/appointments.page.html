@@ -13,7 +13,7 @@
     refreshingText=""></ion-refresher-content>
   </ion-refresher>
 
-  <div align="center" padding>
+  <div align="center" class="ion-padding">
     <ion-col>
       <ion-button size="small" [ngClass]="showAll ? 'activeCalendarButton' : 'calendarButton'" (click)="resetCalendar()">{{ "buttonLabel.showAll" | translate}}</ion-button>
       <ion-button size="small" [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; showBasicCalendar = true; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</ion-button>
@@ -27,11 +27,11 @@
     [format]="'YYYY-MM-DD'">
   </ion-calendar>
 
-  <div align="center" *ngIf="!isLoaded" padding>
+  <div align="center" *ngIf="!isLoaded" class="ion-padding">
     <ion-spinner></ion-spinner>
   </div>
 
-  <div *ngIf="isLoaded && !showAll" padding-horizontal>
+  <div *ngIf="isLoaded && !showAll" class="ion-padding-horizontal">
     <app-event *ngFor="let ev of eventList; let i = index"
       [event]="ev"
       [hiddenEvent]="hiddenEvent[ev.id]"
@@ -47,7 +47,7 @@
       <ion-icon *ngIf="showEventToday && isEventToday" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!showEventToday || !isEventToday" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
-    <div *ngFor="let ev of eventList; let i = index" padding-horizontal>
+    <div *ngFor="let ev of eventList; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventToday[ev.id] && showEventToday"
       [event]="ev"
       [hiddenEvent]="hiddenEvent[ev.id]"
@@ -61,7 +61,7 @@
       <ion-icon *ngIf="showEventTomorrow && isEventTomorrow" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!showEventTomorrow || !isEventTomorrow" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
-    <div *ngFor="let ev of eventList; let i = index" padding-horizontal>
+    <div *ngFor="let ev of eventList; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventTomorrow[ev.id] && showEventTomorrow"
       [event]="ev"
       [hiddenEvent]="hiddenEvent[ev.id]"
@@ -75,7 +75,7 @@
       <ion-icon *ngIf="showEventThisWeek && isEventThisWeek" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!showEventThisWeek || !isEventThisWeek" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
-    <div *ngFor="let ev of eventList; let i = index" padding-horizontal>
+    <div *ngFor="let ev of eventList; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventThisWeek[ev.id] && showEventThisWeek"
       [event]="ev"
       [hiddenEvent]="hiddenEvent[ev.id]"
@@ -89,7 +89,7 @@
       <ion-icon *ngIf="showEventLater && isEventLater" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!showEventLater || !isEventLater" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
-    <div *ngFor="let ev of eventList; let i = index" padding-horizontal>
+    <div *ngFor="let ev of eventList; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventLater[ev.id] && showEventLater"
       [event]="ev"
       [hiddenEvent]="hiddenEvent[ev.id]"

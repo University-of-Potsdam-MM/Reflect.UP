@@ -1,4 +1,4 @@
-<div *ngIf="!isCompleted" padding-horizontal padding-top>
+<div *ngIf="!isCompleted" class="ion-padding-horizontal ion-padding-top">
   <ion-item lines="none" color="primary" class="question" (click)="goToDetailPage()">
     <ion-label>
       <div class="title ion-text-wrap" [innerHTML]="processMoodleContents(questions.name)"></div>
@@ -6,7 +6,7 @@
     <ion-icon name="arrow-dropright" slot="end"></ion-icon>
   </ion-item>
 </div>
-<div *ngIf="isCompleted" padding-horizontal padding-top>
+<div *ngIf="isCompleted" class="ion-padding-horizontal ion-padding-top">
   <ion-item lines="none" color="secondary" class="completedQuestion" (click)="goToDetailPage()">
     <ion-label>
       <div class="title ion-text-wrap" [innerHTML]="processMoodleContents(questions.name)"></div>

@@ -7,24 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
   <ion-refresher (ionRefresh)="initHome($event, true)" slot="fixed">
     <ion-refresher-content
     pullingText=""
     refreshingText=""></ion-refresher-content>
   </ion-refresher>
 
-  <div align="center" *ngIf="!isLoaded || !isLoaded2" padding>
+  <div align="center" *ngIf="!isLoaded || !isLoaded2" class="ion-padding">
     <ion-spinner></ion-spinner>
   </div>
 
   <ion-card *ngIf="isLoaded2">
     <ion-card-content class="reminder">
-      <div *ngIf="openQuestions" text-wrap>{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
-      <div *ngIf="!openQuestions" text-wrap>{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
+      <div *ngIf="openQuestions" class="ion-text-wrap">{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
+      <div *ngIf="!openQuestions" class="ion-text-wrap">{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
       <br *ngIf="openQuestions">
       <div align="right">
-        <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" text-wrap>
+        <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" class="ion-text-wrap">
             {{ "buttonLabel.goToQuestions" | translate }}
         </ion-button>
       </div>

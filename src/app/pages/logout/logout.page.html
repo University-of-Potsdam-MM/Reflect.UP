@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card padding-top>
+  <ion-card class="ion-padding-top">
     <ion-card-content class="reminder">
       {{ "label.logoutPage.questionLogout" | translate }}
     </ion-card-content>
@@ -24,7 +24,7 @@
       <ion-icon name="square" size="large" [style]="getHexColor(session)"></ion-icon>
     </ion-item>
   </ion-list>
-  <div align="right" padding-end>
+  <div align="right" class="ion-padding-end">
     <ion-button (click)="performLogout()" [disabled]="isModuleSelected()">
       {{ "buttonLabel.logout" | translate }}
     </ion-button>

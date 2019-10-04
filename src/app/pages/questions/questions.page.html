@@ -6,14 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding-top>
+<ion-content class="ion-padding-top">
   <ion-refresher (ionRefresh)="initQuestions(true, $event)" slot="fixed">
     <ion-refresher-content
     pullingText=""
     refreshingText=""></ion-refresher-content>
   </ion-refresher>
 
-  <div align="center" *ngIf="!isLoaded" padding>
+  <div align="center" *ngIf="!isLoaded" class="ion-padding">
     <ion-spinner></ion-spinner>
   </div>
 
@@ -22,8 +22,8 @@
       <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="arrow-dropright"></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
-      <ion-badge *ngIf="questionList[m] && questionList[m].length !== 0" mode="ios" slot="end" color="primary" margin-end>{{ questionList[m].length }}</ion-badge>
-      <ion-badge *ngIf="!questionList[m] || questionList[m].length === 0" mode="ios" slot="end" color="light" margin-end>0</ion-badge>
+      <ion-badge *ngIf="questionList[m] && questionList[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ questionList[m].length }}</ion-badge>
+      <ion-badge *ngIf="!questionList[m] || questionList[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
     </ion-item-divider>
 
     <ion-row *ngIf="isLoaded && noQuestions[m] && moduleExpanded[m]">
@@ -40,13 +40,13 @@
       <app-question *ngFor="let quest of questionList[m]" [questions]="quest"></app-question>
     </div>
 
-    <div *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]" padding-top padding-horizontal text-wrap>
+    <div *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]" class="ion-padding-top ion-padding-horizontal ion-text-wrap">
       <ion-item class="completedQuestion" lines="none" (click)="showCompletedQuestions[m] = !showCompletedQuestions[m]">
         <ion-icon slot="start" *ngIf="!showCompletedQuestions[m]" name="arrow-dropright"></ion-icon>
         <ion-icon slot="start" *ngIf="showCompletedQuestions[m]" name="arrow-dropdown"></ion-icon>
         <ion-label>{{ "buttonLabel.showCompletedQuestions" | translate }}</ion-label>
-        <ion-badge *ngIf="completedQuestionList[m] && completedQuestionList[m].length !== 0" mode="ios" slot="end" color="primary" margin-end>{{ completedQuestionList[m].length }}</ion-badge>
-        <ion-badge *ngIf="!completedQuestionList[m] || completedQuestionList[m].length === 0" mode="ios" slot="end" color="light" margin-end>0</ion-badge>
+        <ion-badge *ngIf="completedQuestionList[m] && completedQuestionList[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ completedQuestionList[m].length }}</ion-badge>
+        <ion-badge *ngIf="!completedQuestionList[m] || completedQuestionList[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
       </ion-item>
     </div>
 

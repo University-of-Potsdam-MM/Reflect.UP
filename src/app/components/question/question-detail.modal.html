@@ -8,12 +8,12 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <div *ngFor="let quest of questionList; let i = index">
 
         <div *ngIf="isPageActive[i]">
 
-        <ion-list-header class="header" lines="none" (click)="openURL(processMoodleContents(quest.questionText))" no-padding>
+        <ion-list-header class="header ion-no-padding" lines="none" (click)="openURL(processMoodleContents(quest.questionText))">
             <h6 [innerHTML]="processMoodleContents(quest.questionText, true)" class="ion-text-wrap"></h6>
         </ion-list-header>
         <p *ngIf="!answerSelected[i] && !isCompleted" style="color:red;">{{ "label.feedbackPage.questionNotAnswered" | translate }}</p>
@@ -58,18 +58,18 @@
     <ion-toolbar>
         <div *ngIf="!answersSubmitted" align="center">
             <ion-button id="navButtons" (click)="goBack()" [disabled]="isFirstQuestion" color="secondary">
-                <ion-icon name="arrow-back" padding-right></ion-icon>
+                <ion-icon name="arrow-back" class="ion-padding-end"></ion-icon>
                 {{ "buttonLabel.back" | translate }}
             </ion-button>
             <ion-button id="navButtons" (click)="goForward()" color="secondary">
                 <div>{{ "buttonLabel.next" | translate }}</div>
-                <ion-icon name="arrow-forward" padding-left></ion-icon>
+                <ion-icon name="arrow-forward" class="ion-padding-start"></ion-icon>
             </ion-button>
         </div>
 
         <div *ngIf="answersSubmitted" align="center">
         <ion-button id="navButtons" (click)="goBackLast()" color="secondary">
-            <ion-icon name="arrow-back" padding-right></ion-icon>
+            <ion-icon name="arrow-back" class="ion-padding-end"></ion-icon>
             {{ "buttonLabel.back" | translate }}
         </ion-button>
         <ion-button id="navButtons" (click)="backToRoot()" [disabled]="isCompleted" color="primary">

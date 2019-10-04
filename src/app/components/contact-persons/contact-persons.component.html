@@ -40,7 +40,7 @@
 
 <!-- person contact details -->
 <ng-template #personDetails let-item="item">
-  <ion-card-content class="ion-text-wrap">
+  <ion-card-content class="ion-text-wrap ion-margin-start">
     <b *ngIf="item.name">{{ item.name }}</b><br *ngIf="item.name">
     <p *ngIf="item.location && item.location.length > 3" text>{{ item.location }}</p>
     <p *ngIf="item.tel">{{"label.contactsPage.phone" | translate }} <a *ngIf="item.tel" href="tel:{{ item.tel }}">{{ item.tel }}</a></p>
