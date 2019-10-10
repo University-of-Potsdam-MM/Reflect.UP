@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'privacy-policy', loadChildren: './pages/privacy-policy/privacy-policy.module#PrivacyPolicyPageModule' },
   { path: 'terms-of-service', loadChildren: './pages/terms-of-service/terms-of-service.module#TermsOfServicePageModule' },
   { path: 'logout', loadChildren: './pages/logout/logout.module#LogoutPageModule' },
+  { path: 'popover', loadChildren: './pages/popover/popover.module#PopoverPageModule' },
 ];
 
 @NgModule({

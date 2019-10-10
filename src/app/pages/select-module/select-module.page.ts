@@ -6,7 +6,8 @@ import { AlertButton } from '@ionic/core';
 import { HttpClient } from '@angular/common/http';
 import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
+import { PopoverPage } from '../popover/popover.page';
 
 @Component({
   selector: 'app-select-module',
@@ -27,7 +28,8 @@ export class SelectModulePage implements OnInit {
     private translate: TranslateService,
     private alert: AlertService,
     private http: HttpClient,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private popoverCtrl: PopoverController
   ) { }
 
   ngOnInit() {
@@ -141,6 +143,24 @@ export class SelectModulePage implements OnInit {
     }
 
     return !modulesChecked;
+  }
+
+  async presentPopover(myEvent) {
+    const popover = await this.popoverCtrl.create({
+      component: PopoverPage,
+      componentProps: { moduleConfigList: this.moduleConfigList, activeSegment: this.activeSegment },
+      event: myEvent,
+      keyboardClose: true
+    });
+    popover.present();
+
+    popover.onWillDismiss().then(response => {
+      if (response && response.data) {
+        this.searchTerm = response.data.searchTerm;
+        this.activeSegment = response.data.activeSegment;
+        this.setFilteredItems();
+      }
+    });
   }
 
 }

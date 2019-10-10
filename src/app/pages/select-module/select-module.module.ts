@@ -9,6 +9,7 @@ import { SelectModulePage } from './select-module.page';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/lib/interfaces';
 import { HttpClient } from '@angular/common/http';
+import { PopoverPage } from '../popover/popover.page';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  declarations: [SelectModulePage]
+  declarations: [
+    SelectModulePage,
+    PopoverPage
+  ],
+  entryComponents: [PopoverPage]
 })
 export class SelectModulePageModule {}

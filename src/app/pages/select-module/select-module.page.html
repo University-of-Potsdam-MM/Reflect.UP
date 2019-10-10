@@ -21,10 +21,10 @@
       [debounce]="500"
       [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
     </ion-searchbar>
-    <!-- <ion-button fill="clear">
-      <ion-icon name="funnel" class="ion-padding-end"></ion-icon>
-      <ion-label>{{ "buttonLabel.filter" | translate }}</ion-label>
-    </ion-button> -->
+    <ion-button fill="clear" (click)="presentPopover($event)"
+    *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)">
+      <ion-icon slot="icon-only" name="funnel"></ion-icon>
+    </ion-button>
     </ion-row>
   </ion-toolbar>
 </ion-header>
@@ -36,10 +36,12 @@
   </div>
 
   <span *ngIf="activeSegment === 'faculty'">
-    <div align="center" *ngIf="facultyCourses.length == 0">
-      <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
-    </div>
-    <ion-card *ngFor="let moduleConfig of facultyCourses; let i = index">
+    <ion-card *ngIf="facultyCourses.length == 0" class="ion-padding-top">
+      <ion-card-content class="reminder">
+        <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="loginCard" *ngFor="let moduleConfig of facultyCourses; let i = index">
       <ion-item>
         <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
         <ion-avatar slot="start">
@@ -57,10 +59,12 @@
   </span>
 
   <span *ngIf="activeSegment === 'course'">
-    <div align="center" *ngIf="moduleCourses.length == 0">
-      <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
-    </div>
-    <ion-card *ngFor="let moduleConfig of moduleCourses; let i = index">
+    <ion-card *ngIf="moduleCourses.length == 0" class="ion-padding-top">
+      <ion-card-content class="reminder">
+        <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="loginCard" *ngFor="let moduleConfig of moduleCourses; let i = index">
       <ion-item>
         <ion-checkbox [(ngModel)]="moduleConfig.isChecked" slot="end"></ion-checkbox>
         <ion-avatar slot="start">
