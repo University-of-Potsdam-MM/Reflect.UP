@@ -19,17 +19,24 @@ export class ConfigService {
    *
    */
   load(uri: string) {
+    const config_url = 'https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json';
     return new Promise<void>((resolve, reject) => {
-      this.http.get(uri).toPromise().then(
+      this.http.get(config_url).toPromise().then(
         (response: IModuleConfig[]) => {
           ConfigService.configs = response;
+          console.log(ConfigService.configs);
           resolve();
         }
-      ).catch(
-        (response: any) => {
+      ).catch(() => {
+        this.http.get(uri).subscribe((response: IModuleConfig[]) => {
+          ConfigService.configs = response;
+          console.log(ConfigService.configs);
+          resolve();
+        }, error => {
           reject(`Could not load file '${uri}'`);
-          console.log('load' + response);
+          console.log('load' + error);
         });
+      });
     });
   }
 
