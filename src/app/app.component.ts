@@ -8,9 +8,9 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { PageInterface } from './lib/interfaces';
 import * as moment from 'moment';
-import { IModuleConfig } from './lib/config';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfigService } from './services/config/config.service';
+import { ISession } from './services/login-provider/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,7 @@ export class AppComponent {
 
   pagesInMenu: PageInterface[];
   menuSetup = false;
-  courseSessions: IModuleConfig[];
+  courseSessions: ISession[];
   refreshingSessions;
 
   constructor(
@@ -121,6 +121,17 @@ export class AppComponent {
   loginToNewCourses() {
     this.menuCtrl.close();
     this.navCtrl.navigateForward('/select-module');
+  }
+
+  changeSessionVisibility(session) {
+    for (let i = 0; i < this.courseSessions.length; i++) {
+      if (this.courseSessions[i].courseID === session.courseID) {
+        this.courseSessions[i].isHidden = !this.courseSessions[i].isHidden;
+        break;
+      }
+    }
+
+    this.storage.set('sessions', this.courseSessions);
   }
 
   getHexColor(moduleConfig) {

@@ -171,37 +171,39 @@ export class HomePage implements OnInit {
 
     const tmpEventArray = [];
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
-      const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
-      this.appointm.getAppointments(config, itm.token, refresher ? true : false).subscribe((appointConf: AppointConfig) => {
-        if (appointConf.events) {
-          for (const event of appointConf.events) {
-            if (event.modulename !== 'feedback') {
-              event.hexColor = itm.hexColor;
-              tmpEventArray.push(event);
+      if (!itm.isHidden) {
+        const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
+        this.appointm.getAppointments(config, itm.token, refresher ? true : false).subscribe((appointConf: AppointConfig) => {
+          if (appointConf.events) {
+            for (const event of appointConf.events) {
+              if (event.modulename !== 'feedback') {
+                event.hexColor = itm.hexColor;
+                tmpEventArray.push(event);
 
-              if (hiddenCardArray) {
-                const foundID = hiddenCardArray.find(element => element === event.id.toString());
-                if (foundID !== undefined) {
-                  this.hiddenEvent[event.id] = true;
-                } else { this.hiddenEvent[event.id] = false; }
-              }
+                if (hiddenCardArray) {
+                  const foundID = hiddenCardArray.find(element => element === event.id.toString());
+                  if (foundID !== undefined) {
+                    this.hiddenEvent[event.id] = true;
+                  } else { this.hiddenEvent[event.id] = false; }
+                }
 
-              if (scheduledEventsArray) {
-                const notificationID = event.id * 10;
-                const foundID_2 = scheduledEventsArray.find(element => element === notificationID.toString());
-                if (foundID_2 !== undefined) {
-                  this.scheduledEvent[event.id] = true;
+                if (scheduledEventsArray) {
+                  const notificationID = event.id * 10;
+                  const foundID_2 = scheduledEventsArray.find(element => element === notificationID.toString());
+                  if (foundID_2 !== undefined) {
+                    this.scheduledEvent[event.id] = true;
+                  } else { this.scheduledEvent[event.id] = false; }
                 } else { this.scheduledEvent[event.id] = false; }
-              } else { this.scheduledEvent[event.id] = false; }
+              }
             }
           }
-        }
 
-        fin();
-      }, error => {
-        console.log(error);
-        fin();
-      });
+          fin();
+        }, error => {
+          console.log(error);
+          fin();
+        });
+      } else { fin(); }
     });
 
     loop.then(() => {
@@ -248,20 +250,22 @@ export class HomePage implements OnInit {
 
   loadQuestions(forceReload) {
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
-      if (!this.openQuestions) {
-        const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
-        this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
-          if (questionJSON && questionJSON.feedbacks) {
-            if (questionJSON.feedbacks.length > 0) {
-              this.openQuestions = true;
+      if (!itm.isHidden) {
+        if (!this.openQuestions) {
+          const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
+          this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
+            if (questionJSON && questionJSON.feedbacks) {
+              if (questionJSON.feedbacks.length > 0) {
+                this.openQuestions = true;
+              } else { this.openQuestions = false; }
             } else { this.openQuestions = false; }
-          } else { this.openQuestions = false; }
 
-          fin();
-        }, error => {
-          console.log(error);
-          fin();
-        });
+            fin();
+          }, error => {
+            console.log(error);
+            fin();
+          });
+        } else { fin(); }
       } else { fin(); }
     });
 

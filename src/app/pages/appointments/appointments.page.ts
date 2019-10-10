@@ -101,42 +101,44 @@ export class AppointmentsPage implements OnInit {
 
         const tmpEventArray = [];
         const loop = dLoop(this.sessions, (itm, idx, fin) => {
-          const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
+          if (!itm.isHidden) {
+            const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
 
-          this.appointm.getAppointments(config, itm.token, ionRefresh).subscribe(async (appointConfig: AppointConfig) => {
-            if (appointConfig && appointConfig.events) {
-              const hiddenArray = await this.storage.get('hiddenCards');
-              const scheduledArray = await this.storage.get('scheduledEvents');
-              let notificationID;
-              for (const event of appointConfig.events) {
-                if (event.modulename !== 'feedback') {
-                  let foundHidden;
-                  let foundScheduled;
+            this.appointm.getAppointments(config, itm.token, ionRefresh).subscribe(async (appointConfig: AppointConfig) => {
+              if (appointConfig && appointConfig.events) {
+                const hiddenArray = await this.storage.get('hiddenCards');
+                const scheduledArray = await this.storage.get('scheduledEvents');
+                let notificationID;
+                for (const event of appointConfig.events) {
+                  if (event.modulename !== 'feedback') {
+                    let foundHidden;
+                    let foundScheduled;
 
-                  // check if event was previously hidden by the user
-                  if (hiddenArray) { foundHidden = hiddenArray.find(element => element === event.id.toString()); }
-                  if (foundHidden !== undefined) {
-                    this.hiddenEvent[event.id] = true;
-                  } else { this.hiddenEvent[event.id] = false; }
+                    // check if event was previously hidden by the user
+                    if (hiddenArray) { foundHidden = hiddenArray.find(element => element === event.id.toString()); }
+                    if (foundHidden !== undefined) {
+                      this.hiddenEvent[event.id] = true;
+                    } else { this.hiddenEvent[event.id] = false; }
 
-                  // check if user has scheduled a notification for the event
-                  notificationID = event.id * 10;
-                  if (scheduledArray) { foundScheduled = scheduledArray.find(element => element === notificationID.toString()); }
-                  if (foundScheduled !== undefined) {
-                    this.scheduledEvent[event.id] = true;
-                  } else { this.scheduledEvent[event.id] = false; }
+                    // check if user has scheduled a notification for the event
+                    notificationID = event.id * 10;
+                    if (scheduledArray) { foundScheduled = scheduledArray.find(element => element === notificationID.toString()); }
+                    if (foundScheduled !== undefined) {
+                      this.scheduledEvent[event.id] = true;
+                    } else { this.scheduledEvent[event.id] = false; }
 
-                  event.hexColor = itm.hexColor;
-                  tmpEventArray.push(event);
+                    event.hexColor = itm.hexColor;
+                    tmpEventArray.push(event);
+                  }
                 }
               }
-            }
 
-            fin();
-          }, error => {
-            console.log(error);
-            fin();
-          });
+              fin();
+            }, error => {
+              console.log(error);
+              fin();
+            });
+          } else { fin(); }
         });
 
         loop.then(() => {

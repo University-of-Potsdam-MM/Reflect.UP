@@ -88,6 +88,7 @@ export class LoginPage implements OnInit {
             session.hexColor = config.hexColor;
             session.courseName = config.title;
             session.courseFac = config.faculty;
+            session.isHidden = false;
 
             loginSessions.push(session);
             this.coursesToLogin[idx]['isLoading'] = false;

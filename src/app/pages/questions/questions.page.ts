@@ -51,10 +51,12 @@ export class QuestionsPage implements OnInit {
           if (idx === 0) {
             // load questions that haven't been answered yet
             const loop = dLoop(this.sessions, (session, sessionIdx, fin) => {
-              this.questionList[sessionIdx] = [];
-              this.noQuestions[sessionIdx] = false;
-              const config: IModuleConfig = this.configService.getConfigById(session.courseID);
-              this.loadQuestions(config, session.token, forceReload, sessionIdx, fin);
+              if (!session.isHidden) {
+                this.questionList[sessionIdx] = [];
+                this.noQuestions[sessionIdx] = false;
+                const config: IModuleConfig = this.configService.getConfigById(session.courseID);
+                this.loadQuestions(config, session.token, forceReload, sessionIdx, fin);
+              } else { fin(); }
             });
 
             loop.then(() => {
@@ -63,10 +65,12 @@ export class QuestionsPage implements OnInit {
           } else {
             // load completed questions
             const loop = dLoop(this.sessions, (session, sessionIdx, fin) => {
-              this.completedQuestionList[sessionIdx] = [];
-              this.noCompletedQuestions[sessionIdx] = false;
-              const config: IModuleConfig = this.configService.getConfigById(session.courseID);
-              this.loadAnsweredQuestions(config, session.token, forceReload, sessionIdx, fin);
+              if (!session.isHidden) {
+                this.completedQuestionList[sessionIdx] = [];
+                this.noCompletedQuestions[sessionIdx] = false;
+                const config: IModuleConfig = this.configService.getConfigById(session.courseID);
+                this.loadAnsweredQuestions(config, session.token, forceReload, sessionIdx, fin);
+              } else { fin(); }
             });
 
             loop.then(() => {

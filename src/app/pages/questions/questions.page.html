@@ -18,7 +18,7 @@
   </div>
 
   <ng-container *ngFor="let module of sessions; let m = index">
-    <ion-item-divider *ngIf="isLoaded" (click)="moduleExpanded[m] = !moduleExpanded[m]">
+    <ion-item-divider *ngIf="isLoaded && !module.isHidden" (click)="moduleExpanded[m] = !moduleExpanded[m]">
       <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="arrow-dropdown"></ion-icon>
       <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="arrow-dropright"></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
