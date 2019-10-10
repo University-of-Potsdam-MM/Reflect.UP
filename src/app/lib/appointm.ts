@@ -22,4 +22,5 @@ export interface EventObject {
     sequence: number;
     timemodified: number;
     subscriptionid: number;
+    hexColor?: any;
 }

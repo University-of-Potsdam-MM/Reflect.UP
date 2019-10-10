@@ -126,6 +126,7 @@ export class AppointmentsPage implements OnInit {
                     this.scheduledEvent[event.id] = true;
                   } else { this.scheduledEvent[event.id] = false; }
 
+                  event.hexColor = itm.hexColor;
                   tmpEventArray.push(event);
                 }
               }

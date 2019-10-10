@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event',
@@ -47,7 +48,8 @@ export class EventComponent implements OnInit, AfterViewInit {
     private localNotifications: LocalNotifications,
     private router: Router,
     private alertCtrl: AlertController,
-    private platform: Platform
+    private platform: Platform,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -395,6 +397,10 @@ export class EventComponent implements OnInit, AfterViewInit {
       ]
     });
     await alert.present();
+  }
+
+  getHexColor() {
+    return this.sanitizer.bypassSecurityTrustStyle('color: ' + this.event.hexColor);
   }
 
 }

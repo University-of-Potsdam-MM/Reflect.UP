@@ -176,6 +176,7 @@ export class HomePage implements OnInit {
         if (appointConf.events) {
           for (const event of appointConf.events) {
             if (event.modulename !== 'feedback') {
+              event.hexColor = itm.hexColor;
               tmpEventArray.push(event);
 
               if (hiddenCardArray) {
