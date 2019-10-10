@@ -30,13 +30,13 @@
       </div>
     </ion-card-content>
   </ion-card>
-  <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
+  <!-- <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
     <ion-fab horizontal="left" vertical="bottom" edge="true">
       <ion-fab-button color="primary" (click)="goToQuestions()">
         <ion-icon name="ios-chatbubbles"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-  </div>
+  </div> -->
 
   <div *ngIf="isLoaded && !isRefreshing">
     <app-event *ngFor="let ev of eventList; let i = index" [ngClass]="hiddenEvent[ev.id] ? 'hiddenCard' : '' "

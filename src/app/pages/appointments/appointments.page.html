@@ -47,8 +47,8 @@
       <ion-badge *ngIf="isEventToday" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListToday.length }}</ion-badge>
       <ion-badge *ngIf="!isEventToday" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
 
-      <ion-icon *ngIf="showEventToday && isEventToday" slot="start" name="arrow-dropdown"></ion-icon>
-      <ion-icon *ngIf="!showEventToday || !isEventToday" slot="start" name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="showEventToday" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!showEventToday" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
     <div *ngFor="let ev of eventListToday; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventToday[ev.id] && showEventToday"
@@ -67,8 +67,8 @@
       <ion-badge *ngIf="isEventTomorrow" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListTomorrow.length }}</ion-badge>
       <ion-badge *ngIf="!isEventTomorrow" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
 
-      <ion-icon *ngIf="showEventTomorrow && isEventTomorrow" slot="start" name="arrow-dropdown"></ion-icon>
-      <ion-icon *ngIf="!showEventTomorrow || !isEventTomorrow" slot="start" name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="showEventTomorrow" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!showEventTomorrow" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
     <div *ngFor="let ev of eventListTomorrow; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventTomorrow[ev.id] && showEventTomorrow"
@@ -87,8 +87,8 @@
       <ion-badge *ngIf="isEventThisWeek" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListThisWeek.length }}</ion-badge>
       <ion-badge *ngIf="!isEventThisWeek" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
 
-      <ion-icon *ngIf="showEventThisWeek && isEventThisWeek" slot="start" name="arrow-dropdown"></ion-icon>
-      <ion-icon *ngIf="!showEventThisWeek || !isEventThisWeek" slot="start" name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="showEventThisWeek" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!showEventThisWeek" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
     <div *ngFor="let ev of eventListThisWeek; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventThisWeek[ev.id] && showEventThisWeek"
@@ -107,8 +107,8 @@
       <ion-badge *ngIf="isEventLater" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListLater.length }}</ion-badge>
       <ion-badge *ngIf="!isEventLater" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
 
-      <ion-icon *ngIf="showEventLater && isEventLater" slot="start" name="arrow-dropdown"></ion-icon>
-      <ion-icon *ngIf="!showEventLater || !isEventLater" slot="start" name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="showEventLater" slot="start" name="arrow-dropdown"></ion-icon>
+      <ion-icon *ngIf="!showEventLater" slot="start" name="arrow-dropright"></ion-icon>
     </ion-item-divider>
     <div *ngFor="let ev of eventListLater; let i = index" class="ion-padding-horizontal">
       <app-event *ngIf="eventLater[ev.id] && showEventLater"

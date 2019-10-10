@@ -11,6 +11,11 @@ ion-button {
 
 ion-item-divider {
     --color: black;
+    --padding-start: 5px !important;
+
+    ion-icon {
+        margin-right: 5px !important;
+    }
 }
 
 ion-card-content.reminder {
