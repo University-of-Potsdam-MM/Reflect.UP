@@ -53,17 +53,8 @@ export class SelectModulePage implements OnInit {
   }
 
   getModules() {
-    const config_url = 'https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json';
-    this.http.get<IModuleConfig[]>(config_url).subscribe((serverConfig: IModuleConfig[]) => {
-      if (serverConfig[0].appVersion >= ConfigService.configs[0].appVersion) {
-        this.moduleConfigList = serverConfig;
-      } else { this.moduleConfigList = ConfigService.configs; }
-      this.setFilteredItems();
-    }, error => {
-      console.log(error);
-      this.moduleConfigList = ConfigService.configs;
-      this.setFilteredItems();
-    });
+    this.moduleConfigList = ConfigService.configs;
+    this.setFilteredItems();
   }
 
   async setFilteredItems() {

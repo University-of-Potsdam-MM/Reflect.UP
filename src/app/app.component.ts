@@ -23,6 +23,7 @@ export class AppComponent {
   pagesInMenu: PageInterface[];
   menuSetup = false;
   courseSessions: ISession[];
+  mintEnabled;
   refreshingSessions;
 
   constructor(
@@ -42,7 +43,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
+    this.platform.ready().then(async () => {
       if (this.platform.is('cordova')) {
         if (this.platform.is('android')) {
           this.listenToBackButton();
@@ -52,9 +53,10 @@ export class AppComponent {
         this.splashScreen.hide();
       }
 
-      this.initializeSession();
-      this.initializeMenu();
-      this.initializeTranslate();
+      await this.initializeSession();
+      await this.initializeMenu();
+      await this.initializeTranslate();
+
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
     });
@@ -90,16 +92,16 @@ export class AppComponent {
       { title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'}
     ];
 
-    // this.courseSessions = await this.storage.get('sessions');
-    // if (this.courseSessions) {
-    //   for (const session of this.courseSessions) {
-    //     const config = this.configService.getConfigById(session.courseID);
-    //     if (config.mintDetails) {
-    //       this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics'});
-    //       break;
-    //     }
-    //   }
-    // }
+    this.courseSessions = await this.storage.get('sessions');
+    if (this.courseSessions) {
+      for (const session of this.courseSessions) {
+        const config = this.configService.getConfigById(session.courseID);
+        if (config.mintEnabled) {
+          this.mintEnabled = true;
+          break;
+        }
+      }
+    }
 
     this.pagesInMenu.push({ title: 'pageHeader.settingsPage', pageName: '/settings', icon: 'settings'});
     this.pagesInMenu.push({ title: 'pageHeader.logoutPage', pageName: '/logout', icon: 'log-out' });

@@ -13,6 +13,7 @@ export interface IModuleConfig {
 	institution: string;
 	description: string;
 	mintDetails?: IMintObject[];
+	mintEnabled?: boolean;
 	uniLogo: string;
 	contactPersonsObject: ContactPersonsObject[];
 }

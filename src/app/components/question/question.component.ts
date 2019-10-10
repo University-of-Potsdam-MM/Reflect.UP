@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { QuestionDetailModalPage } from './question-detail.modal';
+import { ISession } from 'src/app/services/login-provider/interfaces';
 
 @Component({
   selector: 'app-question',
@@ -14,6 +15,7 @@ import { QuestionDetailModalPage } from './question-detail.modal';
 export class QuestionComponent implements OnInit {
 
   @Input() public questions: FeedbackObject;
+  @Input() session: ISession;
   isCompleted = false;
   modalOpen = true;
 
@@ -38,7 +40,8 @@ export class QuestionComponent implements OnInit {
           tmpQuestionsList:  this.questions.questions,
           feedbackMessage:    this.questions.feedbackMessage,
           answerList:    this.questions.answers,
-          isCompleted: this.isCompleted
+          isCompleted: this.isCompleted,
+          session: this.session
         }
       });
       modal.present();
@@ -53,7 +56,8 @@ export class QuestionComponent implements OnInit {
           feedbackID:         this.questions.id,
           tmpQuestionsList:  this.questions.questions,
           feedbackMessage:    this.questions.feedbackMessage,
-          isCompleted: this.isCompleted
+          isCompleted: this.isCompleted,
+          session: this.session
         }
       });
       modal.present();

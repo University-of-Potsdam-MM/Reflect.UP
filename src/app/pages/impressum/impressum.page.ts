@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
-import { IModuleConfig } from 'src/app/lib/config';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -10,28 +8,11 @@ import { NavController } from '@ionic/angular';
 })
 export class ImpressumPage implements OnInit {
 
-  config;
-
   constructor(
-    private storage: Storage,
     private navCtrl: NavController
   ) { }
 
-  ngOnInit() {
-    this.storage.get('config').then(
-      (config: IModuleConfig) => {
-        if (config) {
-          this.config = config;
-        } else {
-          this.storage.get('fallbackConfig').then((fConfig: IModuleConfig) => {
-            if (fConfig) {
-              this.config = fConfig;
-            }
-          });
-        }
-      }
-    );
-  }
+  ngOnInit() { }
 
   openPage(page) {
     if (page === 'LegalNoticePage') {

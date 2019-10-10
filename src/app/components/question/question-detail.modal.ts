@@ -3,10 +3,10 @@ import { AnswerObject, QuestionsObject } from 'src/app/lib/question';
 import { NavController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { QuestionService } from 'src/app/services/question/question.service';
-import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
-import { IModuleConfig } from 'src/app/lib/config';
+import { ConfigService } from 'src/app/services/config/config.service';
+import { ISession } from 'src/app/services/login-provider/interfaces';
 
 @Component({
     selector: 'question-detail-modal-page',
@@ -20,6 +20,7 @@ export class QuestionDetailModalPage implements OnInit {
     @Input() feedbackMessage;
     @Input() answerList: AnswerObject[];
     @Input() isCompleted;
+    @Input() session: ISession;
 
     public answersSubmitted = false;
     public isFirstQuestion = true;
@@ -40,22 +41,22 @@ export class QuestionDetailModalPage implements OnInit {
         public navCtrl: NavController,
         private translate: TranslateService,
         private questionProv: QuestionService,
-        private storage: Storage,
+        private configService: ConfigService,
         private modalCtrl: ModalController
     ) { }
 
     ngOnInit() {
-        for (let i = 0; i < this.tmpQuestionsList.length; i++) {
-            if (this.tmpQuestionsList[i].type === 'multichoice' || this.tmpQuestionsList[i].type === 'textarea') {
-                this.questionList.push(this.tmpQuestionsList[i]);
-            }
-        }
+      for (let i = 0; i < this.tmpQuestionsList.length; i++) {
+          if (this.tmpQuestionsList[i].type === 'multichoice' || this.tmpQuestionsList[i].type === 'textarea') {
+              this.questionList.push(this.tmpQuestionsList[i]);
+          }
+      }
 
-        this.feedbackMessage = this.htmlDecode(this.feedbackMessage);
-        this.isPageActive[0] = true;
-        this.prepareChoices();
-        this.initArrays();
-        if (this.isCompleted) { this.prepareCompletedAnswers(); }
+      this.feedbackMessage = this.htmlDecode(this.feedbackMessage);
+      this.isPageActive[0] = true;
+      this.prepareChoices();
+      this.initArrays();
+      if (this.isCompleted) { this.prepareCompletedAnswers(); }
     }
 
     prepareCompletedAnswers() {
@@ -340,11 +341,12 @@ export class QuestionDetailModalPage implements OnInit {
           }
         }
 
-        this.storage.get('config').then((config: IModuleConfig) => {
-          this.storage.get('session').then(session => {
-            this.questionProv.sendAnswers(this.feedbackID, resultArray, config, session.token);
-          });
-        });
+        this.questionProv.sendAnswers(
+          this.feedbackID,
+          resultArray,
+          this.configService.getConfigById(this.session.courseID),
+          this.session.token
+        );
       }
 
       isAnswerSelected(i) {

@@ -37,7 +37,7 @@
     </ion-row>
 
     <div *ngIf="isLoaded && moduleExpanded[m] && !noQuestions[m]">
-      <app-question *ngFor="let quest of questionList[m]" [questions]="quest"></app-question>
+      <app-question *ngFor="let quest of questionList[m]" [questions]="quest" [session]="sessions[m]"></app-question>
     </div>
 
     <div *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]" class="ion-padding-top ion-padding-horizontal ion-text-wrap">
@@ -51,7 +51,7 @@
     </div>
 
     <div *ngIf="showCompletedQuestions[m] && moduleExpanded[m] && !noCompletedQuestions[m]">
-      <app-question *ngFor="let quest of completedQuestionList[m]" [questions]="quest"></app-question>
+      <app-question *ngFor="let quest of completedQuestionList[m]" [questions]="quest" [session]="sessions[m]"></app-question>
     </div>
   </ng-container>
 </ion-content>
