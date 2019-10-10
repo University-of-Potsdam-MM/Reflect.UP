@@ -178,7 +178,22 @@ export class HomePage implements OnInit {
             for (const event of appointConf.events) {
               if (event.modulename !== 'feedback') {
                 event.hexColor = itm.hexColor;
-                tmpEventArray.push(event);
+
+                let eventDuplicate = false;
+                for (let i = 0; i < tmpEventArray.length; i++) {
+                  if (
+                    tmpEventArray[i].name === event.name
+                    && tmpEventArray[i].timestart === event.timestart
+                    && tmpEventArray[i].timeduration === event.timeduration
+                  ) {
+                    eventDuplicate = true;
+                    tmpEventArray[i].hexColor = undefined;
+                  }
+                }
+
+                if (!eventDuplicate) {
+                  tmpEventArray.push(event);
+                }
 
                 if (hiddenCardArray) {
                   const foundID = hiddenCardArray.find(element => element === event.id.toString());

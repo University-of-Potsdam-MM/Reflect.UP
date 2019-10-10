@@ -128,7 +128,22 @@ export class AppointmentsPage implements OnInit {
                     } else { this.scheduledEvent[event.id] = false; }
 
                     event.hexColor = itm.hexColor;
-                    tmpEventArray.push(event);
+
+                    let eventDuplicate = false;
+                    for (let i = 0; i < tmpEventArray.length; i++) {
+                      if (
+                        tmpEventArray[i].name === event.name
+                        && tmpEventArray[i].timestart === event.timestart
+                        && tmpEventArray[i].timeduration === event.timeduration
+                      ) {
+                        eventDuplicate = true;
+                        tmpEventArray[i].hexColor = undefined;
+                      }
+                    }
+
+                    if (!eventDuplicate) {
+                      tmpEventArray.push(event);
+                    }
                   }
                 }
               }
