@@ -3,8 +3,6 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { AlertButton } from '@ionic/core';
-import { HttpClient } from '@angular/common/http';
-import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { NavController, PopoverController } from '@ionic/angular';
 import { PopoverPage } from '../popover/popover.page';
@@ -27,7 +25,6 @@ export class SelectModulePage implements OnInit {
     private storage: Storage,
     private translate: TranslateService,
     private alert: AlertService,
-    private http: HttpClient,
     private navCtrl: NavController,
     private popoverCtrl: PopoverController
   ) { }
@@ -53,7 +50,7 @@ export class SelectModulePage implements OnInit {
   }
 
   getModules() {
-    this.moduleConfigList = ConfigService.configs;
+    this.moduleConfigList = JSON.parse(JSON.stringify(ConfigService.configs));
     this.setFilteredItems();
   }
 

@@ -79,6 +79,8 @@ export class HomePage implements OnInit {
         if (res.isEnabled) {
           this.isPushAllowed = true;
         } else { this.isPushAllowed = false; }
+      }, error => {
+        console.log(error);
       });
     }, 5000);
   }

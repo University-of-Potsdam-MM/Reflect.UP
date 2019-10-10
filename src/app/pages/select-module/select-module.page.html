@@ -66,7 +66,7 @@
     </ion-card>
     <ion-card class="loginCard" *ngFor="let moduleConfig of moduleCourses; let i = index">
       <ion-item>
-        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" slot="end"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
         <ion-avatar slot="start">
           <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
         </ion-avatar>
