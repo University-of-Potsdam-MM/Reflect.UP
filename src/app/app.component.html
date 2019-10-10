@@ -15,6 +15,7 @@
           <ion-label>
             {{ "buttonLabel.modules" | translate }}
           </ion-label>
+          <ion-icon name="add-circle-outline" slot="end" class="ion-padding-end" (click)="loginToNewCourses()"></ion-icon>
         </ion-item-divider>
         <ng-container *ngIf="!refreshingSessions">
           <ion-item *ngFor="let session of courseSessions">

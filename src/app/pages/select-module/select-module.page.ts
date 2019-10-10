@@ -53,24 +53,38 @@ export class SelectModulePage implements OnInit {
   getModules() {
     const config_url = 'https://apiup.uni-potsdam.de/endpoints/staticContent/2.0/config.json';
     this.http.get<IModuleConfig[]>(config_url).subscribe((serverConfig: IModuleConfig[]) => {
-      if (serverConfig[0].appVersion > ConfigService.configs[0].appVersion) {
+      if (serverConfig[0].appVersion >= ConfigService.configs[0].appVersion) {
         this.moduleConfigList = serverConfig;
       } else { this.moduleConfigList = ConfigService.configs; }
       this.setFilteredItems();
     }, error => {
+      console.log(error);
       this.moduleConfigList = ConfigService.configs;
       this.setFilteredItems();
     });
   }
 
-  setFilteredItems() {
+  async setFilteredItems() {
     const tmpString = this.searchTerm.replace(/-/g, '');
     const filterResults = this.filterItems(tmpString);
+
+    const alreadyLoggedInSessions = await this.storage.get('sessions');
 
     this.facultyCourses = [];
     this.moduleCourses = [];
     for (let i = 0; i < filterResults.length; i++) {
+
+      if (alreadyLoggedInSessions) {
+        for (let j = 0; j < alreadyLoggedInSessions.length; j++) {
+          if (filterResults[i].courseID === alreadyLoggedInSessions[j].courseID) {
+            filterResults[i].isChecked = true;
+            filterResults[i].alreadyLoggedIn = true;
+          }
+        }
+      }
+
       if (!filterResults[i].isChecked) { filterResults[i].isChecked = false; }
+
       if (filterResults[i].type === 'faculty') {
         this.facultyCourses.push(filterResults[i]);
       } else {
@@ -94,13 +108,13 @@ export class SelectModulePage implements OnInit {
     const enrollCourses = [];
 
     for (let i = 0; i < this.facultyCourses.length; i++) {
-      if (this.facultyCourses[i].isChecked) {
+      if (this.facultyCourses[i].isChecked && !this.facultyCourses[i].alreadyLoggedIn) {
         enrollCourses.push(this.facultyCourses[i]);
       }
     }
 
     for (let i = 0; i < this.moduleCourses.length; i++) {
-      if (this.moduleCourses[i].isChecked) {
+      if (this.moduleCourses[i].isChecked && !this.moduleCourses[i].alreadyLoggedIn) {
         enrollCourses.push(this.moduleCourses[i]);
       }
     }
@@ -113,14 +127,14 @@ export class SelectModulePage implements OnInit {
     let modulesChecked = false;
 
     for (let i = 0; i < this.facultyCourses.length; i++) {
-      if (this.facultyCourses[i].isChecked) {
+      if (this.facultyCourses[i].isChecked && !this.facultyCourses[i].alreadyLoggedIn) {
         modulesChecked = true;
         break;
       }
     }
 
     for (let i = 0; i < this.moduleCourses.length; i++) {
-      if (this.moduleCourses[i].isChecked) {
+      if (this.moduleCourses[i].isChecked && !this.moduleCourses[i].alreadyLoggedIn) {
         modulesChecked = true;
         break;
       }

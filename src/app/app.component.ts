@@ -118,6 +118,11 @@ export class AppComponent {
     }
   }
 
+  loginToNewCourses() {
+    this.menuCtrl.close();
+    this.navCtrl.navigateForward('/select-module');
+  }
+
   getHexColor(moduleConfig) {
     return this.sanitizer.bypassSecurityTrustStyle('color: ' + moduleConfig['hexColor']);
   }

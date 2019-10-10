@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
     <ion-title>{{ 'pageHeader.selectModulePage' | translate }}</ion-title>
   </ion-toolbar>
   <ion-toolbar>
@@ -40,7 +41,7 @@
     </div>
     <ion-card *ngFor="let moduleConfig of facultyCourses; let i = index">
       <ion-item>
-        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" slot="end"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
         <ion-avatar slot="start">
           <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
         </ion-avatar>

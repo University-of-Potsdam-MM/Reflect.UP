@@ -45,8 +45,13 @@ export class LoginPage implements OnInit {
     this.getCoursesToLogin();
   }
 
-  doLogin() {
-    const loginSessions = [];
+  async doLogin() {
+    let loginSessions = [];
+    const alreadyLoggedInCourses = await this.storage.get('sessions');
+
+    if (alreadyLoggedInCourses) {
+      loginSessions = alreadyLoggedInCourses;
+    }
 
     const loop = dLoop(this.coursesToLogin, (itm, idx, fin) => {
       const config = itm;
@@ -140,9 +145,14 @@ export class LoginPage implements OnInit {
 
   async getCoursesToLogin() {
     this.coursesToLogin = await this.storage.get('coursesToLogin');
+    const alreadyLoggedInCourses = await this.storage.get('sessions');
 
     for (let i = 0; i < this.coursesToLogin.length; i++) {
-      this.coursesToLogin[i]['hexColor'] = this.hexValues[i % this.hexValues.length];
+      if (alreadyLoggedInCourses) {
+        this.coursesToLogin[i]['hexColor'] = this.hexValues[(i + alreadyLoggedInCourses.length) % this.hexValues.length];
+      } else {
+        this.coursesToLogin[i]['hexColor'] = this.hexValues[i % this.hexValues.length];
+      }
     }
   }
 
