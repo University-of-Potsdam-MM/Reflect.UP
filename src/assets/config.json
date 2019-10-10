@@ -1577,6 +1577,7 @@
     "institution": "Universität Potsdam",
     "description": "Kurs für die Studieneingangsphase an der Mathematisch-Naturwissenschaftliche Fakultät für das Wintersemester 19/20",
     "mintEnabled": true,
+    "mintUrl": "https://www.uni-potsdam.de/mnfakul/studium-und-lehre/studienbeginn/mint-raum.html",
     "uniLogo": "logo_phil.svg",
     "contactPersonsObject": [
       {
