@@ -11,6 +11,8 @@ import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfigService } from './services/config/config.service';
 import { ISession } from './services/login-provider/interfaces';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,6 @@ export class AppComponent {
   pagesInMenu: PageInterface[];
   menuSetup = false;
   courseSessions: ISession[];
-  mintEnabled;
   refreshingSessions;
 
   constructor(
@@ -37,13 +38,15 @@ export class AppComponent {
     private sanitizer: DomSanitizer,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private inAppBrowser: InAppBrowser,
+    private safariOrChrome: SafariViewController
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.platform.ready().then(async () => {
+    this.platform.ready().then(() => {
       if (this.platform.is('cordova')) {
         if (this.platform.is('android')) {
           this.listenToBackButton();
@@ -53,9 +56,9 @@ export class AppComponent {
         this.splashScreen.hide();
       }
 
-      await this.initializeSession();
-      await this.initializeMenu();
-      await this.initializeTranslate();
+      this.initializeSession();
+      this.initializeMenu();
+      this.initializeTranslate();
 
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
@@ -97,7 +100,7 @@ export class AppComponent {
       for (const session of this.courseSessions) {
         const config = this.configService.getConfigById(session.courseID);
         if (config.mintEnabled) {
-          this.mintEnabled = true;
+          this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics', url: config.mintUrl});
           break;
         }
       }
@@ -114,7 +117,11 @@ export class AppComponent {
       this.navCtrl.navigateBack('/home');
       if (page.pageName !== '/home') {
         setTimeout(() => {
-          this.navCtrl.navigateForward(page.pageName);
+          if (page.pageName !== '/mint') {
+            this.navCtrl.navigateForward(page.pageName);
+          } else {
+            this.handleWebIntentForWebsite(page.url);
+          }
         }, 1);
       }
     }
@@ -156,5 +163,44 @@ export class AppComponent {
         }
       });
     });
+  }
+
+  /**
+   * @name openWebsite
+   * @description opens a url depending on the platform
+   * @param {string} url
+   */
+  private async handleWebIntentForWebsite(url: string) {
+    if (this.platform.is('cordova')) {
+      this.safariOrChrome.isAvailable().then((available: boolean) => {
+        if (available) {
+          this.openWithSafariOrChrome(url);
+        } else { this.openWithInAppBrowser(url); }
+      });
+    } else { this.openWithInAppBrowser(url); }
+  }
+
+  /**
+   * @name openWithInAppBrowser
+   * @description opens a url with the InAppBrowser
+   * @param {string} url
+   */
+  private openWithInAppBrowser(url: string) {
+    const target = '_blank';
+    this.inAppBrowser.create(url, target);
+  }
+
+  /**
+   * @name openWithSafariOrChrome
+   * @description opens a url with safari or chrome custom tabs
+   * @param {string} url
+   */
+  private openWithSafariOrChrome(url: string) {
+    this.safariOrChrome.show({
+      url: url
+    }).subscribe(
+      result => { console.log('openWithSafariOrChrome', result); },
+      error => { console.log('openWithSafariOrChrome', error); }
+    );
   }
 }

@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'contacts', loadChildren: './pages/contacts/contacts.module#ContactsPageModule' },
   { path: 'feedback', loadChildren: './pages/feedback/feedback.module#FeedbackPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'mint', loadChildren: './pages/mint/mint.module#MintPageModule' },
   { path: 'push-messages', loadChildren: './pages/push-messages/push-messages.module#PushMessagesPageModule' },
   { path: 'questions', loadChildren: './pages/questions/questions.module#QuestionsPageModule' },
   { path: 'select-module', loadChildren: './pages/select-module/select-module.module#SelectModulePageModule' },

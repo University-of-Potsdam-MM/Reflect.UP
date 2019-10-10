@@ -20,6 +20,7 @@ export interface PageInterface {
     title: string;
     pageName: any;
     icon: string;
+    url?: string;
 }
 
 export function HttpLoaderFactory(http: HttpClient) {

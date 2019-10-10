@@ -14,6 +14,7 @@ export interface IModuleConfig {
 	description: string;
 	mintDetails?: IMintObject[];
 	mintEnabled?: boolean;
+	mintUrl?: string;
 	uniLogo: string;
 	contactPersonsObject: ContactPersonsObject[];
 }
