@@ -32,11 +32,11 @@ export class EventComponent implements OnInit, AfterViewInit {
   eventFullDay;
 
   // Inputs passed from Page to Component
-  @Input() private event: EventObject;
-  @Input() private index: number;
-  @Input() private hiddenEvent: boolean;
-  @Input() private scheduledEvent: boolean;
-  @Input() private isPushAllowed: boolean;
+  @Input() public event: EventObject;
+  @Input() public index: number;
+  @Input() public hiddenEvent: boolean;
+  @Input() public scheduledEvent: boolean;
+  @Input() public isPushAllowed: boolean;
 
   // Output-Events that can be listened to by the Page
   @Output() visibilityChanged = new EventEmitter();

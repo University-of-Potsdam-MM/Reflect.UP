@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, AlertController, Platform, MenuController } from '@ionic/angular';
 import { EventObject, AppointConfig } from 'src/app/lib/appointm';
@@ -6,7 +6,6 @@ import { EventService } from 'src/app/services/event/event.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { TranslateService } from '@ngx-translate/core';
 import { QuestionService } from 'src/app/services/question/question.service';
-import { PushService } from 'src/app/services/push/push.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Push } from '@ionic-native/push/ngx';
 import { IModuleConfig } from 'src/app/lib/config';
@@ -21,7 +20,7 @@ import * as dLoop from 'delayed-loop';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   selectedModule: IModuleConfig = null;
   token = '';
@@ -47,7 +46,6 @@ export class HomePage implements OnInit {
     private alertCtrl: AlertController,
     private translate: TranslateService,
     private questions: QuestionService,
-    private pushProv: PushService,
     private platform: Platform,
     private menu: MenuController,
     private http: HttpClient,
@@ -57,8 +55,6 @@ export class HomePage implements OnInit {
   ) {
     this.menu.enable(true, 'sideMenu');
   }
-
-  ngOnInit() { }
 
   async ionViewWillEnter() {
     this.sessions = await this.storage.get('sessions');
@@ -82,7 +78,7 @@ export class HomePage implements OnInit {
       }, error => {
         console.log(error);
       });
-    }, 5000);
+    }, 500);
   }
 
   initHome(refresher?) {
@@ -99,10 +95,6 @@ export class HomePage implements OnInit {
 
           if (online) {
             this.enrollSelf(config, itm.token);
-
-            if (this.platform.is('cordova')) {
-              this.pushProv.registerPushService(config);
-            }
           }
 
           fin();
@@ -111,6 +103,7 @@ export class HomePage implements OnInit {
         loop.then(() => {
           this.checkUpdatedCards(refresher);
           this.loadQuestions(refresher ? true : false);
+          this.app.initializeSession();
           this.app.initializeMenu();
         });
 

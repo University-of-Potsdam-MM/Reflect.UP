@@ -13,6 +13,7 @@ import { ConfigService } from './services/config/config.service';
 import { ISession } from './services/login-provider/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
+import { PushService } from './services/push/push.service';
 
 @Component({
   selector: 'app-root',
@@ -36,6 +37,7 @@ export class AppComponent {
     private storage: Storage,
     private router: Router,
     private sanitizer: DomSanitizer,
+    private pushService: PushService,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
     private configService: ConfigService,
@@ -69,6 +71,50 @@ export class AppComponent {
     this.refreshingSessions = true;
     this.courseSessions = undefined;
     this.courseSessions = await this.storage.get('sessions');
+
+    if (this.courseSessions && this.platform.is('cordova')) {
+      this.pushService.registerPushService();
+    }
+
+    // const sessionPreVersion7 = await this.storage.get('session');
+    // console.log('Old Session: ');
+    // console.log(sessionPreVersion7);
+
+    // const configPreVersion7 = await this.storage.get('config');
+    // console.log('Old Config: ');
+    // console.log(configPreVersion7);
+
+    // let courseStillAvailable;
+    // if (configPreVersion7) {
+    //   courseStillAvailable = this.configService.getConfigById(configPreVersion7.courseID);
+    //   console.log('Course Still Available: ');
+    //   console.log(courseStillAvailable);
+    // }
+
+    // if (!sessionPreVersion7 || !configPreVersion7 || !courseStillAvailable) {
+    //   this.storage.remove('session');
+    //   this.storage.remove('config');
+    //   this.navCtrl.navigateRoot('/select-module');
+    // } else {
+    //   const newSessionArray: ISession[] = [];
+
+    //   const newSession: ISession = {
+    //     token: sessionPreVersion7.token,
+    //     courseID: configPreVersion7.courseID,
+    //     courseName: configPreVersion7.title,
+    //     courseFac: configPreVersion7.faculty,
+    //     hexColor: '#FFB74D',
+    //     isHidden: false
+    //   };
+
+    //   newSessionArray.push(newSession);
+    //   this.sessions = newSessionArray;
+    //   this.storage.set('sessions', newSessionArray).then(() => {
+    //   });
+    //   this.storage.remove('session');
+    //   this.storage.remove('config');
+    // }
+
     this.refreshingSessions = false;
   }
 
@@ -80,6 +126,7 @@ export class AppComponent {
       this.translate.use(userLanguage);
       moment.locale(userLanguage);
     } else {
+      this.translate.use('de');
       this.storage.set('appLanguage', 'de');
       moment.locale('de');
     }

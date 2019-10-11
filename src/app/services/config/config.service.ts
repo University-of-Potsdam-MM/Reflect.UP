@@ -62,5 +62,7 @@ export class ConfigService {
         return ConfigService.configs[i];
       }
     }
+
+    return undefined;
   }
 }

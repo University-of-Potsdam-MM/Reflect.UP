@@ -72,7 +72,7 @@ export class LogoutPage implements OnInit {
           this.navCtrl.navigateRoot('/home');
         });
       } else {
-        this.storage.set('sessions', undefined).finally(() => {
+        this.storage.remove('sessions').finally(() => {
           this.app.initializeSession();
           this.navCtrl.navigateRoot('/select-module');
         });

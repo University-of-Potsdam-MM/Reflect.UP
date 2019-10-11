@@ -23,7 +23,7 @@
               {{ session.courseName }}
               <p>{{ session.courseFac }}</p>
             </ion-label>
-            <ion-icon *ngIf="!session.isHidden" name="eye" (click)="changeSessionVisibility(session)"></ion-icon>
+            <ion-icon *ngIf="!session.isHidden && courseSessions.length > 1" name="eye" (click)="changeSessionVisibility(session)"></ion-icon>
             <ion-icon *ngIf="session.isHidden" name="eye-off" (click)="changeSessionVisibility(session)"></ion-icon>
             <ion-icon name="square" size="large" [style]="getHexColor(session)"></ion-icon>
           </ion-item>

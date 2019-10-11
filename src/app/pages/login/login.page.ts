@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
   }
 
   async doLogin() {
-    let loginSessions = [];
+    let loginSessions: ISession[] = [];
     const alreadyLoggedInCourses = await this.storage.get('sessions');
 
     if (alreadyLoggedInCourses) {

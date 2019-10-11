@@ -5,6 +5,9 @@ import { Push, PushOptions, PushObject } from '@ionic-native/push/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { IModuleConfig } from 'src/app/lib/config';
 import { Storage } from '@ionic/storage';
+import { ConfigService } from '../config/config.service';
+import * as dLoop from 'delayed-loop';
+import { ISession } from '../login-provider/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,7 @@ export class PushService {
     private translate: TranslateService,
     private storage: Storage,
     private nativeHTTP: HTTP,
+    private configService: ConfigService,
     private navCtrl: NavController
   ) { }
 
@@ -37,7 +41,7 @@ export class PushService {
     return tokenPayload;
   }
 
-  subscribeToPush(registrationID, config: IModuleConfig) {
+  subscribeToPush(registrationID, config: IModuleConfig, fin?) {
 
     // subscribe to the AirNotifier push service
     const url_subscribe = config.pushDetails.uniqushUrl.concat('tokens/');
@@ -61,12 +65,15 @@ export class PushService {
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.post(url_subscribe, myData, myHeaders).then(() => {
       console.log('(subscribe): successfully contacted the push server.');
-      this.storage.set('pushRegistered', true);
+
+      if (fin) { fin(); }
     }).catch(error => {
       console.log('(subscribe): error while contacting the push server.');
       console.log(error.status);
       console.log(error.error); // error message as string
       console.log(error.headers);
+
+      if (fin) { fin(); }
     });
 
   }
@@ -89,8 +96,7 @@ export class PushService {
 
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.delete(url_unsubscribe, {}, myHeaders).then(() => {
-      console.log('(unsubscribe): successfully contacted the push server.');
-      this.storage.set('pushRegistered', false);
+      console.log('(unsubscribe): successfully unsubscribed from the push server.');
     }).catch(error => {
       console.log('(unsubscribe): error while contacting the push server.');
       console.log(error.status);
@@ -99,7 +105,7 @@ export class PushService {
     });
   }
 
-  async registerPushService(config: IModuleConfig) {
+  async registerPushService() {
 
     if (this.platform.is('android')) {
       await this.push.createChannel({
@@ -107,17 +113,25 @@ export class PushService {
         description: 'Channel for Reflect.UP',
         importance: 5,
         visibility: 1
+      }).then(() => {
+        console.log('successfully created push channel');
+      }, error => {
+        console.log('push error on channel creation');
+        console.log(error);
       });
     }
 
     const options: PushOptions = {
       android: {
+        sound: true,
+        vibrate: true,
         clearBadge: true
       },
       ios: {
         alert: true,
         badge: true,
         sound: true,
+        voip: false,
         clearBadge: true
       }
     };
@@ -158,19 +172,33 @@ export class PushService {
           console.log('Error while processing background push.');
         });
       }
+    }, error => {
+      console.log('push error on notification');
+      console.log(error);
     });
 
-    pushObject.on('registration').subscribe(data => {
+    pushObject.on('registration').subscribe(async data => {
       if (data.registrationId.length === 0) {
         console.log('ERROR: Push registrationID is empty');
       } else {
         this.global_registrationID = data.registrationId;
-        this.subscribeToPush(data.registrationId, config);
+
+        const sessions: ISession[] = await this.storage.get('sessions');
+        dLoop(sessions, (itm: ISession, idx, fin) => {
+          const config = this.configService.getConfigById(itm.courseID);
+          this.subscribeToPush(data.registrationId, config, fin);
+        });
       }
+    }, error => {
+      console.log('push error on registration');
+      console.log(error);
     });
 
     pushObject.on('error').subscribe(data => {
       console.log('Push error happened: ' + data.message);
+    }, error => {
+      console.log('push error on error');
+      console.log(error);
     });
   }
 }

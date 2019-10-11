@@ -28,7 +28,7 @@
           {{ "buttonLabel.showLess" | translate }}
         </ion-button>
       </div>
-      <ion-row class="btn-group-appointment">
+      <ion-row class="btn-group-appointment" nowrap>
         <ion-col *ngIf="isPushAllowed && isCordovaApp && !hasAlreadyBegun">
           <div class="reminder">
             <ion-button (click)="scheduleNotification()" fill="clear" size="small">
@@ -40,16 +40,16 @@
         </ion-col>
         <ion-col>
           <div align="right">
-          <ion-button (click)="toggleCardVisibility()" fill="clear" size="small">
-            <ng-container *ngIf="isVisible; else hidden">
-              <ion-icon name="eye-off" slot="start"></ion-icon>
-              <div>{{ "buttonLabel.hide" | translate }}</div>
-            </ng-container>
-            <ng-template #hidden>
-              <ion-icon name="eye" slot="start"></ion-icon>
-              <div>{{ "buttonLabel.show_2" | translate }}</div>
-            </ng-template>
-          </ion-button>
+            <ion-button (click)="toggleCardVisibility()" fill="clear" size="small">
+              <ng-container *ngIf="isVisible; else hidden">
+                <ion-icon name="eye-off" slot="start"></ion-icon>
+                <div>{{ "buttonLabel.hide" | translate }}</div>
+              </ng-container>
+              <ng-template #hidden>
+                <ion-icon name="eye" slot="start"></ion-icon>
+                <div>{{ "buttonLabel.show_2" | translate }}</div>
+              </ng-template>
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>

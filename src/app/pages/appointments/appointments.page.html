@@ -10,7 +10,9 @@
   <ion-refresher (ionRefresh)="initEvents($event, true)" slot="fixed">
     <ion-refresher-content
     pullingText=""
-    refreshingText=""></ion-refresher-content>
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
   </ion-refresher>
 
   <div align="center" class="ion-padding">
@@ -28,7 +30,7 @@
   </ion-calendar>
 
   <div align="center" *ngIf="!isLoaded" class="ion-padding">
-    <ion-spinner></ion-spinner>
+    <ion-spinner name="dots"></ion-spinner>
   </div>
 
   <div *ngIf="isLoaded && !showAll" class="ion-padding-horizontal">

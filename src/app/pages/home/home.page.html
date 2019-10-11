@@ -11,11 +11,13 @@
   <ion-refresher (ionRefresh)="initHome($event)" slot="fixed">
     <ion-refresher-content
     pullingText=""
-    refreshingText=""></ion-refresher-content>
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
   </ion-refresher>
 
   <div align="center" *ngIf="!isLoaded || !isLoaded2" class="ion-padding">
-    <ion-spinner></ion-spinner>
+    <ion-spinner name="dots"></ion-spinner>
   </div>
 
   <ion-card *ngIf="isLoaded2">

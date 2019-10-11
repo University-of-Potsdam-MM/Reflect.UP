@@ -36,7 +36,8 @@ export class SelectModulePage implements OnInit {
 
   async presentTOS() {
     const agreeTOS = await this.storage.get('agreeTOS');
-    if (!agreeTOS) {
+    const tosPreVersion7 = await this.storage.get('ToS');
+    if (!agreeTOS && !tosPreVersion7) {
       const buttons: AlertButton[] = [
         {
           text: this.translate.instant('buttonLabel.agree'),
