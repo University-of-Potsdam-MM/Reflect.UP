@@ -1820,7 +1820,16 @@
         }]
       },
       {
-          "category": "Beauftragte für Zwischenprüfung",
+        "category": "Koordination Examensklausurenkurs",
+        "content": [
+            {
+              "name": "Sebastian Kürten",
+              "mail": "sebastian.kuerten@uni-potsdam.de"
+            }
+        ]
+      },
+      {
+          "category": "Veranstaltungen zur Examensvorbereitung",
           "content": [
               {
                   "category": "",
