@@ -9,7 +9,6 @@ import { QuestionService } from 'src/app/services/question/question.service';
 import { Push } from '@ionic-native/push/ngx';
 import { IModuleConfig } from 'src/app/lib/config';
 import { QuestionConfig } from 'src/app/lib/question';
-import { AppComponent } from 'src/app/app.component';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { ConfigService } from 'src/app/services/config/config.service';
 import * as dLoop from 'delayed-loop';
@@ -48,7 +47,6 @@ export class HomePage {
     private platform: Platform,
     private menu: MenuController,
     private push: Push,
-    private app: AppComponent,
     private configService: ConfigService
   ) {
     this.menu.enable(true, 'sideMenu');
@@ -80,7 +78,8 @@ export class HomePage {
     }, 500);
   }
 
-  initHome(refresher?) {
+  async initHome(refresher?) {
+    if (refresher) { this.sessions = await this.storage.get('sessions'); }
     this.connection.checkOnline().subscribe(online => {
       if (online) {
 
@@ -91,8 +90,6 @@ export class HomePage {
 
         this.checkUpdatedCards(refresher);
         this.loadQuestions(refresher ? true : false);
-        this.app.initializeSession(true);
-        this.app.initializeMenu();
 
       } else {
         this.showAlert('statusMessage.error.network');

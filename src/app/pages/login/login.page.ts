@@ -138,6 +138,7 @@ export class LoginPage implements OnInit {
       });
       this.storage.set('sessions', loginSessions).finally(() => {
         this.app.initializeSession();
+        this.app.initializeMenu();
       });
       this.storage.remove('coursesToLogin');
       this.navCtrl.navigateRoot('/home');
