@@ -14,6 +14,8 @@ import { ISession } from './services/login-provider/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { PushService } from './services/push/push.service';
+import { IModuleConfig } from './lib/config';
+import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +44,7 @@ export class AppComponent {
     private menuCtrl: MenuController,
     private configService: ConfigService,
     private inAppBrowser: InAppBrowser,
+    private http: HttpClient,
     private safariOrChrome: SafariViewController
   ) {
     this.initializeApp();
@@ -67,13 +70,20 @@ export class AppComponent {
     });
   }
 
-  async initializeSession() {
+  async initializeSession(externalCall?) {
     this.refreshingSessions = true;
     this.courseSessions = undefined;
     this.courseSessions = await this.storage.get('sessions');
 
-    if (this.courseSessions && this.platform.is('cordova')) {
-      this.pushService.registerPushService();
+    if (this.courseSessions && !externalCall) {
+      if (this.platform.is('cordova')) {
+        this.pushService.registerPushService();
+      }
+
+      for (let i = 0; i < this.courseSessions.length; i++) {
+        const config: IModuleConfig = this.configService.getConfigById(this.courseSessions[i].courseID);
+        this.enrollSelf(config, this.courseSessions[i].token);
+      }
     }
 
     // const sessionPreVersion7 = await this.storage.get('session');
@@ -116,6 +126,24 @@ export class AppComponent {
     // }
 
     this.refreshingSessions = false;
+  }
+
+  enrollSelf(config: IModuleConfig, token) {
+    const moodleAccessPoint = config.moodleServiceEndpoint;
+    const accessToken = config.authorization.credentials.authHeader.accessToken;
+    const courseID = config.courseID;
+    const wstoken = token;
+
+    const params: HttpParams = new HttpParams()
+      .append('wstoken', wstoken)
+      .append('wsfunction', 'local_reflect_enrol_self')
+      .append('moodlewsrestformat', 'json')
+      .append('courseID', courseID);
+
+    const headers: HttpHeaders = new HttpHeaders()
+      .append('Authorization', accessToken);
+
+    this.http.get(moodleAccessPoint, {headers: headers, params: params}).subscribe(() => { });
   }
 
   async initializeTranslate() {

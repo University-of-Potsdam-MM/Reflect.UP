@@ -68,12 +68,12 @@ export class LogoutPage implements OnInit {
           return 0;
         });
         this.storage.set('sessions', newSessionObject).finally(() => {
-          this.app.initializeSession();
+          this.app.initializeSession(true);
           this.navCtrl.navigateRoot('/home');
         });
       } else {
         this.storage.remove('sessions').finally(() => {
-          this.app.initializeSession();
+          this.app.initializeSession(true);
           this.navCtrl.navigateRoot('/select-module');
         });
       }

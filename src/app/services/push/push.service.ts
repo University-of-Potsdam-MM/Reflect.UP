@@ -43,6 +43,8 @@ export class PushService {
 
   subscribeToPush(registrationID, config: IModuleConfig, fin?) {
 
+    console.log('subscribing to push service for ' + config.courseID);
+
     // subscribe to the AirNotifier push service
     const url_subscribe = config.pushDetails.uniqushUrl.concat('tokens/');
     // console.log("registering push via " + url_subscribe);

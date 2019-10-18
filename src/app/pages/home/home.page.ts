@@ -6,7 +6,6 @@ import { EventService } from 'src/app/services/event/event.service';
 import { ConnectionService } from 'src/app/services/connection/connection.service';
 import { TranslateService } from '@ngx-translate/core';
 import { QuestionService } from 'src/app/services/question/question.service';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Push } from '@ionic-native/push/ngx';
 import { IModuleConfig } from 'src/app/lib/config';
 import { QuestionConfig } from 'src/app/lib/question';
@@ -48,7 +47,6 @@ export class HomePage {
     private questions: QuestionService,
     private platform: Platform,
     private menu: MenuController,
-    private http: HttpClient,
     private push: Push,
     private app: AppComponent,
     private configService: ConfigService
@@ -60,12 +58,13 @@ export class HomePage {
     this.sessions = await this.storage.get('sessions');
     if (!this.sessions) {
       this.navCtrl.navigateRoot('/select-module');
-    }
+    } else {
+      this.initHome();
 
-    this.initHome();
-    if (this.platform.is('cordova')) {
-      this.checkForAppUpdate();
-      this.checkPushPermission();
+      if (this.platform.is('cordova')) {
+        this.checkForAppUpdate();
+        this.checkPushPermission();
+      }
     }
   }
 
@@ -90,45 +89,15 @@ export class HomePage {
           this.isLoaded2 = false;
         } else { this.isRefreshing = true; }
 
-        const loop = dLoop(this.sessions, (itm, idx, fin) => {
-          const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
-
-          if (online) {
-            this.enrollSelf(config, itm.token);
-          }
-
-          fin();
-        });
-
-        loop.then(() => {
-          this.checkUpdatedCards(refresher);
-          this.loadQuestions(refresher ? true : false);
-          this.app.initializeSession();
-          this.app.initializeMenu();
-        });
+        this.checkUpdatedCards(refresher);
+        this.loadQuestions(refresher ? true : false);
+        this.app.initializeSession(true);
+        this.app.initializeMenu();
 
       } else {
         this.showAlert('statusMessage.error.network');
       }
     });
-  }
-
-  enrollSelf(config: IModuleConfig, token) {
-    const moodleAccessPoint = config.moodleServiceEndpoint;
-    const accessToken = config.authorization.credentials.authHeader.accessToken;
-    const courseID = config.courseID;
-    const wstoken = token;
-
-    const params: HttpParams = new HttpParams()
-      .append('wstoken', wstoken)
-      .append('wsfunction', 'local_reflect_enrol_self')
-      .append('moodlewsrestformat', 'json')
-      .append('courseID', courseID);
-
-    const headers: HttpHeaders = new HttpHeaders()
-      .append('Authorization', accessToken);
-
-    this.http.get(moodleAccessPoint, {headers: headers, params: params}).subscribe(() => { });
   }
 
   async checkUpdatedCards(refresher?) {
@@ -318,7 +287,7 @@ export class HomePage {
           {
             text: this.translate.instant('buttonLabel.ok'),
             handler: () => {
-              this.storage.set('appUpdateAvailable', false);
+              this.storage.remove('appUpdateAvailable');
             }
           }
         ],
