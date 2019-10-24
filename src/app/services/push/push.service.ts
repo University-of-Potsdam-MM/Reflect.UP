@@ -146,6 +146,8 @@ export class PushService {
       if (data.title && data.title !== '') { title = data.title; }
 
       // only schedule an alert when notification is received while app in foreground
+      console.log('Received notification! Data below: ');
+      console.log(data);
       if (data.additionalData.foreground) {
         const alert = await this.alertCtrl.create({
           header: title,
@@ -186,10 +188,14 @@ export class PushService {
         this.global_registrationID = data.registrationId;
 
         const sessions: ISession[] = await this.storage.get('sessions');
-        dLoop(sessions, (itm: ISession, idx, fin) => {
-          const config = this.configService.getConfigById(itm.courseID);
-          this.subscribeToPush(data.registrationId, config, fin);
-        });
+        if (sessions) {
+          dLoop(sessions, (itm: ISession, idx, fin) => {
+            const config = this.configService.getConfigById(itm.courseID);
+            this.subscribeToPush(data.registrationId, config, fin);
+          });
+        } else {
+          console.log('User is not logged in; cant subscribe to push notifications.');
+        }
       }
     }, error => {
       console.log('push error on registration');

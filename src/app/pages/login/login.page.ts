@@ -138,6 +138,8 @@ export class LoginPage implements OnInit {
       });
       this.storage.set('sessions', loginSessions).finally(() => {
         this.app.initializeSession();
+        this.app.startPushRegistration();
+        this.app.enrollMoodleCourses();
         this.app.initializeMenu();
       });
       this.storage.remove('coursesToLogin');

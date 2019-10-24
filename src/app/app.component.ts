@@ -16,6 +16,7 @@ import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { PushService } from './services/push/push.service';
 import { IModuleConfig } from './lib/config';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
+import { HomePage } from './pages/home/home.page';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +46,8 @@ export class AppComponent {
     private configService: ConfigService,
     private inAppBrowser: InAppBrowser,
     private http: HttpClient,
-    private safariOrChrome: SafariViewController
+    private safariOrChrome: SafariViewController,
+    private home: HomePage
   ) {
     this.initializeApp();
   }
@@ -64,66 +66,92 @@ export class AppComponent {
       this.initializeSession();
       this.initializeMenu();
       this.initializeTranslate();
+      this.enrollMoodleCourses();
+
+      if (this.platform.is('cordova')) {
+        this.startPushRegistration();
+      }
 
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
     });
   }
 
-  async initializeSession(externalCall?) {
-    this.refreshingSessions = true;
-    this.courseSessions = undefined;
+  async startPushRegistration() {
+    if (this.platform.is('cordova')) {
+      this.pushService.registerPushService();
+    }
+  }
+
+  async enrollMoodleCourses() {
     this.courseSessions = await this.storage.get('sessions');
 
-    if (this.courseSessions && !externalCall) {
-      if (this.platform.is('cordova')) {
-        this.pushService.registerPushService();
-      }
-
+    if (this.courseSessions) {
       for (let i = 0; i < this.courseSessions.length; i++) {
         const config: IModuleConfig = this.configService.getConfigById(this.courseSessions[i].courseID);
         this.enrollSelf(config, this.courseSessions[i].token);
       }
     }
+  }
 
-    // const sessionPreVersion7 = await this.storage.get('session');
-    // console.log('Old Session: ');
-    // console.log(sessionPreVersion7);
+  async initializeSession() {
+    this.refreshingSessions = true;
+    this.courseSessions = undefined;
+    this.courseSessions = await this.storage.get('sessions');
 
-    // const configPreVersion7 = await this.storage.get('config');
-    // console.log('Old Config: ');
-    // console.log(configPreVersion7);
+    if (!this.courseSessions) {
+      const sessionPreVersion7 = await this.storage.get('session');
+      if (sessionPreVersion7) {
+        console.log('Old Session: ');
+        console.log(sessionPreVersion7);
+      } else {
+        console.log('No old session found.');
+      }
 
-    // let courseStillAvailable;
-    // if (configPreVersion7) {
-    //   courseStillAvailable = this.configService.getConfigById(configPreVersion7.courseID);
-    //   console.log('Course Still Available: ');
-    //   console.log(courseStillAvailable);
-    // }
+      const configPreVersion7 = await this.storage.get('config');
+      if (configPreVersion7) {
+        console.log('Old Config: ');
+        console.log(configPreVersion7);
+      } else {
+        console.log('No old config found.');
+      }
 
-    // if (!sessionPreVersion7 || !configPreVersion7 || !courseStillAvailable) {
-    //   this.storage.remove('session');
-    //   this.storage.remove('config');
-    //   this.navCtrl.navigateRoot('/select-module');
-    // } else {
-    //   const newSessionArray: ISession[] = [];
+      let courseStillAvailable;
+      if (configPreVersion7) {
+        courseStillAvailable = this.configService.getConfigById(configPreVersion7.courseID);
+        if (courseStillAvailable) {
+          console.log('Course Still Available: ');
+          console.log(courseStillAvailable);
+        } else {
+          console.log('Old course is not available anymore.');
+        }
+      }
 
-    //   const newSession: ISession = {
-    //     token: sessionPreVersion7.token,
-    //     courseID: configPreVersion7.courseID,
-    //     courseName: configPreVersion7.title,
-    //     courseFac: configPreVersion7.faculty,
-    //     hexColor: '#FFB74D',
-    //     isHidden: false
-    //   };
+      if (!sessionPreVersion7 || !configPreVersion7 || !courseStillAvailable) {
+        this.storage.remove('session');
+        this.storage.remove('config');
+        this.navCtrl.navigateRoot('/select-module');
+      } else {
+        const newSessionArray: ISession[] = [];
 
-    //   newSessionArray.push(newSession);
-    //   this.sessions = newSessionArray;
-    //   this.storage.set('sessions', newSessionArray).then(() => {
-    //   });
-    //   this.storage.remove('session');
-    //   this.storage.remove('config');
-    // }
+        const newSession: ISession = {
+          token: sessionPreVersion7.token,
+          courseID: configPreVersion7.courseID,
+          courseName: configPreVersion7.title,
+          courseFac: configPreVersion7.faculty,
+          hexColor: '#FFB74D',
+          isHidden: false
+        };
+
+        newSessionArray.push(newSession);
+        this.courseSessions = newSessionArray;
+        this.storage.set('sessions', newSessionArray).then(() => {
+          this.initializeMenu();
+        });
+        this.storage.remove('session');
+        this.storage.remove('config');
+      }
+    }
 
     this.refreshingSessions = false;
   }
@@ -215,7 +243,9 @@ export class AppComponent {
       }
     }
 
-    this.storage.set('sessions', this.courseSessions);
+    this.storage.set('sessions', this.courseSessions).then(() => {
+      this.home.initHome();
+    });
   }
 
   getHexColor(moduleConfig) {
