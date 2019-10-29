@@ -112,7 +112,7 @@ export class PushService {
     if (this.platform.is('android')) {
       await this.push.createChannel({
         id: 'PushPluginChannel',
-        description: 'Channel for Reflect.UP',
+        description: 'Reflect.UP Push',
         importance: 5,
         visibility: 1
       }).then(() => {
