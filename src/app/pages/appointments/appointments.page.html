@@ -39,7 +39,9 @@
       [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
-      [isPushAllowed]="isPushAllowed" ></app-event>
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
   </div>
 
   <ion-list *ngIf="isLoaded && showAll">
@@ -58,7 +60,9 @@
       [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
-      [isPushAllowed]="isPushAllowed" ></app-event>
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
     </div>
     <ng-container *ngIf="showEventToday && !isEventToday">
       <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
@@ -78,7 +82,9 @@
       [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
-      [isPushAllowed]="isPushAllowed" ></app-event>
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
     </div>
     <ng-container *ngIf="showEventTomorrow && !isEventTomorrow">
       <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
@@ -98,7 +104,9 @@
       [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
-      [isPushAllowed]="isPushAllowed" ></app-event>
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
     </div>
     <ng-container *ngIf="showEventThisWeek && !isEventThisWeek">
       <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
@@ -118,7 +126,9 @@
       [hiddenEvent]="hiddenEvent[ev.id]"
       [scheduledEvent]="scheduledEvent[ev.id]"
       [index]="i"
-      [isPushAllowed]="isPushAllowed" ></app-event>
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
     </div>
     <ng-container *ngIf="showEventLater && !isEventLater">
       <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>

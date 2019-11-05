@@ -21,7 +21,6 @@ import { Push } from '@ionic-native/push/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
-import { HomePage } from './pages/home/home.page';
 
 export function initConfig(config: ConfigService) {
   return () => config.load('assets/config.json');
@@ -80,7 +79,6 @@ export function configureLogging(loggingService: LoggingService): () => void {
     Network,
     Push,
     HTTP,
-    HomePage,
     InAppBrowser,
     SafariViewController,
     LocalNotifications,

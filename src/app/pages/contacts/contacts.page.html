@@ -7,7 +7,15 @@
 </ion-header>
 
 <ion-content class="ion-padding-top">
-  <ion-list>
+  <ion-refresher (ionRefresh)="getContactDetails($event)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="isLoaded">
     <ng-container *ngFor="let module of selectedModules; let m = index">
       <ion-item-divider (click)="moduleExpanded[m] = !moduleExpanded[m]">
         <ion-label>{{ module.title }} ({{ module.faculty }})</ion-label>

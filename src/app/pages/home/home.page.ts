@@ -25,7 +25,6 @@ export class HomePage {
   eventList: EventObject[] = [];
   isLoaded;
   isLoaded2;
-  isRefreshing;
   openQuestions = false;
   hiddenCardsLastCheck: string[] = [];
   scheduledEventsLastCheck: string[] = [];
@@ -59,7 +58,7 @@ export class HomePage {
     } else {
       this.initHome();
 
-      if (this.platform.is('cordova')) {
+      if (this.platform.is('cordova') && (this.platform.is('ios') || this.platform.is('android'))) {
         this.checkForAppUpdate();
         this.checkPushPermission();
       }
@@ -86,7 +85,7 @@ export class HomePage {
         if (!refresher) {
           this.isLoaded = false;
           this.isLoaded2 = false;
-        } else { this.isRefreshing = true; }
+        }
 
         this.checkUpdatedCards(refresher);
         this.loadQuestions(refresher ? true : false);
@@ -104,26 +103,21 @@ export class HomePage {
     let newHiddenEvents = true;
     let newScheduledEvents = true;
 
-    if (hiddenArray !== null) {
+    if (hiddenArray && this.hiddenCardsLastCheck) {
       newHiddenEvents = (hiddenArray.length !== this.hiddenCardsLastCheck.length)
       || !(hiddenArray.every((value, index) => value === this.hiddenCardsLastCheck[index]));
     }
 
-    if (scheduledArray !== null) {
+    if (scheduledArray && this.scheduledEventsLastCheck) {
       newScheduledEvents = (scheduledArray.length !== this.scheduledEventsLastCheck.length)
       || !(scheduledArray.every((value, index) => value === this.scheduledEventsLastCheck[index]));
     }
 
-    if (newHiddenEvents || newScheduledEvents) {
-      if (refresher) {
-        this.loadAppointments(hiddenArray, scheduledArray, refresher);
-      } else {
-        this.loadAppointments(hiddenArray, scheduledArray);
-      }
-    } else {
-      if (refresher) { refresher.target.complete(); this.isRefreshing = false; }
-      this.isLoaded = true;
-    }
+    if (refresher) {
+      this.loadAppointments(hiddenArray, scheduledArray, refresher);
+    } else if (newHiddenEvents || newScheduledEvents) {
+      this.loadAppointments(hiddenArray, scheduledArray);
+    } else { this.isLoaded = true; }
   }
 
   loadAppointments(hiddenCardArray: string[], scheduledEventsArray: string[], refresher?) {
@@ -131,6 +125,9 @@ export class HomePage {
     if (scheduledEventsArray !== undefined) { this.scheduledEventsLastCheck = scheduledEventsArray; }
 
     const tmpEventArray = [];
+    this.eventList = [];
+    this.hiddenEvent = [];
+    this.scheduledEvent = [];
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
       if (!itm.isHidden) {
         const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
@@ -195,33 +192,30 @@ export class HomePage {
       }
 
       this.isLoaded = true;
-      if (refresher) { refresher.target.complete(); this.isRefreshing = false; }
+      if (refresher && refresher.target) { refresher.target.complete(); }
     });
   }
 
   async visibilityChanged(eventID) {
-    this.isRefreshing = true;
     const hiddenCardArray = await this.storage.get('hiddenCards');
     this.hiddenEvent[eventID] = true;
 
-    let i = 0;
     for (const event of this.eventList) {
 
       if (hiddenCardArray) {
         const foundID = hiddenCardArray.find(element => element === event.id.toString());
         if (foundID !== undefined) {
           this.hiddenEvent[event.id] = true;
-        } else { this.hiddenEvent[event.id] = false; }
-      }
-
-      if (!this.hiddenEvent[event.id]) {
-        if (i > 2) {
-          this.hiddenEvent[event.id] = true;
-        } else { i += 1; }
+        } else {
+          if (this.hiddenEvent[event.id] === true) {
+            this.hiddenEvent[event.id] = false;
+            break;
+          } else {
+            this.hiddenEvent[event.id] = false;
+          }
+        }
       }
     }
-
-    this.isRefreshing = false;
   }
 
   loadQuestions(forceReload) {

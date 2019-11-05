@@ -176,12 +176,17 @@ export class EventComponent implements OnInit, AfterViewInit {
           }
         }
       }
-      // save new hiddenCards-array to storage
-      this.storage.set('hiddenCards', tmpArray).then(data => {
-        if (this.isHomePage) {
+
+      if (tmpArray.length > 0) {
+        // save new hiddenCards-array to storage
+        this.storage.set('hiddenCards', tmpArray).then(() => {
           this.visibilityChanged.emit(this.event.id);
-        }
-      });
+        });
+      } else {
+        this.storage.remove('hiddenCards').then(() => {
+          this.visibilityChanged.emit(this.event.id);
+        });
+      }
     });
   }
 
@@ -197,8 +202,8 @@ export class EventComponent implements OnInit, AfterViewInit {
    * if description is shorter than 3 lines
    */
   getDescriptionHeight() {
-    const element = document.getElementsByClassName('divDescription') as HTMLCollectionOf<HTMLElement>;
-    const height = element[this.index].clientHeight;
+    const element = document.getElementsByClassName(this.index + '-divDescription') as HTMLCollectionOf<HTMLElement>;
+    const height = element[0].clientHeight;
     const btnDiv = document.getElementById(this.index.toString());
     if (height < 63) {
       btnDiv.setAttribute('style', 'display:none;');
@@ -320,11 +325,16 @@ export class EventComponent implements OnInit, AfterViewInit {
           tmpArray = [];
           tmpArray.push(notificationID.toString());
         }
-        this.storage.set('scheduledEvents', tmpArray).then(data => {
-          if (this.isHomePage) {
+
+        if (tmpArray.length > 0) {
+          this.storage.set('scheduledEvents', tmpArray).then(() => {
             this.notificationStatusChanged.emit();
-          }
-        });
+          });
+        } else {
+          this.storage.remove('scheduledEvents').then(() => {
+            this.notificationStatusChanged.emit();
+          });
+        }
       });
     }
   }
@@ -361,11 +371,16 @@ export class EventComponent implements OnInit, AfterViewInit {
           }
         }
       }
-      this.storage.set('scheduledEvents', tmpArray).then((data) => {
-        if (this.isHomePage) {
+
+      if (tmpArray.length > 0) {
+        this.storage.set('scheduledEvents', tmpArray).then(() => {
           this.notificationStatusChanged.emit();
-        }
-      });
+        });
+      } else {
+        this.storage.remove('scheduledEvents').then(() => {
+          this.notificationStatusChanged.emit();
+        });
+      }
     });
     this.isNotificationScheduled = false;
   }

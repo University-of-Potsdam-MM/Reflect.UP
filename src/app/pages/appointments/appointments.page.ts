@@ -76,14 +76,12 @@ export class AppointmentsPage implements OnInit {
     private configService: ConfigService
   ) { }
 
-  async ngOnInit() {
-    this.sessions = await this.storage.get('sessions');
-
+  ngOnInit() {
     if (this.translate.currentLang === 'en') {
       this.optionsBasic.monthPickerFormat = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     }
 
-    if (this.platform.is('cordova')) {
+    if (this.platform.is('cordova') && (this.platform.is('ios') || this.platform.is('android'))) {
       this.push.hasPermission().then((res: any) => {
         if (res.isEnabled) {
           this.isPushAllowed = true;
@@ -94,12 +92,17 @@ export class AppointmentsPage implements OnInit {
     this.initEvents();
   }
 
-  initEvents(refresher?, ionRefresh?) {
+  async initEvents(refresher?, ionRefresh?) {
+    this.sessions = await this.storage.get('sessions');
     this.connection.checkOnline().subscribe(online => {
       if (online || !ionRefresh) {
         if (!ionRefresh) { this.isLoaded = false; }
 
         const tmpEventArray = [];
+        this.eventList = [];
+        this.tmpEventList = [];
+        this.hiddenEvent = [];
+        this.scheduledEvent = [];
         const loop = dLoop(this.sessions, (itm, idx, fin) => {
           if (!itm.isHidden) {
             const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
@@ -243,6 +246,28 @@ export class AppointmentsPage implements OnInit {
     this.date = '';
     this.eventList = this.tmpEventList;
     if (this.eventList.length < 1) { this.noAppointments = true; }
+  }
+
+  visibilityChanged(eventID) {
+    if (!this.hiddenEvent[eventID]) {
+      this.hiddenEvent[eventID] = true;
+    } else { this.hiddenEvent[eventID] = false; }
+  }
+
+  async notificationStatusChanged() {
+    const scheduledArray = await this.storage.get('scheduledEvents');
+    let foundScheduled;
+    let notificationID;
+    this.scheduledEvent = [];
+
+    for (const event of this.eventList) {
+      // check if user has scheduled a notification for the event
+      notificationID = event.id * 10;
+      if (scheduledArray) { foundScheduled = scheduledArray.find(element => element === notificationID.toString()); }
+      if (foundScheduled !== undefined) {
+        this.scheduledEvent[event.id] = true;
+      } else { this.scheduledEvent[event.id] = false; }
+    }
   }
 
 }

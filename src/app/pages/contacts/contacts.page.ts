@@ -13,19 +13,30 @@ export class ContactsPage implements OnInit {
 
   selectedModules: IModuleConfig[] = [];
   moduleExpanded = [];
+  isLoaded = false;
 
   constructor(
     private configService: ConfigService,
     private storage: Storage
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getContactDetails();
+  }
+
+  async getContactDetails(refresher?) {
+    this.isLoaded = false;
     const sessions: ISession[] = await this.storage.get('sessions');
+    this.selectedModules = [];
+    this.moduleExpanded = [];
     for (let i = 0; i < sessions.length; i++) {
       if (!sessions[i].isHidden) {
         this.selectedModules.push(this.configService.getConfigById(sessions[i].courseID));
       }
     }
+
+    if (refresher && refresher.target) { refresher.target.complete(); }
+    this.isLoaded = true;
   }
 
 }

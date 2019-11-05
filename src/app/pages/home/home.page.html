@@ -40,15 +40,17 @@
     </ion-fab>
   </div> -->
 
-  <div *ngIf="isLoaded && !isRefreshing">
-    <app-event *ngFor="let ev of eventList; let i = index" [ngClass]="hiddenEvent[ev.id] ? 'hiddenCard' : '' "
-    [event]="ev"
-    [hiddenEvent]="hiddenEvent[ev.id]"
-    [scheduledEvent]="scheduledEvent[ev.id]"
-    [index]="i"
-    [isPushAllowed]="isPushAllowed"
-    (visibilityChanged)="visibilityChanged($event)"
-    (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+  <div *ngIf="isLoaded">
+    <ng-container *ngFor="let ev of eventList; let i = index">
+        <app-event *ngIf="!hiddenEvent[ev.id]" [ngClass]="hiddenEvent[ev.id] ? 'hiddenCard' : '' "
+        [event]="ev"
+        [hiddenEvent]="hiddenEvent[ev.id]"
+        [scheduledEvent]="scheduledEvent[ev.id]"
+        [index]="i"
+        [isPushAllowed]="isPushAllowed"
+        (visibilityChanged)="visibilityChanged($event)"
+        (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </ng-container>
   </div>
 </ion-content>
 

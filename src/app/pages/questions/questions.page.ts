@@ -20,6 +20,7 @@ export class QuestionsPage implements OnInit {
   sessions: ISession[];
 
   public isLoaded = false;
+  isForceRefreshing = false;
   public questionList = [];
   public completedQuestionList = [];
   public noQuestions = [];
@@ -38,14 +39,15 @@ export class QuestionsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.sessions = await this.storage.get('sessions');
     this.initQuestions(true);
   }
 
-  initQuestions(forceReload, refresher?) {
+  async initQuestions(forceReload, refresher?) {
+    this.moduleExpanded = [];
+    this.sessions = await this.storage.get('sessions');
     this.connection.checkOnline().subscribe(online => {
       if (online || !forceReload) {
-        if (!refresher) { this.isLoaded = false; }
+        if (!refresher) { this.isLoaded = false; } else { this.isForceRefreshing = true; }
 
         const outerLoop = dLoop([0, 1], (itm, idx, finAll) => {
           if (idx === 0) {
@@ -81,6 +83,7 @@ export class QuestionsPage implements OnInit {
 
         outerLoop.then(() => {
           if (refresher) { refresher.target.complete(); }
+          this.isForceRefreshing = false;
           this.isLoaded = true;
         });
       } else {

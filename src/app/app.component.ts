@@ -16,7 +16,6 @@ import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { PushService } from './services/push/push.service';
 import { IModuleConfig } from './lib/config';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
-import { HomePage } from './pages/home/home.page';
 
 @Component({
   selector: 'app-root',
@@ -46,8 +45,7 @@ export class AppComponent {
     private configService: ConfigService,
     private inAppBrowser: InAppBrowser,
     private http: HttpClient,
-    private safariOrChrome: SafariViewController,
-    private home: HomePage
+    private safariOrChrome: SafariViewController
   ) {
     this.initializeApp();
   }
@@ -72,13 +70,22 @@ export class AppComponent {
         this.startPushRegistration();
       }
 
+      this.oldVersionCompatibility();
+
       this.cache.setDefaultTTL(7200);
       this.cache.setOfflineInvalidate(false);
     });
   }
 
+  async oldVersionCompatibility() {
+    const hiddenCards = await this.storage.get('hiddenCards');
+    const scheduledEvents = await this.storage.get('scheduledEvents');
+    if (hiddenCards === ['-1']) { this.storage.remove('hiddenCards'); }
+    if (scheduledEvents === ['-1']) { this.storage.remove('scheduledEvents'); }
+  }
+
   async startPushRegistration() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is('cordova') && (this.platform.is('ios') || this.platform.is('android'))) {
       this.pushService.registerPushService();
     }
   }
@@ -243,9 +250,7 @@ export class AppComponent {
       }
     }
 
-    this.storage.set('sessions', this.courseSessions).then(() => {
-      this.home.initHome();
-    });
+    this.storage.set('sessions', this.courseSessions);
   }
 
   getHexColor(moduleConfig) {
