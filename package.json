@@ -54,7 +54,7 @@
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "phonegap-plugin-multidex": "^1.0.0",
-    "phonegap-plugin-push": "^2.3.0",
+    "phonegap-plugin-push": "git+https://github.com/lkstnr/phonegap-plugin-push.git",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.9.0",
@@ -98,9 +98,6 @@
       "cordova-sqlite-storage": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-network-information": {},
-      "phonegap-plugin-push": {
-        "SENDER_ID": "38438927043"
-      },
       "cordova-plugin-advanced-http": {},
       "cordova-plugin-local-notification": {},
       "cordova-plugin-safariviewcontroller": {},
@@ -115,6 +112,11 @@
         "ANDROID_SCHEME": " ",
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
+      },
+      "phonegap-plugin-push": {
+        "ANDROID_SUPPORT_V13_VERSION": "27.+",
+        "FCM_VERSION": "17.0.+",
+        "SENDER_ID": "38438927043"
       }
     },
     "platforms": [
