@@ -11,6 +11,7 @@ import { UPLoginProvider } from '../../providers/login-provider/login';
 import { ImpressumPage } from '../impressum/impressum';
 import { SettingsPage } from '../settings/settings';
 import { Observable } from 'rxjs/Observable';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
  * LoginPage
@@ -27,6 +28,7 @@ export class LoginPage {
   private configStorageKey = "config";
   private loading: Loading;
   public loginCredentials: ICredentials;
+  loginForm: FormGroup;
 
   constructor(
       private navCtrl:     NavController,
@@ -35,11 +37,16 @@ export class LoginPage {
       private storage:     Storage,
       private connection:  ConnectionProvider,
       private translate:   TranslateService,
+      private formBuilder: FormBuilder,
       private upLogin:     UPLoginProvider,
       private menu:        MenuController) {
 
     this.menu.enable(false,"sideMenu");
     this.resetCredentials();
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   /**
@@ -67,47 +74,47 @@ export class LoginPage {
     let session:Observable<ISession> = null;
 
     if (online) {
+      if (this.loginForm.valid) {
+        this.showLoading();
 
-      this.showLoading();
-
-      switch(method) {
-        case "credentials": {
-          session = this.upLogin.credentialsLogin(
-            this.loginCredentials,
-            config.authorization.credentials
-          );
-          break;
-        }
-        case "sso": {
-          session = this.upLogin.ssoLogin(
-            this.loginCredentials,
-            config.authorization.sso
-          );
-          break;
-        }
-      }
-
-      if (session) {
-        // now handle the Observable which hopefully contains a session
-        session.subscribe((session:ISession) => {
-          // console.log("[LoginPage]: Login successfully executed. Token:", session.token);
-          this.storage.set("session", session);
-          this.endLoading();
-          this.navCtrl.setRoot(HomePage, {fromSideMenu: true});
-        }, error => {
-          console.log(error);
-          this.endLoading();
-          if (error.reason == ELoginErrors.AUTHENTICATION) {
-            this.showAlert("statusMessage.error.loginCredentials");
-          } else {
-            this.showAlert("statusMessage.error.unknown");
+        switch(method) {
+          case "credentials": {
+            session = this.upLogin.credentialsLogin(
+              this.loginCredentials,
+              config.authorization.credentials
+            );
+            break;
           }
-        });
-      } else {
-        this.showAlert("statusMessage.error.unknown");
-        console.log("[LoginPage]: Somehow no session has been passed by login-provider");
+          case "sso": {
+            session = this.upLogin.ssoLogin(
+              this.loginCredentials,
+              config.authorization.sso
+            );
+            break;
+          }
+        }
+
+        if (session) {
+          // now handle the Observable which hopefully contains a session
+          session.subscribe((session:ISession) => {
+            // console.log("[LoginPage]: Login successfully executed. Token:", session.token);
+            this.storage.set("session", session);
+            this.endLoading();
+            this.navCtrl.setRoot(HomePage, {fromSideMenu: true});
+          }, error => {
+            console.log(error);
+            this.endLoading();
+            if (error.reason == ELoginErrors.AUTHENTICATION) {
+              this.showAlert("statusMessage.error.loginCredentials");
+            } else {
+              this.showAlert("statusMessage.error.unknown");
+            }
+          });
+        } else {
+          this.showAlert("statusMessage.error.unknown");
+          console.log("[LoginPage]: Somehow no session has been passed by login-provider");
+        }
       }
-      
     } else {
       // there is no network connection
       this.endLoading();
