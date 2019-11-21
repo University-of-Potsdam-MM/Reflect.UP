@@ -3,9 +3,9 @@
     <ion-card-header text-wrap>
       <h2><div [innerHTML]="processMoodleContents(event.name)" text-wrap></div></h2>
       <div class="date">
-        <p *ngIf="!isFullDayEvent" text-wrap>{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
-        <p  *ngIf="isFullDayEvent" text-wrap>{{ eventFullDay }}, {{ "label.appointmentsPage.fullDayEvent" | translate }}</p>
-      </div>  
+        <p *ngIf="!noEventDuration" text-wrap>{{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}</p>
+        <p  *ngIf="noEventDuration" text-wrap>{{ eventStart }} {{ "label.appointmentsPage.time" | translate }}</p>
+      </div>
     </ion-card-header>
 
     <ion-card-content>

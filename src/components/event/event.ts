@@ -19,7 +19,7 @@ export class EventComponent {
   // boolean flags
   hasAlreadyBegun;
   isCordovaApp;
-  isFullDayEvent;
+  noEventDuration;
   isHomePage;
   isNotificationScheduled;
   isVisible;
@@ -28,8 +28,7 @@ export class EventComponent {
   // formatted momentJS dates
   eventStart;
   eventEnd;
-  eventFullDay;
-  
+
   // Inputs passed from Page to Component
   @Input() private event: EventObject;
   @Input() private index: number;
@@ -53,7 +52,7 @@ export class EventComponent {
    * sets flags onInit and launches initEvent()
    */
   ngOnInit() {
-    if (this.navCtrl.getActive().component == HomePage) { 
+    if (this.navCtrl.getActive().component == HomePage) {
       this.isHomePage = true;
       this.showLongDescription = false;
     } else {
@@ -84,8 +83,8 @@ export class EventComponent {
 
   /**
    * initEvent
-   * 
-   * handles and formats eventStart, eventBegin, eventFullDay, hasAlreadyBegun
+   *
+   * handles and formats eventStart, eventBegin, hasAlreadyBegun
    */
   initEvent() {
     let language = this.translate.currentLang;
@@ -99,21 +98,20 @@ export class EventComponent {
     }
 
     if (this.eventStart == this.eventEnd) {
-      this.isFullDayEvent = true;
-      this.eventFullDay = moment(this.event.timestart * 1000).format('L');
-    } else { this.isFullDayEvent = false; }
+      this.noEventDuration = true;
+    } else { this.noEventDuration = false; }
 
     var currentTime = moment();
     if (currentTime.isAfter(moment(this.event.timestart * 1000))) {
       this.hasAlreadyBegun = true;
     } else { this.hasAlreadyBegun = false; }
-    
+
   }
 
   /**
-   * processes multi language tags from moodle and returns 
-   * string that matches app language 
-   * 
+   * processes multi language tags from moodle and returns
+   * string that matches app language
+   *
    * @param stringToAnalize - string that could containt multi-language tags
    */
   processMoodleContents(stringToAnalize:string) {
@@ -121,15 +119,15 @@ export class EventComponent {
       var domObj = $($.parseHTML(stringToAnalize));
       var result = stringToAnalize;
       let language = this.translate.currentLang;
-  
+
       if (domObj.length > 1) {
-  
+
           _.each(domObj, function(element) {
             if ($(element)[0].lang == language) {
               result = $(element).html();
             }
           });
-  
+
           // use englisch as a fallback
           if (result == stringToAnalize) {
             _.each(domObj, function(element) {
@@ -149,7 +147,7 @@ export class EventComponent {
   }
 
   /**
-   * changes card visibility and adds / removes 
+   * changes card visibility and adds / removes
    * card from hiddenCards-array that gets saved to the storage
    */
   toggleCardVisibility() {
@@ -210,7 +208,7 @@ export class EventComponent {
   getDescriptionClass() {
     if (!this.showLongDescription) {
       return "hideLongDescription";
-    } else { return "longDescription"; }  
+    } else { return "longDescription"; }
   }
 
   toggleLongDescription() {
@@ -304,7 +302,7 @@ export class EventComponent {
       this.isNotificationScheduled = true;
       this.saveScheduledEvent();
       this.isScheduledAlert();
-    
+
     } else {
       this.isCanceledAlert();
     }
@@ -330,7 +328,7 @@ export class EventComponent {
           if (this.isHomePage) {
             this.notificationStatusChanged.emit();
           }
-        });   
+        });
       });
     }
   }
@@ -344,7 +342,7 @@ export class EventComponent {
       var notificationMessage, okMessage;
       this.translate.get("statusMessage.notification.scheduled").subscribe((value) => { notificationMessage = value });
       this.translate.get("buttonLabel.ok").subscribe((value) => { okMessage = value });
-  
+
       let alert = this.alertCtrl.create({
         message: notificationMessage,
         buttons: [okMessage]
