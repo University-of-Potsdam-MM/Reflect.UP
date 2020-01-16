@@ -20,7 +20,7 @@ export class EventComponent implements OnInit, AfterViewInit {
   // boolean flags
   hasAlreadyBegun;
   isCordovaApp;
-  isFullDayEvent;
+  noEventDuration;
   isHomePage;
   isNotificationScheduled;
   isVisible;
@@ -29,7 +29,6 @@ export class EventComponent implements OnInit, AfterViewInit {
   // formatted momentJS dates
   eventStart;
   eventEnd;
-  eventFullDay;
 
   // Inputs passed from Page to Component
   @Input() public event: EventObject;
@@ -85,7 +84,7 @@ export class EventComponent implements OnInit, AfterViewInit {
   /**
    * initEvent
    *
-   * handles and formats eventStart, eventBegin, eventFullDay, hasAlreadyBegun
+   * handles and formats eventStart, eventBegin, hasAlreadyBegun
    */
   initEvent() {
     const language = this.translate.currentLang;
@@ -99,9 +98,8 @@ export class EventComponent implements OnInit, AfterViewInit {
     }
 
     if (this.eventStart === this.eventEnd) {
-      this.isFullDayEvent = true;
-      this.eventFullDay = moment(this.event.timestart * 1000).format('L');
-    } else { this.isFullDayEvent = false; }
+      this.noEventDuration = true;
+    } else { this.noEventDuration = false; }
 
     const currentTime = moment();
     if (currentTime.isAfter(moment(this.event.timestart * 1000))) {

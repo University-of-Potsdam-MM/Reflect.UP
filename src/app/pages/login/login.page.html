@@ -21,6 +21,7 @@
                 [placeholder]="'label.loginPage.username' | translate"
                 name="id"
                 [(ngModel)]="loginCredentials.username"
+                [formControl]="loginForm.controls['username']"
                 required
               ></ion-input>
             </ion-item>
@@ -32,6 +33,7 @@
                 [placeholder]="'label.loginPage.password' | translate"
                 name="password"
                 [(ngModel)]="loginCredentials.password"
+                [formControl]="loginForm.controls['password']"
                 required
               ></ion-input>
             </ion-item>
@@ -45,7 +47,7 @@
           <ion-button class="loginButtons" type="reset" (click)="abortLogin()">
             {{ "buttonLabel.cancel" | translate }}
           </ion-button>
-          <ion-button class="loginButtons" type="submit">
+          <ion-button class="loginButtons" [disabled]="!loginForm.valid" type="submit">
             {{ "buttonLabel.login" | translate }}
           </ion-button>
       </ion-row>

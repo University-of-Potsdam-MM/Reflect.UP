@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UPLoginProvider } from 'src/app/services/login-provider/login';
 import * as dLoop from 'delayed-loop';
 import { AppComponent } from 'src/app/app.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
 
   loginCredentials: ICredentials;
   coursesToLogin: IModuleConfig[];
+  loginForm: FormGroup;
 
   hexValues = [
     // tslint:disable-next-line: max-line-length
@@ -36,9 +38,14 @@ export class LoginPage implements OnInit {
     private translate: TranslateService,
     private platform: Platform,
     private UPLogin: UPLoginProvider,
-    private app: AppComponent
+    private app: AppComponent,
+    private formBuilder: FormBuilder
   ) {
     this.loginCredentials = {username: '', password: ''};
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -62,7 +69,7 @@ export class LoginPage implements OnInit {
       const online = true;
       let sessionObs: Observable<ISession>;
 
-      if (online) {
+      if (online && this.loginForm.valid) {
         this.coursesToLogin[idx]['isLoading'] = true;
 
         switch (method) {

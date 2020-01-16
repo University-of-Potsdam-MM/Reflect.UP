@@ -1835,6 +1835,100 @@
   {
     "id": 6,
     "appVersion": "7.0.0",
+    "courseID": "UPR-1920-Abrom",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "sso",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle2.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle2.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service":"reflect",
+            "passport":"1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "06c1fd9e3094c5426deec6b6e5f1be86",
+      "authHeader": {
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+      }
+    },
+    "title": "AG zur ÜF - ÖR",
+    "faculty": "Jura-Fak",
+    "type": "course",
+    "institution": "Universität Potsdam",
+    "description": "Lehrveranstaltung",
+    "uniLogo": "logo_jurist.svg",
+    "contactPersonsObject": []
+  },
+  {
+    "id": 7,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-Luetz",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "sso",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle2.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle2.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service":"reflect",
+            "passport":"1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "80862f8eb793a09eb52c8d544d5314ee",
+      "authHeader": {
+        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+      }
+    },
+    "title": "AG zur ÜF - StrR",
+    "faculty": "Jura-Fak",
+    "type": "course",
+    "institution": "Universität Potsdam",
+    "description": "Lehrveranstaltung",
+    "uniLogo": "logo_jurist.svg",
+    "contactPersonsObject": []
+  },
+  {
+    "id": 8,
+    "appVersion": "7.0.0",
     "courseID": "UPR-1819-T",
     "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
     "authorization": {
