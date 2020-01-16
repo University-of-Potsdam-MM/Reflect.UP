@@ -43,7 +43,7 @@ export class LoginPage extends AbstractPage implements OnInit {
     private formBuilder: FormBuilder
   ) {
     super();
-    this.loginCredentials = {username: '', password: ''};
+    this.loginCredentials = { username: '', password: '' };
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -73,6 +73,11 @@ export class LoginPage extends AbstractPage implements OnInit {
 
       if (online && this.loginForm.valid) {
         this.coursesToLogin[idx]['isLoading'] = true;
+
+        this.loginCredentials = {
+          username: this.loginForm.controls['username'].value,
+          password: this.loginForm.controls['password'].value
+        };
 
         switch (method) {
           case 'credentials': {

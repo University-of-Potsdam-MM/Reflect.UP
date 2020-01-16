@@ -71,6 +71,7 @@ export class PushMessagesPage extends AbstractPage implements OnInit {
 
     this.http.get(endpoint, { headers: headers, params: params }).subscribe((response: MessagesResponse) => {
       if (response.messages) {
+        this.logger.debug('getPushMessages()', 'received push messages', response);
 
         for (let i = 0; i < response.messages.length; i++) {
           response.messages[i].timestamp = moment.unix(response.messages[i].timestamp).format('LLL');

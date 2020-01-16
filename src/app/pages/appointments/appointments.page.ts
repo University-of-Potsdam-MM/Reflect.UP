@@ -87,8 +87,12 @@ export class AppointmentsPage extends AbstractPage implements OnInit {
     if (this.platform.is('cordova') && (this.platform.is('ios') || this.platform.is('android'))) {
       this.push.hasPermission().then((res: any) => {
         if (res.isEnabled) {
+          this.logger.debug('ngOnInit()', 'push is allowed');
           this.isPushAllowed = true;
-        } else { this.isPushAllowed = false; }
+        } else {
+          this.isPushAllowed = false;
+          this.logger.debug('ngOnInit()', 'push is forbidden');
+        }
       });
     }
 
@@ -111,6 +115,7 @@ export class AppointmentsPage extends AbstractPage implements OnInit {
             const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
 
             this.appointm.getAppointments(config, itm.token, ionRefresh).subscribe(async (appointConfig: AppointConfig) => {
+              this.logger.debug('initEvents()', 'successfully fetched appointments', appointConfig);
               if (appointConfig && appointConfig.events) {
                 const hiddenArray = await this.storage.get('hiddenCards');
                 const scheduledArray = await this.storage.get('scheduledEvents');

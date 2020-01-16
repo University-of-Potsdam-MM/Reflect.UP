@@ -28,7 +28,8 @@
         "yes": "Ja",
         "faculties": "Fakultäten",
         "modules": "Kurse",
-        "selectCourse": "Kurs auswählen"
+        "selectCourse": "Kurs auswählen",
+        "exportLog": "Log exportieren"
     },
     "label": {
         "appointmentsPage": {

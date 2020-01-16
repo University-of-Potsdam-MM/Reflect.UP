@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
-import { Platform, IonRouterOutlet, NavController, MenuController } from '@ionic/angular';
+import { Platform, IonRouterOutlet, NavController, MenuController, ModalController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CacheService } from 'ionic-cache';
@@ -47,6 +47,8 @@ export class AppComponent {
     private configService: ConfigService,
     private inAppBrowser: InAppBrowser,
     private http: HttpClient,
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController,
     private safariOrChrome: SafariViewController,
     private loggingService: LoggingService
   ) {
@@ -154,8 +156,9 @@ export class AppComponent {
 
         newSessionArray.push(newSession);
         this.courseSessions = newSessionArray;
-        this.storage.set('sessions', newSessionArray).then(() => {
+        this.storage.set('sessions', newSessionArray).then((response) => {
           this.initializeMenu();
+          this.logger.debug('initializeSessions()', 'sucessfully set session array', response);
         });
         this.storage.remove('session');
         this.storage.remove('config');
@@ -180,7 +183,11 @@ export class AppComponent {
     const headers: HttpHeaders = new HttpHeaders()
       .append('Authorization', accessToken);
 
-    this.http.get(moodleAccessPoint, {headers: headers, params: params}).subscribe(() => { });
+    this.http.get(moodleAccessPoint, {headers: headers, params: params}).subscribe((response) => {
+      this.logger.debug('enrollSelf()', 'successfully enrolled in course ' + config.courseID, response);
+    }, error => {
+      this.logger.error('enrollSelf()', 'error while enrolling in course ' + config.courseID, error);
+    });
   }
 
   async initializeTranslate() {
@@ -195,6 +202,8 @@ export class AppComponent {
       this.storage.set('appLanguage', 'de');
       moment.locale('de');
     }
+
+    this.logger.debug('initializeTranslate()', 'language is set to ' + this.translate.currentLang);
   }
 
   async initializeMenu() {
@@ -266,14 +275,32 @@ export class AppComponent {
   listenToBackButton() {
     // workaround for #694
     // https://forum.ionicframework.com/t/hardware-back-button-with-ionic-4/137905/56
-    this.platform.backButton.subscribe(async() => {
-      this.routerOutlets.forEach(() => {
-        if (this.router.url === '/home') {
-          navigator['app'].exitApp();
+    this.platform.backButton.subscribeWithPriority(1, async() => {
+      const openMenu = await this.menuCtrl.getOpen();
+
+      if (openMenu) {
+        this.menuCtrl.close();
+      } else {
+        const openModal = await this.modalCtrl.getTop();
+
+        if (openModal) {
+          this.modalCtrl.dismiss();
         } else {
-          window.history.back();
+          const openAlert = await this.alertCtrl.getTop();
+
+          if (openAlert) {
+            this.alertCtrl.dismiss();
+          } else {
+            this.routerOutlets.forEach((outlet: IonRouterOutlet) => {
+              if (this.router.url === '/home') {
+                navigator['app'].exitApp();
+              } else if (outlet && outlet.canGoBack()) {
+                outlet.pop();
+              }
+            });
+          }
         }
-      });
+      }
     });
   }
 

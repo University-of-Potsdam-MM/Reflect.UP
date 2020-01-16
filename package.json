@@ -21,6 +21,9 @@
     "@angular/platform-browser-dynamic": "^7.2.16",
     "@angular/router": "^7.2.16",
     "@ionic-native/core": "^5.19.1",
+    "@ionic-native/device": "^5.19.1",
+    "@ionic-native/email-composer": "^5.19.1",
+    "@ionic-native/file": "^5.19.1",
     "@ionic-native/http": "^5.19.1",
     "@ionic-native/in-app-browser": "^5.19.1",
     "@ionic-native/local-notifications": "^5.19.1",
@@ -39,6 +42,7 @@
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-email-composer": "^0.9.2",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
@@ -117,7 +121,9 @@
         "ANDROID_SUPPORT_V13_VERSION": "27.+",
         "FCM_VERSION": "17.0.+",
         "SENDER_ID": "38438927043"
-      }
+      },
+      "cordova-plugin-email-composer": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "ios",

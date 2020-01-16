@@ -34,6 +34,7 @@ export abstract class AbstractPage  {
     protected constructor() {
 
       const injector: Injector = StaticInjectorService.getInjector();
+      this.router = injector.get<Router>(Router as Type<Router>);
       this.loggingService = injector.get<LoggingService>(LoggingService as Type<LoggingService>);
       this.logger = this.loggingService.getLogger('[' + this.router.url + ']');
 

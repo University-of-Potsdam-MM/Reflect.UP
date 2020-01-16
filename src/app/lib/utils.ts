@@ -1,5 +1,8 @@
 import * as $ from 'jquery';
 import * as _ from 'underscore';
+import { Injector, Type } from '@angular/core';
+import { StaticInjectorService } from '../pages/abstract-page';
+import { TranslateService } from '@ngx-translate/core';
 
 export module utils {
 
@@ -35,7 +38,10 @@ export module utils {
 
           const domObj = $($.parseHTML(stringToAnalize));
           let result = stringToAnalize;
-          const language = this.translate.currentLang;
+
+          const injector: Injector = StaticInjectorService.getInjector();
+          const translate = injector.get<TranslateService>(TranslateService as Type<TranslateService>);
+          const language = translate.currentLang;
 
           if (domObj.length > 1) {
 

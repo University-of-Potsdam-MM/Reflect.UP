@@ -79,7 +79,7 @@ export class FeedbackPage extends AbstractPage implements OnInit {
               if (response.result) {
                 // success, set submitted to true to switch templates
                 this.submitted = true;
-                this.logger.debug('asyncSendFeedback', 'feedback submitted');
+                this.logger.debug('asyncSendFeedback', 'feedback submitted', response);
               } else {
                 // probably authentication error
                 this.showAlert('statusMessage.error.unknown');

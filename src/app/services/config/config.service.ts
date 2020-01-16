@@ -33,23 +33,29 @@ export class ConfigService implements OnInit {
     return new Promise<void>((resolve, reject) => {
       this.http.get(config_url).toPromise().then(
         (serverConfig: IModuleConfig[]) => {
+          this.logger.debug('load()', 'successfully fetched remote config', serverConfig);
 
           this.http.get(uri).subscribe((localConfig: IModuleConfig[]) => {
+            this.logger.debug('load()', 'successfully loaded local config', localConfig);
             if (serverConfig[0].appVersion >= localConfig[0].appVersion) {
               ConfigService.configs = serverConfig;
 
               if (serverConfig[0].appVersion > localConfig[0].appVersion) {
                 this.storage.set('appUpdateAvailable', true);
+                this.logger.debug('load()', 'server has a newer app version -- update available');
               }
             } else { ConfigService.configs = localConfig; }
             resolve();
-          }, () => {
+          }, (error) => {
             ConfigService.configs = serverConfig;
+            this.logger.error('load()', 'error while loading local config', error);
             resolve();
           });
         }
-      ).catch(() => {
+      ).catch((errorServer) => {
+        this.logger.error('load()', 'error while fetching remote config', errorServer);
         this.http.get(uri).subscribe((localConfig: IModuleConfig[]) => {
+          this.logger.debug('load()', 'successfully loaded local config', localConfig);
           ConfigService.configs = localConfig;
           resolve();
         }, error => {

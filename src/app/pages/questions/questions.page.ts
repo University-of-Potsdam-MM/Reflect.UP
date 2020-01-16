@@ -98,6 +98,7 @@ export class QuestionsPage extends AbstractPage implements OnInit {
 
   loadQuestions(config: IModuleConfig, token: string, forceReload, idx, fin) {
     this.questions.getQuestions(config, token, forceReload).subscribe((questionJson: QuestionConfig) => {
+      this.logger.debug('loadQuestions()', 'successfully fetched questions', questionJson);
       if (questionJson.feedbacks) {
         this.questionList[idx] = questionJson.feedbacks;
         if (this.questionList[idx].length < 1) { this.noQuestions[idx] = true; }
@@ -116,6 +117,7 @@ export class QuestionsPage extends AbstractPage implements OnInit {
 
   loadAnsweredQuestions(config: IModuleConfig, token: string, forceReload, idx, fin) {
     this.questions.getAnsweredQuestions(config, token, forceReload).subscribe((questionJson: QuestionConfig) => {
+      this.logger.debug('loadAnsweredQuestions()', 'successfully fetched completed questions', questionJson);
       if (questionJson.feedbacks) {
         this.completedQuestionList[idx] = questionJson.feedbacks;
         if (this.completedQuestionList[idx].length < 1) { this.noCompletedQuestions[idx] = true; }

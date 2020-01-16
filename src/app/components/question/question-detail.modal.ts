@@ -362,7 +362,11 @@ export class QuestionDetailModalPage implements OnInit {
       resultArray,
       this.configService.getConfigById(this.session.courseID),
       this.session.token
-    );
+    ).then(response => {
+      this.logger.debug('sendAnswers()', 'successfully send answers', response);
+    }).catch(error => {
+      this.logger.error('sendAnswers()', 'error while sending answers', error);
+    });
   }
 
   isAnswerSelected(i) {

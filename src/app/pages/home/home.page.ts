@@ -134,6 +134,7 @@ export class HomePage extends AbstractPage {
       if (!itm.isHidden) {
         const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
         this.appointm.getAppointments(config, itm.token, refresher ? true : false).subscribe((appointConf: AppointConfig) => {
+          this.logger.debug('loadAppointments()', 'successfully fetched appointments', appointConf);
           if (appointConf.events) {
             for (const event of appointConf.events) {
               if (event.modulename !== 'feedback') {
@@ -226,6 +227,7 @@ export class HomePage extends AbstractPage {
         if (!this.openQuestions) {
           const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
           this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
+            this.logger.debug('loadQuestions()', 'successfully fetched questions', questionJSON);
             if (questionJSON && questionJSON.feedbacks) {
               if (questionJSON.feedbacks.length > 0) {
                 this.openQuestions = true;

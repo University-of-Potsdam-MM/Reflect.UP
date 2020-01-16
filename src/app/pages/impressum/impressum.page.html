@@ -23,5 +23,12 @@
       <ion-label>{{ "pageHeader.privacyPolicyPage" | translate }}</ion-label>
     </ion-item>
     <ion-item (click)="openPage('TermsOfUsePage')" detail>{{ "pageHeader.termsOfUsePage" | translate }}</ion-item>
+    <ion-item-divider color="light"><ion-label>Log</ion-label></ion-item-divider>
+      <ion-item (click)="exportLog()">
+        <ion-icon color="primary" name="bug" slot="start"></ion-icon>
+        <ion-label>
+          {{ "buttonLabel.exportLog" | translate }}
+        </ion-label>
+      </ion-item>
   </ion-list>
 </ion-content>
