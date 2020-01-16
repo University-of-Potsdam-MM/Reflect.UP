@@ -6,13 +6,14 @@ import { AlertButton } from '@ionic/core';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { NavController, PopoverController } from '@ionic/angular';
 import { PopoverPage } from '../popover/popover.page';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-select-module',
   templateUrl: './select-module.page.html',
   styleUrls: ['./select-module.page.scss'],
 })
-export class SelectModulePage implements OnInit {
+export class SelectModulePage extends AbstractPage implements OnInit {
 
   activeSegment = 'faculty';
   searchTerm = '';
@@ -27,7 +28,9 @@ export class SelectModulePage implements OnInit {
     private alert: AlertService,
     private navCtrl: NavController,
     private popoverCtrl: PopoverController
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.presentTOS();

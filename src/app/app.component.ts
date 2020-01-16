@@ -16,6 +16,7 @@ import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { PushService } from './services/push/push.service';
 import { IModuleConfig } from './lib/config';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
+import { Logger, LoggingService } from 'ionic-logging-service';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ export class AppComponent {
   menuSetup = false;
   courseSessions: ISession[];
   refreshingSessions;
+  logger: Logger;
 
   constructor(
     private platform: Platform,
@@ -45,13 +47,16 @@ export class AppComponent {
     private configService: ConfigService,
     private inAppBrowser: InAppBrowser,
     private http: HttpClient,
-    private safariOrChrome: SafariViewController
+    private safariOrChrome: SafariViewController,
+    private loggingService: LoggingService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.logger = this.loggingService.getLogger('[/app-component]');
+
       if (this.platform.is('cordova')) {
         if (this.platform.is('android')) {
           this.listenToBackButton();
@@ -109,28 +114,25 @@ export class AppComponent {
     if (!this.courseSessions) {
       const sessionPreVersion7 = await this.storage.get('session');
       if (sessionPreVersion7) {
-        console.log('Old Session: ');
-        console.log(sessionPreVersion7);
+        this.logger.debug('initiliazeSession()', 'old session: ', sessionPreVersion7);
       } else {
-        console.log('No old session found.');
+        this.logger.debug('initiliazeSession()', 'no old session found');
       }
 
       const configPreVersion7 = await this.storage.get('config');
       if (configPreVersion7) {
-        console.log('Old Config: ');
-        console.log(configPreVersion7);
+        this.logger.debug('initiliazeSession()', 'old config: ', configPreVersion7);
       } else {
-        console.log('No old config found.');
+        this.logger.debug('initiliazeSession()', 'no old config found');
       }
 
       let courseStillAvailable;
       if (configPreVersion7) {
         courseStillAvailable = this.configService.getConfigById(configPreVersion7.courseID);
         if (courseStillAvailable) {
-          console.log('Course Still Available: ');
-          console.log(courseStillAvailable);
+          this.logger.debug('initiliazeSession()', 'course still available: ', courseStillAvailable);
         } else {
-          console.log('Old course is not available anymore.');
+          this.logger.debug('initiliazeSession()', 'old course is not available anymore');
         }
       }
 
@@ -309,8 +311,8 @@ export class AppComponent {
     this.safariOrChrome.show({
       url: url
     }).subscribe(
-      result => { console.log('openWithSafariOrChrome', result); },
-      error => { console.log('openWithSafariOrChrome', error); }
+      result => { this.logger.debug('openWithSafariOrChrome', result); },
+      error => { this.logger.error('openWithSafariOrChrome', error); }
     );
   }
 }

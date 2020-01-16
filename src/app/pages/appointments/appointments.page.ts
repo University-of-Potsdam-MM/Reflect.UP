@@ -12,13 +12,14 @@ import { IModuleConfig } from 'src/app/lib/config';
 import * as dLoop from 'delayed-loop';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.page.html',
   styleUrls: ['./appointments.page.scss'],
 })
-export class AppointmentsPage implements OnInit {
+export class AppointmentsPage extends AbstractPage implements OnInit {
 
   // boolean flags
   isLoaded;
@@ -74,7 +75,9 @@ export class AppointmentsPage implements OnInit {
     private push: Push,
     private platform: Platform,
     private configService: ConfigService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     if (this.translate.currentLang === 'en') {
@@ -153,7 +156,7 @@ export class AppointmentsPage implements OnInit {
 
               fin();
             }, error => {
-              console.log(error);
+              this.logger.error('initEvents()', 'error fetching appointments', error);
               fin();
             });
           } else { fin(); }

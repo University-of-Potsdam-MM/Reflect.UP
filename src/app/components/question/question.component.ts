@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedbackObject } from 'src/app/lib/question';
-import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
-import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { QuestionDetailModalPage } from './question-detail.modal';
 import { ISession } from 'src/app/services/login-provider/interfaces';
+import { utils } from 'src/app/lib/utils';
 
 @Component({
   selector: 'app-question',
@@ -18,9 +17,9 @@ export class QuestionComponent implements OnInit {
   @Input() session: ISession;
   isCompleted = false;
   modalOpen = true;
+  utils;
 
   constructor(
-    private translate: TranslateService,
     private modalCtrl: ModalController
   ) { }
 
@@ -28,6 +27,8 @@ export class QuestionComponent implements OnInit {
     if (this.questions.answers !== undefined) {
       this.isCompleted = true;
     }
+
+    this.utils = utils;
   }
 
   async goToDetailPage() {
@@ -64,39 +65,6 @@ export class QuestionComponent implements OnInit {
       this.modalOpen = true;
       await modal.onWillDismiss();
       this.modalOpen = false;
-    }
-  }
-
-  processMoodleContents(stringToAnalize: string) {
-    // checking for multi language tags
-
-    try {
-      const domObj = $($.parseHTML(stringToAnalize));
-      let result = stringToAnalize;
-      const language = this.translate.currentLang;
-
-      if (domObj.length > 1) {
-
-        _.each(domObj, function(element) {
-          if ($(element)[0].lang === language) {
-            result = $(element).html();
-          }
-        });
-
-        // since there are some strings without spanish translation
-        // use englisch as a fallback
-        if (result === stringToAnalize) {
-          _.each(domObj, function(element) {
-            if ($(element)[0].lang === 'en') {
-              result = $(element).html();
-            }
-          });
-        }
-      }
-      return result;
-    } catch (e) {
-      console.log(e);
-      return stringToAnalize;
     }
   }
 

@@ -9,6 +9,8 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
+import { utils } from 'src/app/lib/utils';
+import { LoggingService, Logger } from 'ionic-logging-service';
 
 @Component({
     selector: 'question-detail-modal-page',
@@ -39,6 +41,9 @@ export class QuestionDetailModalPage implements OnInit {
   public latestPage = 0;
   public questionNavIndex = 1;
 
+  utils;
+  logger: Logger;
+
   constructor(
       public navCtrl: NavController,
       private translate: TranslateService,
@@ -47,10 +52,14 @@ export class QuestionDetailModalPage implements OnInit {
       private modalCtrl: ModalController,
       private platform: Platform,
       private inAppBrowser: InAppBrowser,
-      private safariOrChrome: SafariViewController
+      private safariOrChrome: SafariViewController,
+      private loggingService: LoggingService
   ) { }
 
   ngOnInit() {
+    this.utils = utils;
+    this.logger = this.loggingService.getLogger('[/question-detail]');
+
     for (let i = 0; i < this.tmpQuestionsList.length; i++) {
       if (this.tmpQuestionsList[i].type === 'multichoice' || this.tmpQuestionsList[i].type === 'textarea') {
         this.questionList.push(this.tmpQuestionsList[i]);
@@ -173,8 +182,8 @@ export class QuestionDetailModalPage implements OnInit {
     this.safariOrChrome.show({
       url: url
     }).subscribe(
-      result => { console.log('openWithSafariOrChrome', result); },
-      error => { console.log('openWithSafariOrChrome', error); }
+      result => { this.logger.debug('openWithSafariOrChrome', result); },
+      error => { this.logger.error('openWithSafariOrChrome', error); }
     );
   }
 
@@ -202,42 +211,6 @@ export class QuestionDetailModalPage implements OnInit {
 
         this.choicesList[i] = choiceArray;
       }
-    }
-  }
-
-  processMoodleContents(stringToAnalize: string, shorterURL?: boolean) {
-    // checking for multi language tags
-
-    try {
-      stringToAnalize = this.urlify(stringToAnalize, shorterURL);
-
-      const domObj = $($.parseHTML(stringToAnalize));
-      let result = stringToAnalize;
-      const language = this.translate.currentLang;
-
-      if (domObj.length > 1) {
-
-        _.each(domObj, function(element) {
-          if ($(element)[0].lang === language) {
-            result = $(element).html();
-          }
-        });
-
-        // since there are some strings without spanish translation
-        // use englisch as a fallback
-        if (result === stringToAnalize) {
-          _.each(domObj, function(element) {
-            if ($(element)[0].lang === 'en') {
-              result = $(element).html();
-            }
-          });
-        }
-      }
-
-      return result;
-    } catch (e) {
-      console.log(e);
-      return stringToAnalize;
     }
   }
 
@@ -310,8 +283,8 @@ export class QuestionDetailModalPage implements OnInit {
             if (this.isCheckbox[j]) {
               // checkbox
               for (k = 0; k < this.choicesList[j].length; k++) {
-                if (this.processMoodleContents(
-                    this.choicesList[j][k].trim()) === this.processMoodleContents(this.questionList[i].dependvalue.trim())) {
+                if (utils.processMoodleContents(
+                    this.choicesList[j][k].trim()) === utils.processMoodleContents(this.questionList[i].dependvalue.trim())) {
                   if (this.checkBoxValue[j][k]) {
                     // condition fullfilled
                     this.previousPage[i] = p;
@@ -325,10 +298,9 @@ export class QuestionDetailModalPage implements OnInit {
             } else {
               // radio
               for (k = 0; k < this.choicesList[j].length; k++) {
-                if (this.processMoodleContents(
-                    this.choicesList[j][k].trim()) === this.processMoodleContents(this.questionList[i].dependvalue.trim())) {
+                if (utils.processMoodleContents(
+                    this.choicesList[j][k].trim()) === utils.processMoodleContents(this.questionList[i].dependvalue.trim())) {
                   if (this.radioBtnValue[j][k]) {
-                    // console.log(this.radioBtnValue[j][k]);
                     // condition fullfilled
                     this.previousPage[i] = p;
                     this.isPageActive[i] = true;
@@ -441,33 +413,8 @@ export class QuestionDetailModalPage implements OnInit {
         }
       }
     } catch (e) {
-      console.log(e);
+      this.logger.error('htmlDecode()', e);
       return value;
-    }
-  }
-
-  // adds http:// to URLs like www.uni.de or uni.de
-  urlify(text, shorterURL?: boolean) {
-    // tslint:disable-next-line: max-line-length
-    const urlRegex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
-
-    // shortens the URL to just show the main-domain if shorterURL === true
-    if (shorterURL) {
-      return text.replace(urlRegex, function(url) {
-        const regShortURL = new RegExp(urlRegex);
-        regShortURL.lastIndex = 0;
-        let tmpUrl = regShortURL.exec(url)[3];
-        tmpUrl = '(Website: ' + tmpUrl.replace('www.', '') + ')';
-        // console.log(tmpUrl);
-        return tmpUrl;
-      });
-    } else {
-      return text.replace(urlRegex, function(url) {
-        if (!/^http[s]?:\/\//.test(url)) {
-          url = 'http://' + url.replace('www.', '');
-        }
-        return url;
-      });
     }
   }
 

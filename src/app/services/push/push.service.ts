@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Platform, AlertController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Push, PushOptions, PushObject } from '@ionic-native/push/ngx';
@@ -8,13 +8,15 @@ import { Storage } from '@ionic/storage';
 import { ConfigService } from '../config/config.service';
 import * as dLoop from 'delayed-loop';
 import { ISession } from '../login-provider/interfaces';
+import { Logger, LoggingService } from 'ionic-logging-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PushService {
+export class PushService implements OnInit {
 
   public global_registrationID = '';
+  logger: Logger;
 
   constructor(
     public platform: Platform,
@@ -24,8 +26,13 @@ export class PushService {
     private storage: Storage,
     private nativeHTTP: HTTP,
     private configService: ConfigService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loggingService: LoggingService
   ) { }
+
+  ngOnInit() {
+    this.logger = this.loggingService.getLogger('[/push-service]');
+  }
 
   createPushOptions(deviceID) {
     const tokenPayload = {
@@ -43,14 +50,14 @@ export class PushService {
 
   subscribeToPush(registrationID, config: IModuleConfig, fin?) {
 
-    console.log('subscribing to push service for ' + config.courseID);
+    this.logger.debug('subscribeToPush()', 'subscribing to push service for ' + config.courseID);
 
     // subscribe to the AirNotifier push service
     const url_subscribe = config.pushDetails.uniqushUrl.concat('tokens/');
-    // console.log("registering push via " + url_subscribe);
+    this.logger.debug('subscribeToPush()', 'registering push via ' + url_subscribe);
 
     const myData = this.createPushOptions(registrationID);
-    // console.log("with payload " + myData);
+    this.logger.debug('subscribeToPush()', 'with payload ' + myData);
 
     let headerAppName = 'reflectup';
     headerAppName = headerAppName.concat(config.courseID.replace(/-/g, '').toLowerCase());
@@ -66,14 +73,11 @@ export class PushService {
 
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.post(url_subscribe, myData, myHeaders).then(() => {
-      console.log('(subscribe): successfully contacted the push server.');
+      this.logger.debug('subscribeToPush()', 'successfully contacted the push server');
 
       if (fin) { fin(); }
     }).catch(error => {
-      console.log('(subscribe): error while contacting the push server.');
-      console.log(error.status);
-      console.log(error.error); // error message as string
-      console.log(error.headers);
+      this.logger.error('subscribeToPush()', 'error while contacting the push server', error);
 
       if (fin) { fin(); }
     });
@@ -98,12 +102,9 @@ export class PushService {
 
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.delete(url_unsubscribe, {}, myHeaders).then(() => {
-      console.log('(unsubscribe): successfully unsubscribed from the push server.');
+      this.logger.debug('unsubscribeToPush()', 'successfully unsubscribed from the push server');
     }).catch(error => {
-      console.log('(unsubscribe): error while contacting the push server.');
-      console.log(error.status);
-      console.log(error.error); // error message as string
-      console.log(error.headers);
+      this.logger.error('unsubscribeToPush()', 'error while contacting the push server', error);
     });
   }
 
@@ -116,10 +117,9 @@ export class PushService {
         importance: 5,
         visibility: 1
       }).then(() => {
-        console.log('successfully created push channel');
+        this.logger.debug('registerPushService()', 'successfully created push channel');
       }, error => {
-        console.log('push error on channel creation');
-        console.log(error);
+        this.logger.error('registerPushService()', 'push error on channel creation', error);
       });
     }
 
@@ -146,8 +146,7 @@ export class PushService {
       if (data.title && data.title !== '') { title = data.title; }
 
       // only schedule an alert when notification is received while app in foreground
-      console.log('Received notification! Data below: ');
-      console.log(data);
+      this.logger.debug('registerPushService() on(notification)', 'received notification!', data);
       if (data.additionalData.foreground) {
         const alert = await this.alertCtrl.create({
           header: title,
@@ -172,18 +171,17 @@ export class PushService {
 
       // calling pushObject.finish (necessary on iOS)
       if (this.platform.is('ios')) {
-        pushObject.finish().catch(() => {
-          console.log('Error while processing background push.');
+        pushObject.finish().catch((error) => {
+          this.logger.error('registerPushService() finish()', 'error while processing background push', error);
         });
       }
     }, error => {
-      console.log('push error on notification');
-      console.log(error);
+      this.logger.error('registerPushService() on(notification)', error);
     });
 
     pushObject.on('registration').subscribe(async data => {
       if (data.registrationId.length === 0) {
-        console.log('ERROR: Push registrationID is empty');
+        this.logger.error('registerPushService() on(registration)', 'push registrationID is empty', data);
       } else {
         this.global_registrationID = data.registrationId;
 
@@ -194,19 +192,17 @@ export class PushService {
             this.subscribeToPush(data.registrationId, config, fin);
           });
         } else {
-          console.log('User is not logged in; cant subscribe to push notifications.');
+          this.logger.debug('registerPushService() on(registration)', 'user is not logged in; cant subscribe to push notifications');
         }
       }
     }, error => {
-      console.log('push error on registration');
-      console.log(error);
+      this.logger.error('registerPushService() on(registration)', error);
     });
 
     pushObject.on('error').subscribe(data => {
-      console.log('Push error happened: ' + data.message);
+      this.logger.debug('registerPushService() on(error)', data);
     }, error => {
-      console.log('push error on error');
-      console.log(error);
+      this.logger.error('registerPushService() on(error)', error);
     });
   }
 }

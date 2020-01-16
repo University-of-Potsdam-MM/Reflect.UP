@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.page.html',
   styleUrls: ['./popover.page.scss'],
 })
-export class PopoverPage implements OnInit {
+export class PopoverPage extends AbstractPage implements OnInit {
 
   @Input() moduleConfigList;
   moduleSemester: string[] = [];
@@ -14,7 +15,9 @@ export class PopoverPage implements OnInit {
 
   constructor(
     private popoverCtrl: PopoverController
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.moduleSemester = [];

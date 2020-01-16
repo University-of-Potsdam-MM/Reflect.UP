@@ -1,7 +1,7 @@
 <div [class]="getCardClass()">
   <ion-card>
     <ion-card-header class="ion-text-wrap">
-      <h6><div [innerHTML]="processMoodleContents(event.name)" class="ion-text-wrap"></div></h6>
+      <h6><div [innerHTML]="utils.processMoodleContents(event.name)" class="ion-text-wrap"></div></h6>
       <div class="date">
         <p *ngIf="!noEventDuration" class="ion-text-wrap">
           <ion-icon name="clock" color="primary" class="ion-padding-end"></ion-icon>
@@ -18,7 +18,7 @@
 
     <ion-card-content>
       <div [ngClass]="!showLongDescription && isHomePage ? 'hideLongDescription' : 'longDescription'">
-        <div [ngClass]="index + '-divDescription'" class="ion-text-wrap" [innerHTML]="processMoodleContents(event.description)"></div>
+        <div [ngClass]="index + '-divDescription'" class="ion-text-wrap" [innerHTML]="utils.processMoodleContents(event.description)"></div>
       </div>
       <div *ngIf="isHomePage" [id]="index" align="right">
         <ion-button *ngIf="!showLongDescription" fill="clear" size="small" (click)="toggleLongDescription()">

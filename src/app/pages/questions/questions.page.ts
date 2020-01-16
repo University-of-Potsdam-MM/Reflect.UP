@@ -9,13 +9,14 @@ import { IModuleConfig } from 'src/app/lib/config';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { ConfigService } from 'src/app/services/config/config.service';
 import * as dLoop from 'delayed-loop';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.page.html',
   styleUrls: ['./questions.page.scss'],
 })
-export class QuestionsPage implements OnInit {
+export class QuestionsPage extends AbstractPage implements OnInit {
 
   sessions: ISession[];
 
@@ -36,7 +37,9 @@ export class QuestionsPage implements OnInit {
     public questions: QuestionService,
     private storage: Storage,
     private configService: ConfigService
-  ) { }
+  ) {
+    super();
+  }
 
   async ngOnInit() {
     this.initQuestions(true);
@@ -100,12 +103,12 @@ export class QuestionsPage implements OnInit {
         if (this.questionList[idx].length < 1) { this.noQuestions[idx] = true; }
       } else {
         this.noQuestions[idx] = true;
-        console.log('no feedbacks from server.');
+        this.logger.debug('loadQuestions()', 'no feedbacks from server');
       }
 
       fin();
     }, error => {
-      console.log(error);
+      this.logger.error('loadQuestions()', 'error while fetching questions', error);
       this.noQuestions[idx] = true;
       fin();
     });
@@ -118,12 +121,12 @@ export class QuestionsPage implements OnInit {
         if (this.completedQuestionList[idx].length < 1) { this.noCompletedQuestions[idx] = true; }
       } else {
         this.noCompletedQuestions[idx] = true;
-        console.log('no completed feedbacks from server.');
+        this.logger.debug('loadAnsweredQuestions()', 'no completed feedbacks from server');
       }
 
       fin();
     }, error => {
-      console.log(error);
+      this.logger.error('loadAnsweredQuestions()', 'error while fetching completed feedbacks', error);
       this.noCompletedQuestions[idx] = true;
       fin();
     });

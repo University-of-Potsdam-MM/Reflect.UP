@@ -8,13 +8,14 @@ import { ISession } from 'src/app/services/login-provider/interfaces';
 import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { Storage } from '@ionic/storage';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.page.html',
   styleUrls: ['./feedback.page.scss'],
 })
-export class FeedbackPage implements OnInit {
+export class FeedbackPage extends AbstractPage implements OnInit {
 
   sessions: ISession[];
   selectedSession: ISession;
@@ -27,7 +28,9 @@ export class FeedbackPage implements OnInit {
     public alertCtrl: AlertController,
     public translate: TranslateService,
     private configService: ConfigService
-  ) { }
+  ) {
+    super();
+  }
 
   submitted = false;
 
@@ -76,18 +79,18 @@ export class FeedbackPage implements OnInit {
               if (response.result) {
                 // success, set submitted to true to switch templates
                 this.submitted = true;
-                console.log('feedback submitted');
+                this.logger.debug('asyncSendFeedback', 'feedback submitted');
               } else {
                 // probably authentication error
                 this.showAlert('statusMessage.error.unknown');
                 // user does not need to see the message
-                console.log(response);
+                this.logger.error('asyncSendFeedback', 'response error while submitting feedback', response);
               }
             },
             error => {
               // httpError
               this.showAlert('statusMessage.error.http' + error.status);
-              console.log(error);
+              this.logger.error('asyncSendFeedback', 'error while submitting feedback', error);
             }
           );
         } else {

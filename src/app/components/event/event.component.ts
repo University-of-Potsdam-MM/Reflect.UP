@@ -9,6 +9,7 @@ import * as _ from 'underscore';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { DomSanitizer } from '@angular/platform-browser';
+import { utils } from 'src/app/lib/utils';
 
 @Component({
   selector: 'app-event',
@@ -29,6 +30,8 @@ export class EventComponent implements OnInit, AfterViewInit {
   // formatted momentJS dates
   eventStart;
   eventEnd;
+
+  utils;
 
   // Inputs passed from Page to Component
   @Input() public event: EventObject;
@@ -52,6 +55,8 @@ export class EventComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    this.utils = utils;
+
     if (this.router.url === '/home') {
       this.isHomePage = true;
       this.showLongDescription = false;
@@ -106,42 +111,6 @@ export class EventComponent implements OnInit, AfterViewInit {
       this.hasAlreadyBegun = true;
     } else { this.hasAlreadyBegun = false; }
 
-  }
-
-  /**
-   * processes multi language tags from moodle and returns
-   * string that matches app language
-   *
-   * @param stringToAnalize - string that could containt multi-language tags
-   */
-  processMoodleContents(stringToAnalize: string) {
-    try {
-      const domObj = $($.parseHTML(stringToAnalize));
-      let result = stringToAnalize;
-      const language = this.translate.currentLang;
-
-      if (domObj.length > 1) {
-
-          _.each(domObj, function(element) {
-            if ($(element)[0].lang === language) {
-              result = $(element).html();
-            }
-          });
-
-          // use englisch as a fallback
-          if (result === stringToAnalize) {
-            _.each(domObj, function(element) {
-              if ($(element)[0].lang === 'en') {
-                result = $(element).html();
-              }
-            });
-          }
-      }
-      return result;
-    } catch (e) {
-      console.log(e);
-      return stringToAnalize;
-    }
   }
 
   /**
@@ -255,14 +224,14 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule([{
           id: notificationID,
           text: messageWeek,
-          title: this.processMoodleContents(this.event.name),
+          title: utils.processMoodleContents(this.event.name),
           trigger: {at: new Date(oneWeekBefore.toDate())},
           led: 'FF0000',
           sound: null
        }, {
           id: notificationID + 1,
           text: messageTomorrow,
-          title: this.processMoodleContents(this.event.name),
+          title: utils.processMoodleContents(this.event.name),
           trigger: {at: new Date(oneDayBefore.toDate())},
           led: 'FF0000',
           sound: null
@@ -272,7 +241,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageTomorrow,
-          title: this.processMoodleContents(this.event.name),
+          title: utils.processMoodleContents(this.event.name),
           trigger: {at: new Date(oneDayBefore.toDate())},
           led: 'FF0000',
           sound: null
@@ -282,7 +251,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageHour,
-          title: this.processMoodleContents(this.event.name),
+          title: utils.processMoodleContents(this.event.name),
           trigger: {at: new Date(threeHoursBefore.toDate())},
           led: 'FF0000',
           sound: null
@@ -292,7 +261,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageHour,
-          title: this.processMoodleContents(this.event.name),
+          title: utils.processMoodleContents(this.event.name),
           trigger: {at: new Date(oneHourBefore.toDate())},
           led: 'FF0000',
           sound: null

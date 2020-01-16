@@ -61,7 +61,7 @@ export class QuestionService {
 
  // resultID = ID der Feedback Kategorie
  // resultAnswerArray = Array mit jeweils Question-ID und Question-Antwort
- public sendAnswers(resultID: number, resultAnswersArray: string[][], config: IModuleConfig, token) {
+ public async sendAnswers(resultID: number, resultAnswersArray: string[][], config: IModuleConfig, token) {
 
     let i;
 
@@ -88,8 +88,6 @@ export class QuestionService {
 
     params = params.append('courseID', courseID);
 
-    this.http.get(url, {headers: headers, params: params}).subscribe((data) => {
-      console.log(data);
-    });
+    await this.http.get(url, {headers: headers, params: params});
  }
 }

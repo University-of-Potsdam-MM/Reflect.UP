@@ -11,13 +11,14 @@ import { UPLoginProvider } from 'src/app/services/login-provider/login';
 import * as dLoop from 'delayed-loop';
 import { AppComponent } from 'src/app/app.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage extends AbstractPage implements OnInit {
 
   loginCredentials: ICredentials;
   coursesToLogin: IModuleConfig[];
@@ -41,6 +42,7 @@ export class LoginPage implements OnInit {
     private app: AppComponent,
     private formBuilder: FormBuilder
   ) {
+    super();
     this.loginCredentials = {username: '', password: ''};
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],

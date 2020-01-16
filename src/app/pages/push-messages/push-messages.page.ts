@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import * as dLoop from 'delayed-loop';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { AbstractPage } from '../abstract-page';
 
 interface MessagesResponse {
   messages: PushMessage[];
@@ -17,7 +18,7 @@ interface MessagesResponse {
   templateUrl: './push-messages.page.html',
   styleUrls: ['./push-messages.page.scss'],
 })
-export class PushMessagesPage implements OnInit {
+export class PushMessagesPage extends AbstractPage implements OnInit {
 
   pushMessages = [];
   responseError = [];
@@ -30,7 +31,9 @@ export class PushMessagesPage implements OnInit {
     public storage: Storage,
     private http: HttpClient,
     private configService: ConfigService
-  ) { }
+  ) {
+    super();
+  }
 
   async ngOnInit() {
     this.sessions = await this.storage.get('sessions');
@@ -83,14 +86,12 @@ export class PushMessagesPage implements OnInit {
         fin();
       } else {
         this.responseError[idx] = true;
-        console.log('No messages received.');
-        // console.log(JSON.stringify(response));
+        this.logger.debug('getPushMessages()', 'no messages received', response);
         fin();
       }
     }, error => {
       this.responseError[idx] = true;
-      console.log('ERROR while getting messages');
-      console.log(JSON.stringify(error));
+      this.logger.error('getPushMessages()', 'error while getting messages', error);
       fin();
     });
   }

@@ -1,7 +1,7 @@
 <div *ngIf="!isCompleted" class="ion-padding-horizontal ion-padding-top">
   <ion-item lines="none" color="primary" class="question" (click)="goToDetailPage()">
     <ion-label>
-      <div class="title ion-text-wrap" [innerHTML]="processMoodleContents(questions.name)"></div>
+      <div class="title ion-text-wrap" [innerHTML]="utils.processMoodleContents(questions.name)"></div>
     </ion-label>
     <ion-icon name="arrow-dropright" slot="end"></ion-icon>
   </ion-item>
@@ -9,7 +9,7 @@
 <div *ngIf="isCompleted" class="ion-padding-horizontal ion-padding-top">
   <ion-item lines="none" color="secondary" class="completedQuestion" (click)="goToDetailPage()">
     <ion-label>
-      <div class="title ion-text-wrap" [innerHTML]="processMoodleContents(questions.name)"></div>
+      <div class="title ion-text-wrap" [innerHTML]="utils.processMoodleContents(questions.name)"></div>
     </ion-label>
     <ion-icon name="arrow-dropright" slot="end" style="color: black"></ion-icon>
   </ion-item>

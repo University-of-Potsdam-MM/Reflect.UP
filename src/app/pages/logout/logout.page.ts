@@ -8,13 +8,14 @@ import { PushService } from 'src/app/services/push/push.service';
 import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { AppComponent } from 'src/app/app.component';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.page.html',
   styleUrls: ['./logout.page.scss'],
 })
-export class LogoutPage implements OnInit {
+export class LogoutPage extends AbstractPage implements OnInit {
 
   sessions: ISession[];
 
@@ -27,7 +28,9 @@ export class LogoutPage implements OnInit {
     private navCtrl: NavController,
     private configService: ConfigService,
     private app: AppComponent
-  ) { }
+  ) {
+    super();
+  }
 
   async ngOnInit() {
     this.sessions = await this.storage.get('sessions');

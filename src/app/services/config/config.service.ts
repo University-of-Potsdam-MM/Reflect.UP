@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IModuleConfig } from 'src/app/lib/config';
 import { Storage } from '@ionic/storage';
+import { LoggingService, Logger } from 'ionic-logging-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigService {
+export class ConfigService implements OnInit {
 
   static configs: IModuleConfig[];
 
+  logger: Logger;
+
   constructor(
     private http: HttpClient,
-    private storage: Storage
+    private storage: Storage,
+    private loggingService: LoggingService
     ) { }
+
+    ngOnInit() {
+      this.logger = this.loggingService.getLogger('[/config-service]');
+    }
 
   /**
    * loads config file.
@@ -46,7 +54,7 @@ export class ConfigService {
           resolve();
         }, error => {
           reject(`Could not load file '${uri}'`);
-          console.log('load' + error);
+          this.logger.error('load()', `Could not load file '${uri}'`, error);
         });
       });
     });

@@ -12,13 +12,14 @@ import { QuestionConfig } from 'src/app/lib/question';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { ConfigService } from 'src/app/services/config/config.service';
 import * as dLoop from 'delayed-loop';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage extends AbstractPage {
 
   selectedModule: IModuleConfig = null;
   token = '';
@@ -48,6 +49,7 @@ export class HomePage {
     private push: Push,
     private configService: ConfigService
   ) {
+    super();
     this.menu.enable(true, 'sideMenu');
   }
 
@@ -72,7 +74,7 @@ export class HomePage {
           this.isPushAllowed = true;
         } else { this.isPushAllowed = false; }
       }, error => {
-        console.log(error);
+        this.logger.error('checkPushPermission()', 'no push permission granted', error);
       });
     }, 500);
   }
@@ -173,7 +175,7 @@ export class HomePage {
 
           fin();
         }, error => {
-          console.log(error);
+          this.logger.error('loadAppointments()', 'error while fetching appointments', error);
           fin();
         });
       } else { fin(); }
@@ -232,7 +234,7 @@ export class HomePage {
 
             fin();
           }, error => {
-            console.log(error);
+            this.logger.error('loadQuestions()', 'error while fetching questions', error);
             fin();
           });
         } else { fin(); }

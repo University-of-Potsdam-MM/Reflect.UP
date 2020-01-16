@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AbstractPage } from '../abstract-page';
 
 @Component({
   selector: 'app-impressum',
   templateUrl: './impressum.page.html',
   styleUrls: ['./impressum.page.scss'],
 })
-export class ImpressumPage implements OnInit {
+export class ImpressumPage extends AbstractPage implements OnInit {
 
   constructor(
     private navCtrl: NavController
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() { }
 
