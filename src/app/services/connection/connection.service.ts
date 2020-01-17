@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Network } from '@ionic-native/network/ngx';
 import { Platform } from '@ionic/angular';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 /**
  * ConnectionProvider
  *

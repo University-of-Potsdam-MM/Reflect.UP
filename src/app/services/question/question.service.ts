@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { CacheService } from 'ionic-cache';
 import { QuestionConfig } from 'src/app/lib/question';
 import { IModuleConfig } from 'src/app/lib/config';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

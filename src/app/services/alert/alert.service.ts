@@ -18,7 +18,6 @@ export interface IAlertOptions {
 export class AlertService {
 
   currentAlert = undefined;
-  logger: Logger;
 
   /**
    * @constructor
@@ -32,9 +31,7 @@ export class AlertService {
     private navCtrl: NavController,
     private toastCtrl: ToastController,
     private loggingService: LoggingService
-  ) {
-    this.logger = this.loggingService.getLogger('[/alert-service]');
-  }
+  ) { }
 
   /**
    * @name showAlert
@@ -62,6 +59,8 @@ export class AlertService {
       ];
     }
 
+    const logger: Logger = this.loggingService.getLogger('[/alert-service]');
+
     let message = this.translate.instant(alertOptions.messageI18nKey);
     if (textMessage) { message = textMessage; }
     // only show new alert if no other alert is currently open
@@ -71,12 +70,12 @@ export class AlertService {
         message: message,
         backdropDismiss: false,
         buttons: alertButtons
-      }).catch(error => this.logger.error('showAlert', error));
+      }).catch(error => logger.error('showAlert', error));
 
       this.currentAlert.present();
       await this.currentAlert.onDidDismiss();
       this.currentAlert = undefined;
-    } else { this.logger.debug('showAlert', 'another alert is shown'); }
+    } else { logger.debug('showAlert', 'another alert is shown'); }
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Platform, AlertController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Push, PushOptions, PushObject } from '@ionic-native/push/ngx';
@@ -13,10 +13,9 @@ import { Logger, LoggingService } from 'ionic-logging-service';
 @Injectable({
   providedIn: 'root'
 })
-export class PushService implements OnInit {
+export class PushService {
 
   public global_registrationID = '';
-  logger: Logger;
 
   constructor(
     public platform: Platform,
@@ -29,10 +28,6 @@ export class PushService implements OnInit {
     private navCtrl: NavController,
     private loggingService: LoggingService
   ) { }
-
-  ngOnInit() {
-    this.logger = this.loggingService.getLogger('[/push-service]');
-  }
 
   createPushOptions(deviceID) {
     const tokenPayload = {
@@ -50,14 +45,16 @@ export class PushService implements OnInit {
 
   subscribeToPush(registrationID, config: IModuleConfig, fin?) {
 
-    this.logger.debug('subscribeToPush()', 'subscribing to push service for ' + config.courseID);
+    const logger: Logger = this.loggingService.getLogger('[/push-service-subscribe]');
+
+    logger.debug('subscribeToPush()', 'subscribing to push service for ' + config.courseID);
 
     // subscribe to the AirNotifier push service
     const url_subscribe = config.pushDetails.uniqushUrl.concat('tokens/');
-    this.logger.debug('subscribeToPush()', 'registering push via ' + url_subscribe);
+    logger.debug('subscribeToPush()', 'registering push via ' + url_subscribe);
 
     const myData = this.createPushOptions(registrationID);
-    this.logger.debug('subscribeToPush()', 'with payload ' + myData);
+    logger.debug('subscribeToPush()', 'with payload ' + myData);
 
     let headerAppName = 'reflectup';
     headerAppName = headerAppName.concat(config.courseID.replace(/-/g, '').toLowerCase());
@@ -73,11 +70,11 @@ export class PushService implements OnInit {
 
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.post(url_subscribe, myData, myHeaders).then(() => {
-      this.logger.debug('subscribeToPush()', 'successfully contacted the push server');
+      logger.debug('subscribeToPush()', 'successfully contacted the push server');
 
       if (fin) { fin(); }
     }).catch(error => {
-      this.logger.error('subscribeToPush()', 'error while contacting the push server', error);
+      logger.error('subscribeToPush()', 'error while contacting the push server', error);
 
       if (fin) { fin(); }
     });
@@ -85,6 +82,8 @@ export class PushService implements OnInit {
   }
 
   unsubscribeToPush(config: IModuleConfig) {
+    const logger: Logger = this.loggingService.getLogger('[/push-service-unsubscribe]');
+
     // unsubscribe from the AirNotifier push service
     const url_unsubscribe = config.pushDetails.uniqushUrl.concat('tokens/') + this.global_registrationID;
 
@@ -102,13 +101,14 @@ export class PushService implements OnInit {
 
     this.nativeHTTP.setDataSerializer('json');
     this.nativeHTTP.delete(url_unsubscribe, {}, myHeaders).then(() => {
-      this.logger.debug('unsubscribeToPush()', 'successfully unsubscribed from the push server');
+      logger.debug('unsubscribeToPush()', 'successfully unsubscribed from the push server');
     }).catch(error => {
-      this.logger.error('unsubscribeToPush()', 'error while contacting the push server', error);
+      logger.error('unsubscribeToPush()', 'error while contacting the push server', error);
     });
   }
 
   async registerPushService() {
+    const logger: Logger = this.loggingService.getLogger('[/push-service-register]');
 
     if (this.platform.is('android')) {
       await this.push.createChannel({
@@ -117,9 +117,9 @@ export class PushService implements OnInit {
         importance: 5,
         visibility: 1
       }).then(() => {
-        this.logger.debug('registerPushService()', 'successfully created push channel');
+        logger.debug('registerPushService()', 'successfully created push channel');
       }, error => {
-        this.logger.error('registerPushService()', 'push error on channel creation', error);
+        logger.error('registerPushService()', 'push error on channel creation', error);
       });
     }
 
@@ -146,7 +146,7 @@ export class PushService implements OnInit {
       if (data.title && data.title !== '') { title = data.title; }
 
       // only schedule an alert when notification is received while app in foreground
-      this.logger.debug('registerPushService() on(notification)', 'received notification!', data);
+      logger.debug('registerPushService() on(notification)', 'received notification!', data);
       if (data.additionalData.foreground) {
         const alert = await this.alertCtrl.create({
           header: title,
@@ -172,16 +172,16 @@ export class PushService implements OnInit {
       // calling pushObject.finish (necessary on iOS)
       if (this.platform.is('ios')) {
         pushObject.finish().catch((error) => {
-          this.logger.error('registerPushService() finish()', 'error while processing background push', error);
+          logger.error('registerPushService() finish()', 'error while processing background push', error);
         });
       }
     }, error => {
-      this.logger.error('registerPushService() on(notification)', error);
+      logger.error('registerPushService() on(notification)', error);
     });
 
     pushObject.on('registration').subscribe(async data => {
       if (data.registrationId.length === 0) {
-        this.logger.error('registerPushService() on(registration)', 'push registrationID is empty', data);
+        logger.error('registerPushService() on(registration)', 'push registrationID is empty', data);
       } else {
         this.global_registrationID = data.registrationId;
 
@@ -192,17 +192,17 @@ export class PushService implements OnInit {
             this.subscribeToPush(data.registrationId, config, fin);
           });
         } else {
-          this.logger.debug('registerPushService() on(registration)', 'user is not logged in; cant subscribe to push notifications');
+          logger.debug('registerPushService() on(registration)', 'user is not logged in; cant subscribe to push notifications');
         }
       }
     }, error => {
-      this.logger.error('registerPushService() on(registration)', error);
+      logger.error('registerPushService() on(registration)', error);
     });
 
     pushObject.on('error').subscribe(data => {
-      this.logger.debug('registerPushService() on(error)', data);
+      logger.debug('registerPushService() on(error)', data);
     }, error => {
-      this.logger.error('registerPushService() on(error)', error);
+      logger.error('registerPushService() on(error)', error);
     });
   }
 }
