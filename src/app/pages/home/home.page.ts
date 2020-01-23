@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, AlertController, Platform, MenuController } from '@ionic/angular';
 import { EventObject, AppointConfig } from 'src/app/lib/appointm';
@@ -19,7 +19,7 @@ import { AbstractPage } from '../abstract-page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage extends AbstractPage {
+export class HomePage extends AbstractPage implements OnInit {
 
   selectedModule: IModuleConfig = null;
   token = '';
@@ -53,18 +53,22 @@ export class HomePage extends AbstractPage {
     this.menu.enable(true, 'sideMenu');
   }
 
-  async ionViewWillEnter() {
+  async ngOnInit() {
     this.sessions = await this.storage.get('sessions');
     if (!this.sessions) {
       this.navCtrl.navigateRoot('/select-module');
     } else {
-      this.initHome();
+      this.initHome(true);
 
       if (this.platform.is('cordova') && (this.platform.is('ios') || this.platform.is('android'))) {
         this.checkForAppUpdate();
         this.checkPushPermission();
       }
     }
+  }
+
+  ionViewWillEnter() {
+    this.initHome();
   }
 
   checkPushPermission() {
@@ -84,11 +88,6 @@ export class HomePage extends AbstractPage {
     this.connection.checkOnline().subscribe(online => {
       if (online) {
 
-        if (!refresher) {
-          this.isLoaded = false;
-          this.isLoaded2 = false;
-        }
-
         this.checkUpdatedCards(refresher);
         this.loadQuestions(refresher ? true : false);
 
@@ -102,8 +101,8 @@ export class HomePage extends AbstractPage {
     const hiddenArray = await this.storage.get('hiddenCards');
     const scheduledArray = await this.storage.get('scheduledEvents');
 
-    let newHiddenEvents = true;
-    let newScheduledEvents = true;
+    let newHiddenEvents;
+    let newScheduledEvents;
 
     if (hiddenArray && this.hiddenCardsLastCheck) {
       newHiddenEvents = (hiddenArray.length !== this.hiddenCardsLastCheck.length)
@@ -125,6 +124,10 @@ export class HomePage extends AbstractPage {
   loadAppointments(hiddenCardArray: string[], scheduledEventsArray: string[], refresher?) {
     if (hiddenCardArray !== undefined) { this.hiddenCardsLastCheck = hiddenCardArray; }
     if (scheduledEventsArray !== undefined) { this.scheduledEventsLastCheck = scheduledEventsArray; }
+
+    if (!refresher) {
+      this.isLoaded = false;
+    }
 
     const tmpEventArray = [];
     this.eventList = [];
@@ -222,30 +225,36 @@ export class HomePage extends AbstractPage {
   }
 
   loadQuestions(forceReload) {
-    const loop = dLoop(this.sessions, (itm, idx, fin) => {
-      if (!itm.isHidden) {
-        if (!this.openQuestions) {
-          const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
-          this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
-            this.logger.debug('loadQuestions()', 'successfully fetched questions', questionJSON);
-            if (questionJSON && questionJSON.feedbacks) {
-              if (questionJSON.feedbacks.length > 0) {
-                this.openQuestions = true;
+    if (this.sessions) {
+      if (!forceReload) {
+        this.isLoaded2 = false;
+      }
+
+      const loop = dLoop(this.sessions, (itm, idx, fin) => {
+        if (!itm.isHidden) {
+          if (!this.openQuestions) {
+            const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
+            this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {
+              this.logger.debug('loadQuestions()', 'successfully fetched questions', questionJSON);
+              if (questionJSON && questionJSON.feedbacks) {
+                if (questionJSON.feedbacks.length > 0) {
+                  this.openQuestions = true;
+                } else { this.openQuestions = false; }
               } else { this.openQuestions = false; }
-            } else { this.openQuestions = false; }
 
-            fin();
-          }, error => {
-            this.logger.error('loadQuestions()', 'error while fetching questions', error);
-            fin();
-          });
+              fin();
+            }, error => {
+              this.logger.error('loadQuestions()', 'error while fetching questions', error);
+              fin();
+            });
+          } else { fin(); }
         } else { fin(); }
-      } else { fin(); }
-    });
+      });
 
-    loop.then(() => {
-      this.isLoaded2 = true;
-    });
+      loop.then(() => {
+        this.isLoaded2 = true;
+      });
+    }
   }
 
   async notificationStatusChanged() {
