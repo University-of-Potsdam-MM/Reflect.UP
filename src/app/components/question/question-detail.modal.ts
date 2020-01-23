@@ -45,15 +45,15 @@ export class QuestionDetailModalPage implements OnInit {
   logger: Logger;
 
   constructor(
-      public navCtrl: NavController,
-      private translate: TranslateService,
-      private questionProv: QuestionService,
-      private configService: ConfigService,
-      private modalCtrl: ModalController,
-      private platform: Platform,
-      private inAppBrowser: InAppBrowser,
-      private safariOrChrome: SafariViewController,
-      private loggingService: LoggingService
+    public navCtrl: NavController,
+    private translate: TranslateService,
+    private questionProv: QuestionService,
+    private configService: ConfigService,
+    private modalCtrl: ModalController,
+    private platform: Platform,
+    private inAppBrowser: InAppBrowser,
+    private safariOrChrome: SafariViewController,
+    private loggingService: LoggingService
   ) { }
 
   ngOnInit() {

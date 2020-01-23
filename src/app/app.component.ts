@@ -114,55 +114,9 @@ export class AppComponent {
     this.courseSessions = await this.storage.get('sessions');
 
     if (!this.courseSessions) {
-      const sessionPreVersion7 = await this.storage.get('session');
-      if (sessionPreVersion7) {
-        this.logger.debug('initiliazeSession()', 'old session: ', sessionPreVersion7);
-      } else {
-        this.logger.debug('initiliazeSession()', 'no old session found');
-      }
-
-      const configPreVersion7 = await this.storage.get('config');
-      if (configPreVersion7) {
-        this.logger.debug('initiliazeSession()', 'old config: ', configPreVersion7);
-      } else {
-        this.logger.debug('initiliazeSession()', 'no old config found');
-      }
-
-      let courseStillAvailable;
-      if (configPreVersion7) {
-        courseStillAvailable = this.configService.getConfigById(configPreVersion7.courseID);
-        if (courseStillAvailable) {
-          this.logger.debug('initiliazeSession()', 'course still available: ', courseStillAvailable);
-        } else {
-          this.logger.debug('initiliazeSession()', 'old course is not available anymore');
-        }
-      }
-
-      if (!sessionPreVersion7 || !configPreVersion7 || !courseStillAvailable) {
-        this.storage.remove('session');
-        this.storage.remove('config');
-        this.navCtrl.navigateRoot('/select-module');
-      } else {
-        const newSessionArray: ISession[] = [];
-
-        const newSession: ISession = {
-          token: sessionPreVersion7.token,
-          courseID: configPreVersion7.courseID,
-          courseName: configPreVersion7.title,
-          courseFac: configPreVersion7.faculty,
-          hexColor: '#FFB74D',
-          isHidden: false
-        };
-
-        newSessionArray.push(newSession);
-        this.courseSessions = newSessionArray;
-        this.storage.set('sessions', newSessionArray).then((response) => {
-          this.initializeMenu();
-          this.logger.debug('initializeSessions()', 'sucessfully set session array', response);
-        });
-        this.storage.remove('session');
-        this.storage.remove('config');
-      }
+      this.storage.remove('session');
+      this.storage.remove('config');
+      this.navCtrl.navigateRoot('/select-module');
     }
 
     this.refreshingSessions = false;
@@ -228,7 +182,6 @@ export class AppComponent {
     }
 
     this.pagesInMenu.push({ title: 'pageHeader.settingsPage', pageName: '/settings', icon: 'settings'});
-    this.pagesInMenu.push({ title: 'pageHeader.logoutPage', pageName: '/logout', icon: 'log-out' });
     this.menuSetup = true;
   }
 
@@ -253,15 +206,11 @@ export class AppComponent {
     this.navCtrl.navigateForward('/select-module');
   }
 
-  changeSessionVisibility(session) {
-    for (let i = 0; i < this.courseSessions.length; i++) {
-      if (this.courseSessions[i].courseID === session.courseID) {
-        this.courseSessions[i].isHidden = !this.courseSessions[i].isHidden;
-        break;
-      }
-    }
-
-    this.storage.set('sessions', this.courseSessions);
+  openSessionVisibilityPage() {
+    this.menuCtrl.close();
+    this.storage.set('visibilityPreviousPage', this.router.url).then(() => {
+      this.navCtrl.navigateRoot('/logout');
+    });
   }
 
   getHexColor(moduleConfig) {

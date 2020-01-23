@@ -29,7 +29,8 @@
         "faculties": "Fakultäten",
         "modules": "Kurse",
         "selectCourse": "Kurs auswählen",
-        "exportLog": "Log exportieren"
+        "exportLog": "Log exportieren",
+        "changeVisibility": "Sichtbarkeit ändern"
     },
     "label": {
         "appointmentsPage": {
@@ -116,12 +117,13 @@
         "termsOfUsePage": "Nutzungsbedingungen",
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Anmeldung",
-        "logoutPage": "Logout",
+        "logoutPage": "Kurseinstellungen",
         "pushMessagesPage": "Nachrichten",
         "questionsPage": "Reflexionsfragen",
         "selectModulePage": "Willkommen",
         "settingsPage": "Einstellungen",
-        "mintPage": "MINT-Raum"
+        "mintPage": "MINT-Raum",
+        "sessionVisibility": "Kurse ausblenden"
     },
     "statusMessage": {
         "error": {

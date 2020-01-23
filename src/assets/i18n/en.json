@@ -29,7 +29,8 @@
         "faculties": "Faculties",
         "modules": "Courses",
         "selectCourse": "Select course",
-        "exportLog": "Export log"
+        "exportLog": "Export log",
+        "changeVisibility": "Change visibility"
     },
     "label": {
         "appointmentsPage": {
@@ -116,12 +117,13 @@
         "termsOfUsePage": "Terms of Use",
         "infoPage": "Info",
         "loginPage": "Reflect.UP - Login",
-        "logoutPage": "Logout",
+        "logoutPage": "Course settings",
         "pushMessagesPage": "Messages",
         "questionsPage": "Questions",
         "selectModulePage": "Welcome",
         "settingsPage": "Settings",
-        "mintPage": "MINT-Room"
+        "mintPage": "MINT-Room",
+        "sessionVisibility": "Hide courses"
     },
     "statusMessage": {
         "error": {

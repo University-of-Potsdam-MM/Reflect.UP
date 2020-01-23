@@ -86,6 +86,22 @@ export class LogoutPage extends AbstractPage implements OnInit {
     }
   }
 
+  hideCourses() {
+    if (this.sessions) {
+      for (const session of this.sessions) {
+        if (session['isChecked']) {
+          session.isHidden = !session.isHidden;
+          session['isChecked'] = false;
+        }
+      }
+
+      this.storage.set('sessions', this.sessions).finally(() => {
+        this.app.initializeSession();
+        this.app.initializeMenu();
+      });
+    }
+  }
+
   isModuleSelected() {
     let moduleSelected = false;
 
@@ -99,6 +115,19 @@ export class LogoutPage extends AbstractPage implements OnInit {
     }
 
     return !moduleSelected;
+  }
+
+  async goBack() {
+    const previousPage = await this.storage.get('visibilityPreviousPage');
+    this.storage.remove('visibilityPreviousPage');
+
+    if (previousPage && previousPage !== '/home') {
+      this.navCtrl.navigateRoot('/home').then(() => {
+        this.navCtrl.navigateForward(previousPage);
+      });
+    } else {
+      this.navCtrl.navigateRoot('/home');
+    }
   }
 
 }
