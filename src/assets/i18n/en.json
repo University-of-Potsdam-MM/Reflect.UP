@@ -76,7 +76,8 @@
             "username": "Username"
         },
         "logoutPage": {
-            "questionLogout": "Select courses for logout."
+            "questionLogout": "Select courses for logout.",
+            "cantHideEverything": "At least one course has to be visible."
         },
         "menu": "Menu",
         "pushMessagesPage": {

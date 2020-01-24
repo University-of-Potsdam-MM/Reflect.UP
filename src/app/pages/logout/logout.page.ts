@@ -9,6 +9,8 @@ import { IModuleConfig } from 'src/app/lib/config';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { AppComponent } from 'src/app/app.component';
 import { AbstractPage } from '../abstract-page';
+import { AlertService } from 'src/app/services/alert/alert.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-logout',
@@ -27,7 +29,9 @@ export class LogoutPage extends AbstractPage implements OnInit {
     private push: PushService,
     private navCtrl: NavController,
     private configService: ConfigService,
-    private app: AppComponent
+    private app: AppComponent,
+    private alertService: AlertService,
+    private translate: TranslateService
   ) {
     super();
   }
@@ -88,11 +92,25 @@ export class LogoutPage extends AbstractPage implements OnInit {
 
   hideCourses() {
     if (this.sessions) {
+      let hiddenCount = 0;
       for (const session of this.sessions) {
         if (session['isChecked']) {
           session.isHidden = !session.isHidden;
           session['isChecked'] = false;
         }
+
+        if (session.isHidden) {
+          hiddenCount++;
+        }
+      }
+
+      if (hiddenCount === this.sessions.length) {
+        this.sessions[0].isHidden = false;
+
+        this.alertService.showAlert({
+          headerI18nKey: 'statusMessage.login.hint',
+          messageI18nKey: 'label.logoutPage.cantHideEverything'
+        }, [{ text: this.translate.instant('buttonLabel.ok') }]);
       }
 
       this.storage.set('sessions', this.sessions).finally(() => {

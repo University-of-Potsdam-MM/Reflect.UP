@@ -76,7 +76,8 @@
             "username": "Benutzername"
         },
         "logoutPage": {
-            "questionLogout": "Kurse zum Abmelden auswählen."
+            "questionLogout": "Kurse zum Abmelden auswählen.",
+            "cantHideEverything": "Es muss mindestens ein Kurs eingeblendet bleiben."
         },
         "menu": "Menü",
         "pushMessagesPage": {
