@@ -138,7 +138,9 @@
         },
         "login": {
             "noInput": "Please enter username and password.",
-            "running": "Logging in..."
+            "running": "Logging in...",
+            "hint": "Hint",
+            "failedToLoginCourses": "The login process was unsuccessful:"
         },
         "notification": {
             "cancel": "Would you like to cancel the notification for this appointment?",

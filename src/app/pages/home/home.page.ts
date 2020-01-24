@@ -134,7 +134,7 @@ export class HomePage extends AbstractPage implements OnInit {
     this.hiddenEvent = [];
     this.scheduledEvent = [];
     const loop = dLoop(this.sessions, (itm, idx, fin) => {
-      if (!itm.isHidden) {
+      if (itm && !itm.isHidden) {
         const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
         this.appointm.getAppointments(config, itm.token, refresher ? true : false).subscribe((appointConf: AppointConfig) => {
           this.logger.debug('loadAppointments()', 'successfully fetched appointments', appointConf);
@@ -231,7 +231,7 @@ export class HomePage extends AbstractPage implements OnInit {
       }
 
       const loop = dLoop(this.sessions, (itm, idx, fin) => {
-        if (!itm.isHidden) {
+        if (itm && !itm.isHidden) {
           if (!this.openQuestions) {
             const config: IModuleConfig = this.configService.getConfigById(itm.courseID);
             this.questions.getQuestions(config, itm.token, forceReload).subscribe((questionJSON: QuestionConfig) => {

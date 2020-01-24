@@ -138,7 +138,9 @@
         },
         "login": {
             "noInput": "Bitte geben Sie etwas ein.",
-            "running": "Login läuft..."
+            "running": "Login läuft...",
+            "hint": "Hinweis",
+            "failedToLoginCourses": "Beim Login in die folgenden Kurse ist ein Fehler aufgetreten:"
         },
         "notification": {
             "cancel": "Möchtest du die Benachrichtigung für diesen Termin stornieren?",

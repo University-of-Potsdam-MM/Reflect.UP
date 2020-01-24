@@ -188,8 +188,10 @@ export class PushService {
         const sessions: ISession[] = await this.storage.get('sessions');
         if (sessions) {
           dLoop(sessions, (itm: ISession, idx, fin) => {
-            const config = this.configService.getConfigById(itm.courseID);
-            this.subscribeToPush(data.registrationId, config, fin);
+            if (itm) {
+              const config = this.configService.getConfigById(itm.courseID);
+              this.subscribeToPush(data.registrationId, config, fin);
+            }
           });
         } else {
           logger.debug('registerPushService() on(registration)', 'user is not logged in; cant subscribe to push notifications');

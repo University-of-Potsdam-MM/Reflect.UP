@@ -62,6 +62,7 @@ export class LoginPage extends AbstractPage implements OnInit {
       loginSessions = alreadyLoggedInCourses;
     }
 
+    let failedToLoginCourseNames = '';
     const loop = dLoop(this.coursesToLogin, (itm, idx, fin) => {
       const config = itm;
       let method = config.authorization.method;
@@ -110,6 +111,13 @@ export class LoginPage extends AbstractPage implements OnInit {
           }, error => {
             this.coursesToLogin[idx]['isLoading'] = 'ERROR';
 
+            const courseName = itm.title + ' (' + itm.faculty + ')';
+            if (failedToLoginCourseNames === '') {
+              failedToLoginCourseNames += '<br><br>' + courseName;
+            } else {
+              failedToLoginCourseNames += '<br>' + courseName;
+            }
+
             if (error.reason === ELoginErrors.AUTHENTICATION) {
               this.alert.showAlert({
                 headerI18nKey: 'statusMessage.error.title',
@@ -142,22 +150,33 @@ export class LoginPage extends AbstractPage implements OnInit {
     });
 
     loop.then(() => {
-      loginSessions.sort((a: ISession, b: ISession) => {
-        const aName = a.courseName + ' ' + a.courseFac;
-        const bName = b.courseName + ' ' + b.courseFac;
+      if (failedToLoginCourseNames !== '') {
+        this.alert.showAlert({
+          headerI18nKey: 'statusMessage.login.hint',
+          messageI18nKey: 'statusMessage.login.failedToLoginCourses'
+        }, [{ text: this.translate.instant('buttonLabel.ok') }],
+        this.translate.instant('statusMessage.login.failedToLoginCourses') + failedToLoginCourseNames,
+        true);
+      }
 
-        if (aName.toLowerCase() < bName.toLowerCase()) { return -1; }
-        if (aName.toLowerCase() > bName.toLowerCase()) { return 1; }
-        return 0;
-      });
-      this.storage.set('sessions', loginSessions).finally(() => {
-        this.app.initializeSession();
-        this.app.startPushRegistration();
-        this.app.enrollMoodleCourses();
-        this.app.initializeMenu();
-      });
-      this.storage.remove('coursesToLogin');
-      this.navCtrl.navigateRoot('/home');
+      if (loginSessions && loginSessions.length > 0) {
+        loginSessions.sort((a: ISession, b: ISession) => {
+          const aName = a.courseName + ' ' + a.courseFac;
+          const bName = b.courseName + ' ' + b.courseFac;
+
+          if (aName.toLowerCase() < bName.toLowerCase()) { return -1; }
+          if (aName.toLowerCase() > bName.toLowerCase()) { return 1; }
+          return 0;
+        });
+        this.storage.set('sessions', loginSessions).finally(() => {
+          this.app.initializeSession();
+          this.app.startPushRegistration();
+          this.app.enrollMoodleCourses();
+          this.app.initializeMenu();
+        });
+        this.storage.remove('coursesToLogin');
+        this.navCtrl.navigateRoot('/home');
+      }
     });
   }
 

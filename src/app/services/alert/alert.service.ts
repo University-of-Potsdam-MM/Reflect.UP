@@ -8,8 +8,8 @@ import { Logger, LoggingService } from 'ionic-logging-service';
  * @type {IAlertOptions}
  */
 export interface IAlertOptions {
-  headerI18nKey: string;
-  messageI18nKey: string;
+  headerI18nKey?: string;
+  messageI18nKey?: string;
 }
 
 @Injectable({
@@ -38,7 +38,7 @@ export class AlertService {
    * @description shows alert as specified by alertOptions parameter
    * @param {IAlertOptions} alertOptions
    */
-  async showAlert(alertOptions: IAlertOptions, buttons?: AlertButton[], textMessage?: string) {
+  async showAlert(alertOptions: IAlertOptions, buttons?: AlertButton[], textMessage?: string, cantBeSupressed?: boolean) {
 
     let alertButtons: AlertButton[] = [];
     if (buttons) { alertButtons = buttons; } else {
@@ -63,10 +63,12 @@ export class AlertService {
 
     let message = this.translate.instant(alertOptions.messageI18nKey);
     if (textMessage) { message = textMessage; }
+
+    const headerMessage = alertOptions.headerI18nKey ? this.translate.instant(alertOptions.headerI18nKey) : undefined;
     // only show new alert if no other alert is currently open
-    if (!this.currentAlert) {
+    if (!this.currentAlert || cantBeSupressed) {
       this.currentAlert = await this.alertCtrl.create({
-        header: this.translate.instant(alertOptions.headerI18nKey),
+        header: headerMessage,
         message: message,
         backdropDismiss: false,
         buttons: alertButtons

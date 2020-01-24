@@ -70,7 +70,7 @@
         <h3>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h3>
       </ion-label>
       <ion-icon *ngIf="moduleConfig.isLoading === true" name="sync"></ion-icon>
-      <ion-icon *ngIf="moduleConfig.isLoading === 'ERROR'" name="alert"></ion-icon>
+      <ion-icon *ngIf="moduleConfig.isLoading === 'ERROR'" name="alert" color="danger"></ion-icon>
       <ion-icon *ngIf="moduleConfig.isLoading === false" name="checkmark-circle"></ion-icon>
       <ion-icon name="square" size="large" [style]="getHexColor(moduleConfig)"></ion-icon>
     </ion-item>

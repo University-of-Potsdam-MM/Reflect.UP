@@ -56,7 +56,7 @@ export class QuestionsPage extends AbstractPage implements OnInit {
           if (idx === 0) {
             // load questions that haven't been answered yet
             const loop = dLoop(this.sessions, (session, sessionIdx, fin) => {
-              if (!session.isHidden) {
+              if (session && !session.isHidden) {
                 this.questionList[sessionIdx] = [];
                 this.noQuestions[sessionIdx] = false;
                 const config: IModuleConfig = this.configService.getConfigById(session.courseID);
@@ -70,7 +70,7 @@ export class QuestionsPage extends AbstractPage implements OnInit {
           } else {
             // load completed questions
             const loop = dLoop(this.sessions, (session, sessionIdx, fin) => {
-              if (!session.isHidden) {
+              if (session && !session.isHidden) {
                 this.completedQuestionList[sessionIdx] = [];
                 this.noCompletedQuestions[sessionIdx] = false;
                 const config: IModuleConfig = this.configService.getConfigById(session.courseID);
