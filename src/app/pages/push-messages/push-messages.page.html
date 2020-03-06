@@ -21,8 +21,8 @@
 
   <ng-container *ngFor="let module of sessions; let m = index">
     <ion-item-divider *ngIf="isLoaded" (click)="moduleExpanded[m] = !moduleExpanded[m]">
-      <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="arrow-dropdown"></ion-icon>
-      <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="arrow-dropright"></ion-icon>
+      <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="chevron-forward"></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
       <ion-badge *ngIf="pushMessages[m] && pushMessages[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ pushMessages[m].length }}</ion-badge>
       <ion-badge *ngIf="!pushMessages[m] || pushMessages[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
@@ -49,3 +49,7 @@
     </ng-container>
   </ng-container>
 </ion-content>
+
+<ion-footer>
+  <app-tab-bar></app-tab-bar>
+</ion-footer>

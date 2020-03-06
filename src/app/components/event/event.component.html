@@ -4,12 +4,12 @@
       <h6><div [innerHTML]="utils.processMoodleContents(event.name)" class="ion-text-wrap"></div></h6>
       <div class="date">
         <p *ngIf="!noEventDuration" class="ion-text-wrap">
-          <ion-icon name="clock" color="primary" class="ion-padding-end"></ion-icon>
+          <ion-icon name="time" color="primary" class="ion-padding-end"></ion-icon>
           {{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}
           <ion-icon *ngIf="event.hexColor" class="coloredSquare ion-padding-end" name="square" [style]="getHexColor()"></ion-icon>
         </p>
         <p *ngIf="noEventDuration" class="ion-text-wrap">
-          <ion-icon name="clock" color="primary" class="ion-padding-end"></ion-icon>
+          <ion-icon name="time" color="primary" class="ion-padding-end"></ion-icon>
           {{ eventStart }} {{ "label.appointmentsPage.time" | translate }}
           <ion-icon *ngIf="event.hexColor" class="coloredSquare ion-padding-end" name="square" [style]="getHexColor()"></ion-icon>
         </p>

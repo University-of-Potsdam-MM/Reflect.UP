@@ -165,8 +165,8 @@ export class AppComponent {
       { title: 'pageHeader.homePage_alt', pageName: '/home', icon: 'home' },
       { title: 'pageHeader.appointmentsPage_2', pageName: '/appointments', icon: 'calendar' },
       { title: 'pageHeader.questionsPage', pageName: '/questions', icon: 'create' },
-      { title: 'pageHeader.contactsPage', pageName: '/contacts', icon: 'contacts' },
-      { title: 'pageHeader.feedbackPage', pageName: '/feedback', icon: 'send' },
+      { title: 'pageHeader.contactsPage', pageName: '/contacts', icon: 'people-circle' },
+      { title: 'pageHeader.feedbackPage', pageName: '/feedback', icon: 'document-text' },
       { title: 'pageHeader.pushMessagesPage', pageName: '/push-messages', icon: 'chatbubbles'}
     ];
 
@@ -175,7 +175,7 @@ export class AppComponent {
       for (const session of this.courseSessions) {
         const config = this.configService.getConfigById(session.courseID);
         if (config.mintEnabled) {
-          this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'md-analytics', url: config.mintUrl});
+          this.pagesInMenu.push({ title: 'pageHeader.mintPage', pageName: '/mint', icon: 'analytics', url: config.mintUrl});
           break;
         }
       }

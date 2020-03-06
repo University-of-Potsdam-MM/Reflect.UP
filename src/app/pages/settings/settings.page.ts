@@ -24,8 +24,8 @@ export class SettingsPage extends AbstractPage implements OnInit {
     this.language = this.translate.currentLang;
   }
 
-  onChange(lang) {
-    this.language = lang;
+  onChange(event) {
+    this.language = event.detail.value;
     this.translate.use(this.language);
     moment.locale(this.language);
     this.storage.set('appLanguage', this.language);

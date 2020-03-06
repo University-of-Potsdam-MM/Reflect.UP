@@ -55,7 +55,7 @@ export function configureLogging(loggingService: LoggingService): () => void {
   imports: [
     BrowserModule,
     IonicModule.forRoot({
-      backButtonIcon: 'ios-arrow-back',
+      backButtonIcon: 'chevron-back',
       backButtonText: '',
       mode: 'md',
       rippleEffect: true

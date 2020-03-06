@@ -33,6 +33,8 @@ export class QuestionDetailModalPage implements OnInit {
   public textBoxValue: string[] = [];
   public answerSelected: boolean[] = [];
 
+  radioGroupValue: string[] = [];
+
   public questionList: QuestionsObject[] = [];
   public choicesList: string[][] = [];
   public isCheckbox: boolean[] = [];
@@ -92,6 +94,7 @@ export class QuestionDetailModalPage implements OnInit {
             // fill radiobuttons
             const answer = Number(this.answerList[j].value);
             this.radioBtnValue[i][answer - 1] = true;
+            this.radioGroupValue[i] = String(answer - 1);
           }
         }
       }
@@ -103,6 +106,7 @@ export class QuestionDetailModalPage implements OnInit {
     for (i = 0; i < this.choicesList.length; i++) {
       this.checkBoxValue[i] = [];
       this.radioBtnValue[i] = [];
+      this.radioGroupValue[i] = '';
       this.textBoxValue[i] = '';
       this.answerSelected[i] = true;
       if (this.questionList[i].type === 'multichoice') {
@@ -122,13 +126,15 @@ export class QuestionDetailModalPage implements OnInit {
     }
   }
 
-  handleRadios(i, j, answer) {
+  handleRadios(i, answer, event) {
+    const j = event.detail.value;
     let k;
     if (this.questionList[i].type === 'multichoice') {
       for (k = 0; k < this.choicesList[i].length; k++) {
         this.radioBtnValue[i][k] = false;
       }
       this.radioBtnValue[i][j] = true;
+      this.radioGroupValue[i] = j;
     }
     this.openURL(answer);
   }
@@ -231,6 +237,7 @@ export class QuestionDetailModalPage implements OnInit {
             this.checkBoxValue[i][k] = false;
           } else {
             this.radioBtnValue[i][k] = false;
+            this.radioGroupValue[i] = '';
           }
         }
       }

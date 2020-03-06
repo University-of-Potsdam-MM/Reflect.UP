@@ -14,17 +14,18 @@
     </ion-segment>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-row nowrap>
-    <ion-searchbar
-      [(ngModel)]="searchTerm"
-      (ionChange)="setFilteredItems()"
-      [debounce]="500"
-      [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
-    </ion-searchbar>
-    <ion-button fill="clear" (click)="presentPopover($event)"
-    *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)">
-      <ion-icon slot="icon-only" name="funnel"></ion-icon>
-    </ion-button>
+    <ion-row class="ion-nowrap">
+      <ion-searchbar
+        inputmode="search"
+        [(ngModel)]="searchTerm"
+        (ionChange)="setFilteredItems()"
+        [debounce]="500"
+        [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
+      </ion-searchbar>
+      <ion-button fill="clear" (click)="presentPopover($event)"
+      *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
     </ion-row>
   </ion-toolbar>
 </ion-header>
@@ -83,7 +84,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [disabled]="checkLoginCondition()" (click)="selectConfigs()">
-      <ion-icon name="arrow-dropright"></ion-icon>
+      <ion-icon name="chevron-forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

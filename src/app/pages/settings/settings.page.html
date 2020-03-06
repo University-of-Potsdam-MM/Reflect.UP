@@ -10,17 +10,17 @@
   <ion-item-divider class="ion-padding-top">
     <ion-label>{{ "label.settingsPage.language" | translate }}</ion-label>
   </ion-item-divider>
-  <ion-radio-group>
+  <ion-radio-group [value]="language" (ionChange)="onChange($event)">
     <ion-item>
       <ion-label>English</ion-label>
-      <ion-radio value="en" (ionSelect)="onChange('en')" [checked]="language === 'en'"></ion-radio>
+      <ion-radio value="en"></ion-radio>
       <ion-avatar slot="start">
         <img src="assets/imgs/flags/us.png">
       </ion-avatar>
     </ion-item>
     <ion-item>
       <ion-label>Deutsch</ion-label>
-      <ion-radio value="de" (ionSelect)="onChange('de')" [checked]="language === 'de'"></ion-radio>
+      <ion-radio value="de"></ion-radio>
       <ion-avatar slot="start">
         <img src="assets/imgs/flags/de.png">
       </ion-avatar>

@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-menu contentId='content' side='end' swipeGesture='false' type='overlay'>
+  <ion-menu contentId='main' side='end' swipeGesture='false' type='overlay'>
     <ion-header>
       <ion-toolbar>
         <ion-title>{{ 'label.menu' | translate }}</ion-title>
@@ -15,8 +15,8 @@
           <ion-label>
             {{ "buttonLabel.modules" | translate }}
           </ion-label>
-          <ion-icon name="ios-cog" slot="end" (click)="openSessionVisibilityPage()"></ion-icon>
-          <ion-icon name="add-circle-outline" slot="end" class="ion-padding-end" (click)="loginToNewCourses()"></ion-icon>
+          <ion-icon name="cog" slot="end" (click)="openSessionVisibilityPage()"></ion-icon>
+          <ion-icon name="add-circle" slot="end" class="ion-padding-end" (click)="loginToNewCourses()"></ion-icon>
         </ion-item-divider>
         <ng-container *ngIf="!refreshingSessions">
           <ion-item *ngFor="let session of courseSessions" [ngClass]="session.isHidden ? 'hiddenSession' : ''">
@@ -30,5 +30,5 @@
       </ion-item-group>
     </ion-content>
   </ion-menu>
-  <ion-router-outlet id="content" main></ion-router-outlet>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

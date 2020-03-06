@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-button slot="start" (click)="closeModal()" fill="clear">
-            <ion-icon style="color: black; font-size: x-large;" name="ios-arrow-back"></ion-icon>
+            <ion-icon style="color: black; font-size: x-large;" name="chevron-back"></ion-icon>
         </ion-button>
         <ion-title *ngIf="answersSubmitted">{{ "pageHeader.headerFinish" | translate }}</ion-title>
         <ion-title *ngIf="!answersSubmitted">{{ "pageHeader.headerQuestionCount" | translate }} {{ questionNavIndex }}</ion-title>
@@ -12,18 +12,22 @@
     <div *ngFor="let quest of questionList; let i = index">
         <div *ngIf="isPageActive[i]">
             <ion-list-header class="header ion-no-padding" lines="none" (click)="openURL(utils.processMoodleContents(quest.questionText))">
-                <h6 [innerHTML]="utils.processMoodleContents(quest.questionText, true)" class="ion-text-wrap"></h6>
+                <ion-label>
+                    <h6 [innerHTML]="utils.processMoodleContents(quest.questionText, true)" class="ion-text-wrap"></h6>
+                </ion-label>
             </ion-list-header>
             <p *ngIf="!answerSelected[i] && !isCompleted" style="color:red;">{{ "label.feedbackPage.questionNotAnswered" | translate }}</p>
             <div *ngIf="quest.type === 'multichoice'; then multichoice else textarea"></div>
 
             <ng-template #multichoice>
                 <ion-list radio-group>
-                    <ion-item *ngFor="let answers of choicesList[i]; let j = index">
-                        <ion-label [innerHTML]="utils.processMoodleContents(answers, true)" class="ion-text-wrap"></ion-label>
-                        <ion-checkbox *ngIf="isCheckbox[i]" ngDefaultControl [(ngModel)]="checkBoxValue[i][j]" (click)="openURL(utils.processMoodleContents(answers))" name="checkBoxValue" [disabled]="isCompleted"></ion-checkbox>
-                        <ion-radio *ngIf="!isCheckbox[i]" [checked]="radioBtnValue[i][j]" (ionSelect)="handleRadios(i,j, utils.processMoodleContents(answers))" slot="start" [disabled]="isCompleted"></ion-radio>
-                    </ion-item>
+                    <ion-radio-group [value]="radioGroupValue[i]" (ionChange)="handleRadios(i, utils.processMoodleContents(answers), $event)">
+                        <ion-item *ngFor="let answers of choicesList[i]; let j = index">
+                            <ion-label [innerHTML]="utils.processMoodleContents(answers, true)" class="ion-text-wrap"></ion-label>
+                            <ion-checkbox *ngIf="isCheckbox[i]" ngDefaultControl [(ngModel)]="checkBoxValue[i][j]" (click)="openURL(utils.processMoodleContents(answers))" name="checkBoxValue" [disabled]="isCompleted"></ion-checkbox>
+                            <ion-radio *ngIf="!isCheckbox[i]" value="{{ j }}" slot="start" [disabled]="isCompleted"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
                 </ion-list>
             </ng-template>
 
@@ -57,18 +61,18 @@
     <ion-toolbar>
         <div *ngIf="!answersSubmitted" align="center">
             <ion-button class="navButtons" (click)="goBack()" [disabled]="isFirstQuestion" color="primary">
-                <ion-icon slot="start" name="arrow-back" class="ion-padding-end"></ion-icon>
+                <ion-icon slot="start" name="chevron-back" class="ion-padding-end"></ion-icon>
                 <ion-label>{{ "buttonLabel.back" | translate }}</ion-label>
             </ion-button>
             <ion-button class="navButtons" (click)="goForward()" color="primary">
                 <ion-label>{{ "buttonLabel.next" | translate }}</ion-label>
-                <ion-icon slot="end" name="arrow-forward" class="ion-padding-start"></ion-icon>
+                <ion-icon slot="end" name="chevron-forward" class="ion-padding-start"></ion-icon>
             </ion-button>
         </div>
 
         <div *ngIf="answersSubmitted" align="center">
         <ion-button class="navButtons" (click)="goBackLast()" color="primary">
-            <ion-icon slot="start" name="arrow-back" class="ion-padding-end"></ion-icon>
+            <ion-icon slot="start" name="chevron-back" class="ion-padding-end"></ion-icon>
             <ion-label>{{ "buttonLabel.back" | translate }}</ion-label>
         </ion-button>
         <ion-button class="navButtons" fill="outline" (click)="backToRoot()" [disabled]="isCompleted" color="primary">

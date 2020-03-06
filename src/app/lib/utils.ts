@@ -12,7 +12,7 @@ export module utils {
       const urlRegex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
 
       // shortens the URL to just show the main-domain if shorterURL === true
-      if (shorterURL) {
+      if (text && shorterURL) {
         return text.replace(urlRegex, function(url) {
           const regShortURL = new RegExp(urlRegex);
           regShortURL.lastIndex = 0;
@@ -20,13 +20,15 @@ export module utils {
           tmpUrl = '(Website: ' + tmpUrl.replace('www.', '') + ')';
           return tmpUrl;
         });
-      } else {
+      } else if (text) {
         return text.replace(urlRegex, function(url) {
           if (!/^http[s]?:\/\//.test(url)) {
             url = 'http://' + url.replace('www.', '');
           }
           return url;
         });
+      } else {
+        return text;
       }
     }
 

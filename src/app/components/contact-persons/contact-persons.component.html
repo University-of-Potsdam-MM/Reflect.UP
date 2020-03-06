@@ -1,6 +1,6 @@
 <ion-item *ngIf="contactPersonsObject.content && contactPersonsObject.category" (click)="isLevelShown = !isLevelShown" color="secondary" lines="none">
-  <ion-icon slot="start" name="arrow-dropright" *ngIf="!isLevelShown" style="color: black"></ion-icon>
-  <ion-icon slot="start" name="arrow-dropdown" *ngIf="isLevelShown" style="color: black"></ion-icon>
+  <ion-icon slot="start" name="chevron-forward" *ngIf="!isLevelShown" style="color: black"></ion-icon>
+  <ion-icon slot="start" name="chevron-down" *ngIf="isLevelShown" style="color: black"></ion-icon>
   <ion-label *ngIf="!isLevelShown" class="ion-text-wrap categoryTitle">{{ contactPersonsObject.category }}</ion-label>
   <ion-label *ngIf="isLevelShown" class="ion-text-wrap categoryTitle">
     <b>{{ contactPersonsObject.category }}</b>
