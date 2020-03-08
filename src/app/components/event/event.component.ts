@@ -4,8 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { AlertController, Platform } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import * as moment from 'moment';
-import * as $ from 'jquery';
-import * as _ from 'underscore';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { DomSanitizer } from '@angular/platform-browser';

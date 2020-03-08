@@ -88,14 +88,12 @@ export class SelectModulePage extends AbstractPage implements OnInit {
   }
 
   filterItems(searchTerm) {
-    return this.moduleConfigList.filter((item) => {
-      return  (item.faculty.toLowerCase().replace(/-/g, '').indexOf(searchTerm.toLowerCase()) > -1) ||
+    return this.moduleConfigList.filter((item) => (item.faculty.toLowerCase().replace(/-/g, '').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.title.toLowerCase().replace(/-/g, '').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.institution.toLowerCase().replace(/-/g, '').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.description.toLowerCase().replace(/-/g, '').indexOf(searchTerm.toLowerCase()) > -1) ||
               (item.courseID.toLowerCase().slice(4, 6).concat('/')
-                .concat(item.courseID.slice(6, 8)).indexOf(searchTerm.toLowerCase()) > -1);
-    });
+                .concat(item.courseID.slice(6, 8)).indexOf(searchTerm.toLowerCase()) > -1));
   }
 
   selectConfigs() {

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedbackObject } from 'src/app/lib/question';
 import { ModalController } from '@ionic/angular';
-import * as _ from 'underscore';
 import { QuestionDetailModalPage } from './question-detail.modal';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { utils } from 'src/app/lib/utils';

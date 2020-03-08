@@ -28,7 +28,7 @@ export class ConnectionService {
     * @return Observable<boolean>
     */
    public checkOnlinePromise(): Promise<boolean> {
-    return new Promise<boolean>((resolve, _) => {
+    return new Promise<boolean>((resolve) => {
       if (this.platform.is('cordova')) {
         switch (this.network.type) {
           case 'unknown': {

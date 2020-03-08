@@ -37,9 +37,6 @@ import { ContactPersonsComponent } from './contact-persons/contact-persons.compo
       QuestionComponent,
       TabBarComponent,
       ContactPersonsComponent
-    ],
-    entryComponents: [
-      QuestionDetailModalPage
     ]
   })
   export class ComponentsModule { }

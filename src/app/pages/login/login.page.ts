@@ -25,10 +25,9 @@ export class LoginPage extends AbstractPage implements OnInit {
   loginForm: FormGroup;
 
   hexValues = [
-    // tslint:disable-next-line: max-line-length
-    '#FFB74D', '#BA68C8', '#FFF176', '#7986CB', '#DCE775', '#4FC3F7', '#81C784', '#F06292', '#4DD0E1', '#4DB6AC', '#FF8A65', '#A1887F', '#90A4AE',
-    // tslint:disable-next-line: max-line-length
-    '#E65100', '#4A148C', '#FDD835', '#1A237E', '#827717', '#01579B', '#1B5E20', '#880E4F', '#006064', '#004D40', '#BF360C', '#3E2723', '#263238'
+    '#FFB74D', '#BA68C8', '#FFF176', '#7986CB', '#DCE775', '#4FC3F7', '#81C784', '#F06292', '#4DD0E1', '#4DB6AC', '#FF8A65', '#A1887F',
+    '#90A4AE', '#E65100', '#4A148C', '#FDD835', '#1A237E', '#827717', '#01579B', '#1B5E20', '#880E4F', '#006064', '#004D40', '#BF360C',
+    '#3E2723', '#263238'
   ];
 
   constructor(

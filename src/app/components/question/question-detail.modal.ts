@@ -4,7 +4,6 @@ import { NavController, ModalController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { QuestionService } from 'src/app/services/question/question.service';
 import * as $ from 'jquery';
-import * as _ from 'underscore';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ISession } from 'src/app/services/login-provider/interfaces';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -140,8 +139,8 @@ export class QuestionDetailModalPage implements OnInit {
   }
 
   openURL(answer) {
-    // tslint:disable-next-line: max-line-length
-    const urlCheck = new RegExp(/(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi);
+    // eslint-disable-next-line max-len
+    const urlCheck = new RegExp(/(([a-z]+:\/\/)?(([a-z0-9-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-.~]+)*(\/([a-z0-9_\-.]*)(\?[a-z0-9+_\-.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi);
     if (urlCheck.test(answer)) {
       urlCheck.lastIndex = 0;   // reset RegExp to start from the beginning
       const url = urlCheck.exec(answer)[0];

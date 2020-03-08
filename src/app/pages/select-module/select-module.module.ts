@@ -35,7 +35,6 @@ const routes: Routes = [
   declarations: [
     SelectModulePage,
     PopoverPage
-  ],
-  entryComponents: [PopoverPage]
+  ]
 })
 export class SelectModulePageModule {}

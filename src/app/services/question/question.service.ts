@@ -79,9 +79,8 @@ export class QuestionService {
       .append('id',                   resultID.toString());
 
     for (i = 0; i < resultAnswersArray.length; i++) {
-      let answerIDstring, answerString;
-      answerIDstring = 'answers[' + i + '][id]';
-      answerString = 'answers[' + i + '][answer]';
+      const answerIDstring = 'answers[' + i + '][id]';
+      const answerString = 'answers[' + i + '][answer]';
       params = params.append(answerIDstring, resultAnswersArray[i][0]); // 0 = frage-id
       params = params.append(answerString,   resultAnswersArray[i][1]); // 1 = answer
     }

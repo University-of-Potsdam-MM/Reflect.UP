@@ -1,3 +1,5 @@
+/* eslint-disable no-inner-declarations */
+/* eslint-disable @typescript-eslint/no-namespace */
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 import { Injector, Type } from '@angular/core';
@@ -8,8 +10,8 @@ export module utils {
 
     // adds http:// to URLs like www.uni.de or uni.de
     export function urlify(text, shorterURL?: boolean) {
-      // tslint:disable-next-line: max-line-length
-      const urlRegex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
+      // eslint-disable-next-line max-len
+      const urlRegex = /(([a-z]+:\/\/)?(([a-z0-9-]+\.)+((?!up)[a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-.~]+)*(\/([a-z0-9_\-.]*)(\?[a-z0-9+_\-.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
 
       // shortens the URL to just show the main-domain if shorterURL === true
       if (text && shorterURL) {
