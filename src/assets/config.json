@@ -1849,7 +1849,7 @@
       },
       "sso": {
         "ssoUrls": {
-          "pluginUrl": "https://moodle2.uni-potsdam.de/local/mobile/launch.php",
+          "pluginUrl": "https://moodle2.uni-potsdam.de/admin/tool/mobile/launch.php",
           "login": "https://moodle2.uni-potsdam.de/login/index.php",
           "tokenUrl": "moodlemobile://token=",
           "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
@@ -1896,7 +1896,7 @@
       },
       "sso": {
         "ssoUrls": {
-          "pluginUrl": "https://moodle2.uni-potsdam.de/local/mobile/launch.php",
+          "pluginUrl": "https://moodle2.uni-potsdam.de/admin/tool/mobile/launch.php",
           "login": "https://moodle2.uni-potsdam.de/login/index.php",
           "tokenUrl": "moodlemobile://token=",
           "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
