@@ -124,7 +124,7 @@ android-production:
     - npm install -g cordova ionic
     - ionic cordova platform add browser
     - ionic cordova prepare browser
-    - ionic cordova build browser --release
+    - ionic cordova build browser --prod --release
     # HACK to make Reflect.UP work in an iframe as we do on mobileup.uni-potsdam.de, cf. https://github.com/apache/cordova-plugin-inappbrowser/issues/419
     - perl -pi -e 's|if \(window.parent && !!window.parent.ripple\) \{|if (window.parent && false) {|' platforms/browser/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js
     # set proper title
