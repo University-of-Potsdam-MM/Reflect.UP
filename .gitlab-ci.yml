@@ -78,6 +78,7 @@ install_dependencies:
     - npm install -g cordova-res --unsafe-perm
     - npm install -D -E @angular/cli
   script:
+    - ./fillCredentials.sh "src/assets/json/config.dist.json" "API_ACCESS_TOKEN"
     - ionic cordova platform add android
     - ionic cordova prepare android
     - ionic cordova build android --prod --release
@@ -121,6 +122,7 @@ android-production:
 .browser:
   stage: build
   script:
+    - ./fillCredentials.sh "src/assets/json/config.dist.json" "API_ACCESS_TOKEN"
     - npm install -g cordova ionic
     - ionic cordova platform add browser
     - ionic cordova prepare browser

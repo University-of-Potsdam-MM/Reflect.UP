@@ -11,7 +11,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -33,9 +33,9 @@
       "senderID": "38438927043",
       "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
       "service": "reflectup",
-      "XAnAppKey": "98c604cdb2a7b2cfa64025a657fac476",
+      "XAnAppKey": "f35639ab0deb6fb66f03adba07267317",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+        "accessToken": "[API_ACCESS_TOKEN]"
       }
     },
     "title": "Studieneingangsphase",
@@ -132,7 +132,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -156,7 +156,7 @@
       "service": "reflectup",
       "XAnAppKey": "f35639ab0deb6fb66f03adba07267317",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Studieneingangsphase",
@@ -478,7 +478,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -502,7 +502,7 @@
       "service": "reflectup",
       "XAnAppKey": "7ad6a9ad3caa3bc6d8b67c38dd0cbc6c",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Studieneingangsphase",
@@ -758,7 +758,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -782,7 +782,7 @@
       "service": "reflectup",
       "XAnAppKey": "a3081a5f089547ecc9120b64990f0013",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Studieneingangsphase",
@@ -1568,7 +1568,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -1592,7 +1592,7 @@
       "service": "reflectup",
       "XAnAppKey": "655199838c189a45994201bf7267201a",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Studieneingangsphase",
@@ -1765,7 +1765,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -1789,7 +1789,7 @@
       "service": "reflectup",
       "XAnAppKey": "fddd97bc2a66e02bb57f651b6629bb27",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Examensbegleitung",
@@ -1878,7 +1878,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -1902,7 +1902,7 @@
       "service": "reflectup",
       "XAnAppKey": "06c1fd9e3094c5426deec6b6e5f1be86",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "AG zur ÜF - ÖR",
@@ -1931,7 +1931,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -1955,7 +1955,7 @@
       "service": "reflectup",
       "XAnAppKey": "80862f8eb793a09eb52c8d544d5314ee",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "AG zur ÜF - StrR",
@@ -1984,7 +1984,7 @@
         "moodlewsrestformat": "json",
         "service": "reflect",
         "authHeader": {
-          "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8"
+          "accessToken": "[API_ACCESS_TOKEN]"
         }
       },
       "sso": {
@@ -2008,7 +2008,7 @@
       "service": "reflectup",
       "XAnAppKey": "9d30a10fc70f862816b99f859430c007",
       "authHeader": {
-        "accessToken": "Bearer 732c17bd-1e57-3e90-bfa7-118ce58879e8 "
+        "accessToken": "[API_ACCESS_TOKEN] "
       }
     },
     "title": "Testkurs",
