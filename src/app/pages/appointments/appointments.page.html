@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>{{ 'pageHeader.appointmentsPage' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="initEvents($event, true)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
+  </ion-refresher>
+
+  <div align="center" class="ion-padding">
+    <ion-col>
+      <ion-button size="small" [ngClass]="showAll ? 'activeCalendarButton' : 'calendarButton'" (click)="resetCalendar()">{{ "buttonLabel.showAll" | translate}}</ion-button>
+      <ion-button size="small" [ngClass]="basicCalendarMode ? 'activeCalendarButton' : 'calendarButton'" (click)="basicCalendarMode = true; showBasicCalendar = true; showAll = false;">{{ "buttonLabel.pickDate" | translate}}</ion-button>
+    </ion-col>
+  </div>
+
+  <ion-calendar *ngIf="showBasicCalendar" [(ngModel)]="date"
+    (change)="pickDate($event)"
+    [options]="optionsBasic"
+    [type]="type"
+    [format]="'YYYY-MM-DD'">
+  </ion-calendar>
+
+  <div align="center" *ngIf="!isLoaded" class="ion-padding">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <div *ngIf="isLoaded && !showAll" class="ion-padding-horizontal">
+    <app-event *ngFor="let ev of eventList; let i = index"
+      [event]="ev"
+      [hiddenEvent]="hiddenEvent[ev.id]"
+      [scheduledEvent]="scheduledEvent[ev.id]"
+      [index]="i"
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+  </div>
+
+  <ion-list *ngIf="isLoaded && showAll">
+    <ion-item-divider (click)="showEventToday = !showEventToday">
+      <ion-label class="ion-text-wrap">{{ "label.appointmentsPage.today" | translate }}</ion-label>
+
+      <ion-badge *ngIf="isEventToday" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListToday.length }}</ion-badge>
+      <ion-badge *ngIf="!isEventToday" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+
+      <ion-icon *ngIf="showEventToday" slot="start" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="!showEventToday" slot="start" name="chevron-forward"></ion-icon>
+    </ion-item-divider>
+    <div *ngFor="let ev of eventListToday; let i = index" class="ion-padding-horizontal">
+      <app-event *ngIf="eventToday[ev.id] && showEventToday"
+      [event]="ev"
+      [hiddenEvent]="hiddenEvent[ev.id]"
+      [scheduledEvent]="scheduledEvent[ev.id]"
+      [index]="i"
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </div>
+    <ng-container *ngIf="showEventToday && !isEventToday">
+      <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
+    </ng-container>
+    <ion-item-divider (click)="showEventTomorrow = !showEventTomorrow">
+      <ion-label class="ion-text-wrap">{{ "label.appointmentsPage.tomorrow" | translate }}</ion-label>
+
+      <ion-badge *ngIf="isEventTomorrow" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListTomorrow.length }}</ion-badge>
+      <ion-badge *ngIf="!isEventTomorrow" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+
+      <ion-icon *ngIf="showEventTomorrow" slot="start" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="!showEventTomorrow" slot="start" name="chevron-forward"></ion-icon>
+    </ion-item-divider>
+    <div *ngFor="let ev of eventListTomorrow; let i = index" class="ion-padding-horizontal">
+      <app-event *ngIf="eventTomorrow[ev.id] && showEventTomorrow"
+      [event]="ev"
+      [hiddenEvent]="hiddenEvent[ev.id]"
+      [scheduledEvent]="scheduledEvent[ev.id]"
+      [index]="i"
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </div>
+    <ng-container *ngIf="showEventTomorrow && !isEventTomorrow">
+      <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
+    </ng-container>
+    <ion-item-divider (click)="showEventThisWeek = !showEventThisWeek">
+      <ion-label class="ion-text-wrap">{{ "label.appointmentsPage.thisWeek" | translate }}</ion-label>
+
+      <ion-badge *ngIf="isEventThisWeek" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListThisWeek.length }}</ion-badge>
+      <ion-badge *ngIf="!isEventThisWeek" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+
+      <ion-icon *ngIf="showEventThisWeek" slot="start" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="!showEventThisWeek" slot="start" name="chevron-forward"></ion-icon>
+    </ion-item-divider>
+    <div *ngFor="let ev of eventListThisWeek; let i = index" class="ion-padding-horizontal">
+      <app-event *ngIf="eventThisWeek[ev.id] && showEventThisWeek"
+      [event]="ev"
+      [hiddenEvent]="hiddenEvent[ev.id]"
+      [scheduledEvent]="scheduledEvent[ev.id]"
+      [index]="i"
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </div>
+    <ng-container *ngIf="showEventThisWeek && !isEventThisWeek">
+      <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
+    </ng-container>
+    <ion-item-divider (click)="showEventLater = !showEventLater">
+      <ion-label class="ion-text-wrap">{{ "label.appointmentsPage.later" | translate }}</ion-label>
+
+      <ion-badge *ngIf="isEventLater" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ eventListLater.length }}</ion-badge>
+      <ion-badge *ngIf="!isEventLater" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+
+      <ion-icon *ngIf="showEventLater" slot="start" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="!showEventLater" slot="start" name="chevron-forward"></ion-icon>
+    </ion-item-divider>
+    <div *ngFor="let ev of eventListLater; let i = index" class="ion-padding-horizontal">
+      <app-event *ngIf="eventLater[ev.id] && showEventLater"
+      [event]="ev"
+      [hiddenEvent]="hiddenEvent[ev.id]"
+      [scheduledEvent]="scheduledEvent[ev.id]"
+      [index]="i"
+      [isPushAllowed]="isPushAllowed"
+      (visibilityChanged)="visibilityChanged($event)"
+      (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </div>
+    <ng-container *ngIf="showEventLater && !isEventLater">
+      <ng-container *ngTemplateOutlet="noAppointmentTemplate"></ng-container>
+    </ng-container>
+  </ion-list>
+
+  <ion-card *ngIf="noAppointments && showBasicCalendar">
+    <ion-card-content class="reminder">
+      {{ "label.appointmentsPage.noAppointmentsAvailable" | translate }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ng-template #noAppointmentTemplate>
+  <ion-card>
+    <ion-card-content class="reminder">
+      {{ "label.appointmentsPage.noAppointmentsAvailable" | translate }}
+    </ion-card-content>
+  </ion-card>
+</ng-template>
+
+<ion-footer>
+  <app-tab-bar></app-tab-bar>
+</ion-footer>

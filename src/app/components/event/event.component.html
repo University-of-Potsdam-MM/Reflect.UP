@@ -1,0 +1,58 @@
+<div [class]="getCardClass()">
+  <ion-card>
+    <ion-card-header class="ion-text-wrap">
+      <h6><div [innerHTML]="utils.processMoodleContents(event.name)" class="ion-text-wrap"></div></h6>
+      <div class="date">
+        <p *ngIf="!noEventDuration" class="ion-text-wrap">
+          <ion-icon name="time" color="primary" class="ion-padding-end"></ion-icon>
+          {{ eventStart }} {{ "label.appointmentsPage.time" | translate }} - {{ eventEnd }} {{ "label.appointmentsPage.time" | translate }}
+          <ion-icon *ngIf="event.hexColor" class="coloredSquare ion-padding-end" name="square" [style]="getHexColor()"></ion-icon>
+        </p>
+        <p *ngIf="noEventDuration" class="ion-text-wrap">
+          <ion-icon name="time" color="primary" class="ion-padding-end"></ion-icon>
+          {{ eventStart }} {{ "label.appointmentsPage.time" | translate }}
+          <ion-icon *ngIf="event.hexColor" class="coloredSquare ion-padding-end" name="square" [style]="getHexColor()"></ion-icon>
+        </p>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div [ngClass]="!showLongDescription && isHomePage ? 'hideLongDescription' : 'longDescription'">
+        <div [ngClass]="index + '-divDescription'" class="ion-text-wrap" [innerHTML]="utils.processMoodleContents(event.description)"></div>
+      </div>
+      <div *ngIf="isHomePage" [id]="index" align="right">
+        <ion-button *ngIf="!showLongDescription" fill="clear" size="small" (click)="toggleLongDescription()">
+          {{ "buttonLabel.showMore" | translate }}
+        </ion-button>
+        <ion-button *ngIf="showLongDescription" fill="clear" size="small" (click)="toggleLongDescription()">
+          {{ "buttonLabel.showLess" | translate }}
+        </ion-button>
+      </div>
+      <ion-row class="btn-group-appointment" nowrap>
+        <ion-col *ngIf="isPushAllowed && isCordovaApp && !hasAlreadyBegun">
+          <div class="reminder">
+            <ion-button (click)="scheduleNotification()" fill="clear" size="small">
+              <ion-icon name="alarm" slot="start"></ion-icon>
+              <div *ngIf="!isNotificationScheduled">{{ "buttonLabel.notify" | translate}}</div>
+              <div *ngIf="isNotificationScheduled">{{ "buttonLabel.cancel" | translate }}</div>
+            </ion-button>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div align="right">
+            <ion-button (click)="toggleCardVisibility()" fill="clear" size="small">
+              <ng-container *ngIf="isVisible; else hidden">
+                <ion-icon name="eye-off" slot="start"></ion-icon>
+                <div>{{ "buttonLabel.hide" | translate }}</div>
+              </ng-container>
+              <ng-template #hidden>
+                <ion-icon name="eye" slot="start"></ion-icon>
+                <div>{{ "buttonLabel.show_2" | translate }}</div>
+              </ng-template>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</div>

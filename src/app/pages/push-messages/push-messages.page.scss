@@ -1,0 +1,33 @@
+ion-card-subtitle {
+    color: var(--ion-color-primary) !important;
+    font-weight: bold!important;
+}
+
+.pushdate {
+    font-size: 0.8em;
+}
+
+ion-item-divider {
+    --color: black;
+    --padding-start: 5px !important;
+
+    ion-icon {
+        margin-right: 5px !important;
+    }
+}
+
+ion-card.pushMessage {
+    --background: var(--ion-color-secondary);
+    border-radius: 0;
+    --color: black;
+
+    ion-card-header {
+        padding: 0;
+    }
+
+    ion-card-content {
+        border:none;
+        padding-top: 5px!important;
+        padding: 0;
+    }
+}

@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-item-divider>
+    <h6>{{ "buttonLabel.filter" | translate }}</h6>
+    <ion-button slot="end" class="clearBtn" fill="clear" (click)="clear()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-item-divider>
+  <ion-item class="listBtn" lines="none" *ngFor="let module of moduleSemester" (click)="close(module)">
+    <ion-label class="ion-text-wrap">{{ module }}</ion-label>
+  </ion-item>
+</ion-list>

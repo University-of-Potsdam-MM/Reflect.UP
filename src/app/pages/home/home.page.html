@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>
+      {{ 'pageHeader.homePage' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher (ionRefresh)="initHome($event)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
+  </ion-refresher>
+
+  <div align="center" *ngIf="!isLoaded || !isLoaded2" class="ion-padding">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="isLoaded2">
+    <ion-card-content class="reminder">
+      <div *ngIf="openQuestions" class="ion-text-wrap">{{ "label.questionsPage.hintUnansweredQuestions" | translate }}</div>
+      <div *ngIf="!openQuestions" class="ion-text-wrap">{{ "label.questionsPage.hintNewQuestionsSoon" | translate }}</div>
+      <br *ngIf="openQuestions">
+      <div align="right">
+        <ion-button *ngIf="openQuestions" size="small" (click)="goToQuestions()" class="ion-text-wrap">
+            {{ "buttonLabel.goToQuestions" | translate }}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <!-- <div *ngIf="isLoaded2 && openQuestions" style="position: relative">
+    <ion-fab horizontal="left" vertical="bottom" edge="true">
+      <ion-fab-button color="primary" (click)="goToQuestions()">
+        <ion-icon name="ios-chatbubbles"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div> -->
+
+  <div *ngIf="isLoaded">
+    <ng-container *ngFor="let ev of eventList; let i = index">
+        <app-event *ngIf="!hiddenEvent[ev.id]" [ngClass]="hiddenEvent[ev.id] ? 'hiddenCard' : '' "
+        [event]="ev"
+        [hiddenEvent]="hiddenEvent[ev.id]"
+        [scheduledEvent]="scheduledEvent[ev.id]"
+        [index]="i"
+        [isPushAllowed]="isPushAllowed"
+        (visibilityChanged)="visibilityChanged($event)"
+        (notificationStatusChanged)="notificationStatusChanged()"></app-event>
+    </ng-container>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-tab-bar></app-tab-bar>
+</ion-footer>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>{{ 'pageHeader.contactsPage' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="getContactDetails($event)" slot="fixed">
+    <ion-refresher-content
+    pullingText=""
+    refreshingText=""
+    pullingIcon="refresh"
+    refreshingSpinner="dots"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="isLoaded">
+    <ng-container *ngFor="let module of selectedModules; let m = index">
+      <ion-item-divider (click)="moduleExpanded[m] = !moduleExpanded[m]">
+        <ion-label>{{ module.title }} ({{ module.faculty }})</ion-label>
+        <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="chevron-down"></ion-icon>
+        <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="chevron-forward"></ion-icon>
+      </ion-item-divider>
+      <div *ngIf="module && module.contactPersonsObject && module.contactPersonsObject.length > 0 && moduleExpanded[m]">
+        <ion-list class="ion-padding-horizontal">
+          <div *ngFor="let module of module.contactPersonsObject; let i = index" class="ion-margin-top">
+            <app-contact-persons [contactPersonsObject]="module"></app-contact-persons>
+          </div>
+        </ion-list>
+      </div>
+
+      <ion-card *ngIf="!(module && module.contactPersonsObject && module.contactPersonsObject.length > 0) && moduleExpanded[m]">
+        <ion-card-content class="reminder">
+          <div>{{ "label.contactsPage.noContactsAvailable" | translate }}</div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <app-tab-bar></app-tab-bar>
+</ion-footer>

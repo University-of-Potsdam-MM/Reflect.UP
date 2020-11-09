@@ -1,0 +1,97 @@
+ion-card {
+    border-width: 0;
+    box-shadow: 0 0 0 #000;
+    margin: 10px auto;
+
+    ion-card-header {
+        padding: 0px 10px 0px 0px;
+    }
+
+    h6 {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+        margin: 0;
+        line-height: 1.5rem;
+    }
+
+    ion-card-content {
+        padding: 0px 10px 0px 0px;
+        border-left: 1px solid var(--ion-color-medium);
+        border-right: 1px solid var(--ion-color-medium);
+        border-bottom: 1px solid var(--ion-color-medium);
+        padding-right: 10px;
+        width: calc(100% - 10px);
+        padding: .2em;
+        margin-top: -2px;
+
+        p {
+            color: var(--ion-color-primary);
+        }
+
+        div {
+            line-height: 20px;
+        }
+
+        .btn-group-appointment {
+            padding: 0;
+
+            .col {
+                padding: 0;
+            }
+
+            button {
+                padding-left: 0;
+            }
+        }
+    }
+
+    .date {
+        background-color: var(--ion-color-light-blue);
+        margin-top: -2px;
+        padding-left: .2em;
+        position: relative;
+        padding-top: .4em;
+        padding-bottom: .4em;
+
+        p {
+            color: var(--ion-color-primary);
+            margin: 0;
+        }
+
+    }
+}
+
+.hiddenCard {
+
+    ion-card {
+
+        .date {
+            --background: var(--ion-color-medium);
+            opacity: .5;
+        }
+
+        ion-card-content p {
+            opacity: .5;
+        }
+    }
+
+}
+
+.hideLongDescription {
+    div {
+        line-height: 20px;
+        max-height: 63px;
+        overflow: hidden;
+    }
+}
+
+.longDescription {
+    div {
+        line-height: 20px;
+    }
+}
+
+.coloredSquare {
+    float: right;
+    font-size: medium;
+}

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>{{ 'pageHeader.impressumPage' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/imgs/logos/logo_uni_potsdam.svg"/>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-item><b>{{ "label.impressumPage.listHeader" | translate }}</b></ion-item>
+    <ion-item (click)="openPage('LegalNoticePage')" detail>
+      <ion-label>{{ "pageHeader.legalNoticePage" | translate }}</ion-label>
+    </ion-item>
+    <ion-item (click)="openPage('PrivacyPolicyPage')" detail>
+      <ion-label>{{ "pageHeader.privacyPolicyPage" | translate }}</ion-label>
+    </ion-item>
+    <ion-item (click)="openPage('TermsOfUsePage')" detail>{{ "pageHeader.termsOfUsePage" | translate }}</ion-item>
+    <ion-item-divider color="light"><ion-label>Log</ion-label></ion-item-divider>
+      <ion-item (click)="exportLog()">
+        <ion-icon color="primary" name="bug" slot="start"></ion-icon>
+        <ion-label>
+          {{ "buttonLabel.exportLog" | translate }}
+        </ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>

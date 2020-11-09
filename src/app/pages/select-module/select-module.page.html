@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{ 'pageHeader.selectModulePage' | translate }}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="activeSegment">
+      <ion-segment-button value="faculty" (click)="activeSegment = 'faculty'">
+        <ion-label>{{ "buttonLabel.faculties" | translate }}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="course" (click)="activeSegment = 'course'">
+        <ion-label >{{ "buttonLabel.modules" | translate }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-row class="ion-nowrap">
+      <ion-searchbar
+        inputmode="search"
+        [(ngModel)]="searchTerm"
+        (ionChange)="setFilteredItems()"
+        [debounce]="500"
+        [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
+      </ion-searchbar>
+      <ion-button fill="clear" (click)="presentPopover($event)"
+      *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-start ion-padding-top"
+    *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)">
+    <em>{{ "label.selectModulePage.selectModuleMessage" | translate }}</em>
+  </div>
+
+  <span *ngIf="activeSegment === 'faculty'">
+    <ion-card *ngIf="facultyCourses.length == 0" class="ion-padding-top">
+      <ion-card-content class="reminder">
+        <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="loginCard" *ngFor="let moduleConfig of facultyCourses; let i = index">
+      <ion-item>
+        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
+        <ion-avatar slot="start">
+          <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
+          <p>{{moduleConfig.institution}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-content>
+        <p>{{moduleConfig.description}}</p>
+      </ion-card-content>
+    </ion-card>
+  </span>
+
+  <span *ngIf="activeSegment === 'course'">
+    <ion-card *ngIf="moduleCourses.length == 0" class="ion-padding-top">
+      <ion-card-content class="reminder">
+        <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="loginCard" *ngFor="let moduleConfig of moduleCourses; let i = index">
+      <ion-item>
+        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
+        <ion-avatar slot="start">
+          <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
+          <p>{{moduleConfig.institution}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-content>
+        <p>{{moduleConfig.description}}</p>
+      </ion-card-content>
+    </ion-card>
+  </span>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [disabled]="checkLoginCondition()" (click)="selectConfigs()">
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

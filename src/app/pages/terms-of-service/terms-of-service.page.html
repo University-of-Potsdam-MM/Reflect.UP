@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-menu-button slot="end"></ion-menu-button>
+    <ion-title>{{ 'pageHeader.termsOfUsePage' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h3>{{ 'statusMessage.tos.title' | translate }}</h3>
+  <div innerHTML="{{ 'templates.tos' | translate }}"></div>
+</ion-content>
