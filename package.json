@@ -57,7 +57,7 @@
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "phonegap-plugin-multidex": "^1.0.0",
-    "phonegap-plugin-push": "git+https://github.com/lkstnr/phonegap-plugin-push.git",
+    "@havesource/cordova-plugin-push": "^1.0.0",
     "rxjs": "^6.5.4",
     "tslib": "^1.11.1",
     "underscore": "^1.9.2",
@@ -120,7 +120,7 @@
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
       },
-      "phonegap-plugin-push": {
+      "havesource-cordova-plugin-push": {
         "ANDROID_SUPPORT_V13_VERSION": "27.+",
         "FCM_VERSION": "17.0.+",
         "SENDER_ID": "38438927043"
