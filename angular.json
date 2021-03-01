@@ -18,6 +18,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
+            "allowedCommonJsDependencies": ["xml2js", "jquery"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               {
@@ -42,8 +43,7 @@
                 "input": "src/app/app.scss"
               }
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -168,9 +168,6 @@
             "devServerTarget": "app:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "app:serve:production"
-            },
             "ci": {
               "devServerTarget": "app:serve:ci"
             }
@@ -195,6 +192,28 @@
     },
     "@ionic/angular-toolkit:page": {
       "styleext": "scss"
+    },
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "spec": false
+    },
+    "@schematics/angular:class": {
+      "spec": false
+    },
+    "@schematics/angular:directive": {
+      "spec": false
+    },
+    "@schematics/angular:guard": {
+      "spec": false
+    },
+    "@schematics/angular:module": {
+      "spec": false
+    },
+    "@schematics/angular:pipe": {
+      "spec": false
+    },
+    "@schematics/angular:service": {
+      "spec": false
     }
   }
 }
