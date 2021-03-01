@@ -5,7 +5,12 @@
       <ion-icon name="close"></ion-icon>
     </ion-button>
   </ion-item-divider>
-  <ion-item class="listBtn" lines="none" *ngFor="let module of moduleSemester" (click)="close(module)">
+  <ion-item
+    class="listBtn"
+    lines="none"
+    *ngFor="let module of moduleSemester"
+    (click)="close(module)"
+  >
     <ion-label class="ion-text-wrap">{{ module }}</ion-label>
   </ion-item>
 </ion-list>

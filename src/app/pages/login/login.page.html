@@ -12,9 +12,10 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-
             <ion-item>
-              <ion-label position="stacked">{{ "label.loginPage.username" | translate }}</ion-label>
+              <ion-label position="stacked"
+                >{{ "label.loginPage.username" | translate }}</ion-label
+              >
               <ion-input
                 autocapitalize="none"
                 type="text"
@@ -26,7 +27,9 @@
             </ion-item>
 
             <ion-item>
-              <ion-label position="stacked">{{ "label.loginPage.password" | translate }}</ion-label>
+              <ion-label position="stacked"
+                >{{ "label.loginPage.password" | translate }}</ion-label
+              >
               <ion-input
                 type="password"
                 [placeholder]="'label.loginPage.password' | translate"
@@ -35,21 +38,23 @@
                 required
               ></ion-input>
             </ion-item>
-
           </ion-list>
         </ion-col>
       </ion-row>
 
       <!-- buttons -->
       <ion-row class="ion-padding-horizontal">
-          <ion-button class="loginButtons" type="reset" (click)="abortLogin()">
-            {{ "buttonLabel.cancel" | translate }}
-          </ion-button>
-          <ion-button class="loginButtons" [disabled]="!loginForm.valid" type="submit">
-            {{ "buttonLabel.login" | translate }}
-          </ion-button>
+        <ion-button class="loginButtons" type="reset" (click)="abortLogin()">
+          {{ "buttonLabel.cancel" | translate }}
+        </ion-button>
+        <ion-button
+          class="loginButtons"
+          [disabled]="!loginForm.valid"
+          type="submit"
+        >
+          {{ "buttonLabel.login" | translate }}
+        </ion-button>
       </ion-row>
-
     </form>
   </div>
 
@@ -57,8 +62,8 @@
     <ion-col>
       <ion-card>
         <ion-card-content class="reminder">
-          {{ "label.loginPage.loginInfoMessage" | translate }}
-          {{ "label.loginPage.loginInfoMessageMail" | translate }}
+          {{ "label.loginPage.loginInfoMessage" | translate }} {{
+          "label.loginPage.loginInfoMessageMail" | translate }}
         </ion-card-content>
       </ion-card>
     </ion-col>
@@ -70,9 +75,20 @@
         <h3>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h3>
       </ion-label>
       <ion-icon *ngIf="moduleConfig.isLoading === true" name="sync"></ion-icon>
-      <ion-icon *ngIf="moduleConfig.isLoading === 'ERROR'" name="alert" color="danger"></ion-icon>
-      <ion-icon *ngIf="moduleConfig.isLoading === false" name="checkmark-circle"></ion-icon>
-      <ion-icon name="square" size="large" [style]="getHexColor(moduleConfig)"></ion-icon>
+      <ion-icon
+        *ngIf="moduleConfig.isLoading === 'ERROR'"
+        name="alert"
+        color="danger"
+      ></ion-icon>
+      <ion-icon
+        *ngIf="moduleConfig.isLoading === false"
+        name="checkmark-circle"
+      ></ion-icon>
+      <ion-icon
+        name="square"
+        size="large"
+        [style]="getHexColor(moduleConfig)"
+      ></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

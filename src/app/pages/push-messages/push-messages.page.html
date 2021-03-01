@@ -9,10 +9,11 @@
 <ion-content class="ion-padding-top">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
-    pullingText=""
-    refreshingText=""
-    pullingIcon="refresh"
-    refreshingSpinner="dots"></ion-refresher-content>
+      pullingText=""
+      refreshingText=""
+      pullingIcon="refresh"
+      refreshingSpinner="dots"
+    ></ion-refresher-content>
   </ion-refresher>
 
   <div align="center" *ngIf="!isLoaded" class="ion-padding">
@@ -20,12 +21,37 @@
   </div>
 
   <ng-container *ngFor="let module of sessions; let m = index">
-    <ion-item-divider *ngIf="isLoaded" (click)="moduleExpanded[m] = !moduleExpanded[m]">
-      <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="chevron-down"></ion-icon>
-      <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="chevron-forward"></ion-icon>
+    <ion-item-divider
+      *ngIf="isLoaded"
+      (click)="moduleExpanded[m] = !moduleExpanded[m]"
+    >
+      <ion-icon
+        *ngIf="moduleExpanded[m]"
+        slot="start"
+        name="chevron-down"
+      ></ion-icon>
+      <ion-icon
+        *ngIf="!moduleExpanded[m]"
+        slot="start"
+        name="chevron-forward"
+      ></ion-icon>
       <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
-      <ion-badge *ngIf="pushMessages[m] && pushMessages[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ pushMessages[m].length }}</ion-badge>
-      <ion-badge *ngIf="!pushMessages[m] || pushMessages[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+      <ion-badge
+        *ngIf="pushMessages[m] && pushMessages[m].length !== 0"
+        mode="ios"
+        slot="end"
+        color="primary"
+        class="ion-margin-end"
+        >{{ pushMessages[m].length }}</ion-badge
+      >
+      <ion-badge
+        *ngIf="!pushMessages[m] || pushMessages[m].length === 0"
+        mode="ios"
+        slot="end"
+        color="light"
+        class="ion-margin-end"
+        >0</ion-badge
+      >
     </ion-item-divider>
     <ion-card *ngIf="responseError[m] && moduleExpanded[m]">
       <ion-card-content class="reminder ion-text-wrap">
@@ -33,8 +59,13 @@
       </ion-card-content>
     </ion-card>
 
-    <ng-container *ngIf="isLoaded && !responseError[m] && pushMessages[m] && moduleExpanded[m]">
-      <ion-card class="pushMessage ion-padding-top ion-padding-horizontal" *ngFor="let push of pushMessages[m]; let i = index">
+    <ng-container
+      *ngIf="isLoaded && !responseError[m] && pushMessages[m] && moduleExpanded[m]"
+    >
+      <ion-card
+        class="pushMessage ion-padding-top ion-padding-horizontal"
+        *ngFor="let push of pushMessages[m]; let i = index"
+      >
         <ion-card-header class="ion-text-wrap ion-margin-start ion-margin-end">
           <ion-card-subtitle>{{ push.title }}</ion-card-subtitle>
         </ion-card-header>

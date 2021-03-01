@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { InfoPage } from './info.page';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/lib/interfaces';
-import { HttpClient } from '@angular/common/http';
+import { InfoPage } from "./info.page";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { HttpLoaderFactory } from "src/app/lib/interfaces";
+import { HttpClient } from "@angular/common/http";
 
 const routes: Routes = [
   {
-    path: '',
-    component: InfoPage
-  }
+    path: "",
+    component: InfoPage,
+  },
 ];
 
 @NgModule({
@@ -25,12 +25,12 @@ const routes: Routes = [
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
-      }
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [InfoPage]
+  declarations: [InfoPage],
 })
 export class InfoPageModule {}

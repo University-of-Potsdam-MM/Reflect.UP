@@ -9,18 +9,24 @@
 <ion-content class="ion-padding">
   <ion-card *ngIf="!selectedSession">
     <ion-card-content class="reminder">
-        {{ "label.feedbackPage.selectCourse" | translate }}
+      {{ "label.feedbackPage.selectCourse" | translate }}
     </ion-card-content>
   </ion-card>
 
-  <ion-select *ngIf="!submitted" (ionChange)="setSelectedModule($event)"
-    [placeholder]="'buttonLabel.selectCourse' | translate" [cancelText]="'buttonLabel.cancel' | translate">
+  <ion-select
+    *ngIf="!submitted"
+    (ionChange)="setSelectedModule($event)"
+    [placeholder]="'buttonLabel.selectCourse' | translate"
+    [cancelText]="'buttonLabel.cancel' | translate"
+  >
     <ion-select-option *ngFor="let module of sessions" [value]="module">
       {{ module.courseFac }} ({{ module.courseName }})
     </ion-select-option>
   </ion-select>
 
-  <div *ngIf="submitted; then submittedTemplate; else notSubmittedTemplate"></div>
+  <div
+    *ngIf="submitted; then submittedTemplate; else notSubmittedTemplate"
+  ></div>
 
   <!-- displayed after feedback has been submitted -->
   <ng-template #submittedTemplate>
@@ -38,13 +44,17 @@
 
   <!-- displayed when no feedback has been submitted -->
   <ng-template #notSubmittedTemplate>
-    <form *ngIf="selectedSession !== undefined" (ngSubmit)="asyncSendFeedback(feedbackText)" #registerForm="ngForm">
+    <form
+      *ngIf="selectedSession !== undefined"
+      (ngSubmit)="asyncSendFeedback(feedbackText)"
+      #registerForm="ngForm"
+    >
       <ion-card>
         <ion-card-content class="reminder">
-            {{ "label.feedbackPage.infoMessage_1" | translate }}
-            <br>
-            <br>
-            {{ "label.feedbackPage.infoMessage_2" | translate }}
+          {{ "label.feedbackPage.infoMessage_1" | translate }}
+          <br />
+          <br />
+          {{ "label.feedbackPage.infoMessage_2" | translate }}
         </ion-card-content>
       </ion-card>
 
@@ -55,7 +65,8 @@
           name="feedbackText"
           [(ngModel)]="feedbackText"
           autoGrow="true"
-          required="true"></ion-textarea>
+          required="true"
+        ></ion-textarea>
       </ion-item>
 
       <div align="right">

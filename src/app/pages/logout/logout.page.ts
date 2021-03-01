@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ISession } from 'src/app/services/login-provider/interfaces';
-import { Storage } from '@ionic/storage';
-import { DomSanitizer } from '@angular/platform-browser';
-import { CacheService } from 'ionic-cache';
-import { Platform, NavController } from '@ionic/angular';
-import { PushService } from 'src/app/services/push/push.service';
-import { IModuleConfig } from 'src/app/lib/config';
-import { ConfigService } from 'src/app/services/config/config.service';
-import { AppComponent } from 'src/app/app.component';
-import { AbstractPage } from '../abstract-page';
-import { AlertService } from 'src/app/services/alert/alert.service';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from "@angular/core";
+import { ISession } from "src/app/services/login-provider/interfaces";
+import { Storage } from "@ionic/storage";
+import { DomSanitizer } from "@angular/platform-browser";
+import { CacheService } from "ionic-cache";
+import { Platform, NavController } from "@ionic/angular";
+import { PushService } from "src/app/services/push/push.service";
+import { IModuleConfig } from "src/app/lib/config";
+import { ConfigService } from "src/app/services/config/config.service";
+import { AppComponent } from "src/app/app.component";
+import { AbstractPage } from "../abstract-page";
+import { AlertService } from "src/app/services/alert/alert.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.page.html',
-  styleUrls: ['./logout.page.scss'],
+  selector: "app-logout",
+  templateUrl: "./logout.page.html",
+  styleUrls: ["./logout.page.scss"],
 })
 export class LogoutPage extends AbstractPage implements OnInit {
-
   sessions: ISession[];
 
   constructor(
@@ -37,11 +36,13 @@ export class LogoutPage extends AbstractPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.sessions = await this.storage.get('sessions');
+    this.sessions = await this.storage.get("sessions");
   }
 
   getHexColor(session: ISession) {
-    return this.sanitizer.bypassSecurityTrustStyle('color: ' + session.hexColor);
+    return this.sanitizer.bypassSecurityTrustStyle(
+      "color: " + session.hexColor
+    );
   }
 
   /**
@@ -54,9 +55,11 @@ export class LogoutPage extends AbstractPage implements OnInit {
 
     if (this.sessions) {
       for (const session of this.sessions) {
-        if (session['isChecked']) {
-          if (this.platform.is('cordova')) {
-            const config: IModuleConfig = this.configService.getConfigById(session.courseID);
+        if (session["isChecked"]) {
+          if (this.platform.is("cordova")) {
+            const config: IModuleConfig = this.configService.getConfigById(
+              session.courseID
+            );
             this.push.unsubscribeToPush(config);
           }
         } else {
@@ -67,26 +70,29 @@ export class LogoutPage extends AbstractPage implements OnInit {
       this.cache.clearAll();
       if (newSessionObject.length > 0) {
         newSessionObject.sort((a: ISession, b: ISession) => {
-          const aName = a.courseName + ' ' + a.courseFac;
-          const bName = b.courseName + ' ' + b.courseFac;
+          const aName = a.courseName + " " + a.courseFac;
+          const bName = b.courseName + " " + b.courseFac;
 
-          if (aName.toLowerCase() < bName.toLowerCase()) { return -1; }
-          if (aName.toLowerCase() > bName.toLowerCase()) { return 1; }
+          if (aName.toLowerCase() < bName.toLowerCase()) {
+            return -1;
+          }
+          if (aName.toLowerCase() > bName.toLowerCase()) {
+            return 1;
+          }
           return 0;
         });
-        this.storage.set('sessions', newSessionObject).finally(() => {
+        this.storage.set("sessions", newSessionObject).finally(() => {
           this.app.initializeSession();
           this.app.initializeMenu();
-          this.navCtrl.navigateRoot('/home');
+          this.navCtrl.navigateRoot("/home");
         });
       } else {
-        this.storage.remove('sessions').finally(() => {
+        this.storage.remove("sessions").finally(() => {
           this.app.initializeSession();
           this.app.initializeMenu();
-          this.navCtrl.navigateRoot('/select-module');
+          this.navCtrl.navigateRoot("/select-module");
         });
       }
-
     }
   }
 
@@ -94,9 +100,9 @@ export class LogoutPage extends AbstractPage implements OnInit {
     if (this.sessions) {
       let hiddenCount = 0;
       for (const session of this.sessions) {
-        if (session['isChecked']) {
+        if (session["isChecked"]) {
           session.isHidden = !session.isHidden;
-          session['isChecked'] = false;
+          session["isChecked"] = false;
         }
 
         if (session.isHidden) {
@@ -107,13 +113,16 @@ export class LogoutPage extends AbstractPage implements OnInit {
       if (hiddenCount === this.sessions.length) {
         this.sessions[0].isHidden = false;
 
-        this.alertService.showAlert({
-          headerI18nKey: 'statusMessage.login.hint',
-          messageI18nKey: 'label.logoutPage.cantHideEverything'
-        }, [{ text: this.translate.instant('buttonLabel.ok') }]);
+        this.alertService.showAlert(
+          {
+            headerI18nKey: "statusMessage.login.hint",
+            messageI18nKey: "label.logoutPage.cantHideEverything",
+          },
+          [{ text: this.translate.instant("buttonLabel.ok") }]
+        );
       }
 
-      this.storage.set('sessions', this.sessions).finally(() => {
+      this.storage.set("sessions", this.sessions).finally(() => {
         this.app.initializeSession();
         this.app.initializeMenu();
       });
@@ -125,7 +134,7 @@ export class LogoutPage extends AbstractPage implements OnInit {
 
     if (this.sessions) {
       for (const session of this.sessions) {
-        if (session['isChecked']) {
+        if (session["isChecked"]) {
           moduleSelected = true;
           break;
         }
@@ -136,16 +145,15 @@ export class LogoutPage extends AbstractPage implements OnInit {
   }
 
   async goBack() {
-    const previousPage = await this.storage.get('visibilityPreviousPage');
-    this.storage.remove('visibilityPreviousPage');
+    const previousPage = await this.storage.get("visibilityPreviousPage");
+    this.storage.remove("visibilityPreviousPage");
 
-    if (previousPage && previousPage !== '/home') {
-      this.navCtrl.navigateRoot('/home').then(() => {
+    if (previousPage && previousPage !== "/home") {
+      this.navCtrl.navigateRoot("/home").then(() => {
         this.navCtrl.navigateForward(previousPage);
       });
     } else {
-      this.navCtrl.navigateRoot('/home');
+      this.navCtrl.navigateRoot("/home");
     }
   }
-
 }

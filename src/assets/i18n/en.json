@@ -1,171 +1,171 @@
 {
-    "buttonLabel": {
-        "agree": "Agree",
-        "back": "Back",
-        "cancel": "Cancel",
-        "disagree": "Disagree",
-        "filter": "Filter",
-        "finish": "Done",
-        "goToQuestions": "To the questions",
-        "hide": "Hide",
-        "login": "Login",
-        "logout": "Logout",
-        "next": "Next",
-        "no": "No",
-        "notify": "Notify Me",
-        "ok": "OK",
-        "ok_2": "Okay",
-        "pickDate": "Date",
-        "pickDateRange": "Date range",
-        "show": "Show",
-        "show_2": "Show",
-        "showAll": "All",
-        "showLess": "Show less",
-        "showMore": "Show more",
-        "showCompletedQuestions": "Answered questions",
-        "submit": "Submit",
-        "tryAgain": "Try again?",
-        "yes": "Yes",
-        "faculties": "Faculties",
-        "modules": "Courses",
-        "selectCourse": "Select course",
-        "exportLog": "Export log",
-        "changeVisibility": "Change visibility"
+  "buttonLabel": {
+    "agree": "Agree",
+    "back": "Back",
+    "cancel": "Cancel",
+    "disagree": "Disagree",
+    "filter": "Filter",
+    "finish": "Done",
+    "goToQuestions": "To the questions",
+    "hide": "Hide",
+    "login": "Login",
+    "logout": "Logout",
+    "next": "Next",
+    "no": "No",
+    "notify": "Notify Me",
+    "ok": "OK",
+    "ok_2": "Okay",
+    "pickDate": "Date",
+    "pickDateRange": "Date range",
+    "show": "Show",
+    "show_2": "Show",
+    "showAll": "All",
+    "showLess": "Show less",
+    "showMore": "Show more",
+    "showCompletedQuestions": "Answered questions",
+    "submit": "Submit",
+    "tryAgain": "Try again?",
+    "yes": "Yes",
+    "faculties": "Faculties",
+    "modules": "Courses",
+    "selectCourse": "Select course",
+    "exportLog": "Export log",
+    "changeVisibility": "Change visibility"
+  },
+  "label": {
+    "appointmentsPage": {
+      "fullDayEvent": "full-day",
+      "noAppointmentsAvailable": "No appointments",
+      "time": "",
+      "timeEnd": "End",
+      "timeStart": "Beginning",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "thisWeek": "This Week",
+      "later": "In the future"
     },
-    "label": {
-        "appointmentsPage": {
-            "fullDayEvent": "full-day",
-            "noAppointmentsAvailable": "No appointments",
-            "time": "",
-            "timeEnd": "End",
-            "timeStart": "Beginning",
-            "today": "Today",
-            "tomorrow": "Tomorrow",
-            "thisWeek": "This Week",
-            "later": "In the future"
-        },
-        "contactsPage": {
-            "consultingTime": "Office Hours:",
-            "email": "Email:",
-            "noContactsAvailable": "No contact persons available.",
-            "phone": "Phone:",
-            "website": "Website:"
-        },
-        "disagreeTOSPage": {
-            "infoMessage": "You have to accept the Terms of Service to use this application."
-        },
-        "feedbackPage": {
-            "feedbackSend": "Feedback has been successfully sent.",
-            "infoMessage_1": "Your opinion is important! Do you think something could be done better regarding the starting phase of your studies? Would you like to suggest something, either a compliment or critique? Share it with us anytime!",
-            "infoMessage_2": "We will also be happy to get feedback about the App, to continually adapt it to your needs.",
-            "questionNotAnswered": "Please answer the question.",
-            "textPlaceholder": "You can enter your feedback here!",
-            "selectCourse": "Für welchen Kurs wollen Sie Feedback abgeben?"
-        },
-        "impressumPage": {
-            "listHeader": "Legal Notice"
-        },
-        "infoPage": {
-            "infoMessage_1": "This is a self-testing exercise. This App is ment to assist you during your learning process, being a useful tool in your hand. By using it, you are not expected to learn a large amount of facts, but to make it easier to develop your own flexible competences and sense of responsability. Therefore there are no right or wrong answers.",
-            "infoMessage_2": "The answers are submitted and checked in an anonymous way."
-        },
-        "loginPage": {
-            "loginInfoMessage": "In order to use this service you must first login.",
-            "loginInfoMessageMail": "Please use only the initial part of your email without @uni-potsdam.de.",
-            "password": "Password",
-            "username": "Username"
-        },
-        "logoutPage": {
-            "questionLogout": "Select courses for logout.",
-            "cantHideEverything": "At least one course has to be visible."
-        },
-        "menu": "Menu",
-        "pushMessagesPage": {
-            "noMessagesReceived": "No messages received."
-        },
-        "questionsPage": {
-            "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",
-            "hintNewQuestionsSoon": "More questions are coming soon!",
-            "hintNoQuestionsAnswered": "You haven't answered any questions yet.",
-            "hintUnansweredQuestions": "You haven't answered all the questions yet! Take a little time and go through the remaining questions.",
-            "feedbackCompleted": "Thank you, you just answered all questions."
-        },
-        "selectModulePage": {
-            "placeholderSearch": "Search",
-            "selectModuleMessage": "You can choose from the listed courses:",
-            "noCoursesAvailable": "There are no courses available right now."
-        },
-        "settingsPage": {
-            "changeLanguage": "Would you like to change the language of the app?",
-            "language": "Language"
-        },
-        "university": "University  of Potsdam"
+    "contactsPage": {
+      "consultingTime": "Office Hours:",
+      "email": "Email:",
+      "noContactsAvailable": "No contact persons available.",
+      "phone": "Phone:",
+      "website": "Website:"
     },
-    "pageHeader": {
-        "appointmentsPage": "Appointments",
-        "appointmentsPage_2": "All appointments",
-        "contactsPage": "Contact persons",
-        "disagreeTOSPage": "Terms of Service",
-        "feedbackPage": "Feedback",
-        "headerFeedback": "Send feedback",
-        "headerFinish": "Done",
-        "headerQuestionCount": "Question ",
-        "homePage": "Reflect.UP",
-        "homePage_alt": "Home",
-        "impressumPage": "Legal Notice",
-        "legalNoticePage": "Information",
-        "privacyPolicyPage": "Privacy policy",
-        "termsOfUsePage": "Terms of Use",
-        "infoPage": "Info",
-        "loginPage": "Reflect.UP - Login",
-        "logoutPage": "Course settings",
-        "pushMessagesPage": "Messages",
-        "questionsPage": "Questions",
-        "selectModulePage": "Welcome",
-        "settingsPage": "Settings",
-        "mintPage": "MINT-Room",
-        "sessionVisibility": "Hide courses"
+    "disagreeTOSPage": {
+      "infoMessage": "You have to accept the Terms of Service to use this application."
     },
-    "statusMessage": {
-        "error": {
-            "http401": "Unauthorized",
-            "http404": "Page not found",
-            "login": "Login failed.",
-            "loginCredentials": "The provided username and password don't match.",
-            "network": "There seems to be a problem with your devices network. Please check your internet connection.",
-            "title": "Error",
-            "transmission": "An error occured during the data transmission. Please try again or contact the developers.",
-            "unknown": "There is an unknown problem, please contact the developers."
-        },
-        "login": {
-            "noInput": "Please enter username and password.",
-            "running": "Logging in...",
-            "hint": "Hint",
-            "failedToLoginCourses": "The login process was unsuccessful:"
-        },
-        "notification": {
-            "cancel": "Would you like to cancel the notification for this appointment?",
-            "scheduled": "You will receive a notification.",
-            "pushMessage_1_0": "You have an appointment on the ",
-            "pushMessage_1_1": " at ",
-            "pushMessage_1_2": " o' clock",
-            "pushMessage_2": "You have an appointment tomorrow",
-            "pushMessage_3_0": "Don't forget your appointment",
-            "pushMessage_3_1": ".",
-            "pushMessage_3_2": "."
-        },
-        "tos": {
-            "title": "Privacy Policy"
-        },
-        "update": {
-            "messageIOS": "A new Reflect.UP update is now available. Please visit the App Store to download the latest version.",
-            "messageANDROID": "A new Reflect.UP update is now available. Please visit the Google Play Store to download the latest version.",
-            "title": "New version of Reflect.UP!"
-        }
+    "feedbackPage": {
+      "feedbackSend": "Feedback has been successfully sent.",
+      "infoMessage_1": "Your opinion is important! Do you think something could be done better regarding the starting phase of your studies? Would you like to suggest something, either a compliment or critique? Share it with us anytime!",
+      "infoMessage_2": "We will also be happy to get feedback about the App, to continually adapt it to your needs.",
+      "questionNotAnswered": "Please answer the question.",
+      "textPlaceholder": "You can enter your feedback here!",
+      "selectCourse": "Für welchen Kurs wollen Sie Feedback abgeben?"
     },
-    "templates": {
-        "imprint": "<h4>Publisher<\/h4>University of Potsdam<br>Am Neuen Palais 10<br>D-14469 Potsdam <br \/>Tel.: +49 331 977-0<br>Fax: +49 331 97 21 63 <br>Email: <a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de<\/a><br \/><h4>Legal structure and representation<\/h4>The University of Potsdam is a corporation under public law. It is legally represented by Prof. Oliver G&uuml;nther, Ph.D., president of the University of Potsdam, Am Neuen Palais 10, D-14469 Potsdam. <br \/><h4>Responsible regulatory authority<\/h4>Ministry of Science, Research, and Culture for the State of Brandenburg<br>Dortustrasse 36 <br>D-14467 Potsdam<br \/>Tel.: +49 331 866 49 99<br>Email: <a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de<\/a><br \/><h4>VAT identification number<\/h4>DE138408327 <br \/><h4>Responsibility for the contents in terms of Section 5 of the German Telemedia Act (TMG) and Section 55, Paragraph 2 of the Interstate Broadcasting Agreement (RStV) <\/h4>The App Store Account of the University of Potsdam and the service Reflect.UP are supervised by Prof. Dr. Ulrike Lucke:<br>Prof. Dr. Ulrike Lucke<br>Institut f&uuml;r Informatik &amp; Computational Science<br>August-Bebel-Stra&szlig;e 89<br>14482 Potsdam<br>Telefon: 0331 977-3023<br>Fax: 0331 977-3042<br>E-Mail: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br \/>Parts of this work were funded by the Federal Ministry of Education and Research (Grant 01PL11037). <br \/><h4>Disclaimer<\/h4>Liability, copyright and data protection are regulated by the terms of use of the ZIM. The liability sets in exclusively for the first installation and further updates from the App Store or other official sources.<br \/><h4>Liability for Content<\/h4>The contents of our website have been prepared with the greatest care. However, we cannot assume any liability for the correctness, completeness or topicality of the contents. As a service provider, we are responsible for our own content on these pages in accordance with Section 7, Paragraph 1 of the German Telemedia Act (TMG). According to Sections 8 through 10 of the TMG, however, as service providers we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected by this. However, liability in this respect is only possible from the point in time that knowledge was gained of a specific violation of the law. We will remove such contents immediately upon becoming aware of any such violations of the law. <br \/><h4>Liability for Links<\/h4>Our website contains links to external, third-party websites, the contents of which we have no influence upon. We therefore cannot assume any liability for these external contents. The respective provider or operator of the website is always responsible for the contents of the linked sites. The linked websites were checked for possible legal infringements at the time the link was set. Illegal contents were not identified at that time. Ongoing monitoring of the contents of the linked pages, however, is unreasonable without specific evidence of a legal violation. If we become aware of any such violations, we will remove such links immediately. <br \/><h4>Copyright<\/h4>The contents and works created by the website operators on these pages are subject to German copyright law. Duplication, editing, distribution or any sort of use beyond the limits of copyright law requires the written consent of the respective author or creator. Downloads and copies of this website are solely permitted for private, non-commercial use. Insofar as the contents on this website were not created by the operator, the copyrights of third parties are respected. The contents of third parties are expressly marked as such. Should you nevertheless become aware of a copyright infringement, please notify us pursuant to this. We will remove such contents immediately upon being made aware of any such infringement.<br><br>",
-        "tos": "<p>The use of this service is voluntary. Data processing is supervised by the University of Potsdam, represented by the President, Prof. Oliver G&uuml;nther, Ph.D., Am neuen Palais 10, 14460 Potsdam.<br>In order to provide you with the Reflect.UP service your data will be processed. You have the right to object, to access, to rectification, to data portability, to erasure and the right to restriction of processing. In any of the cases stated before, please contact: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a>.<br>You can find the complete Privacy Policy in the App under: Impressum.<br>This smartphone app can only be used in conjunction with a separate, self-contained course environment of the teaching and learning platform &ldquo;Moodle\". The features offered within this course are displayed to users via a web service in the app and released for processing or rather communicated via a Push-Service.<br>All data transfers are SSL encrypted (OpenSSL \/ 1.0.1q). Any access and editing of data will only be done within the before mentioned Moodle environment. No data is stored either in the App itself or on the smartphone used. Registration to the Moodle course environment is impossible without using the App. The course environment and the corresponding features are designed and operated exclusively by the responsible tutors and administrators for said courses.\r\n<p>The subscriber-unit ID&rsquo;s stored on the push service provider allow tutors to send messages to the entirety of the available users.<br>These push messages usually include important events, hints, suggestions for reflexion. The web server used &ldquo;Uniqush push server&rdquo; and the Moodle environment are components of the IT system landscape of the eLiS project at the University of Potsdam. They are operated in accordance with the technical and legal standards and the terms of use currently in effect.<br>I have read the information about the App Reflect.UP, as well as the information on usage and data protection described here and take note of it.<\/p>\r\n",
-        "privacy": "<h3>Privacy information<\/h3>\r\n<h4>Responsible for data processing<\/h4>\r\n<p>University of Potsdam<br>represented by the President, Prof. Oliver G&uuml;nther, Ph.D.<br>At the New Palace 10<br>14469 Potsdam<br>Phone: +49 331 977-0<br>Fax: +49 331-97 21 63<br><a href=\"http:\/\/www.uni-potsdam.de\">www.uni-potsdam.de<\/a><\/p>\r\n<h4>Data protection commissioner<\/h4>\r\n<p>Dr. Marek Kneis<br>Am Neuen Palais 10<br>14469 Potsdam<br>Telephone: +49 331 977-124409<br>Fax: +49 331 977-701821<br>E-Mail: <a href=\"mailto:datenschutz@uni-potsdam.de\">datenschutz@uni-potsdam.de<\/a><\/p>\r\n<h4>Purpose of data processing<\/h4>\r\n<p>Your data will be processed in order to provide you with the Reflect.UP service as part of the smartphone app.<br>This app can only be used in conjunction with a seperate course environment provided by the teaching and learning platform &bdquo;Moodle&ldquo;. The features within such a course are either displayed to users via a web-service in the app and released for processing or communicated via a push service. All data transfers are SSL encrypted (OpenSSL \/ 1.0.1q).<br>Any access and editing of data will only be done within the moodle courses. No data is stored in either in the app itself or on the smartphone used. Registration to the the moodle course is not possible without using the app. The courses and corresponding features are designed and operated exclusively by the responsible course tutors and administrators. The subscriber-unit ID&rsquo;s stored on the push service provider allow tutors to send messages to the entirety of the available users. These push messages usually include important events, hints, suggestions for reflexion.<\/p>\r\n<h4>Legal basis of data processing<\/h4>\r\n<p>The legal basis for data processing is Art. 6 paragraph 1 line 1 lit. e GDPR i.V.m. &sect; 14 para. 9 BbgHG.<\/p>\r\n<h4>Duration of data storage<\/h4>\r\n<p>Data is stored for evaluation for one year before being deleted<\/p>\r\n<h4>Transmission of data to third parties<\/h4>\r\n<p>A Transmission of your data to third parties does not take place<\/p>\r\n<h4>Your rights<\/h4>\r\n<p>You have the right to ask us for any information about personal data concerning you. In addition to a copy of the personal data, this right to information also includes the reasons for the processing of your data, data recipients and the duration of storage. Should incorrect personal data be processed, you may require us to correct this information. If the legal requirements of Art. 17 or 18 GDPR are met, you also generally have the right to delete personal data or to restrict processing.<br>Please note that limited processing of the data may not be possible. You have the right to receive your personal data in a structured, standardised and machine-readable format or to request the transfer of said data to another person responsible (Art. 20 GDPR). Furthermore, you may object to the processing under the conditions of Art. 21 GDPR. We kindly request that you contact us to exercise your above-mentioned rights to objection, information, correction, deletion, data portability or restriction of processing to: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de<\/a><br>If you believe that the processing of your personal data is unlawful, you have the right to lodge a complaint with the competent data protection supervisory authority.<\/p>"
+    "impressumPage": {
+      "listHeader": "Legal Notice"
+    },
+    "infoPage": {
+      "infoMessage_1": "This is a self-testing exercise. This App is ment to assist you during your learning process, being a useful tool in your hand. By using it, you are not expected to learn a large amount of facts, but to make it easier to develop your own flexible competences and sense of responsability. Therefore there are no right or wrong answers.",
+      "infoMessage_2": "The answers are submitted and checked in an anonymous way."
+    },
+    "loginPage": {
+      "loginInfoMessage": "In order to use this service you must first login.",
+      "loginInfoMessageMail": "Please use only the initial part of your email without @uni-potsdam.de.",
+      "password": "Password",
+      "username": "Username"
+    },
+    "logoutPage": {
+      "questionLogout": "Select courses for logout.",
+      "cantHideEverything": "At least one course has to be visible."
+    },
+    "menu": "Menu",
+    "pushMessagesPage": {
+      "noMessagesReceived": "No messages received."
+    },
+    "questionsPage": {
+      "hintNewMoodlePlugin": "The Moodle plugin must be updated to view answered questions.",
+      "hintNewQuestionsSoon": "More questions are coming soon!",
+      "hintNoQuestionsAnswered": "You haven't answered any questions yet.",
+      "hintUnansweredQuestions": "You haven't answered all the questions yet! Take a little time and go through the remaining questions.",
+      "feedbackCompleted": "Thank you, you just answered all questions."
+    },
+    "selectModulePage": {
+      "placeholderSearch": "Search",
+      "selectModuleMessage": "You can choose from the listed courses:",
+      "noCoursesAvailable": "There are no courses available right now."
+    },
+    "settingsPage": {
+      "changeLanguage": "Would you like to change the language of the app?",
+      "language": "Language"
+    },
+    "university": "University  of Potsdam"
+  },
+  "pageHeader": {
+    "appointmentsPage": "Appointments",
+    "appointmentsPage_2": "All appointments",
+    "contactsPage": "Contact persons",
+    "disagreeTOSPage": "Terms of Service",
+    "feedbackPage": "Feedback",
+    "headerFeedback": "Send feedback",
+    "headerFinish": "Done",
+    "headerQuestionCount": "Question ",
+    "homePage": "Reflect.UP",
+    "homePage_alt": "Home",
+    "impressumPage": "Legal Notice",
+    "legalNoticePage": "Information",
+    "privacyPolicyPage": "Privacy policy",
+    "termsOfUsePage": "Terms of Use",
+    "infoPage": "Info",
+    "loginPage": "Reflect.UP - Login",
+    "logoutPage": "Course settings",
+    "pushMessagesPage": "Messages",
+    "questionsPage": "Questions",
+    "selectModulePage": "Welcome",
+    "settingsPage": "Settings",
+    "mintPage": "MINT-Room",
+    "sessionVisibility": "Hide courses"
+  },
+  "statusMessage": {
+    "error": {
+      "http401": "Unauthorized",
+      "http404": "Page not found",
+      "login": "Login failed.",
+      "loginCredentials": "The provided username and password don't match.",
+      "network": "There seems to be a problem with your devices network. Please check your internet connection.",
+      "title": "Error",
+      "transmission": "An error occured during the data transmission. Please try again or contact the developers.",
+      "unknown": "There is an unknown problem, please contact the developers."
+    },
+    "login": {
+      "noInput": "Please enter username and password.",
+      "running": "Logging in...",
+      "hint": "Hint",
+      "failedToLoginCourses": "The login process was unsuccessful:"
+    },
+    "notification": {
+      "cancel": "Would you like to cancel the notification for this appointment?",
+      "scheduled": "You will receive a notification.",
+      "pushMessage_1_0": "You have an appointment on the ",
+      "pushMessage_1_1": " at ",
+      "pushMessage_1_2": " o' clock",
+      "pushMessage_2": "You have an appointment tomorrow",
+      "pushMessage_3_0": "Don't forget your appointment",
+      "pushMessage_3_1": ".",
+      "pushMessage_3_2": "."
+    },
+    "tos": {
+      "title": "Privacy Policy"
+    },
+    "update": {
+      "messageIOS": "A new Reflect.UP update is now available. Please visit the App Store to download the latest version.",
+      "messageANDROID": "A new Reflect.UP update is now available. Please visit the Google Play Store to download the latest version.",
+      "title": "New version of Reflect.UP!"
     }
+  },
+  "templates": {
+    "imprint": "<h4>Publisher</h4>University of Potsdam<br>Am Neuen Palais 10<br>D-14469 Potsdam <br />Tel.: +49 331 977-0<br>Fax: +49 331 97 21 63 <br>Email: <a href=\"mailto:buero.praesident@uni-potsdam.de\">buero.praesident@uni-potsdam.de</a><br /><h4>Legal structure and representation</h4>The University of Potsdam is a corporation under public law. It is legally represented by Prof. Oliver G&uuml;nther, Ph.D., president of the University of Potsdam, Am Neuen Palais 10, D-14469 Potsdam. <br /><h4>Responsible regulatory authority</h4>Ministry of Science, Research, and Culture for the State of Brandenburg<br>Dortustrasse 36 <br>D-14467 Potsdam<br />Tel.: +49 331 866 49 99<br>Email: <a href=\"mailto:presse@mwfk.brandenburg.de\">presse@mwfk.brandenburg.de</a><br /><h4>VAT identification number</h4>DE138408327 <br /><h4>Responsibility for the contents in terms of Section 5 of the German Telemedia Act (TMG) and Section 55, Paragraph 2 of the Interstate Broadcasting Agreement (RStV) </h4>The App Store Account of the University of Potsdam and the service Reflect.UP are supervised by Prof. Dr. Ulrike Lucke:<br>Prof. Dr. Ulrike Lucke<br>Institut f&uuml;r Informatik &amp; Computational Science<br>August-Bebel-Stra&szlig;e 89<br>14482 Potsdam<br>Telefon: 0331 977-3023<br>Fax: 0331 977-3042<br>E-Mail: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a><br />Parts of this work were funded by the Federal Ministry of Education and Research (Grant 01PL11037). <br /><h4>Disclaimer</h4>Liability, copyright and data protection are regulated by the terms of use of the ZIM. The liability sets in exclusively for the first installation and further updates from the App Store or other official sources.<br /><h4>Liability for Content</h4>The contents of our website have been prepared with the greatest care. However, we cannot assume any liability for the correctness, completeness or topicality of the contents. As a service provider, we are responsible for our own content on these pages in accordance with Section 7, Paragraph 1 of the German Telemedia Act (TMG). According to Sections 8 through 10 of the TMG, however, as service providers we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information in accordance with general laws remain unaffected by this. However, liability in this respect is only possible from the point in time that knowledge was gained of a specific violation of the law. We will remove such contents immediately upon becoming aware of any such violations of the law. <br /><h4>Liability for Links</h4>Our website contains links to external, third-party websites, the contents of which we have no influence upon. We therefore cannot assume any liability for these external contents. The respective provider or operator of the website is always responsible for the contents of the linked sites. The linked websites were checked for possible legal infringements at the time the link was set. Illegal contents were not identified at that time. Ongoing monitoring of the contents of the linked pages, however, is unreasonable without specific evidence of a legal violation. If we become aware of any such violations, we will remove such links immediately. <br /><h4>Copyright</h4>The contents and works created by the website operators on these pages are subject to German copyright law. Duplication, editing, distribution or any sort of use beyond the limits of copyright law requires the written consent of the respective author or creator. Downloads and copies of this website are solely permitted for private, non-commercial use. Insofar as the contents on this website were not created by the operator, the copyrights of third parties are respected. The contents of third parties are expressly marked as such. Should you nevertheless become aware of a copyright infringement, please notify us pursuant to this. We will remove such contents immediately upon being made aware of any such infringement.<br><br>",
+    "tos": "<p>The use of this service is voluntary. Data processing is supervised by the University of Potsdam, represented by the President, Prof. Oliver G&uuml;nther, Ph.D., Am neuen Palais 10, 14460 Potsdam.<br>In order to provide you with the Reflect.UP service your data will be processed. You have the right to object, to access, to rectification, to data portability, to erasure and the right to restriction of processing. In any of the cases stated before, please contact: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a>.<br>You can find the complete Privacy Policy in the App under: Impressum.<br>This smartphone app can only be used in conjunction with a separate, self-contained course environment of the teaching and learning platform &ldquo;Moodle\". The features offered within this course are displayed to users via a web service in the app and released for processing or rather communicated via a Push-Service.<br>All data transfers are SSL encrypted (OpenSSL / 1.0.1q). Any access and editing of data will only be done within the before mentioned Moodle environment. No data is stored either in the App itself or on the smartphone used. Registration to the Moodle course environment is impossible without using the App. The course environment and the corresponding features are designed and operated exclusively by the responsible tutors and administrators for said courses.\r\n<p>The subscriber-unit ID&rsquo;s stored on the push service provider allow tutors to send messages to the entirety of the available users.<br>These push messages usually include important events, hints, suggestions for reflexion. The web server used &ldquo;Uniqush push server&rdquo; and the Moodle environment are components of the IT system landscape of the eLiS project at the University of Potsdam. They are operated in accordance with the technical and legal standards and the terms of use currently in effect.<br>I have read the information about the App Reflect.UP, as well as the information on usage and data protection described here and take note of it.</p>\r\n",
+    "privacy": "<h3>Privacy information</h3>\r\n<h4>Responsible for data processing</h4>\r\n<p>University of Potsdam<br>represented by the President, Prof. Oliver G&uuml;nther, Ph.D.<br>At the New Palace 10<br>14469 Potsdam<br>Phone: +49 331 977-0<br>Fax: +49 331-97 21 63<br><a href=\"http://www.uni-potsdam.de\">www.uni-potsdam.de</a></p>\r\n<h4>Data protection commissioner</h4>\r\n<p>Dr. Marek Kneis<br>Am Neuen Palais 10<br>14469 Potsdam<br>Telephone: +49 331 977-124409<br>Fax: +49 331 977-701821<br>E-Mail: <a href=\"mailto:datenschutz@uni-potsdam.de\">datenschutz@uni-potsdam.de</a></p>\r\n<h4>Purpose of data processing</h4>\r\n<p>Your data will be processed in order to provide you with the Reflect.UP service as part of the smartphone app.<br>This app can only be used in conjunction with a seperate course environment provided by the teaching and learning platform &bdquo;Moodle&ldquo;. The features within such a course are either displayed to users via a web-service in the app and released for processing or communicated via a push service. All data transfers are SSL encrypted (OpenSSL / 1.0.1q).<br>Any access and editing of data will only be done within the moodle courses. No data is stored in either in the app itself or on the smartphone used. Registration to the the moodle course is not possible without using the app. The courses and corresponding features are designed and operated exclusively by the responsible course tutors and administrators. The subscriber-unit ID&rsquo;s stored on the push service provider allow tutors to send messages to the entirety of the available users. These push messages usually include important events, hints, suggestions for reflexion.</p>\r\n<h4>Legal basis of data processing</h4>\r\n<p>The legal basis for data processing is Art. 6 paragraph 1 line 1 lit. e GDPR i.V.m. &sect; 14 para. 9 BbgHG.</p>\r\n<h4>Duration of data storage</h4>\r\n<p>Data is stored for evaluation for one year before being deleted</p>\r\n<h4>Transmission of data to third parties</h4>\r\n<p>A Transmission of your data to third parties does not take place</p>\r\n<h4>Your rights</h4>\r\n<p>You have the right to ask us for any information about personal data concerning you. In addition to a copy of the personal data, this right to information also includes the reasons for the processing of your data, data recipients and the duration of storage. Should incorrect personal data be processed, you may require us to correct this information. If the legal requirements of Art. 17 or 18 GDPR are met, you also generally have the right to delete personal data or to restrict processing.<br>Please note that limited processing of the data may not be possible. You have the right to receive your personal data in a structured, standardised and machine-readable format or to request the transfer of said data to another person responsible (Art. 20 GDPR). Furthermore, you may object to the processing under the conditions of Art. 21 GDPR. We kindly request that you contact us to exercise your above-mentioned rights to objection, information, correction, deletion, data portability or restriction of processing to: <a href=\"mailto:mobileup-service@uni-potsdam.de\">mobileup-service@uni-potsdam.de</a><br>If you believe that the processing of your personal data is unlawful, you have the right to lodge a complaint with the competent data protection supervisory authority.</p>"
+  }
 }

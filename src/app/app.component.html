@@ -1,8 +1,8 @@
 <ion-app>
-  <ion-menu contentId='main' side='end' swipeGesture='false' type='overlay'>
+  <ion-menu contentId="main" side="end" swipeGesture="false" type="overlay">
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ 'label.menu' | translate }}</ion-title>
+        <ion-title>{{ "label.menu" | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -15,16 +15,32 @@
           <ion-label>
             {{ "buttonLabel.modules" | translate }}
           </ion-label>
-          <ion-icon name="cog" slot="end" (click)="openSessionVisibilityPage()"></ion-icon>
-          <ion-icon name="add-circle" slot="end" class="ion-padding-end" (click)="loginToNewCourses()"></ion-icon>
+          <ion-icon
+            name="cog"
+            slot="end"
+            (click)="openSessionVisibilityPage()"
+          ></ion-icon>
+          <ion-icon
+            name="add-circle"
+            slot="end"
+            class="ion-padding-end"
+            (click)="loginToNewCourses()"
+          ></ion-icon>
         </ion-item-divider>
         <ng-container *ngIf="!refreshingSessions">
-          <ion-item *ngFor="let session of courseSessions" [ngClass]="session.isHidden ? 'hiddenSession' : ''">
+          <ion-item
+            *ngFor="let session of courseSessions"
+            [ngClass]="session.isHidden ? 'hiddenSession' : ''"
+          >
             <ion-label class="ion-text-wrap no-margin">
               {{ session.courseName }}
               <p>{{ session.courseFac }}</p>
             </ion-label>
-            <ion-icon name="square" size="large" [style]="getHexColor(session)"></ion-icon>
+            <ion-icon
+              name="square"
+              size="large"
+              [style]="getHexColor(session)"
+            ></ion-icon>
           </ion-item>
         </ng-container>
       </ion-item-group>

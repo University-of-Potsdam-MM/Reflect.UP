@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractPage } from '../abstract-page';
+import { Component, OnInit } from "@angular/core";
+import { AbstractPage } from "../abstract-page";
 
 @Component({
-  selector: 'app-privacy-policy',
-  templateUrl: './privacy-policy.page.html',
-  styleUrls: ['./privacy-policy.page.scss'],
+  selector: "app-privacy-policy",
+  templateUrl: "./privacy-policy.page.html",
+  styleUrls: ["./privacy-policy.page.scss"],
 })
 export class PrivacyPolicyPage extends AbstractPage implements OnInit {
-
   constructor() {
     super();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

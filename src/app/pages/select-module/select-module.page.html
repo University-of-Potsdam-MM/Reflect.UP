@@ -9,7 +9,7 @@
         <ion-label>{{ "buttonLabel.faculties" | translate }}</ion-label>
       </ion-segment-button>
       <ion-segment-button value="course" (click)="activeSegment = 'course'">
-        <ion-label >{{ "buttonLabel.modules" | translate }}</ion-label>
+        <ion-label>{{ "buttonLabel.modules" | translate }}</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -20,10 +20,14 @@
         [(ngModel)]="searchTerm"
         (ionChange)="setFilteredItems()"
         [debounce]="500"
-        [placeholder]="'label.selectModulePage.placeholderSearch' | translate">
+        [placeholder]="'label.selectModulePage.placeholderSearch' | translate"
+      >
       </ion-searchbar>
-      <ion-button fill="clear" (click)="presentPopover($event)"
-      *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)">
+      <ion-button
+        fill="clear"
+        (click)="presentPopover($event)"
+        *ngIf="(activeSegment === 'faculty' && facultyCourses.length > 0) || (activeSegment !== 'faculty' && moduleCourses.length > 0)"
+      >
         <ion-icon slot="icon-only" name="funnel"></ion-icon>
       </ion-button>
     </ion-row>
@@ -31,8 +35,10 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding-start ion-padding-top"
-    *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)">
+  <div
+    class="ion-padding-start ion-padding-top"
+    *ngIf="(activeSegment == 'faculty' && facultyCourses.length > 0) || (activeSegment != 'faculty' && moduleCourses.length > 0)"
+  >
     <em>{{ "label.selectModulePage.selectModuleMessage" | translate }}</em>
   </div>
 
@@ -42,11 +48,21 @@
         <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
       </ion-card-content>
     </ion-card>
-    <ion-card class="loginCard" *ngFor="let moduleConfig of facultyCourses; let i = index">
+    <ion-card
+      class="loginCard"
+      *ngFor="let moduleConfig of facultyCourses; let i = index"
+    >
       <ion-item>
-        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
+        <ion-checkbox
+          [(ngModel)]="moduleConfig.isChecked"
+          [disabled]="moduleConfig.alreadyLoggedIn"
+          slot="end"
+        ></ion-checkbox>
         <ion-avatar slot="start">
-          <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
+          <img
+            src="{{logoPath + moduleConfig.uniLogo}}"
+            alt="{{moduleConfig.uniLogo}}"
+          />
         </ion-avatar>
         <ion-label class="ion-text-wrap">
           <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
@@ -65,11 +81,21 @@
         <p>{{ "label.selectModulePage.noCoursesAvailable" | translate }}</p>
       </ion-card-content>
     </ion-card>
-    <ion-card class="loginCard" *ngFor="let moduleConfig of moduleCourses; let i = index">
+    <ion-card
+      class="loginCard"
+      *ngFor="let moduleConfig of moduleCourses; let i = index"
+    >
       <ion-item>
-        <ion-checkbox [(ngModel)]="moduleConfig.isChecked" [disabled]="moduleConfig.alreadyLoggedIn" slot="end"></ion-checkbox>
+        <ion-checkbox
+          [(ngModel)]="moduleConfig.isChecked"
+          [disabled]="moduleConfig.alreadyLoggedIn"
+          slot="end"
+        ></ion-checkbox>
         <ion-avatar slot="start">
-          <img src="{{logoPath + moduleConfig.uniLogo}}" alt="{{moduleConfig.uniLogo}}"/>
+          <img
+            src="{{logoPath + moduleConfig.uniLogo}}"
+            alt="{{moduleConfig.uniLogo}}"
+          />
         </ion-avatar>
         <ion-label class="ion-text-wrap">
           <h2>{{moduleConfig.title}} ({{moduleConfig.faculty}})</h2>
@@ -83,7 +109,10 @@
   </span>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [disabled]="checkLoginCondition()" (click)="selectConfigs()">
+    <ion-fab-button
+      [disabled]="checkLoginCondition()"
+      (click)="selectConfigs()"
+    >
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>

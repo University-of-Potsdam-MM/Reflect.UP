@@ -9,10 +9,11 @@
 <ion-content class="ion-padding-top">
   <ion-refresher (ionRefresh)="initQuestions(true, $event)" slot="fixed">
     <ion-refresher-content
-    pullingText=""
-    refreshingText=""
-    pullingIcon="refresh"
-    refreshingSpinner="dots"></ion-refresher-content>
+      pullingText=""
+      refreshingText=""
+      pullingIcon="refresh"
+      refreshingSpinner="dots"
+    ></ion-refresher-content>
   </ion-refresher>
 
   <div align="center" *ngIf="!isLoaded" class="ion-padding">
@@ -21,12 +22,37 @@
 
   <ng-container *ngIf="isLoaded && !isForceRefreshing">
     <ng-container *ngFor="let module of sessions; let m = index">
-      <ion-item-divider *ngIf="isLoaded && !module.isHidden" (click)="moduleExpanded[m] = !moduleExpanded[m]">
-        <ion-icon *ngIf="moduleExpanded[m]" slot="start" name="chevron-down"></ion-icon>
-        <ion-icon *ngIf="!moduleExpanded[m]" slot="start" name="chevron-forward"></ion-icon>
+      <ion-item-divider
+        *ngIf="isLoaded && !module.isHidden"
+        (click)="moduleExpanded[m] = !moduleExpanded[m]"
+      >
+        <ion-icon
+          *ngIf="moduleExpanded[m]"
+          slot="start"
+          name="chevron-down"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="!moduleExpanded[m]"
+          slot="start"
+          name="chevron-forward"
+        ></ion-icon>
         <ion-label>{{ module.courseName }} ({{ module.courseFac }})</ion-label>
-        <ion-badge *ngIf="questionList[m] && questionList[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ questionList[m].length }}</ion-badge>
-        <ion-badge *ngIf="!questionList[m] || questionList[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+        <ion-badge
+          *ngIf="questionList[m] && questionList[m].length !== 0"
+          mode="ios"
+          slot="end"
+          color="primary"
+          class="ion-margin-end"
+          >{{ questionList[m].length }}</ion-badge
+        >
+        <ion-badge
+          *ngIf="!questionList[m] || questionList[m].length === 0"
+          mode="ios"
+          slot="end"
+          color="light"
+          class="ion-margin-end"
+          >0</ion-badge
+        >
       </ion-item-divider>
 
       <ion-row *ngIf="isLoaded && noQuestions[m] && moduleExpanded[m]">
@@ -40,21 +66,62 @@
       </ion-row>
 
       <div *ngIf="isLoaded && moduleExpanded[m] && !noQuestions[m]">
-        <app-question *ngFor="let quest of questionList[m]" [questions]="quest" [session]="sessions[m]"></app-question>
+        <app-question
+          *ngFor="let quest of questionList[m]"
+          [questions]="quest"
+          [session]="sessions[m]"
+        ></app-question>
       </div>
 
-      <div *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]" class="ion-padding-top ion-padding-horizontal ion-text-wrap">
-        <ion-item class="completedQuestion" lines="none" (click)="showCompletedQuestions[m] = !showCompletedQuestions[m]">
-          <ion-icon slot="start" *ngIf="!showCompletedQuestions[m]" name="chevron-forward"></ion-icon>
-          <ion-icon slot="start" *ngIf="showCompletedQuestions[m]" name="chevron-down"></ion-icon>
-          <ion-label>{{ "buttonLabel.showCompletedQuestions" | translate }}</ion-label>
-          <ion-badge *ngIf="completedQuestionList[m] && completedQuestionList[m].length !== 0" mode="ios" slot="end" color="primary" class="ion-margin-end">{{ completedQuestionList[m].length }}</ion-badge>
-          <ion-badge *ngIf="!completedQuestionList[m] || completedQuestionList[m].length === 0" mode="ios" slot="end" color="light" class="ion-margin-end">0</ion-badge>
+      <div
+        *ngIf="isLoaded && !noCompletedQuestions[m] && moduleExpanded[m]"
+        class="ion-padding-top ion-padding-horizontal ion-text-wrap"
+      >
+        <ion-item
+          class="completedQuestion"
+          lines="none"
+          (click)="showCompletedQuestions[m] = !showCompletedQuestions[m]"
+        >
+          <ion-icon
+            slot="start"
+            *ngIf="!showCompletedQuestions[m]"
+            name="chevron-forward"
+          ></ion-icon>
+          <ion-icon
+            slot="start"
+            *ngIf="showCompletedQuestions[m]"
+            name="chevron-down"
+          ></ion-icon>
+          <ion-label
+            >{{ "buttonLabel.showCompletedQuestions" | translate }}</ion-label
+          >
+          <ion-badge
+            *ngIf="completedQuestionList[m] && completedQuestionList[m].length !== 0"
+            mode="ios"
+            slot="end"
+            color="primary"
+            class="ion-margin-end"
+            >{{ completedQuestionList[m].length }}</ion-badge
+          >
+          <ion-badge
+            *ngIf="!completedQuestionList[m] || completedQuestionList[m].length === 0"
+            mode="ios"
+            slot="end"
+            color="light"
+            class="ion-margin-end"
+            >0</ion-badge
+          >
         </ion-item>
       </div>
 
-      <div *ngIf="showCompletedQuestions[m] && moduleExpanded[m] && !noCompletedQuestions[m]">
-        <app-question *ngFor="let quest of completedQuestionList[m]" [questions]="quest" [session]="sessions[m]"></app-question>
+      <div
+        *ngIf="showCompletedQuestions[m] && moduleExpanded[m] && !noCompletedQuestions[m]"
+      >
+        <app-question
+          *ngFor="let quest of completedQuestionList[m]"
+          [questions]="quest"
+          [session]="sessions[m]"
+        ></app-question>
       </div>
     </ng-container>
   </ng-container>

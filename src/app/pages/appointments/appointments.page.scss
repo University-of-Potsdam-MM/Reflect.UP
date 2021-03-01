@@ -1,66 +1,69 @@
 .hideLongDescription .longDescription {
-    div {
-        line-height: 20px;
-    }
+  div {
+    line-height: 20px;
+  }
 }
 
 ion-button {
-    min-height: 10px;
-    max-height: 30px;
+  min-height: 10px;
+  max-height: 30px;
 }
 
 ion-item-divider {
-    --color: black;
-    --padding-start: 5px !important;
+  --color: black;
+  --padding-start: 5px !important;
 
-    ion-icon {
-        margin-right: 5px !important;
-    }
+  ion-icon {
+    margin-right: 5px !important;
+  }
 }
 
 ion-card-content.reminder {
-    border: none;
-    text-align: center;
+  border: none;
+  text-align: center;
 }
 
 .calendarButton {
-    width: 30.5%;
-    --background: var(--ion-color-light-blue);
-    color: var(--ion-color-primary);
+  width: 30.5%;
+  --background: var(--ion-color-light-blue);
+  color: var(--ion-color-primary);
 }
 
 .activeCalendarButton {
-    width: 30.5%;
-    --background: var(--ion-color-primary);
-    color: var(--ion-color-light-blue);
+  width: 30.5%;
+  --background: var(--ion-color-primary);
+  color: var(--ion-color-light-blue);
 }
 
 ion-button:hover {
-    color: var(--ion-color-light-blue);
+  color: var(--ion-color-light-blue);
 }
 
-ion-calendar-month .primary .days .marked p, ion-calendar-month .primary .days .today p,
+ion-calendar-month .primary .days .marked p,
+ion-calendar-month .primary .days .today p,
 ion-calendar-month .primary button.days-btn small {
-    color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }
 
-ion-calendar-month .primary .days .on-selected, ion-calendar-month .primary .endSelection button.days-btn,
+ion-calendar-month .primary .days .on-selected,
+ion-calendar-month .primary .endSelection button.days-btn,
 ion-calendar-month .primary .startSelection button.days-btn {
-    background-color: var(--ion-color-primary);
-    color: var(--ion-color-light-blue);
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-light-blue);
 }
 
 ion-calendar-month .primary .startSelection:after,
 ion-calendar-month .primary .between button.days-btn,
-ion-calendar-month .primary .endSelection:after  {
-    background-color: var(--ion-color-light-blue);
+ion-calendar-month .primary .endSelection:after {
+  background-color: var(--ion-color-light-blue);
 }
 
-ion-calendar-month .primary .days .marked.on-selected p, ion-calendar-month .primary .days .today.on-selected p,
+ion-calendar-month .primary .days .marked.on-selected p,
+ion-calendar-month .primary .days .today.on-selected p,
 ion-calendar-month .primary .endSelection button.days-btn p {
-    color: var(--ion-color-light-blue);
+  color: var(--ion-color-light-blue);
 }
 
 ion-calendar-month .primary .between button.days-btn p {
-    color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }

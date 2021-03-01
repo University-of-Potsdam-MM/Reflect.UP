@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { SettingsPage } from './settings.page';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/lib/interfaces';
-import { HttpClient } from '@angular/common/http';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { SettingsPage } from "./settings.page";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { HttpLoaderFactory } from "src/app/lib/interfaces";
+import { HttpClient } from "@angular/common/http";
+import { ComponentsModule } from "src/app/components/components.module";
 
 const routes: Routes = [
   {
-    path: '',
-    component: SettingsPage
-  }
+    path: "",
+    component: SettingsPage,
+  },
 ];
 
 @NgModule({
@@ -27,12 +27,12 @@ const routes: Routes = [
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
-      }
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [SettingsPage]
+  declarations: [SettingsPage],
 })
 export class SettingsPageModule {}

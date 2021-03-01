@@ -1,24 +1,24 @@
 ion-card {
-    ion-card-content {
-        text-align: center
-    }
+  ion-card-content {
+    text-align: center;
+  }
 }
 
 ion-button.btn-accordeon {
-    text-transform:none;
+  text-transform: none;
 }
 
 .completedQuestion {
-    --background: var(--ion-color-secondary);
-    border-radius: 0px;
-    font-size: small;
+  --background: var(--ion-color-secondary);
+  border-radius: 0px;
+  font-size: small;
 }
 
 ion-item-divider {
-    --color: black;
-    --padding-start: 5px !important;
+  --color: black;
+  --padding-start: 5px !important;
 
-    ion-icon {
-        margin-right: 5px !important;
-    }
+  ion-icon {
+    margin-right: 5px !important;
+  }
 }

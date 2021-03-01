@@ -1,35 +1,43 @@
-import { HttpParameterCodec, HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpParameterCodec, HttpClient } from "@angular/common/http";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 /** Response of feedback webservice */
 export interface IFeedbackResponse {
-    result?: boolean;
-    errorcode?: string;
-    exception?: string;
-    message?: string;
+  result?: boolean;
+  errorcode?: string;
+  exception?: string;
+  message?: string;
 }
 
 export class WebHttpUrlEncodingCodec implements HttpParameterCodec {
-    encodeKey(k: string): string { return encodeURIComponent(k); }
-    encodeValue(v: string): string { return encodeURIComponent(v); }
-    decodeKey(k: string): string { return decodeURIComponent(k); }
-    decodeValue(v: string) { return decodeURIComponent(v); }
+  encodeKey(k: string): string {
+    return encodeURIComponent(k);
+  }
+  encodeValue(v: string): string {
+    return encodeURIComponent(v);
+  }
+  decodeKey(k: string): string {
+    return decodeURIComponent(k);
+  }
+  decodeValue(v: string) {
+    return decodeURIComponent(v);
+  }
 }
 
 export interface PageInterface {
-    title: string;
-    pageName: any;
-    icon: string;
-    url?: string;
+  title: string;
+  pageName: any;
+  icon: string;
+  url?: string;
 }
 
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 export interface PushMessage {
-    id: number;
-    timestamp: any;
-    title: string;
-    message: string;
+  id: number;
+  timestamp: any;
+  title: string;
+  message: string;
 }

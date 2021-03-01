@@ -13,7 +13,7 @@
         "authHeader": {
           "Authorization": "Authorization Header falls erforderlich"
         }
-      }, 
+      },
       "sso": {
         "ssoUrls": {
           "pluginUrl": "<moodle>/mobile/launch.php",
@@ -22,9 +22,9 @@
           "idpBaseUrl": "<moodle>/idp/profile/SAML2/Redirect/SSO",
           "idpUrl": "<moodle>/idp/Authn/UserPassword",
           "attributeReleaseUrl": "<moodle>/idp/uApprove/AttributeRelease",
-          "pluginUrlParams":{
-            "service":"service name",
-            "passport":"passport"
+          "pluginUrlParams": {
+            "service": "service name",
+            "passport": "passport"
           }
         }
       }
@@ -42,19 +42,24 @@
     "description": "Beschreibungstext für den Kurs in der Modulauswahl",
     "impressumTemplate": "Platz für das Impressum im HTML-Format",
     "uniLogo": "logo_jurist.svg",
-    "contactPersonsObject": [{
+    "contactPersonsObject": [
+      {
         "category": "Hauptkategorie: ...",
-        "content": [{
-          "category": "Unterkategorie: ...",
-          "content": [{
-            "name": "Name",
-            "location": "Standort",
-            "tel": "Telefonnummer",
-            "mail": "E-Mail Adresse",
-            "consultation": "Öffnungszeiten",
-            "consultation_url": "URL zur Informationsseite"
-          }]
-        }]
+        "content": [
+          {
+            "category": "Unterkategorie: ...",
+            "content": [
+              {
+                "name": "Name",
+                "location": "Standort",
+                "tel": "Telefonnummer",
+                "mail": "E-Mail Adresse",
+                "consultation": "Öffnungszeiten",
+                "consultation_url": "URL zur Informationsseite"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

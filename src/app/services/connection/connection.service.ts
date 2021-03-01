@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Network } from '@ionic-native/network/ngx';
-import { Platform } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Network } from "@ionic-native/network/ngx";
+import { Platform } from "@ionic/angular";
+import { Observable } from "rxjs";
 /**
  * ConnectionProvider
  *
@@ -9,34 +9,30 @@ import { Observable } from 'rxjs';
  * http call
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ConnectionService {
-
-  constructor(
-    private network: Network,
-    private platform: Platform
-  ) { }
+  constructor(private network: Network, private platform: Platform) {}
 
   /**
-    * checkOnline
-    *
-    * checks whether the device is connected to the internet. Returns Observable
-    * containing either true or false, corresponding to whether an internet
-    * connection is available or not
-    *
-    * @return Observable<boolean>
-    */
-   public checkOnlinePromise(): Promise<boolean> {
+   * checkOnline
+   *
+   * checks whether the device is connected to the internet. Returns Observable
+   * containing either true or false, corresponding to whether an internet
+   * connection is available or not
+   *
+   * @return Observable<boolean>
+   */
+  public checkOnlinePromise(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      if (this.platform.is('cordova')) {
+      if (this.platform.is("cordova")) {
         switch (this.network.type) {
-          case 'unknown': {
+          case "unknown": {
             // there obviously is 'some' network, so I guess it's okay
             resolve(true);
             break;
           }
-          case 'none': {
+          case "none": {
             // there is no network
             resolve(false);
             break;
@@ -47,7 +43,9 @@ export class ConnectionService {
             break;
           }
         }
-      } else { resolve(true); }
+      } else {
+        resolve(true);
+      }
     });
   }
 
@@ -61,15 +59,15 @@ export class ConnectionService {
    * @return Observable<boolean>
    */
   public checkOnline(): Observable<boolean> {
-    return new Observable(observer => {
-      if (this.platform.is('cordova')) {
+    return new Observable((observer) => {
+      if (this.platform.is("cordova")) {
         switch (this.network.type) {
-          case 'unknown': {
+          case "unknown": {
             // there obviously is 'some' network, so I guess it's okay
             observer.next(true);
             break;
           }
-          case 'none': {
+          case "none": {
             // there is no network
             observer.next(false);
             break;
@@ -80,8 +78,9 @@ export class ConnectionService {
             break;
           }
         }
-      } else { observer.next(true); }
+      } else {
+        observer.next(true);
+      }
     });
   }
-
 }

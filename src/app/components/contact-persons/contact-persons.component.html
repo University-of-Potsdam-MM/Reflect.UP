@@ -1,52 +1,92 @@
-<ion-item *ngIf="contactPersonsObject.content && contactPersonsObject.category" (click)="isLevelShown = !isLevelShown" color="secondary" lines="none">
-  <ion-icon slot="start" name="chevron-forward" *ngIf="!isLevelShown" style="color: black"></ion-icon>
-  <ion-icon slot="start" name="chevron-down" *ngIf="isLevelShown" style="color: black"></ion-icon>
-  <ion-label *ngIf="!isLevelShown" class="ion-text-wrap categoryTitle">{{ contactPersonsObject.category }}</ion-label>
+<ion-item
+  *ngIf="contactPersonsObject.content && contactPersonsObject.category"
+  (click)="isLevelShown = !isLevelShown"
+  color="secondary"
+  lines="none"
+>
+  <ion-icon
+    slot="start"
+    name="chevron-forward"
+    *ngIf="!isLevelShown"
+    style="color: black"
+  ></ion-icon>
+  <ion-icon
+    slot="start"
+    name="chevron-down"
+    *ngIf="isLevelShown"
+    style="color: black"
+  ></ion-icon>
+  <ion-label *ngIf="!isLevelShown" class="ion-text-wrap categoryTitle">{{
+    contactPersonsObject.category
+  }}</ion-label>
   <ion-label *ngIf="isLevelShown" class="ion-text-wrap categoryTitle">
     <b>{{ contactPersonsObject.category }}</b>
   </ion-label>
 </ion-item>
 <div *ngIf="isLevelShown" class="childContentDiv">
-
   <!-- sub-categories -->
   <ng-container *ngIf="contactPersonsObject.content">
     <ng-container *ngFor="let child of contactPersonsObject.content">
-
       <ng-container *ngIf="child.category">
-        <app-contact-persons [contactPersonsObject]="child"></app-contact-persons>
+        <app-contact-persons
+          [contactPersonsObject]="child"
+        ></app-contact-persons>
       </ng-container>
 
       <!-- categories have no name, so we hide them -->
       <ng-container *ngIf="!child.category">
         <ng-container *ngFor="let personItem of child.content">
-          <ng-container *ngTemplateOutlet="personDetails; context: { item: personItem }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="personDetails; context: { item: personItem }"
+          ></ng-container>
         </ng-container>
       </ng-container>
 
       <!-- no sub-categories -->
       <ng-container *ngIf="!child.content">
-        <ng-container *ngTemplateOutlet="personDetails; context: { item: child }"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="personDetails; context: { item: child }"
+        ></ng-container>
       </ng-container>
-
     </ng-container>
   </ng-container>
 
   <!-- no sub-categories -->
   <ng-container *ngIf="!contactPersonsObject.content && isLevelShown">
-    <ng-container *ngTemplateOutlet="personDetails; context: { item: contactPersonsObject }"></ng-container>
+    <ng-container
+      *ngTemplateOutlet="personDetails; context: { item: contactPersonsObject }"
+    ></ng-container>
   </ng-container>
-
 </div>
 
 <!-- person contact details -->
 <ng-template #personDetails let-item="item">
   <ion-card-content class="ion-text-wrap ion-margin-start">
-    <b *ngIf="item.name">{{ item.name }}</b><br *ngIf="item.name">
-    <p *ngIf="item.location && item.location.length > 3" text>{{ item.location }}</p>
-    <p *ngIf="item.tel">{{"label.contactsPage.phone" | translate }} <a *ngIf="item.tel" href="tel:{{ item.tel }}">{{ item.tel }}</a></p>
-    <p *ngIf="item.mail">{{"label.contactsPage.email" | translate }} <a *ngIf="item.mail" href="mailto:{{ item.mail }}">{{ item.mail }}</a></p>
-    <p *ngIf="item.consultation" text>{{"label.contactsPage.consultingTime" | translate }} {{ item.consultation }}</p>
-    <p *ngIf="item.consultation_url" text style="display:inline">{{ "label.contactsPage.website" | translate}} </p>
-    <a *ngIf="item.consultation_url" href="{{ item.consultation_url }}" target="_blank">{{ shortenURL(item.consultation_url) }}</a>
+    <b *ngIf="item.name">{{ item.name }}</b
+    ><br *ngIf="item.name" />
+    <p *ngIf="item.location && item.location.length > 3" text>
+      {{ item.location }}
+    </p>
+    <p *ngIf="item.tel">
+      {{ "label.contactsPage.phone" | translate }}
+      <a *ngIf="item.tel" href="tel:{{ item.tel }}">{{ item.tel }}</a>
+    </p>
+    <p *ngIf="item.mail">
+      {{ "label.contactsPage.email" | translate }}
+      <a *ngIf="item.mail" href="mailto:{{ item.mail }}">{{ item.mail }}</a>
+    </p>
+    <p *ngIf="item.consultation" text>
+      {{ "label.contactsPage.consultingTime" | translate }}
+      {{ item.consultation }}
+    </p>
+    <p *ngIf="item.consultation_url" text style="display: inline">
+      {{ "label.contactsPage.website" | translate }}
+    </p>
+    <a
+      *ngIf="item.consultation_url"
+      href="{{ item.consultation_url }}"
+      target="_blank"
+      >{{ shortenURL(item.consultation_url) }}</a
+    >
   </ion-card-content>
 </ng-template>
