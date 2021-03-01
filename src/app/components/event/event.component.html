@@ -3,7 +3,7 @@
     <ion-card-header class="ion-text-wrap">
       <h6>
         <div
-          [innerHTML]="utils.processMoodleContents(event.name)"
+          [innerHTML]="processMoodleContents(event.name)"
           class="ion-text-wrap"
         ></div>
       </h6>
@@ -51,7 +51,7 @@
         <div
           [ngClass]="index + '-divDescription'"
           class="ion-text-wrap"
-          [innerHTML]="utils.processMoodleContents(event.description)"
+          [innerHTML]="processMoodleContents(event.description)"
         ></div>
       </div>
       <div *ngIf="isHomePage" [id]="index" align="right">

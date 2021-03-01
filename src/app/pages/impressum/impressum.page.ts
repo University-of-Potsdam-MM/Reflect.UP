@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { NavController, Platform } from "@ionic/angular";
 import { AbstractPage } from "../abstract-page";
 import { EmailComposer } from "@ionic-native/email-composer/ngx";
@@ -12,7 +12,7 @@ import { ConfigService } from "src/app/services/config/config.service";
   templateUrl: "./impressum.page.html",
   styleUrls: ["./impressum.page.scss"],
 })
-export class ImpressumPage extends AbstractPage implements OnInit {
+export class ImpressumPage extends AbstractPage {
   constructor(
     private navCtrl: NavController,
     private file: File,
@@ -23,8 +23,6 @@ export class ImpressumPage extends AbstractPage implements OnInit {
   ) {
     super();
   }
-
-  ngOnInit() {}
 
   openPage(page) {
     if (page === "LegalNoticePage") {

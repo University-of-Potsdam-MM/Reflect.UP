@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 
@@ -7,10 +7,8 @@ import { NavController } from "@ionic/angular";
   templateUrl: "./tab-bar.component.html",
   styleUrls: ["./tab-bar.component.scss"],
 })
-export class TabBarComponent implements OnInit {
+export class TabBarComponent {
   constructor(private router: Router, private navCtrl: NavController) {}
-
-  ngOnInit() {}
 
   openPage(pageID) {
     switch (pageID) {

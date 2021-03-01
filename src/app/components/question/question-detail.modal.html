@@ -22,11 +22,11 @@
       <ion-list-header
         class="header ion-no-padding"
         lines="none"
-        (click)="openURL(utils.processMoodleContents(quest.questionText))"
+        (click)="openURL(processMoodleContents(quest.questionText))"
       >
         <ion-label>
           <h6
-            [innerHTML]="utils.processMoodleContents(quest.questionText, true)"
+            [innerHTML]="processMoodleContents(quest.questionText, true)"
             class="ion-text-wrap"
           ></h6>
         </ion-label>
@@ -42,18 +42,18 @@
         <ion-list radio-group>
           <ion-radio-group
             [value]="radioGroupValue[i]"
-            (ionChange)="handleRadios(i, utils.processMoodleContents(answers), $event)"
+            (ionChange)="handleRadios(i, processMoodleContents(answers), $event)"
           >
             <ion-item *ngFor="let answers of choicesList[i]; let j = index">
               <ion-label
-                [innerHTML]="utils.processMoodleContents(answers, true)"
+                [innerHTML]="processMoodleContents(answers, true)"
                 class="ion-text-wrap"
               ></ion-label>
               <ion-checkbox
                 *ngIf="isCheckbox[i]"
                 ngDefaultControl
                 [(ngModel)]="checkBoxValue[i][j]"
-                (click)="openURL(utils.processMoodleContents(answers))"
+                (click)="openURL(processMoodleContents(answers))"
                 name="checkBoxValue"
                 [disabled]="isCompleted"
               ></ion-checkbox>
@@ -96,7 +96,7 @@
           <ion-label class="ion-text-wrap">
             <div
               class="description ion-text-wrap"
-              [innerHTML]="utils.processMoodleContents(feedbackMessage)"
+              [innerHTML]="processMoodleContents(feedbackMessage)"
             ></div>
           </ion-label>
         </ion-item>

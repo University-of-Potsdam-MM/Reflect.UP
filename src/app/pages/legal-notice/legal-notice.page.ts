@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AbstractPage } from "../abstract-page";
 
 @Component({
@@ -6,10 +6,8 @@ import { AbstractPage } from "../abstract-page";
   templateUrl: "./legal-notice.page.html",
   styleUrls: ["./legal-notice.page.scss"],
 })
-export class LegalNoticePage extends AbstractPage implements OnInit {
+export class LegalNoticePage extends AbstractPage {
   constructor() {
     super();
   }
-
-  ngOnInit() {}
 }

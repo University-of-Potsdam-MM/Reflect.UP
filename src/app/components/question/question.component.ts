@@ -3,7 +3,7 @@ import { FeedbackObject } from "src/app/lib/question";
 import { ModalController } from "@ionic/angular";
 import { QuestionDetailModalPage } from "./question-detail.modal";
 import { ISession } from "src/app/services/login-provider/interfaces";
-import { utils } from "src/app/lib/utils";
+import { processMoodleContents } from "src/app/lib/utils";
 
 @Component({
   selector: "app-question",
@@ -15,7 +15,6 @@ export class QuestionComponent implements OnInit {
   @Input() session: ISession;
   isCompleted = false;
   modalOpen = true;
-  utils;
 
   constructor(private modalCtrl: ModalController) {}
 
@@ -23,8 +22,6 @@ export class QuestionComponent implements OnInit {
     if (this.questions.answers !== undefined) {
       this.isCompleted = true;
     }
-
-    this.utils = utils;
   }
 
   async goToDetailPage() {
@@ -62,5 +59,9 @@ export class QuestionComponent implements OnInit {
       await modal.onWillDismiss();
       this.modalOpen = false;
     }
+  }
+
+  processMoodleContents(text, shortenURL?) {
+    return processMoodleContents(text, shortenURL);
   }
 }

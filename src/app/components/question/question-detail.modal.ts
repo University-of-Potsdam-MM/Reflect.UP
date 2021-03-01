@@ -8,7 +8,7 @@ import { ConfigService } from "src/app/services/config/config.service";
 import { ISession } from "src/app/services/login-provider/interfaces";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
-import { utils } from "src/app/lib/utils";
+import { processMoodleContents } from "src/app/lib/utils";
 import { LoggingService, Logger } from "ionic-logging-service";
 
 @Component({
@@ -41,7 +41,6 @@ export class QuestionDetailModalPage implements OnInit {
   public latestPage = 0;
   public questionNavIndex = 1;
 
-  utils;
   logger: Logger;
 
   constructor(
@@ -57,7 +56,6 @@ export class QuestionDetailModalPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.utils = utils;
     this.logger = this.loggingService.getLogger("[/question-detail]");
 
     for (let i = 0; i < this.tmpQuestionsList.length; i++) {
@@ -311,10 +309,8 @@ export class QuestionDetailModalPage implements OnInit {
               // checkbox
               for (k = 0; k < this.choicesList[j].length; k++) {
                 if (
-                  utils.processMoodleContents(this.choicesList[j][k].trim()) ===
-                  utils.processMoodleContents(
-                    this.questionList[i].dependvalue.trim()
-                  )
+                  processMoodleContents(this.choicesList[j][k].trim()) ===
+                  processMoodleContents(this.questionList[i].dependvalue.trim())
                 ) {
                   if (this.checkBoxValue[j][k]) {
                     // condition fullfilled
@@ -330,10 +326,8 @@ export class QuestionDetailModalPage implements OnInit {
               // radio
               for (k = 0; k < this.choicesList[j].length; k++) {
                 if (
-                  utils.processMoodleContents(this.choicesList[j][k].trim()) ===
-                  utils.processMoodleContents(
-                    this.questionList[i].dependvalue.trim()
-                  )
+                  processMoodleContents(this.choicesList[j][k].trim()) ===
+                  processMoodleContents(this.questionList[i].dependvalue.trim())
                 ) {
                   if (this.radioBtnValue[j][k]) {
                     // condition fullfilled
@@ -467,5 +461,9 @@ export class QuestionDetailModalPage implements OnInit {
       this.logger.error("htmlDecode()", e);
       return value;
     }
+  }
+
+  processMoodleContents(text, shortenURL?) {
+    return processMoodleContents(text, shortenURL);
   }
 }

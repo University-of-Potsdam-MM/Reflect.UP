@@ -14,7 +14,7 @@ import * as moment from "moment";
 import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { DomSanitizer } from "@angular/platform-browser";
-import { utils } from "src/app/lib/utils";
+import { processMoodleContents } from "src/app/lib/utils";
 
 @Component({
   selector: "app-event",
@@ -34,8 +34,6 @@ export class EventComponent implements OnInit, AfterViewInit {
   // formatted momentJS dates
   eventStart;
   eventEnd;
-
-  utils;
 
   // Inputs passed from Page to Component
   @Input() public event: EventObject;
@@ -59,8 +57,6 @@ export class EventComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.utils = utils;
-
     if (this.router.url === "/home") {
       this.isHomePage = true;
       this.showLongDescription = false;
@@ -287,7 +283,7 @@ export class EventComponent implements OnInit, AfterViewInit {
           {
             id: notificationID,
             text: messageWeek,
-            title: utils.processMoodleContents(this.event.name),
+            title: processMoodleContents(this.event.name),
             trigger: { at: new Date(oneWeekBefore.toDate()) },
             led: "FF0000",
             sound: null,
@@ -295,7 +291,7 @@ export class EventComponent implements OnInit, AfterViewInit {
           {
             id: notificationID + 1,
             text: messageTomorrow,
-            title: utils.processMoodleContents(this.event.name),
+            title: processMoodleContents(this.event.name),
             trigger: { at: new Date(oneDayBefore.toDate()) },
             led: "FF0000",
             sound: null,
@@ -306,7 +302,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageTomorrow,
-          title: utils.processMoodleContents(this.event.name),
+          title: processMoodleContents(this.event.name),
           trigger: { at: new Date(oneDayBefore.toDate()) },
           led: "FF0000",
           sound: null,
@@ -316,7 +312,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageHour,
-          title: utils.processMoodleContents(this.event.name),
+          title: processMoodleContents(this.event.name),
           trigger: { at: new Date(threeHoursBefore.toDate()) },
           led: "FF0000",
           sound: null,
@@ -326,7 +322,7 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.localNotifications.schedule({
           id: notificationID,
           text: messageHour,
-          title: utils.processMoodleContents(this.event.name),
+          title: processMoodleContents(this.event.name),
           trigger: { at: new Date(oneHourBefore.toDate()) },
           led: "FF0000",
           sound: null,
@@ -462,5 +458,9 @@ export class EventComponent implements OnInit, AfterViewInit {
     return this.sanitizer.bypassSecurityTrustStyle(
       "color: " + this.event.hexColor
     );
+  }
+
+  processMoodleContents(text, shortenURL?) {
+    return processMoodleContents(text, shortenURL);
   }
 }
