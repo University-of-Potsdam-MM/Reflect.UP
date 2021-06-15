@@ -6,3 +6,6 @@ dist
 coverage
 protractor.conf.js
 karma.conf.js
+www
+plugins
+platforms
