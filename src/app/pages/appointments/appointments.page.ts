@@ -4,7 +4,7 @@ import { CalendarComponentOptions } from "ion2-calendar";
 import { EventService } from "src/app/services/event/event.service";
 import { TranslateService } from "@ngx-translate/core";
 import { AlertController, Platform } from "@ionic/angular";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { ConnectionService } from "src/app/services/connection/connection.service";
 import { Push } from "@ionic-native/push/ngx";
 import * as moment from "moment";

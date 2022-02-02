@@ -3,7 +3,7 @@ import { NavController, Platform } from "@ionic/angular";
 import { AbstractPage } from "../abstract-page";
 import { EmailComposer } from "@ionic-native/email-composer/ngx";
 import { File } from "@ionic-native/file/ngx";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { Device } from "@ionic-native/device/ngx";
 import { ConfigService } from "src/app/services/config/config.service";
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ISession } from "src/app/services/login-provider/interfaces";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CacheService } from "ionic-cache";
 import { Platform, NavController } from "@ionic/angular";

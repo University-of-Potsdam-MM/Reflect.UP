@@ -11,7 +11,7 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { CacheService } from "ionic-cache";
 import { TranslateService } from "@ngx-translate/core";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { Router } from "@angular/router";
 import { PageInterface } from "./lib/interfaces";
 import * as moment from "moment";

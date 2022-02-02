@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IModuleConfig } from "src/app/lib/config";
 import { ConfigService } from "src/app/services/config/config.service";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { ISession } from "src/app/services/login-provider/interfaces";
 import { AbstractPage } from "../abstract-page";
 

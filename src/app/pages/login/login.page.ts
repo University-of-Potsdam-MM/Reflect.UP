@@ -4,7 +4,7 @@ import {
   ISession,
   ELoginErrors,
 } from "src/app/services/login-provider/interfaces";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { NavController, Platform } from "@ionic/angular";
 import { DomSanitizer } from "@angular/platform-browser";
 import { IModuleConfig } from "src/app/lib/config";

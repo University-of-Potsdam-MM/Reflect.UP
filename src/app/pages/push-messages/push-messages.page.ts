@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { PushMessage } from "src/app/lib/interfaces";
 import { NavController } from "@ionic/angular";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import * as moment from "moment";
 import { ISession } from "src/app/services/login-provider/interfaces";
 import * as dLoop from "delayed-loop";

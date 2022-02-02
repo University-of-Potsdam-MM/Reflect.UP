@@ -13,7 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { ConfigService } from "./services/config/config.service";
-import { IonicStorageModule } from "@ionic/storage";
+import { IonicStorageModule } from "@ionic/storage-angular";
 import { UPLoginProvider } from "./services/login-provider/login";
 import { environment } from "src/environments/environment";
 import { CacheModule } from "ionic-cache";
@@ -68,9 +68,7 @@ export function configureLogging(loggingService: LoggingService): () => void {
         deps: [HttpClient],
       },
     }),
-    IonicStorageModule.forRoot({
-      driverOrder: ["indexeddb", "sqlite", "websql", "localstorage"],
-    }),
+    IonicStorageModule.forRoot(),
     CacheModule.forRoot({ keyPrefix: "cache-" }),
     HttpClientModule,
     AppRoutingModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { TranslateService } from "@ngx-translate/core";
 import { AlertService } from "src/app/services/alert/alert.service";
 import { AlertButton } from "@ionic/core";

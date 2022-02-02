@@ -1,0 +1,2233 @@
+[
+  {
+    "id": 0,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-J",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "98c604cdb2a7b2cfa64025a657fac476",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Studieneingangsphase",
+    "faculty": "Jura-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für die Studieneingangsphase an der Juristischen Fakultät für das Wintersemester 19/20",
+    "uniLogo": "logo_jurist.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Studienfachberatung: Staatsexamenstudiengang",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "Katharina Moisa (Leiterin des Studienbüros)",
+                "location": "Griebnitzsee, Haus 6, Raum 0.08",
+                "tel": "+49 331 977-3689",
+                "mail": "moisa@uni-potsdam.de",
+                "consultation": "Öffnungszeiten siehe Website",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Beauftragte für Zwischenprüfung",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "Ines Padelt",
+                "location": "Griebnitzsee, Haus 6, Raum 0.05",
+                "tel": "+49 331 977-3409",
+                "mail": "ines.padelt@uni-potsdam.de",
+                "consultation": "Öffnungszeiten siehe Website",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Beauftragte für den integrierten Bachelor of Laws",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "N.N."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Studieneingangsphase",
+        "content": [
+          {
+            "category": "Studieneingangsphase: Juristische Fakultät",
+            "content": [
+              {
+                "name": "Lisa Zierke",
+                "location": "Griebnitzsee, Haus 1, Raum 2.45",
+                "tel": "+49 331 977-3230",
+                "mail": "lisa.zierke@uni-potsdam.de",
+                "consultation": "Nach Vereinbarung",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/team-studieneingangsphase.html"
+              },
+              {
+                "name": "Anja van Bernum",
+                "location": "Griebnitzsee, Haus 1, Raum 2.45",
+                "tel": "+49 331 977-3734",
+                "mail": "anja.van.bernum@uni-potsdam.de",
+                "consultation": "Nach Vereinbarung",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/team-studieneingangsphase.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Ansprechpartnerin für Reflect.UP",
+        "content": [
+          {
+            "name": "Jenissa Terzic",
+            "mail": "terzic@uni-potsdam.de"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-H",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "f35639ab0deb6fb66f03adba07267317",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Studieneingangsphase",
+    "faculty": "Hum-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für die Studieneingangsphase an der Humanwissenschaftlichen Fakultät für das Wintersemester 19/20",
+    "uniLogo": "logo_human.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Department Erziehungswissenschaft",
+        "content": [
+          {
+            "category": "BA/MA Erziehungswissenschaft",
+            "content": [
+              {
+                "name": "Dr. Jörg-W. Link",
+                "location": "Golm, Haus 24, Raum 1.53",
+                "tel": "+49 331 977-2146",
+                "mail": "link@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Lehrerbildung - Studienfachberater*innen",
+        "content": [
+          {
+            "category": "Primarstufe",
+            "content": [
+              {
+                "name": "Dr. Stefanie Bosse",
+                "location": "Golm, Haus 24, Raum 2.15",
+                "tel": "+49 331 977-203148",
+                "mail": "stbosse@uni-potsdam.de",
+                "consultation": "Do 13.00-14-30 Uhr, sonst nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Primarstufe mit Schwerpunkt Inklusionspädagogik",
+            "content": [
+              {
+                "name": "Pawel Roman Kulawiak",
+                "location": "Golm, Haus 31, Raum 2.07",
+                "tel": "+49 331 977-6375",
+                "mail": "kulawiak@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Linguistik - Studienfachberater*innen Bachelorstudiengänge",
+        "content": [
+          {
+            "category": "BA Computerlinguistik",
+            "content": [
+              {
+                "name": "Dr. Thomas Hanneforth",
+                "location": "Golm, Haus 14, Raum 2.19/2.20",
+                "tel": "+49 331 977-2440",
+                "mail": "thomas.hanneforth@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "BA Linguistik",
+            "content": [
+              {
+                "name": "Dario Paape",
+                "location": "Campus Golm, Haus 14, Raum 2.14",
+                "tel": "+49 331 977-2351",
+                "mail": "paape@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "BA Patholinguistik",
+            "content": [
+              {
+                "name": "Dr. Nicole Stadie",
+                "location": "Golm, Haus 14, Raum 2.06",
+                "tel": "+49 331 977-2935",
+                "mail": "nicole.stadie@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Linguistik - Studienfachberater*innen Masterstudiengänge",
+        "content": [
+          {
+            "category": "MA Cognitive Systems: Language, Learning and Reasoning",
+            "content": [
+              {
+                "name": "Anna Laurinavichyute",
+                "location": "Golm, Haus 14, Raum 2.35",
+                "tel": "+49 331 977-2309",
+                "mail": "cogsys@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "MA European Masters in Clinical Linguistics (EMCL)",
+            "content": [
+              {
+                "name": "PD Dr. Frank Burchert",
+                "location": "Golm, Haus 14, Raum 2.07",
+                "tel": "+49 331 977-2347",
+                "mail": "burchert@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "MA International Experimental and Clinical Linguistics (IECL)",
+            "content": [
+              {
+                "name": "Dr. Nicole Stadie",
+                "location": "Golm, Haus 14, Raum 2.06",
+                "tel": "+49 331 977-2935",
+                "mail": "nicole.stadie@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "MA Linguistik",
+            "content": [
+              {
+                "name": "Marta Wierzba",
+                "location": "Campus Golm, Haus 14, 3.29",
+                "tel": "+49 331 977-2955",
+                "mail": "wierzba@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Psychologie - Studienberater*innen Bachelorstudiengang",
+        "content": [
+          {
+            "category": "BA Psychologie",
+            "content": [
+              {
+                "name": "Dr. Bernd Schellhas",
+                "location": "Golm, Haus 14, Raum 1.14",
+                "tel": "+49 331 977-2213",
+                "mail": "schellha@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Psychologie - Lehramtsstudiengänge",
+        "content": [
+          {
+            "category": "Allgemeine Anfragen",
+            "content": [
+              {
+                "name": "N.N."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Psychologie - Studienberater*innen Masterstudiengang Psychologie",
+        "content": [
+          {
+            "category": "Studieninteressierte",
+            "content": [
+              {
+                "name": "Prof. Dr. Ulrich Schiefele",
+                "location": "Golm, Haus 14, Raum 5.25",
+                "tel": "+49 331 977-2871",
+                "mail": "ulrich.schiefele@uni-potsdam.de",
+                "consultation": "Vorlesungszeit: Mi 12.15 Uhr-13.15 Uhr, sonst nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "Schwerpunkt Arbeits- und Organisationspsychologie",
+            "content": [
+              {
+                "name": "Prof. Dr. Doris Fay",
+                "location": "Golm, Haus 14, Raum 5.31",
+                "tel": "+49 331 977-2865",
+                "mail": "doris.fay@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "Schwerpunkt Grundlagenvertiefung Kognition und Handeln über die Lebensspanne",
+            "content": [
+              {
+                "name": "Prof. Dr. Ralf Engbert",
+                "location": "Golm, Haus 14, Raum 4.03",
+                "tel": "+49 331 977-2140",
+                "mail": "ralf.engbert@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "Schwerpunkt Klinische Psychologie, Psychotherapie und Beratungspsychologie",
+            "content": [
+              {
+                "name": "Dr. Lutz Marschner",
+                "location": "Golm, Haus 14, Raum 6.01",
+                "tel": "+49 331 977-2883",
+                "mail": "marsch@uni-potsdam.de",
+                "consultation": "nach Vereinbarung per E-Mail"
+              }
+            ]
+          },
+          {
+            "category": "Schwerpunkt Pädagogische Psychologie",
+            "content": [
+              {
+                "name": "Prof. Dr. Ulrich Schiefele",
+                "location": "Golm, Haus 14, Raum 5.25",
+                "tel": "+49 331 977-2871",
+                "mail": "ulrich.schiefele@uni-potsdam.de",
+                "consultation": "Vorlesungszeit: Mi 12.15-13.15 Uhr, sonst nach Vereinbarung per E-Mail"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Sport- und Gesundheitswissenschaften - Studienberater*innen Bachelorstudiengänge",
+        "content": [
+          {
+            "category": "BA Sportmanagement",
+            "content": [
+              {
+                "name": "Martina Harbauer",
+                "location": "Golm, Haus 24, Raum 1.17",
+                "tel": "+49 331 977-2315",
+                "mail": "martina.harbauer@​uni-potsdam.de",
+                "consultation": "Do 15-16 Uhr"
+              }
+            ]
+          },
+          {
+            "category": "BA Sporttherapie und Prävention",
+            "content": [
+              {
+                "name": "Dr. Janet Kühl",
+                "location": "Golm, Haus 24, Raum 1.17",
+                "tel": "+49 331 977-2544",
+                "mail": "janet.kuehl@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "BA Lehramt Sport Primarstufe",
+            "content": [
+              {
+                "name": "Dr. Heike Zimmermann",
+                "location": "Golm, Haus 24, Raum 1.09",
+                "tel": "+49 331 977-1048",
+                "mail": "heike.zimmermann@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "BA Lehramt Sport Sek.I/Sek.II",
+            "content": [
+              {
+                "name": "Dr. Berno Bahro",
+                "location": "Golm, Haus 24, Raum 1.01",
+                "tel": "+49 331 977-2360",
+                "mail": "bahro@uni-potsdam.de",
+                "consultation": "siehe Doodle ",
+                "consultation_url": "https://doodle.com/poll/rnfy567fhzs585qi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Department Sport- und Gesundheitswissenschaften - Studienberater*innen Masterstudiengänge",
+        "content": [
+          {
+            "category": "MA Clinical Exercise Sciences",
+            "content": [
+              {
+                "name": "Adina Eggert",
+                "location": "Neues Palais, Haus 12, Raum 0.19",
+                "tel": "+49 331 977-1590",
+                "mail": "ces@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "MA Integrative Sport-, Bewegungs- und Gesundheitswissenschaft (M. Sc.)",
+            "content": [
+              {
+                "name": "Dr. Janet Kühl",
+                "location": "Golm, Haus 24, Raum 1.17",
+                "tel": "+49 331 977-2544",
+                "mail": "janet.kuehl@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "BA/MA Lehramt Sport Primarstufe",
+            "content": [
+              {
+                "name": "Dr. Heike Zimmermann",
+                "location": "Golm, Haus 24, Raum 1.09",
+                "tel": "+49 331 977-1048",
+                "mail": "heike.zimmermann@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "MA Lehramt Sport Sek.I/Sek.II",
+            "content": [
+              {
+                "name": "Dr. Berno Bahro",
+                "location": "Golm, Haus 24, Raum 1.01",
+                "tel": "+49 331 977-2360",
+                "mail": "bahro@uni-potsdam.de",
+                "consultation": "siehe Doodle ",
+                "consultation_url": "https://doodle.com/poll/rnfy567fhzs585qi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Ansprechpartnerin für Reflect.UP",
+        "content": [
+          {
+            "name": "Saskia Rauhut",
+            "mail": "srauhut@uni-potsdam.de"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-W",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "7ad6a9ad3caa3bc6d8b67c38dd0cbc6c",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Studieneingangsphase",
+    "faculty": "WiSo-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für die Studieneingangsphase an der WiSo-Fakultät für das Wintersemester 19/20",
+    "uniLogo": "logo_wiso.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Studienfachberatung WiSo-Fakultät",
+        "content": [
+          {
+            "category": "Betriebswirtschaftslehre",
+            "content": [
+              {
+                "name": "Univ.-Prof. Dr. Ulfert Gronewold",
+                "location": "Griebnitzsee, Haus 3, Raum 1.03",
+                "tel": "+49 331 977-3804",
+                "mail": "ulfert.gronewold@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              },
+              {
+                "name": "Prof. Dr. Eric Kearney",
+                "location": "Griebnitzsee, Haus 3, Raum 1.02",
+                "tel": "+49 331 977-3559",
+                "mail": "eric.kearney@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Geschichte, Politik und Gesellschaft",
+            "content": [
+              {
+                "name": "Dr. Vinzenz Czech",
+                "location": "Neues Palais, Haus 11, Raum 1.Z01-02",
+                "tel": "+49 331 977-1731",
+                "mail": "vczech@uni-potsdam.de",
+                "consultation": "Do 14-15 (Anmeldung per E-Mail)"
+              },
+              {
+                "name": "Dr. Eike Faber",
+                "location": "Neues Palais, Haus 11, Raum 1.13",
+                "tel": "+49 331 977-1729",
+                "mail": "eike.faber@uni-potsdam.de",
+                "consultation": "Di 11-12 (Anmeldung per E-Mail)"
+              },
+              {
+                "name": "Dr. Detlev Zimmermann",
+                "location": "Neues Palais, Haus 11, Raum 1.03",
+                "tel": "+49 331 977-1507",
+                "mail": "zimmerd@uni-potsdam.de",
+                "consultation": "Di 12-13 (Anmeldung per E-Mail)"
+              },
+              {
+                "name": "Dr. Lutz Partenheimer",
+                "location": "Neues Palais, Haus 11, Raum 1.10",
+                "tel": "+49 331 977-1279",
+                "mail": "partenhe@uni-potsdam.de",
+                "consultation": "Mo und Fr 13.45-14.15 (Anmeldung per E-Mail)"
+              }
+            ]
+          },
+          {
+            "category": "Volkswirtschaftslehre",
+            "content": [
+              {
+                "name": "Prof. Dr. Lisa Bruttel",
+                "location": "Babelsberg, Karl-Marx-Str. 67, Raum 2.05",
+                "tel": "+49 331 977-4543",
+                "mail": "lisa.bruttel@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Politik und Wirtschaft - Volkswirtschaftslehre",
+            "content": [
+              {
+                "name": "Prof. Dr. Lisa Bruttel",
+                "location": "Babelsberg, Karl-Marx-Str. 67, Raum 2.05",
+                "tel": "+49 331 977-4543",
+                "mail": "lisa.bruttel@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Politik und Wirtschaft - Politikwissenschaft",
+            "content": [
+              {
+                "name": "PD Dr. Jörn Knobloch",
+                "location": "Griebnitzsee, Haus 6, Raum 1.25",
+                "tel": "+49 331 977-3677",
+                "mail": "joern.knobloch@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Politik, Verwaltung und Organisation - Politikwissenschaft",
+            "content": [
+              {
+                "name": "PD Dr. Jörn Knobloch",
+                "location": "Griebnitzsee, Haus 6, Raum 1.25",
+                "tel": "+49 331 977-3677",
+                "mail": "joern.knobloch@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Soziologie",
+            "content": [
+              {
+                "name": "Dr. Christian Schmidt-Wellenburg",
+                "location": "Griebnitzsee, Haus 7, Raum 3.21",
+                "tel": "+49 331 977-3390 04",
+                "mail": "christian.schmidt-wellenburg@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              },
+              {
+                "name": "Prof. Dr. Maja Apelt",
+                "location": "Griebnitzsee, Haus 7, Raum 3.29",
+                "tel": "+49 331 977-339001",
+                "mail": "maja.apelt@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Wirtschaftsinformatik",
+            "content": [
+              {
+                "name": "Dipl.-Ing. Hanna Theuer",
+                "location": "Campus Griebnitzsee Haus 1, Raum 2.67",
+                "tel": "+49 331 977-3355",
+                "mail": "studienfachberatung@wirtschaftsinformatik-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              },
+              {
+                "name": "Dipl.-Math. Petra Vogel",
+                "location": "Campus Griebnitzsee Haus 4, Raum 0.14",
+                "tel": "+49 331 977-3004",
+                "mail": "informatik.beratung@​cs.uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Studieneingangsphase / Akademische Grundkompetenzen - Selbstreflexion und Planung",
+        "content": [
+          {
+            "content": [
+              {
+                "name": "Dipl.-Pol. Mathias Loboda",
+                "location": "Campus Griebnitzsee Haus 7, Raum 1.34",
+                "tel": "+49 331 977-3613",
+                "mail": "matklein@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Zentrale Studienberatung",
+        "content": [
+          {
+            "content": [
+              {
+                "location": "Am Neuen Palais 10, Haus 8",
+                "tel": "+49 331 977-1715",
+                "mail": "studienberatung@uni-potsdam.de"
+              }
+            ]
+          },
+          {
+            "category": "Ansprechpartner",
+            "content": [
+              {
+                "name": "Lucas Mielke",
+                "comment": "beurlaubt bis 13.11.2015, Onlinestudienberatung",
+                "location": "Am Neuen Palais, Haus 08, Raum 0.12",
+                "mail": "lumielke@uni-potsdam.de"
+              },
+              {
+                "name": "Dr. Irma Bürger",
+                "comment": "Studienberaterin, Behindertenbeauftragte für Studierende",
+                "location": "Am Neuen Palais, Haus 08, Raum 0.14",
+                "mail": "behinderung-studium@uni-potsdam.de"
+              },
+              {
+                "name": "Robert Meile",
+                "comment": "Studienberater",
+                "location": "Am Neuen Palais, Haus 08, Raum 0.16"
+              },
+              {
+                "name": "Dr. Marlies Reschke",
+                "comment": "Studienberaterin",
+                "location": "Am Neuen Palais, Haus 08, Raum 0.15"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Sozialwissenschaften",
+        "content": [
+          {
+            "content": [
+              {
+                "name": "Dr. Birgit Kletzin",
+                "location": "Griebnitzsee, Haus 1, Raum 1.27",
+                "tel": "+49 331 977-3408",
+                "mail": "sowipw@uni-potsdam.de"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Beauftragte für Prüfungswesen / Studienangelegenheiten in den Wirtschaftswissenschaften",
+        "content": [
+          {
+            "content": [
+              {
+                "name": "Bettina Frenz",
+                "location": "Griebnitzsee, Haus 1, Zi. 1.29",
+                "tel": "+49 331 977-3262",
+                "mail": "bfrenz@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Studieneingangsphase/Akademische Grundkompetenzen - Selbstreflexion und Planung",
+        "content": [
+          {
+            "content": [
+              {
+                "name": "Judith Tägener",
+                "location": "Karl-Liebknecht-Str. 24/25, Haus 24, Raum 1.63",
+                "tel": "0331 - 977 2905",
+                "mail": "jtaegene@uni-potsdam.de"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Ansprechpartner für Reflect.UP",
+        "content": [
+          {
+            "name": "René Wolf",
+            "tel": "+49 331 977-3597",
+            "mail": "rewolf@uni-potsdam.de"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-P",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "a3081a5f089547ecc9120b64990f0013",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Studieneingangsphase",
+    "faculty": "Phil-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für die Studieneingangsphase an der Philosophischen Fakultät für das Wintersemester 19/20",
+    "uniLogo": "logo_phil.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Angewandte Kultursemiotik (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Julius Erdmann",
+            "location": "Neues Palais, Haus 19, Raum 4.28",
+            "tel": "+49 331 977-1723",
+            "mail": "julius.erdmann@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: BA Anglistik und Amerikanistik",
+        "content": [
+          {
+            "name": "Dr. Anke Bartels",
+            "location": "Neues Palais, Haus 19, Raum 1.15",
+            "tel": "+49 331 977-4269",
+            "mail": "anbartel@uni-potsdam.de",
+            "consultation": "https://www.uni-potsdam.de/de/iaa-lt/academic-staff/bartels.html"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: BA/MA Lehramt English",
+        "content": [
+          {
+            "name": "Dr. Andrea Kinsky-Ehritt",
+            "location": "Neues Palais, Haus 19, Raum 0.18",
+            "tel": "+49 331 977-1153",
+            "mail": "kinsky@uni-potsdam.de",
+            "consultation": "https://www.uni-potsdam.de/en/iaa-alc/academic-staff/kinsky.html"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Anglophone Modernities (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Anja Schwarz",
+            "location": "Neues Palais, Haus 19, Raum 0.22",
+            "tel": "+49 331 977-1046",
+            "mail": "anja.schwarz@uni-potsdam.de",
+            "consultation": "nach Vereinbarung per E-Mail"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Fremdsprachenlinguistik",
+        "content": [
+          {
+            "name": "Prof. Dr. Gerda Haßler",
+            "location": "Neues Palais, Haus 19, Raum 4.13",
+            "tel": "+49 331 977-4114",
+            "mail": "hassler@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Prof. Dr. Ilse Wischer",
+            "location": "Neues Palais, Haus 19, Raum 1.11",
+            "tel": "+49 331 977-1493",
+            "mail": "wischer@uni-potsdam.de",
+            "consultation": "Nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Deutsch (Lehramt BA/MA)",
+        "content": [
+          {
+            "name": "Dr. Elke Lösel",
+            "location": "Neues Palais, Haus 5, Raum 2.15",
+            "tel": "+49 331 977-4243",
+            "mail": "loesel@uni-potsdam.de",
+            "consultation": "Di 11-13"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Germanistik (BA/MA)",
+        "content": [
+          {
+            "name": "Dr. Elisabeth Berner",
+            "location": "Neues Palais, Haus 5, Raum 1.11",
+            "tel": "+49 331 977-4229",
+            "mail": "berner@uni-potsdam.de",
+            "consultation": "Di 14-15, Do 12-13"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Geschichte (alle Studiengänge außer Geschichte, Politik und Gesellschaft, Militärische und Zeitgeschichte)",
+        "content": [
+          {
+            "name": "Dr. Petra Beetz",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "pbeetz@uni-potsdam.de",
+            "consultation": "Mo 16.30-17.30 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Vinzenz Czech",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "vczech@uni-potsdam.de",
+            "consultation": "Do 14-15 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Eike Faber",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "eike.faber@uni-potsdam.de",
+            "consultation": "Di 11-12 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Detlev Zimmermann",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "zimmerd@uni-potsdam.de",
+            "consultation": "Di 12-13 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Lutz Partenheimer",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "partenhe@uni-potsdam.de",
+            "consultation": "Mo und Fr 13.45-14.15 (Anmeldung per E-Mail)"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Geschichte, Politik und Gesellschaft (BA)",
+        "content": [
+          {
+            "name": "Dr. Petra Beetz",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "pbeetz@uni-potsdam.de",
+            "consultation": "Mo 16.30-17.30 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Vinzenz Czech",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "vczech@uni-potsdam.de",
+            "consultation": "Do 14-15 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Eike Faber",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "eike.faber@uni-potsdam.de",
+            "consultation": "Di 11-12 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Detlev Zimmermann",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "zimmerd@uni-potsdam.de",
+            "consultation": "Di 12-13 (Anmeldung per E-Mail)"
+          },
+          {
+            "name": "Dr. Lutz Partenheimer",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1558 (Sekretariat)",
+            "mail": "partenhe@uni-potsdam.de",
+            "consultation": "Mo und Fr 13.45-14.15 (Anmeldung per E-Mail)"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Interdisziplinäre Russlandstudien (BA)",
+        "content": [
+          {
+            "name": "M.A. Natalia Ermakova",
+            "location": "Neues Palais, Haus 1, Raum 1.08",
+            "tel": "+49 331 977-4159",
+            "mail": "natalia.ermakova@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Internationale angewandte Kultursemiotik (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Julius Erdmann",
+            "location": "Neues Palais, Haus 19, Raum 4.28",
+            "tel": "+49 331 977-1723",
+            "mail": "julius.erdmann@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Jüdische Studien (BA)",
+        "content": [
+          {
+            "name": "Dr. Ulrike Schneider",
+            "location": "Neues Palais, Haus 11, Raum 2.06",
+            "tel": "+49 331 977-4236",
+            "mail": "ulschnei@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Jüdische Studien (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Nathanael Riemer",
+            "location": "Neues Palais, Haus 11, Raum 0.Z03",
+            "tel": "+49 331 977-1284",
+            "mail": "nriemer@uni-potsdam.de",
+            "consultation": "Nach Vereinbarung"
+          },
+          {
+            "name": "Apl. Prof. Dr. Christoph Schulte",
+            "location": "Neues Palais, Haus 11, Raum 1.Z27",
+            "tel": "+49 331 977-1240",
+            "mail": "schulte@uni-potsdam.de",
+            "consultation": "Do 12-13 und nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Jüdische Theologie",
+        "content": [
+          {
+            "name": "Prof. Dr. Admiel Kosman",
+            "location": "Neues Palais, Haus 2, Raum 2.15",
+            "tel": "+49 331 977-1191",
+            "mail": "kosman@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Susann Schober",
+            "location": "Neues Palais, Haus 2, Raum 2.16",
+            "tel": "+49 331 977-4368",
+            "mail": "susann.schober@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät Klassische Philologie (alle Studiengänge)",
+        "content": [
+          {
+            "name": "Dr. Eugen Braun",
+            "location": "Neues Palais, Haus 11, Raum 1.Z19",
+            "tel": "+49 331 977-1468, +49 331 90 34 00",
+            "mail": "braune@uni-potsdam.de",
+            "consultation": "mittwochs, 11 bis 12, und nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Kulturelle Begegnungsräume der frühen Neuzeit (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Frank Göse",
+            "location": "Neues Palais, Haus 11",
+            "tel": "+49 331 977-1259",
+            "mail": "fgoese@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Kulturwissenschaft (BA)",
+        "content": [
+          {
+            "name": "Dr. Geraldine Spiekermann",
+            "location": "Neues Palais, Haus 1, Raum 2.14",
+            "tel": "+49 331 977-1113",
+            "mail": "gspieker@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "M.A. Beatrice Miersch",
+            "location": "Neues Palais, Haus 1, Raum 2.14",
+            "tel": "+49 331 977-1113",
+            "mail": "bmiersch@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Lebensgestaltung, Ethik, Religionskunde (LA + BA/MA-LA)",
+        "content": [
+          {
+            "name": "Apl. Prof. Dr. Marie-Luise Raters",
+            "location": "Neues Palais, Haus 11, Raum 2.15",
+            "tel": "+49 331 977-1335",
+            "mail": "mlraters@uni-potsdam.de",
+            "consultation": "Di 11-12 (bitte per E-Mail anmelden)"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Linguistik: Kommunikation - Variation - Mehrsprachigkeit (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Dagmar Barth-Weingarten",
+            "location": "Neues Palais, Haus 19, Raum 1.13",
+            "tel": "+49 331 977-1232",
+            "mail": "dbarth@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Osteuropäische Kulturstudien (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Magdalena Marszałek",
+            "location": "Neues Palais, Haus 1, Raum 2.01",
+            "tel": "+49 331 977-4151",
+            "mail": "magdalena.marszalek@uni-potsdam.de",
+            "consultation": "Montags, 11.00-12.30 Uhr (Anmeldung zur Sprechstunde ausschließlich im Sekretariat bei Frau Kruschinski: +49-331-977-4150 / monika.kruschinski@uni-potsdam.de)"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Philosophie (BA)",
+        "content": [
+          {
+            "name": "Dr. Cornelia Buschmann",
+            "location": "Neues Palais, Haus 11, Raum 2.25",
+            "tel": "+49 331 977-1331",
+            "mail": "busch@uni-potsdam.de",
+            "consultation": "Di 15-16 Uhr (Voranmeldung per E-Mail)"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Philosophie (MA)",
+        "content": [
+          {
+            "name": "Dr. Thomas Ebke",
+            "location": "Neues Palais, Haus 11, Raum 2.13",
+            "tel": "+49 331 977-1333",
+            "mail": "ebke@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Polnisch/Russisch (Lehramt) (BA LA Polnisch, BA LA Russisch, MA LA Polnisch, MA LA Russisch)",
+        "content": [
+          {
+            "name": "Dr. Angela Huber",
+            "location": "Neues Palais, Haus 1, Raum 1.02",
+            "tel": "+49 331 977-4163",
+            "mail": "ahuber@uni-potsdam.de",
+            "consultation": "Donnerstag, 12.30 bis 13.30 Uhr"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Polonistik/Russistik (BA Polonistik, BA Russistik)",
+        "content": [
+          {
+            "name": "Dr. Birgit Krehl",
+            "location": "Neues Palais, Haus 1, Raum 2.03",
+            "tel": "+49 331 977-4158",
+            "mail": "krehl@uni-potsdam.de",
+            "consultation": "https://www.uni-potsdam.de/slavistik-polonistik/mitarbeiter-innen/dr-birgit-krehl.html"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Religionswissenschaft (alle Studiengänge)",
+        "content": [
+          {
+            "name": "Dr. Hans-Michael Haußig",
+            "location": "Neues Palais, Haus 11, Raum 0.Z07",
+            "tel": "+49 331 977-1564",
+            "mail": "haussig@uni-potsdam.de",
+            "consultation": "Do 12:00 - 13:00 Uhr und nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Romanische Philologie (MA)",
+        "content": [
+          {
+            "name": "Dr. Sabine Zangenfeind (Schwerpunkte Literatur- und Kulturwissenschaft, Sprachwissenschaft)",
+            "location": "Neues Palais, Haus 11, Raum 4.21",
+            "tel": "+49 331 977-4195",
+            "mail": "zangenf@uni-potsdam.de",
+            "consultation": "Di 10-12 und nach Vereinbarung"
+          },
+          {
+            "name": "Prof. Dr. Gerda Haßler (Schwerpunkte Sprachwissenschaft sowie Literatur-, Kultur- und Sprachwissenschaft)",
+            "location": "Neues Palais, Haus 19",
+            "tel": "+49 331 977-4114",
+            "mail": "hassler@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: BA Französische Philologie, Italienische Philologie, Spanische Philologie",
+        "content": [
+          {
+            "name": "Dr. Sabine Zangenfeind",
+            "location": "Neues Palais, Haus 11, Raum 4.21",
+            "tel": "+49 331 977-4195",
+            "mail": "zangenf@uni-potsdam.de",
+            "consultation": "Di 10-12 und nach Vereinbarung"
+          },
+          {
+            "name": "Dr. Kathleen Plötner",
+            "location": "Neues Palais, Haus 19, Raum 4.34a",
+            "tel": "+49 331 977-4108",
+            "mail": "kploetne@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: BA und MA Lehramt Französisch, Spanisch",
+        "content": [
+          {
+            "name": "Dr. Sabine Zangenfeind",
+            "location": "Neues Palais, Haus 11, Raum 4.21",
+            "tel": "+49 331 977-4195",
+            "mail": "zangenf@uni-potsdam.de",
+            "consultation": "Di 10-12 und nach Vereinbarung"
+          },
+          {
+            "name": "Dr. Kathleen Plötner",
+            "location": "Neues Palais, Haus 19, Raum 4.34a",
+            "tel": "+49 331 977-4108",
+            "mail": "kploetne@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Vergleichende Literatur- und Kunstwissenschaft (MA)",
+        "content": [
+          {
+            "name": "Dr. Hans-Christian Stillmark",
+            "location": "Neues Palais, Haus 1, Raum 2.11",
+            "tel": "+49 331 977-4178",
+            "mail": "stillmar@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Maria Weilandt, M.A. (insbes. bei Fragen zur Bewerbung und Zulassung)",
+            "location": "Neues Palais, Haus 1, Raum 2.11",
+            "tel": "+49 331 977-4179",
+            "mail": "maria.weilandt@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: War and Conflict Studies (MA)",
+        "content": [
+          {
+            "name": "Christian E. Rieck",
+            "location": "Neues Palais, Haus 11, Raum 1.02",
+            "tel": " - ",
+            "mail": "chrieck@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          },
+          {
+            "name": "Kate O’Hanlon | School Manager (International War Studies)",
+            "location": "University College Dublin | UCD School of History, Belfield, Dublin 4",
+            "tel": " - ",
+            "mail": "kate.ohanlon@ucd.ie",
+            "consultation": "www.ucd.ie/international"
+          }
+        ]
+      },
+      {
+        "category": "Studienfachberatung: Philosophische Fakultät: Zeitgeschichte (MA)",
+        "content": [
+          {
+            "name": "Dr. Matthias Oppermann",
+            "location": "Neues Palais, Haus 11, Raum 1.20",
+            "tel": "+49 331 977-1637",
+            "mail": "matthias.oppermann@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Studieneingangsphase: Philosophische Fakultät",
+        "content": [
+          {
+            "name": "Michael Konarski, M.A.",
+            "location": "Neues Palais, Haus 11, Raum 2.24",
+            "tel": "+49 331 977-1267",
+            "mail": "konarski@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Angewandte Kultursemiotik (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Anglistik und Amerikanistik (alle Studiengänge außer Anglophone Moderninties)",
+        "content": [
+          {
+            "name": "Prof. Dr. Jana Roos",
+            "location": "Neues Palais, Haus 19, Raum 1.34a",
+            "tel": "+49 331 977-1392",
+            "mail": "jroos@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Anglophone Moderninties (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Anja Schwarz",
+            "location": "Neues Palais, Haus 19, Raum 0.26",
+            "tel": "+49 331 977-1046",
+            "mail": "anja.schwarz@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Fremdsprachenlinguistik",
+        "content": [
+          {
+            "name": "Prof. Dr. Gerda Haßler",
+            "location": "Neues Palais, Haus 19, Raum 4.13",
+            "tel": "+49 331 977-4114",
+            "mail": "hassler@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Germanistik (alle Studiengänge)",
+        "content": [
+          {
+            "name": "Prof. Dr. Matthias Granzow-Emden",
+            "location": "Neues Palais, Haus 5, Raum 1.09",
+            "tel": "+49 331 977-1763",
+            "mail": "mgranzow@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Geschichte (alle Studiengänge außer Geschichte, Politik und Gesellschaft, Militärische und Zeitgeschichte)",
+        "content": [
+          {
+            "name": "Apl. Prof. Dr. Frank Göse",
+            "location": "Neues Palais, Haus 11, Raum 1.05",
+            "tel": "+49 331 977-1259",
+            "mail": "fgoese@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Geschichte, Politik und Gesellschaft",
+        "content": [
+          {
+            "name": "Apl. Prof. Dr. Frank Göse",
+            "location": "Neues Palais, Haus 11, Raum 1.05",
+            "tel": "+49 331 977-1259",
+            "mail": "fgoese@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Interdisziplinäre Russlandstudien (BA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Alexander Wöll",
+            "location": "Neues Palais, Haus 1, Raum 0.06",
+            "tel": "+49 331 977-150102",
+            "mail": "awoell@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Internationale angewandte Kultursemiotik (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Jüdische Studien (BA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Sina Rauschenbach",
+            "location": "Neues Palais, Haus 11, Raum 0.Z10",
+            "tel": "+49 331 / 977-1367 und -4253 (Sekretariat)",
+            "mail": "sina.rauschenbach@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Jüdische Studien (MA)",
+        "content": [
+          {
+            "name": "Apl. Prof. Dr. Christoph Schulte",
+            "location": "Neues Palais, Haus 11, Raum 1.Z27",
+            "tel": "+49 331 977-1240",
+            "mail": "schulte@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Jüdische Theologie",
+        "content": [
+          {
+            "name": "Prof. Dr. Admiel Kosman",
+            "location": "Neues Palais, Haus 2, Raum 2.15",
+            "tel": "+49 331 977-1204",
+            "mail": "kosman@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Klassische Philologie (alle Studiengänge)",
+        "content": [
+          {
+            "name": "PD Dr. Nicola Hömke (Lehrstuhlvertretung)",
+            "location": "Neues Palais, Haus 11, Raum 1.Z20",
+            "tel": "+49 331 977-1774",
+            "mail": "nicola.hoemke@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Kulturelle Begegnungsräume der frühen Neuzeit (MA)",
+        "content": [
+          {
+            "name": "Apl. Prof. Dr. Frank Göse",
+            "location": "Neues Palais, Haus 11, Raum 1.05",
+            "tel": "+49 331 977-1259",
+            "mail": "fgoese@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Kulturwissenschaft (BA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Andreas Köstler",
+            "location": "Neues Palais, Haus 1, Raum 2.10",
+            "tel": "+49 331 977-4174",
+            "mail": "andreas.koestler@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Lebensgestaltung, Ethik, Religionskunde (LA + BA/MA-LA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Felicitas Krämer",
+            "location": "Neues Palais, Haus 11, Raum 2.11",
+            "tel": "+49 331 977-1801",
+            "mail": "felicitas.kraemer@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Linguistik: Kommunikation - Variation - Mehrsprachigkeit (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Dagmar Barth-Weingarten",
+            "location": "Neues Palais, Haus 19, Raum 1.13",
+            "tel": "+49 331 977-1232",
+            "mail": "dbarth@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Osteuropäische Kulturstudien (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Magdalena Marszałek",
+            "location": "Neues Palais, Haus 1, Raum 2.01",
+            "tel": "+49 331 977-4151",
+            "mail": "magdalena.marszalek@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Philosophie (BA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Johannes Haag",
+            "location": "Neues Palais, Haus 11, Raum 2.01",
+            "tel": "+49 331 977-1445",
+            "mail": "jhaag@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Philosophie (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Hans-Peter Krüger",
+            "location": "Neues Palais, Haus 11, Raum 2.14",
+            "tel": "+49 331 977-1332",
+            "mail": "wilhelm@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Polnisch/Russisch (Lehramt) (BA LA Polnisch, BA LA Russisch, MA LA Polnisch, MA LA Russisch)",
+        "content": [
+          {
+            "name": "Prof. Dr. habil. Peter Kosta",
+            "location": "Neues Palais, Haus 1, Raum 2.06",
+            "tel": "+49 331 977-4152",
+            "mail": "peter.kosta@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Polonistik/Russistik (BA Polonistik, BA Russistik)",
+        "content": [
+          {
+            "name": "Prof. Dr. Susanne Strätling",
+            "location": "Neues Palais, Haus 1, Raum 2.07",
+            "tel": "+49 331 977-4161",
+            "mail": "susanne.straetling@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Religionswissenschaft (alle Studiengänge)",
+        "content": [
+          {
+            "name": "Prof. Dr. Johann Hafner",
+            "location": "Neues Palais, Haus 11, Raum 2.29",
+            "tel": "+49 331 977-1506",
+            "mail": "hafner@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Romanische Philologie (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Cornelia Klettke",
+            "location": "Neues Palais, Haus 19, Raum 4.19",
+            "tel": "+49 331 977-4266",
+            "mail": "klettke@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: BA Französische Philologie, Italienische Philologie, Spanische Philologie",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: BA und MA Lehramt Französisch, Spanisch",
+        "content": [
+          {
+            "name": "Prof. Dr. Eva Kimminich",
+            "location": "Neues Palais, Haus 19, Raum 4.18",
+            "tel": "+49 331 977-4144",
+            "mail": "eva.kimminich@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Vergleichende Literatur- und Kunstwissenschaft",
+        "content": [
+          {
+            "name": "Prof. Dr. Gertrud Lehnert",
+            "location": "Neues Palais, Haus 1, Raum 2.16",
+            "tel": "+49 331 977-4180",
+            "mail": "glehnert@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: War and Conflict Studies (MA)",
+        "content": [
+          {
+            "name": "Dr. Sönke Neitzel",
+            "location": "Neues Palais, Haus 11, Raum 1.01",
+            "tel": "+49 331 977-4940",
+            "mail": "soenke.neitzel@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Prüfungsausschussvorsitzende: Philosophische Fakultät: Zeitgeschichte (MA)",
+        "content": [
+          {
+            "name": "Prof. Dr. Manfred Görtemaker",
+            "location": "Neues Palais, Haus 11, Raum 1.19",
+            "tel": "+49 331 977-1323",
+            "mail": "goerte@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Ansprechpartner für Reflect.UP",
+        "content": [
+          {
+            "name": "Michael Konarski",
+            "mail": "konarski@uni-potsdam.de"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-M",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "655199838c189a45994201bf7267201a",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Studieneingangsphase",
+    "faculty": "MatNat-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für die Studieneingangsphase an der Mathematisch-Naturwissenschaftliche Fakultät für das Wintersemester 19/20",
+    "mintEnabled": true,
+    "mintUrl": "https://www.uni-potsdam.de/mnfakul/studium-und-lehre/studienbeginn/mint-raum.html",
+    "uniLogo": "logo_phil.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Ein-Fach-Bachelor",
+        "content": [
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Biochemie",
+            "content": [
+              {
+                "name": "Dr. Olaf Behrsing",
+                "location": "Campus Golm | Haus 25, Raum B.1.08",
+                "tel": "+49 331 977-5246",
+                "mail": "biowissBC@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Matematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Molekularbiologie/Physiologie",
+            "content": [
+              {
+                "name": "Dr. Anke Koch",
+                "location": "Campus Golm | Haus 20, Raum 0.06",
+                "tel": "+49 331 977-2652",
+                "mail": "biowissMP@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung Matematisch-Naturwissenschaftliche Fakultät: Bachelor Biowissenschaften - Schwerpunkt: Organismische Biologie",
+            "content": [
+              {
+                "name": "Dr. Volker Kummer",
+                "location": "Maulbeerallee 1, Raum 2.06a",
+                "tel": "+49 331 977-4888",
+                "mail": "kummer@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Chemie",
+            "content": [
+              {
+                "name": "Dr. Andreas Koch",
+                "location": "Campus Golm | Haus 25, Raum D.0.21",
+                "tel": "+49 331 977-5198",
+                "mail": "andreas.koch@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Ernährungswissenschaft",
+            "content": [
+              {
+                "name": "Dr. Frankziska Ebert",
+                "location": "Arthur-Scheunert-Allee 114-116, Raum 0.130",
+                "tel": "+49 33200 88-5262",
+                "mail": "studienberatung-iew@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geoökologie",
+            "content": [
+              {
+                "name": "Dr. Torsten Lipp",
+                "location": "Campus Golm | Haus 12, Raum 1.01",
+                "tel": "+49 331 977-2419",
+                "mail": "tlipp@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Mineralogie",
+            "content": [
+              {
+                "name": "apl. Prof. Dr. Uwe Altenberger",
+                "location": "Campus Golm | Haus 27, Raum 1.28",
+                "tel": "+49 331 977-5806",
+                "mail": "uwe@geo.uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Geologie",
+            "content": [
+              {
+                "name": "apl. Prof. Dr. Martin Trauth",
+                "location": "Campus Golm | Haus 27, Raum 1.32",
+                "tel": "+49 331 977-5810",
+                "mail": "trauth@geo.uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Geowissenschaften/International Field Geosciences Schwerpunkt: Geophysik",
+            "content": [
+              {
+                "name": "apl. Prof. Dr. Frank Krüger",
+                "location": "Campus Golm | Haus 27, Raum 1.36",
+                "tel": "+49 331 977-5813",
+                "mail": "krueger@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Informatik/Computational Science",
+            "content": [
+              {
+                "name": "Dipl.- Math. Petra Vogel",
+                "location": "Campus Griebnitzsee | Haus 4, Raum 0.14",
+                "tel": "+49 0331 977-3004",
+                "mail": "pvogel@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Mathematik",
+            "content": [
+              {
+                "name": "Prof. Dr. Markus Klein",
+                "location": "Campus Golm | Haus 9, Raum 2.08",
+                "tel": "+49 331 977-1734",
+                "mail": "mklein@math.uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          },
+          {
+            "category": "Studienfachberatung: Mathematisch-Naturwissenschaftliche Fakultät: Bachelor Physik",
+            "content": [
+              {
+                "name": "Dr. Horst Gebert",
+                "location": "Campus Golm | Haus 28, Zi. 1.023",
+                "tel": "+49 331 977-1354",
+                "mail": "horst.gebert@uni-potsdam.de",
+                "consultation": "nach Vereinbarung"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Koordination MINT-Raum",
+        "content": [
+          {
+            "name": "Prof. Dr. Helmut Prechtl",
+            "location": "Campus Golm | Haus 13, Zi. 2.08",
+            "tel": "+49 331 977-2192",
+            "mail": "prechtl@uni-potsdam.de",
+            "consultation": "nach Vereinbarung"
+          }
+        ]
+      },
+      {
+        "category": "Ansprechpartner für Reflect.UP",
+        "content": [
+          {
+            "name": "René Wolf",
+            "tel": "+49 331 977-3597",
+            "mail": "rewolf@uni-potsdam.de"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1819-JE",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "fddd97bc2a66e02bb57f651b6629bb27",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Examensbegleitung",
+    "faculty": "Jura-Fak",
+    "type": "faculty",
+    "institution": "Universität Potsdam",
+    "description": "Kurs für alle Examensstudierenden an der Juristischen Fakultät",
+    "uniLogo": "logo_uni.svg",
+    "contactPersonsObject": [
+      {
+        "category": "Studienfachberatung: Staatsexamenstudiengang",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "Katharina Moisa (Leiterin des Studienbüros)",
+                "location": "Griebnitzsee, Haus 6, Raum 0.08",
+                "tel": "+49 331 977-3689",
+                "mail": "moisa@uni-potsdam.de",
+                "consultation": "Öffnungszeiten siehe Website",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Koordination Examensklausurenkurs",
+        "content": [
+          {
+            "name": "Sebastian Kürten",
+            "mail": "sebastian.kuerten@uni-potsdam.de"
+          }
+        ]
+      },
+      {
+        "category": "Veranstaltungen zur Examensvorbereitung",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "jura.plus",
+                "location": "Griebnitzsee, Haus 6, Raum 0.05",
+                "tel": "+49 331 977-3409",
+                "mail": "jura.plus@uni-potsdam.de",
+                "consultation": "Öffnungszeiten siehe Website",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/buero-fuer-studien-und-pruefungsangelegenheiten.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Examenssprechstunde",
+        "content": [
+          {
+            "category": "",
+            "content": [
+              {
+                "name": "Tim Nordemann",
+                "location": "Griebnitzsee, Haus 1, Raum 2.36",
+                "tel": "+49 331 977-3525",
+                "mail": "nordemann@uni-potsdam.de ",
+                "consultation": "Öffnungszeiten siehe Website",
+                "consultation_url": "https://www.uni-potsdam.de/de/jura/studium/ejp/juraplus.html"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-Abrom",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "sso",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle2.uni-potsdam.de/admin/tool/mobile/launch.php",
+          "login": "https://moodle2.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "06c1fd9e3094c5426deec6b6e5f1be86",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "AG zur ÜF - ÖR",
+    "faculty": "Jura-Fak",
+    "type": "course",
+    "institution": "Universität Potsdam",
+    "description": "Lehrveranstaltung",
+    "uniLogo": "logo_jurist.svg",
+    "contactPersonsObject": []
+  },
+  {
+    "id": 7,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1920-Luetz",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "sso",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/moodleAPI/2.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle2.uni-potsdam.de/admin/tool/mobile/launch.php",
+          "login": "https://moodle2.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "80862f8eb793a09eb52c8d544d5314ee",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "AG zur ÜF - StrR",
+    "faculty": "Jura-Fak",
+    "type": "course",
+    "institution": "Universität Potsdam",
+    "description": "Lehrveranstaltung",
+    "uniLogo": "logo_jurist.svg",
+    "contactPersonsObject": []
+  },
+  {
+    "id": 8,
+    "appVersion": "7.0.0",
+    "courseID": "UPR-1819-T",
+    "moodleServiceEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/webservice/rest/server.php",
+    "authorization": {
+      "method": "credentials",
+      "credentials": {
+        "moodleLoginEndpoint": "https://apiup.uni-potsdam.de/endpoints/eportfolioAPI/1.0/login/token.php",
+        "moodlewsrestformat": "json",
+        "service": "reflect",
+        "authHeader": {
+          "accessToken": "[API_ACCESS_TOKEN]"
+        }
+      },
+      "sso": {
+        "ssoUrls": {
+          "pluginUrl": "https://moodle-test.rz.uni-potsdam.de/local/mobile/launch.php",
+          "login": "https://moodle-test.rz.uni-potsdam.de/login/index.php",
+          "tokenUrl": "moodlemobile://token=",
+          "idpBaseUrl": "https://idp.uni-potsdam.de/idp/profile/SAML2/Redirect/SSO",
+          "idpUrl": "https://idp.uni-potsdam.de/idp/Authn/UserPassword",
+          "attributeReleaseUrl": "https://idp.uni-potsdam.de/idp/uApprove/AttributeRelease",
+          "pluginUrlParams": {
+            "service": "reflect",
+            "passport": "1002"
+          }
+        }
+      }
+    },
+    "pushDetails": {
+      "senderID": "38438927043",
+      "uniqushUrl": "https://apiup.uni-potsdam.de/endpoints/pushAPI/2.0/api/v2/",
+      "service": "reflectup",
+      "XAnAppKey": "9d30a10fc70f862816b99f859430c007",
+      "authHeader": {
+        "accessToken": "[API_ACCESS_TOKEN]"
+      }
+    },
+    "title": "Testkurs",
+    "faculty": "Testkurs",
+    "type": "course",
+    "institution": "Universität Potsdam",
+    "description": "Testkurs",
+    "uniLogo": "logo_uni.svg",
+    "contactPersonsObject": []
+  }
+]

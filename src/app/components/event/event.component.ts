@@ -12,7 +12,7 @@ import { AlertController, Platform } from "@ionic/angular";
 import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
 import * as moment from "moment";
 import { Router } from "@angular/router";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { DomSanitizer } from "@angular/platform-browser";
 import { processMoodleContents } from "src/app/lib/utils";
 

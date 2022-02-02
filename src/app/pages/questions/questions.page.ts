@@ -4,7 +4,7 @@ import { NavController, AlertController } from "@ionic/angular";
 import { ConnectionService } from "src/app/services/connection/connection.service";
 import { TranslateService } from "@ngx-translate/core";
 import { QuestionService } from "src/app/services/question/question.service";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { IModuleConfig } from "src/app/lib/config";
 import { ISession } from "src/app/services/login-provider/interfaces";
 import { ConfigService } from "src/app/services/config/config.service";

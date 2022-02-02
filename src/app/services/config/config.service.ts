@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { IModuleConfig } from "src/app/lib/config";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { LoggingService, Logger } from "ionic-logging-service";
 
 @Injectable({

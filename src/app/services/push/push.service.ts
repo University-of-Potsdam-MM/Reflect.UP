@@ -4,7 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Push, PushOptions, PushObject } from "@ionic-native/push/ngx";
 import { HTTP } from "@ionic-native/http/ngx";
 import { IModuleConfig } from "src/app/lib/config";
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { ConfigService } from "../config/config.service";
 import * as dLoop from "delayed-loop";
 import { ISession } from "../login-provider/interfaces";

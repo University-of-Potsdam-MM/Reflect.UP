@@ -13,6 +13,7 @@ log.txt
 .nova/
 npm-debug.log*
 
+.angular/
 .idea/
 .sourcemaps/
 .gradle/
@@ -37,3 +38,4 @@ documentation/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+config.json
