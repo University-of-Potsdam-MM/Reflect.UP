@@ -79,8 +79,7 @@ install_dependencies:
   script:
     - ./fillCredentials.sh "src/assets/config.dist.json" "API_ACCESS_TOKEN"
     - ionic cordova platform add android --no-interactive --confirm
-    - ionic cordova prepare android --no-interactive --confirm
-    - ionic cordova build android --prod
+    - ionic cordova build android --prod --release -- -- --packageType=apk
     - zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ReflectUP-unsigned.apk
 
 # only used for merge requests (and branches != master in order to avoid double building)
@@ -124,8 +123,7 @@ android-production:
     - ./fillCredentials.sh "src/assets/config.dist.json" "API_ACCESS_TOKEN"
     - npm install -g cordova @ionic/cli
     - ionic cordova platform add browser --no-interactive --confirm
-    - ionic cordova prepare browser --no-interactive --confirm
-    - ionic cordova build browser --prod
+    - ionic cordova build browser --prod --release
     # HACK to make Reflect.UP work in an iframe as we do on mobileup.uni-potsdam.de, cf. https://github.com/apache/cordova-plugin-inappbrowser/issues/419
     - perl -pi -e 's|if \(window.parent && !!window.parent.ripple\) \{|if (window.parent && false) {|' platforms/browser/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js
 
