@@ -18,7 +18,11 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "allowedCommonJsDependencies": ["xml2js", "jquery"],
+            "allowedCommonJsDependencies": [
+              "xml2js",
+              "jquery",
+              "ion2-calendar"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               {
