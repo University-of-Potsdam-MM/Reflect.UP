@@ -104,7 +104,7 @@ android-production:
       fi
     - export PATH=$ANDROID_SDK_ROOT/tools/cmdline-tools/bin/:$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS/:$JAVA_HOME/bin:$PATH
     - echo "$KEYSTORE" | base64 -d > keystore
-    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore -storepass:env KEYSTORE_PASS ReflectUP-unsigned.apk /my-release-key
+    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore -storepass:env KEYSTORE_PASS ReflectUP-unsigned.apk reflectup
     - zipalign -v 4 ReflectUP-unsigned.apk ReflectUP.apk
   # keep built artifacts on Git.UP for one day for manual testing/inspection, final versions are published on Google PlayStore anyway
   artifacts:
