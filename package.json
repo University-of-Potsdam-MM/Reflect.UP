@@ -15,12 +15,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^13.2.0",
-    "@angular/core": "^13.2.0",
-    "@angular/forms": "^13.2.0",
-    "@angular/platform-browser": "^13.2.0",
-    "@angular/platform-browser-dynamic": "^13.2.0",
-    "@angular/router": "^13.2.0",
+    "@angular/common": "^13.2.1",
+    "@angular/core": "^13.2.1",
+    "@angular/forms": "^13.2.1",
+    "@angular/platform-browser": "^13.2.1",
+    "@angular/platform-browser-dynamic": "^13.2.1",
+    "@angular/router": "^13.2.1",
     "@havesource/cordova-plugin-push": "^3.0.0",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/device": "^5.36.0",
@@ -34,7 +34,7 @@
     "@ionic-native/safari-view-controller": "^5.36.0",
     "@ionic-native/splash-screen": "^5.36.0",
     "@ionic-native/status-bar": "^5.36.0",
-    "@ionic/angular": "^6.0.4",
+    "@ionic/angular": "^6.0.5",
     "@ionic/storage-angular": "^3.0.6",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
@@ -60,20 +60,20 @@
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "phonegap-plugin-multidex": "^1.0.0",
-    "rxjs": "6.6.7",
+    "rxjs": "^6.6.7",
     "tslib": "^2.3.1",
     "underscore": "^1.13.2",
     "zone.js": "^0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "^0.1302.1",
-    "@angular-devkit/build-angular": "^13.2.1",
-    "@angular-devkit/core": "^13.2.1",
-    "@angular-devkit/schematics": "^13.2.1",
-    "@angular/cli": "^13.2.1",
-    "@angular/compiler": "^13.2.0",
-    "@angular/compiler-cli": "^13.2.0",
-    "@angular/language-service": "^13.2.0",
+    "@angular-devkit/architect": "^0.1302.2",
+    "@angular-devkit/build-angular": "^13.2.2",
+    "@angular-devkit/core": "^13.2.2",
+    "@angular-devkit/schematics": "^13.2.2",
+    "@angular/cli": "^13.2.2",
+    "@angular/compiler": "^13.2.1",
+    "@angular/compiler-cli": "^13.2.1",
+    "@angular/language-service": "^13.2.1",
     "@ionic/angular-toolkit": "^6.0.0",
     "@ionic/cordova-builders": "^6.0.0",
     "@types/jasmine": "^3.10.3",
@@ -81,6 +81,8 @@
     "@types/node": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
+    "cordova-ios": "^6.2.0",
+    "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "^6.0.0",
@@ -126,16 +128,18 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "@havesource/cordova-plugin-push": {
-        "ANDROID_SUPPORT_V13_VERSION": "27.+",
-        "FCM_VERSION": "17.0.+",
-        "SENDER_ID": "38438927043"
+        "FCM_VERSION": "18.+",
+        "SENDER_ID": "38438927043",
+        "ANDROIDX_CORE_VERSION": "1.6.+"
       },
       "cordova-plugin-email-composer": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-androidx-adapter": {}
     },
     "platforms": [
       "android",
-      "browser"
+      "browser",
+      "ios"
     ]
   }
 }
