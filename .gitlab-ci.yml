@@ -59,6 +59,7 @@ install_dependencies:
     ANDROID_BUILD_TOOLS: "30.0.3"
     ANDROID_HOME: $CI_PROJECT_DIR/android-sdk-linux/
     ANDROID_SDK_ROOT: $CI_PROJECT_DIR/android-sdk-linux/
+    JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64/
   before_script:
     - apt-get update; apt-get install -y openjdk-11-jdk gradle
     - if [ ! -d android-sdk-linux ] || [ ! -d android-sdk-linux/tools/bin ] || [ ! -d android-sdk-linux/build-tools/$ANDROID_BUILD_TOOLS/ ] || [ ! -d android-sdk-linux/platform-tools/ ];
@@ -73,12 +74,12 @@ install_dependencies:
           tools/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;$ANDROID_API" "build-tools;$ANDROID_BUILD_TOOLS";
         popd;
       fi
-    - export PATH=$ANDROID_SDK_ROOT/tools/cmdline-tools/bin/:$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS/:$PATH
+    - export PATH=$ANDROID_SDK_ROOT/tools/cmdline-tools/bin/:$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS/:$JAVA_HOME/bin:$PATH
     - npm install -g cordova @ionic/cli cordova-res --unsafe-perm
   script:
     - ./fillCredentials.sh "src/assets/config.dist.json" "API_ACCESS_TOKEN"
-    - ionic cordova platform add android --no-confirm
-    - ionic cordova prepare android --no-confirm
+    - ionic cordova platform add android --no-interactive --confirm
+    - ionic cordova prepare android --no-interactive --confirm
     - ionic cordova build android --prod
     - zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ReflectUP-unsigned.apk
 
@@ -102,7 +103,7 @@ android-production:
     - if [ ! -f "ReflectUP-unsigned.apk" ]; then
         exit 1;
       fi
-    - export PATH=$ANDROID_SDK_ROOT/tools/bin/:$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS/:$PATH
+    - export PATH=$ANDROID_SDK_ROOT/tools/cmdline-tools/bin/:$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS/:$JAVA_HOME/bin:$PATH
     - echo "$KEYSTORE" | base64 -d > keystore
     - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore -storepass:env KEYSTORE_PASS ReflectUP-unsigned.apk /my-release-key
     - zipalign -v 4 ReflectUP-unsigned.apk ReflectUP.apk
@@ -122,8 +123,8 @@ android-production:
   script:
     - ./fillCredentials.sh "src/assets/config.dist.json" "API_ACCESS_TOKEN"
     - npm install -g cordova @ionic/cli
-    - ionic cordova platform add browser --no-confirm
-    - ionic cordova prepare browser --no-confirm
+    - ionic cordova platform add browser --no-interactive --confirm
+    - ionic cordova prepare browser --no-interactive --confirm
     - ionic cordova build browser --prod
     # HACK to make Reflect.UP work in an iframe as we do on mobileup.uni-potsdam.de, cf. https://github.com/apache/cordova-plugin-inappbrowser/issues/419
     - perl -pi -e 's|if \(window.parent && !!window.parent.ripple\) \{|if (window.parent && false) {|' platforms/browser/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js
