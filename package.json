@@ -58,7 +58,7 @@
     "ionic-cache": "^6.0.3",
     "ionic-logging-service": "^13.0.0",
     "jquery": "^3.6.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "phonegap-plugin-multidex": "^1.0.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.3.1",
